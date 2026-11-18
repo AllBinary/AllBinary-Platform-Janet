@@ -1,62 +1,47 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.input.motion.button
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.input.motion.button
 
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
-local BasicArrayListUtil = require("org.allbinary.util.BasicArrayListUtil")
-local BaseTouchInput = require("org.allbinary.input.motion.button.BaseTouchInput")
+(import ../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- LogUtil/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/logic/communication/log/LogUtil" "jm_getInstance" args))
+(defn- BasicArrayListUtil/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/util/BasicArrayListUtil" "jm_getInstance" args))
+(import ./BaseTouchInput :as BaseTouchInput)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class NoButtonsBuilder
+(var jproto nil)
+(var jnew_0 nil)
+(var jm_getList nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "NoButtonsBuilder" :f_logUtil nil} jproto))
+    (put this :f_logUtil (LogUtil/jm_getInstance))
+    (JR/superInit this (BaseTouchInput/jnew_0))
+    this))
 
-local NoButtonsBuilder = {}
-NoButtonsBuilder.__index = NoButtonsBuilder
-NoButtonsBuilder.className = "NoButtonsBuilder"
-setmetatable(NoButtonsBuilder, {__index = BaseTouchInput})
+    
+(set jm_getList (fn jm_getList [this]
+    (label jreturn
+        (try
+            (do
+            (:jm_putF (this :f_logUtil) ((this :f_commonStrings) :f_START) this ((this :f_commonStrings) :f_CONSTRUCTOR))
+            (var _list (:jm_getImmutableInstance (BasicArrayListUtil/jm_getInstance)))
+            (return jreturn _list))
+            ([_e] (do
+            (:jm_put (this :f_logUtil) ((this :f_commonStrings) :f_EXCEPTION) this ((this :f_commonStrings) :f_GET_LIST) _e)
+            (return jreturn (:jm_getImmutableInstance (BasicArrayListUtil/jm_getInstance)))))))))
 
-function NoButtonsBuilder:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-end
+(set jproto (table/setproto @{:jm_getList jm_getList} BaseTouchInput/jproto))
 
-function NoButtonsBuilder.new()
-    local self = setmetatable(BaseTouchInput.new(), NoButtonsBuilder)
-    self:_init_fields()
-    return self
-end
-
-
-function NoButtonsBuilder:getList()
-        local try_ok, try_error = pcall(function()
-            self.logUtil:putF(self.commonStrings.START, self, self.commonStrings.CONSTRUCTOR)
-            local list = BasicArrayListUtil.getInstance():getImmutableInstance()
-            return list
-        end)
-        if not try_ok then
-            local e = try_error
-            self.logUtil:put(self.commonStrings.EXCEPTION, self, self.commonStrings.GET_LIST, e)
-            return BasicArrayListUtil.getInstance():getImmutableInstance()
-        end
-end
-
-return NoButtonsBuilder
 

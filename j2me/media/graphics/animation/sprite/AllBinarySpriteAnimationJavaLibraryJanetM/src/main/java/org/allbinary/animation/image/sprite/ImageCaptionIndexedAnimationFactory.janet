@@ -1,118 +1,84 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---   
--- Generated Code Do Not Modify
--- package org.allbinary.animation.image.sprite
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#   
+# Generated Code Do Not Modify
+# package org.allbinary.animation.image.sprite
 
--- local Image = require("javax.microedition.lcdui.Image")
--- local Sprite = require("javax.microedition.lcdui.game.Sprite")
--- local Player = require("javax.microedition.media.Player")
-local Animation = require("org.allbinary.animation.Animation")
-local AnimationBehaviorFactory = require("org.allbinary.animation.AnimationBehaviorFactory")
-local AnimationInterfaceFactoryInterface = require("org.allbinary.animation.AnimationInterfaceFactoryInterface")
-local IndexedAnimation = require("org.allbinary.animation.IndexedAnimation")
-local CaptionIndexedAnimation = require("org.allbinary.animation.caption.CaptionIndexedAnimation")
-local ImageAnimation = require("org.allbinary.animation.image.ImageAnimation")
-local BasicColorUtil = require("org.allbinary.graphics.color.BasicColorUtil")
-local AnimationFactoryImageScaleUtil = require("org.allbinary.image.AnimationFactoryImageScaleUtil")
-local AnimationFactorySpriteScaleUtil = require("org.allbinary.image.sprite.AnimationFactorySpriteScaleUtil")
-local ForcedLogUtil = require("org.allbinary.logic.communication.log.ForcedLogUtil")
-local ScaleProperties = require("org.allbinary.media.ScaleProperties")
-local Sound = require("org.allbinary.media.audio.Sound")
+(import ../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- AnimationBehaviorFactory/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/animation/AnimationBehaviorFactory" "jm_getInstance" args))
+(defn- CaptionIndexedAnimation/jnew_9 [& args] (JR/call jfile "../../../../../org/allbinary/animation/caption/CaptionIndexedAnimation" "jnew_9" args))
+(defn- ImageAnimation/jnew_2 [& args] (JR/call jfile "../../../../../org/allbinary/animation/image/ImageAnimation" "jnew_2" args))
+(defn- BasicColorUtil/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/graphics/color/BasicColorUtil" "jm_getInstance" args))
+(defn- AnimationFactoryImageScaleUtil/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/image/AnimationFactoryImageScaleUtil" "jm_getInstance" args))
+(defn- AnimationFactorySpriteScaleUtil/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/image/sprite/AnimationFactorySpriteScaleUtil" "jm_getInstance" args))
+(defn- ForcedLogUtil/jm_log [& args] (JR/call jfile "../../../../../org/allbinary/logic/communication/log/ForcedLogUtil" "jm_log" args))
+(defn- ScaleProperties/jstatic_instance [& args] (JR/call jfile "../../../../../org/allbinary/media/ScaleProperties" "jstatic_instance" args))
+(defn- SpriteIndexedAnimation/jnew_4 [& args] (JR/call jfile "./SpriteIndexedAnimation" "jnew_4" args))
 
--- Java library Throwable. tostring gives the message like Java getMessage.
-local function java_exception(className, message, cause)
-    if cause == nil and type(message) == "table" then
-        cause = message
-        message = tostring(message)
-    end
-    local exception = {className = className, message = message, cause = cause}
-    function exception:getMessage() return self.message end
-    function exception:getCause() return self.cause end
-    function exception:printStackTrace() print(debug.traceback(tostring(self))) end
-    return setmetatable(exception, {__tostring = function(self) if self.message ~= nil then return tostring(self.message) end return self.className end})
-end
+# Java class ImageCaptionIndexedAnimationFactory
+(var jproto nil)
+(var jnew_11 nil)
+(var jm_getInstance nil)
+(var jm_setInitialScale nil)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+    
+(set jnew_11 (fn jnew_11 [_captionImage _spriteMovieImage _soundInterface _frameWidth _frameHeight _captionDx _captionDy _dx _dy _time _animationBehaviorFactory]
+    (var this (table/setproto @{:jclass "ImageCaptionIndexedAnimationFactory" :f_animationFactoryImageScaleUtil nil :f_animationFactorySpriteScaleUtil nil :f_captionImage nil :f_spriteMovieImage nil :f_frameWidth 0 :f_frameHeight 0 :f_captionDx 0 :f_captionDy 0 :f_dx 0 :f_dy 0 :f_time 0 :f_soundInterface nil :f_scaleProperties nil :f_animationBehaviorFactory nil} jproto))
+    (put this :f_animationFactoryImageScaleUtil (AnimationFactoryImageScaleUtil/jm_getInstance))
+    (put this :f_animationFactorySpriteScaleUtil (AnimationFactorySpriteScaleUtil/jm_getInstance))
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    (put this :f_scaleProperties (ScaleProperties/jstatic_instance))
+    
+        (if (= _animationBehaviorFactory (AnimationBehaviorFactory/jm_getInstance))
+            (do
+            (ForcedLogUtil/jm_log "Using default AnimationBehaviorFactory with IndexedAnimationFactory" this)))
+        (set (this :f_captionImage) _captionImage)
+        (set (this :f_spriteMovieImage) _spriteMovieImage)
+        (set (this :f_frameWidth) _frameWidth)
+        (set (this :f_frameHeight) _frameHeight)
+        (set (this :f_captionDx) _captionDx)
+        (set (this :f_captionDy) _captionDy)
+        (set (this :f_dx) _dx)
+        (set (this :f_dy) _dy)
+        (set (this :f_time) _time)
+        (set (this :f_soundInterface) _soundInterface)
+        (set (this :f_animationBehaviorFactory) _animationBehaviorFactory)
+    this))
+    
+(set jm_getInstance (fn jm_getInstance [this _instanceId]
+    (label jreturn
+        (var _scaledImage (:jm_createImage (this :f_animationFactoryImageScaleUtil) (this :f_captionImage) (:jm_getWidth (this :f_captionImage)) (:jm_getHeight (this :f_captionImage)) ((this :f_scaleProperties) :f_scaleWidth) ((this :f_scaleProperties) :f_scaleHeight)))
+        (var _animationInterface (ImageAnimation/jnew_2 _scaledImage (:jm_getOrCreateInstance (this :f_animationBehaviorFactory))))
+        (var _sprite (:jm_createImage (this :f_animationFactorySpriteScaleUtil) (this :f_spriteMovieImage) (this :f_frameWidth) (this :f_frameHeight) ((this :f_scaleProperties) :f_scaleWidth) ((this :f_scaleProperties) :f_scaleHeight)))
+        (var _movieIndexedAnimationInterface (SpriteIndexedAnimation/jnew_4 _sprite (this :f_spriteMovieImage) ((BasicColorUtil/jm_getInstance) :f_ZERO_ARRAY) (:jm_getOrCreateInstance (this :f_animationBehaviorFactory))))
+        (var _player (:jm_getPlayerP (this :f_soundInterface)))
+        (if (nil? _player)
+            (do
+            (error (JR/newException "Exception" "Sound Was not Initialized"))))
+        (return jreturn (CaptionIndexedAnimation/jnew_9 _animationInterface _movieIndexedAnimationInterface _player (this :f_captionDx) (this :f_captionDy) (this :f_dx) (this :f_dy) (this :f_time) (:jm_getOrCreateInstance (this :f_animationBehaviorFactory)))))))
+    
+(set jm_setInitialScale (fn jm_setInitialScale [this _scaleProperties]
+        (set (this :f_scaleProperties) _scaleProperties)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jproto @{:jm_getInstance jm_getInstance :jm_setInitialScale jm_setInitialScale})
 
-local ImageCaptionIndexedAnimationFactory = {}
-ImageCaptionIndexedAnimationFactory.__index = ImageCaptionIndexedAnimationFactory
-ImageCaptionIndexedAnimationFactory.className = "ImageCaptionIndexedAnimationFactory"
-
-function ImageCaptionIndexedAnimationFactory:_init_fields()
-    self.animationFactoryImageScaleUtil = AnimationFactoryImageScaleUtil.getInstance()
-    self.animationFactorySpriteScaleUtil = AnimationFactorySpriteScaleUtil.getInstance()
-    self.captionImage = nil
-    self.spriteMovieImage = nil
-    self.frameWidth = nil
-    self.frameHeight = nil
-    self.captionDx = nil
-    self.captionDy = nil
-    self.dx = nil
-    self.dy = nil
-    self.time = nil
-    self.soundInterface = nil
-    self.scaleProperties = ScaleProperties.instance
-    self.animationBehaviorFactory = nil
-end
-
-
-function ImageCaptionIndexedAnimationFactory.new(captionImage, spriteMovieImage, soundInterface, frameWidth, frameHeight, captionDx, captionDy, dx, dy, time, animationBehaviorFactory)
-    local self = setmetatable({}, ImageCaptionIndexedAnimationFactory)
-    self:_init_fields()
-        if animationBehaviorFactory == AnimationBehaviorFactory.getInstance() then
-            ForcedLogUtil.log("Using default AnimationBehaviorFactory with IndexedAnimationFactory", self)
-        end
-        self.captionImage = captionImage
-        self.spriteMovieImage = spriteMovieImage
-        self.frameWidth = frameWidth
-        self.frameHeight = frameHeight
-        self.captionDx = captionDx
-        self.captionDy = captionDy
-        self.dx = dx
-        self.dy = dy
-        self.time = time
-        self.soundInterface = soundInterface
-        self.animationBehaviorFactory = animationBehaviorFactory
-    return self
-end
-
-
--- throws Exception
-function ImageCaptionIndexedAnimationFactory:getInstance(instanceId)
-        local scaledImage = self.animationFactoryImageScaleUtil:createImage(self.captionImage, self.captionImage:getWidth(), self.captionImage:getHeight(), self.scaleProperties.scaleWidth, self.scaleProperties.scaleHeight)
-        local animationInterface = ImageAnimation.new(scaledImage, self.animationBehaviorFactory:getOrCreateInstance())
-        local sprite = self.animationFactorySpriteScaleUtil:createImage(self.spriteMovieImage, self.frameWidth, self.frameHeight, self.scaleProperties.scaleWidth, self.scaleProperties.scaleHeight)
-        local movieIndexedAnimationInterface = SpriteIndexedAnimation.new(sprite, self.spriteMovieImage, BasicColorUtil.getInstance().ZERO_ARRAY, self.animationBehaviorFactory:getOrCreateInstance())
-        local player = self.soundInterface:getPlayerP()
-        if player == nil then
-            error(java_exception("Exception", "Sound Was not Initialized"), 0)
-        end
-        return CaptionIndexedAnimation.new(animationInterface, movieIndexedAnimationInterface, player, self.captionDx, self.captionDy, self.dx, self.dy, self.time, self.animationBehaviorFactory:getOrCreateInstance())
-end
-
-
-function ImageCaptionIndexedAnimationFactory:setInitialScale(scaleProperties)
-        self.scaleProperties = scaleProperties
-end
-
-return ImageCaptionIndexedAnimationFactory
 

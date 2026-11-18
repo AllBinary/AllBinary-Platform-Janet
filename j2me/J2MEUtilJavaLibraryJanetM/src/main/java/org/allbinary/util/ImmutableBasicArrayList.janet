@@ -29,7 +29,7 @@
 (set jnew_2 (fn jnew_2 [_name _size]
     (var this (table/setproto @{:jclass "ImmutableBasicArrayList" :f_name nil} jproto))
     
-        nil
+        (JR/superInit this (BasicArrayListS/jnew_1 _size))
         (set (this :f_name) _name)
     this))
     

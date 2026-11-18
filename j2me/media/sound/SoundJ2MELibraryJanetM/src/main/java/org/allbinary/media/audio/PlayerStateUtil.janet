@@ -1,73 +1,75 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2022 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.media.audio
+# 
+# AllBinary Open License Version 1 
+# Copyright (c) 2022 AllBinary 
+#  
+# By agreeing to this license you and any business entity you represent are 
+# legally bound to the AllBinary Open License Version 1 legal agreement. 
+#  
+# You may obtain the AllBinary Open License Version 1 legal agreement from 
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+#  
+# Created By: Travis Berthelot 
+#   
+# Generated Code Do Not Modify
+# package org.allbinary.media.audio
 
--- local Player = require("javax.microedition.media.Player")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- Player/jstatic_UNREALIZED [& args] (JR/call jfile "../../../../javax/microedition/media/Player" "jstatic_UNREALIZED" args))
+(defn- Player/jstatic_REALIZED [& args] (JR/call jfile "../../../../javax/microedition/media/Player" "jstatic_REALIZED" args))
+(defn- Player/jstatic_PREFETCHED [& args] (JR/call jfile "../../../../javax/microedition/media/Player" "jstatic_PREFETCHED" args))
+(defn- Player/jstatic_STARTED [& args] (JR/call jfile "../../../../javax/microedition/media/Player" "jstatic_STARTED" args))
+(defn- Player/jstatic_CLOSED [& args] (JR/call jfile "../../../../javax/microedition/media/Player" "jstatic_CLOSED" args))
+(defn- CommonStrings/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/string/CommonStrings" "jm_getInstance" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class PlayerStateUtil
+(var jproto nil)
+(var jcell_instance :jnone)
+(var jstatic_instance nil)
+(var jsetstatic_instance nil)
+(var jnew_0 nil)
+(var jm_getInstance nil)
+(var jm_convert nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jstatic_instance (fn jstatic_instance []
+  (when (= jcell_instance :jnone) (set jcell_instance (jnew_0)))
+  jcell_instance))
+(set jsetstatic_instance (fn jsetstatic_instance [value] (set jcell_instance value)))
 
-local PlayerStateUtil = {}
-PlayerStateUtil.__index = PlayerStateUtil
-PlayerStateUtil.className = "PlayerStateUtil"
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "PlayerStateUtil" :f_commonStrings nil :f_UNREALIZED nil :f_REALIZED nil :f_PREFETCHED nil :f_STARTED nil :f_CLOSED nil} jproto))
+    (put this :f_commonStrings (CommonStrings/jm_getInstance))
+    (put this :f_UNREALIZED "UNREALIZED")
+    (put this :f_REALIZED "REALIZED")
+    (put this :f_PREFETCHED "PREFETCHED")
+    (put this :f_STARTED "STARTED")
+    (put this :f_CLOSED "CLOSED")
+    this))
 
-function PlayerStateUtil:_init_fields()
-    self.commonStrings = CommonStrings.getInstance()
-    self.UNREALIZED = "UNREALIZED"
-    self.REALIZED = "REALIZED"
-    self.PREFETCHED = "PREFETCHED"
-    self.STARTED = "STARTED"
-    self.CLOSED = "CLOSED"
-end
+    
+(set jm_getInstance (fn jm_getInstance []
+    (label jreturn
+        (return jreturn (jstatic_instance)))))
+    
+(set jm_convert (fn jm_convert [this _state]
+    (label jreturn
+        (if (= _state (Player/jstatic_UNREALIZED))
+            (do
+            (return jreturn (this :f_UNREALIZED)))
+            (if (= _state (Player/jstatic_REALIZED))
+            (do
+            (return jreturn (this :f_REALIZED)))
+            (if (= _state (Player/jstatic_PREFETCHED))
+            (do
+            (return jreturn (this :f_PREFETCHED)))
+            (if (= _state (Player/jstatic_STARTED))
+            (do
+            (return jreturn (this :f_STARTED)))
+            (if (= _state (Player/jstatic_CLOSED))
+            (do
+            (return jreturn (this :f_CLOSED))))))))
+        (return jreturn ((this :f_commonStrings) :f_UNKNOWN)))))
 
-function PlayerStateUtil.new()
-    local self = setmetatable({}, PlayerStateUtil)
-    self:_init_fields()
-    return self
-end
+(set jproto @{:jm_convert jm_convert})
 
-
-function PlayerStateUtil.getInstance()
-        return PlayerStateUtil.instance
-end
-
-
-function PlayerStateUtil:convert(state)
-        if state == Player.UNREALIZED then
-            return self.UNREALIZED
-        elseif state == Player.REALIZED then
-            return self.REALIZED
-        elseif state == Player.PREFETCHED then
-            return self.PREFETCHED
-        elseif state == Player.STARTED then
-            return self.STARTED
-        elseif state == Player.CLOSED then
-            return self.CLOSED
-        end
-        return self.commonStrings.UNKNOWN
-end
-
-PlayerStateUtil.instance = PlayerStateUtil.new()
-
-return PlayerStateUtil
 

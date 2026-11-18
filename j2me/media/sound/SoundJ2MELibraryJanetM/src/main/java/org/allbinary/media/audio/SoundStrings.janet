@@ -1,55 +1,49 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2025 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.media.audio
+# 
+# AllBinary Open License Version 1 
+# Copyright (c) 2025 AllBinary 
+#  
+# By agreeing to this license you and any business entity you represent are 
+# legally bound to the AllBinary Open License Version 1 legal agreement. 
+#  
+# You may obtain the AllBinary Open License Version 1 legal agreement from 
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+#  
+# Created By: Travis Berthelot 
+#   
+# Generated Code Do Not Modify
+# package org.allbinary.media.audio
 
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class SoundStrings
+(var jproto nil)
+(var jcell_instance :jnone)
+(var jstatic_instance nil)
+(var jsetstatic_instance nil)
+(var jnew_0 nil)
+(var jm_getInstance nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jstatic_instance (fn jstatic_instance []
+  (when (= jcell_instance :jnone) (set jcell_instance (jnew_0)))
+  jcell_instance))
+(set jsetstatic_instance (fn jsetstatic_instance [value] (set jcell_instance value)))
 
-local SoundStrings = {}
-SoundStrings.__index = SoundStrings
-SoundStrings.className = "SoundStrings"
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "SoundStrings" :f_STOP_ALL nil :f_CLOSE_ALL nil :f_SOUND nil :f_INIT_SOUND nil :f_STOPPING_SOUND nil :f_CLOSING_SOUND nil} jproto))
+    (put this :f_STOP_ALL "stopAll")
+    (put this :f_CLOSE_ALL "closeAll")
+    (put this :f_SOUND " Sound: ")
+    (put this :f_INIT_SOUND "Initializing Sound: ")
+    (put this :f_STOPPING_SOUND "Stopping Sound: ")
+    (put this :f_CLOSING_SOUND "Closing Sound: ")
+    this))
 
-function SoundStrings:_init_fields()
-    self.STOP_ALL = "stopAll"
-    self.CLOSE_ALL = "closeAll"
-    self.SOUND = " Sound: "
-    self.INIT_SOUND = "Initializing Sound: "
-    self.STOPPING_SOUND = "Stopping Sound: "
-    self.CLOSING_SOUND = "Closing Sound: "
-end
+    
+(set jm_getInstance (fn jm_getInstance []
+    (label jreturn
+        (return jreturn (jstatic_instance)))))
 
-function SoundStrings.new()
-    local self = setmetatable({}, SoundStrings)
-    self:_init_fields()
-    return self
-end
+(set jproto @{})
 
-
-function SoundStrings.getInstance()
-        return SoundStrings.instance
-end
-
-SoundStrings.instance = SoundStrings.new()
-
-return SoundStrings
 

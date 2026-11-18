@@ -1,56 +1,40 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---   
--- Generated Code Do Not Modify
--- package org.allbinary.android.input.motion
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#   
+# Generated Code Do Not Modify
+# package org.allbinary.android.input.motion
 
-local AnalogLocationInput = require("org.allbinary.game.input.analog.AnalogLocationInput")
-local AnalogLocationInputFactory = require("org.allbinary.game.input.analog.AnalogLocationInputFactory")
-local AllBinaryLayerManager = require("org.allbinary.layer.AllBinaryLayerManager")
-local AnalogControllerVisitor = require("org.allbinary.android.input.motion.AnalogControllerVisitor")
+(import ../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- AnalogLocationInputFactory/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/game/input/analog/AnalogLocationInputFactory" "jm_getInstance" args))
+(import ./AnalogControllerVisitor :as AnalogControllerVisitor)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class SingleAnalogControllerVisitor
+(var jproto nil)
+(var jnew_1 nil)
+(var jm_process nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jnew_1 (fn jnew_1 [_playerInputId]
+    (var this (table/setproto @{:jclass "SingleAnalogControllerVisitor" :f_playerInputId 0} jproto))
+    
+    (JR/superInit this (AnalogControllerVisitor/jnew_0))
+        (set (this :f_playerInputId) _playerInputId)
+    this))
+    
+(set jm_process (fn jm_process [this _allbinaryLayerManager _analogLocationInputProcessor]
+        (var _analogLocationInput (:jm_getInstanceForPlayer (AnalogLocationInputFactory/jm_getInstance) (this :f_playerInputId)))
+        (:jm_process _analogLocationInputProcessor _allbinaryLayerManager _analogLocationInput)))
 
-local SingleAnalogControllerVisitor = {}
-SingleAnalogControllerVisitor.__index = SingleAnalogControllerVisitor
-SingleAnalogControllerVisitor.className = "SingleAnalogControllerVisitor"
-setmetatable(SingleAnalogControllerVisitor, {__index = AnalogControllerVisitor})
+(set jproto (table/setproto @{:jm_process jm_process} AnalogControllerVisitor/jproto))
 
-function SingleAnalogControllerVisitor:_init_fields()
-    self.playerInputId = nil
-end
-
-
-function SingleAnalogControllerVisitor.new(playerInputId)
-    local self = setmetatable(AnalogControllerVisitor.new(), SingleAnalogControllerVisitor)
-    self:_init_fields()
-        self.playerInputId = playerInputId
-    return self
-end
-
-
-function SingleAnalogControllerVisitor:process(allbinaryLayerManager, analogLocationInputProcessor)
-        local analogLocationInput = AnalogLocationInputFactory.getInstance():getInstanceForPlayer(self.playerInputId)
-        analogLocationInputProcessor:process(allbinaryLayerManager, analogLocationInput)
-end
-
-return SingleAnalogControllerVisitor
 

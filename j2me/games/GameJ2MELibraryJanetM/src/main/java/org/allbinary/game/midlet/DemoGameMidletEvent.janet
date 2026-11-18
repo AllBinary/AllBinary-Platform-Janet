@@ -1,63 +1,47 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.midlet
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.game.midlet
 
-local AllBinaryEventObject = require("org.allbinary.logic.util.event.AllBinaryEventObject")
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(import ../../../../org/allbinary/logic/util/event/AllBinaryEventObject :as AllBinaryEventObject)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class DemoGameMidletEvent
+(var jproto nil)
+(var jnew_2 nil)
+(var jm_init nil)
+(var jm_setDemoGameMidletState nil)
+(var jm_getDemoGameMidletState nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jnew_2 (fn jnew_2 [_anyType _demoGameMidletState]
+    (var this (table/setproto @{:jclass "DemoGameMidletEvent" :f_demoGameMidletState nil} jproto))
+    
+        (JR/superInit this (AllBinaryEventObject/jnew_1 _anyType))
+        (set (this :f_demoGameMidletState) _demoGameMidletState)
+    this))
+    
+(set jm_init (fn jm_init [this _anyType]
+        (:jm_setSource this _anyType)))
+    
+(set jm_setDemoGameMidletState (fn jm_setDemoGameMidletState [this _demoGameMidletState]
+        (set (this :f_demoGameMidletState) _demoGameMidletState)))
+    
+(set jm_getDemoGameMidletState (fn jm_getDemoGameMidletState [this]
+    (label jreturn
+        (return jreturn (this :f_demoGameMidletState)))))
 
-local DemoGameMidletEvent = {}
-DemoGameMidletEvent.__index = DemoGameMidletEvent
-DemoGameMidletEvent.className = "DemoGameMidletEvent"
-setmetatable(DemoGameMidletEvent, {__index = AllBinaryEventObject})
+(set jproto (table/setproto @{:jm_init jm_init :jm_setDemoGameMidletState jm_setDemoGameMidletState :jm_getDemoGameMidletState jm_getDemoGameMidletState} AllBinaryEventObject/jproto))
 
-function DemoGameMidletEvent:_init_fields()
-    self.demoGameMidletState = nil
-end
-
-
-function DemoGameMidletEvent.new(anyType, demoGameMidletState)
-    local self = setmetatable(AllBinaryEventObject.new(anyType), DemoGameMidletEvent)
-    self:_init_fields()
-        -- super(...) made self above
-        self.demoGameMidletState = demoGameMidletState
-    return self
-end
-
-
-function DemoGameMidletEvent:init(anyType)
-        self:setSource(anyType)
-end
-
-
-function DemoGameMidletEvent:setDemoGameMidletState(demoGameMidletState)
-        self.demoGameMidletState = demoGameMidletState
-end
-
-
-function DemoGameMidletEvent:getDemoGameMidletState()
-        return self.demoGameMidletState
-end
-
-return DemoGameMidletEvent
 

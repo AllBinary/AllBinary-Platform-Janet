@@ -1,136 +1,113 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.displayable.canvas
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.game.displayable.canvas
 
--- local Font = require("javax.microedition.lcdui.Font")
--- local Graphics = require("javax.microedition.lcdui.Graphics")
-local Anchor = require("org.allbinary.graphics.Anchor")
-local BasicColor = require("org.allbinary.graphics.color.BasicColor")
-local BasicColorFactory = require("org.allbinary.graphics.color.BasicColorFactory")
-local BasicColorSetUtil = require("org.allbinary.graphics.color.BasicColorSetUtil")
-local DisplayInfoSingleton = require("org.allbinary.graphics.displayable.DisplayInfoSingleton")
-local FontDebugFactory = require("org.allbinary.graphics.font.FontDebugFactory")
-local MyFontProcessor = require("org.allbinary.graphics.font.MyFontProcessor")
-local UpdateMyFontInterface = require("org.allbinary.graphics.font.UpdateMyFontInterface")
-local UpdateMyFontProcessor = require("org.allbinary.graphics.font.UpdateMyFontProcessor")
-local InitUpdatePaintable = require("org.allbinary.graphics.paint.InitUpdatePaintable")
-local NullUtil = require("org.allbinary.logic.NullUtil")
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
+(import ../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- Anchor/jstatic_TOP_LEFT [& args] (JR/call jfile "../../../../../org/allbinary/graphics/Anchor" "jstatic_TOP_LEFT" args))
+(defn- BasicColorFactory/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/graphics/color/BasicColorFactory" "jm_getInstance" args))
+(defn- BasicColorSetUtil/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/graphics/color/BasicColorSetUtil" "jm_getInstance" args))
+(defn- DisplayInfoSingleton/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/graphics/displayable/DisplayInfoSingleton" "jm_getInstance" args))
+(defn- FontDebugFactory/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/graphics/font/FontDebugFactory" "jm_getInstance" args))
+(defn- MyFontProcessor/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/graphics/font/MyFontProcessor" "jm_getInstance" args))
+(defn- UpdateMyFontProcessor/jnew_1 [& args] (JR/call jfile "../../../../../org/allbinary/graphics/font/UpdateMyFontProcessor" "jnew_1" args))
+(import ../../../../../org/allbinary/graphics/paint/InitUpdatePaintable :as InitUpdatePaintable)
+(defn- NullUtil/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/logic/NullUtil" "jm_getInstance" args))
+(defn- StringMaker/jnew_0 [& args] (JR/call jfile "../../../../../org/allbinary/logic/string/StringMaker" "jnew_0" args))
+(defn- StringUtil/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/logic/string/StringUtil" "jm_getInstance" args))
 
-local function java_new_array(default, size, ...)
-    local array = {n = size}
-    for index = 1, size do
-        if select("#", ...) > 0 then array[index] = java_new_array(default, ...) else array[index] = default end
-    end
-    return array
-end
+# Java class StartIntermissionPaintable
+(var jproto nil)
+(var jnew_4 nil)
+(var jm_updateMeasurement nil)
+(var jm_paint nil)
+(var jm_update nil)
+(var jm_setBasicColorP nil)
+(var jm_getBasicColorP nil)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+    
+(set jnew_4 (fn jnew_4 [_gameCanvas _stringArray _basicColor _font]
+    (var this (table/setproto @{:jclass "StartIntermissionPaintable" :f_fontDebugFactory nil :f_basicSetColorUtil nil :f_gameCanvas nil :f_stringArray nil :f_fontSize 0 :f_font nil :f_lastWidth nil :f_updateMyFontProcessor nil :f_myFontProcessor nil :f_basicColor nil :f_color 0 :f_lineYOffsetArray nil :f_hasChanged false :f_anchor 0 :f_fontHeightP 0 :f_BEGIN_LEVEL nil :f_EMPTY_STRING nil} jproto))
+    (put this :f_fontDebugFactory (FontDebugFactory/jm_getInstance))
+    (put this :f_basicSetColorUtil (BasicColorSetUtil/jm_getInstance))
+    
+    
+    
+    
+    
+    (put this :f_updateMyFontProcessor (UpdateMyFontProcessor/jnew_1 this))
+    (put this :f_myFontProcessor (this :f_updateMyFontProcessor))
+    (put this :f_basicColor ((BasicColorFactory/jm_getInstance) :f_BLACK))
+    
+    (put this :f_lineYOffsetArray ((NullUtil/jm_getInstance) :f_NULL_INT_ARRAY))
+    (put this :f_hasChanged true)
+    (put this :f_anchor (Anchor/jstatic_TOP_LEFT))
+    
+    (put this :f_BEGIN_LEVEL "Begin Level ")
+    (put this :f_EMPTY_STRING ((StringUtil/jm_getInstance) :f_EMPTY_STRING))
+    (JR/superInit this (InitUpdatePaintable/jnew_0))
+        (set (this :f_gameCanvas) _gameCanvas)
+        (set (this :f_stringArray) _stringArray)
+        (set (this :f_lastWidth) (array/new-filled (length (this :f_stringArray)) 0))
+        (:jm_setBasicColorP this _basicColor)
+        (set (this :f_color) (:jm_intValue _basicColor))
+        (set (this :f_fontSize) (:jm_getSize _font))
+        (set (this :f_font) _font)
+    this))
+    
+(set jm_updateMeasurement (fn jm_updateMeasurement [this _graphics]
+        (var _font (:jm_getFont _graphics))
+        (set (this :f_fontHeightP) (:jm_getHeight _font))
+        (set (this :f_myFontProcessor) (MyFontProcessor/jm_getInstance))))
+    
+(set jm_paint (fn jm_paint [this _graphics]
+        (:jm_process (this :f_myFontProcessor) _graphics)
+        (var _existingFont (:jm_getFont _graphics))
+        (:jm_setFont (this :f_fontDebugFactory) (this :f_font) _graphics)
+        (var _displayInfo (DisplayInfoSingleton/jm_getInstance))
+        (:jm_setBasicColorP3 (this :f_basicSetColorUtil) _graphics (this :f_basicColor) (this :f_color))
+        (var _beginWidth 0)
+        (do
+            (var _index (JR/i32 (- (length (this :f_lineYOffsetArray)) 1)))
+            (while (>= _index 0)
+                (do
+            (if (this :f_hasChanged)
+                (do
+                (set ((this :f_lastWidth) _index) (brshift (JR/className (:jm_getFont _graphics)) 1))))
+            (set _beginWidth ((this :f_lastWidth) _index))
+            (:jm_drawString _graphics ((this :f_stringArray) _index) (JR/i32 (- (:jm_getLastHalfWidth _displayInfo) _beginWidth)) (JR/i32 (- (:jm_getLastHalfHeight _displayInfo) ((this :f_lineYOffsetArray) _index))) (this :f_anchor)))
+                (do (set _index (JR/i32 (- _index 1))))))
+        (set (this :f_hasChanged) false)
+        (:jm_setFont (this :f_fontDebugFactory) _existingFont _graphics)))
+    
+(set jm_update (fn jm_update [this]
+        (var _level (JR/className (JR/className (:jm_getLayerManager (this :f_gameCanvas)))))
+        (set ((this :f_stringArray) 0) (:jm_toString (:jm_appendint (:jm_append (StringMaker/jnew_0) (this :f_BEGIN_LEVEL)) _level)))
+        (do
+            (var _index (JR/i32 (- (length (this :f_stringArray)) 1)))
+            (while (>= _index 1)
+                (do
+            (set ((this :f_stringArray) _index) (this :f_EMPTY_STRING)))
+                (do (set _index (JR/i32 (- _index 1))))))))
+    
+(set jm_setBasicColorP (fn jm_setBasicColorP [this _basicColor]
+        (set (this :f_basicColor) _basicColor)))
+    
+(set jm_getBasicColorP (fn jm_getBasicColorP [this]
+    (label jreturn
+        (return jreturn (this :f_basicColor)))))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jproto (table/setproto @{:jm_updateMeasurement jm_updateMeasurement :jm_paint jm_paint :jm_update jm_update :jm_setBasicColorP jm_setBasicColorP :jm_getBasicColorP jm_getBasicColorP} InitUpdatePaintable/jproto))
 
-local StartIntermissionPaintable = {}
-StartIntermissionPaintable.__index = StartIntermissionPaintable
-StartIntermissionPaintable.className = "StartIntermissionPaintable"
-setmetatable(StartIntermissionPaintable, {__index = InitUpdatePaintable})
-
-function StartIntermissionPaintable:_init_fields()
-    self.fontDebugFactory = FontDebugFactory.getInstance()
-    self.basicSetColorUtil = BasicColorSetUtil.getInstance()
-    self.gameCanvas = nil
-    self.stringArray = nil
-    self.fontSize = nil
-    self.font = nil
-    self.lastWidth = nil
-    self.updateMyFontProcessor = UpdateMyFontProcessor.new(self)
-    self.myFontProcessor = self.updateMyFontProcessor
-    self.basicColor = BasicColorFactory.getInstance().BLACK
-    self.color = nil
-    self.lineYOffsetArray = NullUtil.getInstance().NULL_INT_ARRAY
-    self.hasChanged = true
-    self.anchor = Anchor.TOP_LEFT
-    self.fontHeightP = 0
-    self.BEGIN_LEVEL = "Begin Level "
-    self.EMPTY_STRING = StringUtil.getInstance().EMPTY_STRING
-end
-
-
-function StartIntermissionPaintable.new(gameCanvas, stringArray, basicColor, font)
-    local self = setmetatable(InitUpdatePaintable.new(), StartIntermissionPaintable)
-    self:_init_fields()
-        self.gameCanvas = gameCanvas
-        self.stringArray = stringArray
-        self.lastWidth = java_new_array(0, (self.stringArray.n or #self.stringArray))
-        self:setBasicColorP(basicColor)
-        self.color = math.tointeger(basicColor // 1)
-        self.fontSize = font:getSize()
-        self.font = font
-    return self
-end
-
-
-function StartIntermissionPaintable:updateMeasurement(graphics)
-        local font = graphics:getFont()
-        self.fontHeightP = font:getHeight()
-        self.myFontProcessor = MyFontProcessor.getInstance()
-end
-
-
-function StartIntermissionPaintable:paint(graphics)
-        self.myFontProcessor:process(graphics)
-        local existingFont = graphics:getFont()
-        self.fontDebugFactory:setFont(self.font, graphics)
-        local displayInfo = DisplayInfoSingleton.getInstance()
-        self.basicSetColorUtil:setBasicColorP3(graphics, self.basicColor, self.color)
-        local beginWidth = 0
-        for index = (self.lineYOffsetArray.n or #self.lineYOffsetArray) - 1, 0, -1 do
-            if self.hasChanged then
-                self.lastWidth[index + 1] = (((graphics:getFont():stringWidth(self.stringArray[index + 1])) // (1 << (1))))
-            end
-            beginWidth = self.lastWidth[index + 1]
-            graphics:drawString(self.stringArray[index + 1], displayInfo:getLastHalfWidth() - beginWidth, displayInfo:getLastHalfHeight() - self.lineYOffsetArray[index + 1], self.anchor)
-        end
-        self.hasChanged = false
-        self.fontDebugFactory:setFont(existingFont, graphics)
-end
-
-
-function StartIntermissionPaintable:update()
-        local level = self.gameCanvas:getLayerManager():getGameInfo():getCurrentLevel()
-        self.stringArray[1] = tostring(StringMaker.new():append(self.BEGIN_LEVEL):appendint(level))
-        for index = (self.stringArray.n or #self.stringArray) - 1, 1, -1 do
-            self.stringArray[index + 1] = self.EMPTY_STRING
-        end
-end
-
-
-function StartIntermissionPaintable:setBasicColorP(basicColor)
-        self.basicColor = basicColor
-end
-
-
-function StartIntermissionPaintable:getBasicColorP()
-        return self.basicColor
-end
-
-return StartIntermissionPaintable
 

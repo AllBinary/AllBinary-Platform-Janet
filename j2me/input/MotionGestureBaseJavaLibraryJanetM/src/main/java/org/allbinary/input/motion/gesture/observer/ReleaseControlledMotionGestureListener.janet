@@ -1,152 +1,124 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.input.motion.gesture.observer
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.input.motion.gesture.observer
 
-local MotionGestureInput = require("org.allbinary.input.motion.gesture.MotionGestureInput")
-local TouchMotionGestureFactory = require("org.allbinary.input.motion.gesture.TouchMotionGestureFactory")
-local ForcedLogUtil = require("org.allbinary.logic.communication.log.ForcedLogUtil")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
-local AllBinaryEventObject = require("org.allbinary.logic.util.event.AllBinaryEventObject")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
-local BasicArrayListD = require("org.allbinary.util.BasicArrayListD")
-local MotionGestureEventListener = require("org.allbinary.input.motion.gesture.observer.MotionGestureEventListener")
+(import ../../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- TouchMotionGestureFactory/jm_getInstance [& args] (JR/call jfile "../../../../../../org/allbinary/input/motion/gesture/TouchMotionGestureFactory" "jm_getInstance" args))
+(defn- ForcedLogUtil/jm_log [& args] (JR/call jfile "../../../../../../org/allbinary/logic/communication/log/ForcedLogUtil" "jm_log" args))
+(defn- LogUtil/jm_getInstance [& args] (JR/call jfile "../../../../../../org/allbinary/logic/communication/log/LogUtil" "jm_getInstance" args))
+(defn- StringMaker/jnew_0 [& args] (JR/call jfile "../../../../../../org/allbinary/logic/string/StringMaker" "jnew_0" args))
+(defn- StringUtil/jm_getInstance [& args] (JR/call jfile "../../../../../../org/allbinary/logic/string/StringUtil" "jm_getInstance" args))
+(defn- CommonStrings/jm_getInstance [& args] (JR/call jfile "../../../../../../org/allbinary/string/CommonStrings" "jm_getInstance" args))
+(defn- BasicArrayListD/jnew_0 [& args] (JR/call jfile "../../../../../../org/allbinary/util/BasicArrayListD" "jnew_0" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class ReleaseControlledMotionGestureListener
+(var jproto nil)
+(var jnew_1 nil)
+(var jm_onEvent nil)
+(var jm_onUpMotionGestureEvent nil)
+(var jm_onDownMotionGestureEvent nil)
+(var jm_onLeftMotionGestureEvent nil)
+(var jm_onRightMotionGestureEvent nil)
+(var jm_onDiagonalDownRightMotionGestureEvent nil)
+(var jm_onDiagonalDownLeftMotionGestureEvent nil)
+(var jm_onDiagonalUpRightMotionGestureEvent nil)
+(var jm_onDiagonalUpLeftMotionGestureEvent nil)
+(var jm_onPressedMotionGestureEvent nil)
+(var jm_onScrolledMotionGestureEvent nil)
+(var jm_released nil)
+(var jm_onMotionGestureEvent nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jnew_1 (fn jnew_1 [_signed]
+    (var this (table/setproto @{:jclass "ReleaseControlledMotionGestureListener" :f_logUtil nil :f_commonStrings nil :f_currentMotionGesture nil :f_isMouseGestureOccurring false :f_motionGestureCollection nil :f_signed nil} jproto))
+    (put this :f_logUtil (LogUtil/jm_getInstance))
+    (put this :f_commonStrings (CommonStrings/jm_getInstance))
+    (put this :f_currentMotionGesture ((TouchMotionGestureFactory/jm_getInstance) :f_NO_MOTION))
+    (put this :f_isMouseGestureOccurring false)
+    (put this :f_motionGestureCollection (BasicArrayListD/jnew_0))
+    
+        (:jm_putF (this :f_logUtil) ((this :f_commonStrings) :f_START) this ((this :f_commonStrings) :f_CONSTRUCTOR))
+        (set (this :f_signed) _signed)
+    this))
+    
+(set jm_onEvent (fn jm_onEvent [this _eventObject]
+        (ForcedLogUtil/jm_log ((this :f_commonStrings) :f_NOT_IMPLEMENTED) this)))
+    
+(set jm_onUpMotionGestureEvent (fn jm_onUpMotionGestureEvent [this _ev]
+        (:jm_onMotionGestureEvent this _ev)))
+    
+(set jm_onDownMotionGestureEvent (fn jm_onDownMotionGestureEvent [this _ev]
+        (:jm_onMotionGestureEvent this _ev)))
+    
+(set jm_onLeftMotionGestureEvent (fn jm_onLeftMotionGestureEvent [this _ev]
+        (:jm_onMotionGestureEvent this _ev)))
+    
+(set jm_onRightMotionGestureEvent (fn jm_onRightMotionGestureEvent [this _ev]
+        (:jm_onMotionGestureEvent this _ev)))
+    
+(set jm_onDiagonalDownRightMotionGestureEvent (fn jm_onDiagonalDownRightMotionGestureEvent [this _ev]
+        (:jm_onMotionGestureEvent this _ev)))
+    
+(set jm_onDiagonalDownLeftMotionGestureEvent (fn jm_onDiagonalDownLeftMotionGestureEvent [this _ev]
+        (:jm_onMotionGestureEvent this _ev)))
+    
+(set jm_onDiagonalUpRightMotionGestureEvent (fn jm_onDiagonalUpRightMotionGestureEvent [this _ev]
+        (:jm_onMotionGestureEvent this _ev)))
+    
+(set jm_onDiagonalUpLeftMotionGestureEvent (fn jm_onDiagonalUpLeftMotionGestureEvent [this _ev]
+        (:jm_onMotionGestureEvent this _ev)))
+    
+(set jm_onPressedMotionGestureEvent (fn jm_onPressedMotionGestureEvent [this _ev]
+        (set (this :f_isMouseGestureOccurring) true)
+        (set (this :f_currentMotionGesture) ((TouchMotionGestureFactory/jm_getInstance) :f_NO_MOTION))
+        (:jm_onMotionGestureEvent this _ev)))
+    
+(set jm_onScrolledMotionGestureEvent (fn jm_onScrolledMotionGestureEvent [this _motionGestureEvent]
+    nil))
+    
+(set jm_released (fn jm_released [this _ev]
+    (label jreturn
+        (try
+            (do
+            (if (= (this :f_isMouseGestureOccurring) false)
+                (do
+                (return jreturn)))
+            (set (this :f_isMouseGestureOccurring) false)
+            (:jm_onMotionGestureCompleted (this :f_signed) (this :f_motionGestureCollection))
+            (:jm_clear (this :f_motionGestureCollection)))
+            ([_e] (do
+            (:jm_put (this :f_logUtil) (:jm_toString (:jm_append (:jm_append (StringMaker/jnew_0) ((this :f_commonStrings) :f_EXCEPTION_LABEL)) (:jm_toString_1 (StringUtil/jm_getInstance) (:jm_getMotionGesture _ev)))) this "release" _e)))))))
+    
+(set jm_onMotionGestureEvent (fn jm_onMotionGestureEvent [this _ev]
+    (label jreturn
+        (if (= (this :f_isMouseGestureOccurring) false)
+            (do
+            (return jreturn)))
+        (var _motionGestureInput (:jm_getMotionGesture _ev))
+        (if (= _motionGestureInput ((TouchMotionGestureFactory/jm_getInstance) :f_PRESSED))
+            (do
+            (:jm_onPressedMotionGestureEvent this _ev))
+            (if (= _motionGestureInput ((TouchMotionGestureFactory/jm_getInstance) :f_RELEASED))
+            (do
+            (:jm_released this _ev))
+            (do
+            (if (not= (this :f_currentMotionGesture) _motionGestureInput)
+                (do
+                (set (this :f_currentMotionGesture) _motionGestureInput)
+                (:jm_add (this :f_motionGestureCollection) (:jm_getMotionGesture _ev))))))))))
 
-local ReleaseControlledMotionGestureListener = {}
-ReleaseControlledMotionGestureListener.__index = ReleaseControlledMotionGestureListener
-ReleaseControlledMotionGestureListener.className = "ReleaseControlledMotionGestureListener"
+(set jproto @{:jm_onEvent jm_onEvent :jm_onUpMotionGestureEvent jm_onUpMotionGestureEvent :jm_onDownMotionGestureEvent jm_onDownMotionGestureEvent :jm_onLeftMotionGestureEvent jm_onLeftMotionGestureEvent :jm_onRightMotionGestureEvent jm_onRightMotionGestureEvent :jm_onDiagonalDownRightMotionGestureEvent jm_onDiagonalDownRightMotionGestureEvent :jm_onDiagonalDownLeftMotionGestureEvent jm_onDiagonalDownLeftMotionGestureEvent :jm_onDiagonalUpRightMotionGestureEvent jm_onDiagonalUpRightMotionGestureEvent :jm_onDiagonalUpLeftMotionGestureEvent jm_onDiagonalUpLeftMotionGestureEvent :jm_onPressedMotionGestureEvent jm_onPressedMotionGestureEvent :jm_onScrolledMotionGestureEvent jm_onScrolledMotionGestureEvent :jm_released jm_released :jm_onMotionGestureEvent jm_onMotionGestureEvent})
 
-function ReleaseControlledMotionGestureListener:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-    self.commonStrings = CommonStrings.getInstance()
-    self.currentMotionGesture = TouchMotionGestureFactory.getInstance().NO_MOTION
-    self.isMouseGestureOccurring = false
-    self.motionGestureCollection = BasicArrayListD.new()
-    self.signed = nil
-end
-
-
-function ReleaseControlledMotionGestureListener.new(signed)
-    local self = setmetatable({}, ReleaseControlledMotionGestureListener)
-    self:_init_fields()
-        self.logUtil:putF(self.commonStrings.START, self, self.commonStrings.CONSTRUCTOR)
-        self.signed = signed
-    return self
-end
-
-
-function ReleaseControlledMotionGestureListener:onEvent(eventObject)
-        ForcedLogUtil.log(self.commonStrings.NOT_IMPLEMENTED, self)
-end
-
-
-function ReleaseControlledMotionGestureListener:onUpMotionGestureEvent(ev)
-        self:onMotionGestureEvent(ev)
-end
-
-
-function ReleaseControlledMotionGestureListener:onDownMotionGestureEvent(ev)
-        self:onMotionGestureEvent(ev)
-end
-
-
-function ReleaseControlledMotionGestureListener:onLeftMotionGestureEvent(ev)
-        self:onMotionGestureEvent(ev)
-end
-
-
-function ReleaseControlledMotionGestureListener:onRightMotionGestureEvent(ev)
-        self:onMotionGestureEvent(ev)
-end
-
-
-function ReleaseControlledMotionGestureListener:onDiagonalDownRightMotionGestureEvent(ev)
-        self:onMotionGestureEvent(ev)
-end
-
-
-function ReleaseControlledMotionGestureListener:onDiagonalDownLeftMotionGestureEvent(ev)
-        self:onMotionGestureEvent(ev)
-end
-
-
-function ReleaseControlledMotionGestureListener:onDiagonalUpRightMotionGestureEvent(ev)
-        self:onMotionGestureEvent(ev)
-end
-
-
-function ReleaseControlledMotionGestureListener:onDiagonalUpLeftMotionGestureEvent(ev)
-        self:onMotionGestureEvent(ev)
-end
-
-
-function ReleaseControlledMotionGestureListener:onPressedMotionGestureEvent(ev)
-        self.isMouseGestureOccurring = true
-        self.currentMotionGesture = TouchMotionGestureFactory.getInstance().NO_MOTION
-        self:onMotionGestureEvent(ev)
-end
-
-
-function ReleaseControlledMotionGestureListener:onScrolledMotionGestureEvent(motionGestureEvent)
-end
-
-
-function ReleaseControlledMotionGestureListener:released(ev)
-        local try_ok, try_error = pcall(function()
-            if self.isMouseGestureOccurring == false then
-                return
-            end
-            self.isMouseGestureOccurring = false
-            self.signed:onMotionGestureCompleted(self.motionGestureCollection)
-            self.motionGestureCollection:clear()
-        end)
-        if not try_ok then
-            local e = try_error
-            self.logUtil:put(tostring(StringMaker.new():append(self.commonStrings.EXCEPTION_LABEL):append(StringUtil.getInstance():toString(ev:getMotionGesture()))), self, "release", e)
-        end
-end
-
-
-function ReleaseControlledMotionGestureListener:onMotionGestureEvent(ev)
-        if self.isMouseGestureOccurring == false then
-            return
-        end
-        local motionGestureInput = ev:getMotionGesture()
-        if motionGestureInput == TouchMotionGestureFactory.getInstance().PRESSED then
-            self:onPressedMotionGestureEvent(ev)
-        elseif motionGestureInput == TouchMotionGestureFactory.getInstance().RELEASED then
-            self:released(ev)
-        else
-            if self.currentMotionGesture ~= motionGestureInput then
-                self.currentMotionGesture = motionGestureInput
-                self.motionGestureCollection:add(ev:getMotionGesture())
-            end
-        end
-end
-
-return ReleaseControlledMotionGestureListener
 

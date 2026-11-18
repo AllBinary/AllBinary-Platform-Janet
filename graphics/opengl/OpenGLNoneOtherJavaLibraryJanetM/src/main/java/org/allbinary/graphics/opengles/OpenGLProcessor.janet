@@ -1,39 +1,26 @@
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.opengles
+# Generated Code Do Not Modify
+# package org.allbinary.graphics.opengles
 
--- local GL10 = require("javax.microedition.khronos.opengles.GL10")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- LogUtil/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/logic/communication/log/LogUtil" "jm_getInstance" args))
+(defn- CommonStrings/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/string/CommonStrings" "jm_getInstance" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class OpenGLProcessor
+(var jproto nil)
+(var jnew_0 nil)
+(var jm_process nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "OpenGLProcessor" :f_logUtil nil :f_commonStrings nil} jproto))
+    (put this :f_logUtil (LogUtil/jm_getInstance))
+    (put this :f_commonStrings (CommonStrings/jm_getInstance))
+    this))
 
-local OpenGLProcessor = {}
-OpenGLProcessor.__index = OpenGLProcessor
-OpenGLProcessor.className = "OpenGLProcessor"
+    
+(set jm_process (fn jm_process [this _gl]
+    nil))
 
-function OpenGLProcessor:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-    self.commonStrings = CommonStrings.getInstance()
-end
+(set jproto @{:jm_process jm_process})
 
-function OpenGLProcessor.new()
-    local self = setmetatable({}, OpenGLProcessor)
-    self:_init_fields()
-    return self
-end
-
-
-function OpenGLProcessor:process(gl)
-end
-
-return OpenGLProcessor
 

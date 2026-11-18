@@ -1,49 +1,42 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.animation.transition
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.animation.transition
 
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class AnimationListenerInterface
+(var jproto nil)
+(var jnew_0 nil)
+(var jm_onPlatformAnimationStart nil)
+(var jm_onPlatformAnimationEnd nil)
+(var jm_onPlatformAnimationRepeat nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "AnimationListenerInterface"} jproto))
+    this))
 
--- Java interface
-local AnimationListenerInterface = {}
-AnimationListenerInterface.__index = AnimationListenerInterface
-AnimationListenerInterface.className = "AnimationListenerInterface"
+    
+(set jm_onPlatformAnimationStart (fn jm_onPlatformAnimationStart [this]
+    (error (JR/newException "AbstractMethodError" "onPlatformAnimationStart"))))
+    
+(set jm_onPlatformAnimationEnd (fn jm_onPlatformAnimationEnd [this]
+    (error (JR/newException "AbstractMethodError" "onPlatformAnimationEnd"))))
+    
+(set jm_onPlatformAnimationRepeat (fn jm_onPlatformAnimationRepeat [this]
+    (error (JR/newException "AbstractMethodError" "onPlatformAnimationRepeat"))))
 
+(set jproto @{:jm_onPlatformAnimationStart jm_onPlatformAnimationStart :jm_onPlatformAnimationEnd jm_onPlatformAnimationEnd :jm_onPlatformAnimationRepeat jm_onPlatformAnimationRepeat})
 
-function AnimationListenerInterface:onPlatformAnimationStart()
-    error("abstract method onPlatformAnimationStart")
-end
-
-
-function AnimationListenerInterface:onPlatformAnimationEnd()
-    error("abstract method onPlatformAnimationEnd")
-end
-
-
-function AnimationListenerInterface:onPlatformAnimationRepeat()
-    error("abstract method onPlatformAnimationRepeat")
-end
-
-return AnimationListenerInterface
 

@@ -1,65 +1,56 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.media.audio
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.media.audio
 
-local BaseSoundsFactory = require("org.allbinary.media.audio.BaseSoundsFactory")
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(import ./BaseSoundsFactory :as BaseSoundsFactory)
+(defn- SelectSound/jm_getInstance [& args] (JR/call jfile "./SelectSound" "jm_getInstance" args))
+(defn- ErrorSound/jm_getInstance [& args] (JR/call jfile "./ErrorSound" "jm_getInstance" args))
 
-local function java_new_array(default, size, ...)
-    local array = {n = size}
-    for index = 1, size do
-        if select("#", ...) > 0 then array[index] = java_new_array(default, ...) else array[index] = default end
-    end
-    return array
-end
+# Java class EarlySoundsFactory
+(var jproto nil)
+(var jcell_instance :jnone)
+(var jstatic_instance nil)
+(var jsetstatic_instance nil)
+(var jnew_0 nil)
+(var jm_getSoundInterfaceArray nil)
+(var jm_getInstance nil)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(set jstatic_instance (fn jstatic_instance []
+  (when (= jcell_instance :jnone) (set jcell_instance (jnew_0)))
+  jcell_instance))
+(set jsetstatic_instance (fn jsetstatic_instance [value] (set jcell_instance value)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "EarlySoundsFactory"} jproto))
+    (JR/superInit this (BaseSoundsFactory/jnew_0))
+    this))
 
-local EarlySoundsFactory = {}
-EarlySoundsFactory.__index = EarlySoundsFactory
-EarlySoundsFactory.className = "EarlySoundsFactory"
-setmetatable(EarlySoundsFactory, {__index = BaseSoundsFactory})
+    
+(set jm_getSoundInterfaceArray (fn jm_getSoundInterfaceArray [this]
+    (label jreturn
+        (var _soundInterfaceArray (array/new-filled 2 nil))
+        (var _index 0)
+        (set (_soundInterfaceArray (do (def jold _index) (set _index (JR/i32 (+ _index 1))) jold)) (SelectSound/jm_getInstance))
+        (set (_soundInterfaceArray (do (def jold _index) (set _index (JR/i32 (+ _index 1))) jold)) (ErrorSound/jm_getInstance))
+        (return jreturn _soundInterfaceArray))))
+    
+(set jm_getInstance (fn jm_getInstance []
+    (label jreturn
+        (return jreturn (jstatic_instance)))))
 
-function EarlySoundsFactory.new()
-    local self = setmetatable(BaseSoundsFactory.new(), EarlySoundsFactory)
-    return self
-end
+(set jproto (table/setproto @{:jm_getSoundInterfaceArray jm_getSoundInterfaceArray} BaseSoundsFactory/jproto))
 
-
--- throws Exception
-function EarlySoundsFactory:getSoundInterfaceArray()
-        local soundInterfaceArray = java_new_array(nil, 2)
-        local index = 0
-        soundInterfaceArray[(function() local value = index index = value + 1 return value end)() + 1] = SelectSound.getInstance()
-        soundInterfaceArray[(function() local value = index index = value + 1 return value end)() + 1] = ErrorSound.getInstance()
-        return soundInterfaceArray
-end
-
-
-function EarlySoundsFactory.getInstance()
-        return EarlySoundsFactory.instance
-end
-
-EarlySoundsFactory.instance = EarlySoundsFactory.new()
-
-return EarlySoundsFactory
 

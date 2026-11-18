@@ -1,60 +1,53 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.content
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.content
 
--- local Command = require("javax.microedition.lcdui.Command")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
+(import ../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- LogUtil/jm_getInstance [& args] (JR/call jfile "../../../org/allbinary/logic/communication/log/LogUtil" "jm_getInstance" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class CommandUriAction
+(var jproto nil)
+(var jcell_instance :jnone)
+(var jstatic_instance nil)
+(var jsetstatic_instance nil)
+(var jnew_0 nil)
+(var jm_getInstance nil)
+(var jm_add nil)
+(var jm_process nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jstatic_instance (fn jstatic_instance []
+  (when (= jcell_instance :jnone) (set jcell_instance (jnew_0)))
+  jcell_instance))
+(set jsetstatic_instance (fn jsetstatic_instance [value] (set jcell_instance value)))
 
-local CommandUriAction = {}
-CommandUriAction.__index = CommandUriAction
-CommandUriAction.className = "CommandUriAction"
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "CommandUriAction" :f_logUtil nil} jproto))
+    (put this :f_logUtil (LogUtil/jm_getInstance))
+    this))
 
-function CommandUriAction:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-end
+    
+(set jm_getInstance (fn jm_getInstance []
+    (label jreturn
+        (return jreturn (jstatic_instance)))))
+    
+(set jm_add (fn jm_add [this _command _url]
+    nil))
+    
+(set jm_process (fn jm_process [this _command]
+    nil))
 
-function CommandUriAction.new()
-    local self = setmetatable({}, CommandUriAction)
-    self:_init_fields()
-    return self
-end
+(set jproto @{:jm_add jm_add :jm_process jm_process})
 
-
-function CommandUriAction.getInstance()
-        return CommandUriAction.instance
-end
-
-
-function CommandUriAction:add(command, url)
-end
-
-
-function CommandUriAction:process(command)
-end
-
-CommandUriAction.instance = CommandUriAction.new()
-
-return CommandUriAction
 

@@ -1,73 +1,68 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.control.validate
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.logic.control.validate
 
-local StdUtil = require("org.allbinary.logic.StdUtil")
-local BooleanFactory = require("org.allbinary.logic.java.bool.BooleanFactory")
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
-local BasicArrayListUtil = require("org.allbinary.util.BasicArrayListUtil")
-local ABHashtable = require("org.allbinary.util.ABHashtable")
-local ValidatorBaseInterface = require("org.allbinary.logic.control.validate.ValidatorBaseInterface")
+(import ../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- StdUtil/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/logic/StdUtil" "jm_getInstance" args))
+(defn- BooleanFactory/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/logic/java/bool/BooleanFactory" "jm_getInstance" args))
+(defn- StringUtil/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/logic/string/StringUtil" "jm_getInstance" args))
+(defn- BasicArrayListUtil/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/util/BasicArrayListUtil" "jm_getInstance" args))
+(import ../../../../../java/lang/Boolean :as Boolean)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class ValidatorBase
+(var jproto nil)
+(var jcell_instance :jnone)
+(var jstatic_instance nil)
+(var jsetstatic_instance nil)
+(var jnew_0 nil)
+(var jm_getInstance nil)
+(var jm_isValid nil)
+(var jm_validationInfo nil)
+(var jm_toHashtable nil)
+(var jm_toList nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jstatic_instance (fn jstatic_instance []
+  (when (= jcell_instance :jnone) (set jcell_instance (jnew_0)))
+  jcell_instance))
+(set jsetstatic_instance (fn jsetstatic_instance [value] (set jcell_instance value)))
 
-local ValidatorBase = {}
-ValidatorBase.__index = ValidatorBase
-ValidatorBase.className = "ValidatorBase"
+    
+(set jm_getInstance (fn jm_getInstance []
+    (label jreturn
+        (return jreturn (jstatic_instance)))))
+    
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "ValidatorBase"} jproto))
+    this))
+    
+(set jm_isValid (fn jm_isValid [this]
+    (label jreturn
+        (return jreturn ((BooleanFactory/jm_getInstance) :f_TRUE)))))
+    
+(set jm_validationInfo (fn jm_validationInfo [this]
+    (label jreturn
+        (return jreturn ((StringUtil/jm_getInstance) :f_EMPTY_STRING)))))
+    
+(set jm_toHashtable (fn jm_toHashtable [this]
+    (label jreturn
+        (return jreturn ((StdUtil/jm_getInstance) :f_NULL_TABLE)))))
+    
+(set jm_toList (fn jm_toList [this]
+    (label jreturn
+        (return jreturn (:jm_getImmutableInstance (BasicArrayListUtil/jm_getInstance))))))
 
+(set jproto @{:jm_isValid jm_isValid :jm_validationInfo jm_validationInfo :jm_toHashtable jm_toHashtable :jm_toList jm_toList})
 
-function ValidatorBase.getInstance()
-        return ValidatorBase.instance
-end
-
-
-function ValidatorBase.new()
-    local self = setmetatable({}, ValidatorBase)
-    return self
-end
-
-
-function ValidatorBase:isValid()
-        return BooleanFactory.getInstance().TRUE
-end
-
-
-function ValidatorBase:validationInfo()
-        return StringUtil.getInstance().EMPTY_STRING
-end
-
-
-function ValidatorBase:toHashtable()
-        return StdUtil.getInstance().NULL_TABLE
-end
-
-
-function ValidatorBase:toList()
-        return BasicArrayListUtil.getInstance():getImmutableInstance()
-end
-
-ValidatorBase.instance = ValidatorBase.new()
-
-return ValidatorBase
 

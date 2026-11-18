@@ -1,95 +1,78 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.form.item
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.graphics.form.item
 
--- local Command = require("javax.microedition.lcdui.Command")
--- local ImageItem = require("javax.microedition.lcdui.ImageItem")
-local BasicColor = require("org.allbinary.graphics.color.BasicColor")
-local DisplayInfoSingleton = require("org.allbinary.graphics.displayable.DisplayInfoSingleton")
-local ScreenInfo = require("org.allbinary.graphics.form.ScreenInfo")
-local VectorUtil = require("org.allbinary.logic.VectorUtil")
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
-local Visitor = require("org.allbinary.logic.util.visitor.Visitor")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
-local BasicArrayListD = require("org.allbinary.util.BasicArrayListD")
+(import ../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- ImageItem/jstatic_LAYOUT_DEFAULT [& args] (JR/call jfile "../../../../../javax/microedition/lcdui/ImageItem" "jstatic_LAYOUT_DEFAULT" args))
+(defn- DisplayInfoSingleton/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/graphics/displayable/DisplayInfoSingleton" "jm_getInstance" args))
+(defn- ScreenInfo/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/graphics/form/ScreenInfo" "jm_getInstance" args))
+(defn- VectorUtil/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/logic/VectorUtil" "jm_getInstance" args))
+(defn- StringUtil/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/logic/string/StringUtil" "jm_getInstance" args))
+(defn- BasicArrayListD/jnew_0 [& args] (JR/call jfile "../../../../../org/allbinary/util/BasicArrayListD" "jnew_0" args))
+(import ../../../../../java/lang/Boolean :as Boolean)
+(defn- CommandTextItem/jnew_5 [& args] (JR/call jfile "./CommandTextItem" "jnew_5" args))
 
-local function java_new_array(default, size, ...)
-    local array = {n = size}
-    for index = 1, size do
-        if select("#", ...) > 0 then array[index] = java_new_array(default, ...) else array[index] = default end
-    end
-    return array
-end
+# Java class CommandTextItemArrayFactory
+(var jproto nil)
+(var jnew_1 nil)
+(var jm_getInstance nil)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+    
+(set jnew_1 (fn jnew_1 [_visitorInterface]
+    (var this (table/setproto @{:jclass "CommandTextItemArrayFactory" :f_list nil :f_visitorInterface nil} jproto))
+    (put this :f_list (BasicArrayListD/jnew_0))
+    
+        (set (this :f_visitorInterface) _visitorInterface)
+    this))
+    
+(set jm_getInstance (fn jm_getInstance [this _vector _backgroundBasicColor _foregroundBasicColor]
+    (label jreturn
+        (var _vectorUtil (VectorUtil/jm_getInstance))
+        (var _size (:jm_getSize _vectorUtil _vector))
+        (:jm_clear (this :f_list))
+        (var _textItem nil)
+        (var _priorityLimit 7)
+        (var _displayInfo (DisplayInfoSingleton/jm_getInstance))
+        (var _isLargeEnoughDisplayForBigMenu (or (and (:jm_isPortrait _displayInfo) (>= (:jm_getLastHeight _displayInfo) ((ScreenInfo/jm_getInstance) :f_MEDIUM_WIDTH))) (and (not (:jm_isPortrait _displayInfo)) (>= (:jm_getLastWidth _displayInfo) ((ScreenInfo/jm_getInstance) :f_MEDIUM_WIDTH)))))
+        (if (and (not _isLargeEnoughDisplayForBigMenu) (> _size 3))
+            (do
+            (set _priorityLimit 3)))
+        (var _command nil)
+        (do
+            (var _index 0)
+            (while (< _index _size)
+                (do
+            (set _command (:jm_elementAt _vectorUtil _vector _index))
+            (if (< (:jm_getPriority _command) _priorityLimit)
+                (do
+                (var _aBoolean (:jm_visit (this :f_visitorInterface) _command))
+                (if (:jm_booleanValue _aBoolean)
+                    (do
+                    (set _textItem (CommandTextItem/jnew_5 _command (ImageItem/jstatic_LAYOUT_DEFAULT) ((StringUtil/jm_getInstance) :f_EMPTY_STRING) _backgroundBasicColor _foregroundBasicColor))
+                    (:jm_add (this :f_list) _textItem))))))
+                (do (set _index (JR/i32 (+ _index 1))))))
+        (var _textItemArray (array/new-filled (:jm_size (this :f_list)) nil))
+        (var _size2 (length _textItemArray))
+        (do
+            (var _index 0)
+            (while (< _index _size2)
+                (do
+            (set (_textItemArray _index) (((this :f_list) :f_objectArray) _index)))
+                (do (set _index (JR/i32 (+ _index 1))))))
+        (return jreturn _textItemArray))))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jproto @{:jm_getInstance jm_getInstance})
 
-local CommandTextItemArrayFactory = {}
-CommandTextItemArrayFactory.__index = CommandTextItemArrayFactory
-CommandTextItemArrayFactory.className = "CommandTextItemArrayFactory"
-
-function CommandTextItemArrayFactory:_init_fields()
-    self.list = BasicArrayListD.new()
-    self.visitorInterface = nil
-end
-
-
-function CommandTextItemArrayFactory.new(visitorInterface)
-    local self = setmetatable({}, CommandTextItemArrayFactory)
-    self:_init_fields()
-        self.visitorInterface = visitorInterface
-    return self
-end
-
-
-function CommandTextItemArrayFactory:getInstance(vector, backgroundBasicColor, foregroundBasicColor)
-        local vectorUtil = VectorUtil.getInstance()
-        local size = vectorUtil:getSize(vector)
-        self.list:clear()
-        local textItem = nil
-        local priorityLimit = 7
-        local displayInfo = DisplayInfoSingleton.getInstance()
-        local isLargeEnoughDisplayForBigMenu = (displayInfo:isPortrait() and displayInfo:getLastHeight() >= ScreenInfo.getInstance().MEDIUM_WIDTH) or (not displayInfo:isPortrait() and displayInfo:getLastWidth() >= ScreenInfo.getInstance().MEDIUM_WIDTH)
-        if not isLargeEnoughDisplayForBigMenu and size > 3 then
-            priorityLimit = 3
-        end
-        local command = nil
-        for index = 0, size - 1 do
-            command = vectorUtil:elementAt(vector, index)
-            if command:getPriority() < priorityLimit then
-                local aBoolean = self.visitorInterface:visit(command)
-                if aBoolean then
-                    textItem = CommandTextItem.new(command, ImageItem.LAYOUT_DEFAULT, StringUtil.getInstance().EMPTY_STRING, backgroundBasicColor, foregroundBasicColor)
-                    self.list:add(textItem)
-                end
-            end
-        end
-        local textItemArray = java_new_array(nil, self.list:size())
-        local size2 = (textItemArray.n or #textItemArray)
-        for index = 0, size2 - 1 do
-            textItemArray[index + 1] = self.list.objectArray[index + 1]
-        end
-        return textItemArray
-end
-
-return CommandTextItemArrayFactory
 

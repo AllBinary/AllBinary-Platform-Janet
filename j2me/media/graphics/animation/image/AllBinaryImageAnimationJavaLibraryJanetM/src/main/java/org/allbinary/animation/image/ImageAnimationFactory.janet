@@ -1,67 +1,55 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2022 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.animation.image
+# 
+# AllBinary Open License Version 1 
+# Copyright (c) 2022 AllBinary 
+#  
+# By agreeing to this license you and any business entity you represent are 
+# legally bound to the AllBinary Open License Version 1 legal agreement. 
+#  
+# You may obtain the AllBinary Open License Version 1 legal agreement from 
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+#  
+# Created By: Travis Berthelot 
+#   
+# Generated Code Do Not Modify
+# package org.allbinary.animation.image
 
--- local Image = require("javax.microedition.lcdui.Image")
-local Animation = require("org.allbinary.animation.Animation")
-local AnimationBehaviorFactory = require("org.allbinary.animation.AnimationBehaviorFactory")
-local OpenGLUtil = require("org.allbinary.graphics.opengles.OpenGLUtil")
-local PrimitiveIntUtil = require("org.allbinary.logic.math.PrimitiveIntUtil")
-local BaseImageAnimationFactory = require("org.allbinary.animation.image.BaseImageAnimationFactory")
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- AnimationBehaviorFactory/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/animation/AnimationBehaviorFactory" "jm_getInstance" args))
+(defn- OpenGLUtil/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/graphics/opengles/OpenGLUtil" "jm_getInstance" args))
+(defn- PrimitiveIntUtil/jm_getArrayInstance [& args] (JR/call jfile "../../../../org/allbinary/logic/math/PrimitiveIntUtil" "jm_getArrayInstance" args))
+(import ./BaseImageAnimationFactory :as BaseImageAnimationFactory)
+(defn- ImageAnimation/jnew_2 [& args] (JR/call jfile "./ImageAnimation" "jnew_2" args))
+(defn- AdjustedImageAnimation/jnew_4 [& args] (JR/call jfile "./AdjustedImageAnimation" "jnew_4" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class ImageAnimationFactory
+(var jproto nil)
+(var jnew_6 nil)
+(var jm_createFactory nil)
+(var jm_getInstance nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jm_createFactory (fn jm_createFactory [_image]
+    (label jreturn
+        (return jreturn (jnew_6 _image (:jm_getWidth _image) (:jm_getHeight _image) 0 0 (AnimationBehaviorFactory/jm_getInstance))))))
+    
+(set jnew_6 (fn jnew_6 [_image _width _height _dx _dy _animationBehaviorFactory]
+    (var this (table/setproto @{:jclass "ImageAnimationFactory"} jproto))
+        (JR/superInit this (BaseImageAnimationFactory/jnew_7 _image (PrimitiveIntUtil/jm_getArrayInstance) _width _height _dx _dy _animationBehaviorFactory))
+    this))
+    
+(set jm_getInstance (fn jm_getInstance [this _instanceId]
+    (label jreturn
+        (var _scaledImage (JR/className (this :f_animationFactoryImageScaleUtil)))
+        (var _openGLUtil (OpenGLUtil/jm_getInstance))
+        (set _scaledImage (:jm_addImage _openGLUtil _scaledImage))
+        (if (or (not= ((this :f_animationFactoryInitializationVisitor) :f_dx) 0) (not= ((this :f_animationFactoryInitializationVisitor) :f_dy) 0))
+            (do
+            (JR/className (this :f_animationFactoryImageScaleUtil))
+            (return jreturn (AdjustedImageAnimation/jnew_4 _scaledImage ((this :f_animationFactoryInitializationVisitor) :f_dx) ((this :f_animationFactoryInitializationVisitor) :f_dy) (:jm_getOrCreateInstance (this :f_animationBehaviorFactory)))))
+            (do
+            (return jreturn (ImageAnimation/jnew_2 _scaledImage (:jm_getOrCreateInstance (this :f_animationBehaviorFactory)))))))))
 
-local ImageAnimationFactory = {}
-ImageAnimationFactory.__index = ImageAnimationFactory
-ImageAnimationFactory.className = "ImageAnimationFactory"
-setmetatable(ImageAnimationFactory, {__index = BaseImageAnimationFactory})
+(set jproto (table/setproto @{:jm_getInstance jm_getInstance} BaseImageAnimationFactory/jproto))
 
-
--- throws Exception
-function ImageAnimationFactory.createFactory(image)
-        return ImageAnimationFactory.new(image, image:getWidth(), image:getHeight(), 0, 0, AnimationBehaviorFactory.getInstance())
-end
-
-
-function ImageAnimationFactory.new(image, width, height, dx, dy, animationBehaviorFactory)
-    local self = setmetatable(BaseImageAnimationFactory.new(image, PrimitiveIntUtil.getArrayInstance(), width, height, dx, dy, animationBehaviorFactory), ImageAnimationFactory)
-        -- super(...) made self above
-    return self
-end
-
-
--- throws Exception
-function ImageAnimationFactory:getInstance(instanceId)
-        local scaledImage = self.animationFactoryImageScaleUtil:createImage(self:getImage(), self.animationFactoryInitializationVisitor.width, self.animationFactoryInitializationVisitor.height, self.scaleProperties.scaleWidth, self.scaleProperties.scaleHeight)
-        local openGLUtil = OpenGLUtil.getInstance()
-        scaledImage = openGLUtil:addImage(scaledImage)
-        if self.animationFactoryInitializationVisitor.dx ~= 0 or self.animationFactoryInitializationVisitor.dy ~= 0 then
-            self.animationFactoryImageScaleUtil:processAdjust(self)
-            return AdjustedImageAnimation.new(scaledImage, self.animationFactoryInitializationVisitor.dx, self.animationFactoryInitializationVisitor.dy, self.animationBehaviorFactory:getOrCreateInstance())
-        else
-            return ImageAnimation.new(scaledImage, self.animationBehaviorFactory:getOrCreateInstance())
-        end
-end
-
-return ImageAnimationFactory
 

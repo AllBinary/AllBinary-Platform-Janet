@@ -1,35 +1,30 @@
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.form.item
+# Generated Code Do Not Modify
+# package org.allbinary.graphics.form.item
 
-local BasicColor = require("org.allbinary.graphics.color.BasicColor")
-local BasicColorFactory = require("org.allbinary.graphics.color.BasicColorFactory")
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
-local ABCustomItem = require("org.allbinary.graphics.form.item.ABCustomItem")
+(import ../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- BasicColorFactory/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/graphics/color/BasicColorFactory" "jm_getInstance" args))
+(defn- StringUtil/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/logic/string/StringUtil" "jm_getInstance" args))
+(import ./ABCustomItem :as ABCustomItem)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class ABCustomGaugeItem
+(var jproto nil)
+(var jcell_NULL_GAUGE_ITEM :jnone)
+(var jstatic_NULL_GAUGE_ITEM nil)
+(var jsetstatic_NULL_GAUGE_ITEM nil)
+(var jnew_5 nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jstatic_NULL_GAUGE_ITEM (fn jstatic_NULL_GAUGE_ITEM []
+  (when (= jcell_NULL_GAUGE_ITEM :jnone) (set jcell_NULL_GAUGE_ITEM (jnew_5 ((StringUtil/jm_getInstance) :f_EMPTY_STRING) 1 0 ((BasicColorFactory/jm_getInstance) :f_BLACK) ((BasicColorFactory/jm_getInstance) :f_WHITE))))
+  jcell_NULL_GAUGE_ITEM))
+(set jsetstatic_NULL_GAUGE_ITEM (fn jsetstatic_NULL_GAUGE_ITEM [value] (set jcell_NULL_GAUGE_ITEM value)))
 
-local ABCustomGaugeItem = {}
-ABCustomGaugeItem.__index = ABCustomGaugeItem
-ABCustomGaugeItem.className = "ABCustomGaugeItem"
-setmetatable(ABCustomGaugeItem, {__index = ABCustomItem})
+    
+(set jnew_5 (fn jnew_5 [_label _maxValue _initialValue _backgroundBasicColor _foregroundBasicColor]
+    (var this (table/setproto @{:jclass "ABCustomGaugeItem"} jproto))
+        (JR/superInit this (ABCustomItem/jnew_3 _label _backgroundBasicColor _foregroundBasicColor))
+    this))
 
+(set jproto (table/setproto @{} ABCustomItem/jproto))
 
-function ABCustomGaugeItem.new(label, maxValue, initialValue, backgroundBasicColor, foregroundBasicColor)
-    local self = setmetatable(ABCustomItem.new(label, backgroundBasicColor, foregroundBasicColor), ABCustomGaugeItem)
-        -- super(...) made self above
-    return self
-end
-
-ABCustomGaugeItem.NULL_GAUGE_ITEM = ABCustomGaugeItem.new(StringUtil.getInstance().EMPTY_STRING, 1, 0, BasicColorFactory.getInstance().BLACK, BasicColorFactory.getInstance().WHITE)
-
-return ABCustomGaugeItem
 

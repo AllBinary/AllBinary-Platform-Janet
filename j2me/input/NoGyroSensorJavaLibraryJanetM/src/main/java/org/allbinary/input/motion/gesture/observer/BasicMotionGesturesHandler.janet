@@ -1,57 +1,50 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.input.motion.gesture.observer
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.input.motion.gesture.observer
 
-local AllBinaryEventObject = require("org.allbinary.logic.util.event.AllBinaryEventObject")
-local EventListenerInterface = require("org.allbinary.logic.util.event.EventListenerInterface")
-local BasicEventHandler = require("org.allbinary.logic.util.event.handler.BasicEventHandler")
+(import ../../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(import ../../../../../../org/allbinary/logic/util/event/handler/BasicEventHandler :as BasicEventHandler)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class BasicMotionGesturesHandler
+(var jproto nil)
+(var jcell_SINGLETON :jnone)
+(var jstatic_SINGLETON nil)
+(var jsetstatic_SINGLETON nil)
+(var jnew_0 nil)
+(var jm_getInstance nil)
+(var jm_process nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jstatic_SINGLETON (fn jstatic_SINGLETON []
+  (when (= jcell_SINGLETON :jnone) (set jcell_SINGLETON (jnew_0)))
+  jcell_SINGLETON))
+(set jsetstatic_SINGLETON (fn jsetstatic_SINGLETON [value] (set jcell_SINGLETON value)))
 
-local BasicMotionGesturesHandler = {}
-BasicMotionGesturesHandler.__index = BasicMotionGesturesHandler
-BasicMotionGesturesHandler.className = "BasicMotionGesturesHandler"
-setmetatable(BasicMotionGesturesHandler, {__index = BasicEventHandler})
+    
+(set jm_getInstance (fn jm_getInstance []
+    (label jreturn
+        (return jreturn (jstatic_SINGLETON)))))
+    
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "BasicMotionGesturesHandler"} jproto))
+    (JR/superInit this (BasicEventHandler/jnew_0))
+    this))
+    
+(set jm_process (fn jm_process [this _eventObject _eventListenerInterface]
+        (var _baseMotionGestureEventListener _eventListenerInterface)
+        (:jm_onMotionGestureEvent _baseMotionGestureEventListener _eventObject)))
 
+(set jproto (table/setproto @{:jm_process jm_process} BasicEventHandler/jproto))
 
-function BasicMotionGesturesHandler.getInstance()
-        return BasicMotionGesturesHandler.SINGLETON
-end
-
-
-function BasicMotionGesturesHandler.new()
-    local self = setmetatable(BasicEventHandler.new(), BasicMotionGesturesHandler)
-    return self
-end
-
-
--- throws Exception
-function BasicMotionGesturesHandler:process(eventObject, eventListenerInterface)
-        local baseMotionGestureEventListener = eventListenerInterface
-        baseMotionGestureEventListener:onMotionGestureEvent(eventObject)
-end
-
-BasicMotionGesturesHandler.SINGLETON = BasicMotionGesturesHandler.new()
-
-return BasicMotionGesturesHandler
 

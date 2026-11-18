@@ -1,53 +1,39 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.ag.layer.pickup.points
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.game.ag.layer.pickup.points
 
-local ScoreableInterface = require("org.allbinary.game.score.ScoreableInterface")
-local AllBinaryLayer = require("org.allbinary.layer.AllBinaryLayer")
-local AllBinaryLayerCircularPool = require("org.allbinary.layer.AllBinaryLayerCircularPool")
-local AllBinaryLayerFactoryInterface = require("org.allbinary.layer.AllBinaryLayerFactoryInterface")
+(import ../../../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(import ../../../../../../../org/allbinary/layer/AllBinaryLayerCircularPool :as AllBinaryLayerCircularPool)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class PointsLayerCircularStaticPool
+(var jproto nil)
+(var jnew_2 nil)
+(var jm_visit nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jnew_2 (fn jnew_2 [_allbinaryLayerFactoryInterface _total]
+    (var this (table/setproto @{:jclass "PointsLayerCircularStaticPool"} jproto))
+    (JR/superInit this (AllBinaryLayerCircularPool/jnew_0))
+        ((get AllBinaryLayerCircularPool/jproto :jm_initAllBinaryLayerCircularPool) this _allbinaryLayerFactoryInterface _total)
+    this))
+    
+(set jm_visit (fn jm_visit [this _sourceLayerInterface]
+        (var _pointsLayer (:jm_getNextInstance this))
+        (var _scoreableInterface _sourceLayerInterface)
+        (:jm_visit _pointsLayer _scoreableInterface)))
 
-local PointsLayerCircularStaticPool = {}
-PointsLayerCircularStaticPool.__index = PointsLayerCircularStaticPool
-PointsLayerCircularStaticPool.className = "PointsLayerCircularStaticPool"
-setmetatable(PointsLayerCircularStaticPool, {__index = AllBinaryLayerCircularPool})
+(set jproto (table/setproto @{:jm_visit jm_visit} AllBinaryLayerCircularPool/jproto))
 
-
-function PointsLayerCircularStaticPool.new(allbinaryLayerFactoryInterface, total)
-    local self = setmetatable(AllBinaryLayerCircularPool.new(), PointsLayerCircularStaticPool)
-        AllBinaryLayerCircularPool.initAllBinaryLayerCircularPool(self, allbinaryLayerFactoryInterface, total)
-    return self
-end
-
-
--- throws Exception
-function PointsLayerCircularStaticPool:visit(sourceLayerInterface)
-        local pointsLayer = self:getNextInstance()
-        local scoreableInterface = sourceLayerInterface
-        pointsLayer:visit(scoreableInterface)
-end
-
-return PointsLayerCircularStaticPool
 

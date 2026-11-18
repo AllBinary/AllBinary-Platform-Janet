@@ -1,52 +1,43 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.pipeline
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.graphics.pipeline
 
-local MyRandomFactory = require("org.allbinary.game.rand.MyRandomFactory")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- MyRandomFactory/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/game/rand/MyRandomFactory" "jm_getInstance" args))
+(defn- BasicGraphicsPipeline/jnew_1 [& args] (JR/call jfile "./BasicGraphicsPipeline" "jnew_1" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class RandomTranslation
+(var jproto nil)
+(var jnew_0 nil)
+(var jm_getInstance nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "RandomTranslation"} jproto))
+    this))
 
-local RandomTranslation = {}
-RandomTranslation.__index = RandomTranslation
-RandomTranslation.className = "RandomTranslation"
+    
+(set jm_getInstance (fn jm_getInstance [_vector _howMuch]
+    (label jreturn
+        (var _myRandomFactory (MyRandomFactory/jm_getInstance))
+        (var _x (JR/i32 (- (:jm_getNextInt _myRandomFactory _howMuch))))
+        (var _y (:jm_getNextInt _myRandomFactory _howMuch))
+        (var _graphicsPipe (BasicGraphicsPipeline/jnew_1 _vector))
+        (:jm_createMatrix _graphicsPipe)
+        (:jm_translate _graphicsPipe _x _y)
+        (return jreturn (:jm_getMatrix _graphicsPipe)))))
 
-function RandomTranslation.new()
-    local self = setmetatable({}, RandomTranslation)
-    return self
-end
+(set jproto @{})
 
-
--- throws Exception
-function RandomTranslation.getInstance(vector, howMuch)
-        local myRandomFactory = MyRandomFactory.getInstance()
-        local x = -myRandomFactory:getNextInt(howMuch)
-        local y = myRandomFactory:getNextInt(howMuch)
-        local graphicsPipe = BasicGraphicsPipeline.new(vector)
-        graphicsPipe:createMatrix()
-        graphicsPipe:translate(x, y)
-        return graphicsPipe:getMatrix()
-end
-
-return RandomTranslation
 

@@ -1,68 +1,53 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.ag.ai
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.game.ag.ai
 
-local BasicAI = require("org.allbinary.game.ai.BasicAI")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local BooleanFactory = require("org.allbinary.logic.java.bool.BooleanFactory")
-local Visitor = require("org.allbinary.logic.util.visitor.Visitor")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
+(import ../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- LogUtil/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/logic/communication/log/LogUtil" "jm_getInstance" args))
+(defn- BooleanFactory/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/logic/java/bool/BooleanFactory" "jm_getInstance" args))
+(import ../../../../../org/allbinary/logic/util/visitor/Visitor :as Visitor)
+(defn- CommonStrings/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/string/CommonStrings" "jm_getInstance" args))
+(import ../../../../../java/lang/Boolean :as Boolean)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class LastKeyAIVisitor
+(var jproto nil)
+(var jnew_0 nil)
+(var jm_visit nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "LastKeyAIVisitor" :f_logUtil nil :f_TRUE nil} jproto))
+    (put this :f_logUtil (LogUtil/jm_getInstance))
+    (put this :f_TRUE ((BooleanFactory/jm_getInstance) :f_TRUE))
+    (JR/superInit this (Visitor/jnew_0))
+    this))
+    
+(set jm_visit (fn jm_visit [this _anyType]
+    (label jreturn
+        (try
+            (do
+            (var _basicAI _anyType)
+            (var _key (:jm_getLastKey _basicAI))
+            (if (not= _key (JR/i32 (- 1)))
+                (do
+                (:jm_processKeyAI _basicAI _key))))
+            ([_e] (do
+            (var _commonStrings (CommonStrings/jm_getInstance))
+            (:jm_put (this :f_logUtil) (_commonStrings :f_EXCEPTION) this (_commonStrings :f_VISIT) _e))))
+        (return jreturn (this :f_TRUE)))))
 
-local LastKeyAIVisitor = {}
-LastKeyAIVisitor.__index = LastKeyAIVisitor
-LastKeyAIVisitor.className = "LastKeyAIVisitor"
-setmetatable(LastKeyAIVisitor, {__index = Visitor})
+(set jproto (table/setproto @{:jm_visit jm_visit} Visitor/jproto))
 
-function LastKeyAIVisitor:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-    self.TRUE = BooleanFactory.getInstance().TRUE
-end
-
-
-function LastKeyAIVisitor.new()
-    local self = setmetatable(Visitor.new(), LastKeyAIVisitor)
-    self:_init_fields()
-    return self
-end
-
-
-function LastKeyAIVisitor:visit(anyType)
-        local try_ok, try_error = pcall(function()
-            local basicAI = anyType
-            local key = basicAI:getLastKey()
-            if key ~= -1 then
-                basicAI:processKeyAI(key)
-            end
-        end)
-        if not try_ok then
-            local e = try_error
-            local commonStrings = CommonStrings.getInstance()
-            self.logUtil:put(commonStrings.EXCEPTION, self, commonStrings.VISIT, e)
-        end
-        return self.TRUE
-end
-
-return LastKeyAIVisitor
 

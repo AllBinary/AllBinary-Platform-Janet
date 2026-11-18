@@ -1,79 +1,66 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.combat.damage
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.game.combat.damage
 
-local CollidableCompositeLayer = require("org.allbinary.game.layer.CollidableCompositeLayer")
-local CollidableDestroyableDamageableLayer = require("org.allbinary.game.layer.special.CollidableDestroyableDamageableLayer")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
+(import ../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- LogUtil/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/logic/communication/log/LogUtil" "jm_getInstance" args))
+(defn- StringMaker/jnew_0 [& args] (JR/call jfile "../../../../../org/allbinary/logic/string/StringMaker" "jnew_0" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class DamageUtil
+(var jproto nil)
+(var jcell_instance :jnone)
+(var jstatic_instance nil)
+(var jsetstatic_instance nil)
+(var jnew_0 nil)
+(var jm_getInstance nil)
+(var jm_process nil)
+(var jm_debugDamage nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jstatic_instance (fn jstatic_instance []
+  (when (= jcell_instance :jnone) (set jcell_instance (jnew_0)))
+  jcell_instance))
+(set jsetstatic_instance (fn jsetstatic_instance [value] (set jcell_instance value)))
 
-local DamageUtil = {}
-DamageUtil.__index = DamageUtil
-DamageUtil.className = "DamageUtil"
+    
+(set jm_getInstance (fn jm_getInstance []
+    (label jreturn
+        (return jreturn (jstatic_instance)))))
+    
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "DamageUtil" :f_logUtil nil :f_COLLIDE nil} jproto))
+    (put this :f_logUtil (LogUtil/jm_getInstance))
+    (put this :f_COLLIDE "collide")
+    this))
+    
+(set jm_process (fn jm_process [this _damageableInterface _damageableInterface2]
+        (:jm_damage _damageableInterface (:jm_getDamage _damageableInterface2 0) 0)))
+    
+(set jm_debugDamage (fn jm_debugDamage [this _collidableInterfaceCompositeInterface1 _collidableInterfaceCompositeInterface]
+        (var _collidableDestroyableDamageableLayer _collidableInterfaceCompositeInterface)
+        (var _damage (:jm_getDamage _collidableDestroyableDamageableLayer 0))
+        (if (> _damage 20000)
+            (do
+            (var _stringBuffer (StringMaker/jnew_0))
+            (:jm_append _stringBuffer "Collision ")
+            (:jm_append _stringBuffer (:jm_toString _collidableInterfaceCompositeInterface1))
+            (:jm_append _stringBuffer " with: ")
+            (:jm_append _stringBuffer (:jm_toString _collidableInterfaceCompositeInterface))
+            (:jm_append _stringBuffer " damage: ")
+            (:jm_appendint _stringBuffer _damage)
+            (:jm_putF (this :f_logUtil) (:jm_toString _stringBuffer) _collidableInterfaceCompositeInterface1 (this :f_COLLIDE))))))
 
-function DamageUtil:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-    self.COLLIDE = "collide"
-end
+(set jproto @{:jm_process jm_process :jm_debugDamage jm_debugDamage})
 
-
-function DamageUtil.getInstance()
-        return DamageUtil.instance
-end
-
-
-function DamageUtil.new()
-    local self = setmetatable({}, DamageUtil)
-    self:_init_fields()
-    return self
-end
-
-
--- throws Exception
-function DamageUtil:process(damageableInterface, damageableInterface2)
-        damageableInterface:damage(damageableInterface2:getDamage(0), 0)
-end
-
-
--- throws Exception
-function DamageUtil:debugDamage(collidableInterfaceCompositeInterface1, collidableInterfaceCompositeInterface)
-        local collidableDestroyableDamageableLayer = collidableInterfaceCompositeInterface
-        local damage = collidableDestroyableDamageableLayer:getDamage(0)
-        if damage > 20000 then
-            local stringBuffer = StringMaker.new()
-            stringBuffer:append("Collision ")
-            stringBuffer:append(tostring(collidableInterfaceCompositeInterface1))
-            stringBuffer:append(" with: ")
-            stringBuffer:append(tostring(collidableInterfaceCompositeInterface))
-            stringBuffer:append(" damage: ")
-            stringBuffer:appendint(damage)
-            self.logUtil:putF(tostring(stringBuffer), collidableInterfaceCompositeInterface1, self.COLLIDE)
-        end
-end
-
-DamageUtil.instance = DamageUtil.new()
-
-return DamageUtil
 

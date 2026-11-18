@@ -1,57 +1,50 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2022 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.media
+# 
+# AllBinary Open License Version 1 
+# Copyright (c) 2022 AllBinary 
+#  
+# By agreeing to this license you and any business entity you represent are 
+# legally bound to the AllBinary Open License Version 1 legal agreement. 
+#  
+# You may obtain the AllBinary Open License Version 1 legal agreement from 
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+#  
+# Created By: Travis Berthelot 
+#   
+# Generated Code Do Not Modify
+# package org.allbinary.media
 
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
-local CommonLabels = require("org.allbinary.string.CommonLabels")
+(import ../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- StringMaker/jnew_0 [& args] (JR/call jfile "../../../org/allbinary/logic/string/StringMaker" "jnew_0" args))
+(defn- CommonLabels/jm_getInstance [& args] (JR/call jfile "../../../org/allbinary/string/CommonLabels" "jm_getInstance" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class ScaleProperties
+(var jproto nil)
+(var jcell_instance :jnone)
+(var jstatic_instance nil)
+(var jsetstatic_instance nil)
+(var jnew_0 nil)
+(var jm_toString nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jstatic_instance (fn jstatic_instance []
+  (when (= jcell_instance :jnone) (set jcell_instance (jnew_0)))
+  jcell_instance))
+(set jsetstatic_instance (fn jsetstatic_instance [value] (set jcell_instance value)))
 
-local ScaleProperties = {}
-ScaleProperties.__index = ScaleProperties
-ScaleProperties.className = "ScaleProperties"
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "ScaleProperties" :f_scaleX 0.0 :f_scaleY 0.0 :f_scaleWidth 0 :f_scaleHeight 0 :f_shouldScale false} jproto))
+    (put this :f_scaleX 1.0)
+    (put this :f_scaleY 1.0)
+    
+    
+    
+    this))
 
-function ScaleProperties:_init_fields()
-    self.scaleX = 1.0
-    self.scaleY = 1.0
-    self.scaleWidth = 0
-    self.scaleHeight = 0
-    self.shouldScale = false
-end
+    
+(set jm_toString (fn jm_toString [this]
+    (label jreturn
+        (return jreturn (:jm_toString (:jm_appendint (:jm_append (:jm_appendint (:jm_append (:jm_appendfloat (:jm_append (:jm_appendfloat (:jm_append (:jm_appendboolean (:jm_append (StringMaker/jnew_0) ((CommonLabels/jm_getInstance) :f_COLON_SEP)) (this :f_shouldScale)) "scaleX: ") (this :f_scaleX)) "scaleY: ") (this :f_scaleY)) "scaleWidth: ") (this :f_scaleWidth)) "scaleHeight: ") (this :f_scaleHeight)))))))
 
-function ScaleProperties.new()
-    local self = setmetatable({}, ScaleProperties)
-    self:_init_fields()
-    return self
-end
+(set jproto @{:jm_toString jm_toString})
 
-
-function ScaleProperties:toString()
-        return tostring(StringMaker.new():append(CommonLabels.getInstance().COLON_SEP):appendboolean(self.shouldScale):append("scaleX: "):appendfloat(self.scaleX):append("scaleY: "):appendfloat(self.scaleY):append("scaleWidth: "):appendint(self.scaleWidth):append("scaleHeight: "):appendint(self.scaleHeight))
-end
-ScaleProperties.__tostring = function(self) return self:toString() end
-
-ScaleProperties.instance = ScaleProperties.new()
-
-return ScaleProperties
 

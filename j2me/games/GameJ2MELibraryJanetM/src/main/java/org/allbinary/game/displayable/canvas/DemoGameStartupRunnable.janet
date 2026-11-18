@@ -1,74 +1,64 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.displayable.canvas
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.game.displayable.canvas
 
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
-local ABRunnable = require("org.allbinary.thread.ABRunnable")
+(import ../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- LogUtil/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/logic/communication/log/LogUtil" "jm_getInstance" args))
+(defn- CommonStrings/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/string/CommonStrings" "jm_getInstance" args))
+(import ../../../../../org/allbinary/thread/ABRunnable :as ABRunnable)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class DemoGameStartupRunnable
+(var jproto nil)
+(var jcell_TYPE :jnone)
+(var jstatic_TYPE nil)
+(var jsetstatic_TYPE nil)
+(var jnew_1 nil)
+(var jm_run nil)
+(var jm_getType nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jstatic_TYPE (fn jstatic_TYPE []
+  (when (= jcell_TYPE :jnone) (set jcell_TYPE 4))
+  jcell_TYPE))
+(set jsetstatic_TYPE (fn jsetstatic_TYPE [value] (set jcell_TYPE value)))
 
-local DemoGameStartupRunnable = {}
-DemoGameStartupRunnable.__index = DemoGameStartupRunnable
-DemoGameStartupRunnable.className = "DemoGameStartupRunnable"
-setmetatable(DemoGameStartupRunnable, {__index = ABRunnable})
+    
+(set jnew_1 (fn jnew_1 [_demoCanvas]
+    (var this (table/setproto @{:jclass "DemoGameStartupRunnable" :f_logUtil nil :f_demoCanvas nil} jproto))
+    (put this :f_logUtil (LogUtil/jm_getInstance))
+    
+    (JR/superInit this (ABRunnable/jnew_0))
+        (set (this :f_demoCanvas) _demoCanvas)
+    this))
+    
+(set jm_run (fn jm_run [this]
+        (try
+            (do
+            (:jm_setRunning this true)
+            (:jm_stopGameDemo (this :f_demoCanvas))
+            (:jm_create (this :f_demoCanvas))
+            (:jm_start (this :f_demoCanvas))
+            (:jm_setRunning this false))
+            ([_e] (do
+            (:jm_setRunning this false)
+            (var _commonStrings (CommonStrings/jm_getInstance))
+            (:jm_put (this :f_logUtil) (_commonStrings :f_EXCEPTION) this (_commonStrings :f_RUN) _e))))))
+    
+(set jm_getType (fn jm_getType [this]
+    (label jreturn
+        (return jreturn (jstatic_TYPE)))))
 
-function DemoGameStartupRunnable:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-    self.demoCanvas = nil
-end
+(set jproto (table/setproto @{:jm_run jm_run :jm_getType jm_getType} ABRunnable/jproto))
 
-
-function DemoGameStartupRunnable.new(demoCanvas)
-    local self = setmetatable(ABRunnable.new(), DemoGameStartupRunnable)
-    self:_init_fields()
-        self.demoCanvas = demoCanvas
-    return self
-end
-
-
-function DemoGameStartupRunnable:run()
-        local try_ok, try_error = pcall(function()
-            self:setRunning(true)
-            self.demoCanvas:stopGameDemo()
-            self.demoCanvas:create()
-            self.demoCanvas:start()
-            self:setRunning(false)
-        end)
-        if not try_ok then
-            local e = try_error
-            self:setRunning(false)
-            local commonStrings = CommonStrings.getInstance()
-            self.logUtil:put(commonStrings.EXCEPTION, self, commonStrings.RUN, e)
-        end
-end
-
-
-function DemoGameStartupRunnable:getType()
-        return DemoGameStartupRunnable.TYPE
-end
-
-DemoGameStartupRunnable.TYPE = 4
-
-return DemoGameStartupRunnable
 

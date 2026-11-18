@@ -1,50 +1,49 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2025 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.opengles.shader
+# 
+# AllBinary Open License Version 1 
+# Copyright (c) 2025 AllBinary 
+#  
+# By agreeing to this license you and any business entity you represent are 
+# legally bound to the AllBinary Open License Version 1 legal agreement. 
+#  
+# You may obtain the AllBinary Open License Version 1 legal agreement from 
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+#  
+# Created By: Travis Berthelot 
+#   
+# Generated Code Do Not Modify
+# package org.allbinary.graphics.opengles.shader
 
+(import ../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- ShaderManager/jm_getInstance [& args] (JR/call jfile "./ShaderManager" "jm_getInstance" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class ShaderManagerFactory
+(var jproto nil)
+(var jcell_instance :jnone)
+(var jstatic_instance nil)
+(var jsetstatic_instance nil)
+(var jnew_0 nil)
+(var jm_getInstance nil)
+(var jm_create nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jstatic_instance (fn jstatic_instance []
+  (when (= jcell_instance :jnone) (set jcell_instance (jnew_0)))
+  jcell_instance))
+(set jsetstatic_instance (fn jsetstatic_instance [value] (set jcell_instance value)))
 
-local ShaderManagerFactory = {}
-ShaderManagerFactory.__index = ShaderManagerFactory
-ShaderManagerFactory.className = "ShaderManagerFactory"
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "ShaderManagerFactory"} jproto))
+    this))
 
-function ShaderManagerFactory.new()
-    local self = setmetatable({}, ShaderManagerFactory)
-    return self
-end
+    
+(set jm_getInstance (fn jm_getInstance []
+    (label jreturn
+        (return jreturn (jstatic_instance)))))
+    
+(set jm_create (fn jm_create [this]
+    (label jreturn
+        (return jreturn (ShaderManager/jm_getInstance)))))
 
+(set jproto @{:jm_create jm_create})
 
-function ShaderManagerFactory.getInstance()
-        return ShaderManagerFactory.instance
-end
-
-
-function ShaderManagerFactory:create()
-        return ShaderManager.getInstance()
-end
-
-ShaderManagerFactory.instance = ShaderManagerFactory.new()
-
-return ShaderManagerFactory
 

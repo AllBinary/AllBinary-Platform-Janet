@@ -1,64 +1,55 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.layer.pickup
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.game.layer.pickup
 
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
-local BasicArrayListD = require("org.allbinary.util.BasicArrayListD")
+(import ../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- BasicArrayListD/jnew_0 [& args] (JR/call jfile "../../../../../org/allbinary/util/BasicArrayListD" "jnew_0" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class CountedPickedUpLayerInterfaceFactoryPool
+(var jproto nil)
+(var jcell_SINGLETON :jnone)
+(var jstatic_SINGLETON nil)
+(var jsetstatic_SINGLETON nil)
+(var jnew_0 nil)
+(var jm_getList nil)
+(var jm_getInstance nil)
+(var jm_init nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jstatic_SINGLETON (fn jstatic_SINGLETON []
+  (when (= jcell_SINGLETON :jnone) (set jcell_SINGLETON (jnew_0)))
+  jcell_SINGLETON))
+(set jsetstatic_SINGLETON (fn jsetstatic_SINGLETON [value] (set jcell_SINGLETON value)))
 
-local CountedPickedUpLayerInterfaceFactoryPool = {}
-CountedPickedUpLayerInterfaceFactoryPool.__index = CountedPickedUpLayerInterfaceFactoryPool
-CountedPickedUpLayerInterfaceFactoryPool.className = "CountedPickedUpLayerInterfaceFactoryPool"
+    
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "CountedPickedUpLayerInterfaceFactoryPool" :f_list nil} jproto))
+    
+        (set (this :f_list) (BasicArrayListD/jnew_0))
+    this))
+    
+(set jm_getList (fn jm_getList [this]
+    (label jreturn
+        (return jreturn (this :f_list)))))
+    
+(set jm_getInstance (fn jm_getInstance []
+    (label jreturn
+        (return jreturn (jstatic_SINGLETON)))))
+    
+(set jm_init (fn jm_init []
+        (set jcell_SINGLETON (jnew_0))))
 
-function CountedPickedUpLayerInterfaceFactoryPool:_init_fields()
-    self.list = nil
-end
+(set jproto @{:jm_getList jm_getList})
 
-
-function CountedPickedUpLayerInterfaceFactoryPool.new()
-    local self = setmetatable({}, CountedPickedUpLayerInterfaceFactoryPool)
-    self:_init_fields()
-        self.list = BasicArrayListD.new()
-    return self
-end
-
-
-function CountedPickedUpLayerInterfaceFactoryPool:getList()
-        return self.list
-end
-
-
-function CountedPickedUpLayerInterfaceFactoryPool.getInstance()
-        return CountedPickedUpLayerInterfaceFactoryPool.SINGLETON
-end
-
-
-function CountedPickedUpLayerInterfaceFactoryPool.init()
-        CountedPickedUpLayerInterfaceFactoryPool.SINGLETON = CountedPickedUpLayerInterfaceFactoryPool.new()
-end
-
-CountedPickedUpLayerInterfaceFactoryPool.SINGLETON = CountedPickedUpLayerInterfaceFactoryPool.new()
-
-return CountedPickedUpLayerInterfaceFactoryPool
 

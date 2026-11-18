@@ -1,54 +1,39 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.form
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.graphics.form
 
-local Processor = require("org.allbinary.canvas.Processor")
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(import ../../../../org/allbinary/canvas/Processor :as Processor)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class VerticalFormProcessor
+(var jproto nil)
+(var jnew_1 nil)
+(var jm_process nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jnew_1 (fn jnew_1 [_scrollCurrentSelectionForm]
+    (var this (table/setproto @{:jclass "VerticalFormProcessor" :f_scrollCurrentSelectionForm nil} jproto))
+    
+    (JR/superInit this (Processor/jnew_0))
+        (set (this :f_scrollCurrentSelectionForm) _scrollCurrentSelectionForm)
+    this))
+    
+(set jm_process (fn jm_process [this]
+        (:jm_processVerticalForm (this :f_scrollCurrentSelectionForm))
+        (set ((this :f_scrollCurrentSelectionForm) :f_processor) (Processor/jm_getInstance))))
 
-local VerticalFormProcessor = {}
-VerticalFormProcessor.__index = VerticalFormProcessor
-VerticalFormProcessor.className = "VerticalFormProcessor"
-setmetatable(VerticalFormProcessor, {__index = Processor})
+(set jproto (table/setproto @{:jm_process jm_process} Processor/jproto))
 
-function VerticalFormProcessor:_init_fields()
-    self.scrollCurrentSelectionForm = nil
-end
-
-
-function VerticalFormProcessor.new(scrollCurrentSelectionForm)
-    local self = setmetatable(Processor.new(), VerticalFormProcessor)
-    self:_init_fields()
-        self.scrollCurrentSelectionForm = scrollCurrentSelectionForm
-    return self
-end
-
-
--- throws Exception
-function VerticalFormProcessor:process()
-        self.scrollCurrentSelectionForm:processVerticalForm()
-        self.scrollCurrentSelectionForm.processor = Processor.getInstance()
-end
-
-return VerticalFormProcessor
 

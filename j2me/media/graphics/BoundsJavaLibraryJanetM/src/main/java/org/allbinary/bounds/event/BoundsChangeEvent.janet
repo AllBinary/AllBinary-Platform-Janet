@@ -1,48 +1,37 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.bounds.event
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.bounds.event
 
-local Rectangle = require("org.allbinary.graphics.Rectangle")
-local AllBinaryEventObject = require("org.allbinary.logic.util.event.AllBinaryEventObject")
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(import ../../../../org/allbinary/logic/util/event/AllBinaryEventObject :as AllBinaryEventObject)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class BoundsChangeEvent
+(var jproto nil)
+(var jnew_1 nil)
+(var jm_getRectangle nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jnew_1 (fn jnew_1 [_rectangle]
+    (var this (table/setproto @{:jclass "BoundsChangeEvent"} jproto))
+        (JR/superInit this (AllBinaryEventObject/jnew_1 _rectangle))
+    this))
+    
+(set jm_getRectangle (fn jm_getRectangle [this]
+    (label jreturn
+        (return jreturn (:jm_getSource this)))))
 
-local BoundsChangeEvent = {}
-BoundsChangeEvent.__index = BoundsChangeEvent
-BoundsChangeEvent.className = "BoundsChangeEvent"
-setmetatable(BoundsChangeEvent, {__index = AllBinaryEventObject})
+(set jproto (table/setproto @{:jm_getRectangle jm_getRectangle} AllBinaryEventObject/jproto))
 
-
-function BoundsChangeEvent.new(rectangle)
-    local self = setmetatable(AllBinaryEventObject.new(rectangle), BoundsChangeEvent)
-        -- super(...) made self above
-    return self
-end
-
-
-function BoundsChangeEvent:getRectangle()
-        return self:getSource()
-end
-
-return BoundsChangeEvent
 

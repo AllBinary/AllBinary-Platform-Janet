@@ -1,53 +1,45 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.image
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.image
 
+(import ../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- ImageCacheFactory/jm_init [& args] (JR/call jfile "./ImageCacheFactory" "jm_init" args))
+(defn- ImageCacheFactory/jm_getInstance [& args] (JR/call jfile "./ImageCacheFactory" "jm_getInstance" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class GameFeatureImageCacheFactory
+(var jproto nil)
+(var jnew_0 nil)
+(var jm_getInstance nil)
+(var jm_init nil)
+(var jm_releaseAll nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "GameFeatureImageCacheFactory"} jproto))
+    this))
 
-local GameFeatureImageCacheFactory = {}
-GameFeatureImageCacheFactory.__index = GameFeatureImageCacheFactory
-GameFeatureImageCacheFactory.className = "GameFeatureImageCacheFactory"
+    
+(set jm_getInstance (fn jm_getInstance []
+    (label jreturn
+        (return jreturn (ImageCacheFactory/jm_getInstance)))))
+    
+(set jm_init (fn jm_init []
+        (ImageCacheFactory/jm_init)))
+    
+(set jm_releaseAll (fn jm_releaseAll []
+        (:jm_releaseAll (ImageCacheFactory/jm_getInstance))))
 
-function GameFeatureImageCacheFactory.new()
-    local self = setmetatable({}, GameFeatureImageCacheFactory)
-    return self
-end
+(set jproto @{})
 
-
-function GameFeatureImageCacheFactory.getInstance()
-        return ImageCacheFactory.getInstance()
-end
-
-
-function GameFeatureImageCacheFactory.init()
-        ImageCacheFactory.init()
-end
-
-
-function GameFeatureImageCacheFactory.releaseAll()
-        ImageCacheFactory.getInstance():releaseAll()
-end
-
-return GameFeatureImageCacheFactory
 

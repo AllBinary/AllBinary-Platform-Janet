@@ -1,88 +1,67 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.android.input.motion
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.android.input.motion
 
-local CollidableDestroyableDamageableLayer = require("org.allbinary.game.layer.special.CollidableDestroyableDamageableLayer")
-local TimeDelayHelper = require("org.allbinary.time.TimeDelayHelper")
+(import ../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- TimeDelayHelper/jnew_1 [& args] (JR/call jfile "../../../../../org/allbinary/time/TimeDelayHelper" "jnew_1" args))
+(defn- AnalogControllerConfigurationFactory/jm_getInstance [& args] (JR/call jfile "./AnalogControllerConfigurationFactory" "jm_getInstance" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class AnalogControllerHelper
+(var jproto nil)
+(var jnew_1 nil)
+(var jm_right nil)
+(var jm_left nil)
+(var jm_up nil)
+(var jm_down nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jnew_1 (fn jnew_1 [_reduceTimeFactor]
+    (var this (table/setproto @{:jclass "AnalogControllerHelper" :f_reduceTimeFactor 0 :f_SCALE_VALUE 0 :f_rightTimeElapsedHelper nil :f_leftTimeElapsedHelper nil :f_downTimeElapsedHelper nil :f_upTimeElapsedHelper nil} jproto))
+    
+    (put this :f_SCALE_VALUE ((AnalogControllerConfigurationFactory/jm_getInstance) :f_SCALE_VALUE))
+    (put this :f_rightTimeElapsedHelper (TimeDelayHelper/jnew_1 0))
+    (put this :f_leftTimeElapsedHelper (TimeDelayHelper/jnew_1 0))
+    (put this :f_downTimeElapsedHelper (TimeDelayHelper/jnew_1 0))
+    (put this :f_upTimeElapsedHelper (TimeDelayHelper/jnew_1 0))
+        (set (this :f_reduceTimeFactor) _reduceTimeFactor)
+    this))
+    
+(set jm_right (fn jm_right [this _collidableDestroyableDamageableLayer _xAnalogValue]
+        (set ((this :f_rightTimeElapsedHelper) :f_delay) (brshift (JR/i32 (- (this :f_SCALE_VALUE) _xAnalogValue)) (this :f_reduceTimeFactor)))
+        (if (:jm_isTimeTNT (this :f_rightTimeElapsedHelper))
+            (do
+            (:jm_right _collidableDestroyableDamageableLayer)))))
+    
+(set jm_left (fn jm_left [this _collidableDestroyableDamageableLayer _xAnalogValue]
+        (set ((this :f_leftTimeElapsedHelper) :f_delay) (brshift (JR/i32 (+ (this :f_SCALE_VALUE) _xAnalogValue)) (this :f_reduceTimeFactor)))
+        (if (:jm_isTimeTNT (this :f_leftTimeElapsedHelper))
+            (do
+            (:jm_left _collidableDestroyableDamageableLayer)))))
+    
+(set jm_up (fn jm_up [this _collidableDestroyableDamageableLayer _xAnalogValue]
+        (set ((this :f_upTimeElapsedHelper) :f_delay) (brshift (JR/i32 (- (this :f_SCALE_VALUE) _xAnalogValue)) (this :f_reduceTimeFactor)))
+        (if (:jm_isTimeTNT (this :f_upTimeElapsedHelper))
+            (do
+            (:jm_up _collidableDestroyableDamageableLayer)))))
+    
+(set jm_down (fn jm_down [this _collidableDestroyableDamageableLayer _xAnalogValue]
+        (set ((this :f_downTimeElapsedHelper) :f_delay) (brshift (JR/i32 (+ (this :f_SCALE_VALUE) _xAnalogValue)) (this :f_reduceTimeFactor)))
+        (if (:jm_isTimeTNT (this :f_downTimeElapsedHelper))
+            (do
+            (:jm_down _collidableDestroyableDamageableLayer)))))
 
-local AnalogControllerHelper = {}
-AnalogControllerHelper.__index = AnalogControllerHelper
-AnalogControllerHelper.className = "AnalogControllerHelper"
+(set jproto @{:jm_right jm_right :jm_left jm_left :jm_up jm_up :jm_down jm_down})
 
-function AnalogControllerHelper:_init_fields()
-    self.reduceTimeFactor = nil
-    self.SCALE_VALUE = AnalogControllerConfigurationFactory.getInstance().SCALE_VALUE
-    self.rightTimeElapsedHelper = TimeDelayHelper.new(0)
-    self.leftTimeElapsedHelper = TimeDelayHelper.new(0)
-    self.downTimeElapsedHelper = TimeDelayHelper.new(0)
-    self.upTimeElapsedHelper = TimeDelayHelper.new(0)
-end
-
-
-function AnalogControllerHelper.new(reduceTimeFactor)
-    local self = setmetatable({}, AnalogControllerHelper)
-    self:_init_fields()
-        self.reduceTimeFactor = reduceTimeFactor
-    return self
-end
-
-
--- throws Exception
-function AnalogControllerHelper:right(collidableDestroyableDamageableLayer, xAnalogValue)
-        self.rightTimeElapsedHelper.delay = ((((self.SCALE_VALUE - xAnalogValue)) // (1 << (self.reduceTimeFactor))))
-        if self.rightTimeElapsedHelper:isTimeTNT() then
-            collidableDestroyableDamageableLayer:right()
-        end
-end
-
-
--- throws Exception
-function AnalogControllerHelper:left(collidableDestroyableDamageableLayer, xAnalogValue)
-        self.leftTimeElapsedHelper.delay = ((((self.SCALE_VALUE + xAnalogValue)) // (1 << (self.reduceTimeFactor))))
-        if self.leftTimeElapsedHelper:isTimeTNT() then
-            collidableDestroyableDamageableLayer:left()
-        end
-end
-
-
--- throws Exception
-function AnalogControllerHelper:up(collidableDestroyableDamageableLayer, xAnalogValue)
-        self.upTimeElapsedHelper.delay = ((((self.SCALE_VALUE - xAnalogValue)) // (1 << (self.reduceTimeFactor))))
-        if self.upTimeElapsedHelper:isTimeTNT() then
-            collidableDestroyableDamageableLayer:up()
-        end
-end
-
-
--- throws Exception
-function AnalogControllerHelper:down(collidableDestroyableDamageableLayer, xAnalogValue)
-        self.downTimeElapsedHelper.delay = ((((self.SCALE_VALUE + xAnalogValue)) // (1 << (self.reduceTimeFactor))))
-        if self.downTimeElapsedHelper:isTimeTNT() then
-            collidableDestroyableDamageableLayer:down()
-        end
-end
-
-return AnalogControllerHelper
 

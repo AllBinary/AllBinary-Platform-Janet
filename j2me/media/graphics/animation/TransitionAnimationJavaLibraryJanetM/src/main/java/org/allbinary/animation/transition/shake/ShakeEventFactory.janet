@@ -1,57 +1,52 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.animation.transition.shake
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.animation.transition.shake
 
+(import ../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- ShakeEvent/jnew_0 [& args] (JR/call jfile "./ShakeEvent" "jnew_0" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class ShakeEventFactory
+(var jproto nil)
+(var jcell_instance :jnone)
+(var jstatic_instance nil)
+(var jsetstatic_instance nil)
+(var jnew_0 nil)
+(var jm_getInstance nil)
+(var jm_init nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jstatic_instance (fn jstatic_instance []
+  (when (= jcell_instance :jnone) (set jcell_instance (jnew_0)))
+  jcell_instance))
+(set jsetstatic_instance (fn jsetstatic_instance [value] (set jcell_instance value)))
 
-local ShakeEventFactory = {}
-ShakeEventFactory.__index = ShakeEventFactory
-ShakeEventFactory.className = "ShakeEventFactory"
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "ShakeEventFactory" :f_MICRO nil :f_SMALL nil :f_MEDIUM nil :f_LARGE nil} jproto))
+    (put this :f_MICRO (ShakeEvent/jnew_0))
+    (put this :f_SMALL (ShakeEvent/jnew_0))
+    (put this :f_MEDIUM (ShakeEvent/jnew_0))
+    (put this :f_LARGE (ShakeEvent/jnew_0))
+    this))
 
-function ShakeEventFactory:_init_fields()
-    self.MICRO = ShakeEvent.new()
-    self.SMALL = ShakeEvent.new()
-    self.MEDIUM = ShakeEvent.new()
-    self.LARGE = ShakeEvent.new()
-end
+    
+(set jm_getInstance (fn jm_getInstance []
+    (label jreturn
+        (return jreturn (jstatic_instance)))))
+    
+(set jm_init (fn jm_init [this]
+    nil))
 
-function ShakeEventFactory.new()
-    local self = setmetatable({}, ShakeEventFactory)
-    self:_init_fields()
-    return self
-end
+(set jproto @{:jm_init jm_init})
 
-
-function ShakeEventFactory.getInstance()
-        return ShakeEventFactory.instance
-end
-
-
-function ShakeEventFactory:init()
-end
-
-ShakeEventFactory.instance = ShakeEventFactory.new()
-
-return ShakeEventFactory
 

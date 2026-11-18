@@ -1,67 +1,48 @@
--- Generated Code Do Not Modify
--- package org.allbinary.physics.movement
+# Generated Code Do Not Modify
+# package org.allbinary.physics.movement
 
-local AllBinaryGameLayer = require("org.allbinary.game.layer.AllBinaryGameLayer")
-local BasicVelocityProperties = require("org.allbinary.game.physics.velocity.BasicVelocityProperties")
-local BasicDecimal = require("org.allbinary.logic.math.BasicDecimal")
-local MathUtil = require("org.allbinary.logic.math.MathUtil")
-local ScaleFactorFactory = require("org.allbinary.logic.math.ScaleFactorFactory")
-local BasicConstantVelocityMovement = require("org.allbinary.physics.movement.BasicConstantVelocityMovement")
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- MathUtil/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/logic/math/MathUtil" "jm_getInstance" args))
+(defn- ScaleFactorFactory/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/logic/math/ScaleFactorFactory" "jm_getInstance" args))
+(import ./BasicConstantVelocityMovement :as BasicConstantVelocityMovement)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class PreciseConstantVelocityMovement
+(var jproto nil)
+(var jnew_2 nil)
+(var jm_init nil)
+(var jm_process nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jnew_2 (fn jnew_2 [_basicDecimal _velocityProperties]
+    (var this (table/setproto @{:jclass "PreciseConstantVelocityMovement" :f_accumulatedX 0 :f_accumulatedY 0 :f_accumulatedZ 0 :f_factorValue 0} jproto))
+    
+    
+    
+    (put this :f_factorValue ((ScaleFactorFactory/jm_getInstance) :f_DEFAULT_SCALE_VALUE))
+        (JR/superInit this (BasicConstantVelocityMovement/jnew_2 _basicDecimal _velocityProperties))
+    this))
+    
+(set jm_init (fn jm_init [this _speedBasicDecimal _angle _otherAngle]
+    nil))
+    
+(set jm_process (fn jm_process [this _layer]
+        (var _mathUtil (MathUtil/jm_getInstance))
+        (var _velocityProperties (:jm_getVelocityProperties this))
+        (set (this :f_accumulatedX) (JR/i32 (+ (this :f_accumulatedX) (JR/className (:jm_getVelocityXBasicDecimalP _velocityProperties)))))
+        (set (this :f_accumulatedY) (JR/i32 (+ (this :f_accumulatedY) (JR/className (:jm_getVelocityYBasicDecimalP _velocityProperties)))))
+        (set (this :f_accumulatedZ) (JR/i32 (+ (this :f_accumulatedZ) (JR/className (:jm_getVelocityZBasicDecimalP _velocityProperties)))))
+        (:jm_moveDXYZ _layer (JR/idiv (this :f_accumulatedX) (this :f_factorValue)) (JR/idiv (this :f_accumulatedY) (this :f_factorValue)) (JR/idiv (this :f_accumulatedZ) (this :f_factorValue)))
+        (if (> (:jm_abs _mathUtil (this :f_accumulatedX)) (this :f_factorValue))
+            (do
+            (set (this :f_accumulatedX) 0)))
+        (if (> (:jm_abs _mathUtil (this :f_accumulatedY)) (this :f_factorValue))
+            (do
+            (set (this :f_accumulatedY) 0)))
+        (if (> (:jm_abs _mathUtil (this :f_accumulatedZ)) (this :f_factorValue))
+            (do
+            (set (this :f_accumulatedZ) 0)))))
 
-local PreciseConstantVelocityMovement = {}
-PreciseConstantVelocityMovement.__index = PreciseConstantVelocityMovement
-PreciseConstantVelocityMovement.className = "PreciseConstantVelocityMovement"
-setmetatable(PreciseConstantVelocityMovement, {__index = BasicConstantVelocityMovement})
+(set jproto (table/setproto @{:jm_init jm_init :jm_process jm_process} BasicConstantVelocityMovement/jproto))
 
-function PreciseConstantVelocityMovement:_init_fields()
-    self.accumulatedX = 0
-    self.accumulatedY = 0
-    self.accumulatedZ = 0
-    self.factorValue = ScaleFactorFactory.getInstance().DEFAULT_SCALE_VALUE
-end
-
-
-function PreciseConstantVelocityMovement.new(basicDecimal, velocityProperties)
-    local self = setmetatable(BasicConstantVelocityMovement.new(basicDecimal, velocityProperties), PreciseConstantVelocityMovement)
-    self:_init_fields()
-        -- super(...) made self above
-    return self
-end
-
-
-function PreciseConstantVelocityMovement:init(speedBasicDecimal, angle, otherAngle)
-end
-
-
--- throws Exception
-function PreciseConstantVelocityMovement:process(layer)
-        local mathUtil = MathUtil.getInstance()
-        local velocityProperties = self:getVelocityProperties()
-        self.accumulatedX = java_int((self.accumulatedX + velocityProperties:getVelocityXBasicDecimalP():getUnscaled()))
-        self.accumulatedY = java_int((self.accumulatedY + velocityProperties:getVelocityYBasicDecimalP():getUnscaled()))
-        self.accumulatedZ = java_int((self.accumulatedZ + velocityProperties:getVelocityZBasicDecimalP():getUnscaled()))
-        layer:moveDXYZ(java_idiv(self.accumulatedX, self.factorValue), java_idiv(self.accumulatedY, self.factorValue), java_idiv(self.accumulatedZ, self.factorValue))
-        if mathUtil:abs(self.accumulatedX) > self.factorValue then
-            self.accumulatedX = 0
-        end
-        if mathUtil:abs(self.accumulatedY) > self.factorValue then
-            self.accumulatedY = 0
-        end
-        if mathUtil:abs(self.accumulatedZ) > self.factorValue then
-            self.accumulatedZ = 0
-        end
-end
-
-return PreciseConstantVelocityMovement
 

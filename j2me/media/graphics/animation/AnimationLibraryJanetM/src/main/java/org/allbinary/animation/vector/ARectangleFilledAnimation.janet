@@ -1,47 +1,31 @@
--- Generated Code Do Not Modify
--- package org.allbinary.animation.vector
+# Generated Code Do Not Modify
+# package org.allbinary.animation.vector
 
--- local Graphics = require("javax.microedition.lcdui.Graphics")
-local BasicColorFactory = require("org.allbinary.graphics.color.BasicColorFactory")
-local RectangleFilledAnimation = require("org.allbinary.animation.vector.RectangleFilledAnimation")
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- BasicColorFactory/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/graphics/color/BasicColorFactory" "jm_getInstance" args))
+(import ./RectangleFilledAnimation :as RectangleFilledAnimation)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class ARectangleFilledAnimation
+(var jproto nil)
+(var jnew_0 nil)
+(var jm_nextFrame nil)
+(var jm_paintXY nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "ARectangleFilledAnimation" :f_x 0 :f_y 0} jproto))
+    
+    
+        (JR/superInit this (RectangleFilledAnimation/jnew_3 0 0 ((BasicColorFactory/jm_getInstance) :f_BLACK)))
+    this))
+    
+(set jm_nextFrame (fn jm_nextFrame [this]
+    nil))
+    
+(set jm_paintXY (fn jm_paintXY [this _graphics _unusedX _unusedY]
+        ((get RectangleFilledAnimation/jproto :jm_paintXY) this _graphics (this :f_x) (this :f_y))))
 
-local ARectangleFilledAnimation = {}
-ARectangleFilledAnimation.__index = ARectangleFilledAnimation
-ARectangleFilledAnimation.className = "ARectangleFilledAnimation"
-setmetatable(ARectangleFilledAnimation, {__index = RectangleFilledAnimation})
+(set jproto (table/setproto @{:jm_nextFrame jm_nextFrame :jm_paintXY jm_paintXY} RectangleFilledAnimation/jproto))
 
-function ARectangleFilledAnimation:_init_fields()
-    self.x = 0
-    self.y = 0
-end
-
-
-function ARectangleFilledAnimation.new()
-    local self = setmetatable(RectangleFilledAnimation.new(0, 0, BasicColorFactory.getInstance().BLACK), ARectangleFilledAnimation)
-    self:_init_fields()
-        -- super(...) made self above
-    return self
-end
-
-
-function ARectangleFilledAnimation:nextFrame()
-end
-
-
-function ARectangleFilledAnimation:paintXY(graphics, unusedX, unusedY)
-        RectangleFilledAnimation.paintXY(self, graphics, self.x, self.y)
-end
-
-return ARectangleFilledAnimation
 

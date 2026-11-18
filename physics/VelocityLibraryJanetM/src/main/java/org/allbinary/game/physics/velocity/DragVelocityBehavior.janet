@@ -1,75 +1,69 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.physics.velocity
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.game.physics.velocity
 
-local BasicDecimal = require("org.allbinary.logic.math.BasicDecimal")
-local VelocityBehaviorBase = require("org.allbinary.game.physics.velocity.VelocityBehaviorBase")
+(import ../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(import ./VelocityBehaviorBase :as VelocityBehaviorBase)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class DragVelocityBehavior
+(var jproto nil)
+(var jcell_instance :jnone)
+(var jstatic_instance nil)
+(var jsetstatic_instance nil)
+(var jnew_0 nil)
+(var jm_reduce nil)
+(var jm_reduceX nil)
+(var jm_reduceY nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jstatic_instance (fn jstatic_instance []
+  (when (= jcell_instance :jnone) (set jcell_instance (jnew_0)))
+  jcell_instance))
+(set jsetstatic_instance (fn jsetstatic_instance [value] (set jcell_instance value)))
 
-local DragVelocityBehavior = {}
-DragVelocityBehavior.__index = DragVelocityBehavior
-DragVelocityBehavior.className = "DragVelocityBehavior"
-setmetatable(DragVelocityBehavior, {__index = VelocityBehaviorBase})
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "DragVelocityBehavior"} jproto))
+    (JR/superInit this (VelocityBehaviorBase/jnew_0))
+    this))
 
-function DragVelocityBehavior.new()
-    local self = setmetatable(VelocityBehaviorBase.new(), DragVelocityBehavior)
-    return self
-end
+    
+(set jm_reduce (fn jm_reduce [this _velocityProperties _nominator _denominator]
+        (if (not= (JR/className (:jm_getVelocityXBasicDecimalP _velocityProperties)) 0)
+            (do
+            (var _basicDecimal (:jm_getVelocityXBasicDecimalP _velocityProperties))
+            (:jm_multiplyint _basicDecimal _nominator)
+            (:jm_divideint _basicDecimal _denominator)))
+        (if (not= (JR/className (:jm_getVelocityYBasicDecimalP _velocityProperties)) 0)
+            (do
+            (var _basicDecimal (:jm_getVelocityYBasicDecimalP _velocityProperties))
+            (:jm_multiplyint _basicDecimal _nominator)
+            (:jm_divideint _basicDecimal _denominator)))))
+    
+(set jm_reduceX (fn jm_reduceX [this _velocityProperties _nominator _denominator]
+        (var _basicDecimal (:jm_getVelocityXBasicDecimalP _velocityProperties))
+        (if (not= (:jm_getUnscaled _basicDecimal) 0)
+            (do
+            (:jm_multiplyint _basicDecimal _nominator)
+            (:jm_divideint _basicDecimal _denominator)))))
+    
+(set jm_reduceY (fn jm_reduceY [this _velocityProperties _nominator _denominator]
+        (if (not= (JR/className (:jm_getVelocityYBasicDecimalP _velocityProperties)) 0)
+            (do
+            (var _basicDecimal (:jm_getVelocityYBasicDecimalP _velocityProperties))
+            (:jm_multiplyint _basicDecimal _nominator)
+            (:jm_divideint _basicDecimal _denominator)))))
 
+(set jproto (table/setproto @{:jm_reduce jm_reduce :jm_reduceX jm_reduceX :jm_reduceY jm_reduceY} VelocityBehaviorBase/jproto))
 
-function DragVelocityBehavior:reduce(velocityProperties, nominator, denominator)
-        if velocityProperties:getVelocityXBasicDecimalP():getUnscaled() ~= 0 then
-            local basicDecimal = velocityProperties:getVelocityXBasicDecimalP()
-            basicDecimal:multiplyint(nominator)
-            basicDecimal:divideint(denominator)
-        end
-        if velocityProperties:getVelocityYBasicDecimalP():getUnscaled() ~= 0 then
-            local basicDecimal = velocityProperties:getVelocityYBasicDecimalP()
-            basicDecimal:multiplyint(nominator)
-            basicDecimal:divideint(denominator)
-        end
-end
-
-
-function DragVelocityBehavior:reduceX(velocityProperties, nominator, denominator)
-        local basicDecimal = velocityProperties:getVelocityXBasicDecimalP()
-        if basicDecimal:getUnscaled() ~= 0 then
-            basicDecimal:multiplyint(nominator)
-            basicDecimal:divideint(denominator)
-        end
-end
-
-
-function DragVelocityBehavior:reduceY(velocityProperties, nominator, denominator)
-        if velocityProperties:getVelocityYBasicDecimalP():getUnscaled() ~= 0 then
-            local basicDecimal = velocityProperties:getVelocityYBasicDecimalP()
-            basicDecimal:multiplyint(nominator)
-            basicDecimal:divideint(denominator)
-        end
-end
-
-DragVelocityBehavior.instance = DragVelocityBehavior.new()
-
-return DragVelocityBehavior
 

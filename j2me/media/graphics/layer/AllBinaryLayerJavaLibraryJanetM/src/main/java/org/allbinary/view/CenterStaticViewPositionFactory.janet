@@ -1,46 +1,38 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.view
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.view
 
-local DisplayInfoSingleton = require("org.allbinary.graphics.displayable.DisplayInfoSingleton")
+(import ../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- DisplayInfoSingleton/jm_getInstance [& args] (JR/call jfile "../../../org/allbinary/graphics/displayable/DisplayInfoSingleton" "jm_getInstance" args))
+(defn- StaticViewPosition/jnew_3 [& args] (JR/call jfile "./StaticViewPosition" "jnew_3" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class CenterStaticViewPositionFactory
+(var jproto nil)
+(var jnew_0 nil)
+(var jm_getInstance nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "CenterStaticViewPositionFactory"} jproto))
+    this))
+    
+(set jm_getInstance (fn jm_getInstance [this _z]
+    (label jreturn
+        (var _displayInfoSingleton (DisplayInfoSingleton/jm_getInstance))
+        (return jreturn (StaticViewPosition/jnew_3 (brshift (:jm_getLastWidth _displayInfoSingleton) 1) (brshift (:jm_getLastHeight _displayInfoSingleton) 1) _z)))))
 
-local CenterStaticViewPositionFactory = {}
-CenterStaticViewPositionFactory.__index = CenterStaticViewPositionFactory
-CenterStaticViewPositionFactory.className = "CenterStaticViewPositionFactory"
+(set jproto @{:jm_getInstance jm_getInstance})
 
-
-function CenterStaticViewPositionFactory.new()
-    local self = setmetatable({}, CenterStaticViewPositionFactory)
-    return self
-end
-
-
-function CenterStaticViewPositionFactory:getInstance(z)
-        local displayInfoSingleton = DisplayInfoSingleton.getInstance()
-        return StaticViewPosition.new((((displayInfoSingleton:getLastWidth()) // (1 << (1)))), (((displayInfoSingleton:getLastHeight()) // (1 << (1)))), z)
-end
-
-return CenterStaticViewPositionFactory
 

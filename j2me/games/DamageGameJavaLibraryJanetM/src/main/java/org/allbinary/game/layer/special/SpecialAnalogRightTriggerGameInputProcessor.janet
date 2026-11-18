@@ -1,50 +1,36 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.layer.special
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.game.layer.special
 
-local GameKeyEvent = require("org.allbinary.game.input.event.GameKeyEvent")
-local AllBinaryLayerManager = require("org.allbinary.layer.AllBinaryLayerManager")
-local SpecialGameInputProcessor = require("org.allbinary.game.layer.special.SpecialGameInputProcessor")
+(import ../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(import ./SpecialGameInputProcessor :as SpecialGameInputProcessor)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class SpecialAnalogRightTriggerGameInputProcessor
+(var jproto nil)
+(var jnew_1 nil)
+(var jm_processAnalog nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jnew_1 (fn jnew_1 [_collidableDestroyableDamageableLayer]
+    (var this (table/setproto @{:jclass "SpecialAnalogRightTriggerGameInputProcessor"} jproto))
+        (JR/superInit this (SpecialGameInputProcessor/jnew_1 _collidableDestroyableDamageableLayer))
+    this))
+    
+(set jm_processAnalog (fn jm_processAnalog [this _allbinaryLayerManager _gameKeyEvent _yAnalogValue]
+        (:jm_rightTrigger (this :f_collidableDestroyableDamageableLayer) _allbinaryLayerManager _gameKeyEvent _yAnalogValue)))
 
-local SpecialAnalogRightTriggerGameInputProcessor = {}
-SpecialAnalogRightTriggerGameInputProcessor.__index = SpecialAnalogRightTriggerGameInputProcessor
-SpecialAnalogRightTriggerGameInputProcessor.className = "SpecialAnalogRightTriggerGameInputProcessor"
-setmetatable(SpecialAnalogRightTriggerGameInputProcessor, {__index = SpecialGameInputProcessor})
+(set jproto (table/setproto @{:jm_processAnalog jm_processAnalog} SpecialGameInputProcessor/jproto))
 
-
-function SpecialAnalogRightTriggerGameInputProcessor.new(collidableDestroyableDamageableLayer)
-    local self = setmetatable(SpecialGameInputProcessor.new(collidableDestroyableDamageableLayer), SpecialAnalogRightTriggerGameInputProcessor)
-        -- super(...) made self above
-    return self
-end
-
-
--- throws Exception
-function SpecialAnalogRightTriggerGameInputProcessor:processAnalog(allbinaryLayerManager, gameKeyEvent, yAnalogValue)
-        self.collidableDestroyableDamageableLayer:rightTrigger(allbinaryLayerManager, gameKeyEvent, yAnalogValue)
-end
-
-return SpecialAnalogRightTriggerGameInputProcessor
 

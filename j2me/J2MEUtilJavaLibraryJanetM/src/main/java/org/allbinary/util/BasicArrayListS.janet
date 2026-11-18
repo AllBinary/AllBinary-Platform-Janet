@@ -26,7 +26,7 @@
     
 (set jnew_1 (fn jnew_1 [_size]
     (var this (table/setproto @{:jclass "BasicArrayListS"} jproto))
-        nil
+        (JR/superInit this (BasicArrayList/jnew_1 ((NullUtil/jm_getInstance) :f_NULL_OBJECT_ARRAY)))
         (if (< _size 0)
             (do
             (error (JR/newException "IllegalArgumentException" (:jm_toString (:jm_appendint (:jm_append (StringMaker/jnew_0) "Init Size Exception: ") _size))))))

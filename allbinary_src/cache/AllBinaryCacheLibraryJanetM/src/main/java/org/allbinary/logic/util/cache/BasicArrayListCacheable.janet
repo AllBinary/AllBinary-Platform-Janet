@@ -1,47 +1,38 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.util.cache
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.logic.util.cache
 
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
-local BasicArrayListD = require("org.allbinary.util.BasicArrayListD")
-local CacheableInterface = require("org.allbinary.logic.util.cache.CacheableInterface")
+(import ../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- StringUtil/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/logic/string/StringUtil" "jm_getInstance" args))
+(import ../../../../../org/allbinary/util/BasicArrayListD :as BasicArrayListD)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class BasicArrayListCacheable
+(var jproto nil)
+(var jnew_0 nil)
+(var jm_getKey nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "BasicArrayListCacheable"} jproto))
+    (JR/superInit this (BasicArrayListD/jnew_0))
+    this))
 
-local BasicArrayListCacheable = {}
-BasicArrayListCacheable.__index = BasicArrayListCacheable
-BasicArrayListCacheable.className = "BasicArrayListCacheable"
-setmetatable(BasicArrayListCacheable, {__index = BasicArrayListD})
+    
+(set jm_getKey (fn jm_getKey [this]
+    (label jreturn
+        (return jreturn ((StringUtil/jm_getInstance) :f_EMPTY_STRING)))))
 
-function BasicArrayListCacheable.new()
-    local self = setmetatable(BasicArrayListD.new(), BasicArrayListCacheable)
-    return self
-end
+(set jproto (table/setproto @{:jm_getKey jm_getKey} BasicArrayListD/jproto))
 
-
-function BasicArrayListCacheable:getKey()
-        return StringUtil.getInstance().EMPTY_STRING
-end
-
-return BasicArrayListCacheable
 

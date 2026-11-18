@@ -1,75 +1,67 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.math
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.math
 
-local GPoint = require("org.allbinary.graphics.GPoint")
-local AllBinaryLayer = require("org.allbinary.layer.AllBinaryLayer")
-local MathUtil = require("org.allbinary.logic.math.MathUtil")
+(import ../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- MathUtil/jm_getInstance [& args] (JR/call jfile "../../../org/allbinary/logic/math/MathUtil" "jm_getInstance" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class LayerDistanceUtil
+(var jproto nil)
+(var jcell_instance :jnone)
+(var jstatic_instance nil)
+(var jsetstatic_instance nil)
+(var jnew_0 nil)
+(var jm_getInstance nil)
+(var jm_getDistance nil)
+(var jm_getDistance3D nil)
+(var jm_getDistanceAt nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jstatic_instance (fn jstatic_instance []
+  (when (= jcell_instance :jnone) (set jcell_instance (jnew_0)))
+  jcell_instance))
+(set jsetstatic_instance (fn jsetstatic_instance [value] (set jcell_instance value)))
 
-local LayerDistanceUtil = {}
-LayerDistanceUtil.__index = LayerDistanceUtil
-LayerDistanceUtil.className = "LayerDistanceUtil"
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "LayerDistanceUtil" :f_mathUtil nil} jproto))
+    (put this :f_mathUtil (MathUtil/jm_getInstance))
+    this))
 
-function LayerDistanceUtil:_init_fields()
-    self.mathUtil = MathUtil.getInstance()
-end
+    
+(set jm_getInstance (fn jm_getInstance []
+    (label jreturn
+        (return jreturn (jstatic_instance)))))
+    
+(set jm_getDistance (fn jm_getDistance [this _layerInterface _layerInterface2]
+    (label jreturn
+        (var _dx (JR/i32 (- (JR/i32 (+ (:jm_getXP _layerInterface) (:jm_getHalfWidth _layerInterface))) (JR/i32 (+ (:jm_getXP _layerInterface2) (:jm_getHalfWidth _layerInterface2))))))
+        (var _dy (JR/i32 (- (JR/i32 (+ (:jm_getYP _layerInterface) (:jm_getHalfHeight _layerInterface))) (JR/i32 (+ (:jm_getYP _layerInterface2) (:jm_getHalfHeight _layerInterface2))))))
+        (return jreturn (:jm_sqrt (this :f_mathUtil) (JR/i32 (+ (JR/i32 (* _dx _dx)) (JR/i32 (* _dy _dy)))))))))
+    
+(set jm_getDistance3D (fn jm_getDistance3D [this _layerInterface _layerInterface2]
+    (label jreturn
+        (var _dx (JR/i32 (- (JR/i32 (+ (:jm_getXP _layerInterface) (:jm_getHalfWidth _layerInterface))) (JR/i32 (+ (:jm_getXP _layerInterface2) (:jm_getHalfWidth _layerInterface2))))))
+        (var _dy (JR/i32 (- (JR/i32 (+ (:jm_getYP _layerInterface) (:jm_getHalfHeight _layerInterface))) (JR/i32 (+ (:jm_getYP _layerInterface2) (:jm_getHalfHeight _layerInterface2))))))
+        (var _dz (JR/i32 (- (JR/i32 (+ (:jm_getZP _layerInterface) (:jm_getHalfDepth _layerInterface))) (JR/i32 (+ (:jm_getZP _layerInterface2) (:jm_getHalfDepth _layerInterface2))))))
+        (return jreturn (:jm_sqrt (this :f_mathUtil) (JR/i32 (+ (JR/i32 (+ (JR/i32 (* _dx _dx)) (JR/i32 (* _dy _dy)))) (JR/i32 (* _dz _dz)))))))))
+    
+(set jm_getDistanceAt (fn jm_getDistanceAt [this _layerInterface _point]
+    (label jreturn
+        (var _dx (JR/i32 (- (:jm_getXP _layerInterface) (:jm_getX _point))))
+        (var _dy (JR/i32 (- (:jm_getYP _layerInterface) (:jm_getY _point))))
+        (return jreturn (:jm_sqrt (this :f_mathUtil) (JR/i32 (+ (JR/i32 (* _dx _dx)) (JR/i32 (* _dy _dy)))))))))
 
-function LayerDistanceUtil.new()
-    local self = setmetatable({}, LayerDistanceUtil)
-    self:_init_fields()
-    return self
-end
+(set jproto @{:jm_getDistance jm_getDistance :jm_getDistance3D jm_getDistance3D :jm_getDistanceAt jm_getDistanceAt})
 
-
-function LayerDistanceUtil.getInstance()
-        return LayerDistanceUtil.instance
-end
-
-
-function LayerDistanceUtil:getDistance(layerInterface, layerInterface2)
-        local dx = (layerInterface:getXP() + layerInterface:getHalfWidth()) - (layerInterface2:getXP() + layerInterface2:getHalfWidth())
-        local dy = (layerInterface:getYP() + layerInterface:getHalfHeight()) - (layerInterface2:getYP() + layerInterface2:getHalfHeight())
-        return java_int(self.mathUtil:sqrt((dx * dx) + (dy * dy)))
-end
-
-
-function LayerDistanceUtil:getDistance3D(layerInterface, layerInterface2)
-        local dx = (layerInterface:getXP() + layerInterface:getHalfWidth()) - (layerInterface2:getXP() + layerInterface2:getHalfWidth())
-        local dy = (layerInterface:getYP() + layerInterface:getHalfHeight()) - (layerInterface2:getYP() + layerInterface2:getHalfHeight())
-        local dz = (layerInterface:getZP() + layerInterface:getHalfDepth()) - (layerInterface2:getZP() + layerInterface2:getHalfDepth())
-        return java_int(self.mathUtil:sqrt((dx * dx) + (dy * dy) + (dz * dz)))
-end
-
-
-function LayerDistanceUtil:getDistanceAt(layerInterface, point)
-        local dx = layerInterface:getXP() - point:getX()
-        local dy = layerInterface:getYP() - point:getY()
-        return java_int(self.mathUtil:sqrt((dx * dx) + (dy * dy)))
-end
-
-LayerDistanceUtil.instance = LayerDistanceUtil.new()
-
-return LayerDistanceUtil
 

@@ -1,79 +1,67 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---   
--- Generated Code Do Not Modify
--- package org.allbinary.animation
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#   
+# Generated Code Do Not Modify
+# package org.allbinary.animation
 
-local ScaleProperties = require("org.allbinary.media.ScaleProperties")
-local AnimationInterfaceFactoryInterface = require("org.allbinary.animation.AnimationInterfaceFactoryInterface")
-local ProceduralAnimationInterfaceFactoryInterface = require("org.allbinary.animation.ProceduralAnimationInterfaceFactoryInterface")
+(import ../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- NullIndexedAnimationInner/jnew_0 [& args] (JR/call jfile "./NullIndexedAnimationInner" "jnew_0" args))
 
-local function java_new_array(default, size, ...)
-    local array = {n = size}
-    for index = 1, size do
-        if select("#", ...) > 0 then array[index] = java_new_array(default, ...) else array[index] = default end
-    end
-    return array
-end
+# Java class NullIndexedAnimationFactory
+(var jproto nil)
+(var jcell_NULL_INDEXED_ANIMATION_ARRAY :jnone)
+(var jstatic_NULL_INDEXED_ANIMATION_ARRAY nil)
+(var jsetstatic_NULL_INDEXED_ANIMATION_ARRAY nil)
+(var jcell_NULL_INDEXED_ANIMATION_FACTORY :jnone)
+(var jstatic_NULL_INDEXED_ANIMATION_FACTORY nil)
+(var jsetstatic_NULL_INDEXED_ANIMATION_FACTORY nil)
+(var jnew_0 nil)
+(var jm_getFactoryInstance nil)
+(var jm_getInstance nil)
+(var jm_getInstanceAnimation nil)
+(var jm_setInitialScale nil)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(set jstatic_NULL_INDEXED_ANIMATION_ARRAY (fn jstatic_NULL_INDEXED_ANIMATION_ARRAY []
+  (when (= jcell_NULL_INDEXED_ANIMATION_ARRAY :jnone) (set jcell_NULL_INDEXED_ANIMATION_ARRAY (array/new-filled 0 nil)))
+  jcell_NULL_INDEXED_ANIMATION_ARRAY))
+(set jsetstatic_NULL_INDEXED_ANIMATION_ARRAY (fn jsetstatic_NULL_INDEXED_ANIMATION_ARRAY [value] (set jcell_NULL_INDEXED_ANIMATION_ARRAY value)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jstatic_NULL_INDEXED_ANIMATION_FACTORY (fn jstatic_NULL_INDEXED_ANIMATION_FACTORY []
+  (when (= jcell_NULL_INDEXED_ANIMATION_FACTORY :jnone) (set jcell_NULL_INDEXED_ANIMATION_FACTORY (jnew_0)))
+  jcell_NULL_INDEXED_ANIMATION_FACTORY))
+(set jsetstatic_NULL_INDEXED_ANIMATION_FACTORY (fn jsetstatic_NULL_INDEXED_ANIMATION_FACTORY [value] (set jcell_NULL_INDEXED_ANIMATION_FACTORY value)))
 
-local NullIndexedAnimationFactory = {}
-NullIndexedAnimationFactory.__index = NullIndexedAnimationFactory
-NullIndexedAnimationFactory.className = "NullIndexedAnimationFactory"
+    
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "NullIndexedAnimationFactory" :f_NULL_ANIMATION nil} jproto))
+    (put this :f_NULL_ANIMATION (NullIndexedAnimationInner/jnew_0))
+    this))
+    
+(set jm_getFactoryInstance (fn jm_getFactoryInstance []
+    (label jreturn
+        (return jreturn (jstatic_NULL_INDEXED_ANIMATION_FACTORY)))))
+    
+(set jm_getInstance (fn jm_getInstance [this _instanceId]
+    (label jreturn
+        (return jreturn (this :f_NULL_ANIMATION)))))
+    
+(set jm_getInstanceAnimation (fn jm_getInstanceAnimation [this _animationInterface]
+    (label jreturn
+        (return jreturn (this :f_NULL_ANIMATION)))))
+    
+(set jm_setInitialScale (fn jm_setInitialScale [this _scaleProperties]
+    nil))
 
-function NullIndexedAnimationFactory:_init_fields()
-    self.NULL_ANIMATION = NullIndexedAnimationInner.new()
-end
+(set jproto @{:jm_getInstance jm_getInstance :jm_getInstanceAnimation jm_getInstanceAnimation :jm_setInitialScale jm_setInitialScale})
 
-
-function NullIndexedAnimationFactory.new()
-    local self = setmetatable({}, NullIndexedAnimationFactory)
-    self:_init_fields()
-    return self
-end
-
-
-function NullIndexedAnimationFactory.getFactoryInstance()
-        return NullIndexedAnimationFactory.NULL_INDEXED_ANIMATION_FACTORY
-end
-
-
--- throws Exception
-function NullIndexedAnimationFactory:getInstance(instanceId)
-        return self.NULL_ANIMATION
-end
-
-
--- throws Exception
-function NullIndexedAnimationFactory:getInstanceAnimation(animationInterface)
-        return self.NULL_ANIMATION
-end
-
-
-function NullIndexedAnimationFactory:setInitialScale(scaleProperties)
-end
-
-NullIndexedAnimationFactory.NULL_INDEXED_ANIMATION_ARRAY = java_new_array(nil, 0)
-NullIndexedAnimationFactory.NULL_INDEXED_ANIMATION_FACTORY = NullIndexedAnimationFactory.new()
-
-return NullIndexedAnimationFactory
 

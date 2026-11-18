@@ -1,36 +1,26 @@
--- Generated Code Do Not Modify
--- package org.allbinary.game.input
+# Generated Code Do Not Modify
+# package org.allbinary.game.input
 
-local AllBinaryEventObject = require("org.allbinary.logic.util.event.AllBinaryEventObject")
-local CompleteMotionGestureInputEventListenerInterface = require("org.allbinary.game.input.CompleteMotionGestureInputEventListenerInterface")
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class CompleteMotionGestureInputEventListener
+(var jproto nil)
+(var jnew_0 nil)
+(var jm_onEvent nil)
+(var jm_onCompleteMotionGestureInputEvent nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "CompleteMotionGestureInputEventListener"} jproto))
+    this))
 
-local CompleteMotionGestureInputEventListener = {}
-CompleteMotionGestureInputEventListener.__index = CompleteMotionGestureInputEventListener
-CompleteMotionGestureInputEventListener.className = "CompleteMotionGestureInputEventListener"
+    
+(set jm_onEvent (fn jm_onEvent [this _eventObject]
+    nil))
+    
+(set jm_onCompleteMotionGestureInputEvent (fn jm_onCompleteMotionGestureInputEvent [this _completeMotionGestureInputEvent]
+    nil))
 
-function CompleteMotionGestureInputEventListener.new()
-    local self = setmetatable({}, CompleteMotionGestureInputEventListener)
-    return self
-end
+(set jproto @{:jm_onEvent jm_onEvent :jm_onCompleteMotionGestureInputEvent jm_onCompleteMotionGestureInputEvent})
 
-
-function CompleteMotionGestureInputEventListener:onEvent(eventObject)
-end
-
-
-function CompleteMotionGestureInputEventListener:onCompleteMotionGestureInputEvent(completeMotionGestureInputEvent)
-end
-
-return CompleteMotionGestureInputEventListener
 

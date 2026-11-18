@@ -1,214 +1,180 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.animation
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.animation
 
--- local Graphics = require("javax.microedition.lcdui.Graphics")
--- local NullImage = require("javax.microedition.lcdui.NullImage")
-local BasicColor = require("org.allbinary.graphics.color.BasicColor")
-local NullUtil = require("org.allbinary.logic.NullUtil")
-local PrimitiveIntUtil = require("org.allbinary.logic.math.PrimitiveIntUtil")
-local CircularIndexUtil = require("org.allbinary.util.CircularIndexUtil")
-local IndexedAnimation = require("org.allbinary.animation.IndexedAnimation")
-local VectorAnimationInterface = require("org.allbinary.animation.VectorAnimationInterface")
+(import ../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- NullUtil/jm_getInstance [& args] (JR/call jfile "../../../org/allbinary/logic/NullUtil" "jm_getInstance" args))
+(defn- PrimitiveIntUtil/jm_getArrayInstance [& args] (JR/call jfile "../../../org/allbinary/logic/math/PrimitiveIntUtil" "jm_getArrayInstance" args))
+(defn- CircularIndexUtil/jm_createInstance [& args] (JR/call jfile "../../../org/allbinary/util/CircularIndexUtil" "jm_createInstance" args))
+(import ./IndexedAnimation :as IndexedAnimation)
 
-local function java_new_array(default, size, ...)
-    local array = {n = size}
-    for index = 1, size do
-        if select("#", ...) > 0 then array[index] = java_new_array(default, ...) else array[index] = default end
-    end
-    return array
-end
+# Java class VectorAnimation
+(var jproto nil)
+(var jnew_3 nil)
+(var jm_createVectorAnimation nil)
+(var jm_setBasicColorP nil)
+(var jm_changeBasicColor nil)
+(var jm_setAlpha nil)
+(var jm_setScale nil)
+(var jm_setMaxScale nil)
+(var jm_updateModifiers nil)
+(var jm_getAnimationSize nil)
+(var jm_getSize nil)
+(var jm_setSequence nil)
+(var jm_getSequence nil)
+(var jm_nextFrame nil)
+(var jm_previousFrame nil)
+(var jm_paintVectors nil)
+(var jm_paintXY nil)
+(var jm_getFrame nil)
+(var jm_setFrame nil)
+(var jm_getPoints nil)
+(var jm_setPoints nil)
+(var jm_getBasicColorP nil)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+    
+(set jm_createVectorAnimation (fn jm_createVectorAnimation [_currentPoints2 _basicColor _animationBehavior]
+    (label jreturn
+        (var _currentPoints (seq [jindex1 :range [0 1]] (seq [jindex2 :range [0 (length _currentPoints2)]] (array/new-filled 2 0))))
+        (var _size (length _currentPoints2))
+        (do
+            (var _index 0)
+            (while (< _index _size)
+                (do
+            (set (((_currentPoints 0) _index) 0) ((_currentPoints2 _index) 0))
+            (set (((_currentPoints 0) _index) 1) ((_currentPoints2 _index) 1)))
+                (do (set _index (JR/i32 (+ _index 1))))))
+        (return jreturn (jnew_3 _currentPoints _basicColor _animationBehavior)))))
+    
+(set jnew_3 (fn jnew_3 [_currentPoints _basicColor _animationBehavior]
+    (var this (table/setproto @{:jclass "VectorAnimation" :f_currentPoints nil :f_circularIndexUtil nil} jproto))
+    (put this :f_currentPoints ((NullUtil/jm_getInstance) :f_NULL_INT_ARRAY_ARRAY_ARRAY))
+    (put this :f_circularIndexUtil (CircularIndexUtil/jm_createInstance 0))
+        (JR/superInit this (IndexedAnimation/jnew_1 _animationBehavior))
+        (:jm_setPoints this _currentPoints)
+        (:jm_setBasicColorP this _basicColor)
+    this))
+    
+(set jm_setBasicColorP (fn jm_setBasicColorP [this _basicColor]
+        (var _changed false)
+        (if (or (nil? (:jm_getBasicColorP this)) (not= (:jm_intValue (:jm_getBasicColorP this)) (:jm_intValue _basicColor)))
+            (do
+            (set _changed true)))
+        ((get IndexedAnimation/jproto :jm_setBasicColorP) this _basicColor)
+        (if _changed
+            (do
+            (:jm_updateModifiers this)))))
+    
+(set jm_changeBasicColor (fn jm_changeBasicColor [this _basicColor]
+        (var _changed false)
+        (if (or (nil? (:jm_getChangeBasicColor this)) (not= (JR/className (:jm_getChangeBasicColor this)) (:jm_intValue _basicColor)))
+            (do
+            (set _changed true)))
+        ((get IndexedAnimation/jproto :jm_changeBasicColor) this _basicColor)
+        (if _changed
+            (do
+            (:jm_updateModifiers this)))))
+    
+(set jm_setAlpha (fn jm_setAlpha [this _alpha]
+        (var _changed false)
+        (if (not= (this :f_alphaP) _alpha)
+            (do
+            (set _changed true)))
+        ((get IndexedAnimation/jproto :jm_setAlpha) this _alpha)
+        (if _changed
+            (do
+            (:jm_updateModifiers this)))))
+    
+(set jm_setScale (fn jm_setScale [this _scaleX _scaleY]
+    nil))
+    
+(set jm_setMaxScale (fn jm_setMaxScale [this _maxScaleX _maxScaleY]
+    nil))
+    
+(set jm_updateModifiers (fn jm_updateModifiers [this]
+    nil))
+    
+(set jm_getAnimationSize (fn jm_getAnimationSize [this]
+    (label jreturn
+        (return jreturn (:jm_getSize this)))))
+    
+(set jm_getSize (fn jm_getSize [this]
+    (label jreturn
+        (return jreturn (length (this :f_currentPoints))))))
+    
+(set jm_setSequence (fn jm_setSequence [this _sequence]
+    nil))
+    
+(set jm_getSequence (fn jm_getSequence [this]
+    (label jreturn
+        (return jreturn (PrimitiveIntUtil/jm_getArrayInstance)))))
+    
+(set jm_nextFrame (fn jm_nextFrame [this]
+        (:jm_next (this :f_circularIndexUtil))))
+    
+(set jm_previousFrame (fn jm_previousFrame [this]
+        (:jm_previous (this :f_circularIndexUtil))))
+    
+(set jm_paintVectors (fn jm_paintVectors [this _graphics _x _y]
+        (try
+            (do
+            (var _nextPointX 0)
+            (var _nextPointY 0)
+            (var _nextPoint nil)
+            (var _point nil)
+            (var _currentPointsFrame ((this :f_currentPoints) (:jm_getIndex (this :f_circularIndexUtil))))
+            (var _size (length _currentPointsFrame))
+            (var _index (JR/i32 (- _size 2)))
+            (do
+                (while (>= (set _index (JR/i32 (- _index 1))) 0)
+                    (do
+                (set _nextPoint (_currentPointsFrame _index))
+                (set _point (_currentPointsFrame (JR/i32 (+ _index 1))))
+                (set _nextPointX (_nextPoint 0))
+                (set _nextPointY (_nextPoint 1))
+                (if (not= _nextPointX 1000)
+                    (do
+                    (:jm_drawLine _graphics (JR/i32 (+ (_point 0) _x)) (JR/i32 (+ (_point 1) _y)) (JR/i32 (+ _nextPointX _x)) (JR/i32 (+ _nextPointY _y))))
+                    (do
+                    (set _index (JR/i32 (- _index 1)))))))))
+            ([_e] (do
+            (JR/className (this :f_logUtil)))))))
+    
+(set jm_paintXY (fn jm_paintXY [this _graphics _x _y]
+        (JR/className (this :f_basicSetColorUtil))
+        (:jm_paintVectors this _graphics _x _y)))
+    
+(set jm_getFrame (fn jm_getFrame [this]
+    (label jreturn
+        (return jreturn (:jm_getIndex (this :f_circularIndexUtil))))))
+    
+(set jm_setFrame (fn jm_setFrame [this _index]
+        (:jm_setIndex (this :f_circularIndexUtil) _index)))
+    
+(set jm_getPoints (fn jm_getPoints [this _frame]
+    (label jreturn
+        (return jreturn ((this :f_currentPoints) _frame)))))
+    
+(set jm_setPoints (fn jm_setPoints [this _currentPoints]
+        (set (this :f_currentPoints) _currentPoints)
+        (set (this :f_circularIndexUtil) (CircularIndexUtil/jm_createInstance (length _currentPoints)))))
+    
+(set jm_getBasicColorP (fn jm_getBasicColorP [this]
+    (label jreturn
+        (return jreturn ((get IndexedAnimation/jproto :jm_getBasicColorP) this)))))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jproto (table/setproto @{:jm_setBasicColorP jm_setBasicColorP :jm_changeBasicColor jm_changeBasicColor :jm_setAlpha jm_setAlpha :jm_setScale jm_setScale :jm_setMaxScale jm_setMaxScale :jm_updateModifiers jm_updateModifiers :jm_getAnimationSize jm_getAnimationSize :jm_getSize jm_getSize :jm_setSequence jm_setSequence :jm_getSequence jm_getSequence :jm_nextFrame jm_nextFrame :jm_previousFrame jm_previousFrame :jm_paintVectors jm_paintVectors :jm_paintXY jm_paintXY :jm_getFrame jm_getFrame :jm_setFrame jm_setFrame :jm_getPoints jm_getPoints :jm_setPoints jm_setPoints :jm_getBasicColorP jm_getBasicColorP} IndexedAnimation/jproto))
 
-local VectorAnimation = {}
-VectorAnimation.__index = VectorAnimation
-VectorAnimation.className = "VectorAnimation"
-setmetatable(VectorAnimation, {__index = IndexedAnimation})
-
-function VectorAnimation:_init_fields()
-    self.currentPoints = NullUtil.getInstance().NULL_INT_ARRAY_ARRAY_ARRAY
-    self.circularIndexUtil = CircularIndexUtil.createInstance(0)
-end
-
-
-function VectorAnimation.createVectorAnimation(currentPoints2, basicColor, animationBehavior)
-        local currentPoints = java_new_array(0, 1, (currentPoints2.n or #currentPoints2), 2)
-        local size = (currentPoints2.n or #currentPoints2)
-        for index = 0, size - 1 do
-            currentPoints[1][index + 1][1] = currentPoints2[index + 1][1]
-            currentPoints[1][index + 1][2] = currentPoints2[index + 1][2]
-        end
-        return VectorAnimation.new(currentPoints, basicColor, animationBehavior)
-end
-
-
-function VectorAnimation.new(currentPoints, basicColor, animationBehavior)
-    local self = setmetatable(IndexedAnimation.new(animationBehavior), VectorAnimation)
-    self:_init_fields()
-        -- super(...) made self above
-        self:setPoints(currentPoints)
-        self:setBasicColorP(basicColor)
-    return self
-end
-
-
-function VectorAnimation:setBasicColorP(basicColor)
-        local changed = false
-        if self:getBasicColorP() == nil or math.tointeger(self:getBasicColorP() // 1) ~= math.tointeger(basicColor // 1) then
-            changed = true
-        end
-        IndexedAnimation.setBasicColorP(self, basicColor)
-        if changed then
-            self:updateModifiers()
-        end
-end
-
-
-function VectorAnimation:changeBasicColor(basicColor)
-        local changed = false
-        if self:getChangeBasicColor() == nil or math.tointeger(self:getChangeBasicColor() // 1) ~= math.tointeger(basicColor // 1) then
-            changed = true
-        end
-        IndexedAnimation.changeBasicColor(self, basicColor)
-        if changed then
-            self:updateModifiers()
-        end
-end
-
-
-function VectorAnimation:setAlpha(alpha)
-        local changed = false
-        if self.alphaP ~= alpha then
-            changed = true
-        end
-        IndexedAnimation.setAlpha(self, alpha)
-        if changed then
-            self:updateModifiers()
-        end
-end
-
-
-function VectorAnimation:setScale(scaleX, scaleY)
-end
-
-
-function VectorAnimation:setMaxScale(maxScaleX, maxScaleY)
-end
-
-
-function VectorAnimation:updateModifiers()
-end
-
-
--- throws Exception
-function VectorAnimation:getAnimationSize()
-        return self:getSize()
-end
-
-
-function VectorAnimation:getSize()
-        return (self.currentPoints.n or #self.currentPoints)
-end
-
-
-function VectorAnimation:setSequence(sequence)
-end
-
-
-function VectorAnimation:getSequence()
-        return PrimitiveIntUtil.getArrayInstance()
-end
-
-
-function VectorAnimation:nextFrame()
-        self.circularIndexUtil:next()
-end
-
-
-function VectorAnimation:previousFrame()
-        self.circularIndexUtil:previous()
-end
-
-
-function VectorAnimation:paintVectors(graphics, x, y)
-        local try_ok, try_error = pcall(function()
-            local nextPointX = 0
-            local nextPointY = 0
-            local nextPoint = nil
-            local point = nil
-            local currentPointsFrame = self.currentPoints[self.circularIndexUtil:getIndex() + 1]
-            local size = (currentPointsFrame.n or #currentPointsFrame)
-            local index = size - 2
-            while (function() index = index - 1 return index end)() >= 0 do
-                nextPoint = currentPointsFrame[index + 1]
-                point = currentPointsFrame[index + 1 + 1]
-                nextPointX = nextPoint[1]
-                nextPointY = nextPoint[2]
-                if nextPointX ~= 1000 then
-                    graphics:drawLine(point[1] + x, point[2] + y, nextPointX + x, nextPointY + y)
-                else
-                    index = index - 1
-                end
-            end
-        end)
-        if not try_ok then
-            local e = try_error
-            self.logUtil:put(self.commonStrings.EXCEPTION, self, "paintVectors", e)
-        end
-end
-
-
-function VectorAnimation:paintXY(graphics, x, y)
-        self.basicSetColorUtil:setBasicColorP(graphics, self.basicColor)
-        self:paintVectors(graphics, x, y)
-end
-
-
-function VectorAnimation:getFrame()
-        return self.circularIndexUtil:getIndex()
-end
-
-
-function VectorAnimation:setFrame(index)
-        self.circularIndexUtil:setIndex(index)
-end
-
-
-function VectorAnimation:getPoints(frame)
-        return self.currentPoints[frame + 1]
-end
-
-
-function VectorAnimation:setPoints(currentPoints)
-        self.currentPoints = currentPoints
-        self.circularIndexUtil = CircularIndexUtil.createInstance((currentPoints.n or #currentPoints))
-end
-
-
-function VectorAnimation:getBasicColorP()
-        return IndexedAnimation.getBasicColorP(self)
-end
-
-return VectorAnimation
 

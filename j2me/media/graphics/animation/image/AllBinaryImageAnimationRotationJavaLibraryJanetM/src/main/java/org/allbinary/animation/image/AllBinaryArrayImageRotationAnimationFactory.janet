@@ -1,124 +1,98 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.animation.image
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.animation.image
 
--- local Image = require("javax.microedition.lcdui.Image")
--- local NullImage = require("javax.microedition.lcdui.NullImage")
-local Animation = require("org.allbinary.animation.Animation")
-local AnimationBehaviorFactory = require("org.allbinary.animation.AnimationBehaviorFactory")
-local GameConfigurationCentral = require("org.allbinary.game.configuration.GameConfigurationCentral")
-local PrimitiveIntUtil = require("org.allbinary.logic.math.PrimitiveIntUtil")
-local AngleFactory = require("org.allbinary.math.AngleFactory")
-local AngleInfo = require("org.allbinary.math.AngleInfo")
-local ImageToRotationImageArrayUtil = require("org.allbinary.media.image.ImageToRotationImageArrayUtil")
-local BaseImageAnimationFactory = require("org.allbinary.animation.image.BaseImageAnimationFactory")
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- NullImage/jstatic_NULL_IMAGE_ARRAY [& args] (JR/call jfile "../../../../javax/microedition/lcdui/NullImage" "jstatic_NULL_IMAGE_ARRAY" args))
+(defn- AnimationBehaviorFactory/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/animation/AnimationBehaviorFactory" "jm_getInstance" args))
+(defn- GameConfigurationCentral/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/game/configuration/GameConfigurationCentral" "jm_getInstance" args))
+(defn- PrimitiveIntUtil/jm_getArrayInstance [& args] (JR/call jfile "../../../../org/allbinary/logic/math/PrimitiveIntUtil" "jm_getArrayInstance" args))
+(defn- AngleFactory/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/math/AngleFactory" "jm_getInstance" args))
+(defn- AngleInfo/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/math/AngleInfo" "jm_getInstance" args))
+(defn- ImageToRotationImageArrayUtil/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/media/image/ImageToRotationImageArrayUtil" "jm_getInstance" args))
+(import ./BaseImageAnimationFactory :as BaseImageAnimationFactory)
+(defn- ImageArrayRotationAnimation/jnew_4 [& args] (JR/call jfile "./ImageArrayRotationAnimation" "jnew_4" args))
+(defn- AdjustedImageArrayRotationAnimation/jnew_6 [& args] (JR/call jfile "./AdjustedImageArrayRotationAnimation" "jnew_6" args))
 
-local function java_new_array(default, size, ...)
-    local array = {n = size}
-    for index = 1, size do
-        if select("#", ...) > 0 then array[index] = java_new_array(default, ...) else array[index] = default end
-    end
-    return array
-end
+# Java class AllBinaryArrayImageRotationAnimationFactory
+(var jproto nil)
+(var jnew_5 nil)
+(var jm_createFactory nil)
+(var jm_createFactoryA nil)
+(var jm_init nil)
+(var jm_initDXY nil)
+(var jm_getInstance nil)
+(var jm_setImageArray nil)
+(var jm_getAngleIncrement nil)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+    
+(set jm_createFactory (fn jm_createFactory [_image _dx _dy]
+    (label jreturn
+        (var _arrayImageRotationAnimationFactory (jnew_5 _image (:jm_getWidth _image) (:jm_getHeight _image) (JR/idiv ((AngleFactory/jm_getInstance) :f_TOTAL_ANGLE) (:jm_getGameControlFidelity (GameConfigurationCentral/jm_getInstance))) (AnimationBehaviorFactory/jm_getInstance)))
+        (:jm_initDXY _arrayImageRotationAnimationFactory _dx _dy)
+        (return jreturn _arrayImageRotationAnimationFactory))))
+    
+(set jm_createFactoryA (fn jm_createFactoryA [_image _dx _dy _angleIncrement]
+    (label jreturn
+        (var _arrayImageRotationAnimationFactory (jnew_5 _image (:jm_getWidth _image) (:jm_getHeight _image) _angleIncrement (AnimationBehaviorFactory/jm_getInstance)))
+        (:jm_initDXY _arrayImageRotationAnimationFactory _dx _dy)
+        (return jreturn _arrayImageRotationAnimationFactory))))
+    
+(set jnew_5 (fn jnew_5 [_image _width _height _angleIncrement _animationBehaviorFactory]
+    (var this (table/setproto @{:jclass "AllBinaryArrayImageRotationAnimationFactory" :f_imageArray nil :f_angleIncrement 0} jproto))
+    (put this :f_imageArray (NullImage/jstatic_NULL_IMAGE_ARRAY))
+    
+        (JR/superInit this (BaseImageAnimationFactory/jnew_7 _image (PrimitiveIntUtil/jm_getArrayInstance) _width _height 0 0 _animationBehaviorFactory))
+        (set (this :f_angleIncrement) _angleIncrement)
+        (:jm_init this)
+    this))
+    
+(set jm_init (fn jm_init [this]
+        (:jm_setImageArray this (:jm_generate (ImageToRotationImageArrayUtil/jm_getInstance) (:jm_getImage this) (:jm_getAngleIncrement this) ((AngleFactory/jm_getInstance) :f_TOTAL_ANGLE)))))
+    
+(set jm_initDXY (fn jm_initDXY [this _dx _dy]
+        (set ((this :f_animationFactoryInitializationVisitor) :f_dx) _dx)
+        (set ((this :f_animationFactoryInitializationVisitor) :f_dy) _dy)
+        (set ((this :f_animationFactoryInitializationVisitor) :f_originalDx) _dx)
+        (set ((this :f_animationFactoryInitializationVisitor) :f_originalDy) _dy)))
+    
+(set jm_getInstance (fn jm_getInstance [this _instanceId]
+    (label jreturn
+        (var _scaledImageArray (array/new-filled (length (this :f_imageArray)) nil))
+        (var _size (length _scaledImageArray))
+        (var _image (:jm_getImage this))
+        (do
+            (var _index 0)
+            (while (< _index _size)
+                (do
+            (set (_scaledImageArray _index) (JR/className (this :f_animationFactoryImageScaleUtil))))
+                (do (set _index (JR/i32 (+ _index 1))))))
+        (if (or (not= ((this :f_animationFactoryInitializationVisitor) :f_dx) 0) (not= ((this :f_animationFactoryInitializationVisitor) :f_dy) 0))
+            (do
+            (JR/className (this :f_animationFactoryImageScaleUtil))
+            (return jreturn (AdjustedImageArrayRotationAnimation/jnew_6 _scaledImageArray (AngleInfo/jm_getInstance (JR/i16 (:jm_getAngleIncrement this))) ((AngleFactory/jm_getInstance) :f_TOTAL_ANGLE) ((this :f_animationFactoryInitializationVisitor) :f_dx) ((this :f_animationFactoryInitializationVisitor) :f_dy) (:jm_getOrCreateInstance (this :f_animationBehaviorFactory)))))
+            (do
+            (return jreturn (ImageArrayRotationAnimation/jnew_4 _scaledImageArray (AngleInfo/jm_getInstance (JR/i16 (:jm_getAngleIncrement this))) ((AngleFactory/jm_getInstance) :f_TOTAL_ANGLE) (:jm_getOrCreateInstance (this :f_animationBehaviorFactory)))))))))
+    
+(set jm_setImageArray (fn jm_setImageArray [this _imageArray]
+        (set (this :f_imageArray) _imageArray)))
+    
+(set jm_getAngleIncrement (fn jm_getAngleIncrement [this]
+    (label jreturn
+        (return jreturn (this :f_angleIncrement)))))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jproto (table/setproto @{:jm_init jm_init :jm_initDXY jm_initDXY :jm_getInstance jm_getInstance :jm_setImageArray jm_setImageArray :jm_getAngleIncrement jm_getAngleIncrement} BaseImageAnimationFactory/jproto))
 
-local AllBinaryArrayImageRotationAnimationFactory = {}
-AllBinaryArrayImageRotationAnimationFactory.__index = AllBinaryArrayImageRotationAnimationFactory
-AllBinaryArrayImageRotationAnimationFactory.className = "AllBinaryArrayImageRotationAnimationFactory"
-setmetatable(AllBinaryArrayImageRotationAnimationFactory, {__index = BaseImageAnimationFactory})
-
-function AllBinaryArrayImageRotationAnimationFactory:_init_fields()
-    self.imageArray = NullImage.NULL_IMAGE_ARRAY
-    self.angleIncrement = nil
-end
-
-
--- throws Exception
-function AllBinaryArrayImageRotationAnimationFactory.createFactory(image, dx, dy)
-        local arrayImageRotationAnimationFactory = AllBinaryArrayImageRotationAnimationFactory.new(image, image:getWidth(), image:getHeight(), AngleFactory.getInstance().TOTAL_ANGLE / GameConfigurationCentral.getInstance():getGameControlFidelity(), AnimationBehaviorFactory.getInstance())
-        arrayImageRotationAnimationFactory:initDXY(dx, dy)
-        return arrayImageRotationAnimationFactory
-end
-
-
--- throws Exception
-function AllBinaryArrayImageRotationAnimationFactory.createFactoryA(image, dx, dy, angleIncrement)
-        local arrayImageRotationAnimationFactory = AllBinaryArrayImageRotationAnimationFactory.new(image, image:getWidth(), image:getHeight(), angleIncrement, AnimationBehaviorFactory.getInstance())
-        arrayImageRotationAnimationFactory:initDXY(dx, dy)
-        return arrayImageRotationAnimationFactory
-end
-
-
-function AllBinaryArrayImageRotationAnimationFactory.new(image, width, height, angleIncrement, animationBehaviorFactory)
-    local self = setmetatable(BaseImageAnimationFactory.new(image, PrimitiveIntUtil.getArrayInstance(), width, height, 0, 0, animationBehaviorFactory), AllBinaryArrayImageRotationAnimationFactory)
-    self:_init_fields()
-        -- super(...) made self above
-        self.angleIncrement = angleIncrement
-        self:init()
-    return self
-end
-
-
--- throws Exception
-function AllBinaryArrayImageRotationAnimationFactory:init()
-        self:setImageArray(ImageToRotationImageArrayUtil.getInstance():generate(self:getImage(), self:getAngleIncrement(), java_int(AngleFactory.getInstance().TOTAL_ANGLE)))
-end
-
-
-function AllBinaryArrayImageRotationAnimationFactory:initDXY(dx, dy)
-        self.animationFactoryInitializationVisitor.dx = dx
-        self.animationFactoryInitializationVisitor.dy = dy
-        self.animationFactoryInitializationVisitor.originalDx = dx
-        self.animationFactoryInitializationVisitor.originalDy = dy
-end
-
-
--- throws Exception
-function AllBinaryArrayImageRotationAnimationFactory:getInstance(instanceId)
-        local scaledImageArray = java_new_array(nil, (self.imageArray.n or #self.imageArray))
-        local size = (scaledImageArray.n or #scaledImageArray)
-        local image = self:getImage()
-        for index = 0, size - 1 do
-            scaledImageArray[index + 1] = self.animationFactoryImageScaleUtil:createImage(image, image:getWidth(), image:getHeight(), self.scaleProperties.scaleWidth, self.scaleProperties.scaleHeight)
-        end
-        if self.animationFactoryInitializationVisitor.dx ~= 0 or self.animationFactoryInitializationVisitor.dy ~= 0 then
-            self.animationFactoryImageScaleUtil:processAdjust(self)
-            return AdjustedImageArrayRotationAnimation.new(scaledImageArray, AngleInfo.getInstance(self:getAngleIncrement()), java_int(AngleFactory.getInstance().TOTAL_ANGLE), self.animationFactoryInitializationVisitor.dx, self.animationFactoryInitializationVisitor.dy, self.animationBehaviorFactory:getOrCreateInstance())
-        else
-            return ImageArrayRotationAnimation.new(scaledImageArray, AngleInfo.getInstance(self:getAngleIncrement()), java_int(AngleFactory.getInstance().TOTAL_ANGLE), self.animationBehaviorFactory:getOrCreateInstance())
-        end
-end
-
-
-function AllBinaryArrayImageRotationAnimationFactory:setImageArray(imageArray)
-        self.imageArray = imageArray
-end
-
-
-function AllBinaryArrayImageRotationAnimationFactory:getAngleIncrement()
-        return self.angleIncrement
-end
-
-return AllBinaryArrayImageRotationAnimationFactory
 

@@ -1,60 +1,47 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
---
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
---
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
---
--- Created By: Travis Berthelot
--- 
--- Generated Code Do Not Modify
--- package org.allbinary.input.motion.button
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+#
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+#
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+#
+# Created By: Travis Berthelot
+# 
+# Generated Code Do Not Modify
+# package org.allbinary.input.motion.button
 
-local GameKeyEvent = require("org.allbinary.game.input.event.GameKeyEvent")
+(import ../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class ReleaseHelper
+(var jproto nil)
+(var jnew_1 nil)
+(var jm_release nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jnew_1 (fn jnew_1 [_touchButtonRecognizer]
+    (var this (table/setproto @{:jclass "ReleaseHelper" :f_touchButtonRecognizer nil} jproto))
+    
+        (set (this :f_touchButtonRecognizer) _touchButtonRecognizer)
+    this))
+    
+(set jm_release (fn jm_release [this _touchButtonInput _deviceId]
+        (var _nextTouchButtonInput nil)
+        (var _gameKeyEvent nil)
+        (do
+            (var _index (JR/i32 (- (JR/className ((this :f_touchButtonRecognizer) :f_currentlyPressedTouchButtonSingleton)) 1)))
+            (while (>= _index 0)
+                (do
+            (set _nextTouchButtonInput (JR/className ((this :f_touchButtonRecognizer) :f_currentlyPressedTouchButtonSingleton)))
+            (set _gameKeyEvent (:jm_getGameKeyEvent _nextTouchButtonInput))
+            (JR/className ((this :f_touchButtonRecognizer) :f_upGameKeyEventHandler))
+            (JR/className (JR/className ((this :f_touchButtonRecognizer) :f_upGameKeyEventHandler)))
+            (JR/className ((this :f_touchButtonRecognizer) :f_currentlyPressedTouchButtonSingleton)))
+                (do (set _index (JR/i32 (- _index 1))))))))
 
-local ReleaseHelper = {}
-ReleaseHelper.__index = ReleaseHelper
-ReleaseHelper.className = "ReleaseHelper"
+(set jproto @{:jm_release jm_release})
 
-function ReleaseHelper:_init_fields()
-    self.touchButtonRecognizer = nil
-end
-
-
-function ReleaseHelper.new(touchButtonRecognizer)
-    local self = setmetatable({}, ReleaseHelper)
-    self:_init_fields()
-        self.touchButtonRecognizer = touchButtonRecognizer
-    return self
-end
-
-
--- throws Exception
-function ReleaseHelper:release(touchButtonInput, deviceId)
-        local nextTouchButtonInput = nil
-        local gameKeyEvent = nil
-        for index = self.touchButtonRecognizer.currentlyPressedTouchButtonSingleton:size() - 1, 0, -1 do
-            nextTouchButtonInput = self.touchButtonRecognizer.currentlyPressedTouchButtonSingleton:get(index)
-            gameKeyEvent = nextTouchButtonInput:getGameKeyEvent()
-            self.touchButtonRecognizer.upGameKeyEventHandler:fireEvent(gameKeyEvent)
-            self.touchButtonRecognizer.upGameKeyEventHandler:getInstanceForDevice(deviceId):fireEvent(gameKeyEvent)
-            self.touchButtonRecognizer.currentlyPressedTouchButtonSingleton:removeAt(index)
-        end
-end
-
-return ReleaseHelper
 

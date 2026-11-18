@@ -1,72 +1,64 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.ai
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.game.ai
 
-local ABHashtable = require("org.allbinary.util.ABHashtable")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
-local BasicArrayListD = require("org.allbinary.util.BasicArrayListD")
-local BasicArrayListUtil = require("org.allbinary.util.BasicArrayListUtil")
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- BasicArrayListD/jnew_0 [& args] (JR/call jfile "../../../../org/allbinary/util/BasicArrayListD" "jnew_0" args))
+(defn- BasicArrayListUtil/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/util/BasicArrayListUtil" "jm_getInstance" args))
+(import ../../../../java/lang/Integer :as Integer)
+(defn- BasicAI/jstatic_ID [& args] (JR/call jfile "./BasicAI" "jstatic_ID" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class ArtificialIntelligenceInterfaceFactoryInterfaceFactory
+(var jproto nil)
+(var jcell_SINGLETON :jnone)
+(var jstatic_SINGLETON nil)
+(var jsetstatic_SINGLETON nil)
+(var jnew_0 nil)
+(var jm_clear nil)
+(var jm_getInstance nil)
+(var jm_getInstanceFromCollection nil)
+(var jm_add nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jstatic_SINGLETON (fn jstatic_SINGLETON []
+  (when (= jcell_SINGLETON :jnone) (set jcell_SINGLETON (jnew_0)))
+  jcell_SINGLETON))
+(set jsetstatic_SINGLETON (fn jsetstatic_SINGLETON [value] (set jcell_SINGLETON value)))
 
-local ArtificialIntelligenceInterfaceFactoryInterfaceFactory = {}
-ArtificialIntelligenceInterfaceFactoryInterfaceFactory.__index = ArtificialIntelligenceInterfaceFactoryInterfaceFactory
-ArtificialIntelligenceInterfaceFactoryInterfaceFactory.className = "ArtificialIntelligenceInterfaceFactoryInterfaceFactory"
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "ArtificialIntelligenceInterfaceFactoryInterfaceFactory" :f_list nil} jproto))
+    (put this :f_list (:jm_getImmutableInstance (BasicArrayListUtil/jm_getInstance)))
+    this))
 
-function ArtificialIntelligenceInterfaceFactoryInterfaceFactory:_init_fields()
-    self.list = BasicArrayListUtil.getInstance():getImmutableInstance()
-end
+    
+(set jm_clear (fn jm_clear [this]
+        (set (this :f_list) (BasicArrayListD/jnew_0))))
+    
+(set jm_getInstance (fn jm_getInstance []
+    (label jreturn
+        (return jreturn (jstatic_SINGLETON)))))
+    
+(set jm_getInstanceFromCollection (fn jm_getInstanceFromCollection [this _hashtable]
+    (label jreturn
+        (var _typeInteger (:jm_get _hashtable (BasicAI/jstatic_ID)))
+        (var _type (:jm_intValue _typeInteger))
+        (var _artificialIntelligenceInterfaceFactoryInterface (((this :f_list) :f_objectArray) (JR/i32 (- _type 1))))
+        (return jreturn _artificialIntelligenceInterfaceFactoryInterface))))
+    
+(set jm_add (fn jm_add [this _artificialIntelligenceInterfaceFactoryInterface]
+        (:jm_add (this :f_list) _artificialIntelligenceInterfaceFactoryInterface)))
 
-function ArtificialIntelligenceInterfaceFactoryInterfaceFactory.new()
-    local self = setmetatable({}, ArtificialIntelligenceInterfaceFactoryInterfaceFactory)
-    self:_init_fields()
-    return self
-end
+(set jproto @{:jm_clear jm_clear :jm_getInstanceFromCollection jm_getInstanceFromCollection :jm_add jm_add})
 
-
-function ArtificialIntelligenceInterfaceFactoryInterfaceFactory:clear()
-        self.list = BasicArrayListD.new()
-end
-
-
-function ArtificialIntelligenceInterfaceFactoryInterfaceFactory.getInstance()
-        return ArtificialIntelligenceInterfaceFactoryInterfaceFactory.SINGLETON
-end
-
-
-function ArtificialIntelligenceInterfaceFactoryInterfaceFactory:getInstanceFromCollection(hashtable)
-        local typeInteger = hashtable:get(BasicAI.ID)
-        local type = math.tointeger(typeInteger // 1)
-        local artificialIntelligenceInterfaceFactoryInterface = self.list.objectArray[type - 1 + 1]
-        return artificialIntelligenceInterfaceFactoryInterface
-end
-
-
-function ArtificialIntelligenceInterfaceFactoryInterfaceFactory:add(artificialIntelligenceInterfaceFactoryInterface)
-        self.list:add(artificialIntelligenceInterfaceFactoryInterface)
-end
-
-ArtificialIntelligenceInterfaceFactoryInterfaceFactory.SINGLETON = ArtificialIntelligenceInterfaceFactoryInterfaceFactory.new()
-
-return ArtificialIntelligenceInterfaceFactoryInterfaceFactory
 

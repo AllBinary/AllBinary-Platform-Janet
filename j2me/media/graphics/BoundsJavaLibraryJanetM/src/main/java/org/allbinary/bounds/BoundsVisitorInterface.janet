@@ -1,64 +1,54 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.bounds
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.bounds
 
+(import ../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class BoundsVisitorInterface
+(var jproto nil)
+(var jnew_0 nil)
+(var jm_getX nil)
+(var jm_getY nil)
+(var jm_maxX nil)
+(var jm_maxY nil)
+(var jm_minX nil)
+(var jm_minY nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "BoundsVisitorInterface"} jproto))
+    this))
 
--- Java interface
-local BoundsVisitorInterface = {}
-BoundsVisitorInterface.__index = BoundsVisitorInterface
-BoundsVisitorInterface.className = "BoundsVisitorInterface"
+    
+(set jm_getX (fn jm_getX [this]
+    (error (JR/newException "AbstractMethodError" "getX"))))
+    
+(set jm_getY (fn jm_getY [this]
+    (error (JR/newException "AbstractMethodError" "getY"))))
+    
+(set jm_maxX (fn jm_maxX [this]
+    (error (JR/newException "AbstractMethodError" "maxX"))))
+    
+(set jm_maxY (fn jm_maxY [this]
+    (error (JR/newException "AbstractMethodError" "maxY"))))
+    
+(set jm_minX (fn jm_minX [this]
+    (error (JR/newException "AbstractMethodError" "minX"))))
+    
+(set jm_minY (fn jm_minY [this]
+    (error (JR/newException "AbstractMethodError" "minY"))))
 
+(set jproto @{:jm_getX jm_getX :jm_getY jm_getY :jm_maxX jm_maxX :jm_maxY jm_maxY :jm_minX jm_minX :jm_minY jm_minY})
 
-function BoundsVisitorInterface:getX()
-    error("abstract method getX")
-end
-
-
-function BoundsVisitorInterface:getY()
-    error("abstract method getY")
-end
-
-
-function BoundsVisitorInterface:maxX()
-    error("abstract method maxX")
-end
-
-
-function BoundsVisitorInterface:maxY()
-    error("abstract method maxY")
-end
-
-
-function BoundsVisitorInterface:minX()
-    error("abstract method minX")
-end
-
-
-function BoundsVisitorInterface:minY()
-    error("abstract method minY")
-end
-
-return BoundsVisitorInterface
 

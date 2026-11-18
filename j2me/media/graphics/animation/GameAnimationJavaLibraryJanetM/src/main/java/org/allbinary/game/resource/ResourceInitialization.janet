@@ -1,40 +1,32 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.resource
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.game.resource
 
-local Init = require("org.allbinary.init.Init")
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(import ../../../../org/allbinary/init/Init :as Init)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class ResourceInitialization
+(var jproto nil)
+(var jnew_0 nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "ResourceInitialization"} jproto))
+    (JR/superInit this (Init/jnew_0))
+    this))
 
-local ResourceInitialization = {}
-ResourceInitialization.__index = ResourceInitialization
-ResourceInitialization.className = "ResourceInitialization"
-setmetatable(ResourceInitialization, {__index = Init})
 
-function ResourceInitialization.new()
-    local self = setmetatable(Init.new(), ResourceInitialization)
-    return self
-end
+(set jproto (table/setproto @{} Init/jproto))
 
-return ResourceInitialization
 

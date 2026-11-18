@@ -1,101 +1,75 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2022 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.game.score
+# 
+# AllBinary Open License Version 1 
+# Copyright (c) 2022 AllBinary 
+#  
+# By agreeing to this license you and any business entity you represent are 
+# legally bound to the AllBinary Open License Version 1 legal agreement. 
+#  
+# You may obtain the AllBinary Open License Version 1 legal agreement from 
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+#  
+# Created By: Travis Berthelot 
+#   
+# Generated Code Do Not Modify
+# package org.allbinary.game.score
 
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
-local HighScoresHelperBaseInterface = require("org.allbinary.game.score.HighScoresHelperBaseInterface")
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- LogUtil/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/logic/communication/log/LogUtil" "jm_getInstance" args))
+(defn- StringMaker/jnew_0 [& args] (JR/call jfile "../../../../org/allbinary/logic/string/StringMaker" "jnew_0" args))
+(defn- CommonStrings/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/string/CommonStrings" "jm_getInstance" args))
+(defn- LastFetchHighScoresFactory/jm_getInstance [& args] (JR/call jfile "./LastFetchHighScoresFactory" "jm_getInstance" args))
+(defn- NullHighScoresSingletonFactory/jm_getInstance [& args] (JR/call jfile "./NullHighScoresSingletonFactory" "jm_getInstance" args))
 
--- Java library Throwable. tostring gives the message like Java getMessage.
-local function java_exception(className, message, cause)
-    if cause == nil and type(message) == "table" then
-        cause = message
-        message = tostring(message)
-    end
-    local exception = {className = className, message = message, cause = cause}
-    function exception:getMessage() return self.message end
-    function exception:getCause() return self.cause end
-    function exception:printStackTrace() print(debug.traceback(tostring(self))) end
-    return setmetatable(exception, {__tostring = function(self) if self.message ~= nil then return tostring(self.message) end return self.className end})
-end
+# Java class HighScoresHelperBase
+(var jproto nil)
+(var jnew_0 nil)
+(var jm_setHighScoresArray nil)
+(var jm_getNextHighScores nil)
+(var jm_isAnyHighScores nil)
+(var jm_setSelectedHighScores nil)
+(var jm_getSelectedHighScores nil)
+(var jm_getHighScoresArray nil)
+(var jm_selectHighScores nil)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "HighScoresHelperBase" :f_logUtil nil :f_highScoresArrayP nil} jproto))
+    (put this :f_logUtil (LogUtil/jm_getInstance))
+    (put this :f_highScoresArrayP ((LastFetchHighScoresFactory/jm_getInstance) :f_highScoresArray))
+    this))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jm_setHighScoresArray (fn jm_setHighScoresArray [this _highScoresArrayP]
+        (if (not (nil? _highScoresArrayP))
+            (do
+            (var _commonStrings (CommonStrings/jm_getInstance))
+            (:jm_putF (this :f_logUtil) (:jm_toString (:jm_appendint (:jm_append (StringMaker/jnew_0) (_commonStrings :f_START)) (length _highScoresArrayP))) this "setHighScoresArray"))
+            (do
+            (var _commonStrings (CommonStrings/jm_getInstance))
+            (:jm_putF (this :f_logUtil) (_commonStrings :f_START) this "setHighScoresArray")))
+        (set (this :f_highScoresArrayP) _highScoresArrayP)))
+    
+(set jm_getNextHighScores (fn jm_getNextHighScores [this]
+    (label jreturn
+        (return jreturn (NullHighScoresSingletonFactory/jm_getInstance)))))
+    
+(set jm_isAnyHighScores (fn jm_isAnyHighScores [this]
+        (error (JR/newException "RuntimeException"))))
+    
+(set jm_setSelectedHighScores (fn jm_setSelectedHighScores [this _selectedHighScores]
+    nil))
+    
+(set jm_getSelectedHighScores (fn jm_getSelectedHighScores [this]
+    (label jreturn
+        (return jreturn (NullHighScoresSingletonFactory/jm_getInstance)))))
+    
+(set jm_getHighScoresArray (fn jm_getHighScoresArray [this]
+    (label jreturn
+        (return jreturn (this :f_highScoresArrayP)))))
+    
+(set jm_selectHighScores (fn jm_selectHighScores [this]
+    nil))
 
-local HighScoresHelperBase = {}
-HighScoresHelperBase.__index = HighScoresHelperBase
-HighScoresHelperBase.className = "HighScoresHelperBase"
+(set jproto @{:jm_setHighScoresArray jm_setHighScoresArray :jm_getNextHighScores jm_getNextHighScores :jm_isAnyHighScores jm_isAnyHighScores :jm_setSelectedHighScores jm_setSelectedHighScores :jm_getSelectedHighScores jm_getSelectedHighScores :jm_getHighScoresArray jm_getHighScoresArray :jm_selectHighScores jm_selectHighScores})
 
-function HighScoresHelperBase:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-    self.highScoresArrayP = LastFetchHighScoresFactory.getInstance().highScoresArray
-end
-
-function HighScoresHelperBase.new()
-    local self = setmetatable({}, HighScoresHelperBase)
-    self:_init_fields()
-    return self
-end
-
-
-function HighScoresHelperBase:setHighScoresArray(highScoresArrayP)
-        if highScoresArrayP ~= nil then
-            local commonStrings = CommonStrings.getInstance()
-            self.logUtil:putF(tostring(StringMaker.new():append(commonStrings.START):appendint((highScoresArrayP.n or #highScoresArrayP))), self, "setHighScoresArray")
-        else
-            local commonStrings = CommonStrings.getInstance()
-            self.logUtil:putF(commonStrings.START, self, "setHighScoresArray")
-        end
-        self.highScoresArrayP = highScoresArrayP
-end
-
-
-function HighScoresHelperBase:getNextHighScores()
-        return NullHighScoresSingletonFactory.getInstance()
-end
-
-
-function HighScoresHelperBase:isAnyHighScores()
-        error(java_exception("RuntimeException"), 0)
-end
-
-
-function HighScoresHelperBase:setSelectedHighScores(selectedHighScores)
-end
-
-
-function HighScoresHelperBase:getSelectedHighScores()
-        return NullHighScoresSingletonFactory.getInstance()
-end
-
-
-function HighScoresHelperBase:getHighScoresArray()
-        return self.highScoresArrayP
-end
-
-
-function HighScoresHelperBase:selectHighScores()
-end
-
-return HighScoresHelperBase
 

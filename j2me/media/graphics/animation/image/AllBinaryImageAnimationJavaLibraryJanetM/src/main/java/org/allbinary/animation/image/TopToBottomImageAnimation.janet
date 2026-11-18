@@ -1,93 +1,71 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.animation.image
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.animation.image
 
--- local Graphics = require("javax.microedition.lcdui.Graphics")
--- local Image = require("javax.microedition.lcdui.Image")
--- local Sprite = require("javax.microedition.lcdui.game.Sprite")
-local AnimationBehavior = require("org.allbinary.animation.AnimationBehavior")
-local Anchor = require("org.allbinary.graphics.Anchor")
-local ImageSegmentAnimation = require("org.allbinary.animation.image.ImageSegmentAnimation")
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- Sprite/jstatic_TRANS_NONE [& args] (JR/call jfile "../../../../javax/microedition/lcdui/game/Sprite" "jstatic_TRANS_NONE" args))
+(defn- Anchor/jstatic_TOP_LEFT [& args] (JR/call jfile "../../../../org/allbinary/graphics/Anchor" "jstatic_TOP_LEFT" args))
+(import ./ImageSegmentAnimation :as ImageSegmentAnimation)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class TopToBottomImageAnimation
+(var jproto nil)
+(var jnew_3 nil)
+(var jm_nextFrame nil)
+(var jm_previousFrame nil)
+(var jm_setFrame nil)
+(var jm_update nil)
+(var jm_paintXY nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jnew_3 (fn jnew_3 [_image _sequenceArray _animationBehavior]
+    (var this (table/setproto @{:jclass "TopToBottomImageAnimation" :f_currentHeight 0 :f_anchor 0} jproto))
+    
+    (put this :f_anchor (Anchor/jstatic_TOP_LEFT))
+        (JR/superInit this (ImageSegmentAnimation/jnew_3 _image _sequenceArray _animationBehavior))
+        (set (this :f_currentHeight) 0)
+        (if (= ((:jm_getSequence this) 0) (JR/i32 (- 1)))
+            (do
+            (:jm_setFrame this (JR/i32 (- (:jm_getSize this) 1)))))
+    this))
+    
+(set jm_nextFrame (fn jm_nextFrame [this]
+        (if (= ((:jm_getSequence this) 0) (JR/i32 (- 1)))
+            (do
+            ((get ImageSegmentAnimation/jproto :jm_previousFrame) this))
+            (do
+            ((get ImageSegmentAnimation/jproto :jm_nextFrame) this)))
+        (:jm_update this)))
+    
+(set jm_previousFrame (fn jm_previousFrame [this]
+        (if (= ((:jm_getSequence this) 0) (JR/i32 (- 1)))
+            (do
+            ((get ImageSegmentAnimation/jproto :jm_nextFrame) this))
+            (do
+            ((get ImageSegmentAnimation/jproto :jm_previousFrame) this)))
+        (:jm_update this)))
+    
+(set jm_setFrame (fn jm_setFrame [this _index]
+        ((get ImageSegmentAnimation/jproto :jm_setFrame) this _index)
+        (:jm_update this)))
+    
+(set jm_update (fn jm_update [this]
+        (set (this :f_currentHeight) (JR/idiv (JR/i32 (* (:jm_getDrawHeight this) (:jm_getFrame this))) (:jm_getSize this)))))
+    
+(set jm_paintXY (fn jm_paintXY [this _graphics _x _y]
+        (:jm_drawRegion _graphics (:jm_getImage this) (:jm_getStartX this) (:jm_getStartY this) (:jm_getDrawWidth this) (this :f_currentHeight) (Sprite/jstatic_TRANS_NONE) _x _y (this :f_anchor))))
 
-local TopToBottomImageAnimation = {}
-TopToBottomImageAnimation.__index = TopToBottomImageAnimation
-TopToBottomImageAnimation.className = "TopToBottomImageAnimation"
-setmetatable(TopToBottomImageAnimation, {__index = ImageSegmentAnimation})
+(set jproto (table/setproto @{:jm_nextFrame jm_nextFrame :jm_previousFrame jm_previousFrame :jm_setFrame jm_setFrame :jm_update jm_update :jm_paintXY jm_paintXY} ImageSegmentAnimation/jproto))
 
-function TopToBottomImageAnimation:_init_fields()
-    self.currentHeight = nil
-    self.anchor = Anchor.TOP_LEFT
-end
-
-
-function TopToBottomImageAnimation.new(image, sequenceArray, animationBehavior)
-    local self = setmetatable(ImageSegmentAnimation.new(image, sequenceArray, animationBehavior), TopToBottomImageAnimation)
-    self:_init_fields()
-        -- super(...) made self above
-        self.currentHeight = 0
-        if self:getSequence()[1] == -1 then
-            self:setFrame(self:getSize() - 1)
-        end
-    return self
-end
-
-
-function TopToBottomImageAnimation:nextFrame()
-        if self:getSequence()[1] == -1 then
-            ImageSegmentAnimation.previousFrame(self)
-        else
-            ImageSegmentAnimation.nextFrame(self)
-        end
-        self:update()
-end
-
-
-function TopToBottomImageAnimation:previousFrame()
-        if self:getSequence()[1] == -1 then
-            ImageSegmentAnimation.nextFrame(self)
-        else
-            ImageSegmentAnimation.previousFrame(self)
-        end
-        self:update()
-end
-
-
-function TopToBottomImageAnimation:setFrame(index)
-        ImageSegmentAnimation.setFrame(self, index)
-        self:update()
-end
-
-
-function TopToBottomImageAnimation:update()
-        self.currentHeight = self:getDrawHeight() * self:getFrame() / self:getSize()
-end
-
-
-function TopToBottomImageAnimation:paintXY(graphics, x, y)
-        graphics:drawRegion(self:getImage(), self:getStartX(), self:getStartY(), self:getDrawWidth(), self.currentHeight, Sprite.TRANS_NONE, x, y, self.anchor)
-end
-
-return TopToBottomImageAnimation
 

@@ -1,73 +1,56 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.displayable.canvas
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.game.displayable.canvas
 
-local GameTickDisplayInfoSingleton = require("org.allbinary.graphics.displayable.GameTickDisplayInfoSingleton")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
-local GameTickTimeDelayHelper = require("org.allbinary.time.GameTickTimeDelayHelper")
-local GameTickTimeDelayHelperFactory = require("org.allbinary.time.GameTickTimeDelayHelperFactory")
-local GameRunnable = require("org.allbinary.game.displayable.canvas.GameRunnable")
+(import ../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- GameTickDisplayInfoSingleton/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/graphics/displayable/GameTickDisplayInfoSingleton" "jm_getInstance" args))
+(defn- LogUtil/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/logic/communication/log/LogUtil" "jm_getInstance" args))
+(defn- CommonStrings/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/string/CommonStrings" "jm_getInstance" args))
+(defn- GameTickTimeDelayHelperFactory/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/time/GameTickTimeDelayHelperFactory" "jm_getInstance" args))
+(import ./GameRunnable :as GameRunnable)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class GameFrameRunnable
+(var jproto nil)
+(var jnew_1 nil)
+(var jm_run nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jnew_1 (fn jnew_1 [_allBinaryGameCanvas]
+    (var this (table/setproto @{:jclass "GameFrameRunnable" :f_logUtil nil :f_gameTickDisplayInfoSingleton nil :f_allBinaryGameCanvas nil :f_gameTickTimeDelayHelper nil} jproto))
+    (put this :f_logUtil (LogUtil/jm_getInstance))
+    (put this :f_gameTickDisplayInfoSingleton (GameTickDisplayInfoSingleton/jm_getInstance))
+    
+    (put this :f_gameTickTimeDelayHelper (GameTickTimeDelayHelperFactory/jm_getInstance))
+    (JR/superInit this (GameRunnable/jnew_0))
+        (set (this :f_allBinaryGameCanvas) _allBinaryGameCanvas)
+    this))
+    
+(set jm_run (fn jm_run [this]
+        (try
+            (do
+            (var _allBinaryGameCanvas (this :f_allBinaryGameCanvas))
+            (JR/className (:jm_getLoopTimeHelperP _allBinaryGameCanvas))
+            (:jm_update (this :f_gameTickDisplayInfoSingleton))
+            (:jm_processGame _allBinaryGameCanvas)
+            (if (or (not (:jm_isRunning _allBinaryGameCanvas)) (:jm_isPaused _allBinaryGameCanvas))
+                (do
+                (:jm_notifyDonePainting _allBinaryGameCanvas))))
+            ([_e] (do
+            (var _commonStrings (CommonStrings/jm_getInstance))
+            (:jm_put (this :f_logUtil) (_commonStrings :f_EXCEPTION) this (_commonStrings :f_RUN) _e))))))
 
-local GameFrameRunnable = {}
-GameFrameRunnable.__index = GameFrameRunnable
-GameFrameRunnable.className = "GameFrameRunnable"
-setmetatable(GameFrameRunnable, {__index = GameRunnable})
+(set jproto (table/setproto @{:jm_run jm_run} GameRunnable/jproto))
 
-function GameFrameRunnable:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-    self.gameTickDisplayInfoSingleton = GameTickDisplayInfoSingleton.getInstance()
-    self.allBinaryGameCanvas = nil
-    self.gameTickTimeDelayHelper = GameTickTimeDelayHelperFactory.getInstance()
-end
-
-
-function GameFrameRunnable.new(allBinaryGameCanvas)
-    local self = setmetatable(GameRunnable.new(), GameFrameRunnable)
-    self:_init_fields()
-        self.allBinaryGameCanvas = allBinaryGameCanvas
-    return self
-end
-
-
-function GameFrameRunnable:run()
-        local try_ok, try_error = pcall(function()
-            local allBinaryGameCanvas = self.allBinaryGameCanvas
-            allBinaryGameCanvas:getLoopTimeHelperP():setStartTime(self.gameTickTimeDelayHelper:setStartTime())
-            self.gameTickDisplayInfoSingleton:update()
-            allBinaryGameCanvas:processGame()
-            if not allBinaryGameCanvas:isRunning() or allBinaryGameCanvas:isPaused() then
-                allBinaryGameCanvas:notifyDonePainting()
-            end
-        end)
-        if not try_ok then
-            local e = try_error
-            local commonStrings = CommonStrings.getInstance()
-            self.logUtil:put(commonStrings.EXCEPTION, self, commonStrings.RUN, e)
-        end
-end
-
-return GameFrameRunnable
 

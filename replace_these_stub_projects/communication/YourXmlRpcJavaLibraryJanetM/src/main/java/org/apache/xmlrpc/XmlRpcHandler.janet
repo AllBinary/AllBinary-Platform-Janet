@@ -1,30 +1,22 @@
--- Generated Code Do Not Modify
--- package org.apache.xmlrpc
+# Generated Code Do Not Modify
+# package org.apache.xmlrpc
 
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
-local BasicArrayListD = require("org.allbinary.util.BasicArrayListD")
+(import ../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class XmlRpcHandler
+(var jproto nil)
+(var jnew_0 nil)
+(var jm_execute nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "XmlRpcHandler"} jproto))
+    this))
 
--- Java interface
-local XmlRpcHandler = {}
-XmlRpcHandler.__index = XmlRpcHandler
-XmlRpcHandler.className = "XmlRpcHandler"
+    
+(set jm_execute (fn jm_execute [this _method _params]
+    (error (JR/newException "AbstractMethodError" "execute"))))
 
+(set jproto @{:jm_execute jm_execute})
 
--- throws Exception
-function XmlRpcHandler:execute(method, params)
-    error("abstract method execute")
-end
-
-return XmlRpcHandler
 

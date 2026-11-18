@@ -1,70 +1,54 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.form
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.graphics.form
 
--- local Graphics = require("javax.microedition.lcdui.Graphics")
-local Animation = require("org.allbinary.animation.Animation")
-local FeaturedAnimationInterfaceFactoryInterfaceFactory = require("org.allbinary.animation.FeaturedAnimationInterfaceFactoryInterfaceFactory")
-local LockedResources = require("org.allbinary.logic.system.security.licensing.LockedResources")
-local LockedUtil = require("org.allbinary.logic.system.security.licensing.LockedUtil")
-local ItemPaintable = require("org.allbinary.graphics.form.ItemPaintable")
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- FeaturedAnimationInterfaceFactoryInterfaceFactory/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/animation/FeaturedAnimationInterfaceFactoryInterfaceFactory" "jm_getInstance" args))
+(defn- LockedResources/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/logic/system/security/licensing/LockedResources" "jm_getInstance" args))
+(defn- LockedUtil/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/logic/system/security/licensing/LockedUtil" "jm_getInstance" args))
+(import ./ItemPaintable :as ItemPaintable)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class LockablePaintable
+(var jproto nil)
+(var jnew_1 nil)
+(var jm_paint nil)
+(var jm_getLockedIndex nil)
+(var jm_getAnimation nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jnew_1 (fn jnew_1 [_lockedIndex]
+    (var this (table/setproto @{:jclass "LockablePaintable" :f_animation nil :f_lockedIndex 0} jproto))
+    (put this :f_animation (JR/className (:jm_get (FeaturedAnimationInterfaceFactoryInterfaceFactory/jm_getInstance) ((LockedResources/jm_getInstance) :f_LOCKED_DEMO_GAME_FEATURE_RESOURCE))))
+    
+    (JR/superInit this (ItemPaintable/jnew_0))
+        (set (this :f_lockedIndex) _lockedIndex)
+    this))
+    
+(set jm_paint (fn jm_paint [this _graphics _currentIndex _x _y]
+        (if (and (:jm_isLocked (LockedUtil/jm_getInstance)) (>= _currentIndex (:jm_getLockedIndex this)))
+            (do
+            (:jm_paintXY (:jm_getAnimation this) _graphics _x _y)))))
+    
+(set jm_getLockedIndex (fn jm_getLockedIndex [this]
+    (label jreturn
+        (return jreturn (this :f_lockedIndex)))))
+    
+(set jm_getAnimation (fn jm_getAnimation [this]
+    (label jreturn
+        (return jreturn (this :f_animation)))))
 
-local LockablePaintable = {}
-LockablePaintable.__index = LockablePaintable
-LockablePaintable.className = "LockablePaintable"
-setmetatable(LockablePaintable, {__index = ItemPaintable})
+(set jproto (table/setproto @{:jm_paint jm_paint :jm_getLockedIndex jm_getLockedIndex :jm_getAnimation jm_getAnimation} ItemPaintable/jproto))
 
-function LockablePaintable:_init_fields()
-    self.animation = FeaturedAnimationInterfaceFactoryInterfaceFactory.getInstance():get(LockedResources.getInstance().LOCKED_DEMO_GAME_FEATURE_RESOURCE):getInstance(0)
-    self.lockedIndex = nil
-end
-
-
-function LockablePaintable.new(lockedIndex)
-    local self = setmetatable(ItemPaintable.new(), LockablePaintable)
-    self:_init_fields()
-        self.lockedIndex = lockedIndex
-    return self
-end
-
-
-function LockablePaintable:paint(graphics, currentIndex, x, y)
-        if LockedUtil.getInstance():isLocked() and currentIndex >= self:getLockedIndex() then
-            self:getAnimation():paintXY(graphics, x, y)
-        end
-end
-
-
-function LockablePaintable:getLockedIndex()
-        return self.lockedIndex
-end
-
-
-function LockablePaintable:getAnimation()
-        return self.animation
-end
-
-return LockablePaintable
 

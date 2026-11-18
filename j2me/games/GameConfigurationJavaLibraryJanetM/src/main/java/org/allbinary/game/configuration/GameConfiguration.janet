@@ -1,153 +1,139 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.configuration
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.game.configuration
 
-local GameFeatureEvent = require("org.allbinary.game.configuration.event.GameFeatureEvent")
-local GameFeatureEventHandler = require("org.allbinary.game.configuration.event.GameFeatureEventHandler")
-local BooleanFactory = require("org.allbinary.logic.java.bool.BooleanFactory")
-local SmallIntegerSingletonFactory = require("org.allbinary.logic.math.SmallIntegerSingletonFactory")
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- GameFeatureEvent/jnew_2 [& args] (JR/call jfile "../../../../org/allbinary/game/configuration/event/GameFeatureEvent" "jnew_2" args))
+(defn- GameFeatureEventHandler/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/game/configuration/event/GameFeatureEventHandler" "jm_getInstance" args))
+(defn- BooleanFactory/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/logic/java/bool/BooleanFactory" "jm_getInstance" args))
+(defn- SmallIntegerSingletonFactory/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/logic/math/SmallIntegerSingletonFactory" "jm_getInstance" args))
+(defn- StringMaker/jnew_0 [& args] (JR/call jfile "../../../../org/allbinary/logic/string/StringMaker" "jnew_0" args))
+(defn- StringUtil/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/logic/string/StringUtil" "jm_getInstance" args))
+(import ../../../../java/lang/Integer :as Integer)
+(import ../../../../java/lang/Boolean :as Boolean)
+(defn- GameConfigurationSingleton/jm_getInstance [& args] (JR/call jfile "./GameConfigurationSingleton" "jm_getInstance" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class GameConfiguration
+(var jproto nil)
+(var jcell_MIN_VALUE :jnone)
+(var jstatic_MIN_VALUE nil)
+(var jsetstatic_MIN_VALUE nil)
+(var jnew_4 nil)
+(var jm_setValue nil)
+(var jm_getValue nil)
+(var jm_setMaxValue nil)
+(var jm_getMaxValue nil)
+(var jm_setMinValue nil)
+(var jm_getMinValue nil)
+(var jm_setName nil)
+(var jm_getName nil)
+(var jm_setDefaultValue nil)
+(var jm_getDefaultValue nil)
+(var jm_setDefault nil)
+(var jm_toString nil)
+(var jm_setModifiable nil)
+(var jm_isModifiable nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jstatic_MIN_VALUE (fn jstatic_MIN_VALUE []
+  (when (= jcell_MIN_VALUE :jnone) (set jcell_MIN_VALUE (Integer/jstatic_MIN_VALUE)))
+  jcell_MIN_VALUE))
+(set jsetstatic_MIN_VALUE (fn jsetstatic_MIN_VALUE [value] (set jcell_MIN_VALUE value)))
 
-local GameConfiguration = {}
-GameConfiguration.__index = GameConfiguration
-GameConfiguration.className = "GameConfiguration"
+    
+(set jnew_4 (fn jnew_4 [_name _defaultValue _minValue _maxValue]
+    (var this (table/setproto @{:jclass "GameConfiguration" :f_name nil :f_defaultValue nil :f_value nil :f_minValue nil :f_maxValue nil :f_modifiable nil} jproto))
+    (put this :f_name ((StringUtil/jm_getInstance) :f_EMPTY_STRING))
+    (put this :f_defaultValue (:jm_getAt (SmallIntegerSingletonFactory/jm_getInstance) 0))
+    (put this :f_value (jstatic_MIN_VALUE))
+    (put this :f_minValue (this :f_defaultValue))
+    (put this :f_maxValue (this :f_defaultValue))
+    (put this :f_modifiable ((BooleanFactory/jm_getInstance) :f_TRUE))
+        (:jm_setName this _name)
+        (:jm_setDefaultValue this _defaultValue)
+        (set (this :f_value) (:jm_getDefaultValue this))
+        (:jm_setMinValue this _minValue)
+        (:jm_setMaxValue this _maxValue)
+        (JR/className (:jm_getHashtable (GameConfigurationSingleton/jm_getInstance)))
+    this))
+    
+(set jm_setValue (fn jm_setValue [this _value]
+        (if (not= (this :f_value) _value)
+            (do
+            (var _oldValue (this :f_value))
+            (set (this :f_value) _value)
+            (:jm_fireEvent (GameFeatureEventHandler/jm_getInstance) (GameFeatureEvent/jnew_2 this (:jm_toString (:jm_appendint (:jm_append (:jm_appendint (:jm_append (:jm_append (StringMaker/jnew_0) (this :f_name)) " value: from: ") (:jm_intValue _oldValue)) " to ") (:jm_intValue (this :f_value))))))))))
+    
+(set jm_getValue (fn jm_getValue [this]
+    (label jreturn
+        (return jreturn (this :f_value)))))
+    
+(set jm_setMaxValue (fn jm_setMaxValue [this _maxValue]
+        (set (this :f_maxValue) _maxValue)))
+    
+(set jm_getMaxValue (fn jm_getMaxValue [this]
+    (label jreturn
+        (return jreturn (this :f_maxValue)))))
+    
+(set jm_setMinValue (fn jm_setMinValue [this _minValue]
+        (set (this :f_minValue) _minValue)))
+    
+(set jm_getMinValue (fn jm_getMinValue [this]
+    (label jreturn
+        (return jreturn (this :f_minValue)))))
+    
+(set jm_setName (fn jm_setName [this _name]
+        (set (this :f_name) _name)))
+    
+(set jm_getName (fn jm_getName [this]
+    (label jreturn
+        (return jreturn (this :f_name)))))
+    
+(set jm_setDefaultValue (fn jm_setDefaultValue [this _defaultValue]
+        (set (this :f_defaultValue) _defaultValue)))
+    
+(set jm_getDefaultValue (fn jm_getDefaultValue [this]
+    (label jreturn
+        (return jreturn (this :f_defaultValue)))))
+    
+(set jm_setDefault (fn jm_setDefault [this]
+        (:jm_setValue this (:jm_getDefaultValue this))))
+    
+(set jm_toString (fn jm_toString [this]
+    (label jreturn
+        (var _stringBuffer (StringMaker/jnew_0))
+        (:jm_append _stringBuffer "Name: ")
+        (:jm_append _stringBuffer (this :f_name))
+        (:jm_append _stringBuffer " Min: ")
+        (:jm_appendint _stringBuffer (:jm_intValue (:jm_getMinValue this)))
+        (:jm_append _stringBuffer " Max: ")
+        (:jm_appendint _stringBuffer (:jm_intValue (:jm_getMaxValue this)))
+        (:jm_append _stringBuffer " Value: ")
+        (:jm_appendint _stringBuffer (:jm_intValue (:jm_getValue this)))
+        (:jm_append _stringBuffer " Default: ")
+        (:jm_appendint _stringBuffer (:jm_intValue (:jm_getDefaultValue this)))
+        (:jm_append _stringBuffer " Modifiable: ")
+        (:jm_appendboolean _stringBuffer (:jm_booleanValue (:jm_isModifiable this)))
+        (return jreturn (:jm_toString _stringBuffer)))))
+    
+(set jm_setModifiable (fn jm_setModifiable [this _modifiable]
+        (set (this :f_modifiable) _modifiable)))
+    
+(set jm_isModifiable (fn jm_isModifiable [this]
+    (label jreturn
+        (return jreturn (this :f_modifiable)))))
 
-function GameConfiguration:_init_fields()
-    self.name = StringUtil.getInstance().EMPTY_STRING
-    self.defaultValue = SmallIntegerSingletonFactory.getInstance():getAt(0)
-    self.value = GameConfiguration.MIN_VALUE
-    self.minValue = self.defaultValue
-    self.maxValue = self.defaultValue
-    self.modifiable = BooleanFactory.getInstance().TRUE
-end
+(set jproto @{:jm_setValue jm_setValue :jm_getValue jm_getValue :jm_setMaxValue jm_setMaxValue :jm_getMaxValue jm_getMaxValue :jm_setMinValue jm_setMinValue :jm_getMinValue jm_getMinValue :jm_setName jm_setName :jm_getName jm_getName :jm_setDefaultValue jm_setDefaultValue :jm_getDefaultValue jm_getDefaultValue :jm_setDefault jm_setDefault :jm_toString jm_toString :jm_setModifiable jm_setModifiable :jm_isModifiable jm_isModifiable})
 
-
-function GameConfiguration.new(name, defaultValue, minValue, maxValue)
-    local self = setmetatable({}, GameConfiguration)
-    self:_init_fields()
-        self:setName(name)
-        self:setDefaultValue(defaultValue)
-        self.value = self:getDefaultValue()
-        self:setMinValue(minValue)
-        self:setMaxValue(maxValue)
-        GameConfigurationSingleton.getInstance():getHashtable():put(self:getName(), self)
-    return self
-end
-
-
--- throws Exception
-function GameConfiguration:setValue(value)
-        if self.value ~= value then
-            local oldValue = self.value
-            self.value = value
-            GameFeatureEventHandler.getInstance():fireEvent(GameFeatureEvent.new(self, tostring(StringMaker.new():append(self.name):append(" value: from: "):appendint(java_int(math.tointeger(oldValue // 1))):append(" to "):appendint(java_int(math.tointeger(self.value // 1))))))
-        end
-end
-
-
-function GameConfiguration:getValue()
-        return self.value
-end
-
-
-function GameConfiguration:setMaxValue(maxValue)
-        self.maxValue = maxValue
-end
-
-
-function GameConfiguration:getMaxValue()
-        return self.maxValue
-end
-
-
-function GameConfiguration:setMinValue(minValue)
-        self.minValue = minValue
-end
-
-
-function GameConfiguration:getMinValue()
-        return self.minValue
-end
-
-
-function GameConfiguration:setName(name)
-        self.name = name
-end
-
-
-function GameConfiguration:getName()
-        return self.name
-end
-
-
-function GameConfiguration:setDefaultValue(defaultValue)
-        self.defaultValue = defaultValue
-end
-
-
-function GameConfiguration:getDefaultValue()
-        return self.defaultValue
-end
-
-
--- throws Exception
-function GameConfiguration:setDefault()
-        self:setValue(self:getDefaultValue())
-end
-
-
-function GameConfiguration:toString()
-        local stringBuffer = StringMaker.new()
-        stringBuffer:append("Name: ")
-        stringBuffer:append(self.name)
-        stringBuffer:append(" Min: ")
-        stringBuffer:appendint(java_int(math.tointeger(self:getMinValue() // 1)))
-        stringBuffer:append(" Max: ")
-        stringBuffer:appendint(java_int(math.tointeger(self:getMaxValue() // 1)))
-        stringBuffer:append(" Value: ")
-        stringBuffer:appendint(java_int(math.tointeger(self:getValue() // 1)))
-        stringBuffer:append(" Default: ")
-        stringBuffer:appendint(java_int(math.tointeger(self:getDefaultValue() // 1)))
-        stringBuffer:append(" Modifiable: ")
-        stringBuffer:appendboolean(self:isModifiable())
-        return tostring(stringBuffer)
-end
-GameConfiguration.__tostring = function(self) return self:toString() end
-
-
-function GameConfiguration:setModifiable(modifiable)
-        self.modifiable = modifiable
-end
-
-
-function GameConfiguration:isModifiable()
-        return self.modifiable
-end
-
-GameConfiguration.MIN_VALUE = Integer.MIN_VALUE
-
-return GameConfiguration
 

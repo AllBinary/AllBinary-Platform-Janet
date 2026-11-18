@@ -1,53 +1,42 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.input.motion
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.input.motion
 
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class MotionRecognizer
+(var jproto nil)
+(var jnew_0 nil)
+(var jm_processStartMotionEvent nil)
+(var jm_processEndMotionEvent nil)
+(var jm_processDraggedMotionEvent nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "MotionRecognizer"} jproto))
+    this))
 
-local MotionRecognizer = {}
-MotionRecognizer.__index = MotionRecognizer
-MotionRecognizer.className = "MotionRecognizer"
+    
+(set jm_processStartMotionEvent (fn jm_processStartMotionEvent [this _x _y _deviceId _modifiers]
+    nil))
+    
+(set jm_processEndMotionEvent (fn jm_processEndMotionEvent [this _x _y _deviceId _modifiers]
+    nil))
+    
+(set jm_processDraggedMotionEvent (fn jm_processDraggedMotionEvent [this _x _y _deviceId _modifiers]
+    nil))
 
-function MotionRecognizer.new()
-    local self = setmetatable({}, MotionRecognizer)
-    return self
-end
+(set jproto @{:jm_processStartMotionEvent jm_processStartMotionEvent :jm_processEndMotionEvent jm_processEndMotionEvent :jm_processDraggedMotionEvent jm_processDraggedMotionEvent})
 
-
--- throws Exception
-function MotionRecognizer:processStartMotionEvent(x, y, deviceId, modifiers)
-end
-
-
--- throws Exception
-function MotionRecognizer:processEndMotionEvent(x, y, deviceId, modifiers)
-end
-
-
--- throws Exception
-function MotionRecognizer:processDraggedMotionEvent(x, y, deviceId, modifiers)
-end
-
-return MotionRecognizer
 

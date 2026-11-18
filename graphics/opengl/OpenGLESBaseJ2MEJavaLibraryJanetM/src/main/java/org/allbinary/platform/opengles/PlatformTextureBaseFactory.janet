@@ -1,52 +1,44 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2022 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.platform.opengles
+# 
+# AllBinary Open License Version 1 
+# Copyright (c) 2022 AllBinary 
+#  
+# By agreeing to this license you and any business entity you represent are 
+# legally bound to the AllBinary Open License Version 1 legal agreement. 
+#  
+# You may obtain the AllBinary Open License Version 1 legal agreement from 
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+#  
+# Created By: Travis Berthelot 
+#   
+# Generated Code Do Not Modify
+# package org.allbinary.platform.opengles
 
--- local GL10 = require("javax.microedition.khronos.opengles.GL10")
--- local Image = require("javax.microedition.lcdui.Image")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- CommonStrings/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/string/CommonStrings" "jm_getInstance" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class PlatformTextureBaseFactory
+(var jproto nil)
+(var jcell_NULL_PLATFORM_TEXTURE_BASE_FACTORY :jnone)
+(var jstatic_NULL_PLATFORM_TEXTURE_BASE_FACTORY nil)
+(var jsetstatic_NULL_PLATFORM_TEXTURE_BASE_FACTORY nil)
+(var jnew_0 nil)
+(var jm_load nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jstatic_NULL_PLATFORM_TEXTURE_BASE_FACTORY (fn jstatic_NULL_PLATFORM_TEXTURE_BASE_FACTORY []
+  (when (= jcell_NULL_PLATFORM_TEXTURE_BASE_FACTORY :jnone) (set jcell_NULL_PLATFORM_TEXTURE_BASE_FACTORY (jnew_0)))
+  jcell_NULL_PLATFORM_TEXTURE_BASE_FACTORY))
+(set jsetstatic_NULL_PLATFORM_TEXTURE_BASE_FACTORY (fn jsetstatic_NULL_PLATFORM_TEXTURE_BASE_FACTORY [value] (set jcell_NULL_PLATFORM_TEXTURE_BASE_FACTORY value)))
 
-local PlatformTextureBaseFactory = {}
-PlatformTextureBaseFactory.__index = PlatformTextureBaseFactory
-PlatformTextureBaseFactory.className = "PlatformTextureBaseFactory"
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "PlatformTextureBaseFactory" :f_commonStrings nil} jproto))
+    (put this :f_commonStrings (CommonStrings/jm_getInstance))
+    this))
 
-function PlatformTextureBaseFactory:_init_fields()
-    self.commonStrings = CommonStrings.getInstance()
-end
+    
+(set jm_load (fn jm_load [this _gl _target _level _image _border _flip]
+    nil))
 
-function PlatformTextureBaseFactory.new()
-    local self = setmetatable({}, PlatformTextureBaseFactory)
-    self:_init_fields()
-    return self
-end
+(set jproto @{:jm_load jm_load})
 
-
-function PlatformTextureBaseFactory:load(gl, target, level, image, border, flip)
-end
-
-PlatformTextureBaseFactory.NULL_PLATFORM_TEXTURE_BASE_FACTORY = PlatformTextureBaseFactory.new()
-
-return PlatformTextureBaseFactory
 

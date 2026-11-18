@@ -25,6 +25,7 @@
 (var jproto nil)
 (var jcell_ANGLE :jnone)
 (var jstatic_ANGLE nil)
+(var jsetstatic_ANGLE nil)
 (var jnew_1 nil)
 (var jm_getInstance nil)
 (var jm_adjustAngle nil)
@@ -36,6 +37,7 @@
 (set jstatic_ANGLE (fn jstatic_ANGLE []
   (when (= jcell_ANGLE :jnone) (set jcell_ANGLE "Angle: "))
   jcell_ANGLE))
+(set jsetstatic_ANGLE (fn jsetstatic_ANGLE [value] (set jcell_ANGLE value)))
 
     
 (set jm_getInstance (fn jm_getInstance [_angleIncrement]

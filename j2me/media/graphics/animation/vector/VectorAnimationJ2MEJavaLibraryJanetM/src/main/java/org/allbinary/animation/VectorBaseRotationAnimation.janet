@@ -1,146 +1,120 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.animation
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.animation
 
--- local Graphics = require("javax.microedition.lcdui.Graphics")
-local BasicColor = require("org.allbinary.graphics.color.BasicColor")
-local NullUtil = require("org.allbinary.logic.NullUtil")
-local PrimitiveIntUtil = require("org.allbinary.logic.math.PrimitiveIntUtil")
-local AngleInfo = require("org.allbinary.math.AngleInfo")
-local CircularIndexUtil = require("org.allbinary.util.CircularIndexUtil")
-local RotationAnimation = require("org.allbinary.animation.RotationAnimation")
-local VectorAnimationInterface = require("org.allbinary.animation.VectorAnimationInterface")
+(import ../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- NullUtil/jm_getInstance [& args] (JR/call jfile "../../../org/allbinary/logic/NullUtil" "jm_getInstance" args))
+(defn- PrimitiveIntUtil/jm_getArrayInstance [& args] (JR/call jfile "../../../org/allbinary/logic/math/PrimitiveIntUtil" "jm_getArrayInstance" args))
+(defn- CircularIndexUtil/jm_createInstance [& args] (JR/call jfile "../../../org/allbinary/util/CircularIndexUtil" "jm_createInstance" args))
+(import ./RotationAnimation :as RotationAnimation)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class VectorBaseRotationAnimation
+(var jproto nil)
+(var jnew_4 nil)
+(var jm_getAnimationSize nil)
+(var jm_getFrame nil)
+(var jm_setFrame nil)
+(var jm_nextFrame nil)
+(var jm_previousFrame nil)
+(var jm_getSize nil)
+(var jm_setSequence nil)
+(var jm_getSequence nil)
+(var jm_paintXY nil)
+(var jm_getPoints nil)
+(var jm_setPoints nil)
+(var jm_getBasicColorP nil)
+(var jm_setBasicColorP nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jnew_4 (fn jnew_4 [_angleInfo _currentPoints _basicColor _animationBehavior]
+    (var this (table/setproto @{:jclass "VectorBaseRotationAnimation" :f_currentPoints nil} jproto))
+    (put this :f_currentPoints ((NullUtil/jm_getInstance) :f_NULL_INT_ARRAY_ARRAY_ARRAY))
+        (JR/superInit this (RotationAnimation/jnew_3 _angleInfo (CircularIndexUtil/jm_createInstance (JR/idiv 360 (JR/className (:jm_getAngleIncrementInfo _angleInfo)))) _animationBehavior))
+        (:jm_setPoints this _currentPoints)
+        (:jm_setBasicColorP this _basicColor)
+    this))
+    
+(set jm_getAnimationSize (fn jm_getAnimationSize [this]
+    (label jreturn
+        (return jreturn (:jm_getSize this)))))
+    
+(set jm_getFrame (fn jm_getFrame [this]
+    (label jreturn
+        (return jreturn (JR/className (this :f_circularIndexUtil))))))
+    
+(set jm_setFrame (fn jm_setFrame [this _index]
+        (JR/className (this :f_circularIndexUtil))))
+    
+(set jm_nextFrame (fn jm_nextFrame [this]
+        (JR/className (this :f_circularIndexUtil))))
+    
+(set jm_previousFrame (fn jm_previousFrame [this]
+        (JR/className (this :f_circularIndexUtil))))
+    
+(set jm_getSize (fn jm_getSize [this]
+    (label jreturn
+        (return jreturn (length (this :f_currentPoints))))))
+    
+(set jm_setSequence (fn jm_setSequence [this _sequence]
+    nil))
+    
+(set jm_getSequence (fn jm_getSequence [this]
+    (label jreturn
+        (return jreturn (PrimitiveIntUtil/jm_getArrayInstance)))))
+    
+(set jm_paintXY (fn jm_paintXY [this _graphics _x _y]
+        (JR/className (this :f_basicSetColorUtil))
+        (try
+            (do
+            (var _nextPointX 0)
+            (var _nextPointY 0)
+            (var _nextPoint nil)
+            (var _point nil)
+            (var _currentPointsFrame ((this :f_currentPoints) (JR/className (this :f_circularIndexUtil))))
+            (var _size (length _currentPointsFrame))
+            (var _index (JR/i32 (- _size 2)))
+            (do
+                (while (>= (set _index (JR/i32 (- _index 1))) 0)
+                    (do
+                (set _nextPoint (_currentPointsFrame _index))
+                (set _point (_currentPointsFrame (JR/i32 (+ _index 1))))
+                (set _nextPointX (_nextPoint 0))
+                (set _nextPointY (_nextPoint 1))
+                (if (not= _nextPointX 1000)
+                    (do
+                    (:jm_drawLine _graphics (JR/i32 (+ (_point 0) _x)) (JR/i32 (+ (_point 1) _y)) (JR/i32 (+ _nextPointX _x)) (JR/i32 (+ _nextPointY _y))))
+                    (do
+                    (set _index (JR/i32 (- _index 1)))))))))
+            ([_e] (do
+            (JR/className (this :f_logUtil)))))))
+    
+(set jm_getPoints (fn jm_getPoints [this _frame]
+    (label jreturn
+        (return jreturn ((this :f_currentPoints) _frame)))))
+    
+(set jm_setPoints (fn jm_setPoints [this _currentPoints]
+        (set (this :f_currentPoints) _currentPoints)
+        (set (this :f_circularIndexUtil) (CircularIndexUtil/jm_createInstance (length (this :f_currentPoints))))))
+    
+(set jm_getBasicColorP (fn jm_getBasicColorP [this]
+    (label jreturn
+        (return jreturn ((get RotationAnimation/jproto :jm_getBasicColorP) this)))))
+    
+(set jm_setBasicColorP (fn jm_setBasicColorP [this _basicColor]
+        ((get RotationAnimation/jproto :jm_setBasicColorP) this _basicColor)))
 
-local VectorBaseRotationAnimation = {}
-VectorBaseRotationAnimation.__index = VectorBaseRotationAnimation
-VectorBaseRotationAnimation.className = "VectorBaseRotationAnimation"
-setmetatable(VectorBaseRotationAnimation, {__index = RotationAnimation})
+(set jproto (table/setproto @{:jm_getAnimationSize jm_getAnimationSize :jm_getFrame jm_getFrame :jm_setFrame jm_setFrame :jm_nextFrame jm_nextFrame :jm_previousFrame jm_previousFrame :jm_getSize jm_getSize :jm_setSequence jm_setSequence :jm_getSequence jm_getSequence :jm_paintXY jm_paintXY :jm_getPoints jm_getPoints :jm_setPoints jm_setPoints :jm_getBasicColorP jm_getBasicColorP :jm_setBasicColorP jm_setBasicColorP} RotationAnimation/jproto))
 
-function VectorBaseRotationAnimation:_init_fields()
-    self.currentPoints = NullUtil.getInstance().NULL_INT_ARRAY_ARRAY_ARRAY
-end
-
-
-function VectorBaseRotationAnimation.new(angleInfo, currentPoints, basicColor, animationBehavior)
-    local self = setmetatable(RotationAnimation.new(angleInfo, CircularIndexUtil.createInstance(360 / angleInfo:getAngleIncrementInfo():getAngleIncrement()), animationBehavior), VectorBaseRotationAnimation)
-    self:_init_fields()
-        -- super(...) made self above
-        self:setPoints(currentPoints)
-        self:setBasicColorP(basicColor)
-    return self
-end
-
-
--- throws Exception
-function VectorBaseRotationAnimation:getAnimationSize()
-        return self:getSize()
-end
-
-
-function VectorBaseRotationAnimation:getFrame()
-        return self.circularIndexUtil:getIndex()
-end
-
-
-function VectorBaseRotationAnimation:setFrame(index)
-        self.circularIndexUtil:setIndex(index)
-end
-
-
-function VectorBaseRotationAnimation:nextFrame()
-        self.circularIndexUtil:next()
-end
-
-
-function VectorBaseRotationAnimation:previousFrame()
-        self.circularIndexUtil:previous()
-end
-
-
-function VectorBaseRotationAnimation:getSize()
-        return (self.currentPoints.n or #self.currentPoints)
-end
-
-
-function VectorBaseRotationAnimation:setSequence(sequence)
-end
-
-
-function VectorBaseRotationAnimation:getSequence()
-        return PrimitiveIntUtil.getArrayInstance()
-end
-
-
-function VectorBaseRotationAnimation:paintXY(graphics, x, y)
-        self.basicSetColorUtil:setBasicColorP(graphics, self.basicColor)
-        local try_ok, try_error = pcall(function()
-            local nextPointX = 0
-            local nextPointY = 0
-            local nextPoint = nil
-            local point = nil
-            local currentPointsFrame = self.currentPoints[self.circularIndexUtil:getIndex() + 1]
-            local size = (currentPointsFrame.n or #currentPointsFrame)
-            local index = size - 2
-            while (function() index = index - 1 return index end)() >= 0 do
-                nextPoint = currentPointsFrame[index + 1]
-                point = currentPointsFrame[index + 1 + 1]
-                nextPointX = nextPoint[1]
-                nextPointY = nextPoint[2]
-                if nextPointX ~= 1000 then
-                    graphics:drawLine(point[1] + x, point[2] + y, nextPointX + x, nextPointY + y)
-                else
-                    index = index - 1
-                end
-            end
-        end)
-        if not try_ok then
-            local e = try_error
-            self.logUtil:put(self.commonStrings.EXCEPTION, self, "paintVectors", e)
-        end
-end
-
-
-function VectorBaseRotationAnimation:getPoints(frame)
-        return self.currentPoints[frame + 1]
-end
-
-
-function VectorBaseRotationAnimation:setPoints(currentPoints)
-        self.currentPoints = currentPoints
-        self.circularIndexUtil = CircularIndexUtil.createInstance((self.currentPoints.n or #self.currentPoints))
-end
-
-
-function VectorBaseRotationAnimation:getBasicColorP()
-        return RotationAnimation.getBasicColorP(self)
-end
-
-
-function VectorBaseRotationAnimation:setBasicColorP(basicColor)
-        RotationAnimation.setBasicColorP(self, basicColor)
-end
-
-return VectorBaseRotationAnimation
 

@@ -1,38 +1,35 @@
--- Generated Code Do Not Modify
--- package org.allbinary.game.configuration.feature
+# Generated Code Do Not Modify
+# package org.allbinary.game.configuration.feature
 
+(import ../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class MultiPlayerGameFeatureFactory
+(var jproto nil)
+(var jcell_instance :jnone)
+(var jstatic_instance nil)
+(var jsetstatic_instance nil)
+(var jnew_0 nil)
+(var jm_getInstance nil)
+(var jm_addCommands nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jstatic_instance (fn jstatic_instance []
+  (when (= jcell_instance :jnone) (set jcell_instance (jnew_0)))
+  jcell_instance))
+(set jsetstatic_instance (fn jsetstatic_instance [value] (set jcell_instance value)))
 
-local MultiPlayerGameFeatureFactory = {}
-MultiPlayerGameFeatureFactory.__index = MultiPlayerGameFeatureFactory
-MultiPlayerGameFeatureFactory.className = "MultiPlayerGameFeatureFactory"
+    
+(set jm_getInstance (fn jm_getInstance []
+    (label jreturn
+        (return jreturn (jstatic_instance)))))
+    
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "MultiPlayerGameFeatureFactory"} jproto))
+    this))
+    
+(set jm_addCommands (fn jm_addCommands [this _anyType]
+    nil))
 
+(set jproto @{:jm_addCommands jm_addCommands})
 
-function MultiPlayerGameFeatureFactory.getInstance()
-        return MultiPlayerGameFeatureFactory.instance
-end
-
-
-function MultiPlayerGameFeatureFactory.new()
-    local self = setmetatable({}, MultiPlayerGameFeatureFactory)
-    return self
-end
-
-
-function MultiPlayerGameFeatureFactory:addCommands(anyType)
-end
-
-MultiPlayerGameFeatureFactory.instance = MultiPlayerGameFeatureFactory.new()
-
-return MultiPlayerGameFeatureFactory
 

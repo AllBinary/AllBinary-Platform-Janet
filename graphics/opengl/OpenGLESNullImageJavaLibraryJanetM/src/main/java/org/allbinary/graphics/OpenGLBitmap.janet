@@ -1,47 +1,34 @@
--- Generated Code Do Not Modify
--- package org.allbinary.graphics
+# Generated Code Do Not Modify
+# package org.allbinary.graphics
 
-local PlatformBitmapBase = require("org.allbinary.platform.graphics.PlatformBitmapBase")
+(import ../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(import ../../../org/allbinary/platform/graphics/PlatformBitmapBase :as PlatformBitmapBase)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class OpenGLBitmap
+(var jproto nil)
+(var jnew_1 nil)
+(var jm_getPixels nil)
+(var jm_setPixels nil)
+(var jm_recycle nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jnew_1 (fn jnew_1 [_bitmap]
+    (var this (table/setproto @{:jclass "OpenGLBitmap" :f_bitmap nil} jproto))
+    
+    (JR/superInit this (PlatformBitmapBase/jnew_0))
+        (set (this :f_bitmap) _bitmap)
+    this))
+    
+(set jm_getPixels (fn jm_getPixels [this _pixels _offset _stride _x _y _width _height]
+    nil))
+    
+(set jm_setPixels (fn jm_setPixels [this _pixels _offset _stride _x _y _width _height]
+    nil))
+    
+(set jm_recycle (fn jm_recycle [this]
+    nil))
 
-local OpenGLBitmap = {}
-OpenGLBitmap.__index = OpenGLBitmap
-OpenGLBitmap.className = "OpenGLBitmap"
-setmetatable(OpenGLBitmap, {__index = PlatformBitmapBase})
+(set jproto (table/setproto @{:jm_getPixels jm_getPixels :jm_setPixels jm_setPixels :jm_recycle jm_recycle} PlatformBitmapBase/jproto))
 
-function OpenGLBitmap:_init_fields()
-    self.bitmap = nil
-end
-
-
-function OpenGLBitmap.new(bitmap)
-    local self = setmetatable(PlatformBitmapBase.new(), OpenGLBitmap)
-    self:_init_fields()
-        self.bitmap = bitmap
-    return self
-end
-
-
-function OpenGLBitmap:getPixels(pixels, offset, stride, x, y, width, height)
-end
-
-
-function OpenGLBitmap:setPixels(pixels, offset, stride, x, y, width, height)
-end
-
-
-function OpenGLBitmap:recycle()
-end
-
-return OpenGLBitmap
 

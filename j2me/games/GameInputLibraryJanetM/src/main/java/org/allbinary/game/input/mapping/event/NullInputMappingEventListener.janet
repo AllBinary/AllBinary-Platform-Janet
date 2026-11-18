@@ -1,51 +1,46 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2025 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.game.input.mapping.event
+# 
+# AllBinary Open License Version 1 
+# Copyright (c) 2025 AllBinary 
+#  
+# By agreeing to this license you and any business entity you represent are 
+# legally bound to the AllBinary Open License Version 1 legal agreement. 
+#  
+# You may obtain the AllBinary Open License Version 1 legal agreement from 
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+#  
+# Created By: Travis Berthelot 
+#   
+# Generated Code Do Not Modify
+# package org.allbinary.game.input.mapping.event
 
-local AllBinaryEventObject = require("org.allbinary.logic.util.event.AllBinaryEventObject")
-local InputMappingEventListenerInterface = require("org.allbinary.game.input.mapping.event.InputMappingEventListenerInterface")
+(import ../../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class NullInputMappingEventListener
+(var jproto nil)
+(var jcell_NULL_INPUT_MAPPING_EVENT_LISTENER :jnone)
+(var jstatic_NULL_INPUT_MAPPING_EVENT_LISTENER nil)
+(var jsetstatic_NULL_INPUT_MAPPING_EVENT_LISTENER nil)
+(var jnew_0 nil)
+(var jm_onInputMappingEvent nil)
+(var jm_onEvent nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jstatic_NULL_INPUT_MAPPING_EVENT_LISTENER (fn jstatic_NULL_INPUT_MAPPING_EVENT_LISTENER []
+  (when (= jcell_NULL_INPUT_MAPPING_EVENT_LISTENER :jnone) (set jcell_NULL_INPUT_MAPPING_EVENT_LISTENER (jnew_0)))
+  jcell_NULL_INPUT_MAPPING_EVENT_LISTENER))
+(set jsetstatic_NULL_INPUT_MAPPING_EVENT_LISTENER (fn jsetstatic_NULL_INPUT_MAPPING_EVENT_LISTENER [value] (set jcell_NULL_INPUT_MAPPING_EVENT_LISTENER value)))
 
-local NullInputMappingEventListener = {}
-NullInputMappingEventListener.__index = NullInputMappingEventListener
-NullInputMappingEventListener.className = "NullInputMappingEventListener"
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "NullInputMappingEventListener"} jproto))
+    this))
 
-function NullInputMappingEventListener.new()
-    local self = setmetatable({}, NullInputMappingEventListener)
-    return self
-end
+    
+(set jm_onInputMappingEvent (fn jm_onInputMappingEvent [this _inputMappingEvent]
+    nil))
+    
+(set jm_onEvent (fn jm_onEvent [this _eventObject]
+    nil))
 
+(set jproto @{:jm_onInputMappingEvent jm_onInputMappingEvent :jm_onEvent jm_onEvent})
 
--- throws Exception
-function NullInputMappingEventListener:onInputMappingEvent(inputMappingEvent)
-end
-
-
-function NullInputMappingEventListener:onEvent(eventObject)
-end
-
-NullInputMappingEventListener.NULL_INPUT_MAPPING_EVENT_LISTENER = NullInputMappingEventListener.new()
-
-return NullInputMappingEventListener
 

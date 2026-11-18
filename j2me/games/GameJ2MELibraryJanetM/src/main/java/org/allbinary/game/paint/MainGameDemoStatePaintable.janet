@@ -1,66 +1,51 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.paint
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.game.paint
 
--- local Graphics = require("javax.microedition.lcdui.Graphics")
-local Paintable = require("org.allbinary.graphics.paint.Paintable")
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(import ../../../../org/allbinary/graphics/paint/Paintable :as Paintable)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class MainGameDemoStatePaintable
+(var jproto nil)
+(var jnew_2 nil)
+(var jm_paint nil)
+(var jm_getOwnershipPaintableInterface nil)
+(var jm_getMenuPaintableInterface nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jnew_2 (fn jnew_2 [_ownershipPaintableInterface _menuPaintableInterface]
+    (var this (table/setproto @{:jclass "MainGameDemoStatePaintable" :f_ownershipPaintableInterface nil :f_menuPaintableInterface nil} jproto))
+    
+    
+    (JR/superInit this (Paintable/jnew_0))
+        (set (this :f_ownershipPaintableInterface) _ownershipPaintableInterface)
+        (set (this :f_menuPaintableInterface) _menuPaintableInterface)
+    this))
+    
+(set jm_paint (fn jm_paint [this _graphics]
+        (:jm_paint (this :f_menuPaintableInterface) _graphics)
+        (:jm_paint (this :f_ownershipPaintableInterface) _graphics)))
+    
+(set jm_getOwnershipPaintableInterface (fn jm_getOwnershipPaintableInterface [this]
+    (label jreturn
+        (return jreturn (this :f_ownershipPaintableInterface)))))
+    
+(set jm_getMenuPaintableInterface (fn jm_getMenuPaintableInterface [this]
+    (label jreturn
+        (return jreturn (this :f_menuPaintableInterface)))))
 
-local MainGameDemoStatePaintable = {}
-MainGameDemoStatePaintable.__index = MainGameDemoStatePaintable
-MainGameDemoStatePaintable.className = "MainGameDemoStatePaintable"
-setmetatable(MainGameDemoStatePaintable, {__index = Paintable})
+(set jproto (table/setproto @{:jm_paint jm_paint :jm_getOwnershipPaintableInterface jm_getOwnershipPaintableInterface :jm_getMenuPaintableInterface jm_getMenuPaintableInterface} Paintable/jproto))
 
-function MainGameDemoStatePaintable:_init_fields()
-    self.ownershipPaintableInterface = nil
-    self.menuPaintableInterface = nil
-end
-
-
-function MainGameDemoStatePaintable.new(ownershipPaintableInterface, menuPaintableInterface)
-    local self = setmetatable(Paintable.new(), MainGameDemoStatePaintable)
-    self:_init_fields()
-        self.ownershipPaintableInterface = ownershipPaintableInterface
-        self.menuPaintableInterface = menuPaintableInterface
-    return self
-end
-
-
-function MainGameDemoStatePaintable:paint(graphics)
-        self.menuPaintableInterface:paint(graphics)
-        self.ownershipPaintableInterface:paint(graphics)
-end
-
-
-function MainGameDemoStatePaintable:getOwnershipPaintableInterface()
-        return self.ownershipPaintableInterface
-end
-
-
-function MainGameDemoStatePaintable:getMenuPaintableInterface()
-        return self.menuPaintableInterface
-end
-
-return MainGameDemoStatePaintable
 

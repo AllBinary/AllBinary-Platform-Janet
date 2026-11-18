@@ -1,76 +1,65 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2025 AllBinary 
--- 
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
--- 
--- Created By: Travis Berthelot 
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.io
+# 
+# AllBinary Open License Version 1 
+# Copyright (c) 2025 AllBinary 
+# 
+# By agreeing to this license you and any business entity you represent are 
+# legally bound to the AllBinary Open License Version 1 legal agreement. 
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from 
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+# 
+# Created By: Travis Berthelot 
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.logic.io
 
--- local IOException = require("java.io.IOException")
--- local Writer = require("java.io.Writer")
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(import ../../../../java/io/IOException :as IOException)
+(import ../../../../java/io/Writer :as Writer)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class NullWriter
+(var jproto nil)
+(var jcell_NULL_WRITER :jnone)
+(var jstatic_NULL_WRITER nil)
+(var jsetstatic_NULL_WRITER nil)
+(var jnew_0 nil)
+(var jm_write_1 nil)
+(var jm_write_3 nil)
+(var jm_write_1 nil)
+(var jm_write_3 nil)
+(var jm_flush nil)
+(var jm_close nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jstatic_NULL_WRITER (fn jstatic_NULL_WRITER []
+  (when (= jcell_NULL_WRITER :jnone) (set jcell_NULL_WRITER (jnew_0)))
+  jcell_NULL_WRITER))
+(set jsetstatic_NULL_WRITER (fn jsetstatic_NULL_WRITER [value] (set jcell_NULL_WRITER value)))
 
-local NullWriter = {}
-NullWriter.__index = NullWriter
-NullWriter.className = "NullWriter"
-setmetatable(NullWriter, {__index = Writer})
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "NullWriter"} jproto))
+    (JR/superInit this (Writer/jnew_0))
+    this))
 
-function NullWriter.new()
-    local self = setmetatable(Writer.new(), NullWriter)
-    return self
-end
+    
+(set jm_write_1 (fn jm_write_1 [this _c]
+    nil))
+    
+(set jm_write_3 (fn jm_write_3 [this _cbuf _off _len]
+    nil))
+    
+(set jm_write_1 (fn jm_write_1 [this _str]
+    nil))
+    
+(set jm_write_3 (fn jm_write_3 [this _str _off _len]
+    nil))
+    
+(set jm_flush (fn jm_flush [this]
+    nil))
+    
+(set jm_close (fn jm_close [this]
+    nil))
 
+(set jproto (table/setproto @{:jm_write_1 jm_write_1 :jm_write_3 jm_write_3 :jm_write_1 jm_write_1 :jm_write_3 jm_write_3 :jm_flush jm_flush :jm_close jm_close} Writer/jproto))
 
--- throws IOException
-function NullWriter:write(c)
-end
-
-
--- throws IOException
--- Java overloaded method: Lua keeps the last definition
-function NullWriter:write(cbuf, off, len)
-end
-
-
--- throws IOException
--- Java overloaded method: Lua keeps the last definition
-function NullWriter:write(str)
-end
-
-
--- throws IOException
--- Java overloaded method: Lua keeps the last definition
-function NullWriter:write(str, off, len)
-end
-
-
--- throws IOException
-function NullWriter:flush()
-end
-
-
--- throws IOException
-function NullWriter:close()
-end
-
-NullWriter.NULL_WRITER = NullWriter.new()
-
-return NullWriter
 

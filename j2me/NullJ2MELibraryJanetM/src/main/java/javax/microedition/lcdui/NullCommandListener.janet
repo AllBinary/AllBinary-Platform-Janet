@@ -1,33 +1,30 @@
--- Generated Code Do Not Modify
--- package javax.microedition.lcdui
+# Generated Code Do Not Modify
+# package javax.microedition.lcdui
 
-local CommandListener = require("javax.microedition.lcdui.CommandListener")
+(import ../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class NullCommandListener
+(var jproto nil)
+(var jcell_NULL_COMMAND_LISTENER :jnone)
+(var jstatic_NULL_COMMAND_LISTENER nil)
+(var jsetstatic_NULL_COMMAND_LISTENER nil)
+(var jnew_0 nil)
+(var jm_commandAction nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jstatic_NULL_COMMAND_LISTENER (fn jstatic_NULL_COMMAND_LISTENER []
+  (when (= jcell_NULL_COMMAND_LISTENER :jnone) (set jcell_NULL_COMMAND_LISTENER (jnew_0)))
+  jcell_NULL_COMMAND_LISTENER))
+(set jsetstatic_NULL_COMMAND_LISTENER (fn jsetstatic_NULL_COMMAND_LISTENER [value] (set jcell_NULL_COMMAND_LISTENER value)))
 
-local NullCommandListener = {}
-NullCommandListener.__index = NullCommandListener
-NullCommandListener.className = "NullCommandListener"
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "NullCommandListener"} jproto))
+    this))
 
-function NullCommandListener.new()
-    local self = setmetatable({}, NullCommandListener)
-    return self
-end
+    
+(set jm_commandAction (fn jm_commandAction [this _c _d]
+    nil))
 
+(set jproto @{:jm_commandAction jm_commandAction})
 
-function NullCommandListener:commandAction(c, d)
-end
-
-NullCommandListener.NULL_COMMAND_LISTENER = NullCommandListener.new()
-
-return NullCommandListener
 

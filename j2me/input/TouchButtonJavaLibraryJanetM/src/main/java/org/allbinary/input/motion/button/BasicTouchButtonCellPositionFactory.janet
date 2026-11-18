@@ -1,115 +1,102 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.input.motion.button
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.input.motion.button
 
-local CellPosition = require("org.allbinary.graphics.CellPosition")
-local CellPositionFactory = require("org.allbinary.graphics.CellPositionFactory")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
+(import ../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- CellPositionFactory/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/graphics/CellPositionFactory" "jm_getInstance" args))
+(defn- LogUtil/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/logic/communication/log/LogUtil" "jm_getInstance" args))
+(defn- CommonStrings/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/string/CommonStrings" "jm_getInstance" args))
+(defn- TouchButtonLocationHelper/jnew_0 [& args] (JR/call jfile "./TouchButtonLocationHelper" "jnew_0" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class BasicTouchButtonCellPositionFactory
+(var jproto nil)
+(var jnew_0 nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "BasicTouchButtonCellPositionFactory" :f_logUtil nil :f_commonStrings nil :f_TOP_RIGHT nil :f_TOP_LEFT nil :f_SECOND_FROM_TOP_LEFT nil :f_SECOND_FROM_TOP_RIGHT nil :f_TOP_SECOND_FROM_LEFT nil :f_TOP_SECOND_FROM_RIGHT nil :f_BOTTOM_RIGHT nil :f_BOTTOM_SECOND_FROM_RIGHT nil :f_SECOND_FROM_BOTTOM_RIGHT nil :f_THIRD_FROM_BOTTOM_RIGHT nil :f_FOURTH_FROM_BOTTOM_RIGHT nil :f_SECOND_FROM_BOTTOM_SECOND_FROM_RIGHT nil :f_SECOND_FROM_BOTTOM_THIRD_FROM_RIGHT nil :f_SECOND_FROM_BOTTOM_FOURTH_FROM_RIGHT nil :f_BOTTOM_THIRD_FROM_RIGHT nil :f_BOTTOM_FOURTH_FROM_RIGHT nil :f_BOTTOM_SECOND_FROM_LEFT nil :f_SECOND_FROM_BOTTOM_LEFT nil :f_THIRD_FROM_BOTTOM_LEFT nil :f_BOTTOM_LEFT nil :f_SECOND_FROM_BOTTOM_SECOND_FROM_LEFT nil} jproto))
+    (put this :f_logUtil (LogUtil/jm_getInstance))
+    (put this :f_commonStrings (CommonStrings/jm_getInstance))
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+        (:jm_putF (this :f_logUtil) ((this :f_commonStrings) :f_START) this ((this :f_commonStrings) :f_CONSTRUCTOR))
+        (var _touchButtonLocationHelper (TouchButtonLocationHelper/jnew_0))
+        (var _cellPositionFactory (CellPositionFactory/jm_getInstance))
+        (:jm_init _cellPositionFactory (:jm_getTotalColumns _touchButtonLocationHelper) (:jm_getTotalRows _touchButtonLocationHelper))
+        (set (this :f_TOP_LEFT) (:jm_getInstanceColRow _cellPositionFactory 0 0))
+        (set (this :f_TOP_RIGHT) (:jm_getInstanceColRow _cellPositionFactory (JR/i32 (- (:jm_getTotalColumns _touchButtonLocationHelper) 1)) 0))
+        (set (this :f_BOTTOM_LEFT) (:jm_getInstanceColRow _cellPositionFactory 0 (JR/i32 (- (:jm_getTotalRows _touchButtonLocationHelper) 1))))
+        (set (this :f_BOTTOM_RIGHT) (:jm_getInstanceColRow _cellPositionFactory (JR/i32 (- (:jm_getTotalColumns _touchButtonLocationHelper) 1)) (JR/i32 (- (:jm_getTotalRows _touchButtonLocationHelper) 1))))
+        (set (this :f_BOTTOM_SECOND_FROM_RIGHT) (:jm_getInstanceColRow _cellPositionFactory (JR/i32 (- (:jm_getTotalColumns _touchButtonLocationHelper) 2)) (JR/i32 (- (:jm_getTotalRows _touchButtonLocationHelper) 1))))
+        (set (this :f_SECOND_FROM_BOTTOM_RIGHT) (:jm_getInstanceColRow _cellPositionFactory (JR/i32 (- (:jm_getTotalColumns _touchButtonLocationHelper) 1)) (JR/i32 (- (:jm_getTotalRows _touchButtonLocationHelper) 2))))
+        (set (this :f_SECOND_FROM_BOTTOM_SECOND_FROM_RIGHT) (:jm_getInstanceColRow _cellPositionFactory (JR/i32 (- (:jm_getTotalColumns _touchButtonLocationHelper) 2)) (JR/i32 (- (:jm_getTotalRows _touchButtonLocationHelper) 2))))
+        (set (this :f_BOTTOM_SECOND_FROM_LEFT) (:jm_getInstanceColRow _cellPositionFactory 1 (JR/i32 (- (:jm_getTotalRows _touchButtonLocationHelper) 1))))
+        (set (this :f_SECOND_FROM_BOTTOM_LEFT) (:jm_getInstanceColRow _cellPositionFactory 0 (JR/i32 (- (:jm_getTotalRows _touchButtonLocationHelper) 2))))
+        (set (this :f_SECOND_FROM_BOTTOM_SECOND_FROM_LEFT) (:jm_getInstanceColRow _cellPositionFactory 1 (JR/i32 (- (:jm_getTotalRows _touchButtonLocationHelper) 2))))
+        (if (> (:jm_getTotalRows _touchButtonLocationHelper) 2)
+            (do
+            (set (this :f_SECOND_FROM_TOP_LEFT) (:jm_getInstanceColRow _cellPositionFactory 0 1))
+            (set (this :f_SECOND_FROM_TOP_RIGHT) (:jm_getInstanceColRow _cellPositionFactory (JR/i32 (- (:jm_getTotalColumns _touchButtonLocationHelper) 1)) 1)))
+            (do
+            (set (this :f_SECOND_FROM_TOP_LEFT) (_cellPositionFactory :f_NONE))
+            (set (this :f_SECOND_FROM_TOP_RIGHT) (_cellPositionFactory :f_NONE))))
+        (if (>= (:jm_getTotalRows _touchButtonLocationHelper) 4)
+            (do
+            (set (this :f_THIRD_FROM_BOTTOM_RIGHT) (:jm_getInstanceColRow _cellPositionFactory (JR/i32 (- (:jm_getTotalColumns _touchButtonLocationHelper) 1)) (JR/i32 (- (:jm_getTotalRows _touchButtonLocationHelper) 3))))
+            (set (this :f_FOURTH_FROM_BOTTOM_RIGHT) (:jm_getInstanceColRow _cellPositionFactory (JR/i32 (- (:jm_getTotalColumns _touchButtonLocationHelper) 1)) (JR/i32 (- (:jm_getTotalRows _touchButtonLocationHelper) 4))))
+            (set (this :f_THIRD_FROM_BOTTOM_LEFT) (:jm_getInstanceColRow _cellPositionFactory 0 (JR/i32 (- (:jm_getTotalRows _touchButtonLocationHelper) 3)))))
+            (do
+            (set (this :f_THIRD_FROM_BOTTOM_RIGHT) (_cellPositionFactory :f_NONE))
+            (set (this :f_FOURTH_FROM_BOTTOM_RIGHT) (_cellPositionFactory :f_NONE))
+            (set (this :f_THIRD_FROM_BOTTOM_LEFT) (_cellPositionFactory :f_NONE))))
+        (if (>= (:jm_getTotalColumns _touchButtonLocationHelper) 4)
+            (do
+            (set (this :f_SECOND_FROM_BOTTOM_THIRD_FROM_RIGHT) (:jm_getInstanceColRow _cellPositionFactory (JR/i32 (- (:jm_getTotalColumns _touchButtonLocationHelper) 3)) (JR/i32 (- (:jm_getTotalRows _touchButtonLocationHelper) 2))))
+            (set (this :f_SECOND_FROM_BOTTOM_FOURTH_FROM_RIGHT) (:jm_getInstanceColRow _cellPositionFactory (JR/i32 (- (:jm_getTotalColumns _touchButtonLocationHelper) 4)) (JR/i32 (- (:jm_getTotalRows _touchButtonLocationHelper) 2))))
+            (set (this :f_BOTTOM_THIRD_FROM_RIGHT) (:jm_getInstanceColRow _cellPositionFactory (JR/i32 (- (:jm_getTotalColumns _touchButtonLocationHelper) 3)) (JR/i32 (- (:jm_getTotalRows _touchButtonLocationHelper) 1))))
+            (set (this :f_BOTTOM_FOURTH_FROM_RIGHT) (:jm_getInstanceColRow _cellPositionFactory (JR/i32 (- (:jm_getTotalColumns _touchButtonLocationHelper) 4)) (JR/i32 (- (:jm_getTotalRows _touchButtonLocationHelper) 1))))
+            (set (this :f_TOP_SECOND_FROM_LEFT) (:jm_getInstanceColRow _cellPositionFactory 1 0))
+            (set (this :f_TOP_SECOND_FROM_RIGHT) (:jm_getInstanceColRow _cellPositionFactory (JR/i32 (- (:jm_getTotalColumns _touchButtonLocationHelper) 2)) 0)))
+            (do
+            (set (this :f_SECOND_FROM_BOTTOM_THIRD_FROM_RIGHT) (_cellPositionFactory :f_NONE))
+            (set (this :f_SECOND_FROM_BOTTOM_FOURTH_FROM_RIGHT) (_cellPositionFactory :f_NONE))
+            (set (this :f_BOTTOM_THIRD_FROM_RIGHT) (_cellPositionFactory :f_NONE))
+            (set (this :f_BOTTOM_FOURTH_FROM_RIGHT) (_cellPositionFactory :f_NONE))
+            (set (this :f_TOP_SECOND_FROM_LEFT) (_cellPositionFactory :f_NONE))
+            (set (this :f_TOP_SECOND_FROM_RIGHT) (_cellPositionFactory :f_NONE))))
+    this))
 
-local BasicTouchButtonCellPositionFactory = {}
-BasicTouchButtonCellPositionFactory.__index = BasicTouchButtonCellPositionFactory
-BasicTouchButtonCellPositionFactory.className = "BasicTouchButtonCellPositionFactory"
+(set jproto @{})
 
-function BasicTouchButtonCellPositionFactory:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-    self.commonStrings = CommonStrings.getInstance()
-    self.TOP_RIGHT = nil
-    self.TOP_LEFT = nil
-    self.SECOND_FROM_TOP_LEFT = nil
-    self.SECOND_FROM_TOP_RIGHT = nil
-    self.TOP_SECOND_FROM_LEFT = nil
-    self.TOP_SECOND_FROM_RIGHT = nil
-    self.BOTTOM_RIGHT = nil
-    self.BOTTOM_SECOND_FROM_RIGHT = nil
-    self.SECOND_FROM_BOTTOM_RIGHT = nil
-    self.THIRD_FROM_BOTTOM_RIGHT = nil
-    self.FOURTH_FROM_BOTTOM_RIGHT = nil
-    self.SECOND_FROM_BOTTOM_SECOND_FROM_RIGHT = nil
-    self.SECOND_FROM_BOTTOM_THIRD_FROM_RIGHT = nil
-    self.SECOND_FROM_BOTTOM_FOURTH_FROM_RIGHT = nil
-    self.BOTTOM_THIRD_FROM_RIGHT = nil
-    self.BOTTOM_FOURTH_FROM_RIGHT = nil
-    self.BOTTOM_SECOND_FROM_LEFT = nil
-    self.SECOND_FROM_BOTTOM_LEFT = nil
-    self.THIRD_FROM_BOTTOM_LEFT = nil
-    self.BOTTOM_LEFT = nil
-    self.SECOND_FROM_BOTTOM_SECOND_FROM_LEFT = nil
-end
-
-
-function BasicTouchButtonCellPositionFactory.new()
-    local self = setmetatable({}, BasicTouchButtonCellPositionFactory)
-    self:_init_fields()
-        self.logUtil:putF(self.commonStrings.START, self, self.commonStrings.CONSTRUCTOR)
-        local touchButtonLocationHelper = TouchButtonLocationHelper.new()
-        local cellPositionFactory = CellPositionFactory.getInstance()
-        cellPositionFactory:init(touchButtonLocationHelper:getTotalColumns(), touchButtonLocationHelper:getTotalRows())
-        self.TOP_LEFT = cellPositionFactory:getInstanceColRow(0, 0)
-        self.TOP_RIGHT = cellPositionFactory:getInstanceColRow(touchButtonLocationHelper:getTotalColumns() - 1, 0)
-        self.BOTTOM_LEFT = cellPositionFactory:getInstanceColRow(0, touchButtonLocationHelper:getTotalRows() - 1)
-        self.BOTTOM_RIGHT = cellPositionFactory:getInstanceColRow(touchButtonLocationHelper:getTotalColumns() - 1, touchButtonLocationHelper:getTotalRows() - 1)
-        self.BOTTOM_SECOND_FROM_RIGHT = cellPositionFactory:getInstanceColRow(touchButtonLocationHelper:getTotalColumns() - 2, touchButtonLocationHelper:getTotalRows() - 1)
-        self.SECOND_FROM_BOTTOM_RIGHT = cellPositionFactory:getInstanceColRow(touchButtonLocationHelper:getTotalColumns() - 1, touchButtonLocationHelper:getTotalRows() - 2)
-        self.SECOND_FROM_BOTTOM_SECOND_FROM_RIGHT = cellPositionFactory:getInstanceColRow(touchButtonLocationHelper:getTotalColumns() - 2, touchButtonLocationHelper:getTotalRows() - 2)
-        self.BOTTOM_SECOND_FROM_LEFT = cellPositionFactory:getInstanceColRow(1, touchButtonLocationHelper:getTotalRows() - 1)
-        self.SECOND_FROM_BOTTOM_LEFT = cellPositionFactory:getInstanceColRow(0, touchButtonLocationHelper:getTotalRows() - 2)
-        self.SECOND_FROM_BOTTOM_SECOND_FROM_LEFT = cellPositionFactory:getInstanceColRow(1, touchButtonLocationHelper:getTotalRows() - 2)
-        if touchButtonLocationHelper:getTotalRows() > 2 then
-            self.SECOND_FROM_TOP_LEFT = cellPositionFactory:getInstanceColRow(0, 1)
-            self.SECOND_FROM_TOP_RIGHT = cellPositionFactory:getInstanceColRow(touchButtonLocationHelper:getTotalColumns() - 1, 1)
-        else
-            self.SECOND_FROM_TOP_LEFT = cellPositionFactory.NONE
-            self.SECOND_FROM_TOP_RIGHT = cellPositionFactory.NONE
-        end
-        if touchButtonLocationHelper:getTotalRows() >= 4 then
-            self.THIRD_FROM_BOTTOM_RIGHT = cellPositionFactory:getInstanceColRow(touchButtonLocationHelper:getTotalColumns() - 1, touchButtonLocationHelper:getTotalRows() - 3)
-            self.FOURTH_FROM_BOTTOM_RIGHT = cellPositionFactory:getInstanceColRow(touchButtonLocationHelper:getTotalColumns() - 1, touchButtonLocationHelper:getTotalRows() - 4)
-            self.THIRD_FROM_BOTTOM_LEFT = cellPositionFactory:getInstanceColRow(0, touchButtonLocationHelper:getTotalRows() - 3)
-        else
-            self.THIRD_FROM_BOTTOM_RIGHT = cellPositionFactory.NONE
-            self.FOURTH_FROM_BOTTOM_RIGHT = cellPositionFactory.NONE
-            self.THIRD_FROM_BOTTOM_LEFT = cellPositionFactory.NONE
-        end
-        if touchButtonLocationHelper:getTotalColumns() >= 4 then
-            self.SECOND_FROM_BOTTOM_THIRD_FROM_RIGHT = cellPositionFactory:getInstanceColRow(touchButtonLocationHelper:getTotalColumns() - 3, touchButtonLocationHelper:getTotalRows() - 2)
-            self.SECOND_FROM_BOTTOM_FOURTH_FROM_RIGHT = cellPositionFactory:getInstanceColRow(touchButtonLocationHelper:getTotalColumns() - 4, touchButtonLocationHelper:getTotalRows() - 2)
-            self.BOTTOM_THIRD_FROM_RIGHT = cellPositionFactory:getInstanceColRow(touchButtonLocationHelper:getTotalColumns() - 3, touchButtonLocationHelper:getTotalRows() - 1)
-            self.BOTTOM_FOURTH_FROM_RIGHT = cellPositionFactory:getInstanceColRow(touchButtonLocationHelper:getTotalColumns() - 4, touchButtonLocationHelper:getTotalRows() - 1)
-            self.TOP_SECOND_FROM_LEFT = cellPositionFactory:getInstanceColRow(1, 0)
-            self.TOP_SECOND_FROM_RIGHT = cellPositionFactory:getInstanceColRow(touchButtonLocationHelper:getTotalColumns() - 2, 0)
-        else
-            self.SECOND_FROM_BOTTOM_THIRD_FROM_RIGHT = cellPositionFactory.NONE
-            self.SECOND_FROM_BOTTOM_FOURTH_FROM_RIGHT = cellPositionFactory.NONE
-            self.BOTTOM_THIRD_FROM_RIGHT = cellPositionFactory.NONE
-            self.BOTTOM_FOURTH_FROM_RIGHT = cellPositionFactory.NONE
-            self.TOP_SECOND_FROM_LEFT = cellPositionFactory.NONE
-            self.TOP_SECOND_FROM_RIGHT = cellPositionFactory.NONE
-        end
-    return self
-end
-
-return BasicTouchButtonCellPositionFactory
 

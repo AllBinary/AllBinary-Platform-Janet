@@ -1,38 +1,29 @@
--- Generated Code Do Not Modify
--- package org.allbinary.game.collision
+# Generated Code Do Not Modify
+# package org.allbinary.game.collision
 
-local AllBinaryLayer = require("org.allbinary.layer.AllBinaryLayer")
-local CollisionProcessor = require("org.allbinary.game.collision.CollisionProcessor")
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(import ./CollisionProcessor :as CollisionProcessor)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class CollisionThreedProcessor
+(var jproto nil)
+(var jnew_0 nil)
+(var jm_isCollision nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "CollisionThreedProcessor"} jproto))
+    (JR/superInit this (CollisionProcessor/jnew_0))
+    this))
 
-local CollisionThreedProcessor = {}
-CollisionThreedProcessor.__index = CollisionThreedProcessor
-CollisionThreedProcessor.className = "CollisionThreedProcessor"
-setmetatable(CollisionThreedProcessor, {__index = CollisionProcessor})
+    
+(set jm_isCollision (fn jm_isCollision [this _myLayer _myLayer2]
+    (label jreturn
+        (if (or (or (or (or (or (>= (:jm_getXP _myLayer2) (:jm_getX2 _myLayer)) (>= (:jm_getYP _myLayer2) (:jm_getY2 _myLayer))) (<= (:jm_getX2 _myLayer2) (:jm_getXP _myLayer))) (<= (:jm_getY2 _myLayer2) (:jm_getYP _myLayer))) (< (:jm_getZP _myLayer2) (:jm_getZ2 _myLayer))) (> (:jm_getZ2 _myLayer2) (:jm_getZP _myLayer)))
+            (do
+            (return jreturn false))
+            (do
+            (return jreturn true))))))
 
-function CollisionThreedProcessor.new()
-    local self = setmetatable(CollisionProcessor.new(), CollisionThreedProcessor)
-    return self
-end
+(set jproto (table/setproto @{:jm_isCollision jm_isCollision} CollisionProcessor/jproto))
 
-
-function CollisionThreedProcessor:isCollision(myLayer, myLayer2)
-        if myLayer2:getXP() >= myLayer:getX2() or myLayer2:getYP() >= myLayer:getY2() or myLayer2:getX2() <= myLayer:getXP() or myLayer2:getY2() <= myLayer:getYP() or myLayer2:getZP() < myLayer:getZ2() or myLayer2:getZ2() > myLayer:getZP() then
-            return false
-        else
-            return true
-        end
-end
-
-return CollisionThreedProcessor
 

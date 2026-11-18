@@ -1,40 +1,38 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.displayable.canvas
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.game.displayable.canvas
+
+(import ../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+
+# Java class TitleResource
+(var jproto nil)
+(var jcell_RESOURCE_TITLE :jnone)
+(var jstatic_RESOURCE_TITLE nil)
+(var jsetstatic_RESOURCE_TITLE nil)
+(var jnew_0 nil)
+
+(set jstatic_RESOURCE_TITLE (fn jstatic_RESOURCE_TITLE []
+  (when (= jcell_RESOURCE_TITLE :jnone) (set jcell_RESOURCE_TITLE "/title_sprite_100_by_100.png"))
+  jcell_RESOURCE_TITLE))
+(set jsetstatic_RESOURCE_TITLE (fn jsetstatic_RESOURCE_TITLE [value] (set jcell_RESOURCE_TITLE value)))
+
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "TitleResource"} jproto))
+    this))
 
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(set jproto @{})
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local TitleResource = {}
-TitleResource.__index = TitleResource
-TitleResource.className = "TitleResource"
-
-function TitleResource.new()
-    local self = setmetatable({}, TitleResource)
-    return self
-end
-
-TitleResource.RESOURCE_TITLE = "/title_sprite_100_by_100.png"
-
-return TitleResource
 

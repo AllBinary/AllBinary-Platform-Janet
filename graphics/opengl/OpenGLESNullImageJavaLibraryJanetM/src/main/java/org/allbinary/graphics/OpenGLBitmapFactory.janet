@@ -1,62 +1,54 @@
--- Generated Code Do Not Modify
--- package org.allbinary.graphics
+# Generated Code Do Not Modify
+# package org.allbinary.graphics
 
--- local IOException = require("java.io.IOException")
--- local InputStream = require("java.io.InputStream")
--- local Image = require("javax.microedition.lcdui.Image")
-local NullUtil = require("org.allbinary.logic.NullUtil")
-local PlatformBitmapBase = require("org.allbinary.platform.graphics.PlatformBitmapBase")
-local PlatformBitmapBaseFactory = require("org.allbinary.platform.graphics.PlatformBitmapBaseFactory")
+(import ../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(import ../../../java/io/IOException :as IOException)
+(import ../../../java/io/InputStream :as InputStream)
+(defn- NullUtil/jm_getInstance [& args] (JR/call jfile "../../../org/allbinary/logic/NullUtil" "jm_getInstance" args))
+(import ../../../org/allbinary/platform/graphics/PlatformBitmapBaseFactory :as PlatformBitmapBaseFactory)
+(defn- OpenGLBitmapConfig/jnew_1 [& args] (JR/call jfile "./OpenGLBitmapConfig" "jnew_1" args))
+(defn- OpenGLBitmap/jnew_1 [& args] (JR/call jfile "./OpenGLBitmap" "jnew_1" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class OpenGLBitmapFactory
+(var jproto nil)
+(var jcell_instance :jnone)
+(var jstatic_instance nil)
+(var jsetstatic_instance nil)
+(var jnew_0 nil)
+(var jm_getInstance nil)
+(var jm_createBitmap_3 nil)
+(var jm_decodeStream nil)
+(var jm_createBitmap_1 nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jstatic_instance (fn jstatic_instance []
+  (when (= jcell_instance :jnone) (set jcell_instance (jnew_0)))
+  jcell_instance))
+(set jsetstatic_instance (fn jsetstatic_instance [value] (set jcell_instance value)))
 
-local OpenGLBitmapFactory = {}
-OpenGLBitmapFactory.__index = OpenGLBitmapFactory
-OpenGLBitmapFactory.className = "OpenGLBitmapFactory"
-setmetatable(OpenGLBitmapFactory, {__index = PlatformBitmapBaseFactory})
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "OpenGLBitmapFactory" :f_ARGB_8888 nil} jproto))
+    (put this :f_ARGB_8888 (OpenGLBitmapConfig/jnew_1 ((NullUtil/jm_getInstance) :f_NULL_OBJECT)))
+    (JR/superInit this (PlatformBitmapBaseFactory/jnew_0))
+    this))
 
-function OpenGLBitmapFactory:_init_fields()
-    self.ARGB_8888 = OpenGLBitmapConfig.new(NullUtil.getInstance().NULL_OBJECT)
-end
+    
+(set jm_getInstance (fn jm_getInstance []
+    (label jreturn
+        (return jreturn (jstatic_instance)))))
+    
+(set jm_createBitmap_3 (fn jm_createBitmap_3 [this _width _height _config]
+    (label jreturn
+        (return jreturn (OpenGLBitmap/jnew_1 ((NullUtil/jm_getInstance) :f_NULL_OBJECT))))))
+    
+(set jm_decodeStream (fn jm_decodeStream [this _inputStream]
+    (label jreturn
+        (return jreturn (OpenGLBitmap/jnew_1 ((NullUtil/jm_getInstance) :f_NULL_OBJECT))))))
+    
+(set jm_createBitmap_1 (fn jm_createBitmap_1 [this _image]
+    (label jreturn
+        (return jreturn (OpenGLBitmap/jnew_1 ((NullUtil/jm_getInstance) :f_NULL_OBJECT))))))
 
-function OpenGLBitmapFactory.new()
-    local self = setmetatable(PlatformBitmapBaseFactory.new(), OpenGLBitmapFactory)
-    self:_init_fields()
-    return self
-end
+(set jproto (table/setproto @{:jm_createBitmap_3 jm_createBitmap_3 :jm_decodeStream jm_decodeStream :jm_createBitmap_1 jm_createBitmap_1} PlatformBitmapBaseFactory/jproto))
 
-
-function OpenGLBitmapFactory.getInstance()
-        return OpenGLBitmapFactory.instance
-end
-
-
-function OpenGLBitmapFactory:createBitmap(width, height, config)
-        return OpenGLBitmap.new(NullUtil.getInstance().NULL_OBJECT)
-end
-
-
--- throws IOException
-function OpenGLBitmapFactory:decodeStream(inputStream)
-        return OpenGLBitmap.new(NullUtil.getInstance().NULL_OBJECT)
-end
-
-
--- Java overloaded method: Lua keeps the last definition
-function OpenGLBitmapFactory:createBitmap(image)
-        return OpenGLBitmap.new(NullUtil.getInstance().NULL_OBJECT)
-end
-
-OpenGLBitmapFactory.instance = OpenGLBitmapFactory.new()
-
-return OpenGLBitmapFactory
 

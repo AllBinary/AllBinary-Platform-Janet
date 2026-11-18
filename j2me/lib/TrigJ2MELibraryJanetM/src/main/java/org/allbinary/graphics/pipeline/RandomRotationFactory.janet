@@ -1,68 +1,61 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.pipeline
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.graphics.pipeline
 
-local MyRandomFactory = require("org.allbinary.game.rand.MyRandomFactory")
-local AngleFactory = require("org.allbinary.math.AngleFactory")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- MyRandomFactory/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/game/rand/MyRandomFactory" "jm_getInstance" args))
+(defn- AngleFactory/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/math/AngleFactory" "jm_getInstance" args))
+(defn- BasicGraphicsPipeline/jnew_1 [& args] (JR/call jfile "./BasicGraphicsPipeline" "jnew_1" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class RandomRotationFactory
+(var jproto nil)
+(var jcell_instance :jnone)
+(var jstatic_instance nil)
+(var jsetstatic_instance nil)
+(var jnew_0 nil)
+(var jm_getInstance nil)
+(var jm_getInstanceList nil)
+(var jm_getNextRandomAngle nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jstatic_instance (fn jstatic_instance []
+  (when (= jcell_instance :jnone) (set jcell_instance (jnew_0)))
+  jcell_instance))
+(set jsetstatic_instance (fn jsetstatic_instance [value] (set jcell_instance value)))
 
-local RandomRotationFactory = {}
-RandomRotationFactory.__index = RandomRotationFactory
-RandomRotationFactory.className = "RandomRotationFactory"
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "RandomRotationFactory" :f_myRandomFactory nil :f_angleFactory nil} jproto))
+    (put this :f_myRandomFactory (MyRandomFactory/jm_getInstance))
+    (put this :f_angleFactory (AngleFactory/jm_getInstance))
+    this))
 
-function RandomRotationFactory:_init_fields()
-    self.myRandomFactory = MyRandomFactory.getInstance()
-    self.angleFactory = AngleFactory.getInstance()
-end
+    
+(set jm_getInstance (fn jm_getInstance []
+    (label jreturn
+        (return jreturn (jstatic_instance)))))
+    
+(set jm_getInstanceList (fn jm_getInstanceList [this _vector _howMuch]
+    (label jreturn
+        (var _graphicsPipe (BasicGraphicsPipeline/jnew_1 _vector))
+        (:jm_createMatrix _graphicsPipe)
+        (:jm_rotateToAngle _graphicsPipe (:jm_getAt (this :f_angleFactory) (:jm_getNextRandomAngle this _howMuch)))
+        (return jreturn (:jm_getMatrix _graphicsPipe)))))
+    
+(set jm_getNextRandomAngle (fn jm_getNextRandomAngle [this _howMuch]
+    (label jreturn
+        (return jreturn (:jm_getNextInt (this :f_myRandomFactory) (JR/i32 (* _howMuch 10)))))))
 
-function RandomRotationFactory.new()
-    local self = setmetatable({}, RandomRotationFactory)
-    self:_init_fields()
-    return self
-end
+(set jproto @{:jm_getInstanceList jm_getInstanceList :jm_getNextRandomAngle jm_getNextRandomAngle})
 
-
-function RandomRotationFactory.getInstance()
-        return RandomRotationFactory.instance
-end
-
-
--- throws Exception
-function RandomRotationFactory:getInstanceList(vector, howMuch)
-        local graphicsPipe = BasicGraphicsPipeline.new(vector)
-        graphicsPipe:createMatrix()
-        graphicsPipe:rotateToAngle(self.angleFactory:getAt(self:getNextRandomAngle(howMuch)))
-        return graphicsPipe:getMatrix()
-end
-
-
-function RandomRotationFactory:getNextRandomAngle(howMuch)
-        return self.myRandomFactory:getNextInt(howMuch * 10)
-end
-
-RandomRotationFactory.instance = RandomRotationFactory.new()
-
-return RandomRotationFactory
 

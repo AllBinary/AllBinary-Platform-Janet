@@ -1,54 +1,42 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2022 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.animation
+# 
+# AllBinary Open License Version 1 
+# Copyright (c) 2022 AllBinary 
+#  
+# By agreeing to this license you and any business entity you represent are 
+# legally bound to the AllBinary Open License Version 1 legal agreement. 
+#  
+# You may obtain the AllBinary Open License Version 1 legal agreement from 
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+#  
+# Created By: Travis Berthelot 
+#   
+# Generated Code Do Not Modify
+# package org.allbinary.animation
 
-local AnimationBehaviorFactory = require("org.allbinary.animation.AnimationBehaviorFactory")
+(import ../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(import ./AnimationBehaviorFactory :as AnimationBehaviorFactory)
+(defn- IndexedAnimationBehavior/jnew_2 [& args] (JR/call jfile "./IndexedAnimationBehavior" "jnew_2" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class IndexedAnimationBehaviorFactory
+(var jproto nil)
+(var jnew_2 nil)
+(var jm_getOrCreateInstance nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jnew_2 (fn jnew_2 [_loopTotal _frameDelayTime]
+    (var this (table/setproto @{:jclass "IndexedAnimationBehaviorFactory" :f_frameDelayTime 0 :f_loopTotal 0} jproto))
+    
+    
+    (JR/superInit this (AnimationBehaviorFactory/jnew_0))
+        (set (this :f_loopTotal) _loopTotal)
+        (set (this :f_frameDelayTime) _frameDelayTime)
+    this))
+    
+(set jm_getOrCreateInstance (fn jm_getOrCreateInstance [this]
+    (label jreturn
+        (return jreturn (IndexedAnimationBehavior/jnew_2 (this :f_loopTotal) (this :f_frameDelayTime))))))
 
-local IndexedAnimationBehaviorFactory = {}
-IndexedAnimationBehaviorFactory.__index = IndexedAnimationBehaviorFactory
-IndexedAnimationBehaviorFactory.className = "IndexedAnimationBehaviorFactory"
-setmetatable(IndexedAnimationBehaviorFactory, {__index = AnimationBehaviorFactory})
+(set jproto (table/setproto @{:jm_getOrCreateInstance jm_getOrCreateInstance} AnimationBehaviorFactory/jproto))
 
-function IndexedAnimationBehaviorFactory:_init_fields()
-    self.frameDelayTime = nil
-    self.loopTotal = nil
-end
-
-
-function IndexedAnimationBehaviorFactory.new(loopTotal, frameDelayTime)
-    local self = setmetatable(AnimationBehaviorFactory.new(), IndexedAnimationBehaviorFactory)
-    self:_init_fields()
-        self.loopTotal = loopTotal
-        self.frameDelayTime = frameDelayTime
-    return self
-end
-
-
-function IndexedAnimationBehaviorFactory:getOrCreateInstance()
-        return IndexedAnimationBehavior.new(self.loopTotal, self.frameDelayTime)
-end
-
-return IndexedAnimationBehaviorFactory
 

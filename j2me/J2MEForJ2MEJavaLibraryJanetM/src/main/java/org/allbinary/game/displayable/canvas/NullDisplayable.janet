@@ -1,50 +1,40 @@
--- Generated Code Do Not Modify
--- package org.allbinary.game.displayable.canvas
+# Generated Code Do Not Modify
+# package org.allbinary.game.displayable.canvas
 
--- local Canvas = require("javax.microedition.lcdui.Canvas")
--- local Graphics = require("javax.microedition.lcdui.Graphics")
-local BaseGameStatistics = require("org.allbinary.canvas.BaseGameStatistics")
-local GameStatisticsFactory = require("org.allbinary.canvas.GameStatisticsFactory")
+(import ../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(import ../../../../../javax/microedition/lcdui/Canvas :as Canvas)
+(defn- GameStatisticsFactory/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/canvas/GameStatisticsFactory" "jm_getInstance" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+#J2MEForJ2ME
+# Java class NullDisplayable
+(var jproto nil)
+(var jcell_SINGLETON :jnone)
+(var jstatic_SINGLETON nil)
+(var jsetstatic_SINGLETON nil)
+(var jnew_0 nil)
+(var jm_getInstance nil)
+(var jm_paint nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jstatic_SINGLETON (fn jstatic_SINGLETON []
+  (when (= jcell_SINGLETON :jnone) (set jcell_SINGLETON (jnew_0)))
+  jcell_SINGLETON))
+(set jsetstatic_SINGLETON (fn jsetstatic_SINGLETON [value] (set jcell_SINGLETON value)))
 
---J2MEForJ2ME
-local NullDisplayable = {}
-NullDisplayable.__index = NullDisplayable
-NullDisplayable.className = "NullDisplayable"
-setmetatable(NullDisplayable, {__index = Canvas})
+    
+(set jm_getInstance (fn jm_getInstance []
+    (label jreturn
+        (return jreturn (jstatic_SINGLETON)))))
+    
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "NullDisplayable" :f_baseGameStatistics nil} jproto))
+    (put this :f_baseGameStatistics (GameStatisticsFactory/jm_getInstance))
+    (JR/superInit this (Canvas/jnew_0))
+    this))
+    
+(set jm_paint (fn jm_paint [this _graphics]
+        (:jm_nextRefresh (this :f_baseGameStatistics))))
 
-function NullDisplayable:_init_fields()
-    self.baseGameStatistics = GameStatisticsFactory.getInstance()
-end
+(set jproto (table/setproto @{:jm_paint jm_paint} Canvas/jproto))
 
-
-function NullDisplayable.getInstance()
-        return NullDisplayable.SINGLETON
-end
-
-
-function NullDisplayable.new()
-    local self = setmetatable(Canvas.new(), NullDisplayable)
-    self:_init_fields()
-    return self
-end
-
-
-function NullDisplayable:paint(graphics)
-        self.baseGameStatistics:nextRefresh()
-end
-
-NullDisplayable.SINGLETON = NullDisplayable.new()
-
-return NullDisplayable
 

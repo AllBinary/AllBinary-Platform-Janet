@@ -1,106 +1,77 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.ag.ai
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.game.ag.ai
 
-local ArtificialIntelligenceInterface = require("org.allbinary.ai.ArtificialIntelligenceInterface")
-local GameInput = require("org.allbinary.game.input.GameInput")
-local AllBinaryLayer = require("org.allbinary.layer.AllBinaryLayer")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
-local ABHashtable = require("org.allbinary.util.ABHashtable")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
-local BasicArrayListD = require("org.allbinary.util.BasicArrayListD")
+(import ../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- LogUtil/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/logic/communication/log/LogUtil" "jm_getInstance" args))
+(defn- StringMaker/jnew_0 [& args] (JR/call jfile "../../../../../org/allbinary/logic/string/StringMaker" "jnew_0" args))
+(defn- CommonStrings/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/string/CommonStrings" "jm_getInstance" args))
+(defn- BasicArrayListD/jnew_0 [& args] (JR/call jfile "../../../../../org/allbinary/util/BasicArrayListD" "jnew_0" args))
+(import ../../../../../java/lang/Integer :as Integer)
+(defn- NumberInSameGroupSequence/jm_getInstance [& args] (JR/call jfile "./NumberInSameGroupSequence" "jm_getInstance" args))
+(defn- NumberOnOwnGroupSequenceAI/jnew_4 [& args] (JR/call jfile "./NumberOnOwnGroupSequenceAI" "jnew_4" args))
 
--- Java library Throwable. tostring gives the message like Java getMessage.
-local function java_exception(className, message, cause)
-    if cause == nil and type(message) == "table" then
-        cause = message
-        message = tostring(message)
-    end
-    local exception = {className = className, message = message, cause = cause}
-    function exception:getMessage() return self.message end
-    function exception:getCause() return self.cause end
-    function exception:printStackTrace() print(debug.traceback(tostring(self))) end
-    return setmetatable(exception, {__tostring = function(self) if self.message ~= nil then return tostring(self.message) end return self.className end})
-end
+# Java class NumberOnOwnGroupSequenceAIFactory
+(var jproto nil)
+(var jnew_0 nil)
+(var jm_getInstance nil)
 
-local function java_new_array(default, size, ...)
-    local array = {n = size}
-    for index = 1, size do
-        if select("#", ...) > 0 then array[index] = java_new_array(default, ...) else array[index] = default end
-    end
-    return array
-end
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "NumberOnOwnGroupSequenceAIFactory" :f_logUtil nil} jproto))
+    (put this :f_logUtil (LogUtil/jm_getInstance))
+    this))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+    
+(set jm_getInstance (fn jm_getInstance [this _hashtable _artificialIntelligenceInterface _ownerLayerInterface _gameInput]
+    (label jreturn
+        (var _integerArray ((NumberInSameGroupSequence/jm_getInstance) :f_NUMBER_ON_SAME_TEAM_SEQUENCE))
+        (var _list (BasicArrayListD/jnew_0))
+        (do
+            (var _index 0)
+            (var jbreak false)
+            (while (and (not jbreak) (< _index (length _integerArray)))
+                (label jcontinue
+            (var _integerCanBeNull (:jm_get _hashtable (_integerArray _index)))
+            (if (nil? _integerCanBeNull)
+                (do
+                (do (set jbreak true) (return jcontinue))))
+            (:jm_add _list _integerCanBeNull))
+                (unless jbreak (set _index (JR/i32 (+ _index 1))))))
+        (var _stringBuffer (StringMaker/jnew_0))
+        (:jm_append _stringBuffer "Total AI Properties: ")
+        (:jm_appendint _stringBuffer (:jm_size _list))
+        (:jm_append _stringBuffer " == Total AI: ")
+        (:jm_appendint _stringBuffer (length _artificialIntelligenceInterface))
+        (:jm_append _stringBuffer " + 1")
+        (var _commonStrings (CommonStrings/jm_getInstance))
+        (:jm_putF (this :f_logUtil) (:jm_toString _stringBuffer) this (_commonStrings :f_GET_INSTANCE))
+        (if (> (JR/i32 (- (length _artificialIntelligenceInterface) 1)) (:jm_size _list))
+            (do
+            (error (JR/newException "Exception" "Not enough AI properties."))))
+        (if (< (JR/i32 (- (length _artificialIntelligenceInterface) 1)) (:jm_size _list))
+            (do
+            (error (JR/newException "Exception" "Too Many AI properties."))))
+        (var _numberOnSameTeam (array/new-filled (:jm_size _list) nil))
+        (do
+            (var _index 0)
+            (while (< _index (length _numberOnSameTeam))
+                (do
+            (set (_numberOnSameTeam _index) ((_list :f_objectArray) _index)))
+                (do (set _index (JR/i32 (+ _index 1))))))
+        (return jreturn (NumberOnOwnGroupSequenceAI/jnew_4 _numberOnSameTeam _artificialIntelligenceInterface _ownerLayerInterface _gameInput)))))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jproto @{:jm_getInstance jm_getInstance})
 
-local NumberOnOwnGroupSequenceAIFactory = {}
-NumberOnOwnGroupSequenceAIFactory.__index = NumberOnOwnGroupSequenceAIFactory
-NumberOnOwnGroupSequenceAIFactory.className = "NumberOnOwnGroupSequenceAIFactory"
-
-function NumberOnOwnGroupSequenceAIFactory:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-end
-
-function NumberOnOwnGroupSequenceAIFactory.new()
-    local self = setmetatable({}, NumberOnOwnGroupSequenceAIFactory)
-    self:_init_fields()
-    return self
-end
-
-
--- throws Exception
-function NumberOnOwnGroupSequenceAIFactory:getInstance(hashtable, artificialIntelligenceInterface, ownerLayerInterface, gameInput)
-        local integerArray = NumberInSameGroupSequence.getInstance().NUMBER_ON_SAME_TEAM_SEQUENCE
-        local list = BasicArrayListD.new()
-        for index = 0, (integerArray.n or #integerArray) - 1 do
-            local integerCanBeNull = hashtable:get(integerArray[index + 1])
-            if integerCanBeNull == nil then
-                break
-            end
-            list:add(integerCanBeNull)
-        end
-        local stringBuffer = StringMaker.new()
-        stringBuffer:append("Total AI Properties: ")
-        stringBuffer:appendint(list:size())
-        stringBuffer:append(" == Total AI: ")
-        stringBuffer:appendint((artificialIntelligenceInterface.n or #artificialIntelligenceInterface))
-        stringBuffer:append(" + 1")
-        local commonStrings = CommonStrings.getInstance()
-        self.logUtil:putF(tostring(stringBuffer), self, commonStrings.GET_INSTANCE)
-        if (artificialIntelligenceInterface.n or #artificialIntelligenceInterface) - 1 > list:size() then
-            error(java_exception("Exception", "Not enough AI properties."), 0)
-        end
-        if (artificialIntelligenceInterface.n or #artificialIntelligenceInterface) - 1 < list:size() then
-            error(java_exception("Exception", "Too Many AI properties."), 0)
-        end
-        local numberOnSameTeam = java_new_array(nil, list:size())
-        for index = 0, (numberOnSameTeam.n or #numberOnSameTeam) - 1 do
-            numberOnSameTeam[index + 1] = list.objectArray[index + 1]
-        end
-        return NumberOnOwnGroupSequenceAI.new(numberOnSameTeam, artificialIntelligenceInterface, ownerLayerInterface, gameInput)
-end
-
-return NumberOnOwnGroupSequenceAIFactory
 

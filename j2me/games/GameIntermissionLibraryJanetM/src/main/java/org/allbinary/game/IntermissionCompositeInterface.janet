@@ -1,44 +1,38 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.game
 
+(import ../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class IntermissionCompositeInterface
+(var jproto nil)
+(var jnew_0 nil)
+(var jm_getStartIntermissionInterface nil)
+(var jm_getEndLevelIntermissionInterface nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "IntermissionCompositeInterface"} jproto))
+    this))
 
--- Java interface
-local IntermissionCompositeInterface = {}
-IntermissionCompositeInterface.__index = IntermissionCompositeInterface
-IntermissionCompositeInterface.className = "IntermissionCompositeInterface"
+    
+(set jm_getStartIntermissionInterface (fn jm_getStartIntermissionInterface [this]
+    (error (JR/newException "AbstractMethodError" "getStartIntermissionInterface"))))
+    
+(set jm_getEndLevelIntermissionInterface (fn jm_getEndLevelIntermissionInterface [this]
+    (error (JR/newException "AbstractMethodError" "getEndLevelIntermissionInterface"))))
 
+(set jproto @{:jm_getStartIntermissionInterface jm_getStartIntermissionInterface :jm_getEndLevelIntermissionInterface jm_getEndLevelIntermissionInterface})
 
-function IntermissionCompositeInterface:getStartIntermissionInterface()
-    error("abstract method getStartIntermissionInterface")
-end
-
-
-function IntermissionCompositeInterface:getEndLevelIntermissionInterface()
-    error("abstract method getEndLevelIntermissionInterface")
-end
-
-return IntermissionCompositeInterface
 

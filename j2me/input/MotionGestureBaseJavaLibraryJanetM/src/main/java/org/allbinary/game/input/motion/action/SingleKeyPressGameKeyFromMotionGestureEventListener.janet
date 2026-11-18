@@ -1,72 +1,53 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.input.motion.action
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.game.input.motion.action
 
-local CompleteMotionGestureInputEvent = require("org.allbinary.game.input.CompleteMotionGestureInputEvent")
-local CompleteMotionGestureInputEventListener = require("org.allbinary.game.input.CompleteMotionGestureInputEventListener")
-local GameKeyEvent = require("org.allbinary.game.input.event.GameKeyEvent")
-local PressGameKeyEventHandler = require("org.allbinary.game.input.event.PressGameKeyEventHandler")
-local ForcedLogUtil = require("org.allbinary.logic.communication.log.ForcedLogUtil")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local AllBinaryEventObject = require("org.allbinary.logic.util.event.AllBinaryEventObject")
-local EventStrings = require("org.allbinary.logic.util.event.EventStrings")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
+(import ../../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(import ../../../../../../org/allbinary/game/input/CompleteMotionGestureInputEventListener :as CompleteMotionGestureInputEventListener)
+(defn- PressGameKeyEventHandler/jm_getInstance [& args] (JR/call jfile "../../../../../../org/allbinary/game/input/event/PressGameKeyEventHandler" "jm_getInstance" args))
+(defn- ForcedLogUtil/jm_log [& args] (JR/call jfile "../../../../../../org/allbinary/logic/communication/log/ForcedLogUtil" "jm_log" args))
+(defn- LogUtil/jm_getInstance [& args] (JR/call jfile "../../../../../../org/allbinary/logic/communication/log/LogUtil" "jm_getInstance" args))
+(defn- EventStrings/jm_getInstance [& args] (JR/call jfile "../../../../../../org/allbinary/logic/util/event/EventStrings" "jm_getInstance" args))
+(defn- CommonStrings/jm_getInstance [& args] (JR/call jfile "../../../../../../org/allbinary/string/CommonStrings" "jm_getInstance" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class SingleKeyPressGameKeyFromMotionGestureEventListener
+(var jproto nil)
+(var jnew_0 nil)
+(var jm_onEvent nil)
+(var jm_onCompleteMotionGestureInputEvent nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "SingleKeyPressGameKeyFromMotionGestureEventListener" :f_logUtil nil} jproto))
+    (put this :f_logUtil (LogUtil/jm_getInstance))
+    (JR/superInit this (CompleteMotionGestureInputEventListener/jnew_0))
+    this))
 
-local SingleKeyPressGameKeyFromMotionGestureEventListener = {}
-SingleKeyPressGameKeyFromMotionGestureEventListener.__index = SingleKeyPressGameKeyFromMotionGestureEventListener
-SingleKeyPressGameKeyFromMotionGestureEventListener.className = "SingleKeyPressGameKeyFromMotionGestureEventListener"
-setmetatable(SingleKeyPressGameKeyFromMotionGestureEventListener, {__index = CompleteMotionGestureInputEventListener})
+    
+(set jm_onEvent (fn jm_onEvent [this _eventObject]
+        (ForcedLogUtil/jm_log ((EventStrings/jm_getInstance) :f_PERFORMANCE_MESSAGE) this)))
+    
+(set jm_onCompleteMotionGestureInputEvent (fn jm_onCompleteMotionGestureInputEvent [this _completeMotionGestureInputEvent]
+        (try
+            (do
+            (var _gameKeyCompleteMotionGestureInputEvent _completeMotionGestureInputEvent)
+            (var _gameKeyEvent (:jm_getGameKeyEvent _gameKeyCompleteMotionGestureInputEvent))
+            (:jm_fireEvent (PressGameKeyEventHandler/jm_getInstance) _gameKeyEvent))
+            ([_e] (do
+            (var _commonStrings (CommonStrings/jm_getInstance))
+            (:jm_put (this :f_logUtil) (_commonStrings :f_EXCEPTION) this "onCompleteMotionGestureInputEvent" _e))))))
 
-function SingleKeyPressGameKeyFromMotionGestureEventListener:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-end
+(set jproto (table/setproto @{:jm_onEvent jm_onEvent :jm_onCompleteMotionGestureInputEvent jm_onCompleteMotionGestureInputEvent} CompleteMotionGestureInputEventListener/jproto))
 
-function SingleKeyPressGameKeyFromMotionGestureEventListener.new()
-    local self = setmetatable(CompleteMotionGestureInputEventListener.new(), SingleKeyPressGameKeyFromMotionGestureEventListener)
-    self:_init_fields()
-    return self
-end
-
-
-function SingleKeyPressGameKeyFromMotionGestureEventListener:onEvent(eventObject)
-        ForcedLogUtil.log(EventStrings.getInstance().PERFORMANCE_MESSAGE, self)
-end
-
-
-function SingleKeyPressGameKeyFromMotionGestureEventListener:onCompleteMotionGestureInputEvent(completeMotionGestureInputEvent)
-        local try_ok, try_error = pcall(function()
-            local gameKeyCompleteMotionGestureInputEvent = completeMotionGestureInputEvent
-            local gameKeyEvent = gameKeyCompleteMotionGestureInputEvent:getGameKeyEvent()
-            PressGameKeyEventHandler.getInstance():fireEvent(gameKeyEvent)
-        end)
-        if not try_ok then
-            local e = try_error
-            local commonStrings = CommonStrings.getInstance()
-            self.logUtil:put(commonStrings.EXCEPTION, self, "onCompleteMotionGestureInputEvent", e)
-        end
-end
-
-return SingleKeyPressGameKeyFromMotionGestureEventListener
 

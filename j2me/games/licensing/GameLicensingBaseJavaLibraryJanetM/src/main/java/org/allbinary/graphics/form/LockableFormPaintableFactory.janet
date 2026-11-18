@@ -1,53 +1,40 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.form
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.graphics.form
 
-local ItemPaintableFactory = require("org.allbinary.graphics.form.ItemPaintableFactory")
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(import ./ItemPaintableFactory :as ItemPaintableFactory)
+(defn- LockablePaintable/jnew_1 [& args] (JR/call jfile "./LockablePaintable" "jnew_1" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class LockableFormPaintableFactory
+(var jproto nil)
+(var jnew_1 nil)
+(var jm_getInstanceItemPaintable nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jnew_1 (fn jnew_1 [_lockedIndex]
+    (var this (table/setproto @{:jclass "LockableFormPaintableFactory" :f_lockedIndex 0} jproto))
+    
+    (JR/superInit this (ItemPaintableFactory/jnew_0))
+        (set (this :f_lockedIndex) _lockedIndex)
+    this))
+    
+(set jm_getInstanceItemPaintable (fn jm_getInstanceItemPaintable [this _paintableForm]
+    (label jreturn
+        (return jreturn (LockablePaintable/jnew_1 (this :f_lockedIndex))))))
 
-local LockableFormPaintableFactory = {}
-LockableFormPaintableFactory.__index = LockableFormPaintableFactory
-LockableFormPaintableFactory.className = "LockableFormPaintableFactory"
-setmetatable(LockableFormPaintableFactory, {__index = ItemPaintableFactory})
+(set jproto (table/setproto @{:jm_getInstanceItemPaintable jm_getInstanceItemPaintable} ItemPaintableFactory/jproto))
 
-function LockableFormPaintableFactory:_init_fields()
-    self.lockedIndex = nil
-end
-
-
-function LockableFormPaintableFactory.new(lockedIndex)
-    local self = setmetatable(ItemPaintableFactory.new(), LockableFormPaintableFactory)
-    self:_init_fields()
-        self.lockedIndex = lockedIndex
-    return self
-end
-
-
--- throws Exception
-function LockableFormPaintableFactory:getInstanceItemPaintable(paintableForm)
-        return LockablePaintable.new(self.lockedIndex)
-end
-
-return LockableFormPaintableFactory
 

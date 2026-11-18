@@ -1,48 +1,38 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.collision
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.game.collision
 
-local AllBinaryLayer = require("org.allbinary.layer.AllBinaryLayer")
-local CollidableNeverCollideBehavior = require("org.allbinary.game.collision.CollidableNeverCollideBehavior")
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(import ./CollidableNeverCollideBehavior :as CollidableNeverCollideBehavior)
+(defn- CollisionTypeFactory/jm_getInstance [& args] (JR/call jfile "./CollisionTypeFactory" "jm_getInstance" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class CollidableAlwaysPickupNeverCollideBehavior
+(var jproto nil)
+(var jnew_0 nil)
+(var jm_getCollisionTypeWith nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "CollidableAlwaysPickupNeverCollideBehavior"} jproto))
+        (JR/superInit this (CollidableNeverCollideBehavior/jnew_1 true))
+    this))
+    
+(set jm_getCollisionTypeWith (fn jm_getCollisionTypeWith [this _layerInterface]
+    (label jreturn
+        (return jreturn ((CollisionTypeFactory/jm_getInstance) :f_PICKUP)))))
 
-local CollidableAlwaysPickupNeverCollideBehavior = {}
-CollidableAlwaysPickupNeverCollideBehavior.__index = CollidableAlwaysPickupNeverCollideBehavior
-CollidableAlwaysPickupNeverCollideBehavior.className = "CollidableAlwaysPickupNeverCollideBehavior"
-setmetatable(CollidableAlwaysPickupNeverCollideBehavior, {__index = CollidableNeverCollideBehavior})
+(set jproto (table/setproto @{:jm_getCollisionTypeWith jm_getCollisionTypeWith} CollidableNeverCollideBehavior/jproto))
 
-
-function CollidableAlwaysPickupNeverCollideBehavior.new()
-    local self = setmetatable(CollidableNeverCollideBehavior.new(true), CollidableAlwaysPickupNeverCollideBehavior)
-        -- super(...) made self above
-    return self
-end
-
-
-function CollidableAlwaysPickupNeverCollideBehavior:getCollisionTypeWith(layerInterface)
-        return CollisionTypeFactory.getInstance().PICKUP
-end
-
-return CollidableAlwaysPickupNeverCollideBehavior
 

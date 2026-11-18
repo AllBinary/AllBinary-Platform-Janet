@@ -1,61 +1,57 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2022 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.animation.caption
+# 
+# AllBinary Open License Version 1 
+# Copyright (c) 2022 AllBinary 
+#  
+# By agreeing to this license you and any business entity you represent are 
+# legally bound to the AllBinary Open License Version 1 legal agreement. 
+#  
+# You may obtain the AllBinary Open License Version 1 legal agreement from 
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+#  
+# Created By: Travis Berthelot 
+#   
+# Generated Code Do Not Modify
+# package org.allbinary.animation.caption
 
--- local Graphics = require("javax.microedition.lcdui.Graphics")
-local Animation = require("org.allbinary.animation.Animation")
-local BasicColor = require("org.allbinary.graphics.color.BasicColor")
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(import ../../../../org/allbinary/animation/Animation :as Animation)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class CaptionAnimationHelperBase
+(var jproto nil)
+(var jcell_INSTANCE :jnone)
+(var jstatic_INSTANCE nil)
+(var jsetstatic_INSTANCE nil)
+(var jnew_0 nil)
+(var jm_isShowing nil)
+(var jm_tick nil)
+(var jm_update nil)
+(var jm_paintXY nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jstatic_INSTANCE (fn jstatic_INSTANCE []
+  (when (= jcell_INSTANCE :jnone) (set jcell_INSTANCE (jnew_0)))
+  jcell_INSTANCE))
+(set jsetstatic_INSTANCE (fn jsetstatic_INSTANCE [value] (set jcell_INSTANCE value)))
 
-local CaptionAnimationHelperBase = {}
-CaptionAnimationHelperBase.__index = CaptionAnimationHelperBase
-CaptionAnimationHelperBase.className = "CaptionAnimationHelperBase"
-setmetatable(CaptionAnimationHelperBase, {__index = Animation})
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "CaptionAnimationHelperBase"} jproto))
+    (JR/superInit this (Animation/jnew_0))
+    this))
 
-function CaptionAnimationHelperBase.new()
-    local self = setmetatable(Animation.new(), CaptionAnimationHelperBase)
-    return self
-end
+    
+(set jm_isShowing (fn jm_isShowing [this]
+    (label jreturn
+        (return jreturn false))))
+    
+(set jm_tick (fn jm_tick [this]
+    nil))
+    
+(set jm_update (fn jm_update [this _message _basicColor]
+    nil))
+    
+(set jm_paintXY (fn jm_paintXY [this _graphics _x _y]
+    nil))
 
+(set jproto (table/setproto @{:jm_isShowing jm_isShowing :jm_tick jm_tick :jm_update jm_update :jm_paintXY jm_paintXY} Animation/jproto))
 
-function CaptionAnimationHelperBase:isShowing()
-        return false
-end
-
-
-function CaptionAnimationHelperBase:tick()
-end
-
-
-function CaptionAnimationHelperBase:update(message, basicColor)
-end
-
-
-function CaptionAnimationHelperBase:paintXY(graphics, x, y)
-end
-
-CaptionAnimationHelperBase.INSTANCE = CaptionAnimationHelperBase.new()
-
-return CaptionAnimationHelperBase
 

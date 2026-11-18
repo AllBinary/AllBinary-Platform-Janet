@@ -1,111 +1,87 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.input.motion.button
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.input.motion.button
 
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
-local BasicArrayListUtil = require("org.allbinary.util.BasicArrayListUtil")
+(import ../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- BasicArrayListUtil/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/util/BasicArrayListUtil" "jm_getInstance" args))
 
--- Java library Throwable. tostring gives the message like Java getMessage.
-local function java_exception(className, message, cause)
-    if cause == nil and type(message) == "table" then
-        cause = message
-        message = tostring(message)
-    end
-    local exception = {className = className, message = message, cause = cause}
-    function exception:getMessage() return self.message end
-    function exception:getCause() return self.cause end
-    function exception:printStackTrace() print(debug.traceback(tostring(self))) end
-    return setmetatable(exception, {__tostring = function(self) if self.message ~= nil then return tostring(self.message) end return self.className end})
-end
+# Java class TouchButtonFactory
+(var jproto nil)
+(var jcell_SINGLETON :jnone)
+(var jstatic_SINGLETON nil)
+(var jsetstatic_SINGLETON nil)
+(var jnew_0 nil)
+(var jm_getInstance nil)
+(var jm_defaultList nil)
+(var jm_toggle nil)
+(var jm_setList nil)
+(var jm_getList nil)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(set jstatic_SINGLETON (fn jstatic_SINGLETON []
+  (when (= jcell_SINGLETON :jnone) (set jcell_SINGLETON (jnew_0)))
+  jcell_SINGLETON))
+(set jsetstatic_SINGLETON (fn jsetstatic_SINGLETON [value] (set jcell_SINGLETON value)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jm_getInstance (fn jm_getInstance []
+    (label jreturn
+        (return jreturn (jstatic_SINGLETON)))))
+    
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "TouchButtonFactory" :f_LIST nil :f_list nil :f_savedList nil :f_saved false} jproto))
+    (put this :f_LIST (:jm_getImmutableInstance (BasicArrayListUtil/jm_getInstance)))
+    (put this :f_list (this :f_LIST))
+    (put this :f_savedList (this :f_LIST))
+    (put this :f_saved false)
+    this))
+    
+(set jm_defaultList (fn jm_defaultList [this]
+        (set (this :f_list) (this :f_LIST))
+        (:jm_toggle this false (this :f_LIST))))
+    
+(set jm_toggle (fn jm_toggle [this _save _list]
+        (if (not= _list (:jm_getImmutableInstance (BasicArrayListUtil/jm_getInstance)))
+            (do
+            (set (this :f_savedList) _list)
+            (if (not (this :f_saved))
+                (do
+                (set (this :f_list) (this :f_savedList)))))
+            (do
+            (if _save
+                (do
+                (if (not (this :f_saved))
+                    (do
+                    (set (this :f_saved) true)
+                    (set (this :f_savedList) (this :f_list))
+                    (set (this :f_list) (this :f_LIST)))
+                    (do
+                    nil)))
+                (do
+                (set (this :f_list) (this :f_savedList))
+                (set (this :f_saved) false)))))))
+    
+(set jm_setList (fn jm_setList [this _list]
+        (if (nil? _list)
+            (do
+            (error (JR/newException "Exception" "Null List"))))
+        (set (this :f_list) _list)))
+    
+(set jm_getList (fn jm_getList [this]
+    (label jreturn
+        (return jreturn (this :f_list)))))
 
-local TouchButtonFactory = {}
-TouchButtonFactory.__index = TouchButtonFactory
-TouchButtonFactory.className = "TouchButtonFactory"
+(set jproto @{:jm_defaultList jm_defaultList :jm_toggle jm_toggle :jm_setList jm_setList :jm_getList jm_getList})
 
-function TouchButtonFactory:_init_fields()
-    self.LIST = BasicArrayListUtil.getInstance():getImmutableInstance()
-    self.list = self.LIST
-    self.savedList = self.LIST
-    self.saved = false
-end
-
-
-function TouchButtonFactory.getInstance()
-        return TouchButtonFactory.SINGLETON
-end
-
-
-function TouchButtonFactory.new()
-    local self = setmetatable({}, TouchButtonFactory)
-    self:_init_fields()
-    return self
-end
-
-
-function TouchButtonFactory:defaultList()
-        self.list = self.LIST
-        self:toggle(false, self.LIST)
-end
-
-
-function TouchButtonFactory:toggle(save, list)
-        if list ~= BasicArrayListUtil.getInstance():getImmutableInstance() then
-            self.savedList = list
-            if not self.saved then
-                self.list = self.savedList
-            end
-        else
-            if save then
-                if not self.saved then
-                    self.saved = true
-                    self.savedList = self.list
-                    self.list = self.LIST
-                else
-                end
-            else
-                self.list = self.savedList
-                self.saved = false
-            end
-        end
-end
-
-
--- throws Exception
-function TouchButtonFactory:setList(list)
-        if list == nil then
-            error(java_exception("Exception", "Null List"), 0)
-        end
-        self.list = list
-end
-
-
-function TouchButtonFactory:getList()
-        return self.list
-end
-
-TouchButtonFactory.SINGLETON = TouchButtonFactory.new()
-
-return TouchButtonFactory
 

@@ -1,29 +1,22 @@
--- Generated Code Do Not Modify
--- package org.allbinary.image.opengles
+# Generated Code Do Not Modify
+# package org.allbinary.image.opengles
 
--- local GL = require("javax.microedition.khronos.opengles.GL")
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class OpenGLSurfaceChangedInterface
+(var jproto nil)
+(var jnew_0 nil)
+(var jm_set nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "OpenGLSurfaceChangedInterface"} jproto))
+    this))
 
--- Java interface
-local OpenGLSurfaceChangedInterface = {}
-OpenGLSurfaceChangedInterface.__index = OpenGLSurfaceChangedInterface
-OpenGLSurfaceChangedInterface.className = "OpenGLSurfaceChangedInterface"
+    
+(set jm_set (fn jm_set [this _gl]
+    (error (JR/newException "AbstractMethodError" "set"))))
 
+(set jproto @{:jm_set jm_set})
 
--- throws Exception
-function OpenGLSurfaceChangedInterface:set(gl)
-    error("abstract method set")
-end
-
-return OpenGLSurfaceChangedInterface
 

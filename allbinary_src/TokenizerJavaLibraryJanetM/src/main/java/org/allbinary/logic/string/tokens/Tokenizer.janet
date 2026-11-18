@@ -1,132 +1,110 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---   
--- Generated Code Do Not Modify
--- package org.allbinary.logic.string.tokens
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#   
+# Generated Code Do Not Modify
+# package org.allbinary.logic.string.tokens
 
-local TsUtil = require("org.allbinary.TsUtil")
-local StdUtil = require("org.allbinary.logic.StdUtil")
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
-local ABHashtable = require("org.allbinary.util.ABHashtable")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
-local BasicArrayListD = require("org.allbinary.util.BasicArrayListD")
+(import ../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- TsUtil/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/TsUtil" "jm_getInstance" args))
+(defn- StdUtil/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/logic/StdUtil" "jm_getInstance" args))
+(defn- StringUtil/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/logic/string/StringUtil" "jm_getInstance" args))
+(defn- BasicArrayListD/jnew_0 [& args] (JR/call jfile "../../../../../org/allbinary/util/BasicArrayListD" "jnew_0" args))
 
--- Java library Throwable. tostring gives the message like Java getMessage.
-local function java_exception(className, message, cause)
-    if cause == nil and type(message) == "table" then
-        cause = message
-        message = tostring(message)
-    end
-    local exception = {className = className, message = message, cause = cause}
-    function exception:getMessage() return self.message end
-    function exception:getCause() return self.cause end
-    function exception:printStackTrace() print(debug.traceback(tostring(self))) end
-    return setmetatable(exception, {__tostring = function(self) if self.message ~= nil then return tostring(self.message) end return self.className end})
-end
+# Java class Tokenizer
+(var jproto nil)
+(var jnew_1 nil)
+(var jm_setSep nil)
+(var jm_setEndSep nil)
+(var jm_getInsideSep nil)
+(var jm_getTokensFromString nil)
+(var jm_getTokens nil)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+    
+(set jnew_1 (fn jnew_1 [_sep]
+    (var this (table/setproto @{:jclass "Tokenizer" :f_sep nil :f_endSep nil} jproto))
+    
+    (put this :f_endSep ((StringUtil/jm_getInstance) :f_EMPTY_STRING))
+        (if (= (:jm_compareTo (TsUtil/jm_getInstance) _sep ((StringUtil/jm_getInstance) :f_EMPTY_STRING)) 0)
+            (do
+            (error (JR/newException "Exception" "Sep provided is not valid"))))
+        (set (this :f_sep) _sep)
+    this))
+    
+(set jm_setSep (fn jm_setSep [this _sep]
+        (set (this :f_sep) _sep)))
+    
+(set jm_setEndSep (fn jm_setEndSep [this _endSep]
+        (set (this :f_endSep) _endSep)))
+    
+(set jm_getInsideSep (fn jm_getInsideSep [this _string]
+    (label jreturn
+        (var _tokenList (BasicArrayListD/jnew_0))
+        (var _index 0)
+        (var _size (length _string))
+        (do
+            (var jbreak false)
+            (while (and (not jbreak) (< _index _size))
+                (label jcontinue
+            (set _index (JR/indexOf _string (this :f_sep) _index))
+            (if (not= _index (JR/i32 (- 1)))
+                (do
+                (var _end (JR/indexOf _string (this :f_endSep) (JR/i32 (+ _index (length (this :f_sep))))))
+                (if (not= _end (JR/i32 (- 1)))
+                    (do
+                    (:jm_add _tokenList (JR/substring _string (JR/i32 (+ _index (length (this :f_sep)))) (JR/i32 (- _end (JR/i32 (- (length (this :f_endSep)) 1))))))
+                    (set _index (JR/i32 (+ _end (length (this :f_endSep))))))
+                    (do
+                    nil)))
+                (do
+                (do (set jbreak true) (return jcontinue)))))))
+        (return jreturn _tokenList))))
+    
+(set jm_getTokensFromString (fn jm_getTokensFromString [this _string _tokenVector]
+    (label jreturn
+        (var _index 0)
+        (var _end 0)
+        (do
+            (var jbreak false)
+            (while (and (not jbreak) (< _index (length _string)))
+                (label jcontinue
+            (set _end (JR/indexOf _string (this :f_sep) _index))
+            (if (not= _end (JR/i32 (- 1)))
+                (do
+                (:jm_add _tokenVector (JR/substring _string _index _end))
+                (set _index (JR/i32 (+ _end (length (this :f_sep))))))
+                (do
+                (:jm_add _tokenVector (JR/substring _string _index (length _string)))
+                (do (set jbreak true) (return jcontinue)))))))
+        (return jreturn _tokenVector))))
+    
+(set jm_getTokens (fn jm_getTokens [this _stringVector]
+    (label jreturn
+        (var _tokenHashtable (:jm_createHashtable (StdUtil/jm_getInstance)))
+        (var _string ((StringUtil/jm_getInstance) :f_EMPTY_STRING))
+        (var _end 0)
+        (var _size (:jm_size _stringVector))
+        (do
+            (var _index 0)
+            (while (< _index _size)
+                (do
+            (set _string ((_stringVector :f_objectArray) _index))
+            (set _end (JR/indexOf _string (this :f_sep)))
+            (if (>= _end 0)
+                (do
+                (:jm_put _tokenHashtable (JR/substring _string 0 _end) (JR/substring _string (JR/i32 (+ _end 1)) (length _string))))))
+                (do (set _index (JR/i32 (+ _index 1))))))
+        (return jreturn _tokenHashtable))))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jproto @{:jm_setSep jm_setSep :jm_setEndSep jm_setEndSep :jm_getInsideSep jm_getInsideSep :jm_getTokensFromString jm_getTokensFromString :jm_getTokens jm_getTokens})
 
-local Tokenizer = {}
-Tokenizer.__index = Tokenizer
-Tokenizer.className = "Tokenizer"
-
-function Tokenizer:_init_fields()
-    self.sep = nil
-    self.endSep = StringUtil.getInstance().EMPTY_STRING
-end
-
-
-function Tokenizer.new(sep)
-    local self = setmetatable({}, Tokenizer)
-    self:_init_fields()
-        if TsUtil.getInstance():compareTo(sep, StringUtil.getInstance().EMPTY_STRING) == 0 then
-            error(java_exception("Exception", "Sep provided is not valid"), 0)
-        end
-        self.sep = sep
-    return self
-end
-
-
-function Tokenizer:setSep(sep)
-        self.sep = sep
-end
-
-
-function Tokenizer:setEndSep(endSep)
-        self.endSep = endSep
-end
-
-
-function Tokenizer:getInsideSep(string)
-        local tokenList = BasicArrayListD.new()
-        local index = 0
-        local size = #string
-        while index < size do
-            index = ((string.find(string, self.sep, (index) + 1, true) or 0) - 1)
-            if index ~= -1 then
-                local end_ = ((string.find(string, self.endSep, (index + #self.sep) + 1, true) or 0) - 1)
-                if end_ ~= -1 then
-                    tokenList:add(string.sub(string, (index + #self.sep) + 1, end_ - (#self.endSep - 1)))
-                    index = end_ + #self.endSep
-                else
-                end
-            else
-                break
-            end
-        end
-        return tokenList
-end
-
-
-function Tokenizer:getTokensFromString(string, tokenVector)
-        local index = 0
-        local end_ = 0
-        while index < #string do
-            end_ = ((string.find(string, self.sep, (index) + 1, true) or 0) - 1)
-            if end_ ~= -1 then
-                tokenVector:add(string.sub(string, (index) + 1, end_))
-                index = end_ + #self.sep
-            else
-                tokenVector:add(string.sub(string, (index) + 1, #string))
-                break
-            end
-        end
-        return tokenVector
-end
-
-
-function Tokenizer:getTokens(stringVector)
-        local tokenHashtable = StdUtil.getInstance():createHashtable()
-        local string = StringUtil.getInstance().EMPTY_STRING
-        local end_ = 0
-        local size = stringVector:size()
-        for index = 0, size - 1 do
-            string = stringVector.objectArray[index + 1]
-            end_ = ((string.find(string, self.sep, 1, true) or 0) - 1)
-            if end_ >= 0 then
-                tokenHashtable:put(string.sub(string, (0) + 1, end_), string.sub(string, (end_ + 1) + 1, #string))
-            end
-        end
-        return tokenHashtable
-end
-
-return Tokenizer
 

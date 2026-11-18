@@ -1,116 +1,95 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.input
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.input
 
-local AnalogLocationInputProcessor = require("org.allbinary.android.input.motion.AnalogLocationInputProcessor")
-local GameInputProcessor = require("org.allbinary.game.input.GameInputProcessor")
-local GameKeyEventSourceInterface = require("org.allbinary.game.input.GameKeyEventSourceInterface")
-local GameKeyFactory = require("org.allbinary.game.input.GameKeyFactory")
-local AnalogLocationInput = require("org.allbinary.game.input.analog.AnalogLocationInput")
-local GameKeyEvent = require("org.allbinary.game.input.event.GameKeyEvent")
-local GameKeyEventFactory = require("org.allbinary.game.input.event.GameKeyEventFactory")
-local CustomGPoint = require("org.allbinary.graphics.CustomGPoint")
-local AllBinaryLayerManager = require("org.allbinary.layer.AllBinaryLayerManager")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
+(import ../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(import ../../../org/allbinary/android/input/motion/AnalogLocationInputProcessor :as AnalogLocationInputProcessor)
+(defn- GameKeyFactory/jm_getInstance [& args] (JR/call jfile "../../../org/allbinary/game/input/GameKeyFactory" "jm_getInstance" args))
+(defn- GameKeyEvent/jstatic_NONE [& args] (JR/call jfile "../../../org/allbinary/game/input/event/GameKeyEvent" "jstatic_NONE" args))
+(defn- GameKeyEventFactory/jm_getInstance [& args] (JR/call jfile "../../../org/allbinary/game/input/event/GameKeyEventFactory" "jm_getInstance" args))
+(defn- LogUtil/jm_getInstance [& args] (JR/call jfile "../../../org/allbinary/logic/communication/log/LogUtil" "jm_getInstance" args))
+(defn- CommonStrings/jm_getInstance [& args] (JR/call jfile "../../../org/allbinary/string/CommonStrings" "jm_getInstance" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class DirectionalAnalogLocationInputProcessor
+(var jproto nil)
+(var jnew_1 nil)
+(var jm_process nil)
+(var jm_getSourceId nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jnew_1 (fn jnew_1 [_inputProcessorArray]
+    (var this (table/setproto @{:jclass "DirectionalAnalogLocationInputProcessor" :f_logUtil nil :f_inputProcessorArray nil :f_gameKeyFactory nil :f_leftGameKeyEvent nil :f_rightGameKeyEvent nil :f_upGameKeyEvent nil :f_downGameKeyEvent nil :f_leftTriggerGameKeyEvent nil :f_rightTriggerGameKeyEvent nil} jproto))
+    (put this :f_logUtil (LogUtil/jm_getInstance))
+    
+    (put this :f_gameKeyFactory (GameKeyFactory/jm_getInstance))
+    (put this :f_leftGameKeyEvent (GameKeyEvent/jstatic_NONE))
+    (put this :f_rightGameKeyEvent (GameKeyEvent/jstatic_NONE))
+    (put this :f_upGameKeyEvent (GameKeyEvent/jstatic_NONE))
+    (put this :f_downGameKeyEvent (GameKeyEvent/jstatic_NONE))
+    (put this :f_leftTriggerGameKeyEvent (GameKeyEvent/jstatic_NONE))
+    (put this :f_rightTriggerGameKeyEvent (GameKeyEvent/jstatic_NONE))
+    (JR/superInit this (AnalogLocationInputProcessor/jnew_0))
+        (set (this :f_inputProcessorArray) _inputProcessorArray)
+        (try
+            (do
+            (set (this :f_leftGameKeyEvent) (:jm_getInstanceForInput (GameKeyEventFactory/jm_getInstance) this ((this :f_gameKeyFactory) :f_LEFT)))
+            (set (this :f_rightGameKeyEvent) (:jm_getInstanceForInput (GameKeyEventFactory/jm_getInstance) this ((this :f_gameKeyFactory) :f_RIGHT)))
+            (set (this :f_upGameKeyEvent) (:jm_getInstanceForInput (GameKeyEventFactory/jm_getInstance) this ((this :f_gameKeyFactory) :f_UP)))
+            (set (this :f_downGameKeyEvent) (:jm_getInstanceForInput (GameKeyEventFactory/jm_getInstance) this ((this :f_gameKeyFactory) :f_DOWN)))
+            (set (this :f_leftTriggerGameKeyEvent) (:jm_getInstanceForInput (GameKeyEventFactory/jm_getInstance) this ((this :f_gameKeyFactory) :f_KEY_NUM0)))
+            (set (this :f_rightTriggerGameKeyEvent) (:jm_getInstanceForInput (GameKeyEventFactory/jm_getInstance) this ((this :f_gameKeyFactory) :f_KEY_NUM5))))
+            ([_e] (do
+            (var _commonStrings (CommonStrings/jm_getInstance))
+            (:jm_put (this :f_logUtil) (_commonStrings :f_EXCEPTION) this (_commonStrings :f_CONSTRUCTOR) _e))))
+    this))
+    
+(set jm_process (fn jm_process [this _allbinaryLayerManager _analogLocationInput]
+        (try
+            (do
+            (var _customGPoint nil)
+            (set _customGPoint (:jm_getCustomGPoint _analogLocationInput))
+            (var _x (:jm_getX _customGPoint))
+            (var _y (:jm_getY _customGPoint))
+            (var _leftTrigger (:jm_getLeftTrigger _analogLocationInput))
+            (var _rightTrigger (:jm_getRightTrigger _analogLocationInput))
+            (if (< _x 0)
+                (do
+                (JR/className ((this :f_inputProcessorArray) (:jm_getKey (this :f_leftGameKeyEvent)))))
+                (if (> _x 0)
+                (do
+                (JR/className ((this :f_inputProcessorArray) (:jm_getKey (this :f_rightGameKeyEvent)))))))
+            (if (< _y 0)
+                (do
+                (JR/className ((this :f_inputProcessorArray) (:jm_getKey (this :f_downGameKeyEvent)))))
+                (if (> _y 0)
+                (do
+                (JR/className ((this :f_inputProcessorArray) (:jm_getKey (this :f_upGameKeyEvent)))))))
+            (if (> _leftTrigger 0)
+                (do
+                (JR/className ((this :f_inputProcessorArray) (:jm_getKey (this :f_leftTriggerGameKeyEvent))))))
+            (if (> _rightTrigger 0)
+                (do
+                (JR/className ((this :f_inputProcessorArray) (:jm_getKey (this :f_rightTriggerGameKeyEvent)))))))
+            ([_e] (do
+            (var _commonStrings (CommonStrings/jm_getInstance))
+            (:jm_put (this :f_logUtil) "Unable to process analog input" this (_commonStrings :f_PROCESS) _e))))))
+    
+(set jm_getSourceId (fn jm_getSourceId [this]
+    (label jreturn
+        (return jreturn 0))))
 
-local DirectionalAnalogLocationInputProcessor = {}
-DirectionalAnalogLocationInputProcessor.__index = DirectionalAnalogLocationInputProcessor
-DirectionalAnalogLocationInputProcessor.className = "DirectionalAnalogLocationInputProcessor"
-setmetatable(DirectionalAnalogLocationInputProcessor, {__index = AnalogLocationInputProcessor})
+(set jproto (table/setproto @{:jm_process jm_process :jm_getSourceId jm_getSourceId} AnalogLocationInputProcessor/jproto))
 
-function DirectionalAnalogLocationInputProcessor:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-    self.inputProcessorArray = nil
-    self.gameKeyFactory = GameKeyFactory.getInstance()
-    self.leftGameKeyEvent = GameKeyEvent.NONE
-    self.rightGameKeyEvent = GameKeyEvent.NONE
-    self.upGameKeyEvent = GameKeyEvent.NONE
-    self.downGameKeyEvent = GameKeyEvent.NONE
-    self.leftTriggerGameKeyEvent = GameKeyEvent.NONE
-    self.rightTriggerGameKeyEvent = GameKeyEvent.NONE
-end
-
-
-function DirectionalAnalogLocationInputProcessor.new(inputProcessorArray)
-    local self = setmetatable(AnalogLocationInputProcessor.new(), DirectionalAnalogLocationInputProcessor)
-    self:_init_fields()
-        self.inputProcessorArray = inputProcessorArray
-        local try_ok, try_error = pcall(function()
-            self.leftGameKeyEvent = GameKeyEventFactory.getInstance():getInstanceForInput(self, self.gameKeyFactory.LEFT)
-            self.rightGameKeyEvent = GameKeyEventFactory.getInstance():getInstanceForInput(self, self.gameKeyFactory.RIGHT)
-            self.upGameKeyEvent = GameKeyEventFactory.getInstance():getInstanceForInput(self, self.gameKeyFactory.UP)
-            self.downGameKeyEvent = GameKeyEventFactory.getInstance():getInstanceForInput(self, self.gameKeyFactory.DOWN)
-            self.leftTriggerGameKeyEvent = GameKeyEventFactory.getInstance():getInstanceForInput(self, self.gameKeyFactory.KEY_NUM0)
-            self.rightTriggerGameKeyEvent = GameKeyEventFactory.getInstance():getInstanceForInput(self, self.gameKeyFactory.KEY_NUM5)
-        end)
-        if not try_ok then
-            local e = try_error
-            local commonStrings = CommonStrings.getInstance()
-            self.logUtil:put(commonStrings.EXCEPTION, self, commonStrings.CONSTRUCTOR, e)
-        end
-    return self
-end
-
-
-function DirectionalAnalogLocationInputProcessor:process(allbinaryLayerManager, analogLocationInput)
-        local try_ok, try_error = pcall(function()
-            local customGPoint = nil
-            customGPoint = analogLocationInput:getCustomGPoint()
-            local x = customGPoint:getX()
-            local y = customGPoint:getY()
-            local leftTrigger = analogLocationInput:getLeftTrigger()
-            local rightTrigger = analogLocationInput:getRightTrigger()
-            if x < 0 then
-                self.inputProcessorArray[self.leftGameKeyEvent:getKey() + 1]:processAnalog(allbinaryLayerManager, self.leftGameKeyEvent, x)
-            elseif x > 0 then
-                self.inputProcessorArray[self.rightGameKeyEvent:getKey() + 1]:processAnalog(allbinaryLayerManager, self.rightGameKeyEvent, x)
-            end
-            if y < 0 then
-                self.inputProcessorArray[self.downGameKeyEvent:getKey() + 1]:processAnalog(allbinaryLayerManager, self.downGameKeyEvent, y)
-            elseif y > 0 then
-                self.inputProcessorArray[self.upGameKeyEvent:getKey() + 1]:processAnalog(allbinaryLayerManager, self.upGameKeyEvent, y)
-            end
-            if leftTrigger > 0 then
-                self.inputProcessorArray[self.leftTriggerGameKeyEvent:getKey() + 1]:processAnalog(allbinaryLayerManager, self.leftTriggerGameKeyEvent, leftTrigger)
-            end
-            if rightTrigger > 0 then
-                self.inputProcessorArray[self.rightTriggerGameKeyEvent:getKey() + 1]:processAnalog(allbinaryLayerManager, self.rightTriggerGameKeyEvent, rightTrigger)
-            end
-        end)
-        if not try_ok then
-            local e = try_error
-            local commonStrings = CommonStrings.getInstance()
-            self.logUtil:put("Unable to process analog input", self, commonStrings.PROCESS, e)
-        end
-end
-
-
-function DirectionalAnalogLocationInputProcessor:getSourceId()
-        return 0
-end
-
-return DirectionalAnalogLocationInputProcessor
 

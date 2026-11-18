@@ -20,12 +20,14 @@
 (var jproto nil)
 (var jcell_instance :jnone)
 (var jstatic_instance nil)
+(var jsetstatic_instance nil)
 (var jnew_0 nil)
 (var jm_getInstance nil)
 
 (set jstatic_instance (fn jstatic_instance []
   (when (= jcell_instance :jnone) (set jcell_instance (jnew_0)))
   jcell_instance))
+(set jsetstatic_instance (fn jsetstatic_instance [value] (set jcell_instance value)))
 
 (set jnew_0 (fn jnew_0 []
     (var this (table/setproto @{:jclass "CommonStateStrings" :f_CONTEXT nil :f_FINISH nil :f_CREATE nil :f_START nil :f_RESTART nil :f_RESUME nil :f_PAUSE nil :f_STOP nil :f_DESTROY nil :f_BIND nil :f_ON_SAVE_INSTANCE_STATE nil :f_ON_START_COMMAND nil} jproto))

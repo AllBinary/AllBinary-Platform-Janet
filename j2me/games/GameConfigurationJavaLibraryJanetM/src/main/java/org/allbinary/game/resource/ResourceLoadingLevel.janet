@@ -1,57 +1,44 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.resource
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.game.resource
 
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class ResourceLoadingLevel
+(var jproto nil)
+(var jnew_2 nil)
+(var jm_getLevel nil)
+(var jm_getName nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jnew_2 (fn jnew_2 [_name _level]
+    (var this (table/setproto @{:jclass "ResourceLoadingLevel" :f_name nil :f_level 0} jproto))
+    
+    
+        (set (this :f_name) _name)
+        (set (this :f_level) _level)
+    this))
+    
+(set jm_getLevel (fn jm_getLevel [this]
+    (label jreturn
+        (return jreturn (this :f_level)))))
+    
+(set jm_getName (fn jm_getName [this]
+    (label jreturn
+        (return jreturn (this :f_name)))))
 
-local ResourceLoadingLevel = {}
-ResourceLoadingLevel.__index = ResourceLoadingLevel
-ResourceLoadingLevel.className = "ResourceLoadingLevel"
+(set jproto @{:jm_getLevel jm_getLevel :jm_getName jm_getName})
 
-function ResourceLoadingLevel:_init_fields()
-    self.name = nil
-    self.level = nil
-end
-
-
-function ResourceLoadingLevel.new(name, level)
-    local self = setmetatable({}, ResourceLoadingLevel)
-    self:_init_fields()
-        self.name = name
-        self.level = level
-    return self
-end
-
-
-function ResourceLoadingLevel:getLevel()
-        return self.level
-end
-
-
-function ResourceLoadingLevel:getName()
-        return self.name
-end
-
-return ResourceLoadingLevel
 

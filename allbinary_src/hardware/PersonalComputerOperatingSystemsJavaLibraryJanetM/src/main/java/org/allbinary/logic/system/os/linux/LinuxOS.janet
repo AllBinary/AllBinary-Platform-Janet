@@ -25,6 +25,7 @@
     
 (set jnew_0 (fn jnew_0 []
     (var this (table/setproto @{:jclass "LinuxOS"} jproto))
+    (JR/superInit this (GenericOperatingSystem/jnew_0))
         (set (this :f_scalable) true)
     this))
     

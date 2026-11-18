@@ -1,48 +1,45 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.paint
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.graphics.paint
 
-local Paintable = require("org.allbinary.graphics.paint.Paintable")
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(import ./Paintable :as Paintable)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class NullPaintable
+(var jproto nil)
+(var jcell_SINGLETON :jnone)
+(var jstatic_SINGLETON nil)
+(var jsetstatic_SINGLETON nil)
+(var jnew_0 nil)
+(var jm_getInstance nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jstatic_SINGLETON (fn jstatic_SINGLETON []
+  (when (= jcell_SINGLETON :jnone) (set jcell_SINGLETON (jnew_0)))
+  jcell_SINGLETON))
+(set jsetstatic_SINGLETON (fn jsetstatic_SINGLETON [value] (set jcell_SINGLETON value)))
 
-local NullPaintable = {}
-NullPaintable.__index = NullPaintable
-NullPaintable.className = "NullPaintable"
-setmetatable(NullPaintable, {__index = Paintable})
+    
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "NullPaintable"} jproto))
+    (JR/superInit this (Paintable/jnew_0))
+    this))
+    
+(set jm_getInstance (fn jm_getInstance []
+    (label jreturn
+        (return jreturn (jstatic_SINGLETON)))))
 
+(set jproto (table/setproto @{} Paintable/jproto))
 
-function NullPaintable.new()
-    local self = setmetatable(Paintable.new(), NullPaintable)
-    return self
-end
-
-
-function NullPaintable.getInstance()
-        return NullPaintable.SINGLETON
-end
-
-NullPaintable.SINGLETON = NullPaintable.new()
-
-return NullPaintable
 

@@ -1,57 +1,56 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.configuration
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.game.configuration
 
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- GameConfigurationCentral/jm_getInstance [& args] (JR/call jfile "./GameConfigurationCentral" "jm_getInstance" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class GameSpeed
+(var jproto nil)
+(var jcell_instance :jnone)
+(var jstatic_instance nil)
+(var jsetstatic_instance nil)
+(var jnew_0 nil)
+(var jm_getSpeed nil)
+(var jm_getDelay nil)
+(var jm_getInstance nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jstatic_instance (fn jstatic_instance []
+  (when (= jcell_instance :jnone) (set jcell_instance (jnew_0)))
+  jcell_instance))
+(set jsetstatic_instance (fn jsetstatic_instance [value] (set jcell_instance value)))
 
-local GameSpeed = {}
-GameSpeed.__index = GameSpeed
-GameSpeed.className = "GameSpeed"
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "GameSpeed"} jproto))
+    this))
 
-function GameSpeed.new()
-    local self = setmetatable({}, GameSpeed)
-    return self
-end
+    
+(set jm_getSpeed (fn jm_getSpeed [this]
+    (label jreturn
+        (var _speedGameConfiguration ((GameConfigurationCentral/jm_getInstance) :f_SPEED))
+        (return jreturn (JR/i32 (+ (JR/i32 (- (JR/className (:jm_getMaxValue _speedGameConfiguration)) (JR/className (:jm_getValue _speedGameConfiguration)))) 1))))))
+    
+(set jm_getDelay (fn jm_getDelay [this]
+    (label jreturn
+        (var _speedGameConfiguration ((GameConfigurationCentral/jm_getInstance) :f_SPEED))
+        (return jreturn (JR/i32 (* 19 (JR/i32 (- (JR/className (:jm_getMaxValue _speedGameConfiguration)) (JR/className (:jm_getValue _speedGameConfiguration))))))))))
+    
+(set jm_getInstance (fn jm_getInstance []
+    (label jreturn
+        (return jreturn (jstatic_instance)))))
 
+(set jproto @{:jm_getSpeed jm_getSpeed :jm_getDelay jm_getDelay})
 
-function GameSpeed:getSpeed()
-        local speedGameConfiguration = GameConfigurationCentral.getInstance().SPEED
-        return (math.tointeger(speedGameConfiguration:getMaxValue() // 1) - math.tointeger(speedGameConfiguration:getValue() // 1) + 1)
-end
-
-
-function GameSpeed:getDelay()
-        local speedGameConfiguration = GameConfigurationCentral.getInstance().SPEED
-        return 19 * (math.tointeger(speedGameConfiguration:getMaxValue() // 1) - math.tointeger(speedGameConfiguration:getValue() // 1))
-end
-
-
-function GameSpeed.getInstance()
-        return GameSpeed.instance
-end
-
-GameSpeed.instance = GameSpeed.new()
-
-return GameSpeed
 

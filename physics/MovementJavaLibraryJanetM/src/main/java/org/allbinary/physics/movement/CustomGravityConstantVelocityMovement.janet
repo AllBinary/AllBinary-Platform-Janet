@@ -1,62 +1,44 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.physics.movement
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.physics.movement
 
-local AllBinaryGameLayer = require("org.allbinary.game.layer.AllBinaryGameLayer")
-local GravityUtil = require("org.allbinary.game.physics.acceleration.GravityUtil")
-local VelocityProperties = require("org.allbinary.game.physics.velocity.VelocityProperties")
-local BasicDecimal = require("org.allbinary.logic.math.BasicDecimal")
-local BasicConstantVelocityMovement = require("org.allbinary.physics.movement.BasicConstantVelocityMovement")
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- GravityUtil/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/game/physics/acceleration/GravityUtil" "jm_getInstance" args))
+(defn- VelocityProperties/jnew_2 [& args] (JR/call jfile "../../../../org/allbinary/game/physics/velocity/VelocityProperties" "jnew_2" args))
+(import ./BasicConstantVelocityMovement :as BasicConstantVelocityMovement)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class CustomGravityConstantVelocityMovement
+(var jproto nil)
+(var jnew_2 nil)
+(var jm_process nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jnew_2 (fn jnew_2 [_speedBasicDecimal _customGravity]
+    (var this (table/setproto @{:jclass "CustomGravityConstantVelocityMovement" :f_customGravity 0 :f_gravityUtil nil} jproto))
+    
+    (put this :f_gravityUtil (GravityUtil/jm_getInstance))
+        (JR/superInit this (BasicConstantVelocityMovement/jnew_2 _speedBasicDecimal (VelocityProperties/jnew_2 (:jm_getUnscaled _speedBasicDecimal) (:jm_getUnscaled _speedBasicDecimal))))
+        (set (this :f_customGravity) _customGravity)
+    this))
+    
+(set jm_process (fn jm_process [this _layer]
+        ((get BasicConstantVelocityMovement/jproto :jm_process) this _layer)
+        (:jm_process (this :f_gravityUtil) (:jm_getVelocityProperties this) (this :f_customGravity))
+        (var _velocityProperties (:jm_getVelocityProperties this))
+        (:jm_limitMaxYForwardVelocity _velocityProperties)))
 
-local CustomGravityConstantVelocityMovement = {}
-CustomGravityConstantVelocityMovement.__index = CustomGravityConstantVelocityMovement
-CustomGravityConstantVelocityMovement.className = "CustomGravityConstantVelocityMovement"
-setmetatable(CustomGravityConstantVelocityMovement, {__index = BasicConstantVelocityMovement})
+(set jproto (table/setproto @{:jm_process jm_process} BasicConstantVelocityMovement/jproto))
 
-function CustomGravityConstantVelocityMovement:_init_fields()
-    self.customGravity = nil
-    self.gravityUtil = GravityUtil.getInstance()
-end
-
-
-function CustomGravityConstantVelocityMovement.new(speedBasicDecimal, customGravity)
-    local self = setmetatable(BasicConstantVelocityMovement.new(speedBasicDecimal, VelocityProperties.new(java_int(speedBasicDecimal:getUnscaled()), java_int(speedBasicDecimal:getUnscaled()))), CustomGravityConstantVelocityMovement)
-    self:_init_fields()
-        -- super(...) made self above
-        self.customGravity = customGravity
-    return self
-end
-
-
--- throws Exception
-function CustomGravityConstantVelocityMovement:process(layer)
-        BasicConstantVelocityMovement.process(self, layer)
-        self.gravityUtil:process(self:getVelocityProperties(), self.customGravity)
-        local velocityProperties = self:getVelocityProperties()
-        velocityProperties:limitMaxYForwardVelocity()
-end
-
-return CustomGravityConstantVelocityMovement
 

@@ -1,58 +1,53 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2025 AllBinary 
--- 
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
--- 
--- Created By: Travis Berthelot 
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.io
+# 
+# AllBinary Open License Version 1 
+# Copyright (c) 2025 AllBinary 
+# 
+# By agreeing to this license you and any business entity you represent are 
+# legally bound to the AllBinary Open License Version 1 legal agreement. 
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from 
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+# 
+# Created By: Travis Berthelot 
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.logic.io
 
--- local IOException = require("java.io.IOException")
--- local OutputStream = require("java.io.OutputStream")
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(import ../../../../java/io/IOException :as IOException)
+(import ../../../../java/io/OutputStream :as OutputStream)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class NullOutputStream
+(var jproto nil)
+(var jcell_NULL_OUTPUT_STREAM :jnone)
+(var jstatic_NULL_OUTPUT_STREAM nil)
+(var jsetstatic_NULL_OUTPUT_STREAM nil)
+(var jnew_0 nil)
+(var jm_write_1 nil)
+(var jm_write_3 nil)
+(var jm_close nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jstatic_NULL_OUTPUT_STREAM (fn jstatic_NULL_OUTPUT_STREAM []
+  (when (= jcell_NULL_OUTPUT_STREAM :jnone) (set jcell_NULL_OUTPUT_STREAM (jnew_0)))
+  jcell_NULL_OUTPUT_STREAM))
+(set jsetstatic_NULL_OUTPUT_STREAM (fn jsetstatic_NULL_OUTPUT_STREAM [value] (set jcell_NULL_OUTPUT_STREAM value)))
 
-local NullOutputStream = {}
-NullOutputStream.__index = NullOutputStream
-NullOutputStream.className = "NullOutputStream"
-setmetatable(NullOutputStream, {__index = OutputStream})
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "NullOutputStream"} jproto))
+    (JR/superInit this (OutputStream/jnew_0))
+    this))
 
-function NullOutputStream.new()
-    local self = setmetatable(OutputStream.new(), NullOutputStream)
-    return self
-end
+    
+(set jm_write_1 (fn jm_write_1 [this _b]
+    nil))
+    
+(set jm_write_3 (fn jm_write_3 [this _b _off _len]
+    nil))
+    
+(set jm_close (fn jm_close [this]
+    nil))
 
+(set jproto (table/setproto @{:jm_write_1 jm_write_1 :jm_write_3 jm_write_3 :jm_close jm_close} OutputStream/jproto))
 
--- throws IOException
-function NullOutputStream:write(b)
-end
-
-
--- throws IOException
--- Java overloaded method: Lua keeps the last definition
-function NullOutputStream:write(b, off, len)
-end
-
-
-function NullOutputStream:close()
-end
-
-NullOutputStream.NULL_OUTPUT_STREAM = NullOutputStream.new()
-
-return NullOutputStream
 

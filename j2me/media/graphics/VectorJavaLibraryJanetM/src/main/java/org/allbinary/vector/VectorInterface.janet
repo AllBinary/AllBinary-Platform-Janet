@@ -1,44 +1,38 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.vector
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.vector
 
+(import ../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class VectorInterface
+(var jproto nil)
+(var jnew_0 nil)
+(var jm_getPoints nil)
+(var jm_setPoints nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "VectorInterface"} jproto))
+    this))
 
--- Java interface
-local VectorInterface = {}
-VectorInterface.__index = VectorInterface
-VectorInterface.className = "VectorInterface"
+    
+(set jm_getPoints (fn jm_getPoints [this _frame]
+    (error (JR/newException "AbstractMethodError" "getPoints"))))
+    
+(set jm_setPoints (fn jm_setPoints [this _currentPoints]
+    (error (JR/newException "AbstractMethodError" "setPoints"))))
 
+(set jproto @{:jm_getPoints jm_getPoints :jm_setPoints jm_setPoints})
 
-function VectorInterface:getPoints(frame)
-    error("abstract method getPoints")
-end
-
-
-function VectorInterface:setPoints(currentPoints)
-    error("abstract method setPoints")
-end
-
-return VectorInterface
 

@@ -23,6 +23,7 @@
 
 (set jnew_0 (fn jnew_0 []
     (var this (table/setproto @{:jclass "ABPriorityQueue"} jproto))
+    (JR/superInit this (PriorityQueue/jnew_0))
     this))
 
 

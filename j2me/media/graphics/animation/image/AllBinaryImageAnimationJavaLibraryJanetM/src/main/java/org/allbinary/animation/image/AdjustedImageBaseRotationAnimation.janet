@@ -1,65 +1,44 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.animation.image
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.animation.image
 
--- local Graphics = require("javax.microedition.lcdui.Graphics")
--- local Image = require("javax.microedition.lcdui.Image")
-local AnimationBehavior = require("org.allbinary.animation.AnimationBehavior")
-local AngleInfo = require("org.allbinary.math.AngleInfo")
-local ImageBaseRotationAnimation = require("org.allbinary.animation.image.ImageBaseRotationAnimation")
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(import ./ImageBaseRotationAnimation :as ImageBaseRotationAnimation)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class AdjustedImageBaseRotationAnimation
+(var jproto nil)
+(var jnew_6 nil)
+(var jm_init nil)
+(var jm_paintXY nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jnew_6 (fn jnew_6 [_image _angleInfo _totalAngle _dx _dy _animationBehavior]
+    (var this (table/setproto @{:jclass "AdjustedImageBaseRotationAnimation" :f_dx 0 :f_dy 0} jproto))
+    
+    
+        (JR/superInit this (ImageBaseRotationAnimation/jnew_4 _image _angleInfo _totalAngle _animationBehavior))
+        (:jm_init this _dx _dy)
+    this))
+    
+(set jm_init (fn jm_init [this _dx _dy]
+        (set (this :f_dx) _dx)
+        (set (this :f_dy) _dy)))
+    
+(set jm_paintXY (fn jm_paintXY [this _graphics _x _y]
+        ((get ImageBaseRotationAnimation/jproto :jm_paintXY) this _graphics (JR/i32 (+ _x (this :f_dx))) (JR/i32 (+ _y (this :f_dy))))))
 
-local AdjustedImageBaseRotationAnimation = {}
-AdjustedImageBaseRotationAnimation.__index = AdjustedImageBaseRotationAnimation
-AdjustedImageBaseRotationAnimation.className = "AdjustedImageBaseRotationAnimation"
-setmetatable(AdjustedImageBaseRotationAnimation, {__index = ImageBaseRotationAnimation})
+(set jproto (table/setproto @{:jm_init jm_init :jm_paintXY jm_paintXY} ImageBaseRotationAnimation/jproto))
 
-function AdjustedImageBaseRotationAnimation:_init_fields()
-    self.dx = 0
-    self.dy = 0
-end
-
-
-function AdjustedImageBaseRotationAnimation.new(image, angleInfo, totalAngle, dx, dy, animationBehavior)
-    local self = setmetatable(ImageBaseRotationAnimation.new(image, angleInfo, totalAngle, animationBehavior), AdjustedImageBaseRotationAnimation)
-    self:_init_fields()
-        -- super(...) made self above
-        self:init(dx, dy)
-    return self
-end
-
-
--- throws Exception
-function AdjustedImageBaseRotationAnimation:init(dx, dy)
-        self.dx = dx
-        self.dy = dy
-end
-
-
-function AdjustedImageBaseRotationAnimation:paintXY(graphics, x, y)
-        ImageBaseRotationAnimation.paintXY(self, graphics, x + self.dx, y + self.dy)
-end
-
-return AdjustedImageBaseRotationAnimation
 

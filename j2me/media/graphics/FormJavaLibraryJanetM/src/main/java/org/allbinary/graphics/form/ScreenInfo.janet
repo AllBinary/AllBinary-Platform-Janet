@@ -1,41 +1,35 @@
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.form
+# Generated Code Do Not Modify
+# package org.allbinary.graphics.form
 
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class ScreenInfo
+(var jproto nil)
+(var jcell_instance :jnone)
+(var jstatic_instance nil)
+(var jsetstatic_instance nil)
+(var jnew_0 nil)
+(var jm_getInstance nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jstatic_instance (fn jstatic_instance []
+  (when (= jcell_instance :jnone) (set jcell_instance (jnew_0)))
+  jcell_instance))
+(set jsetstatic_instance (fn jsetstatic_instance [value] (set jcell_instance value)))
 
-local ScreenInfo = {}
-ScreenInfo.__index = ScreenInfo
-ScreenInfo.className = "ScreenInfo"
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "ScreenInfo" :f_SMALL_WIDTH 0 :f_SMALL_HEIGHT 0 :f_MEDIUM_WIDTH 0 :f_MEDIUM_HEIGHT 0} jproto))
+    (put this :f_SMALL_WIDTH 320)
+    (put this :f_SMALL_HEIGHT 240)
+    (put this :f_MEDIUM_WIDTH 800)
+    (put this :f_MEDIUM_HEIGHT 600)
+    this))
 
-function ScreenInfo:_init_fields()
-    self.SMALL_WIDTH = 320
-    self.SMALL_HEIGHT = 240
-    self.MEDIUM_WIDTH = 800
-    self.MEDIUM_HEIGHT = 600
-end
+    
+(set jm_getInstance (fn jm_getInstance []
+    (label jreturn
+        (return jreturn (jstatic_instance)))))
 
-function ScreenInfo.new()
-    local self = setmetatable({}, ScreenInfo)
-    self:_init_fields()
-    return self
-end
+(set jproto @{})
 
-
-function ScreenInfo.getInstance()
-        return ScreenInfo.instance
-end
-
-ScreenInfo.instance = ScreenInfo.new()
-
-return ScreenInfo
 

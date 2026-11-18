@@ -1,41 +1,40 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.graphics
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.graphics
 
--- local Graphics = require("javax.microedition.lcdui.Graphics")
+(import ../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- Graphics/jstatic_TOP [& args] (JR/call jfile "../../../javax/microedition/lcdui/Graphics" "jstatic_TOP" args))
+(defn- Graphics/jstatic_LEFT [& args] (JR/call jfile "../../../javax/microedition/lcdui/Graphics" "jstatic_LEFT" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class Anchor
+(var jproto nil)
+(var jcell_TOP_LEFT :jnone)
+(var jstatic_TOP_LEFT nil)
+(var jsetstatic_TOP_LEFT nil)
+(var jnew_0 nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jstatic_TOP_LEFT (fn jstatic_TOP_LEFT []
+  (when (= jcell_TOP_LEFT :jnone) (set jcell_TOP_LEFT (band (Graphics/jstatic_TOP) (Graphics/jstatic_LEFT))))
+  jcell_TOP_LEFT))
+(set jsetstatic_TOP_LEFT (fn jsetstatic_TOP_LEFT [value] (set jcell_TOP_LEFT value)))
 
-local Anchor = {}
-Anchor.__index = Anchor
-Anchor.className = "Anchor"
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "Anchor"} jproto))
+    this))
 
-function Anchor.new()
-    local self = setmetatable({}, Anchor)
-    return self
-end
 
-Anchor.TOP_LEFT = Graphics.TOP & Graphics.LEFT
+(set jproto @{})
 
-return Anchor
 

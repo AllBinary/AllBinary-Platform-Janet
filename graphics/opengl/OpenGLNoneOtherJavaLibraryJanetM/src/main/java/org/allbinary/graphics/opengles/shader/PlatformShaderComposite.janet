@@ -1,44 +1,33 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2025 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.opengles.shader
+# 
+# AllBinary Open License Version 1 
+# Copyright (c) 2025 AllBinary 
+#  
+# By agreeing to this license you and any business entity you represent are 
+# legally bound to the AllBinary Open License Version 1 legal agreement. 
+#  
+# You may obtain the AllBinary Open License Version 1 legal agreement from 
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+#  
+# Created By: Travis Berthelot 
+#   
+# Generated Code Do Not Modify
+# package org.allbinary.graphics.opengles.shader
 
-local NullOpenGLProcessorFactory = require("org.allbinary.graphics.opengles.NullOpenGLProcessorFactory")
-local OpenGLProcessor = require("org.allbinary.graphics.opengles.OpenGLProcessor")
-local ShaderComposite = require("org.allbinary.graphics.opengles.shader.ShaderComposite")
+(import ../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- NullOpenGLProcessorFactory/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/graphics/opengles/NullOpenGLProcessorFactory" "jm_getInstance" args))
+(import ./ShaderComposite :as ShaderComposite)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class PlatformShaderComposite
+(var jproto nil)
+(var jnew_7 nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jnew_7 (fn jnew_7 [_requiresOpenGLVersion _shaderArray _compositeShaderUpdater _shaderInitializer _modelViewProjection _colorOpenGLProcessor _vertexOpenGLProcessor]
+    (var this (table/setproto @{:jclass "PlatformShaderComposite"} jproto))
+        (JR/superInit this (ShaderComposite/jnew_8 _requiresOpenGLVersion _shaderArray _compositeShaderUpdater _shaderInitializer _modelViewProjection _colorOpenGLProcessor _vertexOpenGLProcessor (NullOpenGLProcessorFactory/jm_getInstance)))
+    this))
 
-local PlatformShaderComposite = {}
-PlatformShaderComposite.__index = PlatformShaderComposite
-PlatformShaderComposite.className = "PlatformShaderComposite"
-setmetatable(PlatformShaderComposite, {__index = ShaderComposite})
+(set jproto (table/setproto @{} ShaderComposite/jproto))
 
-
-function PlatformShaderComposite.new(requiresOpenGLVersion, shaderArray, compositeShaderUpdater, shaderInitializer, modelViewProjection, colorOpenGLProcessor, vertexOpenGLProcessor)
-    local self = setmetatable(ShaderComposite.new(requiresOpenGLVersion, shaderArray, compositeShaderUpdater, shaderInitializer, modelViewProjection, colorOpenGLProcessor, vertexOpenGLProcessor, NullOpenGLProcessorFactory.getInstance()), PlatformShaderComposite)
-        -- super(...) made self above
-    return self
-end
-
-return PlatformShaderComposite
 

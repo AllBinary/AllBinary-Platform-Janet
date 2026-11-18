@@ -1,118 +1,107 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.graphics
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.graphics
 
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
+(import ../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- LogUtil/jm_getInstance [& args] (JR/call jfile "../../../org/allbinary/logic/communication/log/LogUtil" "jm_getInstance" args))
+(defn- StringMaker/jnew_0 [& args] (JR/call jfile "../../../org/allbinary/logic/string/StringMaker" "jnew_0" args))
+(defn- CommonStrings/jm_getInstance [& args] (JR/call jfile "../../../org/allbinary/string/CommonStrings" "jm_getInstance" args))
+(defn- CellPosition/jnew_4 [& args] (JR/call jfile "./CellPosition" "jnew_4" args))
 
-local function java_new_array(default, size, ...)
-    local array = {n = size}
-    for index = 1, size do
-        if select("#", ...) > 0 then array[index] = java_new_array(default, ...) else array[index] = default end
-    end
-    return array
-end
+# Java class CellPositionFactory
+(var jproto nil)
+(var jcell_SINGLETON :jnone)
+(var jstatic_SINGLETON nil)
+(var jsetstatic_SINGLETON nil)
+(var jnew_0 nil)
+(var jm_getInstance nil)
+(var jm_init nil)
+(var jm_getInstanceColRow nil)
+(var jm_createInstance nil)
+(var jm_getColumns nil)
+(var jm_getRows nil)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(set jstatic_SINGLETON (fn jstatic_SINGLETON []
+  (when (= jcell_SINGLETON :jnone) (set jcell_SINGLETON (jnew_0)))
+  jcell_SINGLETON))
+(set jsetstatic_SINGLETON (fn jsetstatic_SINGLETON [value] (set jcell_SINGLETON value)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jm_getInstance (fn jm_getInstance []
+    (label jreturn
+        (return jreturn (jstatic_SINGLETON)))))
+    
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "CellPositionFactory" :f_logUtil nil :f_NONE nil :f_cellPositionArray nil :f_columns 0 :f_rows 0} jproto))
+    (put this :f_logUtil (LogUtil/jm_getInstance))
+    (put this :f_NONE (CellPosition/jnew_4 (JR/i32 (- 1)) (JR/i32 (- 1)) (JR/i32 (- 1)) (JR/i32 (- 1))))
+    (put this :f_cellPositionArray (seq [jindex1 :range [0 0]] (array/new-filled 0 nil)))
+    
+    
+    this))
+    
+(set jm_init (fn jm_init [this _columns _rows]
+        (var _commonStrings (CommonStrings/jm_getInstance))
+        (var _stringBuffer (StringMaker/jnew_0))
+        (:jm_append _stringBuffer "Init: columns: ")
+        (:jm_appendint _stringBuffer _columns)
+        (:jm_append _stringBuffer " rows: ")
+        (:jm_appendint _stringBuffer _rows)
+        (:jm_putF (this :f_logUtil) (:jm_toString _stringBuffer) this (_commonStrings :f_INIT))
+        (set (this :f_cellPositionArray) (seq [jindex1 :range [0 _columns]] (array/new-filled _rows nil)))
+        (set (this :f_columns) _columns)
+        (set (this :f_rows) _rows)
+        (do
+            (var _column 0)
+            (while (< _column _columns)
+                (do
+            (do
+                (var _row 0)
+                (while (< _row _rows)
+                    (do
+                (:jm_createInstance this _column _row))
+                    (do (set _row (JR/i32 (+ _row 1)))))))
+                (do (set _column (JR/i32 (+ _column 1))))))))
+    
+(set jm_getInstanceColRow (fn jm_getInstanceColRow [this _i_column _i_row]
+    (label jreturn
+        (try
+            (do
+            (return jreturn (((this :f_cellPositionArray) _i_column) _i_row)))
+            ([_e] (do
+            (var _commonStrings (CommonStrings/jm_getInstance))
+            (:jm_put (this :f_logUtil) (:jm_toString (:jm_appendint (:jm_append (:jm_appendint (:jm_append (:jm_appendint (:jm_append (:jm_appendint (:jm_append (StringMaker/jnew_0) "columns: ") (:jm_getColumns this)) " rows: ") (:jm_getRows this)) " col: ") _i_column) " row: ") _i_row)) this (_commonStrings :f_GET_INSTANCE) _e)
+            (return jreturn (this :f_NONE))))))))
+    
+(set jm_createInstance (fn jm_createInstance [this _i_column _i_row]
+    (label jreturn
+        (var _cellPositionCanBeNull (((this :f_cellPositionArray) _i_column) _i_row))
+        (if (nil? _cellPositionCanBeNull)
+            (do
+            (set _cellPositionCanBeNull (CellPosition/jnew_4 _i_column _i_row (this :f_columns) (this :f_rows)))
+            (set (((this :f_cellPositionArray) _i_column) _i_row) _cellPositionCanBeNull)))
+        (return jreturn _cellPositionCanBeNull))))
+    
+(set jm_getColumns (fn jm_getColumns [this]
+    (label jreturn
+        (return jreturn (this :f_columns)))))
+    
+(set jm_getRows (fn jm_getRows [this]
+    (label jreturn
+        (return jreturn (this :f_rows)))))
 
-local CellPositionFactory = {}
-CellPositionFactory.__index = CellPositionFactory
-CellPositionFactory.className = "CellPositionFactory"
+(set jproto @{:jm_init jm_init :jm_getInstanceColRow jm_getInstanceColRow :jm_createInstance jm_createInstance :jm_getColumns jm_getColumns :jm_getRows jm_getRows})
 
-function CellPositionFactory:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-    self.NONE = CellPosition.new(-1, -1, -1, -1)
-    self.cellPositionArray = java_new_array(nil, 0, 0)
-    self.columns = 0
-    self.rows = 0
-end
-
-
-function CellPositionFactory.getInstance()
-        return CellPositionFactory.SINGLETON
-end
-
-
-function CellPositionFactory.new()
-    local self = setmetatable({}, CellPositionFactory)
-    self:_init_fields()
-    return self
-end
-
-
-function CellPositionFactory:init(columns, rows)
-        local commonStrings = CommonStrings.getInstance()
-        local stringBuffer = StringMaker.new()
-        stringBuffer:append("Init: columns: ")
-        stringBuffer:appendint(columns)
-        stringBuffer:append(" rows: ")
-        stringBuffer:appendint(rows)
-        self.logUtil:putF(tostring(stringBuffer), self, commonStrings.INIT)
-        self.cellPositionArray = java_new_array(nil, columns, rows)
-        self.columns = columns
-        self.rows = rows
-        for column = 0, columns - 1 do
-            for row = 0, rows - 1 do
-                self:createInstance(column, row)
-            end
-        end
-end
-
-
-function CellPositionFactory:getInstanceColRow(i_column, i_row)
-        local try_ok, try_error = pcall(function()
-            return self.cellPositionArray[i_column + 1][i_row + 1]
-        end)
-        if not try_ok then
-            local e = try_error
-            local commonStrings = CommonStrings.getInstance()
-            self.logUtil:put(tostring(StringMaker.new():append("columns: "):appendint(self:getColumns()):append(" rows: "):appendint(self:getRows()):append(" col: "):appendint(i_column):append(" row: "):appendint(i_row)), self, commonStrings.GET_INSTANCE, e)
-            return self.NONE
-        end
-end
-
-
-function CellPositionFactory:createInstance(i_column, i_row)
-        local cellPositionCanBeNull = self.cellPositionArray[i_column + 1][i_row + 1]
-        if cellPositionCanBeNull == nil then
-            cellPositionCanBeNull = CellPosition.new(i_column, i_row, self.columns, self.rows)
-            self.cellPositionArray[i_column + 1][i_row + 1] = cellPositionCanBeNull
-        end
-        return cellPositionCanBeNull
-end
-
-
-function CellPositionFactory:getColumns()
-        return self.columns
-end
-
-
-function CellPositionFactory:getRows()
-        return self.rows
-end
-
-CellPositionFactory.SINGLETON = CellPositionFactory.new()
-
-return CellPositionFactory
 

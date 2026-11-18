@@ -1,83 +1,60 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.score
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.game.score
 
--- local Command = require("javax.microedition.lcdui.Command")
-local J2MEUtil = require("org.allbinary.J2MEUtil")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- LogUtil/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/logic/communication/log/LogUtil" "jm_getInstance" args))
 
--- Java library Throwable. tostring gives the message like Java getMessage.
-local function java_exception(className, message, cause)
-    if cause == nil and type(message) == "table" then
-        cause = message
-        message = tostring(message)
-    end
-    local exception = {className = className, message = message, cause = cause}
-    function exception:getMessage() return self.message end
-    function exception:getCause() return self.cause end
-    function exception:printStackTrace() print(debug.traceback(tostring(self))) end
-    return setmetatable(exception, {__tostring = function(self) if self.message ~= nil then return tostring(self.message) end return self.className end})
-end
+# Java class HighScoreCommandsBaseFactory
+(var jproto nil)
+(var jnew_1 nil)
+(var jm_isHighScoreCommand nil)
+(var jm_getIndex nil)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+    
+(set jnew_1 (fn jnew_1 [_HIGH_SCORE_COMMANDS]
+    (var this (table/setproto @{:jclass "HighScoreCommandsBaseFactory" :f_logUtil nil :f_HIGH_SCORE_COMMANDS nil} jproto))
+    (put this :f_logUtil (LogUtil/jm_getInstance))
+    
+        (set (this :f_HIGH_SCORE_COMMANDS) _HIGH_SCORE_COMMANDS)
+    this))
+    
+(set jm_isHighScoreCommand (fn jm_isHighScoreCommand [this _command]
+    (label jreturn
+        (do
+            (var _index (JR/i32 (- (length (this :f_HIGH_SCORE_COMMANDS)) 1)))
+            (while (>= _index 0)
+                (do
+            (if (= _command ((this :f_HIGH_SCORE_COMMANDS) _index))
+                (do
+                (return jreturn true))))
+                (do (set _index (JR/i32 (- _index 1))))))
+        (return jreturn false))))
+    
+(set jm_getIndex (fn jm_getIndex [this _command]
+    (label jreturn
+        (do
+            (var _index (JR/i32 (- (length (this :f_HIGH_SCORE_COMMANDS)) 1)))
+            (while (>= _index 0)
+                (do
+            (if (= _command ((this :f_HIGH_SCORE_COMMANDS) _index))
+                (do
+                (return jreturn _index))))
+                (do (set _index (JR/i32 (- _index 1))))))
+        (error (JR/newException "Exception" "No Such Command")))))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jproto @{:jm_isHighScoreCommand jm_isHighScoreCommand :jm_getIndex jm_getIndex})
 
-local HighScoreCommandsBaseFactory = {}
-HighScoreCommandsBaseFactory.__index = HighScoreCommandsBaseFactory
-HighScoreCommandsBaseFactory.className = "HighScoreCommandsBaseFactory"
-
-function HighScoreCommandsBaseFactory:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-    self.HIGH_SCORE_COMMANDS = nil
-end
-
-
-function HighScoreCommandsBaseFactory.new(HIGH_SCORE_COMMANDS)
-    local self = setmetatable({}, HighScoreCommandsBaseFactory)
-    self:_init_fields()
-        self.HIGH_SCORE_COMMANDS = HIGH_SCORE_COMMANDS
-    return self
-end
-
-
-function HighScoreCommandsBaseFactory:isHighScoreCommand(command)
-        for index = (self.HIGH_SCORE_COMMANDS.n or #self.HIGH_SCORE_COMMANDS) - 1, 0, -1 do
-            if command == self.HIGH_SCORE_COMMANDS[index + 1] then
-                return true
-            end
-        end
-        return false
-end
-
-
--- throws Exception
-function HighScoreCommandsBaseFactory:getIndex(command)
-        for index = (self.HIGH_SCORE_COMMANDS.n or #self.HIGH_SCORE_COMMANDS) - 1, 0, -1 do
-            if command == self.HIGH_SCORE_COMMANDS[index + 1] then
-                return index
-            end
-        end
-        error(java_exception("Exception", "No Such Command"), 0)
-end
-
-return HighScoreCommandsBaseFactory
 

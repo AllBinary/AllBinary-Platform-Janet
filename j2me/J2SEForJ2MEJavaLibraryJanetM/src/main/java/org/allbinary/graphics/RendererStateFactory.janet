@@ -1,71 +1,63 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2022 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.graphics
+# 
+# AllBinary Open License Version 1 
+# Copyright (c) 2022 AllBinary 
+#  
+# By agreeing to this license you and any business entity you represent are 
+# legally bound to the AllBinary Open License Version 1 legal agreement. 
+#  
+# You may obtain the AllBinary Open License Version 1 legal agreement from 
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+#  
+# Created By: Travis Berthelot 
+#   
+# Generated Code Do Not Modify
+# package org.allbinary.graphics
 
+(import ../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class RendererStateFactory
+(var jproto nil)
+(var jcell_instance :jnone)
+(var jstatic_instance nil)
+(var jsetstatic_instance nil)
+(var jnew_0 nil)
+(var jm_getInstance nil)
+(var jm_setLoaded nil)
+(var jm_isLoaded nil)
+(var jm_setSurfaceChanged nil)
+(var jm_isSurfaceChanged nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jstatic_instance (fn jstatic_instance []
+  (when (= jcell_instance :jnone) (set jcell_instance (jnew_0)))
+  jcell_instance))
+(set jsetstatic_instance (fn jsetstatic_instance [value] (set jcell_instance value)))
 
-local RendererStateFactory = {}
-RendererStateFactory.__index = RendererStateFactory
-RendererStateFactory.className = "RendererStateFactory"
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "RendererStateFactory" :f_loaded false :f_surfaceChanged false} jproto))
+    (put this :f_loaded false)
+    (put this :f_surfaceChanged false)
+    this))
 
-function RendererStateFactory:_init_fields()
-    self.loaded = false
-    self.surfaceChanged = false
-end
+    
+(set jm_getInstance (fn jm_getInstance []
+    (label jreturn
+        (return jreturn (jstatic_instance)))))
+    
+(set jm_setLoaded (fn jm_setLoaded [this _loaded]
+        (set (this :f_loaded) _loaded)))
+    
+(set jm_isLoaded (fn jm_isLoaded [this]
+    (label jreturn
+        (return jreturn (this :f_loaded)))))
+    
+(set jm_setSurfaceChanged (fn jm_setSurfaceChanged [this _initialized]
+        (set (this :f_surfaceChanged) _initialized)))
+    
+(set jm_isSurfaceChanged (fn jm_isSurfaceChanged [this]
+    (label jreturn
+        (return jreturn (this :f_surfaceChanged)))))
 
-function RendererStateFactory.new()
-    local self = setmetatable({}, RendererStateFactory)
-    self:_init_fields()
-    return self
-end
+(set jproto @{:jm_setLoaded jm_setLoaded :jm_isLoaded jm_isLoaded :jm_setSurfaceChanged jm_setSurfaceChanged :jm_isSurfaceChanged jm_isSurfaceChanged})
 
-
-function RendererStateFactory.getInstance()
-        return RendererStateFactory.instance
-end
-
-
-function RendererStateFactory:setLoaded(loaded)
-        self.loaded = loaded
-end
-
-
-function RendererStateFactory:isLoaded()
-        return self.loaded
-end
-
-
-function RendererStateFactory:setSurfaceChanged(initialized)
-        self.surfaceChanged = initialized
-end
-
-
-function RendererStateFactory:isSurfaceChanged()
-        return self.surfaceChanged
-end
-
-RendererStateFactory.instance = RendererStateFactory.new()
-
-return RendererStateFactory
 

@@ -1,51 +1,49 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.game
 
+(import ../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- GameInfo/jnew_5 [& args] (JR/call jfile "./GameInfo" "jnew_5" args))
+(defn- GameTypeFactory/jm_getInstance [& args] (JR/call jfile "./GameTypeFactory" "jm_getInstance" args))
+(defn- GameMode/jstatic_SERVER [& args] (JR/call jfile "./GameMode" "jstatic_SERVER" args))
+(defn- PlayerTypesFactory/jm_getInstance [& args] (JR/call jfile "./PlayerTypesFactory" "jm_getInstance" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class BasicHighScoresGameInfoFactory
+(var jproto nil)
+(var jcell_SINGLETON :jnone)
+(var jstatic_SINGLETON nil)
+(var jsetstatic_SINGLETON nil)
+(var jnew_0 nil)
+(var jm_getInstance nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jstatic_SINGLETON (fn jstatic_SINGLETON []
+  (when (= jcell_SINGLETON :jnone) (set jcell_SINGLETON (jnew_0)))
+  jcell_SINGLETON))
+(set jsetstatic_SINGLETON (fn jsetstatic_SINGLETON [value] (set jcell_SINGLETON value)))
 
-local BasicHighScoresGameInfoFactory = {}
-BasicHighScoresGameInfoFactory.__index = BasicHighScoresGameInfoFactory
-BasicHighScoresGameInfoFactory.className = "BasicHighScoresGameInfoFactory"
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "BasicHighScoresGameInfoFactory" :f_MULTI_PLAYER_SERVER nil :f_SINGLE_PLAYER_SERVER nil} jproto))
+    (put this :f_MULTI_PLAYER_SERVER (GameInfo/jnew_5 ((GameTypeFactory/jm_getInstance) :f_MULTI_PLAYER) (GameMode/jstatic_SERVER) ((PlayerTypesFactory/jm_getInstance) :f_PLAYER_TYPE_ONE) 0 0))
+    (put this :f_SINGLE_PLAYER_SERVER (GameInfo/jnew_5 ((GameTypeFactory/jm_getInstance) :f_SINGLE_PLAYER) (GameMode/jstatic_SERVER) ((PlayerTypesFactory/jm_getInstance) :f_PLAYER_TYPE_ONE) 0 0))
+    this))
 
-function BasicHighScoresGameInfoFactory:_init_fields()
-    self.MULTI_PLAYER_SERVER = GameInfo.new(GameTypeFactory.getInstance().MULTI_PLAYER, GameMode.SERVER, PlayerTypesFactory.getInstance().PLAYER_TYPE_ONE, 0, 0)
-    self.SINGLE_PLAYER_SERVER = GameInfo.new(GameTypeFactory.getInstance().SINGLE_PLAYER, GameMode.SERVER, PlayerTypesFactory.getInstance().PLAYER_TYPE_ONE, 0, 0)
-end
+    
+(set jm_getInstance (fn jm_getInstance []
+    (label jreturn
+        (return jreturn (jstatic_SINGLETON)))))
 
-function BasicHighScoresGameInfoFactory.new()
-    local self = setmetatable({}, BasicHighScoresGameInfoFactory)
-    self:_init_fields()
-    return self
-end
+(set jproto @{})
 
-
-function BasicHighScoresGameInfoFactory.getInstance()
-        return BasicHighScoresGameInfoFactory.SINGLETON
-end
-
-BasicHighScoresGameInfoFactory.SINGLETON = BasicHighScoresGameInfoFactory.new()
-
-return BasicHighScoresGameInfoFactory
 

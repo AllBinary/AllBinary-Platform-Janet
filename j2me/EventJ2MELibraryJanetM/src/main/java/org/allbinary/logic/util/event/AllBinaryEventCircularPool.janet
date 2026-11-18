@@ -26,6 +26,7 @@
     
 (set jnew_1 (fn jnew_1 [_max]
     (var this (table/setproto @{:jclass "AllBinaryEventCircularPool"} jproto))
+    (JR/superInit this (BaseCircularPool/jnew_0))
         (set (this :f_OBJECT_ARRAY) (array/new-filled _max nil))
         (set (this :f_circularIndexUtil) (CircularIndexUtil/jm_createInstance _max))
     this))

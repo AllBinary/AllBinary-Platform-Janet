@@ -1,51 +1,49 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.combat.damage
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.game.combat.damage
 
-local Paintable = require("org.allbinary.graphics.paint.Paintable")
+(import ../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(import ../../../../../org/allbinary/graphics/paint/Paintable :as Paintable)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class DamageFloaters
+(var jproto nil)
+(var jcell_SINGLETON :jnone)
+(var jstatic_SINGLETON nil)
+(var jsetstatic_SINGLETON nil)
+(var jnew_0 nil)
+(var jm_getInstance nil)
+(var jm_add nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jstatic_SINGLETON (fn jstatic_SINGLETON []
+  (when (= jcell_SINGLETON :jnone) (set jcell_SINGLETON (jnew_0)))
+  jcell_SINGLETON))
+(set jsetstatic_SINGLETON (fn jsetstatic_SINGLETON [value] (set jcell_SINGLETON value)))
 
-local DamageFloaters = {}
-DamageFloaters.__index = DamageFloaters
-DamageFloaters.className = "DamageFloaters"
-setmetatable(DamageFloaters, {__index = Paintable})
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "DamageFloaters"} jproto))
+    (JR/superInit this (Paintable/jnew_0))
+    this))
 
-function DamageFloaters.new()
-    local self = setmetatable(Paintable.new(), DamageFloaters)
-    return self
-end
+    
+(set jm_getInstance (fn jm_getInstance []
+    (label jreturn
+        (return jreturn (jstatic_SINGLETON)))))
+    
+(set jm_add (fn jm_add [this _damage]
+    nil))
 
+(set jproto (table/setproto @{:jm_add jm_add} Paintable/jproto))
 
-function DamageFloaters.getInstance()
-        return DamageFloaters.SINGLETON
-end
-
-
-function DamageFloaters:add(damage)
-end
-
-DamageFloaters.SINGLETON = DamageFloaters.new()
-
-return DamageFloaters
 

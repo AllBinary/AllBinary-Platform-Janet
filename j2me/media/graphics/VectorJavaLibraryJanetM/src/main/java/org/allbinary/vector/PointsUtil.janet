@@ -1,94 +1,92 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.vector
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.vector
 
+(import ../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
 
-local function java_new_array(default, size, ...)
-    local array = {n = size}
-    for index = 1, size do
-        if select("#", ...) > 0 then array[index] = java_new_array(default, ...) else array[index] = default end
-    end
-    return array
-end
+# Java class PointsUtil
+(var jproto nil)
+(var jcell_instance :jnone)
+(var jstatic_instance nil)
+(var jsetstatic_instance nil)
+(var jnew_0 nil)
+(var jm_getInstance nil)
+(var jm_adjustXY nil)
+(var jm_adjust_2 nil)
+(var jm_adjust_3 nil)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(set jstatic_instance (fn jstatic_instance []
+  (when (= jcell_instance :jnone) (set jcell_instance (jnew_0)))
+  jcell_instance))
+(set jsetstatic_instance (fn jsetstatic_instance [value] (set jcell_instance value)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "PointsUtil"} jproto))
+    this))
 
-local PointsUtil = {}
-PointsUtil.__index = PointsUtil
-PointsUtil.className = "PointsUtil"
+    
+(set jm_getInstance (fn jm_getInstance []
+    (label jreturn
+        (return jreturn (jstatic_instance)))))
+    
+(set jm_adjustXY (fn jm_adjustXY [this _points _x _y]
+    (label jreturn
+        (var _size (length _points))
+        (var _newPoints (seq [jindex1 :range [0 _size]] (seq [jindex2 :range [0 0]] (array/new-filled 0 0))))
+        (do
+            (var _index 0)
+            (while (< _index _size)
+                (do
+            (var _size2 (length (_points _index)))
+            (set (_newPoints _index) (seq [jindex1 :range [0 _size2]] (array/new-filled 2 0)))
+            (do
+                (var _index2 0)
+                (while (< _index2 _size2)
+                    (do
+                (if (not= (((_points _index) _index2) 0) 1000)
+                    (do
+                    (set (((_newPoints _index) _index2) 0) (JR/i32 (+ (((_points _index) _index2) 0) _x)))
+                    (set (((_newPoints _index) _index2) 1) (JR/i32 (+ (((_points _index) _index2) 1) _y))))
+                    (do
+                    (set (((_newPoints _index) _index2) 0) 1000)
+                    (set (((_newPoints _index) _index2) 1) 1000))))
+                    (do (set _index2 (JR/i32 (+ _index2 1)))))))
+                (do (set _index (JR/i32 (+ _index 1))))))
+        (return jreturn _newPoints))))
+    
+(set jm_adjust_2 (fn jm_adjust_2 [this _points _both]
+    (label jreturn
+        (return jreturn (:jm_adjust_3 this _points _both _both)))))
+    
+(set jm_adjust_3 (fn jm_adjust_3 [this _points _x _y]
+    (label jreturn
+        (var _newPoints (seq [jindex1 :range [0 (length _points)]] (array/new-filled 2 0)))
+        (do
+            (var _index2 0)
+            (while (< _index2 (length _points))
+                (do
+            (if (not= ((_points _index2) 0) 1000)
+                (do
+                (set ((_newPoints _index2) 0) (JR/i32 (+ ((_points _index2) 0) _x)))
+                (set ((_newPoints _index2) 1) (JR/i32 (+ ((_points _index2) 1) _y))))
+                (do
+                (set ((_newPoints _index2) 0) 1000)
+                (set ((_newPoints _index2) 1) 1000))))
+                (do (set _index2 (JR/i32 (+ _index2 1))))))
+        (return jreturn _newPoints))))
 
-function PointsUtil.new()
-    local self = setmetatable({}, PointsUtil)
-    return self
-end
+(set jproto @{:jm_adjustXY jm_adjustXY :jm_adjust_2 jm_adjust_2 :jm_adjust_3 jm_adjust_3})
 
-
-function PointsUtil.getInstance()
-        return PointsUtil.instance
-end
-
-
-function PointsUtil:adjustXY(points, x, y)
-        local size = (points.n or #points)
-        local newPoints = java_new_array(0, size, 0, 0)
-        for index = 0, size - 1 do
-            local size2 = (points[index + 1].n or #points[index + 1])
-            newPoints[index + 1] = java_new_array(0, size2, 2)
-            for index2 = 0, size2 - 1 do
-                if points[index + 1][index2 + 1][1] ~= 1000 then
-                    newPoints[index + 1][index2 + 1][1] = points[index + 1][index2 + 1][1] + x
-                    newPoints[index + 1][index2 + 1][2] = points[index + 1][index2 + 1][2] + y
-                else
-                    newPoints[index + 1][index2 + 1][1] = 1000
-                    newPoints[index + 1][index2 + 1][2] = 1000
-                end
-            end
-        end
-        return newPoints
-end
-
-
-function PointsUtil:adjust(points, both)
-        return self:adjust(points, both, both)
-end
-
-
--- Java overloaded method: Lua keeps the last definition
-function PointsUtil:adjust(points, x, y)
-        local newPoints = java_new_array(0, (points.n or #points), 2)
-        for index2 = 0, (points.n or #points) - 1 do
-            if points[index2 + 1][1] ~= 1000 then
-                newPoints[index2 + 1][1] = points[index2 + 1][1] + x
-                newPoints[index2 + 1][2] = points[index2 + 1][2] + y
-            else
-                newPoints[index2 + 1][1] = 1000
-                newPoints[index2 + 1][2] = 1000
-            end
-        end
-        return newPoints
-end
-
-PointsUtil.instance = PointsUtil.new()
-
-return PointsUtil
 

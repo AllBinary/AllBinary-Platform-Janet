@@ -1,68 +1,56 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.ag.ai.scroller
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.game.ag.ai.scroller
 
--- local Canvas = require("javax.microedition.lcdui.Canvas")
-local BasicAI = require("org.allbinary.game.ai.BasicAI")
-local GameInput = require("org.allbinary.game.input.GameInput")
-local AllBinaryLayer = require("org.allbinary.layer.AllBinaryLayer")
-local AllBinaryLayerManager = require("org.allbinary.layer.AllBinaryLayerManager")
-local SmallIntegerSingletonFactory = require("org.allbinary.logic.math.SmallIntegerSingletonFactory")
-local GameTickTimeDelayHelperFactory = require("org.allbinary.time.GameTickTimeDelayHelperFactory")
-local TimeDelayHelper = require("org.allbinary.time.TimeDelayHelper")
+(import ../../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- Canvas/jstatic_KEY_NUM1 [& args] (JR/call jfile "../../../../../../javax/microedition/lcdui/Canvas" "jstatic_KEY_NUM1" args))
+(import ../../../../../../org/allbinary/game/ai/BasicAI :as BasicAI)
+(defn- SmallIntegerSingletonFactory/jm_getInstance [& args] (JR/call jfile "../../../../../../org/allbinary/logic/math/SmallIntegerSingletonFactory" "jm_getInstance" args))
+(defn- GameTickTimeDelayHelperFactory/jm_getInstance [& args] (JR/call jfile "../../../../../../org/allbinary/time/GameTickTimeDelayHelperFactory" "jm_getInstance" args))
+(defn- TimeDelayHelper/jnew_1 [& args] (JR/call jfile "../../../../../../org/allbinary/time/TimeDelayHelper" "jnew_1" args))
+(import ../../../../../../java/lang/Integer :as Integer)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class TimedFireAI
+(var jproto nil)
+(var jcell_TIME :jnone)
+(var jstatic_TIME nil)
+(var jsetstatic_TIME nil)
+(var jnew_3 nil)
+(var jm_processAI nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jstatic_TIME (fn jstatic_TIME []
+  (when (= jcell_TIME :jnone) (set jcell_TIME (:jm_getAt (SmallIntegerSingletonFactory/jm_getInstance) 1)))
+  jcell_TIME))
+(set jsetstatic_TIME (fn jsetstatic_TIME [value] (set jcell_TIME value)))
 
-local TimedFireAI = {}
-TimedFireAI.__index = TimedFireAI
-TimedFireAI.className = "TimedFireAI"
-setmetatable(TimedFireAI, {__index = BasicAI})
+    
+(set jnew_3 (fn jnew_3 [_delay _ownerLayerInterface _gameInput]
+    (var this (table/setproto @{:jclass "TimedFireAI" :f_maxFireDelayTimeHelper nil :f_delay 0} jproto))
+    (put this :f_maxFireDelayTimeHelper (TimeDelayHelper/jnew_1 0))
+    
+        (JR/superInit this (BasicAI/jnew_2 _ownerLayerInterface _gameInput))
+        (set (this :f_delay) _delay)
+    this))
+    
+(set jm_processAI (fn jm_processAI [this _allBinaryLayerManager]
+        (var _timeFiredInterface (:jm_getOwnerLayerInterface this))
+        (if (and (:jm_isTime (this :f_maxFireDelayTimeHelper) ((GameTickTimeDelayHelperFactory/jm_getInstance) :f_startTime)) (< (JR/i32 (+ (:jm_getLastFireTime _timeFiredInterface) ((this :f_maxFireDelayTimeHelper) :f_delay))) (:jm_getStartTime (this :f_maxFireDelayTimeHelper))))
+            (do
+            ((get BasicAI/jproto :jm_processKeyAI) this (Canvas/jstatic_KEY_NUM1))
+            (set ((this :f_maxFireDelayTimeHelper) :f_delay) (this :f_delay))))))
 
-function TimedFireAI:_init_fields()
-    self.maxFireDelayTimeHelper = TimeDelayHelper.new(0)
-    self.delay = nil
-end
+(set jproto (table/setproto @{:jm_processAI jm_processAI} BasicAI/jproto))
 
-
-function TimedFireAI.new(delay, ownerLayerInterface, gameInput)
-    local self = setmetatable(BasicAI.new(ownerLayerInterface, gameInput), TimedFireAI)
-    self:_init_fields()
-        -- super(...) made self above
-        self.delay = delay
-    return self
-end
-
-
--- throws Exception
-function TimedFireAI:processAI(allBinaryLayerManager)
-        local timeFiredInterface = self:getOwnerLayerInterface()
-        if self.maxFireDelayTimeHelper:isTime(GameTickTimeDelayHelperFactory.getInstance().startTime) and timeFiredInterface:getLastFireTime() + self.maxFireDelayTimeHelper.delay < self.maxFireDelayTimeHelper:getStartTime() then
-            BasicAI.processKeyAI(self, Canvas.KEY_NUM1)
-            self.maxFireDelayTimeHelper.delay = self.delay
-        end
-end
-
-TimedFireAI.TIME = SmallIntegerSingletonFactory.getInstance():getAt(1)
-
-return TimedFireAI
 

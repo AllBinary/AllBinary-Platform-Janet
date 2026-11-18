@@ -1,86 +1,66 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2025 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.game.ag.layer.hud.basic
+# 
+# AllBinary Open License Version 1 
+# Copyright (c) 2025 AllBinary 
+#  
+# By agreeing to this license you and any business entity you represent are 
+# legally bound to the AllBinary Open License Version 1 legal agreement. 
+#  
+# You may obtain the AllBinary Open License Version 1 legal agreement from 
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+#  
+# Created By: Travis Berthelot 
+#   
+# Generated Code Do Not Modify
+# package org.allbinary.game.ag.layer.hud.basic
 
-local BasicHudFactory = require("org.allbinary.game.graphics.hud.BasicHudFactory")
-local BasicColorFactory = require("org.allbinary.graphics.color.BasicColorFactory")
-local NullUtil = require("org.allbinary.logic.NullUtil")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
+(import ../../../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- BasicHudFactory/jm_getInstance [& args] (JR/call jfile "../../../../../../../org/allbinary/game/graphics/hud/BasicHudFactory" "jm_getInstance" args))
+(defn- BasicColorFactory/jm_getInstance [& args] (JR/call jfile "../../../../../../../org/allbinary/graphics/color/BasicColorFactory" "jm_getInstance" args))
+(defn- NullUtil/jm_getInstance [& args] (JR/call jfile "../../../../../../../org/allbinary/logic/NullUtil" "jm_getInstance" args))
+(defn- LogUtil/jm_getInstance [& args] (JR/call jfile "../../../../../../../org/allbinary/logic/communication/log/LogUtil" "jm_getInstance" args))
+(defn- StringUtil/jm_getInstance [& args] (JR/call jfile "../../../../../../../org/allbinary/logic/string/StringUtil" "jm_getInstance" args))
+(defn- CommonStrings/jm_getInstance [& args] (JR/call jfile "../../../../../../../org/allbinary/string/CommonStrings" "jm_getInstance" args))
+(defn- NumberStringHud/jnew_6 [& args] (JR/call jfile "./NumberStringHud" "jnew_6" args))
 
--- Java library Throwable. tostring gives the message like Java getMessage.
-local function java_exception(className, message, cause)
-    if cause == nil and type(message) == "table" then
-        cause = message
-        message = tostring(message)
-    end
-    local exception = {className = className, message = message, cause = cause}
-    function exception:getMessage() return self.message end
-    function exception:getCause() return self.cause end
-    function exception:printStackTrace() print(debug.traceback(tostring(self))) end
-    return setmetatable(exception, {__tostring = function(self) if self.message ~= nil then return tostring(self.message) end return self.className end})
-end
+# Java class NumberStringHudFactory
+(var jproto nil)
+(var jcell_instance :jnone)
+(var jstatic_instance nil)
+(var jsetstatic_instance nil)
+(var jnew_0 nil)
+(var jm_getInstance nil)
+(var jm_createHud nil)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(set jstatic_instance (fn jstatic_instance []
+  (when (= jcell_instance :jnone) (set jcell_instance (NullUtil/jm_getInstance)))
+  jcell_instance))
+(set jsetstatic_instance (fn jsetstatic_instance [value] (set jcell_instance value)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "NumberStringHudFactory" :f_NULL_NUMBER_STRING_HUD nil} jproto))
+    (put this :f_NULL_NUMBER_STRING_HUD (:jm_createHud this))
+    this))
 
-local NumberStringHudFactory = {}
-NumberStringHudFactory.__index = NumberStringHudFactory
-NumberStringHudFactory.className = "NumberStringHudFactory"
+    
+(set jm_getInstance (fn jm_getInstance []
+    (label jreturn
+        (if (= (jstatic_instance) (NullUtil/jm_getInstance))
+            (do
+            (set jcell_instance (jnew_0))))
+        (return jreturn (jstatic_instance)))))
+    
+(set jm_createHud (fn jm_createHud [this]
+    (label jreturn
+        (try
+            (do
+            (return jreturn (NumberStringHud/jnew_6 ((StringUtil/jm_getInstance) :f_EMPTY_STRING) 9 ((BasicHudFactory/jm_getInstance) :f_ABSOLUTE) 1 0 ((BasicColorFactory/jm_getInstance) :f_NULL_COLOR))))
+            ([_e] (do
+            (var _logUtil (LogUtil/jm_getInstance))
+            (var _commonStrings (CommonStrings/jm_getInstance))
+            (:jm_put _logUtil (_commonStrings :f_EXCEPTION) this (_commonStrings :f_CONSTRUCTOR) _e)
+            (error (JR/newException "RuntimeException"))))))))
 
-function NumberStringHudFactory:_init_fields()
-    self.NULL_NUMBER_STRING_HUD = self:createHud()
-end
+(set jproto @{:jm_createHud jm_createHud})
 
-function NumberStringHudFactory.new()
-    local self = setmetatable({}, NumberStringHudFactory)
-    self:_init_fields()
-    return self
-end
-
-
-function NumberStringHudFactory.getInstance()
-        if NumberStringHudFactory.instance == NullUtil.getInstance() then
-            NumberStringHudFactory.instance = NumberStringHudFactory.new()
-        end
-        return NumberStringHudFactory.instance
-end
-
-
-function NumberStringHudFactory:createHud()
-        local try_ok, try_error = pcall(function()
-            return NumberStringHud.new(StringUtil.getInstance().EMPTY_STRING, 9, BasicHudFactory.getInstance().ABSOLUTE, 1, 0, BasicColorFactory.getInstance().NULL_COLOR)
-        end)
-        if not try_ok then
-            local e = try_error
-            local logUtil = LogUtil.getInstance()
-            local commonStrings = CommonStrings.getInstance()
-            logUtil:put(commonStrings.EXCEPTION, self, commonStrings.CONSTRUCTOR, e)
-            error(java_exception("RuntimeException"), 0)
-        end
-end
-
-NumberStringHudFactory.instance = NullUtil.getInstance()
-
-return NumberStringHudFactory
 

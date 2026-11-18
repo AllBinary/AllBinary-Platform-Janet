@@ -1,51 +1,42 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.media.audio
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.media.audio
 
--- local Player = require("javax.microedition.media.Player")
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class SoundInterface
+(var jproto nil)
+(var jnew_0 nil)
+(var jm_getResource nil)
+(var jm_getPlayerP nil)
+(var jm_init nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "SoundInterface"} jproto))
+    this))
 
--- Java interface
-local SoundInterface = {}
-SoundInterface.__index = SoundInterface
-SoundInterface.className = "SoundInterface"
+    
+(set jm_getResource (fn jm_getResource [this]
+    (error (JR/newException "AbstractMethodError" "getResource"))))
+    
+(set jm_getPlayerP (fn jm_getPlayerP [this]
+    (error (JR/newException "AbstractMethodError" "getPlayerP"))))
+    
+(set jm_init (fn jm_init [this]
+    (error (JR/newException "AbstractMethodError" "init"))))
 
+(set jproto @{:jm_getResource jm_getResource :jm_getPlayerP jm_getPlayerP :jm_init jm_init})
 
-function SoundInterface:getResource()
-    error("abstract method getResource")
-end
-
-
-function SoundInterface:getPlayerP()
-    error("abstract method getPlayerP")
-end
-
-
--- throws Exception
-function SoundInterface:init()
-    error("abstract method init")
-end
-
-return SoundInterface
 

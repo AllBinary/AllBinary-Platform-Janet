@@ -1,53 +1,38 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.paint
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.graphics.paint
 
--- local Graphics = require("javax.microedition.lcdui.Graphics")
-local LocationPaintable = require("org.allbinary.graphics.paint.LocationPaintable")
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(import ./LocationPaintable :as LocationPaintable)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class StringLocationPaintable
+(var jproto nil)
+(var jnew_1 nil)
+(var jm_paintXY nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jnew_1 (fn jnew_1 [_value]
+    (var this (table/setproto @{:jclass "StringLocationPaintable" :f_value nil} jproto))
+    
+    (JR/superInit this (LocationPaintable/jnew_0))
+        (set (this :f_value) _value)
+    this))
+    
+(set jm_paintXY (fn jm_paintXY [this _graphics _x _y]
+        (:jm_drawString _graphics (this :f_value) _x _y 0)))
 
-local StringLocationPaintable = {}
-StringLocationPaintable.__index = StringLocationPaintable
-StringLocationPaintable.className = "StringLocationPaintable"
-setmetatable(StringLocationPaintable, {__index = LocationPaintable})
+(set jproto (table/setproto @{:jm_paintXY jm_paintXY} LocationPaintable/jproto))
 
-function StringLocationPaintable:_init_fields()
-    self.value = nil
-end
-
-
-function StringLocationPaintable.new(value)
-    local self = setmetatable(LocationPaintable.new(), StringLocationPaintable)
-    self:_init_fields()
-        self.value = value
-    return self
-end
-
-
-function StringLocationPaintable:paintXY(graphics, x, y)
-        graphics:drawString(self.value, x, y, 0)
-end
-
-return StringLocationPaintable
 

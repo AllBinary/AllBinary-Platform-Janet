@@ -1,88 +1,72 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.system.security.licensing
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.logic.system.security.licensing
 
--- local InputStream = require("java.io.InputStream")
--- local InputStreamReader = require("java.io.InputStreamReader")
-local ResourceUtil = require("org.allbinary.data.resource.ResourceUtil")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
+(import ../../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(import ../../../../../../java/io/InputStream :as InputStream)
+(import ../../../../../../java/io/InputStreamReader :as InputStreamReader)
+(defn- ResourceUtil/jm_getInstance [& args] (JR/call jfile "../../../../../../org/allbinary/data/resource/ResourceUtil" "jm_getInstance" args))
+(defn- LogUtil/jm_getInstance [& args] (JR/call jfile "../../../../../../org/allbinary/logic/communication/log/LogUtil" "jm_getInstance" args))
+(defn- StringUtil/jm_getInstance [& args] (JR/call jfile "../../../../../../org/allbinary/logic/string/StringUtil" "jm_getInstance" args))
+(defn- CommonStrings/jm_getInstance [& args] (JR/call jfile "../../../../../../org/allbinary/string/CommonStrings" "jm_getInstance" args))
 
-local function java_new_array(default, size, ...)
-    local array = {n = size}
-    for index = 1, size do
-        if select("#", ...) > 0 then array[index] = java_new_array(default, ...) else array[index] = default end
-    end
-    return array
-end
+# Java class PartnerIdentifierFileUtil
+(var jproto nil)
+(var jcell_instance :jnone)
+(var jstatic_instance nil)
+(var jsetstatic_instance nil)
+(var jnew_0 nil)
+(var jm_getInstance nil)
+(var jm_get nil)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(set jstatic_instance (fn jstatic_instance []
+  (when (= jcell_instance :jnone) (set jcell_instance (jnew_0)))
+  jcell_instance))
+(set jsetstatic_instance (fn jsetstatic_instance [value] (set jcell_instance value)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "PartnerIdentifierFileUtil" :f_logUtil nil :f_FILE_NAME nil} jproto))
+    (put this :f_logUtil (LogUtil/jm_getInstance))
+    (put this :f_FILE_NAME "partner.txt")
+    this))
 
-local PartnerIdentifierFileUtil = {}
-PartnerIdentifierFileUtil.__index = PartnerIdentifierFileUtil
-PartnerIdentifierFileUtil.className = "PartnerIdentifierFileUtil"
+    
+(set jm_getInstance (fn jm_getInstance []
+    (label jreturn
+        (return jreturn (jstatic_instance)))))
+    
+(set jm_get (fn jm_get [this]
+    (label jreturn
+        (try
+            (do
+            (var _resourceUtil (ResourceUtil/jm_getInstance))
+            (var _inputStream (:jm_getResourceAsStream _resourceUtil (this :f_FILE_NAME)))
+            (var _inputStreamReader (InputStreamReader/jnew_1 _inputStream))
+            (var _chars (array/new-filled 30 0))
+            (var _size (:jm_read _inputStreamReader _chars))
+            (var _partnerString ((StringUtil/jm_getInstance) :f_EMPTY_STRING))
+            (if (> _size 0)
+                (do
+                (set _partnerString (JR/fromChars _chars 0 _size))))
+            (:jm_close _inputStreamReader)
+            (return jreturn _partnerString))
+            ([_e] (do
+            (var _commonStrings (CommonStrings/jm_getInstance))
+            (:jm_put (this :f_logUtil) (_commonStrings :f_EXCEPTION) this (_commonStrings :f_GET) _e)
+            (return jreturn ((StringUtil/jm_getInstance) :f_NULL_STRING))))))))
 
-function PartnerIdentifierFileUtil:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-    self.FILE_NAME = "partner.txt"
-end
+(set jproto @{:jm_get jm_get})
 
-function PartnerIdentifierFileUtil.new()
-    local self = setmetatable({}, PartnerIdentifierFileUtil)
-    self:_init_fields()
-    return self
-end
-
-
-function PartnerIdentifierFileUtil.getInstance()
-        return PartnerIdentifierFileUtil.instance
-end
-
-
-function PartnerIdentifierFileUtil:get()
-        local try_ok, try_error = pcall(function()
-            local resourceUtil = ResourceUtil.getInstance()
-            local inputStream = resourceUtil:getResourceAsStream(self.FILE_NAME)
-            local inputStreamReader = InputStreamReader.new(inputStream)
-            local chars = java_new_array("\0", 30)
-            local size = inputStreamReader:read(chars)
-            local partnerString = StringUtil.getInstance().EMPTY_STRING
-            if size > 0 then
-                partnerString = String.new(chars, 0, size)
-            end
-            inputStreamReader:close()
-            return partnerString
-        end)
-        if not try_ok then
-            local e = try_error
-            local commonStrings = CommonStrings.getInstance()
-            self.logUtil:put(commonStrings.EXCEPTION, self, commonStrings.GET, e)
-            return StringUtil.getInstance().NULL_STRING
-        end
-end
-
-PartnerIdentifierFileUtil.instance = PartnerIdentifierFileUtil.new()
-
-return PartnerIdentifierFileUtil
 

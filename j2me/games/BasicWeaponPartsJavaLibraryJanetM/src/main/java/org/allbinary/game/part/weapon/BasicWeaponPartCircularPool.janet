@@ -1,62 +1,50 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.part.weapon
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.game.part.weapon
 
-local WeaponProperties = require("org.allbinary.game.combat.weapon.WeaponProperties")
-local ScoreableInterface = require("org.allbinary.game.score.ScoreableInterface")
-local RelativeRelationship = require("org.allbinary.graphics.RelativeRelationship")
-local AllBinaryLayer = require("org.allbinary.layer.AllBinaryLayer")
+(import ../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- BasicWeaponPart/jstatic_NULL_BASIC_WEAPON_PART [& args] (JR/call jfile "./BasicWeaponPart" "jstatic_NULL_BASIC_WEAPON_PART" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class BasicWeaponPartCircularPool
+(var jproto nil)
+(var jcell_NULL_BASIC_WEAPON_PART_CIRCULAR_POOL :jnone)
+(var jstatic_NULL_BASIC_WEAPON_PART_CIRCULAR_POOL nil)
+(var jsetstatic_NULL_BASIC_WEAPON_PART_CIRCULAR_POOL nil)
+(var jnew_0 nil)
+(var jm_init nil)
+(var jm_getInstance nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jstatic_NULL_BASIC_WEAPON_PART_CIRCULAR_POOL (fn jstatic_NULL_BASIC_WEAPON_PART_CIRCULAR_POOL []
+  (when (= jcell_NULL_BASIC_WEAPON_PART_CIRCULAR_POOL :jnone) (set jcell_NULL_BASIC_WEAPON_PART_CIRCULAR_POOL (jnew_0)))
+  jcell_NULL_BASIC_WEAPON_PART_CIRCULAR_POOL))
+(set jsetstatic_NULL_BASIC_WEAPON_PART_CIRCULAR_POOL (fn jsetstatic_NULL_BASIC_WEAPON_PART_CIRCULAR_POOL [value] (set jcell_NULL_BASIC_WEAPON_PART_CIRCULAR_POOL value)))
 
-local BasicWeaponPartCircularPool = {}
-BasicWeaponPartCircularPool.__index = BasicWeaponPartCircularPool
-BasicWeaponPartCircularPool.className = "BasicWeaponPartCircularPool"
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "BasicWeaponPartCircularPool" :f_basicWeaponPart nil} jproto))
+    (put this :f_basicWeaponPart (BasicWeaponPart/jstatic_NULL_BASIC_WEAPON_PART))
+    this))
 
-function BasicWeaponPartCircularPool:_init_fields()
-    self.basicWeaponPart = BasicWeaponPart.NULL_BASIC_WEAPON_PART
-end
+    
+(set jm_init (fn jm_init [this _basicWeaponPartFactoryInterface]
+        (set (this :f_basicWeaponPart) (:jm_getInstance _basicWeaponPartFactoryInterface))))
+    
+(set jm_getInstance (fn jm_getInstance [this _sourceLayerInterface _weaponProperties _scoreableInterface _relativeRelationship]
+    (label jreturn
+        (:jm_init (this :f_basicWeaponPart) _sourceLayerInterface _weaponProperties _scoreableInterface _relativeRelationship)
+        (return jreturn (this :f_basicWeaponPart)))))
 
-function BasicWeaponPartCircularPool.new()
-    local self = setmetatable({}, BasicWeaponPartCircularPool)
-    self:_init_fields()
-    return self
-end
+(set jproto @{:jm_init jm_init :jm_getInstance jm_getInstance})
 
-
--- throws Exception
-function BasicWeaponPartCircularPool:init(basicWeaponPartFactoryInterface)
-        self.basicWeaponPart = basicWeaponPartFactoryInterface:getInstance()
-end
-
-
--- throws Exception
-function BasicWeaponPartCircularPool:getInstance(sourceLayerInterface, weaponProperties, scoreableInterface, relativeRelationship)
-        self.basicWeaponPart:init(sourceLayerInterface, weaponProperties, scoreableInterface, relativeRelationship)
-        return self.basicWeaponPart
-end
-
-BasicWeaponPartCircularPool.NULL_BASIC_WEAPON_PART_CIRCULAR_POOL = BasicWeaponPartCircularPool.new()
-
-return BasicWeaponPartCircularPool
 

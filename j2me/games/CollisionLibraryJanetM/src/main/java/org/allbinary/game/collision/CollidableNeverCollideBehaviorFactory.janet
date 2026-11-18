@@ -1,57 +1,52 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.collision
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.game.collision
 
-local CollidableBaseBehaviorFactory = require("org.allbinary.game.collision.CollidableBaseBehaviorFactory")
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(import ./CollidableBaseBehaviorFactory :as CollidableBaseBehaviorFactory)
+(defn- CollidableNeverCollideBehavior/jnew_1 [& args] (JR/call jfile "./CollidableNeverCollideBehavior" "jnew_1" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class CollidableNeverCollideBehaviorFactory
+(var jproto nil)
+(var jcell_instanceC :jnone)
+(var jstatic_instanceC nil)
+(var jsetstatic_instanceC nil)
+(var jnew_0 nil)
+(var jm_getInstance nil)
+(var jm_createBehavior nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jstatic_instanceC (fn jstatic_instanceC []
+  (when (= jcell_instanceC :jnone) (set jcell_instanceC (jnew_0)))
+  jcell_instanceC))
+(set jsetstatic_instanceC (fn jsetstatic_instanceC [value] (set jcell_instanceC value)))
 
-local CollidableNeverCollideBehaviorFactory = {}
-CollidableNeverCollideBehaviorFactory.__index = CollidableNeverCollideBehaviorFactory
-CollidableNeverCollideBehaviorFactory.className = "CollidableNeverCollideBehaviorFactory"
-setmetatable(CollidableNeverCollideBehaviorFactory, {__index = CollidableBaseBehaviorFactory})
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "CollidableNeverCollideBehaviorFactory" :f_instance nil} jproto))
+    (put this :f_instance (CollidableNeverCollideBehavior/jnew_1 false))
+    (JR/superInit this (CollidableBaseBehaviorFactory/jnew_0))
+    this))
 
-function CollidableNeverCollideBehaviorFactory:_init_fields()
-    self.instance = CollidableNeverCollideBehavior.new(false)
-end
+    
+(set jm_getInstance (fn jm_getInstance []
+    (label jreturn
+        (return jreturn (jstatic_instanceC)))))
+    
+(set jm_createBehavior (fn jm_createBehavior [this]
+    (label jreturn
+        (return jreturn (this :f_instance)))))
 
-function CollidableNeverCollideBehaviorFactory.new()
-    local self = setmetatable(CollidableBaseBehaviorFactory.new(), CollidableNeverCollideBehaviorFactory)
-    self:_init_fields()
-    return self
-end
+(set jproto (table/setproto @{:jm_createBehavior jm_createBehavior} CollidableBaseBehaviorFactory/jproto))
 
-
-function CollidableNeverCollideBehaviorFactory.getInstance()
-        return CollidableNeverCollideBehaviorFactory.instanceC
-end
-
-
-function CollidableNeverCollideBehaviorFactory:createBehavior()
-        return self.instance
-end
-
-CollidableNeverCollideBehaviorFactory.instanceC = CollidableNeverCollideBehaviorFactory.new()
-
-return CollidableNeverCollideBehaviorFactory
 

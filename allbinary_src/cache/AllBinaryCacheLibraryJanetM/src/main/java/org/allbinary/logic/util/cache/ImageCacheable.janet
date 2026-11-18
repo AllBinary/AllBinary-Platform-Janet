@@ -1,56 +1,42 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.util.cache
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.logic.util.cache
 
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
+(import ../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- StringUtil/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/logic/string/StringUtil" "jm_getInstance" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class ImageCacheable
+(var jproto nil)
+(var jnew_2 nil)
+(var jm_getKey nil)
+(var jm_toString nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jnew_2 (fn jnew_2 [_name _anyType]
+    (var this (table/setproto @{:jclass "ImageCacheable" :f_name nil} jproto))
+    (put this :f_name ((StringUtil/jm_getInstance) :f_EMPTY_STRING))
+    this))
+    
+(set jm_getKey (fn jm_getKey [this]
+    (label jreturn
+        (return jreturn (this :f_name)))))
+    
+(set jm_toString (fn jm_toString [this]
+    (label jreturn
+        (return jreturn (this :f_name)))))
 
-local ImageCacheable = {}
-ImageCacheable.__index = ImageCacheable
-ImageCacheable.className = "ImageCacheable"
+(set jproto @{:jm_getKey jm_getKey :jm_toString jm_toString})
 
-function ImageCacheable:_init_fields()
-    self.name = StringUtil.getInstance().EMPTY_STRING
-end
-
-
-function ImageCacheable.new(name, anyType)
-    local self = setmetatable({}, ImageCacheable)
-    self:_init_fields()
-    return self
-end
-
-
-function ImageCacheable:getKey()
-        return self.name
-end
-
-
-function ImageCacheable:toString()
-        return self.name
-end
-ImageCacheable.__tostring = function(self) return self:toString() end
-
-return ImageCacheable
 

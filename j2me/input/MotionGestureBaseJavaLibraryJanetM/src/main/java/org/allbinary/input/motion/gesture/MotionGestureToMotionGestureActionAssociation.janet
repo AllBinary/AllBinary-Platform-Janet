@@ -1,83 +1,69 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.input.motion.gesture
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.input.motion.gesture
 
-local CompleteMotionGestureInputEvent = require("org.allbinary.game.input.CompleteMotionGestureInputEvent")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
+(import ../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class MotionGestureToMotionGestureActionAssociation
+(var jproto nil)
+(var jnew_2 nil)
+(var jm_getMotionGesture nil)
+(var jm_setMotionGestures nil)
+(var jm_getCommandAction nil)
+(var jm_setMotionGestureAction nil)
+(var jm_isMotionGestureArrayEquals nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jnew_2 (fn jnew_2 [_list _commandAction]
+    (var this (table/setproto @{:jclass "MotionGestureToMotionGestureActionAssociation" :f_list nil :f_motionGestureAction nil} jproto))
+    
+    
+        (set (this :f_list) _list)
+        (set (this :f_motionGestureAction) _commandAction)
+    this))
+    
+(set jm_getMotionGesture (fn jm_getMotionGesture [this]
+    (label jreturn
+        (return jreturn (this :f_list)))))
+    
+(set jm_setMotionGestures (fn jm_setMotionGestures [this _list]
+        (set (this :f_list) _list)))
+    
+(set jm_getCommandAction (fn jm_getCommandAction [this]
+    (label jreturn
+        (return jreturn (this :f_motionGestureAction)))))
+    
+(set jm_setMotionGestureAction (fn jm_setMotionGestureAction [this _commandAction]
+        (set (this :f_motionGestureAction) _commandAction)))
+    
+(set jm_isMotionGestureArrayEquals (fn jm_isMotionGestureArrayEquals [this _aList]
+    (label jreturn
+        (var _size (:jm_size _aList))
+        (if (not= (:jm_size (this :f_list)) _size)
+            (do
+            (return jreturn false)))
+        (do
+            (var _i (JR/i32 (- _size 1)))
+            (while (>= _i 0)
+                (do
+            (if (not= ((_aList :f_objectArray) _i) (((this :f_list) :f_objectArray) _i))
+                (do
+                (return jreturn false))))
+                (do (set _i (JR/i32 (- _i 1))))))
+        (return jreturn true))))
 
-local MotionGestureToMotionGestureActionAssociation = {}
-MotionGestureToMotionGestureActionAssociation.__index = MotionGestureToMotionGestureActionAssociation
-MotionGestureToMotionGestureActionAssociation.className = "MotionGestureToMotionGestureActionAssociation"
+(set jproto @{:jm_getMotionGesture jm_getMotionGesture :jm_setMotionGestures jm_setMotionGestures :jm_getCommandAction jm_getCommandAction :jm_setMotionGestureAction jm_setMotionGestureAction :jm_isMotionGestureArrayEquals jm_isMotionGestureArrayEquals})
 
-function MotionGestureToMotionGestureActionAssociation:_init_fields()
-    self.list = nil
-    self.motionGestureAction = nil
-end
-
-
-function MotionGestureToMotionGestureActionAssociation.new(list, commandAction)
-    local self = setmetatable({}, MotionGestureToMotionGestureActionAssociation)
-    self:_init_fields()
-        self.list = list
-        self.motionGestureAction = commandAction
-    return self
-end
-
-
-function MotionGestureToMotionGestureActionAssociation:getMotionGesture()
-        return self.list
-end
-
-
-function MotionGestureToMotionGestureActionAssociation:setMotionGestures(list)
-        self.list = list
-end
-
-
-function MotionGestureToMotionGestureActionAssociation:getCommandAction()
-        return self.motionGestureAction
-end
-
-
-function MotionGestureToMotionGestureActionAssociation:setMotionGestureAction(commandAction)
-        self.motionGestureAction = commandAction
-end
-
-
-function MotionGestureToMotionGestureActionAssociation:isMotionGestureArrayEquals(aList)
-        local size = aList:size()
-        if self.list:size() ~= size then
-            return false
-        end
-        for i = size - 1, 0, -1 do
-            if aList.objectArray[i + 1] ~= self.list.objectArray[i + 1] then
-                return false
-            end
-        end
-        return true
-end
-
-return MotionGestureToMotionGestureActionAssociation
 

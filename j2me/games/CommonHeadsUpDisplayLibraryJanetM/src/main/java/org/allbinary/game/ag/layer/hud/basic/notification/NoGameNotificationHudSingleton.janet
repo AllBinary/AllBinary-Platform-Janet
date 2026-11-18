@@ -1,70 +1,62 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---   
--- Generated Code Do Not Modify
--- package org.allbinary.game.ag.layer.hud.basic.notification
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#   
+# Generated Code Do Not Modify
+# package org.allbinary.game.ag.layer.hud.basic.notification
 
-local BasicHudFactory = require("org.allbinary.game.graphics.hud.BasicHudFactory")
-local BasicColorFactory = require("org.allbinary.graphics.color.BasicColorFactory")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
+(import ../../../../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- BasicHudFactory/jm_getInstance [& args] (JR/call jfile "../../../../../../../../org/allbinary/game/graphics/hud/BasicHudFactory" "jm_getInstance" args))
+(defn- LogUtil/jm_getInstance [& args] (JR/call jfile "../../../../../../../../org/allbinary/logic/communication/log/LogUtil" "jm_getInstance" args))
+(defn- CommonStrings/jm_getInstance [& args] (JR/call jfile "../../../../../../../../org/allbinary/string/CommonStrings" "jm_getInstance" args))
+(defn- GameNotificationHud/jstatic_NULL_GAME_NOTIFICATION [& args] (JR/call jfile "./GameNotificationHud" "jstatic_NULL_GAME_NOTIFICATION" args))
+(defn- NoGameGameNotificationHud/jnew_0 [& args] (JR/call jfile "./NoGameGameNotificationHud" "jnew_0" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class NoGameNotificationHudSingleton
+(var jproto nil)
+(var jcell_instance :jnone)
+(var jstatic_instance nil)
+(var jsetstatic_instance nil)
+(var jnew_0 nil)
+(var jm_getInstance nil)
+(var jm_getGameNotificationHud nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jstatic_instance (fn jstatic_instance []
+  (when (= jcell_instance :jnone) (set jcell_instance (jnew_0)))
+  jcell_instance))
+(set jsetstatic_instance (fn jsetstatic_instance [value] (set jcell_instance value)))
 
-local NoGameNotificationHudSingleton = {}
-NoGameNotificationHudSingleton.__index = NoGameNotificationHudSingleton
-NoGameNotificationHudSingleton.className = "NoGameNotificationHudSingleton"
+    
+(set jm_getInstance (fn jm_getInstance []
+    (label jreturn
+        (return jreturn (jstatic_instance)))))
+    
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "NoGameNotificationHudSingleton" :f_logUtil nil :f_gameNotificationHud nil} jproto))
+    (put this :f_logUtil (LogUtil/jm_getInstance))
+    (put this :f_gameNotificationHud (GameNotificationHud/jstatic_NULL_GAME_NOTIFICATION))
+        (try
+            (do
+            (var _basicHudFactory (BasicHudFactory/jm_getInstance))
+            (set (this :f_gameNotificationHud) (NoGameGameNotificationHud/jnew_0)))
+            ([_e] (do
+            (var _commonStrings (CommonStrings/jm_getInstance))
+            (:jm_put (this :f_logUtil) (_commonStrings :f_EXCEPTION) this (_commonStrings :f_CONSTRUCTOR) _e))))
+    this))
+    
+(set jm_getGameNotificationHud (fn jm_getGameNotificationHud [this]
+    (label jreturn
+        (return jreturn (this :f_gameNotificationHud)))))
 
-function NoGameNotificationHudSingleton:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-    self.gameNotificationHud = GameNotificationHud.NULL_GAME_NOTIFICATION
-end
+(set jproto @{:jm_getGameNotificationHud jm_getGameNotificationHud})
 
-
-function NoGameNotificationHudSingleton.getInstance()
-        return NoGameNotificationHudSingleton.instance
-end
-
-
-function NoGameNotificationHudSingleton.new()
-    local self = setmetatable({}, NoGameNotificationHudSingleton)
-    self:_init_fields()
-        local try_ok, try_error = pcall(function()
-            local basicHudFactory = BasicHudFactory.getInstance()
-            self.gameNotificationHud = NoGameGameNotificationHud.new()
-        end)
-        if not try_ok then
-            local e = try_error
-            local commonStrings = CommonStrings.getInstance()
-            self.logUtil:put(commonStrings.EXCEPTION, self, commonStrings.CONSTRUCTOR, e)
-        end
-    return self
-end
-
-
-function NoGameNotificationHudSingleton:getGameNotificationHud()
-        return self.gameNotificationHud
-end
-
-NoGameNotificationHudSingleton.instance = NoGameNotificationHudSingleton.new()
-
-return NoGameNotificationHudSingleton
 

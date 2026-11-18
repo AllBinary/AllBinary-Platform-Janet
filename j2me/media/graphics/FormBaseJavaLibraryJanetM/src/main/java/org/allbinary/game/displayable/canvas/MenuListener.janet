@@ -1,47 +1,39 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.displayable.canvas
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.game.displayable.canvas
 
-local GameKeyEventSourceInterface = require("org.allbinary.game.input.GameKeyEventSourceInterface")
+(import ../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(import ../../../../../org/allbinary/game/input/GameKeyEventSourceInterface :as GameKeyEventSourceInterface)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class MenuListener
+(var jproto nil)
+(var jnew_0 nil)
+(var jm_open nil)
+(var jm_close nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "MenuListener"} jproto))
+    this))
 
--- Java interface
-local MenuListener = {}
-MenuListener.__index = MenuListener
-MenuListener.className = "MenuListener"
-setmetatable(MenuListener, {__index = GameKeyEventSourceInterface})
+    
+(set jm_open (fn jm_open [this]
+    (error (JR/newException "AbstractMethodError" "open"))))
+    
+(set jm_close (fn jm_close [this]
+    (error (JR/newException "AbstractMethodError" "close"))))
 
+(set jproto @{:jm_open jm_open :jm_close jm_close})
 
-function MenuListener:open()
-    error("abstract method open")
-end
-
-
--- throws Exception
-function MenuListener:close()
-    error("abstract method close")
-end
-
-return MenuListener
 

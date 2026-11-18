@@ -1,56 +1,47 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.control.validate
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.logic.control.validate
 
-local ABHashtable = require("org.allbinary.util.ABHashtable")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
+(import ../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(import ../../../../../java/lang/Boolean :as Boolean)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class ValidatorBaseInterface
+(var jproto nil)
+(var jnew_0 nil)
+(var jm_isValid nil)
+(var jm_validationInfo nil)
+(var jm_toHashtable nil)
+(var jm_toList nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "ValidatorBaseInterface"} jproto))
+    this))
 
--- Java interface
-local ValidatorBaseInterface = {}
-ValidatorBaseInterface.__index = ValidatorBaseInterface
-ValidatorBaseInterface.className = "ValidatorBaseInterface"
+    
+(set jm_isValid (fn jm_isValid [this]
+    (error (JR/newException "AbstractMethodError" "isValid"))))
+    
+(set jm_validationInfo (fn jm_validationInfo [this]
+    (error (JR/newException "AbstractMethodError" "validationInfo"))))
+    
+(set jm_toHashtable (fn jm_toHashtable [this]
+    (error (JR/newException "AbstractMethodError" "toHashtable"))))
+    
+(set jm_toList (fn jm_toList [this]
+    (error (JR/newException "AbstractMethodError" "toList"))))
 
+(set jproto @{:jm_isValid jm_isValid :jm_validationInfo jm_validationInfo :jm_toHashtable jm_toHashtable :jm_toList jm_toList})
 
-function ValidatorBaseInterface:isValid()
-    error("abstract method isValid")
-end
-
-
-function ValidatorBaseInterface:validationInfo()
-    error("abstract method validationInfo")
-end
-
-
-function ValidatorBaseInterface:toHashtable()
-    error("abstract method toHashtable")
-end
-
-
-function ValidatorBaseInterface:toList()
-    error("abstract method toList")
-end
-
-return ValidatorBaseInterface
 

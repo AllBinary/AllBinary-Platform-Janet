@@ -1,197 +1,193 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.input
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.game.input
 
-local PositionStrings = require("org.allbinary.math.PositionStrings")
-local CommonPhoneStrings = require("org.allbinary.string.CommonPhoneStrings")
-local CommonSeps = require("org.allbinary.string.CommonSeps")
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- PositionStrings/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/math/PositionStrings" "jm_getInstance" args))
+(defn- CommonPhoneStrings/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/string/CommonPhoneStrings" "jm_getInstance" args))
+(defn- CommonSeps/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/string/CommonSeps" "jm_getInstance" args))
+(defn- ABKeyEventWrapper/jm_getInstance [& args] (JR/call jfile "./ABKeyEventWrapper" "jm_getInstance" args))
+(defn- PCGameKey/jnew_2 [& args] (JR/call jfile "./PCGameKey" "jnew_2" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class PCKeyFactory
+(var jproto nil)
+(var jcell_SINGLETON :jnone)
+(var jstatic_SINGLETON nil)
+(var jsetstatic_SINGLETON nil)
+(var jnew_0 nil)
+(var jm_getInstance nil)
+(var jm_isSubmission nil)
+(var jm_isDelete nil)
+(var jm_isBackSpace nil)
+(var jm_isUp nil)
+(var jm_isDown nil)
+(var jm_isLeft nil)
+(var jm_isRight nil)
+(var jm_isEnter nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jstatic_SINGLETON (fn jstatic_SINGLETON []
+  (when (= jcell_SINGLETON :jnone) (set jcell_SINGLETON (jnew_0)))
+  jcell_SINGLETON))
+(set jsetstatic_SINGLETON (fn jsetstatic_SINGLETON [value] (set jcell_SINGLETON value)))
 
-local PCKeyFactory = {}
-PCKeyFactory.__index = PCKeyFactory
-PCKeyFactory.className = "PCKeyFactory"
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "PCKeyFactory" :f_keyEventWrapper nil :f_UNKNOWN nil :f_ENTER nil :f__A nil :f__B nil :f__C nil :f__D nil :f__E nil :f__F nil :f__G nil :f__H nil :f__I nil :f__J nil :f__K nil :f__L nil :f__M nil :f__N nil :f__O nil :f__P nil :f__Q nil :f__R nil :f__S nil :f__T nil :f__U nil :f__V nil :f__W nil :f__X nil :f__Y nil :f__Z nil :f_a nil :f_b nil :f_c nil :f_d nil :f_e nil :f_f nil :f_g nil :f_h nil :f_i nil :f_j nil :f_k nil :f_l nil :f_m nil :f_n nil :f_o nil :f_p nil :f_q nil :f_r nil :f_s nil :f_t nil :f_u nil :f_v nil :f_w nil :f_x nil :f_y nil :f_z nil :f_ZERO nil :f_ONE nil :f_TWO nil :f_THREE nil :f_FOUR nil :f_FIVE nil :f_SIX nil :f_SEVEN nil :f_EIGHT nil :f_NINE nil :f_DPAD_UP nil :f_DPAD_DOWN nil :f_DPAD_LEFT nil :f_DPAD_RIGHT nil :f_DPAD_UP2 nil :f_DPAD_DOWN2 nil :f_DPAD_LEFT2 nil :f_DPAD_RIGHT2 nil :f_COMMA nil :f_SPACE nil :f_DEL nil :f_STAR nil :f_QUESTION nil :f_PERIOD nil :f_ESCAPE nil :f_BACK_SPACE nil} jproto))
+    (put this :f_keyEventWrapper (ABKeyEventWrapper/jm_getInstance))
+    (put this :f_UNKNOWN (PCGameKey/jnew_2 ((this :f_keyEventWrapper) :f_VK_UNDEFINED) "UNKNOWN"))
+    (put this :f_ENTER (PCGameKey/jnew_2 5 "Enter"))
+    (put this :f__A (PCGameKey/jnew_2 ((this :f_keyEventWrapper) :f_VK_A) "A"))
+    (put this :f__B (PCGameKey/jnew_2 ((this :f_keyEventWrapper) :f_VK_B) "B"))
+    (put this :f__C (PCGameKey/jnew_2 ((this :f_keyEventWrapper) :f_VK_C) "C"))
+    (put this :f__D (PCGameKey/jnew_2 ((this :f_keyEventWrapper) :f_VK_D) "D"))
+    (put this :f__E (PCGameKey/jnew_2 ((this :f_keyEventWrapper) :f_VK_E) "E"))
+    (put this :f__F (PCGameKey/jnew_2 ((this :f_keyEventWrapper) :f_VK_F) "F"))
+    (put this :f__G (PCGameKey/jnew_2 ((this :f_keyEventWrapper) :f_VK_G) "G"))
+    (put this :f__H (PCGameKey/jnew_2 ((this :f_keyEventWrapper) :f_VK_H) "H"))
+    (put this :f__I (PCGameKey/jnew_2 ((this :f_keyEventWrapper) :f_VK_I) "I"))
+    (put this :f__J (PCGameKey/jnew_2 ((this :f_keyEventWrapper) :f_VK_J) "J"))
+    (put this :f__K (PCGameKey/jnew_2 ((this :f_keyEventWrapper) :f_VK_K) "K"))
+    (put this :f__L (PCGameKey/jnew_2 ((this :f_keyEventWrapper) :f_VK_L) "L"))
+    (put this :f__M (PCGameKey/jnew_2 ((this :f_keyEventWrapper) :f_VK_M) "M"))
+    (put this :f__N (PCGameKey/jnew_2 ((this :f_keyEventWrapper) :f_VK_N) "N"))
+    (put this :f__O (PCGameKey/jnew_2 ((this :f_keyEventWrapper) :f_VK_O) "O"))
+    (put this :f__P (PCGameKey/jnew_2 ((this :f_keyEventWrapper) :f_VK_P) "P"))
+    (put this :f__Q (PCGameKey/jnew_2 ((this :f_keyEventWrapper) :f_VK_Q) "Q"))
+    (put this :f__R (PCGameKey/jnew_2 ((this :f_keyEventWrapper) :f_VK_R) "R"))
+    (put this :f__S (PCGameKey/jnew_2 ((this :f_keyEventWrapper) :f_VK_S) "S"))
+    (put this :f__T (PCGameKey/jnew_2 ((this :f_keyEventWrapper) :f_VK_T) "T"))
+    (put this :f__U (PCGameKey/jnew_2 ((this :f_keyEventWrapper) :f_VK_U) "U"))
+    (put this :f__V (PCGameKey/jnew_2 ((this :f_keyEventWrapper) :f_VK_V) "V"))
+    (put this :f__W (PCGameKey/jnew_2 ((this :f_keyEventWrapper) :f_VK_W) "W"))
+    (put this :f__X (PCGameKey/jnew_2 ((this :f_keyEventWrapper) :f_VK_X) "X"))
+    (put this :f__Y (PCGameKey/jnew_2 ((this :f_keyEventWrapper) :f_VK_Y) "Y"))
+    (put this :f__Z (PCGameKey/jnew_2 ((this :f_keyEventWrapper) :f_VK_Z) "Z"))
+    (put this :f_a (PCGameKey/jnew_2 97 "a"))
+    (put this :f_b (PCGameKey/jnew_2 98 "b"))
+    (put this :f_c (PCGameKey/jnew_2 99 "c"))
+    (put this :f_d (PCGameKey/jnew_2 100 "d"))
+    (put this :f_e (PCGameKey/jnew_2 101 "e"))
+    (put this :f_f (PCGameKey/jnew_2 102 "f"))
+    (put this :f_g (PCGameKey/jnew_2 103 "g"))
+    (put this :f_h (PCGameKey/jnew_2 104 "h"))
+    (put this :f_i (PCGameKey/jnew_2 105 "i"))
+    (put this :f_j (PCGameKey/jnew_2 106 "j"))
+    (put this :f_k (PCGameKey/jnew_2 107 "k"))
+    (put this :f_l (PCGameKey/jnew_2 108 "l"))
+    (put this :f_m (PCGameKey/jnew_2 109 "m"))
+    (put this :f_n (PCGameKey/jnew_2 110 "n"))
+    (put this :f_o (PCGameKey/jnew_2 111 "o"))
+    (put this :f_p (PCGameKey/jnew_2 112 "p"))
+    (put this :f_q (PCGameKey/jnew_2 113 "q"))
+    (put this :f_r (PCGameKey/jnew_2 114 "r"))
+    (put this :f_s (PCGameKey/jnew_2 115 "s"))
+    (put this :f_t (PCGameKey/jnew_2 116 "t"))
+    (put this :f_u (PCGameKey/jnew_2 117 "u"))
+    (put this :f_v (PCGameKey/jnew_2 118 "v"))
+    (put this :f_w (PCGameKey/jnew_2 119 "w"))
+    (put this :f_x (PCGameKey/jnew_2 120 ((PositionStrings/jm_getInstance) :f_X)))
+    (put this :f_y (PCGameKey/jnew_2 121 ((PositionStrings/jm_getInstance) :f_Y)))
+    (put this :f_z (PCGameKey/jnew_2 122 "z"))
+    (put this :f_ZERO (PCGameKey/jnew_2 ((this :f_keyEventWrapper) :f_VK_0) ((CommonPhoneStrings/jm_getInstance) :f_ZERO)))
+    (put this :f_ONE (PCGameKey/jnew_2 ((this :f_keyEventWrapper) :f_VK_1) ((CommonPhoneStrings/jm_getInstance) :f_ONE)))
+    (put this :f_TWO (PCGameKey/jnew_2 ((this :f_keyEventWrapper) :f_VK_2) ((CommonPhoneStrings/jm_getInstance) :f_TWO)))
+    (put this :f_THREE (PCGameKey/jnew_2 ((this :f_keyEventWrapper) :f_VK_3) ((CommonPhoneStrings/jm_getInstance) :f_THREE)))
+    (put this :f_FOUR (PCGameKey/jnew_2 ((this :f_keyEventWrapper) :f_VK_4) ((CommonPhoneStrings/jm_getInstance) :f_FOUR)))
+    (put this :f_FIVE (PCGameKey/jnew_2 ((this :f_keyEventWrapper) :f_VK_5) ((CommonPhoneStrings/jm_getInstance) :f_FIVE)))
+    (put this :f_SIX (PCGameKey/jnew_2 ((this :f_keyEventWrapper) :f_VK_6) ((CommonPhoneStrings/jm_getInstance) :f_SIX)))
+    (put this :f_SEVEN (PCGameKey/jnew_2 ((this :f_keyEventWrapper) :f_VK_7) ((CommonPhoneStrings/jm_getInstance) :f_SEVEN)))
+    (put this :f_EIGHT (PCGameKey/jnew_2 ((this :f_keyEventWrapper) :f_VK_8) ((CommonPhoneStrings/jm_getInstance) :f_EIGHT)))
+    (put this :f_NINE (PCGameKey/jnew_2 ((this :f_keyEventWrapper) :f_VK_9) ((CommonPhoneStrings/jm_getInstance) :f_NINE)))
+    (put this :f_DPAD_UP (PCGameKey/jnew_2 ((this :f_keyEventWrapper) :f_VK_UP) ((CommonPhoneStrings/jm_getInstance) :f_UP)))
+    (put this :f_DPAD_DOWN (PCGameKey/jnew_2 ((this :f_keyEventWrapper) :f_VK_DOWN) ((CommonPhoneStrings/jm_getInstance) :f_DOWN)))
+    (put this :f_DPAD_LEFT (PCGameKey/jnew_2 ((this :f_keyEventWrapper) :f_VK_LEFT) ((CommonPhoneStrings/jm_getInstance) :f_LEFT)))
+    (put this :f_DPAD_RIGHT (PCGameKey/jnew_2 ((this :f_keyEventWrapper) :f_VK_RIGHT) ((CommonPhoneStrings/jm_getInstance) :f_RIGHT)))
+    (put this :f_DPAD_UP2 (this :f_DPAD_UP))
+    (put this :f_DPAD_DOWN2 (this :f_DPAD_DOWN))
+    (put this :f_DPAD_LEFT2 (this :f_DPAD_LEFT))
+    (put this :f_DPAD_RIGHT2 (this :f_DPAD_RIGHT))
+    (put this :f_COMMA (PCGameKey/jnew_2 ((this :f_keyEventWrapper) :f_VK_COMMA) "COMMA"))
+    (put this :f_SPACE (PCGameKey/jnew_2 ((this :f_keyEventWrapper) :f_VK_SPACE) "SPACE"))
+    (put this :f_DEL (PCGameKey/jnew_2 ((this :f_keyEventWrapper) :f_VK_DELETE) "DEL"))
+    (put this :f_STAR (PCGameKey/jnew_2 42 ((CommonPhoneStrings/jm_getInstance) :f_STAR)))
+    (put this :f_QUESTION (PCGameKey/jnew_2 47 "?"))
+    (put this :f_PERIOD (PCGameKey/jnew_2 ((this :f_keyEventWrapper) :f_VK_PERIOD) ((CommonSeps/jm_getInstance) :f_PERIOD)))
+    (put this :f_ESCAPE (PCGameKey/jnew_2 ((this :f_keyEventWrapper) :f_VK_ESCAPE) "Esc"))
+    (put this :f_BACK_SPACE (PCGameKey/jnew_2 ((this :f_keyEventWrapper) :f_VK_BACK_SPACE) "Backspace"))
+    this))
 
-function PCKeyFactory:_init_fields()
-    self.keyEventWrapper = ABKeyEventWrapper.getInstance()
-    self.UNKNOWN = PCGameKey.new(self.keyEventWrapper.VK_UNDEFINED, "UNKNOWN")
-    self.ENTER = PCGameKey.new(5, "Enter")
-    self._A = PCGameKey.new(self.keyEventWrapper.VK_A, "A")
-    self._B = PCGameKey.new(self.keyEventWrapper.VK_B, "B")
-    self._C = PCGameKey.new(self.keyEventWrapper.VK_C, "C")
-    self._D = PCGameKey.new(self.keyEventWrapper.VK_D, "D")
-    self._E = PCGameKey.new(self.keyEventWrapper.VK_E, "E")
-    self._F = PCGameKey.new(self.keyEventWrapper.VK_F, "F")
-    self._G = PCGameKey.new(self.keyEventWrapper.VK_G, "G")
-    self._H = PCGameKey.new(self.keyEventWrapper.VK_H, "H")
-    self._I = PCGameKey.new(self.keyEventWrapper.VK_I, "I")
-    self._J = PCGameKey.new(self.keyEventWrapper.VK_J, "J")
-    self._K = PCGameKey.new(self.keyEventWrapper.VK_K, "K")
-    self._L = PCGameKey.new(self.keyEventWrapper.VK_L, "L")
-    self._M = PCGameKey.new(self.keyEventWrapper.VK_M, "M")
-    self._N = PCGameKey.new(self.keyEventWrapper.VK_N, "N")
-    self._O = PCGameKey.new(self.keyEventWrapper.VK_O, "O")
-    self._P = PCGameKey.new(self.keyEventWrapper.VK_P, "P")
-    self._Q = PCGameKey.new(self.keyEventWrapper.VK_Q, "Q")
-    self._R = PCGameKey.new(self.keyEventWrapper.VK_R, "R")
-    self._S = PCGameKey.new(self.keyEventWrapper.VK_S, "S")
-    self._T = PCGameKey.new(self.keyEventWrapper.VK_T, "T")
-    self._U = PCGameKey.new(self.keyEventWrapper.VK_U, "U")
-    self._V = PCGameKey.new(self.keyEventWrapper.VK_V, "V")
-    self._W = PCGameKey.new(self.keyEventWrapper.VK_W, "W")
-    self._X = PCGameKey.new(self.keyEventWrapper.VK_X, "X")
-    self._Y = PCGameKey.new(self.keyEventWrapper.VK_Y, "Y")
-    self._Z = PCGameKey.new(self.keyEventWrapper.VK_Z, "Z")
-    self.a = PCGameKey.new(97, "a")
-    self.b = PCGameKey.new(98, "b")
-    self.c = PCGameKey.new(99, "c")
-    self.d = PCGameKey.new(100, "d")
-    self.e = PCGameKey.new(101, "e")
-    self.f = PCGameKey.new(102, "f")
-    self.g = PCGameKey.new(103, "g")
-    self.h = PCGameKey.new(104, "h")
-    self.i = PCGameKey.new(105, "i")
-    self.j = PCGameKey.new(106, "j")
-    self.k = PCGameKey.new(107, "k")
-    self.l = PCGameKey.new(108, "l")
-    self.m = PCGameKey.new(109, "m")
-    self.n = PCGameKey.new(110, "n")
-    self.o = PCGameKey.new(111, "o")
-    self.p = PCGameKey.new(112, "p")
-    self.q = PCGameKey.new(113, "q")
-    self.r = PCGameKey.new(114, "r")
-    self.s = PCGameKey.new(115, "s")
-    self.t = PCGameKey.new(116, "t")
-    self.u = PCGameKey.new(117, "u")
-    self.v = PCGameKey.new(118, "v")
-    self.w = PCGameKey.new(119, "w")
-    self.x = PCGameKey.new(120, PositionStrings.getInstance().X)
-    self.y = PCGameKey.new(121, PositionStrings.getInstance().Y)
-    self.z = PCGameKey.new(122, "z")
-    self.ZERO = PCGameKey.new(self.keyEventWrapper.VK_0, CommonPhoneStrings.getInstance().ZERO)
-    self.ONE = PCGameKey.new(self.keyEventWrapper.VK_1, CommonPhoneStrings.getInstance().ONE)
-    self.TWO = PCGameKey.new(self.keyEventWrapper.VK_2, CommonPhoneStrings.getInstance().TWO)
-    self.THREE = PCGameKey.new(self.keyEventWrapper.VK_3, CommonPhoneStrings.getInstance().THREE)
-    self.FOUR = PCGameKey.new(self.keyEventWrapper.VK_4, CommonPhoneStrings.getInstance().FOUR)
-    self.FIVE = PCGameKey.new(self.keyEventWrapper.VK_5, CommonPhoneStrings.getInstance().FIVE)
-    self.SIX = PCGameKey.new(self.keyEventWrapper.VK_6, CommonPhoneStrings.getInstance().SIX)
-    self.SEVEN = PCGameKey.new(self.keyEventWrapper.VK_7, CommonPhoneStrings.getInstance().SEVEN)
-    self.EIGHT = PCGameKey.new(self.keyEventWrapper.VK_8, CommonPhoneStrings.getInstance().EIGHT)
-    self.NINE = PCGameKey.new(self.keyEventWrapper.VK_9, CommonPhoneStrings.getInstance().NINE)
-    self.DPAD_UP = PCGameKey.new(self.keyEventWrapper.VK_UP, CommonPhoneStrings.getInstance().UP)
-    self.DPAD_DOWN = PCGameKey.new(self.keyEventWrapper.VK_DOWN, CommonPhoneStrings.getInstance().DOWN)
-    self.DPAD_LEFT = PCGameKey.new(self.keyEventWrapper.VK_LEFT, CommonPhoneStrings.getInstance().LEFT)
-    self.DPAD_RIGHT = PCGameKey.new(self.keyEventWrapper.VK_RIGHT, CommonPhoneStrings.getInstance().RIGHT)
-    self.DPAD_UP2 = self.DPAD_UP
-    self.DPAD_DOWN2 = self.DPAD_DOWN
-    self.DPAD_LEFT2 = self.DPAD_LEFT
-    self.DPAD_RIGHT2 = self.DPAD_RIGHT
-    self.COMMA = PCGameKey.new(self.keyEventWrapper.VK_COMMA, "COMMA")
-    self.SPACE = PCGameKey.new(self.keyEventWrapper.VK_SPACE, "SPACE")
-    self.DEL = PCGameKey.new(self.keyEventWrapper.VK_DELETE, "DEL")
-    self.STAR = PCGameKey.new(42, CommonPhoneStrings.getInstance().STAR)
-    self.QUESTION = PCGameKey.new(47, "?")
-    self.PERIOD = PCGameKey.new(self.keyEventWrapper.VK_PERIOD, CommonSeps.getInstance().PERIOD)
-    self.ESCAPE = PCGameKey.new(self.keyEventWrapper.VK_ESCAPE, "Esc")
-    self.BACK_SPACE = PCGameKey.new(self.keyEventWrapper.VK_BACK_SPACE, "Backspace")
-end
+    
+(set jm_getInstance (fn jm_getInstance []
+    (label jreturn
+        (return jreturn (jstatic_SINGLETON)))))
+    
+(set jm_isSubmission (fn jm_isSubmission [this _input]
+    (label jreturn
+        (if (= _input (this :f_ENTER))
+            (do
+            (return jreturn true)))
+        (return jreturn false))))
+    
+(set jm_isDelete (fn jm_isDelete [this _input]
+    (label jreturn
+        (if (= _input (this :f_DEL))
+            (do
+            (return jreturn true)))
+        (return jreturn false))))
+    
+(set jm_isBackSpace (fn jm_isBackSpace [this _input]
+    (label jreturn
+        (if (= _input (this :f_BACK_SPACE))
+            (do
+            (return jreturn true)))
+        (return jreturn false))))
+    
+(set jm_isUp (fn jm_isUp [this _input]
+    (label jreturn
+        (if (or (= _input (this :f_DPAD_UP)) (= _input (this :f_DPAD_UP2)))
+            (do
+            (return jreturn true)))
+        (return jreturn false))))
+    
+(set jm_isDown (fn jm_isDown [this _input]
+    (label jreturn
+        (if (or (= _input (this :f_DPAD_DOWN)) (= _input (this :f_DPAD_DOWN2)))
+            (do
+            (return jreturn true)))
+        (return jreturn false))))
+    
+(set jm_isLeft (fn jm_isLeft [this _input]
+    (label jreturn
+        (if (or (= _input (this :f_DPAD_LEFT)) (= _input (this :f_DPAD_LEFT2)))
+            (do
+            (return jreturn true)))
+        (return jreturn false))))
+    
+(set jm_isRight (fn jm_isRight [this _input]
+    (label jreturn
+        (if (or (= _input (this :f_DPAD_RIGHT)) (= _input (this :f_DPAD_RIGHT2)))
+            (do
+            (return jreturn true)))
+        (return jreturn false))))
+    
+(set jm_isEnter (fn jm_isEnter [this _input]
+    (label jreturn
+        (if (= _input (this :f_ENTER))
+            (do
+            (return jreturn true)))
+        (return jreturn false))))
 
-function PCKeyFactory.new()
-    local self = setmetatable({}, PCKeyFactory)
-    self:_init_fields()
-    return self
-end
+(set jproto @{:jm_isSubmission jm_isSubmission :jm_isDelete jm_isDelete :jm_isBackSpace jm_isBackSpace :jm_isUp jm_isUp :jm_isDown jm_isDown :jm_isLeft jm_isLeft :jm_isRight jm_isRight :jm_isEnter jm_isEnter})
 
-
-function PCKeyFactory.getInstance()
-        return PCKeyFactory.SINGLETON
-end
-
-
-function PCKeyFactory:isSubmission(input)
-        if input == self.ENTER then
-            return true
-        end
-        return false
-end
-
-
-function PCKeyFactory:isDelete(input)
-        if input == self.DEL then
-            return true
-        end
-        return false
-end
-
-
-function PCKeyFactory:isBackSpace(input)
-        if input == self.BACK_SPACE then
-            return true
-        end
-        return false
-end
-
-
-function PCKeyFactory:isUp(input)
-        if input == self.DPAD_UP or input == self.DPAD_UP2 then
-            return true
-        end
-        return false
-end
-
-
-function PCKeyFactory:isDown(input)
-        if input == self.DPAD_DOWN or input == self.DPAD_DOWN2 then
-            return true
-        end
-        return false
-end
-
-
-function PCKeyFactory:isLeft(input)
-        if input == self.DPAD_LEFT or input == self.DPAD_LEFT2 then
-            return true
-        end
-        return false
-end
-
-
-function PCKeyFactory:isRight(input)
-        if input == self.DPAD_RIGHT or input == self.DPAD_RIGHT2 then
-            return true
-        end
-        return false
-end
-
-
-function PCKeyFactory:isEnter(input)
-        if input == self.ENTER then
-            return true
-        end
-        return false
-end
-
-PCKeyFactory.SINGLETON = PCKeyFactory.new()
-
-return PCKeyFactory
 

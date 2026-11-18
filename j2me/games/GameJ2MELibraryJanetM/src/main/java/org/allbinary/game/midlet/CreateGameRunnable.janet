@@ -1,78 +1,62 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.midlet
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.game.midlet
 
-local ProgressCanvas = require("org.allbinary.graphics.canvas.transition.progress.ProgressCanvas")
-local ProgressCanvasFactory = require("org.allbinary.graphics.canvas.transition.progress.ProgressCanvasFactory")
-local MyCommandsFactory = require("org.allbinary.graphics.displayable.command.MyCommandsFactory")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
-local ABHashtable = require("org.allbinary.util.ABHashtable")
--- java.lang.Runnable has no Lua module
-local Runnable = {}
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- ProgressCanvasFactory/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/graphics/canvas/transition/progress/ProgressCanvasFactory" "jm_getInstance" args))
+(defn- MyCommandsFactory/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/graphics/displayable/command/MyCommandsFactory" "jm_getInstance" args))
+(defn- LogUtil/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/logic/communication/log/LogUtil" "jm_getInstance" args))
+(defn- CommonStrings/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/string/CommonStrings" "jm_getInstance" args))
+(import ../../../../java/lang/Runnable :as Runnable)
+(defn- DemoGameMidletEvent/jnew_2 [& args] (JR/call jfile "./DemoGameMidletEvent" "jnew_2" args))
+(defn- DemoGameMidletStateFactory/jm_getInstance [& args] (JR/call jfile "./DemoGameMidletStateFactory" "jm_getInstance" args))
+(defn- DemoGameMidletEventHandler/jm_getInstance [& args] (JR/call jfile "./DemoGameMidletEventHandler" "jm_getInstance" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class CreateGameRunnable
+(var jproto nil)
+(var jnew_2 nil)
+(var jm_run nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jnew_2 (fn jnew_2 [_demoGameMidlet _hashtable]
+    (var this (table/setproto @{:jclass "CreateGameRunnable" :f_logUtil nil :f_commonStrings nil :f_demoGameMidlet nil :f_hashtable nil :f_startGameMidletEvent nil} jproto))
+    (put this :f_logUtil (LogUtil/jm_getInstance))
+    (put this :f_commonStrings (CommonStrings/jm_getInstance))
+    
+    
+    
+        (set (this :f_demoGameMidlet) _demoGameMidlet)
+        (set (this :f_hashtable) _hashtable)
+        (set (this :f_startGameMidletEvent) (DemoGameMidletEvent/jnew_2 this ((DemoGameMidletStateFactory/jm_getInstance) :f_START_GAME)))
+    this))
+    
+(set jm_run (fn jm_run [this]
+        (try
+            (do
+            (:jm_putF (this :f_logUtil) ((this :f_commonStrings) :f_START_RUNNABLE) this ((this :f_commonStrings) :f_RUN))
+            (var _progressCanvas (ProgressCanvasFactory/jm_getInstance))
+            (:jm_commandAction (this :f_demoGameMidlet) ((MyCommandsFactory/jm_getInstance) :f_SET_DISPLAYABLE) _progressCanvas)
+            (:jm_stopGameCanvasRunnableInterface (this :f_demoGameMidlet))
+            (:jm_setGameCanvasRunnableInterface (this :f_demoGameMidlet) (:jm_createGameCanvasRunnableInterface (this :f_demoGameMidlet)))
+            (JR/className (:jm_getGameCanvasRunnableInterface (this :f_demoGameMidlet)))
+            (:jm_startGameCanvasRunnableInterface (this :f_demoGameMidlet))
+            (:jm_fireEvent (DemoGameMidletEventHandler/jm_getInstance) (this :f_startGameMidletEvent))
+            (:jm_putF (this :f_logUtil) ((this :f_commonStrings) :f_END_RUNNABLE) this ((this :f_commonStrings) :f_RUN)))
+            ([_e] (do
+            (:jm_put (this :f_logUtil) ((this :f_commonStrings) :f_EXCEPTION) this ((this :f_commonStrings) :f_RUN) _e))))))
 
-local CreateGameRunnable = {}
-CreateGameRunnable.__index = CreateGameRunnable
-CreateGameRunnable.className = "CreateGameRunnable"
+(set jproto @{:jm_run jm_run})
 
-function CreateGameRunnable:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-    self.commonStrings = CommonStrings.getInstance()
-    self.demoGameMidlet = nil
-    self.hashtable = nil
-    self.startGameMidletEvent = nil
-end
-
-
-function CreateGameRunnable.new(demoGameMidlet, hashtable)
-    local self = setmetatable({}, CreateGameRunnable)
-    self:_init_fields()
-        self.demoGameMidlet = demoGameMidlet
-        self.hashtable = hashtable
-        self.startGameMidletEvent = DemoGameMidletEvent.new(self, DemoGameMidletStateFactory.getInstance().START_GAME)
-    return self
-end
-
-
-function CreateGameRunnable:run()
-        local try_ok, try_error = pcall(function()
-            self.logUtil:putF(self.commonStrings.START_RUNNABLE, self, self.commonStrings.RUN)
-            local progressCanvas = ProgressCanvasFactory.getInstance()
-            self.demoGameMidlet:commandAction(MyCommandsFactory.getInstance().SET_DISPLAYABLE, progressCanvas)
-            self.demoGameMidlet:stopGameCanvasRunnableInterface()
-            self.demoGameMidlet:setGameCanvasRunnableInterface(self.demoGameMidlet:createGameCanvasRunnableInterface())
-            self.demoGameMidlet:getGameCanvasRunnableInterface():setLoadStateHashtable(self.hashtable)
-            self.demoGameMidlet:startGameCanvasRunnableInterface()
-            DemoGameMidletEventHandler.getInstance():fireEvent(self.startGameMidletEvent)
-            self.logUtil:putF(self.commonStrings.END_RUNNABLE, self, self.commonStrings.RUN)
-        end)
-        if not try_ok then
-            local e = try_error
-            self.logUtil:put(self.commonStrings.EXCEPTION, self, self.commonStrings.RUN, e)
-        end
-end
-
-return CreateGameRunnable
 

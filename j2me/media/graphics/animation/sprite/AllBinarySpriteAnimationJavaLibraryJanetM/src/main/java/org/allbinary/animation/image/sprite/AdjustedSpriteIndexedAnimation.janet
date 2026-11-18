@@ -1,75 +1,52 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.animation.image.sprite
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.animation.image.sprite
 
--- local Graphics = require("javax.microedition.lcdui.Graphics")
--- local Image = require("javax.microedition.lcdui.Image")
--- local Sprite = require("javax.microedition.lcdui.game.Sprite")
-local AnimationBehavior = require("org.allbinary.animation.AnimationBehavior")
-local BasicColor = require("org.allbinary.graphics.color.BasicColor")
-local BasicColorUtil = require("org.allbinary.graphics.color.BasicColorUtil")
-local SpriteIndexedAnimation = require("org.allbinary.animation.image.sprite.SpriteIndexedAnimation")
+(import ../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(import ./SpriteIndexedAnimation :as SpriteIndexedAnimation)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class AdjustedSpriteIndexedAnimation
+(var jproto nil)
+(var jnew_6 nil)
+(var jm_paintFrame nil)
+(var jm_paintXY nil)
+(var jm_paint nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jnew_6 (fn jnew_6 [_sprite _image _basicColorArray _dx _dy _animationBehavior]
+    (var this (table/setproto @{:jclass "AdjustedSpriteIndexedAnimation" :f_dx 0 :f_dy 0} jproto))
+    
+    
+        (JR/superInit this (SpriteIndexedAnimation/jnew_4 _sprite _image _basicColorArray _animationBehavior))
+        (set (this :f_dx) _dx)
+        (set (this :f_dy) _dy)
+    this))
+    
+(set jm_paintFrame (fn jm_paintFrame [this _graphics _frame _x _y]
+        (:jm_setFrame this _frame)
+        (:jm_setPosition (this :f_sprite) (JR/i32 (+ _x (this :f_dx))) (JR/i32 (+ _y (this :f_dy))))
+        ((get SpriteIndexedAnimation/jproto :jm_paint) this _graphics)))
+    
+(set jm_paintXY (fn jm_paintXY [this _g _x _y]
+        (:jm_setPosition (this :f_sprite) (JR/i32 (+ _x (this :f_dx))) (JR/i32 (+ _y (this :f_dy))))
+        ((get SpriteIndexedAnimation/jproto :jm_paint) this _g)))
+    
+(set jm_paint (fn jm_paint [this _g]
+        (:jm_setPosition (this :f_sprite) (this :f_dx) (this :f_dy))
+        ((get SpriteIndexedAnimation/jproto :jm_paint) this _g)))
 
-local AdjustedSpriteIndexedAnimation = {}
-AdjustedSpriteIndexedAnimation.__index = AdjustedSpriteIndexedAnimation
-AdjustedSpriteIndexedAnimation.className = "AdjustedSpriteIndexedAnimation"
-setmetatable(AdjustedSpriteIndexedAnimation, {__index = SpriteIndexedAnimation})
+(set jproto (table/setproto @{:jm_paintFrame jm_paintFrame :jm_paintXY jm_paintXY :jm_paint jm_paint} SpriteIndexedAnimation/jproto))
 
-function AdjustedSpriteIndexedAnimation:_init_fields()
-    self.dx = nil
-    self.dy = nil
-end
-
-
-function AdjustedSpriteIndexedAnimation.new(sprite, image, basicColorArray, dx, dy, animationBehavior)
-    local self = setmetatable(SpriteIndexedAnimation.new(sprite, image, basicColorArray, animationBehavior), AdjustedSpriteIndexedAnimation)
-    self:_init_fields()
-        -- super(...) made self above
-        self.dx = dx
-        self.dy = dy
-    return self
-end
-
-
-function AdjustedSpriteIndexedAnimation:paintFrame(graphics, frame, x, y)
-        self:setFrame(frame)
-        self.sprite:setPosition(x + self.dx, y + self.dy)
-        SpriteIndexedAnimation.paint(self, graphics)
-end
-
-
-function AdjustedSpriteIndexedAnimation:paintXY(g, x, y)
-        self.sprite:setPosition(x + self.dx, y + self.dy)
-        SpriteIndexedAnimation.paint(self, g)
-end
-
-
-function AdjustedSpriteIndexedAnimation:paint(g)
-        self.sprite:setPosition(self.dx, self.dy)
-        SpriteIndexedAnimation.paint(self, g)
-end
-
-return AdjustedSpriteIndexedAnimation
 

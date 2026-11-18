@@ -26,6 +26,7 @@
 (var jproto nil)
 (var jcell_instance :jnone)
 (var jstatic_instance nil)
+(var jsetstatic_instance nil)
 (var jnew_3 nil)
 (var jm_getInstance nil)
 (var jm_runTask nil)
@@ -35,6 +36,7 @@
 (set jstatic_instance (fn jstatic_instance []
   (when (= jcell_instance :jnone) (set jcell_instance (jnew_3 "Secondary" 1 (ThreadPool/jstatic_NORMAL_PRIORITY))))
   jcell_instance))
+(set jsetstatic_instance (fn jsetstatic_instance [value] (set jcell_instance value)))
 
     
 (set jm_getInstance (fn jm_getInstance []
@@ -43,12 +45,12 @@
     
 (set jnew_3 (fn jnew_3 [_poolName _numThreads _priority]
     (var this (table/setproto @{:jclass "SecondaryThreadPool"} jproto))
-        nil
+        (JR/superInit this (ThreadPool/jnew_3 _poolName _numThreads _priority))
     this))
     
 (set jm_runTask (fn jm_runTask [this _task]
         (JR/className (this :f_logUtil))
-        (ThreadPool/jm_runTask this _task)))
+        ((get ThreadPool/jproto :jm_runTask) this _task)))
     
 (set jm_startTask (fn jm_startTask [this _task]
         (JR/className (this :f_logUtil))))

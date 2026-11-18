@@ -1,67 +1,49 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.layer.special
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.game.layer.special
 
-local CollidableInterfaceCompositeInterface = require("org.allbinary.game.collision.CollidableInterfaceCompositeInterface")
-local CollisionType = require("org.allbinary.game.collision.CollisionType")
-local CollisionTypeFactory = require("org.allbinary.game.collision.CollisionTypeFactory")
-local CollidableCompositeLayer = require("org.allbinary.game.layer.CollidableCompositeLayer")
-local PickedUpLayerInterface = require("org.allbinary.game.layer.pickup.PickedUpLayerInterface")
-local ForcedLogUtil = require("org.allbinary.logic.communication.log.ForcedLogUtil")
-local CollidableDestroyableDamageableBehavior = require("org.allbinary.game.layer.special.CollidableDestroyableDamageableBehavior")
+(import ../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- CollisionTypeFactory/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/game/collision/CollisionTypeFactory" "jm_getInstance" args))
+(defn- ForcedLogUtil/jm_log [& args] (JR/call jfile "../../../../../org/allbinary/logic/communication/log/ForcedLogUtil" "jm_log" args))
+(import ./CollidableDestroyableDamageableBehavior :as CollidableDestroyableDamageableBehavior)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class CollidableCharacterBehavior
+(var jproto nil)
+(var jnew_1 nil)
+(var jm_collide nil)
+(var jm_collideInterface nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jnew_1 (fn jnew_1 [_collidable]
+    (var this (table/setproto @{:jclass "CollidableCharacterBehavior"} jproto))
+        (JR/superInit this (CollidableDestroyableDamageableBehavior/jnew_1 _collidable))
+    this))
+    
+(set jm_collide (fn jm_collide [this _ownerLayer _collidableInterfaceCompositeInterface]
+        (var _collisionTypeFactory (CollisionTypeFactory/jm_getInstance))
+        (var _collisionType (JR/className (:jm_getCollidableInferface _collidableInterfaceCompositeInterface)))
+        (if (= _collisionType (_collisionTypeFactory :f_PICKUP))
+            (do
+            (var _collidableDestroyableDamageableLayer _ownerLayer)
+            (JR/className (:jm_getPickupBehavior _collidableDestroyableDamageableLayer)))
+            (do
+            ((get CollidableDestroyableDamageableBehavior/jproto :jm_collide) this _ownerLayer _collidableInterfaceCompositeInterface)))))
+    
+(set jm_collideInterface (fn jm_collideInterface [this _ownerLayer _collidableInterfaceCompositeInterface]
+        (ForcedLogUtil/jm_log ((this :f_commonStrings) :f_NOT_IMPLEMENTED) this)))
 
-local CollidableCharacterBehavior = {}
-CollidableCharacterBehavior.__index = CollidableCharacterBehavior
-CollidableCharacterBehavior.className = "CollidableCharacterBehavior"
-setmetatable(CollidableCharacterBehavior, {__index = CollidableDestroyableDamageableBehavior})
+(set jproto (table/setproto @{:jm_collide jm_collide :jm_collideInterface jm_collideInterface} CollidableDestroyableDamageableBehavior/jproto))
 
-
-function CollidableCharacterBehavior.new(collidable)
-    local self = setmetatable(CollidableDestroyableDamageableBehavior.new(collidable), CollidableCharacterBehavior)
-        -- super(...) made self above
-    return self
-end
-
-
--- throws Exception
-function CollidableCharacterBehavior:collide(ownerLayer, collidableInterfaceCompositeInterface)
-        local collisionTypeFactory = CollisionTypeFactory.getInstance()
-        local collisionType = collidableInterfaceCompositeInterface:getCollidableInferface():getCollisionTypeWith(ownerLayer)
-        if collisionType == collisionTypeFactory.PICKUP then
-            local collidableDestroyableDamageableLayer = ownerLayer
-            collidableDestroyableDamageableLayer:getPickupBehavior():doPickupLayer(collidableInterfaceCompositeInterface)
-        else
-            CollidableDestroyableDamageableBehavior.collide(self, ownerLayer, collidableInterfaceCompositeInterface)
-        end
-end
-
-
--- throws Exception
-function CollidableCharacterBehavior:collideInterface(ownerLayer, collidableInterfaceCompositeInterface)
-        ForcedLogUtil.log(self.commonStrings.NOT_IMPLEMENTED, self)
-end
-
-return CollidableCharacterBehavior
 

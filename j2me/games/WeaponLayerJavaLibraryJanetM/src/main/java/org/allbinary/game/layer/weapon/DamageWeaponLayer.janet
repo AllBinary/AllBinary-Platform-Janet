@@ -1,48 +1,34 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.layer.weapon
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.game.layer.weapon
 
-local Animation = require("org.allbinary.animation.Animation")
-local RemoteInfo = require("org.allbinary.game.multiplayer.layer.RemoteInfo")
-local Rectangle = require("org.allbinary.graphics.Rectangle")
-local Movement = require("org.allbinary.physics.movement.Movement")
-local ViewPositionBase = require("org.allbinary.view.ViewPositionBase")
-local WeaponLayer = require("org.allbinary.game.layer.weapon.WeaponLayer")
+(import ../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(import ./WeaponLayer :as WeaponLayer)
+(defn- CollidableDamageWeaponBehavior/jnew_1 [& args] (JR/call jfile "./CollidableDamageWeaponBehavior" "jnew_1" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class DamageWeaponLayer
+(var jproto nil)
+(var jnew_11 nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jnew_11 (fn jnew_11 [_name _remoteInfo _movement _animationInterface _destroyedAnimationInterface _rectangle _viewPosition _username _actorSessionId _id _multiPlayerType]
+    (var this (table/setproto @{:jclass "DamageWeaponLayer"} jproto))
+        (JR/superInit this (WeaponLayer/jnew_8 _name _remoteInfo _multiPlayerType _movement _animationInterface _destroyedAnimationInterface _rectangle _viewPosition))
+        (:jm_setCollidableInferface this (CollidableDamageWeaponBehavior/jnew_1 true))
+    this))
 
-local DamageWeaponLayer = {}
-DamageWeaponLayer.__index = DamageWeaponLayer
-DamageWeaponLayer.className = "DamageWeaponLayer"
-setmetatable(DamageWeaponLayer, {__index = WeaponLayer})
+(set jproto (table/setproto @{} WeaponLayer/jproto))
 
-
-function DamageWeaponLayer.new(name, remoteInfo, movement, animationInterface, destroyedAnimationInterface, rectangle, viewPosition, username, actorSessionId, id, multiPlayerType)
-    local self = setmetatable(WeaponLayer.new(name, remoteInfo, multiPlayerType, movement, animationInterface, destroyedAnimationInterface, rectangle, viewPosition), DamageWeaponLayer)
-        -- super(...) made self above
-        self:setCollidableInferface(CollidableDamageWeaponBehavior.new(true))
-    return self
-end
-
-return DamageWeaponLayer
 

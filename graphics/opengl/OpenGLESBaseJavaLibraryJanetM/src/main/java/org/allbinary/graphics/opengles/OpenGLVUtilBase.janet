@@ -1,51 +1,42 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2025 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.opengles
+# 
+# AllBinary Open License Version 1 
+# Copyright (c) 2025 AllBinary 
+#  
+# By agreeing to this license you and any business entity you represent are 
+# legally bound to the AllBinary Open License Version 1 legal agreement. 
+#  
+# You may obtain the AllBinary Open License Version 1 legal agreement from 
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+#  
+# Created By: Travis Berthelot 
+#   
+# Generated Code Do Not Modify
+# package org.allbinary.graphics.opengles
 
--- local GL10 = require("javax.microedition.khronos.opengles.GL10")
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class OpenGLVUtilBase
+(var jproto nil)
+(var jnew_0 nil)
+(var jm_glTexEnvix nil)
+(var jm_glTexParameterix nil)
+(var jm_glGenerateMipmap nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "OpenGLVUtilBase"} jproto))
+    this))
 
-local OpenGLVUtilBase = {}
-OpenGLVUtilBase.__index = OpenGLVUtilBase
-OpenGLVUtilBase.className = "OpenGLVUtilBase"
+    
+(set jm_glTexEnvix (fn jm_glTexEnvix [this _gl _target _pname _param]
+    nil))
+    
+(set jm_glTexParameterix (fn jm_glTexParameterix [this _gl _target _pname _param]
+    nil))
+    
+(set jm_glGenerateMipmap (fn jm_glGenerateMipmap [this _gl _textureId _target _generateMipMap]
+    nil))
 
-function OpenGLVUtilBase.new()
-    local self = setmetatable({}, OpenGLVUtilBase)
-    return self
-end
+(set jproto @{:jm_glTexEnvix jm_glTexEnvix :jm_glTexParameterix jm_glTexParameterix :jm_glGenerateMipmap jm_glGenerateMipmap})
 
-
-function OpenGLVUtilBase:glTexEnvix(gl, target, pname, param)
-end
-
-
-function OpenGLVUtilBase:glTexParameterix(gl, target, pname, param)
-end
-
-
-function OpenGLVUtilBase:glGenerateMipmap(gl, textureId, target, generateMipMap)
-end
-
-return OpenGLVUtilBase
 

@@ -1,124 +1,92 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---   
--- Generated Code Do Not Modify
--- package org.allbinary.animation.text
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#   
+# Generated Code Do Not Modify
+# package org.allbinary.animation.text
 
--- local Font = require("javax.microedition.lcdui.Font")
--- local Graphics = require("javax.microedition.lcdui.Graphics")
-local AnimationBehavior = require("org.allbinary.animation.AnimationBehavior")
-local FontDebugFactory = require("org.allbinary.graphics.font.FontDebugFactory")
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
-local TextAnimation = require("org.allbinary.animation.text.TextAnimation")
-local TextInterface = require("org.allbinary.animation.text.TextInterface")
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- Font/jm_getFont [& args] (JR/call jfile "../../../../javax/microedition/lcdui/Font" "jm_getFont" args))
+(defn- Font/jstatic_FACE_SYSTEM [& args] (JR/call jfile "../../../../javax/microedition/lcdui/Font" "jstatic_FACE_SYSTEM" args))
+(defn- Font/jstatic_STYLE_PLAIN [& args] (JR/call jfile "../../../../javax/microedition/lcdui/Font" "jstatic_STYLE_PLAIN" args))
+(defn- FontDebugFactory/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/graphics/font/FontDebugFactory" "jm_getInstance" args))
+(defn- StringUtil/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/logic/string/StringUtil" "jm_getInstance" args))
+(import ./TextAnimation :as TextAnimation)
 
--- Java library Throwable. tostring gives the message like Java getMessage.
-local function java_exception(className, message, cause)
-    if cause == nil and type(message) == "table" then
-        cause = message
-        message = tostring(message)
-    end
-    local exception = {className = className, message = message, cause = cause}
-    function exception:getMessage() return self.message end
-    function exception:getCause() return self.cause end
-    function exception:printStackTrace() print(debug.traceback(tostring(self))) end
-    return setmetatable(exception, {__tostring = function(self) if self.message ~= nil then return tostring(self.message) end return self.className end})
-end
+# Java class CustomTextAnimation
+(var jproto nil)
+(var jnew_3 nil)
+(var jm_paintXY nil)
+(var jm_setScale nil)
+(var jm_setTextWithOnMeasure nil)
+(var jm_setText nil)
+(var jm_getText nil)
+(var jm_getWidth nil)
+(var jm_getFontHeight nil)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+    
+(set jnew_3 (fn jnew_3 [_text _fontSize _animationBehavior]
+    (var this (table/setproto @{:jclass "CustomTextAnimation" :f_fontDebugFactory nil :f_fontSize 0 :f_font nil :f_lastText nil :f_hasChanged false :f_textWidth 0} jproto))
+    (put this :f_fontDebugFactory (FontDebugFactory/jm_getInstance))
+    
+    
+    (put this :f_lastText ((StringUtil/jm_getInstance) :f_INIT_STRING))
+    (put this :f_hasChanged true)
+    
+        (JR/superInit this (TextAnimation/jnew_2 _text _animationBehavior))
+        (set (this :f_fontSize) _fontSize)
+        (set (this :f_font) (Font/jm_getFont (Font/jstatic_FACE_SYSTEM) (Font/jstatic_STYLE_PLAIN) _fontSize))
+    this))
+    
+(set jm_paintXY (fn jm_paintXY [this _graphics _x _y]
+        (JR/className (this :f_myFontProcessor))
+        (var _existingFont (:jm_getFont _graphics))
+        (:jm_setFont (this :f_fontDebugFactory) (this :f_font) _graphics)
+        ((get TextAnimation/jproto :jm_paintXYNoUpdate) this _graphics _x _y)
+        (:jm_setFont (this :f_fontDebugFactory) _existingFont _graphics)))
+    
+(set jm_setScale (fn jm_setScale [this _scaleX _scaleY]
+        (if (not= _scaleX _scaleY)
+            (do
+            (error (JR/newException "RuntimeException"))))
+        (set (this :f_hasChanged) true)
+        (set (this :f_font) (Font/jm_getFont (Font/jstatic_FACE_SYSTEM) (Font/jstatic_STYLE_PLAIN) (JR/d2i (* (this :f_fontSize) _scaleX))))))
+    
+(set jm_setTextWithOnMeasure (fn jm_setTextWithOnMeasure [this _text _textChangeListener]
+        ((get TextAnimation/jproto :jm_setTextWithOnMeasure) this _text _textChangeListener)))
+    
+(set jm_setText (fn jm_setText [this _text]
+        (if (not= (this :f_lastText) _text)
+            (do
+            (set (this :f_hasChanged) true)
+            (set (this :f_lastText) _text)
+            ((get TextAnimation/jproto :jm_setText) this _text)))))
+    
+(set jm_getText (fn jm_getText [this]
+    (label jreturn
+        (return jreturn (this :f_lastText)))))
+    
+(set jm_getWidth (fn jm_getWidth [this]
+    (label jreturn
+        (if (this :f_hasChanged)
+            (do
+            (set (this :f_textWidth) (:jm_stringWidth (this :f_font) ((this :f_textArrayP) 0)))
+            (set (this :f_hasChanged) false)))
+        (return jreturn (this :f_textWidth)))))
+    
+(set jm_getFontHeight (fn jm_getFontHeight [this]
+    (label jreturn
+        (return jreturn (:jm_getHeight (this :f_font))))))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jproto (table/setproto @{:jm_paintXY jm_paintXY :jm_setScale jm_setScale :jm_setTextWithOnMeasure jm_setTextWithOnMeasure :jm_setText jm_setText :jm_getText jm_getText :jm_getWidth jm_getWidth :jm_getFontHeight jm_getFontHeight} TextAnimation/jproto))
 
-local CustomTextAnimation = {}
-CustomTextAnimation.__index = CustomTextAnimation
-CustomTextAnimation.className = "CustomTextAnimation"
-setmetatable(CustomTextAnimation, {__index = TextAnimation})
-
-function CustomTextAnimation:_init_fields()
-    self.fontDebugFactory = FontDebugFactory.getInstance()
-    self.fontSize = nil
-    self.font = nil
-    self.lastText = StringUtil.getInstance().INIT_STRING
-    self.hasChanged = true
-    self.textWidth = 0
-end
-
-
-function CustomTextAnimation.new(text, fontSize, animationBehavior)
-    local self = setmetatable(TextAnimation.new(text, animationBehavior), CustomTextAnimation)
-    self:_init_fields()
-        -- super(...) made self above
-        self.fontSize = fontSize
-        self.font = Font.getFont(Font.FACE_SYSTEM, Font.STYLE_PLAIN, fontSize)
-    return self
-end
-
-
-function CustomTextAnimation:paintXY(graphics, x, y)
-        self.myFontProcessor:process(graphics)
-        local existingFont = graphics:getFont()
-        self.fontDebugFactory:setFont(self.font, graphics)
-        TextAnimation.paintXYNoUpdate(self, graphics, x, y)
-        self.fontDebugFactory:setFont(existingFont, graphics)
-end
-
-
-function CustomTextAnimation:setScale(scaleX, scaleY)
-        if scaleX ~= scaleY then
-            error(java_exception("RuntimeException"), 0)
-        end
-        self.hasChanged = true
-        self.font = Font.getFont(Font.FACE_SYSTEM, Font.STYLE_PLAIN, java_int(((self.fontSize + 0.0) * scaleX)))
-end
-
-
-function CustomTextAnimation:setTextWithOnMeasure(text, textChangeListener)
-        TextAnimation.setTextWithOnMeasure(self, text, textChangeListener)
-end
-
-
-function CustomTextAnimation:setText(text)
-        if self.lastText ~= text then
-            self.hasChanged = true
-            self.lastText = text
-            TextAnimation.setText(self, text)
-        end
-end
-
-
-function CustomTextAnimation:getText()
-        return self.lastText
-end
-
-
-function CustomTextAnimation:getWidth()
-        if self.hasChanged then
-            self.textWidth = self.font:stringWidth(self.textArrayP[1])
-            self.hasChanged = false
-        end
-        return self.textWidth
-end
-
-
-function CustomTextAnimation:getFontHeight()
-        return self.font:getHeight()
-end
-
-return CustomTextAnimation
 

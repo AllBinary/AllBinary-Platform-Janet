@@ -1,59 +1,56 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.paint
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.game.paint
 
-local BasicColor = require("org.allbinary.graphics.color.BasicColor")
-local GenericOperatingSystem = require("org.allbinary.logic.system.os.GenericOperatingSystem")
-local OperatingSystemFactory = require("org.allbinary.logic.system.os.OperatingSystemFactory")
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- OperatingSystemFactory/jm_getInstance_0 [& args] (JR/call jfile "../../../../org/allbinary/logic/system/os/OperatingSystemFactory" "jm_getInstance_0" args))
+(defn- ColorFillPaintable/jnew_1 [& args] (JR/call jfile "./ColorFillPaintable" "jnew_1" args))
+(defn- OverScanColorFillPaintable/jnew_1 [& args] (JR/call jfile "./OverScanColorFillPaintable" "jnew_1" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class ColorFillPaintableFactory
+(var jproto nil)
+(var jcell_instance :jnone)
+(var jstatic_instance nil)
+(var jsetstatic_instance nil)
+(var jnew_0 nil)
+(var jm_getInstance_0 nil)
+(var jm_getInstance_2 nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jstatic_instance (fn jstatic_instance []
+  (when (= jcell_instance :jnone) (set jcell_instance (jnew_0)))
+  jcell_instance))
+(set jsetstatic_instance (fn jsetstatic_instance [value] (set jcell_instance value)))
 
-local ColorFillPaintableFactory = {}
-ColorFillPaintableFactory.__index = ColorFillPaintableFactory
-ColorFillPaintableFactory.className = "ColorFillPaintableFactory"
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "ColorFillPaintableFactory"} jproto))
+    this))
 
-function ColorFillPaintableFactory.new()
-    local self = setmetatable({}, ColorFillPaintableFactory)
-    return self
-end
+    
+(set jm_getInstance_0 (fn jm_getInstance_0 []
+    (label jreturn
+        (return jreturn (jstatic_instance)))))
+    
+(set jm_getInstance_2 (fn jm_getInstance_2 [this _basicColor _forThreedCanvas]
+    (label jreturn
+        (var _operatingSystem (:jm_getOperatingSystemInstance (OperatingSystemFactory/jm_getInstance_0)))
+        (if (:jm_isOverScan _operatingSystem)
+            (do
+            (return jreturn (OverScanColorFillPaintable/jnew_1 _basicColor)))
+            (do
+            (return jreturn (ColorFillPaintable/jnew_1 _basicColor)))))))
 
+(set jproto @{:jm_getInstance_2 jm_getInstance_2})
 
-function ColorFillPaintableFactory.getInstance()
-        return ColorFillPaintableFactory.instance
-end
-
-
--- Java overloaded method: Lua keeps the last definition
-function ColorFillPaintableFactory:getInstance(basicColor, forThreedCanvas)
-        local operatingSystem = OperatingSystemFactory.getInstance():getOperatingSystemInstance()
-        if operatingSystem:isOverScan() then
-            return OverScanColorFillPaintable.new(basicColor)
-        else
-            return ColorFillPaintable.new(basicColor)
-        end
-end
-
-ColorFillPaintableFactory.instance = ColorFillPaintableFactory.new()
-
-return ColorFillPaintableFactory
 

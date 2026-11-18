@@ -1,56 +1,46 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.score
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.game.score
 
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class HighScoresInterface
+(var jproto nil)
+(var jnew_0 nil)
+(var jm_getList nil)
+(var jm_addHighScore nil)
+(var jm_getTotal nil)
+(var jm_isBestScore nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "HighScoresInterface"} jproto))
+    this))
 
--- Java interface
-local HighScoresInterface = {}
-HighScoresInterface.__index = HighScoresInterface
-HighScoresInterface.className = "HighScoresInterface"
+    
+(set jm_getList (fn jm_getList [this]
+    (error (JR/newException "AbstractMethodError" "getList"))))
+    
+(set jm_addHighScore (fn jm_addHighScore [this _newHighScore]
+    (error (JR/newException "AbstractMethodError" "addHighScore"))))
+    
+(set jm_getTotal (fn jm_getTotal [this]
+    (error (JR/newException "AbstractMethodError" "getTotal"))))
+    
+(set jm_isBestScore (fn jm_isBestScore [this _newHighScore]
+    (error (JR/newException "AbstractMethodError" "isBestScore"))))
 
+(set jproto @{:jm_getList jm_getList :jm_addHighScore jm_addHighScore :jm_getTotal jm_getTotal :jm_isBestScore jm_isBestScore})
 
-function HighScoresInterface:getList()
-    error("abstract method getList")
-end
-
-
-function HighScoresInterface:addHighScore(newHighScore)
-    error("abstract method addHighScore")
-end
-
-
-function HighScoresInterface:getTotal()
-    error("abstract method getTotal")
-end
-
-
--- throws Exception
-function HighScoresInterface:isBestScore(newHighScore)
-    error("abstract method isBestScore")
-end
-
-return HighScoresInterface
 

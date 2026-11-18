@@ -1,75 +1,59 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.io
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.logic.io
 
--- local BufferedReader = require("java.io.BufferedReader")
--- local FileReader = require("java.io.FileReader")
-local AbFile = require("org.allbinary.logic.io.file.AbFile")
-local AbFileNativeUtil = require("org.allbinary.logic.io.file.AbFileNativeUtil")
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(import ../../../../java/io/BufferedReader :as BufferedReader)
+(import ../../../../java/io/FileReader :as FileReader)
+(defn- AbFileNativeUtil/jm_get [& args] (JR/call jfile "../../../../org/allbinary/logic/io/file/AbFileNativeUtil" "jm_get" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class BufferedLineReader
+(var jproto nil)
+(var jnew_1 nil)
+(var jm_readUpToLines nil)
+(var jm_readLine nil)
+(var jm_ready nil)
+(var jm_getSize nil)
+(var jm_getCurrent nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jnew_1 (fn jnew_1 [_file]
+    (var this (table/setproto @{:jclass "BufferedLineReader" :f_tmpIn nil} jproto))
+    
+        (set (this :f_tmpIn) (BufferedReader/jnew_1 (FileReader/jnew_1 (AbFileNativeUtil/jm_get _file))))
+    this))
+    
+(set jm_readUpToLines (fn jm_readUpToLines [this _readAheadIndex]
+    nil))
+    
+(set jm_readLine (fn jm_readLine [this]
+    (label jreturn
+        (return jreturn (:jm_readLine (this :f_tmpIn))))))
+    
+(set jm_ready (fn jm_ready [this]
+    (label jreturn
+        (return jreturn (:jm_ready (this :f_tmpIn))))))
+    
+(set jm_getSize (fn jm_getSize [this]
+    (label jreturn
+        (return jreturn 0))))
+    
+(set jm_getCurrent (fn jm_getCurrent [this]
+    (label jreturn
+        (return jreturn 0))))
 
-local BufferedLineReader = {}
-BufferedLineReader.__index = BufferedLineReader
-BufferedLineReader.className = "BufferedLineReader"
+(set jproto @{:jm_readUpToLines jm_readUpToLines :jm_readLine jm_readLine :jm_ready jm_ready :jm_getSize jm_getSize :jm_getCurrent jm_getCurrent})
 
-function BufferedLineReader:_init_fields()
-    self.tmpIn = nil
-end
-
-
-function BufferedLineReader.new(file)
-    local self = setmetatable({}, BufferedLineReader)
-    self:_init_fields()
-        self.tmpIn = BufferedReader.new(FileReader.new(AbFileNativeUtil.get(file)))
-    return self
-end
-
-
-function BufferedLineReader:readUpToLines(readAheadIndex)
-end
-
-
--- throws Exception
-function BufferedLineReader:readLine()
-        return self.tmpIn:readLine()
-end
-
-
--- throws Exception
-function BufferedLineReader:ready()
-        return self.tmpIn:ready()
-end
-
-
-function BufferedLineReader:getSize()
-        return 0
-end
-
-
-function BufferedLineReader:getCurrent()
-        return 0
-end
-
-return BufferedLineReader
 

@@ -1,56 +1,35 @@
--- Generated Code Do Not Modify
--- package org.allbinary.game.layer.weapon
+# Generated Code Do Not Modify
+# package org.allbinary.game.layer.weapon
 
-local Animation = require("org.allbinary.animation.Animation")
-local WeaponProperties = require("org.allbinary.game.combat.weapon.WeaponProperties")
-local RemoteInfo = require("org.allbinary.game.multiplayer.layer.RemoteInfo")
-local Rectangle = require("org.allbinary.graphics.Rectangle")
-local AllBinaryLayerManager = require("org.allbinary.layer.AllBinaryLayerManager")
-local Movement = require("org.allbinary.physics.movement.Movement")
-local GameTickTimeDelayHelperFactory = require("org.allbinary.time.GameTickTimeDelayHelperFactory")
-local TimeDelayHelper = require("org.allbinary.time.TimeDelayHelper")
-local ViewPositionBase = require("org.allbinary.view.ViewPositionBase")
-local SimpleWeaponLayer = require("org.allbinary.game.layer.weapon.SimpleWeaponLayer")
+(import ../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- WeaponProperties/jnew_5 [& args] (JR/call jfile "../../../../../org/allbinary/game/combat/weapon/WeaponProperties" "jnew_5" args))
+(defn- RemoteInfo/jstatic_REMOTE_INFO [& args] (JR/call jfile "../../../../../org/allbinary/game/multiplayer/layer/RemoteInfo" "jstatic_REMOTE_INFO" args))
+(defn- GameTickTimeDelayHelperFactory/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/time/GameTickTimeDelayHelperFactory" "jm_getInstance" args))
+(defn- TimeDelayHelper/jnew_1 [& args] (JR/call jfile "../../../../../org/allbinary/time/TimeDelayHelper" "jnew_1" args))
+(import ./SimpleWeaponLayer :as SimpleWeaponLayer)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class TempExplosionWeaponLayer
+(var jproto nil)
+(var jnew_6 nil)
+(var jm_processTick nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jnew_6 (fn jnew_6 [_name _movement _animationInterface _rectangle _viewPosition _timeDelay]
+    (var this (table/setproto @{:jclass "TempExplosionWeaponLayer" :f_weaponProperties nil :f_timeDelayHelper nil} jproto))
+    (put this :f_weaponProperties (WeaponProperties/jnew_5 (- 1) (- 1) 0 1000 (JR/i16 0)))
+    (put this :f_timeDelayHelper (TimeDelayHelper/jnew_1 0))
+        (JR/superInit this (SimpleWeaponLayer/jnew_8 _name (RemoteInfo/jstatic_REMOTE_INFO) (JR/i32 (- 1)) _movement _animationInterface (SimpleWeaponLayer/jm_createDestroyed) _rectangle _viewPosition))
+        (set ((this :f_timeDelayHelper) :f_delay) _timeDelay)
+    this))
+    
+(set jm_processTick (fn jm_processTick [this _allBinaryLayerManager]
+        (if (:jm_isTime (this :f_timeDelayHelper) ((GameTickTimeDelayHelperFactory/jm_getInstance) :f_startTime))
+            (do
+            (JR/className (:jm_getCollidableInferface this))
+            (set (this :f_totalDamage) (JR/i32 (+ (:jm_getInitDamage this) 1)))))
+        ((get SimpleWeaponLayer/jproto :jm_processTick) this _allBinaryLayerManager)))
 
-local TempExplosionWeaponLayer = {}
-TempExplosionWeaponLayer.__index = TempExplosionWeaponLayer
-TempExplosionWeaponLayer.className = "TempExplosionWeaponLayer"
-setmetatable(TempExplosionWeaponLayer, {__index = SimpleWeaponLayer})
+(set jproto (table/setproto @{:jm_processTick jm_processTick} SimpleWeaponLayer/jproto))
 
-function TempExplosionWeaponLayer:_init_fields()
-    self.weaponProperties = WeaponProperties.new(-1, -1, 0, 1000, 0)
-    self.timeDelayHelper = TimeDelayHelper.new(0)
-end
-
-
-function TempExplosionWeaponLayer.new(name, movement, animationInterface, rectangle, viewPosition, timeDelay)
-    local self = setmetatable(SimpleWeaponLayer.new(name, RemoteInfo.REMOTE_INFO, -1, movement, animationInterface, SimpleWeaponLayer.createDestroyed(), rectangle, viewPosition), TempExplosionWeaponLayer)
-    self:_init_fields()
-        -- super(...) made self above
-        self.timeDelayHelper.delay = timeDelay
-    return self
-end
-
-
--- throws Exception
-function TempExplosionWeaponLayer:processTick(allBinaryLayerManager)
-        if self.timeDelayHelper:isTime(GameTickTimeDelayHelperFactory.getInstance().startTime) then
-            self:getCollidableInferface():collide(self, self)
-            self.totalDamage = self:getInitDamage() + 1
-        end
-        SimpleWeaponLayer.processTick(self, allBinaryLayerManager)
-end
-
-return TempExplosionWeaponLayer
 

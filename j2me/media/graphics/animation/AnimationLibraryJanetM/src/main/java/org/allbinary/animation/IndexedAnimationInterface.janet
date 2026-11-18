@@ -1,51 +1,43 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.animation
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.animation
 
-local SequentialAnimationInterface = require("org.allbinary.animation.SequentialAnimationInterface")
+(import ../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(import ./SequentialAnimationInterface :as SequentialAnimationInterface)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class IndexedAnimationInterface
+(var jproto nil)
+(var jnew_0 nil)
+(var jm_reset nil)
+(var jm_setFrame nil)
+(var jm_getFrame nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "IndexedAnimationInterface"} jproto))
+    this))
 
--- Java interface
-local IndexedAnimationInterface = {}
-IndexedAnimationInterface.__index = IndexedAnimationInterface
-IndexedAnimationInterface.className = "IndexedAnimationInterface"
-setmetatable(IndexedAnimationInterface, {__index = SequentialAnimationInterface})
+    
+(set jm_reset (fn jm_reset [this]
+    (error (JR/newException "AbstractMethodError" "reset"))))
+    
+(set jm_setFrame (fn jm_setFrame [this _index]
+    (error (JR/newException "AbstractMethodError" "setFrame"))))
+    
+(set jm_getFrame (fn jm_getFrame [this]
+    (error (JR/newException "AbstractMethodError" "getFrame"))))
 
+(set jproto @{:jm_reset jm_reset :jm_setFrame jm_setFrame :jm_getFrame jm_getFrame})
 
-function IndexedAnimationInterface:reset()
-    error("abstract method reset")
-end
-
-
-function IndexedAnimationInterface:setFrame(index)
-    error("abstract method setFrame")
-end
-
-
-function IndexedAnimationInterface:getFrame()
-    error("abstract method getFrame")
-end
-
-return IndexedAnimationInterface
 

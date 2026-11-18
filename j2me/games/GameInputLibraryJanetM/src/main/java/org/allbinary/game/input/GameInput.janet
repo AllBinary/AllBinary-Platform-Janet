@@ -1,128 +1,110 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.input
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.game.input
 
-local Features = require("org.allbinary.game.configuration.feature.Features")
-local InputFeatureFactory = require("org.allbinary.game.configuration.feature.InputFeatureFactory")
-local GameKeyEvent = require("org.allbinary.game.input.event.GameKeyEvent")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- Features/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/game/configuration/feature/Features" "jm_getInstance" args))
+(defn- InputFeatureFactory/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/game/configuration/feature/InputFeatureFactory" "jm_getInstance" args))
+(defn- LogUtil/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/logic/communication/log/LogUtil" "jm_getInstance" args))
+(defn- CommonStrings/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/string/CommonStrings" "jm_getInstance" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class GameInput
+(var jproto nil)
+(var jnew_2 nil)
+(var jm_add nil)
+(var jm_addForRemoval nil)
+(var jm_isForRemoval nil)
+(var jm_clear nil)
+(var jm_removeNonAIInputGameKeyEvents nil)
+(var jm_update nil)
+(var jm_getRemovalGameKeyEventList nil)
+(var jm_getGameKeyEventList nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jnew_2 (fn jnew_2 [_gameKeyEventList _removalGameKeyEventList]
+    (var this (table/setproto @{:jclass "GameInput" :f_logUtil nil :f_commonStrings nil :f_gameKeyEventList nil :f_removalGameKeyEventList nil :f_isRemoveDuplicateKeyPresses false} jproto))
+    (put this :f_logUtil (LogUtil/jm_getInstance))
+    (put this :f_commonStrings (CommonStrings/jm_getInstance))
+    
+    
+    
+        (set (this :f_gameKeyEventList) _gameKeyEventList)
+        (set (this :f_removalGameKeyEventList) _removalGameKeyEventList)
+        (set (this :f_isRemoveDuplicateKeyPresses) (:jm_isFeature (Features/jm_getInstance) ((InputFeatureFactory/jm_getInstance) :f_REMOVE_DUPLICATE_KEY_PRESSES)))
+    this))
+    
+(set jm_add (fn jm_add [this _gameKeyEvent]
+    (label jreturn
+        (if (and (this :f_isRemoveDuplicateKeyPresses) (:jm_contains (this :f_gameKeyEventList) _gameKeyEvent))
+            (do
+            (return jreturn)))
+        (if (not (nil? _gameKeyEvent))
+            (do
+            (:jm_add (this :f_gameKeyEventList) _gameKeyEvent))
+            (do
+            (:jm_putF (this :f_logUtil) "Danger Passed Null GameKeyEvent" this ((this :f_commonStrings) :f_ADD)))))))
+    
+(set jm_addForRemoval (fn jm_addForRemoval [this _gameKeyEvent]
+        (:jm_add (this :f_removalGameKeyEventList) _gameKeyEvent)))
+    
+(set jm_isForRemoval (fn jm_isForRemoval [this _gameKeyEvent]
+    (label jreturn
+        (return jreturn (:jm_contains (this :f_removalGameKeyEventList) _gameKeyEvent)))))
+    
+(set jm_clear (fn jm_clear [this]
+        (:jm_clear (this :f_gameKeyEventList))))
+    
+(set jm_removeNonAIInputGameKeyEvents (fn jm_removeNonAIInputGameKeyEvents [this]
+        (var _list (this :f_gameKeyEventList))
+        (var _gameKeyEvent nil)
+        (do
+            (var _index (:jm_size _list))
+            (while (>= (set _index (JR/i32 (- _index 1))) 0)
+                (do
+            (set _gameKeyEvent ((_list :f_objectArray) _index))
+            (if (not= (:jm_getSourceId _gameKeyEvent) 1)
+                (do
+                (:jm_removeAt _list _index))))))))
+    
+(set jm_update (fn jm_update [this]
+        (var _removeList (this :f_removalGameKeyEventList))
+        (var _list (this :f_gameKeyEventList))
+        (var _size (:jm_size _removeList))
+        (do
+            (var _index 0)
+            (while (< _index _size)
+                (do
+            (var _anyType ((_removeList :f_objectArray) _index))
+            (do
+                (var _index2 (:jm_size _list))
+                (while (>= (set _index2 (JR/i32 (- _index2 1))) 0)
+                    (do
+                (if (= ((_list :f_objectArray) _index2) _anyType)
+                    (do
+                    (:jm_removeAt _list _index2)))))))
+                (do (set _index (JR/i32 (+ _index 1))))))
+        (:jm_clear _removeList)))
+    
+(set jm_getRemovalGameKeyEventList (fn jm_getRemovalGameKeyEventList [this]
+    (label jreturn
+        (return jreturn (this :f_removalGameKeyEventList)))))
+    
+(set jm_getGameKeyEventList (fn jm_getGameKeyEventList [this]
+    (label jreturn
+        (return jreturn (this :f_gameKeyEventList)))))
 
-local GameInput = {}
-GameInput.__index = GameInput
-GameInput.className = "GameInput"
+(set jproto @{:jm_add jm_add :jm_addForRemoval jm_addForRemoval :jm_isForRemoval jm_isForRemoval :jm_clear jm_clear :jm_removeNonAIInputGameKeyEvents jm_removeNonAIInputGameKeyEvents :jm_update jm_update :jm_getRemovalGameKeyEventList jm_getRemovalGameKeyEventList :jm_getGameKeyEventList jm_getGameKeyEventList})
 
-function GameInput:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-    self.commonStrings = CommonStrings.getInstance()
-    self.gameKeyEventList = nil
-    self.removalGameKeyEventList = nil
-    self.isRemoveDuplicateKeyPresses = nil
-end
-
-
-function GameInput.new(gameKeyEventList, removalGameKeyEventList)
-    local self = setmetatable({}, GameInput)
-    self:_init_fields()
-        self.gameKeyEventList = gameKeyEventList
-        self.removalGameKeyEventList = removalGameKeyEventList
-        self.isRemoveDuplicateKeyPresses = Features.getInstance():isFeature(InputFeatureFactory.getInstance().REMOVE_DUPLICATE_KEY_PRESSES)
-    return self
-end
-
-
-function GameInput:add(gameKeyEvent)
-        if self.isRemoveDuplicateKeyPresses and self.gameKeyEventList:contains(gameKeyEvent) then
-            return
-        end
-        if gameKeyEvent ~= nil then
-            self.gameKeyEventList:add(gameKeyEvent)
-        else
-            self.logUtil:putF("Danger Passed Null GameKeyEvent", self, self.commonStrings.ADD)
-        end
-end
-
-
-function GameInput:addForRemoval(gameKeyEvent)
-        self.removalGameKeyEventList:add(gameKeyEvent)
-end
-
-
-function GameInput:isForRemoval(gameKeyEvent)
-        return self.removalGameKeyEventList:contains(gameKeyEvent)
-end
-
-
-function GameInput:clear()
-        self.gameKeyEventList:clear()
-end
-
-
-function GameInput:removeNonAIInputGameKeyEvents()
-        local list = self.gameKeyEventList
-        local gameKeyEvent = nil
-        do
-            local index = list:size()
-            while (function() index = index - 1 return index end)() >= 0 do
-            gameKeyEvent = list.objectArray[index + 1]
-            if gameKeyEvent:getSourceId() ~= 1 then
-                list:removeAt(index)
-            end
-            end
-        end
-end
-
-
-function GameInput:update()
-        local removeList = self.removalGameKeyEventList
-        local list = self.gameKeyEventList
-        local size = removeList:size()
-        for index = 0, size - 1 do
-            local anyType = removeList.objectArray[index + 1]
-            do
-                local index2 = list:size()
-                while (function() index2 = index2 - 1 return index2 end)() >= 0 do
-                if list.objectArray[index2 + 1] == anyType then
-                    list:removeAt(index2)
-                end
-                end
-            end
-        end
-        removeList:clear()
-end
-
-
-function GameInput:getRemovalGameKeyEventList()
-        return self.removalGameKeyEventList
-end
-
-
-function GameInput:getGameKeyEventList()
-        return self.gameKeyEventList
-end
-
-return GameInput
 

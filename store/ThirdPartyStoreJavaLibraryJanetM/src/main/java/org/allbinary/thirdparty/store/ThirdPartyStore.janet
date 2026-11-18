@@ -1,66 +1,51 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.thirdparty.store
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.thirdparty.store
 
-local AbeClientInformationInterface = require("org.allbinary.logic.system.security.licensing.AbeClientInformationInterface")
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class ThirdPartyStore
+(var jproto nil)
+(var jnew_1 nil)
+(var jm_authorize nil)
+(var jm_isAuthorized nil)
+(var jm_setAuthorized nil)
+(var jm_getName nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jnew_1 (fn jnew_1 [_name]
+    (var this (table/setproto @{:jclass "ThirdPartyStore" :f_authorized false :f_name nil} jproto))
+    
+    
+        (set (this :f_name) _name)
+    this))
+    
+(set jm_authorize (fn jm_authorize [this _clientInformationInterface]
+    nil))
+    
+(set jm_isAuthorized (fn jm_isAuthorized [this]
+    (label jreturn
+        (return jreturn (this :f_authorized)))))
+    
+(set jm_setAuthorized (fn jm_setAuthorized [this _authorized]
+        (set (this :f_authorized) _authorized)))
+    
+(set jm_getName (fn jm_getName [this]
+    (label jreturn
+        (return jreturn (this :f_name)))))
 
-local ThirdPartyStore = {}
-ThirdPartyStore.__index = ThirdPartyStore
-ThirdPartyStore.className = "ThirdPartyStore"
+(set jproto @{:jm_authorize jm_authorize :jm_isAuthorized jm_isAuthorized :jm_setAuthorized jm_setAuthorized :jm_getName jm_getName})
 
-function ThirdPartyStore:_init_fields()
-    self.authorized = false
-    self.name = nil
-end
-
-
-function ThirdPartyStore.new(name)
-    local self = setmetatable({}, ThirdPartyStore)
-    self:_init_fields()
-        self.name = name
-    return self
-end
-
-
-function ThirdPartyStore:authorize(clientInformationInterface)
-end
-
-
-function ThirdPartyStore:isAuthorized()
-        return self.authorized
-end
-
-
-function ThirdPartyStore:setAuthorized(authorized)
-        self.authorized = authorized
-end
-
-
-function ThirdPartyStore:getName()
-        return self.name
-end
-
-return ThirdPartyStore
 

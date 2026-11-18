@@ -1,92 +1,74 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.part.weapon
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.game.part.weapon
 
-local Animation = require("org.allbinary.animation.Animation")
-local WeaponProperties = require("org.allbinary.game.combat.weapon.WeaponProperties")
-local WeaponLayer = require("org.allbinary.game.layer.weapon.WeaponLayer")
-local WeaponLayerCircularPool = require("org.allbinary.game.layer.weapon.WeaponLayerCircularPool")
-local NoScoreable = require("org.allbinary.game.score.NoScoreable")
-local ScoreableInterface = require("org.allbinary.game.score.ScoreableInterface")
-local RelativeRelationship = require("org.allbinary.graphics.RelativeRelationship")
-local AllBinaryLayer = require("org.allbinary.layer.AllBinaryLayer")
-local AllBinaryLayerManager = require("org.allbinary.layer.AllBinaryLayerManager")
-local NoDecimalTrigTable = require("org.allbinary.math.NoDecimalTrigTable")
-local BasicWeaponPart = require("org.allbinary.game.part.weapon.BasicWeaponPart")
+(import ../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- WeaponProperties/jstatic_NULL_WEAPON_PROPERTIES [& args] (JR/call jfile "../../../../../org/allbinary/game/combat/weapon/WeaponProperties" "jstatic_NULL_WEAPON_PROPERTIES" args))
+(defn- NoScoreable/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/game/score/NoScoreable" "jm_getInstance" args))
+(defn- RelativeRelationship/jstatic_NULL_RELATIVE_RELATIONSHIP [& args] (JR/call jfile "../../../../../org/allbinary/graphics/RelativeRelationship" "jstatic_NULL_RELATIVE_RELATIONSHIP" args))
+(defn- AllBinaryLayer/jstatic_NULL_ALLBINARY_LAYER [& args] (JR/call jfile "../../../../../org/allbinary/layer/AllBinaryLayer" "jstatic_NULL_ALLBINARY_LAYER" args))
+(defn- NoDecimalTrigTable/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/math/NoDecimalTrigTable" "jm_getInstance" args))
+(import ./BasicWeaponPart :as BasicWeaponPart)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class StraightMultiProjectileWeaponPart
+(var jproto nil)
+(var jnew_7 nil)
+(var jm_createStraightMultiProjectileWeaponPart nil)
+(var jm_processScore nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jm_createStraightMultiProjectileWeaponPart (fn jm_createStraightMultiProjectileWeaponPart [_animationInterface _weaponLayerCircularStaticPool]
+    (label jreturn
+        (return jreturn (jnew_7 _animationInterface (AllBinaryLayer/jstatic_NULL_ALLBINARY_LAYER) _weaponLayerCircularStaticPool 2 (WeaponProperties/jstatic_NULL_WEAPON_PROPERTIES) (NoScoreable/jm_getInstance) (RelativeRelationship/jstatic_NULL_RELATIVE_RELATIONSHIP))))))
+    
+(set jnew_7 (fn jnew_7 [_animationInterface _sourceLayerInterface _weaponLayerCircularStaticPool _total _weaponProperties _scoreableInterface _relativeRelationship]
+    (var this (table/setproto @{:jclass "StraightMultiProjectileWeaponPart" :f_weaponLayerCircularStaticPool nil :f_total 0 :f_noDecimalTrigTable nil} jproto))
+    
+    
+    (put this :f_noDecimalTrigTable (NoDecimalTrigTable/jm_getInstance))
+        (JR/superInit this (BasicWeaponPart/jnew_5 _animationInterface _sourceLayerInterface _weaponProperties _scoreableInterface _relativeRelationship))
+        (set (this :f_total) _total)
+        (set (this :f_weaponLayerCircularStaticPool) _weaponLayerCircularStaticPool)
+    this))
+    
+(set jm_processScore (fn jm_processScore [this _allbinaryLayerManager _angle _otherAngle _weaponProperties _scoreableInterface]
+        (var _sourceLayerInterface (:jm_getOwnerLayerInterface this))
+        (var _reducedWidth (JR/idiv (JR/i32 (* (:jm_getWidth _sourceLayerInterface) 8)) 10))
+        (var _halfWidth (brshift _reducedWidth 1))
+        (var _x (:jm_getX (this :f_relativeRelationship)))
+        (var _y (:jm_getY (this :f_relativeRelationship)))
+        (var _sine 0)
+        (var _beamX 0)
+        (var _cosine 0)
+        (var _beamY 0)
+        (var _weaponLayer nil)
+        (var _increment (JR/idiv _reducedWidth (JR/i32 (- (this :f_total) 1))))
+        (var _next (JR/i32 (- _halfWidth)))
+        (do
+            (var _index 0)
+            (while (< _index (this :f_total))
+                (do
+            (set _sine (JR/i32 (* _next (:jm_sin (this :f_noDecimalTrigTable) _angle))))
+            (set _beamX (JR/ldiv _sine ((this :f_noDecimalTrigTable) :f_SCALE)))
+            (set _cosine (JR/i32 (* _next (:jm_cos (this :f_noDecimalTrigTable) _angle))))
+            (set _beamY (JR/i32 (- (JR/ldiv _cosine ((this :f_noDecimalTrigTable) :f_SCALE)))))
+            (set _weaponLayer (:jm_getInstanceWeaponLayer (this :f_weaponLayerCircularStaticPool) _sourceLayerInterface (JR/i32 (+ _x _beamX)) (JR/i32 (+ _y _beamY)) 0 _angle _otherAngle _weaponProperties _scoreableInterface))
+            (:jm_append _allbinaryLayerManager _weaponLayer)
+            (set _next (JR/i32 (+ _next _increment))))
+                (do (set _index (JR/i32 (+ _index 1))))))))
 
-local StraightMultiProjectileWeaponPart = {}
-StraightMultiProjectileWeaponPart.__index = StraightMultiProjectileWeaponPart
-StraightMultiProjectileWeaponPart.className = "StraightMultiProjectileWeaponPart"
-setmetatable(StraightMultiProjectileWeaponPart, {__index = BasicWeaponPart})
+(set jproto (table/setproto @{:jm_processScore jm_processScore} BasicWeaponPart/jproto))
 
-function StraightMultiProjectileWeaponPart:_init_fields()
-    self.weaponLayerCircularStaticPool = nil
-    self.total = nil
-    self.noDecimalTrigTable = NoDecimalTrigTable.getInstance()
-end
-
-
-function StraightMultiProjectileWeaponPart.createStraightMultiProjectileWeaponPart(animationInterface, weaponLayerCircularStaticPool)
-        return StraightMultiProjectileWeaponPart.new(animationInterface, AllBinaryLayer.NULL_ALLBINARY_LAYER, weaponLayerCircularStaticPool, 2, WeaponProperties.NULL_WEAPON_PROPERTIES, NoScoreable.getInstance(), RelativeRelationship.NULL_RELATIVE_RELATIONSHIP)
-end
-
-
-function StraightMultiProjectileWeaponPart.new(animationInterface, sourceLayerInterface, weaponLayerCircularStaticPool, total, weaponProperties, scoreableInterface, relativeRelationship)
-    local self = setmetatable(BasicWeaponPart.new(animationInterface, sourceLayerInterface, weaponProperties, scoreableInterface, relativeRelationship), StraightMultiProjectileWeaponPart)
-    self:_init_fields()
-        -- super(...) made self above
-        self.total = total
-        self.weaponLayerCircularStaticPool = weaponLayerCircularStaticPool
-    return self
-end
-
-
--- throws Exception
-function StraightMultiProjectileWeaponPart:processScore(allbinaryLayerManager, angle, otherAngle, weaponProperties, scoreableInterface)
-        local sourceLayerInterface = self:getOwnerLayerInterface()
-        local reducedWidth = (sourceLayerInterface:getWidth() * 8 / 10)
-        local halfWidth = (((reducedWidth) // (1 << (1))))
-        local x = self.relativeRelationship:getX()
-        local y = self.relativeRelationship:getY()
-        local sine = 0
-        local beamX = 0
-        local cosine = 0
-        local beamY = 0
-        local weaponLayer = nil
-        local increment = java_idiv(reducedWidth, (self.total - 1))
-        local next = -halfWidth
-        for index = 0, self.total - 1 do
-            sine = java_int((next * self.noDecimalTrigTable:sin(angle)))
-            beamX = java_int((sine / self.noDecimalTrigTable.SCALE))
-            cosine = java_int((next * self.noDecimalTrigTable:cos(angle)))
-            beamY = -java_int((cosine / self.noDecimalTrigTable.SCALE))
-            weaponLayer = self.weaponLayerCircularStaticPool:getInstanceWeaponLayer(sourceLayerInterface, x + beamX, y + beamY, 0, angle, otherAngle, weaponProperties, scoreableInterface)
-            allbinaryLayerManager:append(weaponLayer)
-            next = next + (increment)
-        end
-end
-
-return StraightMultiProjectileWeaponPart
 

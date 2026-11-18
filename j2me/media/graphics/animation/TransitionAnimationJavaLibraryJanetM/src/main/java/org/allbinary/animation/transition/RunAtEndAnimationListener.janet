@@ -1,58 +1,45 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.animation.transition
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.animation.transition
 
-local AnimationListenerInterface = require("org.allbinary.animation.transition.AnimationListenerInterface")
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(import ../../../../java/lang/Runnable :as Runnable)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class RunAtEndAnimationListener
+(var jproto nil)
+(var jnew_1 nil)
+(var jm_onPlatformAnimationStart nil)
+(var jm_onPlatformAnimationEnd nil)
+(var jm_onPlatformAnimationRepeat nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jnew_1 (fn jnew_1 [_runnable]
+    (var this (table/setproto @{:jclass "RunAtEndAnimationListener" :f_runnable nil} jproto))
+    
+        (set (this :f_runnable) _runnable)
+    this))
+    
+(set jm_onPlatformAnimationStart (fn jm_onPlatformAnimationStart [this]
+    nil))
+    
+(set jm_onPlatformAnimationEnd (fn jm_onPlatformAnimationEnd [this]
+    nil))
+    
+(set jm_onPlatformAnimationRepeat (fn jm_onPlatformAnimationRepeat [this]
+    nil))
 
-local RunAtEndAnimationListener = {}
-RunAtEndAnimationListener.__index = RunAtEndAnimationListener
-RunAtEndAnimationListener.className = "RunAtEndAnimationListener"
+(set jproto @{:jm_onPlatformAnimationStart jm_onPlatformAnimationStart :jm_onPlatformAnimationEnd jm_onPlatformAnimationEnd :jm_onPlatformAnimationRepeat jm_onPlatformAnimationRepeat})
 
-function RunAtEndAnimationListener:_init_fields()
-    self.runnable = nil
-end
-
-
-function RunAtEndAnimationListener.new(runnable)
-    local self = setmetatable({}, RunAtEndAnimationListener)
-    self:_init_fields()
-        self.runnable = runnable
-    return self
-end
-
-
-function RunAtEndAnimationListener:onPlatformAnimationStart()
-end
-
-
-function RunAtEndAnimationListener:onPlatformAnimationEnd()
-end
-
-
-function RunAtEndAnimationListener:onPlatformAnimationRepeat()
-end
-
-return RunAtEndAnimationListener
 

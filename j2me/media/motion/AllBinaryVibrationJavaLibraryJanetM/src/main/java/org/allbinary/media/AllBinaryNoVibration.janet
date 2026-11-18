@@ -1,46 +1,44 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.media
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.media
 
-local AllBinaryVibrationME = require("org.allbinary.media.AllBinaryVibrationME")
+(import ../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(import ./AllBinaryVibrationME :as AllBinaryVibrationME)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class AllBinaryNoVibration
+(var jproto nil)
+(var jcell_NO_VIBRATION :jnone)
+(var jstatic_NO_VIBRATION nil)
+(var jsetstatic_NO_VIBRATION nil)
+(var jnew_0 nil)
+(var jm_vibrate nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jstatic_NO_VIBRATION (fn jstatic_NO_VIBRATION []
+  (when (= jcell_NO_VIBRATION :jnone) (set jcell_NO_VIBRATION (jnew_0)))
+  jcell_NO_VIBRATION))
+(set jsetstatic_NO_VIBRATION (fn jsetstatic_NO_VIBRATION [value] (set jcell_NO_VIBRATION value)))
 
-local AllBinaryNoVibration = {}
-AllBinaryNoVibration.__index = AllBinaryNoVibration
-AllBinaryNoVibration.className = "AllBinaryNoVibration"
-setmetatable(AllBinaryNoVibration, {__index = AllBinaryVibrationME})
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "AllBinaryNoVibration"} jproto))
+    (JR/superInit this (AllBinaryVibrationME/jnew_0))
+    this))
 
-function AllBinaryNoVibration.new()
-    local self = setmetatable(AllBinaryVibrationME.new(), AllBinaryNoVibration)
-    return self
-end
+    
+(set jm_vibrate (fn jm_vibrate [this _duration _type _volume]
+    nil))
 
+(set jproto (table/setproto @{:jm_vibrate jm_vibrate} AllBinaryVibrationME/jproto))
 
-function AllBinaryNoVibration:vibrate(duration, type, volume)
-end
-
-AllBinaryNoVibration.NO_VIBRATION = AllBinaryNoVibration.new()
-
-return AllBinaryNoVibration
 

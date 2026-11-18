@@ -1,55 +1,46 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.media.audio
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.media.audio
 
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class SoundsFactoryInterface
+(var jproto nil)
+(var jnew_0 nil)
+(var jm_init nil)
+(var jm_getSoundInterfaceArray nil)
+(var jm_setInitialized nil)
+(var jm_isInitialized nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "SoundsFactoryInterface"} jproto))
+    this))
 
--- Java interface
-local SoundsFactoryInterface = {}
-SoundsFactoryInterface.__index = SoundsFactoryInterface
-SoundsFactoryInterface.className = "SoundsFactoryInterface"
+    
+(set jm_init (fn jm_init [this]
+    (error (JR/newException "AbstractMethodError" "init"))))
+    
+(set jm_getSoundInterfaceArray (fn jm_getSoundInterfaceArray [this]
+    (error (JR/newException "AbstractMethodError" "getSoundInterfaceArray"))))
+    
+(set jm_setInitialized (fn jm_setInitialized [this _initialized]
+    (error (JR/newException "AbstractMethodError" "setInitialized"))))
+    
+(set jm_isInitialized (fn jm_isInitialized [this]
+    (error (JR/newException "AbstractMethodError" "isInitialized"))))
 
+(set jproto @{:jm_init jm_init :jm_getSoundInterfaceArray jm_getSoundInterfaceArray :jm_setInitialized jm_setInitialized :jm_isInitialized jm_isInitialized})
 
-function SoundsFactoryInterface:init()
-    error("abstract method init")
-end
-
-
--- throws Exception
-function SoundsFactoryInterface:getSoundInterfaceArray()
-    error("abstract method getSoundInterfaceArray")
-end
-
-
-function SoundsFactoryInterface:setInitialized(initialized)
-    error("abstract method setInitialized")
-end
-
-
-function SoundsFactoryInterface:isInitialized()
-    error("abstract method isInitialized")
-end
-
-return SoundsFactoryInterface
 

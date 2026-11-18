@@ -21,6 +21,7 @@
 (var jproto nil)
 (var jcell_instance :jnone)
 (var jstatic_instance nil)
+(var jsetstatic_instance nil)
 (var jnew_0 nil)
 (var jm_getInstance_0 nil)
 (var jm_getInstance_1 nil)
@@ -28,6 +29,7 @@
 (set jstatic_instance (fn jstatic_instance []
   (when (= jcell_instance :jnone) (set jcell_instance (jnew_0)))
   jcell_instance))
+(set jsetstatic_instance (fn jsetstatic_instance [value] (set jcell_instance value)))
 
     
 (set jm_getInstance_0 (fn jm_getInstance_0 []

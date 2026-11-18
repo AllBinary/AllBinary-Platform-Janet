@@ -1,66 +1,65 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.canvas
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.canvas
 
-local Features = require("org.allbinary.game.configuration.feature.Features")
-local OpenGLFeatureFactory = require("org.allbinary.graphics.opengles.OpenGLFeatureFactory")
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
-local CommonSeps = require("org.allbinary.string.CommonSeps")
-local Memory = require("org.allbinary.system.Memory")
+(import ../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- Features/jm_getInstance [& args] (JR/call jfile "../../../org/allbinary/game/configuration/feature/Features" "jm_getInstance" args))
+(defn- OpenGLFeatureFactory/jm_getInstance [& args] (JR/call jfile "../../../org/allbinary/graphics/opengles/OpenGLFeatureFactory" "jm_getInstance" args))
+(defn- StringMaker/jnew_0 [& args] (JR/call jfile "../../../org/allbinary/logic/string/StringMaker" "jnew_0" args))
+(defn- CommonSeps/jm_getInstance [& args] (JR/call jfile "../../../org/allbinary/string/CommonSeps" "jm_getInstance" args))
+(defn- Memory/jm_getInfo [& args] (JR/call jfile "../../../org/allbinary/system/Memory" "jm_getInfo" args))
+(defn- GameStatisticsFactory/jm_getInstance [& args] (JR/call jfile "./GameStatisticsFactory" "jm_getInstance" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class SpecialMessageUtil
+(var jproto nil)
+(var jcell_SINGLETON :jnone)
+(var jstatic_SINGLETON nil)
+(var jsetstatic_SINGLETON nil)
+(var jnew_0 nil)
+(var jm_getInstance nil)
+(var jm_get nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jstatic_SINGLETON (fn jstatic_SINGLETON []
+  (when (= jcell_SINGLETON :jnone) (set jcell_SINGLETON (jnew_0)))
+  jcell_SINGLETON))
+(set jsetstatic_SINGLETON (fn jsetstatic_SINGLETON [value] (set jcell_SINGLETON value)))
 
-local SpecialMessageUtil = {}
-SpecialMessageUtil.__index = SpecialMessageUtil
-SpecialMessageUtil.className = "SpecialMessageUtil"
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "SpecialMessageUtil"} jproto))
+    this))
 
-function SpecialMessageUtil.new()
-    local self = setmetatable({}, SpecialMessageUtil)
-    return self
-end
+    
+(set jm_getInstance (fn jm_getInstance []
+    (label jreturn
+        (return jreturn (jstatic_SINGLETON)))))
+    
+(set jm_get (fn jm_get [this]
+    (label jreturn
+        (var _stringBuffer (StringMaker/jnew_0))
+        (:jm_append _stringBuffer (Memory/jm_getInfo))
+        (:jm_append _stringBuffer ((CommonSeps/jm_getInstance) :f_SPACE))
+        (:jm_append _stringBuffer (:jm_toString (GameStatisticsFactory/jm_getInstance)))
+        (:jm_append _stringBuffer ((CommonSeps/jm_getInstance) :f_SPACE))
+        (:jm_append _stringBuffer " Option: ")
+        (if (:jm_isDefault (Features/jm_getInstance) ((OpenGLFeatureFactory/jm_getInstance) :f_OPENGL_AUTO_SELECT))
+            (do
+            (:jm_append _stringBuffer (JR/className ((OpenGLFeatureFactory/jm_getInstance) :f_OPENGL_AUTO_SELECT))))
+            (do
+            (:jm_append _stringBuffer (JR/className ((OpenGLFeatureFactory/jm_getInstance) :f_OPENGL_MINIMUM)))))
+        (return jreturn (:jm_toString _stringBuffer)))))
 
+(set jproto @{:jm_get jm_get})
 
-function SpecialMessageUtil.getInstance()
-        return SpecialMessageUtil.SINGLETON
-end
-
-
-function SpecialMessageUtil:get()
-        local stringBuffer = StringMaker.new()
-        stringBuffer:append(Memory.getInfo())
-        stringBuffer:append(CommonSeps.getInstance().SPACE)
-        stringBuffer:append(tostring(GameStatisticsFactory.getInstance()))
-        stringBuffer:append(CommonSeps.getInstance().SPACE)
-        stringBuffer:append(" Option: ")
-        if Features.getInstance():isDefault(OpenGLFeatureFactory.getInstance().OPENGL_AUTO_SELECT) then
-            stringBuffer:append(OpenGLFeatureFactory.getInstance().OPENGL_AUTO_SELECT:getName())
-        else
-            stringBuffer:append(OpenGLFeatureFactory.getInstance().OPENGL_MINIMUM:getName())
-        end
-        return tostring(stringBuffer)
-end
-
-SpecialMessageUtil.SINGLETON = SpecialMessageUtil.new()
-
-return SpecialMessageUtil
 

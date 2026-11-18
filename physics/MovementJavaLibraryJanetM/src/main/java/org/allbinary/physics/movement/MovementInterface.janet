@@ -1,52 +1,42 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.physics.movement
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.physics.movement
 
-local AllBinaryGameLayer = require("org.allbinary.game.layer.AllBinaryGameLayer")
-local BasicDecimal = require("org.allbinary.logic.math.BasicDecimal")
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class MovementInterface
+(var jproto nil)
+(var jnew_0 nil)
+(var jm_init nil)
+(var jm_process nil)
+(var jm_stop nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "MovementInterface"} jproto))
+    this))
 
--- Java interface
-local MovementInterface = {}
-MovementInterface.__index = MovementInterface
-MovementInterface.className = "MovementInterface"
+    
+(set jm_init (fn jm_init [this _speedBasicDecimal _angle _otherAngle]
+    (error (JR/newException "AbstractMethodError" "init"))))
+    
+(set jm_process (fn jm_process [this _layer]
+    (error (JR/newException "AbstractMethodError" "process"))))
+    
+(set jm_stop (fn jm_stop [this]
+    (error (JR/newException "AbstractMethodError" "stop"))))
 
+(set jproto @{:jm_init jm_init :jm_process jm_process :jm_stop jm_stop})
 
-function MovementInterface:init(speedBasicDecimal, angle, otherAngle)
-    error("abstract method init")
-end
-
-
--- throws Exception
-function MovementInterface:process(layer)
-    error("abstract method process")
-end
-
-
-function MovementInterface:stop()
-    error("abstract method stop")
-end
-
-return MovementInterface
 

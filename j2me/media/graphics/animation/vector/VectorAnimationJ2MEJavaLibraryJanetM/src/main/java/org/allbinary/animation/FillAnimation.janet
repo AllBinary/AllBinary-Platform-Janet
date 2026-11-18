@@ -1,95 +1,75 @@
--- Generated Code Do Not Modify
--- package org.allbinary.animation
+# Generated Code Do Not Modify
+# package org.allbinary.animation
 
--- local Graphics = require("javax.microedition.lcdui.Graphics")
-local BasicColor = require("org.allbinary.graphics.color.BasicColor")
-local IndexedAnimation = require("org.allbinary.animation.IndexedAnimation")
+(import ../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(import ./IndexedAnimation :as IndexedAnimation)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class FillAnimation
+(var jproto nil)
+(var jnew_4 nil)
+(var jm_setBasicColorP nil)
+(var jm_changeBasicColor nil)
+(var jm_setAlpha nil)
+(var jm_setScale nil)
+(var jm_setMaxScale nil)
+(var jm_updateModifiers nil)
+(var jm_paint nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jnew_4 (fn jnew_4 [_pixelBuffer _width _height _animationBehavior]
+    (var this (table/setproto @{:jclass "FillAnimation" :f_pixelBuffer nil :f_width 0 :f_height 0} jproto))
+    
+    
+    
+        (JR/superInit this (IndexedAnimation/jnew_1 _animationBehavior))
+        (set (this :f_width) 100)
+        (set (this :f_height) 100)
+        (set (this :f_pixelBuffer) _pixelBuffer)
+    this))
+    
+(set jm_setBasicColorP (fn jm_setBasicColorP [this _basicColor]
+        (var _changed false)
+        (if (or (nil? (:jm_getBasicColorP this)) (not= (JR/className (:jm_getBasicColorP this)) (:jm_intValue _basicColor)))
+            (do
+            (set _changed true)))
+        ((get IndexedAnimation/jproto :jm_setBasicColorP) this _basicColor)
+        (if _changed
+            (do
+            (:jm_updateModifiers this)))))
+    
+(set jm_changeBasicColor (fn jm_changeBasicColor [this _basicColor]
+        (var _changed false)
+        (if (or (nil? (:jm_getChangeBasicColor this)) (not= (JR/className (:jm_getChangeBasicColor this)) (:jm_intValue _basicColor)))
+            (do
+            (set _changed true)))
+        ((get IndexedAnimation/jproto :jm_changeBasicColor) this _basicColor)
+        (if _changed
+            (do
+            (:jm_updateModifiers this)))))
+    
+(set jm_setAlpha (fn jm_setAlpha [this _alpha]
+        (var _changed false)
+        (if (not= (this :f_alphaP) _alpha)
+            (do
+            (set _changed true)))
+        ((get IndexedAnimation/jproto :jm_setAlpha) this _alpha)
+        (if _changed
+            (do
+            (:jm_updateModifiers this)))))
+    
+(set jm_setScale (fn jm_setScale [this _scaleX _scaleY]
+    nil))
+    
+(set jm_setMaxScale (fn jm_setMaxScale [this _maxScaleX _maxScaleY]
+    nil))
+    
+(set jm_updateModifiers (fn jm_updateModifiers [this]
+    nil))
+    
+(set jm_paint (fn jm_paint [this _g]
+        (:jm_drawRGB _g (this :f_pixelBuffer) 0 (this :f_width) 0 0 (this :f_width) (this :f_height) true)))
 
-local FillAnimation = {}
-FillAnimation.__index = FillAnimation
-FillAnimation.className = "FillAnimation"
-setmetatable(FillAnimation, {__index = IndexedAnimation})
+(set jproto (table/setproto @{:jm_setBasicColorP jm_setBasicColorP :jm_changeBasicColor jm_changeBasicColor :jm_setAlpha jm_setAlpha :jm_setScale jm_setScale :jm_setMaxScale jm_setMaxScale :jm_updateModifiers jm_updateModifiers :jm_paint jm_paint} IndexedAnimation/jproto))
 
-function FillAnimation:_init_fields()
-    self.pixelBuffer = nil
-    self.width = nil
-    self.height = nil
-end
-
-
-function FillAnimation.new(pixelBuffer, width, height, animationBehavior)
-    local self = setmetatable(IndexedAnimation.new(animationBehavior), FillAnimation)
-    self:_init_fields()
-        -- super(...) made self above
-        self.width = 100
-        self.height = 100
-        self.pixelBuffer = pixelBuffer
-    return self
-end
-
-
-function FillAnimation:setBasicColorP(basicColor)
-        local changed = false
-        if self:getBasicColorP() == nil or math.tointeger(self:getBasicColorP() // 1) ~= math.tointeger(basicColor // 1) then
-            changed = true
-        end
-        IndexedAnimation.setBasicColorP(self, basicColor)
-        if changed then
-            self:updateModifiers()
-        end
-end
-
-
-function FillAnimation:changeBasicColor(basicColor)
-        local changed = false
-        if self:getChangeBasicColor() == nil or math.tointeger(self:getChangeBasicColor() // 1) ~= math.tointeger(basicColor // 1) then
-            changed = true
-        end
-        IndexedAnimation.changeBasicColor(self, basicColor)
-        if changed then
-            self:updateModifiers()
-        end
-end
-
-
-function FillAnimation:setAlpha(alpha)
-        local changed = false
-        if self.alphaP ~= alpha then
-            changed = true
-        end
-        IndexedAnimation.setAlpha(self, alpha)
-        if changed then
-            self:updateModifiers()
-        end
-end
-
-
-function FillAnimation:setScale(scaleX, scaleY)
-end
-
-
-function FillAnimation:setMaxScale(maxScaleX, maxScaleY)
-end
-
-
-function FillAnimation:updateModifiers()
-end
-
-
-function FillAnimation:paint(g)
-        g:drawRGB(self.pixelBuffer, 0, self.width, 0, 0, self.width, self.height, true)
-end
-
-return FillAnimation
 

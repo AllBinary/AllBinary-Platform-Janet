@@ -1,55 +1,41 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.layer
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.game.layer
 
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class LayerPlacementType
+(var jproto nil)
+(var jnew_1 nil)
+(var jm_getType nil)
+(var jm_setType nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jnew_1 (fn jnew_1 [_type]
+    (var this (table/setproto @{:jclass "LayerPlacementType" :f_type 0} jproto))
+    
+        (set (this :f_type) _type)
+    this))
+    
+(set jm_getType (fn jm_getType [this]
+    (label jreturn
+        (return jreturn (this :f_type)))))
+    
+(set jm_setType (fn jm_setType [this _type]
+        (set (this :f_type) _type)))
 
-local LayerPlacementType = {}
-LayerPlacementType.__index = LayerPlacementType
-LayerPlacementType.className = "LayerPlacementType"
+(set jproto @{:jm_getType jm_getType :jm_setType jm_setType})
 
-function LayerPlacementType:_init_fields()
-    self.type = nil
-end
-
-
-function LayerPlacementType.new(type)
-    local self = setmetatable({}, LayerPlacementType)
-    self:_init_fields()
-        self.type = type
-    return self
-end
-
-
-function LayerPlacementType:getType()
-        return self.type
-end
-
-
-function LayerPlacementType:setType(type)
-        self.type = type
-end
-
-return LayerPlacementType
 

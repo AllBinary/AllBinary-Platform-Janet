@@ -1,62 +1,52 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.paint
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.graphics.paint
 
--- local Graphics = require("javax.microedition.lcdui.Graphics")
-local Paintable = require("org.allbinary.graphics.paint.Paintable")
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(import ./Paintable :as Paintable)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class PaintableComposite
+(var jproto nil)
+(var jnew_1 nil)
+(var jm_paint nil)
+(var jm_paintThreed nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jnew_1 (fn jnew_1 [_paintableArray]
+    (var this (table/setproto @{:jclass "PaintableComposite" :f_paintableArray nil} jproto))
+    
+    (JR/superInit this (Paintable/jnew_0))
+        (set (this :f_paintableArray) _paintableArray)
+    this))
+    
+(set jm_paint (fn jm_paint [this _graphics]
+        (do
+            (var _index (JR/i32 (- (length (this :f_paintableArray)) 1)))
+            (while (>= _index 0)
+                (do
+            (JR/className ((this :f_paintableArray) _index)))
+                (do (set _index (JR/i32 (- _index 1))))))))
+    
+(set jm_paintThreed (fn jm_paintThreed [this _graphics]
+        (do
+            (var _index (JR/i32 (- (length (this :f_paintableArray)) 1)))
+            (while (>= _index 0)
+                (do
+            (JR/className ((this :f_paintableArray) _index)))
+                (do (set _index (JR/i32 (- _index 1))))))))
 
-local PaintableComposite = {}
-PaintableComposite.__index = PaintableComposite
-PaintableComposite.className = "PaintableComposite"
-setmetatable(PaintableComposite, {__index = Paintable})
+(set jproto (table/setproto @{:jm_paint jm_paint :jm_paintThreed jm_paintThreed} Paintable/jproto))
 
-function PaintableComposite:_init_fields()
-    self.paintableArray = nil
-end
-
-
-function PaintableComposite.new(paintableArray)
-    local self = setmetatable(Paintable.new(), PaintableComposite)
-    self:_init_fields()
-        self.paintableArray = paintableArray
-    return self
-end
-
-
-function PaintableComposite:paint(graphics)
-        for index = (self.paintableArray.n or #self.paintableArray) - 1, 0, -1 do
-            self.paintableArray[index + 1]:paint(graphics)
-        end
-end
-
-
-function PaintableComposite:paintThreed(graphics)
-        for index = (self.paintableArray.n or #self.paintableArray) - 1, 0, -1 do
-            self.paintableArray[index + 1]:paintThreed(graphics)
-        end
-end
-
-return PaintableComposite
 

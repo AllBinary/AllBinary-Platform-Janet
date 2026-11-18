@@ -1,57 +1,52 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.displayable.command
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.graphics.displayable.command
 
--- local Command = require("javax.microedition.lcdui.Command")
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
+(import ../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- Command/jnew_4 [& args] (JR/call jfile "../../../../../javax/microedition/lcdui/Command" "jnew_4" args))
+(defn- Command/jstatic_ITEM [& args] (JR/call jfile "../../../../../javax/microedition/lcdui/Command" "jstatic_ITEM" args))
+(defn- Command/jstatic_SCREEN [& args] (JR/call jfile "../../../../../javax/microedition/lcdui/Command" "jstatic_SCREEN" args))
+(defn- StringUtil/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/logic/string/StringUtil" "jm_getInstance" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class MyCommandsFactory
+(var jproto nil)
+(var jcell_instance :jnone)
+(var jstatic_instance nil)
+(var jsetstatic_instance nil)
+(var jnew_0 nil)
+(var jm_getInstance nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jstatic_instance (fn jstatic_instance []
+  (when (= jcell_instance :jnone) (set jcell_instance (jnew_0)))
+  jcell_instance))
+(set jsetstatic_instance (fn jsetstatic_instance [value] (set jcell_instance value)))
 
-local MyCommandsFactory = {}
-MyCommandsFactory.__index = MyCommandsFactory
-MyCommandsFactory.className = "MyCommandsFactory"
+    
+(set jm_getInstance (fn jm_getInstance []
+    (label jreturn
+        (return jreturn (jstatic_instance)))))
+    
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "MyCommandsFactory" :f_NO_COMMAND nil :f_GAUGE_CHANGE nil :f_SET_DISPLAYABLE nil :f_PAUSE_COMMAND nil :f_RESUME_COMMAND nil} jproto))
+    (put this :f_NO_COMMAND (Command/jnew_4 ((StringUtil/jm_getInstance) :f_EMPTY_STRING) ((StringUtil/jm_getInstance) :f_EMPTY_STRING) (JR/i32 (- 1)) (JR/i32 (- 1))))
+    (put this :f_GAUGE_CHANGE (Command/jnew_4 "GAUGE_CHANGE" ((StringUtil/jm_getInstance) :f_EMPTY_STRING) (Command/jstatic_ITEM) 1))
+    (put this :f_SET_DISPLAYABLE (Command/jnew_4 "Display" ((StringUtil/jm_getInstance) :f_EMPTY_STRING) (Command/jstatic_SCREEN) 2))
+    (put this :f_PAUSE_COMMAND (Command/jnew_4 "Pause" ((StringUtil/jm_getInstance) :f_EMPTY_STRING) (Command/jstatic_SCREEN) 0))
+    (put this :f_RESUME_COMMAND (Command/jnew_4 "Resume" ((StringUtil/jm_getInstance) :f_EMPTY_STRING) (Command/jstatic_SCREEN) 0))
+    this))
 
-function MyCommandsFactory:_init_fields()
-    self.NO_COMMAND = Command.new(StringUtil.getInstance().EMPTY_STRING, StringUtil.getInstance().EMPTY_STRING, -1, -1)
-    self.GAUGE_CHANGE = Command.new("GAUGE_CHANGE", StringUtil.getInstance().EMPTY_STRING, Command.ITEM, 1)
-    self.SET_DISPLAYABLE = Command.new("Display", StringUtil.getInstance().EMPTY_STRING, Command.SCREEN, 2)
-    self.PAUSE_COMMAND = Command.new("Pause", StringUtil.getInstance().EMPTY_STRING, Command.SCREEN, 0)
-    self.RESUME_COMMAND = Command.new("Resume", StringUtil.getInstance().EMPTY_STRING, Command.SCREEN, 0)
-end
+(set jproto @{})
 
-
-function MyCommandsFactory.getInstance()
-        return MyCommandsFactory.instance
-end
-
-
-function MyCommandsFactory.new()
-    local self = setmetatable({}, MyCommandsFactory)
-    self:_init_fields()
-    return self
-end
-
-MyCommandsFactory.instance = MyCommandsFactory.new()
-
-return MyCommandsFactory
 

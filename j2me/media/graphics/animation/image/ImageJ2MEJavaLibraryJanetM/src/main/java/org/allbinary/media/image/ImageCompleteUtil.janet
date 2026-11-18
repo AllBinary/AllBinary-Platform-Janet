@@ -1,51 +1,47 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.media.image
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.media.image
 
--- local Image = require("javax.microedition.lcdui.Image")
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class ImageCompleteUtil
+(var jproto nil)
+(var jcell_instance :jnone)
+(var jstatic_instance nil)
+(var jsetstatic_instance nil)
+(var jnew_0 nil)
+(var jm_getInstance nil)
+(var jm_waitForImage nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jstatic_instance (fn jstatic_instance []
+  (when (= jcell_instance :jnone) (set jcell_instance (jnew_0)))
+  jcell_instance))
+(set jsetstatic_instance (fn jsetstatic_instance [value] (set jcell_instance value)))
 
-local ImageCompleteUtil = {}
-ImageCompleteUtil.__index = ImageCompleteUtil
-ImageCompleteUtil.className = "ImageCompleteUtil"
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "ImageCompleteUtil"} jproto))
+    this))
 
-function ImageCompleteUtil.new()
-    local self = setmetatable({}, ImageCompleteUtil)
-    return self
-end
+    
+(set jm_getInstance (fn jm_getInstance []
+    (label jreturn
+        (return jreturn (jstatic_instance)))))
+    
+(set jm_waitForImage (fn jm_waitForImage [this _image _name]
+    nil))
 
+(set jproto @{:jm_waitForImage jm_waitForImage})
 
-function ImageCompleteUtil.getInstance()
-        return ImageCompleteUtil.instance
-end
-
-
--- throws Exception
-function ImageCompleteUtil:waitForImage(image, name)
-end
-
-ImageCompleteUtil.instance = ImageCompleteUtil.new()
-
-return ImageCompleteUtil
 

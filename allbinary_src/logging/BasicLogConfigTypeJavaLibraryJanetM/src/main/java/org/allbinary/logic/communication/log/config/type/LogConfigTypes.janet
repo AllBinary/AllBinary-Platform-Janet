@@ -21,11 +21,13 @@
 (var jproto nil)
 (var jcell_LOGGING :jnone)
 (var jstatic_LOGGING nil)
+(var jsetstatic_LOGGING nil)
 (var jnew_0 nil)
 
 (set jstatic_LOGGING (fn jstatic_LOGGING []
   (when (= jcell_LOGGING :jnone) (set jcell_LOGGING (BasicArrayListD/jnew_0)))
   jcell_LOGGING))
+(set jsetstatic_LOGGING (fn jsetstatic_LOGGING [value] (set jcell_LOGGING value)))
 
     
 (set jnew_0 (fn jnew_0 []

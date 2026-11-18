@@ -1,62 +1,50 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.collision
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.game.collision
 
-local CollidableCompositeLayer = require("org.allbinary.game.layer.CollidableCompositeLayer")
-local CollidableBaseBehavior = require("org.allbinary.game.collision.CollidableBaseBehavior")
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(import ./CollidableBaseBehavior :as CollidableBaseBehavior)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class CollidableNeverCollideBehavior
+(var jproto nil)
+(var jnew_1 nil)
+(var jm_isCollision nil)
+(var jm_collide nil)
+(var jm_collideInterface nil)
+(var jm_isCollisionInterface nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jnew_1 (fn jnew_1 [_isCollidable]
+    (var this (table/setproto @{:jclass "CollidableNeverCollideBehavior"} jproto))
+        (JR/superInit this (CollidableBaseBehavior/jnew_1 _isCollidable))
+    this))
+    
+(set jm_isCollision (fn jm_isCollision [this _ownerLayer _allbinaryCollidableLayer]
+    (label jreturn
+        (return jreturn false))))
+    
+(set jm_collide (fn jm_collide [this _ownerLayer _allbinaryCollidableLayer]
+    nil))
+    
+(set jm_collideInterface (fn jm_collideInterface [this _ownerLayer _collidableInterfaceCompositeInterface]
+    nil))
+    
+(set jm_isCollisionInterface (fn jm_isCollisionInterface [this _ownerLayer _collidableInterfaceCompositeInterface]
+    (label jreturn
+        (return jreturn false))))
 
-local CollidableNeverCollideBehavior = {}
-CollidableNeverCollideBehavior.__index = CollidableNeverCollideBehavior
-CollidableNeverCollideBehavior.className = "CollidableNeverCollideBehavior"
-setmetatable(CollidableNeverCollideBehavior, {__index = CollidableBaseBehavior})
+(set jproto (table/setproto @{:jm_isCollision jm_isCollision :jm_collide jm_collide :jm_collideInterface jm_collideInterface :jm_isCollisionInterface jm_isCollisionInterface} CollidableBaseBehavior/jproto))
 
-
-function CollidableNeverCollideBehavior.new(isCollidable)
-    local self = setmetatable(CollidableBaseBehavior.new(isCollidable), CollidableNeverCollideBehavior)
-        -- super(...) made self above
-    return self
-end
-
-
-function CollidableNeverCollideBehavior:isCollision(ownerLayer, allbinaryCollidableLayer)
-        return false
-end
-
-
--- throws Exception
-function CollidableNeverCollideBehavior:collide(ownerLayer, allbinaryCollidableLayer)
-end
-
-
-function CollidableNeverCollideBehavior:collideInterface(ownerLayer, collidableInterfaceCompositeInterface)
-end
-
-
-function CollidableNeverCollideBehavior:isCollisionInterface(ownerLayer, collidableInterfaceCompositeInterface)
-        return false
-end
-
-return CollidableNeverCollideBehavior
 

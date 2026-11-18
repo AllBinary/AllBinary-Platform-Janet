@@ -1,66 +1,53 @@
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.form.item
+# Generated Code Do Not Modify
+# package org.allbinary.graphics.form.item
 
--- local Graphics = require("javax.microedition.lcdui.Graphics")
-local BasicColor = require("org.allbinary.graphics.color.BasicColor")
-local CustomCustomItem = require("org.allbinary.graphics.form.item.CustomCustomItem")
-local ABCustomItemInterface = require("org.allbinary.graphics.form.item.ABCustomItemInterface")
+(import ../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(import ./CustomCustomItem :as CustomCustomItem)
+(defn- ABStringComponent/jstatic_NULL_STRING_COMPONENT [& args] (JR/call jfile "./ABStringComponent" "jstatic_NULL_STRING_COMPONENT" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class ABTextItem
+(var jproto nil)
+(var jnew_5 nil)
+(var jm_keyPressed nil)
+(var jm_paintUnselected nil)
+(var jm_getLabelStringComponent nil)
+(var jm_getMinimumWidth nil)
+(var jm_getMinimumHeight nil)
+(var jm_getLabel nil)
+(var jm_paintXY nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jnew_5 (fn jnew_5 [_label _layout _altText _backgroundBasicColor _foregroundBasicColor]
+    (var this (table/setproto @{:jclass "ABTextItem"} jproto))
+        (JR/superInit this (CustomCustomItem/jnew_3 _label _backgroundBasicColor _foregroundBasicColor))
+    this))
+    
+(set jm_keyPressed (fn jm_keyPressed [this _keyCode]
+    nil))
+    
+(set jm_paintUnselected (fn jm_paintUnselected [this _graphics _x _y]
+    nil))
+    
+(set jm_getLabelStringComponent (fn jm_getLabelStringComponent [this]
+    (label jreturn
+        (return jreturn (ABStringComponent/jstatic_NULL_STRING_COMPONENT)))))
+    
+(set jm_getMinimumWidth (fn jm_getMinimumWidth [this]
+    (label jreturn
+        (return jreturn ((get CustomCustomItem/jproto :jm_getMinimumWidth) this)))))
+    
+(set jm_getMinimumHeight (fn jm_getMinimumHeight [this]
+    (label jreturn
+        (return jreturn ((get CustomCustomItem/jproto :jm_getMinimumHeight) this)))))
+    
+(set jm_getLabel (fn jm_getLabel [this]
+    (label jreturn
+        (return jreturn ((get CustomCustomItem/jproto :jm_getLabel) this)))))
+    
+(set jm_paintXY (fn jm_paintXY [this _graphics _x _y]
+        ((get CustomCustomItem/jproto :jm_paintXY) this _graphics _x _y)))
 
-local ABTextItem = {}
-ABTextItem.__index = ABTextItem
-ABTextItem.className = "ABTextItem"
-setmetatable(ABTextItem, {__index = CustomCustomItem})
+(set jproto (table/setproto @{:jm_keyPressed jm_keyPressed :jm_paintUnselected jm_paintUnselected :jm_getLabelStringComponent jm_getLabelStringComponent :jm_getMinimumWidth jm_getMinimumWidth :jm_getMinimumHeight jm_getMinimumHeight :jm_getLabel jm_getLabel :jm_paintXY jm_paintXY} CustomCustomItem/jproto))
 
-
-function ABTextItem.new(label, layout, altText, backgroundBasicColor, foregroundBasicColor)
-    local self = setmetatable(CustomCustomItem.new(label, backgroundBasicColor, foregroundBasicColor), ABTextItem)
-        -- super(...) made self above
-    return self
-end
-
-
-function ABTextItem:keyPressed(keyCode)
-end
-
-
-function ABTextItem:paintUnselected(graphics, x, y)
-end
-
-
-function ABTextItem:getLabelStringComponent()
-        return ABStringComponent.NULL_STRING_COMPONENT
-end
-
-
-function ABTextItem:getMinimumWidth()
-        return CustomCustomItem.getMinimumWidth(self)
-end
-
-
-function ABTextItem:getMinimumHeight()
-        return CustomCustomItem.getMinimumHeight(self)
-end
-
-
-function ABTextItem:getLabel()
-        return CustomCustomItem.getLabel(self)
-end
-
-
-function ABTextItem:paintXY(graphics, x, y)
-        CustomCustomItem.paintXY(self, graphics, x, y)
-end
-
-return ABTextItem
 

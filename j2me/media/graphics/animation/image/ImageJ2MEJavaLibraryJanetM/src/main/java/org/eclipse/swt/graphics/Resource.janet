@@ -1,35 +1,27 @@
--- Generated Code Do Not Modify
--- package org.eclipse.swt.graphics
+# Generated Code Do Not Modify
+# package org.eclipse.swt.graphics
 
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class Resource
+(var jproto nil)
+(var jnew_0 nil)
+(var jm_dispose nil)
+(var jm_isDisposed nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "Resource"} jproto))
+    this))
 
-local Resource = {}
-Resource.__index = Resource
-Resource.className = "Resource"
+    
+(set jm_dispose (fn jm_dispose [this]
+    nil))
+    
+(set jm_isDisposed (fn jm_isDisposed [this]
+    (label jreturn
+        (return jreturn false))))
 
-function Resource.new()
-    local self = setmetatable({}, Resource)
-    return self
-end
+(set jproto @{:jm_dispose jm_dispose :jm_isDisposed jm_isDisposed})
 
-
-function Resource:dispose()
-end
-
-
-function Resource:isDisposed()
-        return false
-end
-
-return Resource
 

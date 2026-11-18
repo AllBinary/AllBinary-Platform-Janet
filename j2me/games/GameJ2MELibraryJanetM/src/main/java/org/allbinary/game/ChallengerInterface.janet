@@ -1,31 +1,26 @@
--- 
--- To change this license header, choose License Headers in Project Properties. 
--- To change this template file, choose Tools | Templates 
--- and open the template in the editor.  
--- Generated Code Do Not Modify
--- package org.allbinary.game
+# 
+# To change this license header, choose License Headers in Project Properties. 
+# To change this template file, choose Tools | Templates 
+# and open the template in the editor.  
+# Generated Code Do Not Modify
+# package org.allbinary.game
 
+(import ../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class ChallengerInterface
+(var jproto nil)
+(var jnew_0 nil)
+(var jm_setWinner nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "ChallengerInterface"} jproto))
+    this))
 
--- Java interface
-local ChallengerInterface = {}
-ChallengerInterface.__index = ChallengerInterface
-ChallengerInterface.className = "ChallengerInterface"
+    
+(set jm_setWinner (fn jm_setWinner [this _isWinner]
+    (error (JR/newException "AbstractMethodError" "setWinner"))))
 
+(set jproto @{:jm_setWinner jm_setWinner})
 
-function ChallengerInterface:setWinner(isWinner)
-    error("abstract method setWinner")
-end
-
-return ChallengerInterface
 

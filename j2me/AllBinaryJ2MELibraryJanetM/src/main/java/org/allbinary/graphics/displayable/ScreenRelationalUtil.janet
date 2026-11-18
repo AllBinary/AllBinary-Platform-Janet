@@ -1,68 +1,66 @@
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.displayable
+# Generated Code Do Not Modify
+# package org.allbinary.graphics.displayable
 
--- local Image = require("javax.microedition.lcdui.Image")
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- DisplayInfoSingleton/jm_getInstance [& args] (JR/call jfile "./DisplayInfoSingleton" "jm_getInstance" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class ScreenRelationalUtil
+(var jproto nil)
+(var jcell_instance :jnone)
+(var jstatic_instance nil)
+(var jsetstatic_instance nil)
+(var jnew_0 nil)
+(var jm_getInstance nil)
+(var jm_getScaleImage nil)
+(var jm_getScaleWH nil)
+(var jm_getScaleWHA nil)
+(var jm_getScaledHeight nil)
+(var jm_getScaledHeightAdd nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jstatic_instance (fn jstatic_instance []
+  (when (= jcell_instance :jnone) (set jcell_instance (jnew_0)))
+  jcell_instance))
+(set jsetstatic_instance (fn jsetstatic_instance [value] (set jcell_instance value)))
 
-local ScreenRelationalUtil = {}
-ScreenRelationalUtil.__index = ScreenRelationalUtil
-ScreenRelationalUtil.className = "ScreenRelationalUtil"
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "ScreenRelationalUtil"} jproto))
+    this))
 
-function ScreenRelationalUtil.new()
-    local self = setmetatable({}, ScreenRelationalUtil)
-    return self
-end
+    
+(set jm_getInstance (fn jm_getInstance []
+    (label jreturn
+        (return jreturn (jstatic_instance)))))
+    
+(set jm_getScaleImage (fn jm_getScaleImage [this _image]
+    (label jreturn
+        (return jreturn (:jm_getScaleWH this (:jm_getWidth _image) (:jm_getHeight _image))))))
+    
+(set jm_getScaleWH (fn jm_getScaleWH [this _aWidth _aHeight]
+    (label jreturn
+        (return jreturn (:jm_getScaleWHA this _aWidth _aHeight 20)))))
+    
+(set jm_getScaleWHA (fn jm_getScaleWHA [this _aWidth _aHeight _add]
+    (label jreturn
+        (var _displayInfoSingleton (DisplayInfoSingleton/jm_getInstance))
+        (var _last (:jm_getLast _displayInfoSingleton))
+        (var _width (_last (_displayInfoSingleton :f_WIDTH)))
+        (var _height (_last (_displayInfoSingleton :f_HEIGHT)))
+        (var _largestSize _width)
+        (if (< _largestSize _height)
+            (do
+            (set _largestSize _height)))
+        (var _scale (/ _largestSize _aWidth))
+        (return jreturn _scale))))
+    
+(set jm_getScaledHeight (fn jm_getScaledHeight [this _aWidth _aHeight]
+    (label jreturn
+        (return jreturn (JR/d2i (* (:jm_getScaleWH this _aWidth _aHeight) _aHeight))))))
+    
+(set jm_getScaledHeightAdd (fn jm_getScaledHeightAdd [this _aWidth _aHeight _add]
+    (label jreturn
+        (return jreturn (JR/d2i (* (:jm_getScaleWHA this _aWidth _aHeight _add) _aHeight))))))
 
+(set jproto @{:jm_getScaleImage jm_getScaleImage :jm_getScaleWH jm_getScaleWH :jm_getScaleWHA jm_getScaleWHA :jm_getScaledHeight jm_getScaledHeight :jm_getScaledHeightAdd jm_getScaledHeightAdd})
 
-function ScreenRelationalUtil.getInstance()
-        return ScreenRelationalUtil.instance
-end
-
-
-function ScreenRelationalUtil:getScaleImage(image)
-        return self:getScaleWH(image:getWidth(), image:getHeight())
-end
-
-
-function ScreenRelationalUtil:getScaleWH(aWidth, aHeight)
-        return self:getScaleWHA(aWidth, aHeight, 20)
-end
-
-
-function ScreenRelationalUtil:getScaleWHA(aWidth, aHeight, add)
-        local displayInfoSingleton = DisplayInfoSingleton.getInstance()
-        local last = displayInfoSingleton:getLast()
-        local width = (last[displayInfoSingleton.WIDTH + 1] + 0.0)
-        local height = (last[displayInfoSingleton.HEIGHT + 1] + 0.0)
-        local largestSize = width
-        if largestSize < height then
-            largestSize = height
-        end
-        local scale = (largestSize) / (aWidth + 0.0)
-        return scale
-end
-
-
-function ScreenRelationalUtil:getScaledHeight(aWidth, aHeight)
-        return java_int((self:getScaleWH(aWidth, aHeight) * (aHeight + 0.0)))
-end
-
-
-function ScreenRelationalUtil:getScaledHeightAdd(aWidth, aHeight, add)
-        return java_int((self:getScaleWHA(aWidth, aHeight, add) * (aHeight + 0.0)))
-end
-
-ScreenRelationalUtil.instance = ScreenRelationalUtil.new()
-
-return ScreenRelationalUtil
 

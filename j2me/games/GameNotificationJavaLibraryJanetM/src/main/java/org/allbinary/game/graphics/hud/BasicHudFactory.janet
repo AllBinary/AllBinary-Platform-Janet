@@ -1,60 +1,53 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.graphics.hud
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.game.graphics.hud
 
+(import ../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class BasicHudFactory
+(var jproto nil)
+(var jcell_instance :jnone)
+(var jstatic_instance nil)
+(var jsetstatic_instance nil)
+(var jnew_0 nil)
+(var jm_getInstance nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jstatic_instance (fn jstatic_instance []
+  (when (= jcell_instance :jnone) (set jcell_instance (jnew_0)))
+  jcell_instance))
+(set jsetstatic_instance (fn jsetstatic_instance [value] (set jcell_instance value)))
 
-local BasicHudFactory = {}
-BasicHudFactory.__index = BasicHudFactory
-BasicHudFactory.className = "BasicHudFactory"
+    
+(set jm_getInstance (fn jm_getInstance []
+    (label jreturn
+        (return jreturn (jstatic_instance)))))
+    
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "BasicHudFactory" :f_DIRECTION_EXCEPTION nil :f_VERTICAL 0 :f_HORIZONTAL 0 :f_BOTTOMLEFT 0 :f_BOTTOMRIGHT 0 :f_TOPLEFT 0 :f_TOPRIGHT 0 :f_BOTTOMCENTER 0 :f_TOPCENTER 0 :f_ABSOLUTE 0} jproto))
+    (put this :f_DIRECTION_EXCEPTION "Only Horizontal Direction is Allowed Currently")
+    (put this :f_VERTICAL 0)
+    (put this :f_HORIZONTAL 1)
+    (put this :f_BOTTOMLEFT 0)
+    (put this :f_BOTTOMRIGHT 1)
+    (put this :f_TOPLEFT 2)
+    (put this :f_TOPRIGHT 3)
+    (put this :f_BOTTOMCENTER 4)
+    (put this :f_TOPCENTER 5)
+    (put this :f_ABSOLUTE 6)
+    this))
 
-function BasicHudFactory:_init_fields()
-    self.DIRECTION_EXCEPTION = "Only Horizontal Direction is Allowed Currently"
-    self.VERTICAL = 0
-    self.HORIZONTAL = 1
-    self.BOTTOMLEFT = 0
-    self.BOTTOMRIGHT = 1
-    self.TOPLEFT = 2
-    self.TOPRIGHT = 3
-    self.BOTTOMCENTER = 4
-    self.TOPCENTER = 5
-    self.ABSOLUTE = 6
-end
+(set jproto @{})
 
-
-function BasicHudFactory.getInstance()
-        return BasicHudFactory.instance
-end
-
-
-function BasicHudFactory.new()
-    local self = setmetatable({}, BasicHudFactory)
-    self:_init_fields()
-    return self
-end
-
-BasicHudFactory.instance = BasicHudFactory.new()
-
-return BasicHudFactory
 

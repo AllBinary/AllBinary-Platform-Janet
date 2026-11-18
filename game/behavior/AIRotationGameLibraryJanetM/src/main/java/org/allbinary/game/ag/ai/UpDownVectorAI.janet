@@ -1,77 +1,56 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.ag.ai
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.game.ag.ai
 
-local BasicAI = require("org.allbinary.game.ai.BasicAI")
-local GameInput = require("org.allbinary.game.input.GameInput")
-local BasicVelocityProperties = require("org.allbinary.game.physics.velocity.BasicVelocityProperties")
-local VelocityInterfaceCompositeInterface = require("org.allbinary.game.physics.velocity.VelocityInterfaceCompositeInterface")
-local AllBinaryLayer = require("org.allbinary.layer.AllBinaryLayer")
-local AllBinaryLayerManager = require("org.allbinary.layer.AllBinaryLayerManager")
-local BasicDecimal = require("org.allbinary.logic.math.BasicDecimal")
+(import ../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(import ../../../../../org/allbinary/game/ai/BasicAI :as BasicAI)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class UpDownVectorAI
+(var jproto nil)
+(var jnew_2 nil)
+(var jm_processAI nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jnew_2 (fn jnew_2 [_ownerLayerInterface _gameInput]
+    (var this (table/setproto @{:jclass "UpDownVectorAI" :f_velocityInterface nil :f_index 0} jproto))
+    
+    (put this :f_index 0)
+        (JR/superInit this (BasicAI/jnew_2 _ownerLayerInterface _gameInput))
+        (var _velocityInterfaceCompositeInterface (:jm_getOwnerLayerInterface this))
+        (set (this :f_velocityInterface) (:jm_getVelocityProperties _velocityInterfaceCompositeInterface))
+        (JR/className (:jm_getVelocityYBasicDecimalP (this :f_velocityInterface)))
+    this))
+    
+(set jm_processAI (fn jm_processAI [this _allBinaryLayerManager]
+        (var _y (JR/i32 (* (JR/className (:jm_getOwnerLayerInterface this)) 270)))
+        (if (< (this :f_index) 5)
+            (do
+            (var _basicDecimal (:jm_getVelocityYBasicDecimalP (this :f_velocityInterface)))
+            (:jm_setint _basicDecimal 0)
+            (:jm_addint _basicDecimal _y)
+            (set (this :f_index) (JR/i32 (+ (this :f_index) 1))))
+            (if (< (this :f_index) 10)
+            (do
+            (var _basicDecimal (:jm_getVelocityYBasicDecimalP (this :f_velocityInterface)))
+            (:jm_setint _basicDecimal 0)
+            (:jm_subtractint _basicDecimal _y)
+            (set (this :f_index) (JR/i32 (+ (this :f_index) 1))))
+            (do
+            (set (this :f_index) 0)
+            (:jm_processAI this _allBinaryLayerManager))))))
 
-local UpDownVectorAI = {}
-UpDownVectorAI.__index = UpDownVectorAI
-UpDownVectorAI.className = "UpDownVectorAI"
-setmetatable(UpDownVectorAI, {__index = BasicAI})
+(set jproto (table/setproto @{:jm_processAI jm_processAI} BasicAI/jproto))
 
-function UpDownVectorAI:_init_fields()
-    self.velocityInterface = nil
-    self.index = 0
-end
-
-
-function UpDownVectorAI.new(ownerLayerInterface, gameInput)
-    local self = setmetatable(BasicAI.new(ownerLayerInterface, gameInput), UpDownVectorAI)
-    self:_init_fields()
-        -- super(...) made self above
-        local velocityInterfaceCompositeInterface = self:getOwnerLayerInterface()
-        self.velocityInterface = velocityInterfaceCompositeInterface:getVelocityProperties()
-        self.velocityInterface:getVelocityYBasicDecimalP():setint(0)
-    return self
-end
-
-
--- throws Exception
-function UpDownVectorAI:processAI(allBinaryLayerManager)
-        local y = self:getOwnerLayerInterface():getHeight() * 270
-        if self.index < 5 then
-            local basicDecimal = self.velocityInterface:getVelocityYBasicDecimalP()
-            basicDecimal:setint(0)
-            basicDecimal:addint(y)
-            self.index = self.index + 1
-        elseif self.index < 10 then
-            local basicDecimal = self.velocityInterface:getVelocityYBasicDecimalP()
-            basicDecimal:setint(0)
-            basicDecimal:subtractint(y)
-            self.index = self.index + 1
-        else
-            self.index = 0
-            self:processAI(allBinaryLayerManager)
-        end
-end
-
-return UpDownVectorAI
 

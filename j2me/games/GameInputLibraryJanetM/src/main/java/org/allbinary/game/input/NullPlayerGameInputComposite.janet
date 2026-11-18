@@ -1,62 +1,58 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2025 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.game.input
+# 
+# AllBinary Open License Version 1 
+# Copyright (c) 2025 AllBinary 
+#  
+# By agreeing to this license you and any business entity you represent are 
+# legally bound to the AllBinary Open License Version 1 legal agreement. 
+#  
+# You may obtain the AllBinary Open License Version 1 legal agreement from 
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+#  
+# Created By: Travis Berthelot 
+#   
+# Generated Code Do Not Modify
+# package org.allbinary.game.input
 
-local AllBinaryLayerManager = require("org.allbinary.layer.AllBinaryLayerManager")
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
-local PlayerGameInputCompositeInterface = require("org.allbinary.game.input.PlayerGameInputCompositeInterface")
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- StringUtil/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/logic/string/StringUtil" "jm_getInstance" args))
+(defn- NoPlayerGameInput/jm_getInstance [& args] (JR/call jfile "./NoPlayerGameInput" "jm_getInstance" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class NullPlayerGameInputComposite
+(var jproto nil)
+(var jcell_NULL_PLAYER_GAME_INPUT_COMPOSITE :jnone)
+(var jstatic_NULL_PLAYER_GAME_INPUT_COMPOSITE nil)
+(var jsetstatic_NULL_PLAYER_GAME_INPUT_COMPOSITE nil)
+(var jnew_0 nil)
+(var jm_getName nil)
+(var jm_processInput nil)
+(var jm_initInputProcessors nil)
+(var jm_getPlayerGameInput nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jstatic_NULL_PLAYER_GAME_INPUT_COMPOSITE (fn jstatic_NULL_PLAYER_GAME_INPUT_COMPOSITE []
+  (when (= jcell_NULL_PLAYER_GAME_INPUT_COMPOSITE :jnone) (set jcell_NULL_PLAYER_GAME_INPUT_COMPOSITE (jnew_0)))
+  jcell_NULL_PLAYER_GAME_INPUT_COMPOSITE))
+(set jsetstatic_NULL_PLAYER_GAME_INPUT_COMPOSITE (fn jsetstatic_NULL_PLAYER_GAME_INPUT_COMPOSITE [value] (set jcell_NULL_PLAYER_GAME_INPUT_COMPOSITE value)))
 
-local NullPlayerGameInputComposite = {}
-NullPlayerGameInputComposite.__index = NullPlayerGameInputComposite
-NullPlayerGameInputComposite.className = "NullPlayerGameInputComposite"
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "NullPlayerGameInputComposite"} jproto))
+    this))
 
-function NullPlayerGameInputComposite.new()
-    local self = setmetatable({}, NullPlayerGameInputComposite)
-    return self
-end
+    
+(set jm_getName (fn jm_getName [this]
+    (label jreturn
+        (return jreturn ((StringUtil/jm_getInstance) :f_EMPTY_STRING)))))
+    
+(set jm_processInput (fn jm_processInput [this _layerManager]
+    nil))
+    
+(set jm_initInputProcessors (fn jm_initInputProcessors [this]
+    nil))
+    
+(set jm_getPlayerGameInput (fn jm_getPlayerGameInput [this]
+    (label jreturn
+        (return jreturn (NoPlayerGameInput/jm_getInstance)))))
 
+(set jproto @{:jm_getName jm_getName :jm_processInput jm_processInput :jm_initInputProcessors jm_initInputProcessors :jm_getPlayerGameInput jm_getPlayerGameInput})
 
-function NullPlayerGameInputComposite:getName()
-        return StringUtil.getInstance().EMPTY_STRING
-end
-
-
--- throws Exception
-function NullPlayerGameInputComposite:processInput(layerManager)
-end
-
-
-function NullPlayerGameInputComposite:initInputProcessors()
-end
-
-
-function NullPlayerGameInputComposite:getPlayerGameInput()
-        return NoPlayerGameInput.getInstance()
-end
-
-NullPlayerGameInputComposite.NULL_PLAYER_GAME_INPUT_COMPOSITE = NullPlayerGameInputComposite.new()
-
-return NullPlayerGameInputComposite
 

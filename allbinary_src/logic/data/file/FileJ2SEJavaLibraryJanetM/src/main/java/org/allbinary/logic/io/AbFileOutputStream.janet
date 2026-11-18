@@ -1,69 +1,53 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.io
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.logic.io
 
--- local FileNotFoundException = require("java.io.FileNotFoundException")
--- local FileOutputStream = require("java.io.FileOutputStream")
-local AbFile = require("org.allbinary.logic.io.file.AbFile")
-local AbFileNativeUtil = require("org.allbinary.logic.io.file.AbFileNativeUtil")
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(import ../../../../java/io/FileNotFoundException :as FileNotFoundException)
+(import ../../../../java/io/FileOutputStream :as FileOutputStream)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class AbFileOutputStream
+(var jproto nil)
+(var jnew_2 nil)
+(var jm_createFromAbFile nil)
+(var jm_createFromAbFileAppend nil)
+(var jm_createFromFilePath nil)
+(var jm_createFromFilePathAppend nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jm_createFromAbFile (fn jm_createFromAbFile [_file]
+    (label jreturn
+        (return jreturn (jnew_2 (:jm_getPath _file) false)))))
+    
+(set jm_createFromAbFileAppend (fn jm_createFromAbFileAppend [_file _append]
+    (label jreturn
+        (return jreturn (jnew_2 (:jm_getPath _file) _append)))))
+    
+(set jm_createFromFilePath (fn jm_createFromFilePath [_name]
+    (label jreturn
+        (return jreturn (jnew_2 _name false)))))
+    
+(set jm_createFromFilePathAppend (fn jm_createFromFilePathAppend [_name _append]
+    (label jreturn
+        (return jreturn (jnew_2 _name _append)))))
+    
+(set jnew_2 (fn jnew_2 [_name _append]
+    (var this (table/setproto @{:jclass "AbFileOutputStream"} jproto))
+        (JR/superInit this (FileOutputStream/jnew_2 _name _append))
+    this))
 
-local AbFileOutputStream = {}
-AbFileOutputStream.__index = AbFileOutputStream
-AbFileOutputStream.className = "AbFileOutputStream"
-setmetatable(AbFileOutputStream, {__index = FileOutputStream})
+(set jproto (table/setproto @{} FileOutputStream/jproto))
 
-
--- throws FileNotFoundException
-function AbFileOutputStream.createFromAbFile(file)
-        return AbFileOutputStream.new(file:getPath(), false)
-end
-
-
--- throws FileNotFoundException
-function AbFileOutputStream.createFromAbFileAppend(file, append)
-        return AbFileOutputStream.new(file:getPath(), append)
-end
-
-
--- throws FileNotFoundException
-function AbFileOutputStream.createFromFilePath(name)
-        return AbFileOutputStream.new(name, false)
-end
-
-
--- throws FileNotFoundException
-function AbFileOutputStream.createFromFilePathAppend(name, append)
-        return AbFileOutputStream.new(name, append)
-end
-
-
-function AbFileOutputStream.new(name, append)
-    local self = setmetatable(FileOutputStream.new(name, append), AbFileOutputStream)
-        -- super(...) made self above
-    return self
-end
-
-return AbFileOutputStream
 

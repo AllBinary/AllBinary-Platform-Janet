@@ -1,51 +1,49 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2026 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.logic
+# 
+# AllBinary Open License Version 1 
+# Copyright (c) 2026 AllBinary 
+#  
+# By agreeing to this license you and any business entity you represent are 
+# legally bound to the AllBinary Open License Version 1 legal agreement. 
+#  
+# You may obtain the AllBinary Open License Version 1 legal agreement from 
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+#  
+# Created By: Travis Berthelot 
+#   
+# Generated Code Do Not Modify
+# package org.allbinary.logic
 
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
+(import ../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- LogUtil/jm_getInstance [& args] (JR/call jfile "../../../org/allbinary/logic/communication/log/LogUtil" "jm_getInstance" args))
+(defn- StringMaker/jnew_0 [& args] (JR/call jfile "../../../org/allbinary/logic/string/StringMaker" "jnew_0" args))
+(defn- CommonStrings/jm_getInstance [& args] (JR/call jfile "../../../org/allbinary/string/CommonStrings" "jm_getInstance" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class PropertyInitUtil
+(var jproto nil)
+(var jcell_instance :jnone)
+(var jstatic_instance nil)
+(var jsetstatic_instance nil)
+(var jnew_0 nil)
+(var jm_getInstance nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jstatic_instance (fn jstatic_instance []
+  (when (= jcell_instance :jnone) (set jcell_instance (jnew_0)))
+  jcell_instance))
+(set jsetstatic_instance (fn jsetstatic_instance [value] (set jcell_instance value)))
 
-local PropertyInitUtil = {}
-PropertyInitUtil.__index = PropertyInitUtil
-PropertyInitUtil.className = "PropertyInitUtil"
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "PropertyInitUtil"} jproto))
+    this))
 
-function PropertyInitUtil.new()
-    local self = setmetatable({}, PropertyInitUtil)
-    return self
-end
+    
+(set jm_getInstance (fn jm_getInstance [_value]
+    (label jreturn
+        (var _commonStrings (CommonStrings/jm_getInstance))
+        (var _logUtil (LogUtil/jm_getInstance))
+        (:jm_putF _logUtil (:jm_toString (:jm_appendint (:jm_append (StringMaker/jnew_0) "PropertyInitUtil: ") _value)) _logUtil (_commonStrings :f_CONSTRUCTOR))
+        (return jreturn (jstatic_instance)))))
 
+(set jproto @{})
 
-function PropertyInitUtil.getInstance(value)
-        local commonStrings = CommonStrings.getInstance()
-        local logUtil = LogUtil.getInstance()
-        logUtil:putF(tostring(StringMaker.new():append("PropertyInitUtil: "):appendint(value)), logUtil, commonStrings.CONSTRUCTOR)
-        return PropertyInitUtil.instance
-end
-
-PropertyInitUtil.instance = PropertyInitUtil.new()
-
-return PropertyInitUtil
 

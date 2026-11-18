@@ -1,59 +1,51 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.animation.transition.shake
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.animation.transition.shake
 
+(import ../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class ShakeAnimationListener
+(var jproto nil)
+(var jnew_0 nil)
+(var jm_onSmallShakeEvent nil)
+(var jm_onMediumShakeEvent nil)
+(var jm_onLargeShakeEvent nil)
+(var jm_onShakeEvent nil)
+(var jm_getType nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "ShakeAnimationListener"} jproto))
+    this))
 
-local ShakeAnimationListener = {}
-ShakeAnimationListener.__index = ShakeAnimationListener
-ShakeAnimationListener.className = "ShakeAnimationListener"
+    
+(set jm_onSmallShakeEvent (fn jm_onSmallShakeEvent [this]
+    nil))
+    
+(set jm_onMediumShakeEvent (fn jm_onMediumShakeEvent [this]
+    nil))
+    
+(set jm_onLargeShakeEvent (fn jm_onLargeShakeEvent [this]
+    nil))
+    
+(set jm_onShakeEvent (fn jm_onShakeEvent [this _shakeEvent]
+    nil))
+    
+(set jm_getType (fn jm_getType [this]
+    (label jreturn
+        (return jreturn 0))))
 
-function ShakeAnimationListener.new()
-    local self = setmetatable({}, ShakeAnimationListener)
-    return self
-end
+(set jproto @{:jm_onSmallShakeEvent jm_onSmallShakeEvent :jm_onMediumShakeEvent jm_onMediumShakeEvent :jm_onLargeShakeEvent jm_onLargeShakeEvent :jm_onShakeEvent jm_onShakeEvent :jm_getType jm_getType})
 
-
-function ShakeAnimationListener:onSmallShakeEvent()
-end
-
-
-function ShakeAnimationListener:onMediumShakeEvent()
-end
-
-
-function ShakeAnimationListener:onLargeShakeEvent()
-end
-
-
-function ShakeAnimationListener:onShakeEvent(shakeEvent)
-end
-
-
-function ShakeAnimationListener:getType()
-        return 0
-end
-
-return ShakeAnimationListener
 

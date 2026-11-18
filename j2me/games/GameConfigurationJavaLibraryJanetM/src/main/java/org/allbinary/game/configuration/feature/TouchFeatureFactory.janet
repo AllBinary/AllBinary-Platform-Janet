@@ -1,54 +1,48 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.configuration.feature
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.game.configuration.feature
 
+(import ../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- TouchFeature/jnew_1 [& args] (JR/call jfile "./TouchFeature" "jnew_1" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class TouchFeatureFactory
+(var jproto nil)
+(var jcell_instance :jnone)
+(var jstatic_instance nil)
+(var jsetstatic_instance nil)
+(var jnew_0 nil)
+(var jm_getInstance nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jstatic_instance (fn jstatic_instance []
+  (when (= jcell_instance :jnone) (set jcell_instance (jnew_0)))
+  jcell_instance))
+(set jsetstatic_instance (fn jsetstatic_instance [value] (set jcell_instance value)))
 
-local TouchFeatureFactory = {}
-TouchFeatureFactory.__index = TouchFeatureFactory
-TouchFeatureFactory.className = "TouchFeatureFactory"
+    
+(set jm_getInstance (fn jm_getInstance []
+    (label jreturn
+        (return jreturn (jstatic_instance)))))
+    
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "TouchFeatureFactory" :f_TOUCH_ENABLED nil :f_SHOW_SCREEN_BUTTONS nil :f_AUTO_HIDE_SHOW_SCREEN_BUTTONS nil :f_HIDE_SCREEN_BUTTONS nil} jproto))
+    (put this :f_TOUCH_ENABLED (TouchFeature/jnew_1 "Touch Enabled"))
+    (put this :f_SHOW_SCREEN_BUTTONS (TouchFeature/jnew_1 "Show"))
+    (put this :f_AUTO_HIDE_SHOW_SCREEN_BUTTONS (TouchFeature/jnew_1 "Auto Hide (One Level)"))
+    (put this :f_HIDE_SCREEN_BUTTONS (TouchFeature/jnew_1 "Hide"))
+    this))
 
-function TouchFeatureFactory:_init_fields()
-    self.TOUCH_ENABLED = TouchFeature.new("Touch Enabled")
-    self.SHOW_SCREEN_BUTTONS = TouchFeature.new("Show")
-    self.AUTO_HIDE_SHOW_SCREEN_BUTTONS = TouchFeature.new("Auto Hide (One Level)")
-    self.HIDE_SCREEN_BUTTONS = TouchFeature.new("Hide")
-end
+(set jproto @{})
 
-
-function TouchFeatureFactory.getInstance()
-        return TouchFeatureFactory.instance
-end
-
-
-function TouchFeatureFactory.new()
-    local self = setmetatable({}, TouchFeatureFactory)
-    self:_init_fields()
-    return self
-end
-
-TouchFeatureFactory.instance = TouchFeatureFactory.new()
-
-return TouchFeatureFactory
 

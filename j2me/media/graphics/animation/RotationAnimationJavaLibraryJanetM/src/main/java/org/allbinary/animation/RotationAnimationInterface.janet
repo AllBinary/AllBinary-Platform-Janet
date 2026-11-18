@@ -1,53 +1,43 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.animation
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.animation
 
-local DirectionalInterface = require("org.allbinary.direction.DirectionalInterface")
-local AngleInfo = require("org.allbinary.math.AngleInfo")
-local IndexedAnimationInterface = require("org.allbinary.animation.IndexedAnimationInterface")
+(import ../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(import ./IndexedAnimationInterface :as IndexedAnimationInterface)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class RotationAnimationInterface
+(var jproto nil)
+(var jnew_0 nil)
+(var jm_getAngleInfoP nil)
+(var jm_nextRotation nil)
+(var jm_previousRotation nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "RotationAnimationInterface"} jproto))
+    this))
 
--- Java interface
-local RotationAnimationInterface = {}
-RotationAnimationInterface.__index = RotationAnimationInterface
-RotationAnimationInterface.className = "RotationAnimationInterface"
-setmetatable(RotationAnimationInterface, {__index = IndexedAnimationInterface})
+    
+(set jm_getAngleInfoP (fn jm_getAngleInfoP [this]
+    (error (JR/newException "AbstractMethodError" "getAngleInfoP"))))
+    
+(set jm_nextRotation (fn jm_nextRotation [this]
+    (error (JR/newException "AbstractMethodError" "nextRotation"))))
+    
+(set jm_previousRotation (fn jm_previousRotation [this]
+    (error (JR/newException "AbstractMethodError" "previousRotation"))))
 
+(set jproto @{:jm_getAngleInfoP jm_getAngleInfoP :jm_nextRotation jm_nextRotation :jm_previousRotation jm_previousRotation})
 
-function RotationAnimationInterface:getAngleInfoP()
-    error("abstract method getAngleInfoP")
-end
-
-
-function RotationAnimationInterface:nextRotation()
-    error("abstract method nextRotation")
-end
-
-
-function RotationAnimationInterface:previousRotation()
-    error("abstract method previousRotation")
-end
-
-return RotationAnimationInterface
 

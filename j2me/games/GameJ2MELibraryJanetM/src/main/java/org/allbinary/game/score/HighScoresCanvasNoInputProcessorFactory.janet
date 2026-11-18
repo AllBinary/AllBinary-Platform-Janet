@@ -1,45 +1,36 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.score
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.game.score
 
-local HighScoresCanvas = require("org.allbinary.game.score.displayable.HighScoresCanvas")
-local HighScoresCanvasInputProcessorFactoryInterface = require("org.allbinary.game.score.HighScoresCanvasInputProcessorFactoryInterface")
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- HighScoresCanvasInputProcessor/jnew_1 [& args] (JR/call jfile "./HighScoresCanvasInputProcessor" "jnew_1" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class HighScoresCanvasNoInputProcessorFactory
+(var jproto nil)
+(var jnew_0 nil)
+(var jm_getInstance nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "HighScoresCanvasNoInputProcessorFactory"} jproto))
+    this))
 
-local HighScoresCanvasNoInputProcessorFactory = {}
-HighScoresCanvasNoInputProcessorFactory.__index = HighScoresCanvasNoInputProcessorFactory
-HighScoresCanvasNoInputProcessorFactory.className = "HighScoresCanvasNoInputProcessorFactory"
+    
+(set jm_getInstance (fn jm_getInstance [this _highScoresCanvas]
+    (label jreturn
+        (return jreturn (HighScoresCanvasInputProcessor/jnew_1 _highScoresCanvas)))))
 
-function HighScoresCanvasNoInputProcessorFactory.new()
-    local self = setmetatable({}, HighScoresCanvasNoInputProcessorFactory)
-    return self
-end
+(set jproto @{:jm_getInstance jm_getInstance})
 
-
-function HighScoresCanvasNoInputProcessorFactory:getInstance(highScoresCanvas)
-        return HighScoresCanvasInputProcessor.new(highScoresCanvas)
-end
-
-return HighScoresCanvasNoInputProcessorFactory
 

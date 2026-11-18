@@ -1,50 +1,43 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.input.motion.gesture.observer
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.input.motion.gesture.observer
 
-local MotionGestureConfiguration = require("org.allbinary.input.motion.gesture.configuration.MotionGestureConfiguration")
-local MotionGestureConfigurationFactory = require("org.allbinary.input.motion.gesture.configuration.MotionGestureConfigurationFactory")
+(import ../../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- MotionGestureConfigurationFactory/jm_getInstance [& args] (JR/call jfile "../../../../../../org/allbinary/input/motion/gesture/configuration/MotionGestureConfigurationFactory" "jm_getInstance" args))
+(defn- ResolveCompleteMotionGestureListener/jnew_0 [& args] (JR/call jfile "./ResolveCompleteMotionGestureListener" "jnew_0" args))
+(defn- NullCompleteMotionGestureReceiver/jnew_0 [& args] (JR/call jfile "./NullCompleteMotionGestureReceiver" "jnew_0" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class MotionGestureReceiveInterfaceFactory
+(var jproto nil)
+(var jnew_0 nil)
+(var jm_getInstance nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "MotionGestureReceiveInterfaceFactory"} jproto))
+    this))
 
-local MotionGestureReceiveInterfaceFactory = {}
-MotionGestureReceiveInterfaceFactory.__index = MotionGestureReceiveInterfaceFactory
-MotionGestureReceiveInterfaceFactory.className = "MotionGestureReceiveInterfaceFactory"
+    
+(set jm_getInstance (fn jm_getInstance []
+    (label jreturn
+        (var _configuration (MotionGestureConfigurationFactory/jm_getInstance))
+        (if (not (:jm_isExecutingActionsAllowed _configuration))
+            (do
+            (return jreturn (NullCompleteMotionGestureReceiver/jnew_0)))
+            (do
+            (return jreturn (ResolveCompleteMotionGestureListener/jnew_0)))))))
 
-function MotionGestureReceiveInterfaceFactory.new()
-    local self = setmetatable({}, MotionGestureReceiveInterfaceFactory)
-    return self
-end
+(set jproto @{})
 
-
-function MotionGestureReceiveInterfaceFactory.getInstance()
-        local configuration = MotionGestureConfigurationFactory.getInstance()
-        if not configuration:isExecutingActionsAllowed() then
-            return NullCompleteMotionGestureReceiver.new()
-        else
-            return ResolveCompleteMotionGestureListener.new()
-        end
-end
-
-return MotionGestureReceiveInterfaceFactory
 

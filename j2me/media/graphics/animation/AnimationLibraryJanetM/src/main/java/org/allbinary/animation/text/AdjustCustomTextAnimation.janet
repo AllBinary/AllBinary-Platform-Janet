@@ -1,77 +1,58 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2022 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.animation.text
+# 
+# AllBinary Open License Version 1 
+# Copyright (c) 2022 AllBinary 
+#  
+# By agreeing to this license you and any business entity you represent are 
+# legally bound to the AllBinary Open License Version 1 legal agreement. 
+#  
+# You may obtain the AllBinary Open License Version 1 legal agreement from 
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+#  
+# Created By: Travis Berthelot 
+#   
+# Generated Code Do Not Modify
+# package org.allbinary.animation.text
 
--- local Graphics = require("javax.microedition.lcdui.Graphics")
-local AnimationBehavior = require("org.allbinary.animation.AnimationBehavior")
-local CustomTextAnimation = require("org.allbinary.animation.text.CustomTextAnimation")
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(import ./CustomTextAnimation :as CustomTextAnimation)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class AdjustCustomTextAnimation
+(var jproto nil)
+(var jnew_5 nil)
+(var jm_getDx nil)
+(var jm_setDx nil)
+(var jm_getDy nil)
+(var jm_setDy nil)
+(var jm_paintXY nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jnew_5 (fn jnew_5 [_text _fontSize _dx _dy _animationBehavior]
+    (var this (table/setproto @{:jclass "AdjustCustomTextAnimation" :f_dx 0 :f_dy 0} jproto))
+    
+    
+        (JR/superInit this (CustomTextAnimation/jnew_3 _text _fontSize _animationBehavior))
+        (set (this :f_dx) _dx)
+        (set (this :f_dy) _dy)
+    this))
+    
+(set jm_getDx (fn jm_getDx [this]
+    (label jreturn
+        (return jreturn (this :f_dx)))))
+    
+(set jm_setDx (fn jm_setDx [this _dx]
+        (set (this :f_dx) _dx)))
+    
+(set jm_getDy (fn jm_getDy [this]
+    (label jreturn
+        (return jreturn (this :f_dy)))))
+    
+(set jm_setDy (fn jm_setDy [this _dy]
+        (set (this :f_dy) _dy)))
+    
+(set jm_paintXY (fn jm_paintXY [this _graphics _x _y]
+        ((get CustomTextAnimation/jproto :jm_paintXY) this _graphics (JR/i32 (+ _x (this :f_dx))) (JR/i32 (+ _y (this :f_dy))))))
 
-local AdjustCustomTextAnimation = {}
-AdjustCustomTextAnimation.__index = AdjustCustomTextAnimation
-AdjustCustomTextAnimation.className = "AdjustCustomTextAnimation"
-setmetatable(AdjustCustomTextAnimation, {__index = CustomTextAnimation})
+(set jproto (table/setproto @{:jm_getDx jm_getDx :jm_setDx jm_setDx :jm_getDy jm_getDy :jm_setDy jm_setDy :jm_paintXY jm_paintXY} CustomTextAnimation/jproto))
 
-function AdjustCustomTextAnimation:_init_fields()
-    self.dx = nil
-    self.dy = nil
-end
-
-
-function AdjustCustomTextAnimation.new(text, fontSize, dx, dy, animationBehavior)
-    local self = setmetatable(CustomTextAnimation.new(text, fontSize, animationBehavior), AdjustCustomTextAnimation)
-    self:_init_fields()
-        -- super(...) made self above
-        self.dx = dx
-        self.dy = dy
-    return self
-end
-
-
-function AdjustCustomTextAnimation:getDx()
-        return self.dx
-end
-
-
-function AdjustCustomTextAnimation:setDx(dx)
-        self.dx = dx
-end
-
-
-function AdjustCustomTextAnimation:getDy()
-        return self.dy
-end
-
-
-function AdjustCustomTextAnimation:setDy(dy)
-        self.dy = dy
-end
-
-
-function AdjustCustomTextAnimation:paintXY(graphics, x, y)
-        CustomTextAnimation.paintXY(self, graphics, x + self.dx, y + self.dy)
-end
-
-return AdjustCustomTextAnimation
 

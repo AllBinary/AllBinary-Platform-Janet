@@ -1,38 +1,34 @@
--- Generated Code Do Not Modify
--- package org.allbinary.logic.util.cache
+# Generated Code Do Not Modify
+# package org.allbinary.logic.util.cache
 
+(import ../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- PoolType/jnew_1 [& args] (JR/call jfile "./PoolType" "jnew_1" args))
+(defn- CacheTypeFactory/jm_getInstance [& args] (JR/call jfile "./CacheTypeFactory" "jm_getInstance" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class PoolTypeFactory
+(var jproto nil)
+(var jcell_instance :jnone)
+(var jstatic_instance nil)
+(var jsetstatic_instance nil)
+(var jnew_0 nil)
+(var jm_getInstance nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jstatic_instance (fn jstatic_instance []
+  (when (= jcell_instance :jnone) (set jcell_instance (jnew_0)))
+  jcell_instance))
+(set jsetstatic_instance (fn jsetstatic_instance [value] (set jcell_instance value)))
 
-local PoolTypeFactory = {}
-PoolTypeFactory.__index = PoolTypeFactory
-PoolTypeFactory.className = "PoolTypeFactory"
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "PoolTypeFactory" :f_VECTOR_POOL nil} jproto))
+    (put this :f_VECTOR_POOL (PoolType/jnew_1 ((CacheTypeFactory/jm_getInstance) :f_NO_CACHE)))
+    this))
 
-function PoolTypeFactory:_init_fields()
-    self.VECTOR_POOL = PoolType.new(CacheTypeFactory.getInstance().NO_CACHE)
-end
+    
+(set jm_getInstance (fn jm_getInstance []
+    (label jreturn
+        (return jreturn (jstatic_instance)))))
 
-function PoolTypeFactory.new()
-    local self = setmetatable({}, PoolTypeFactory)
-    self:_init_fields()
-    return self
-end
+(set jproto @{})
 
-
-function PoolTypeFactory.getInstance()
-        return PoolTypeFactory.instance
-end
-
-PoolTypeFactory.instance = PoolTypeFactory.new()
-
-return PoolTypeFactory
 

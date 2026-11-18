@@ -1,69 +1,48 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.part.weapon
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.game.part.weapon
 
-local Animation = require("org.allbinary.animation.Animation")
-local WeaponProperties = require("org.allbinary.game.combat.weapon.WeaponProperties")
-local WeaponLayer = require("org.allbinary.game.layer.weapon.WeaponLayer")
-local WeaponLayerCircularPool = require("org.allbinary.game.layer.weapon.WeaponLayerCircularPool")
-local NoScoreable = require("org.allbinary.game.score.NoScoreable")
-local ScoreableInterface = require("org.allbinary.game.score.ScoreableInterface")
-local RelativeRelationship = require("org.allbinary.graphics.RelativeRelationship")
-local AllBinaryLayer = require("org.allbinary.layer.AllBinaryLayer")
-local AllBinaryLayerManager = require("org.allbinary.layer.AllBinaryLayerManager")
-local BasicWeaponPart = require("org.allbinary.game.part.weapon.BasicWeaponPart")
+(import ../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- WeaponProperties/jstatic_NULL_WEAPON_PROPERTIES [& args] (JR/call jfile "../../../../../org/allbinary/game/combat/weapon/WeaponProperties" "jstatic_NULL_WEAPON_PROPERTIES" args))
+(defn- NoScoreable/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/game/score/NoScoreable" "jm_getInstance" args))
+(defn- RelativeRelationship/jstatic_NULL_RELATIVE_RELATIONSHIP [& args] (JR/call jfile "../../../../../org/allbinary/graphics/RelativeRelationship" "jstatic_NULL_RELATIVE_RELATIONSHIP" args))
+(defn- AllBinaryLayer/jstatic_NULL_ALLBINARY_LAYER [& args] (JR/call jfile "../../../../../org/allbinary/layer/AllBinaryLayer" "jstatic_NULL_ALLBINARY_LAYER" args))
+(import ./BasicWeaponPart :as BasicWeaponPart)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class BasicProjectileWeaponPart
+(var jproto nil)
+(var jnew_6 nil)
+(var jm_createBasicProjectileWeaponPart nil)
+(var jm_processScore nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jm_createBasicProjectileWeaponPart (fn jm_createBasicProjectileWeaponPart [_animationInterface _weaponLayerCircularStaticPool]
+    (label jreturn
+        (return jreturn (jnew_6 _animationInterface (AllBinaryLayer/jstatic_NULL_ALLBINARY_LAYER) _weaponLayerCircularStaticPool (WeaponProperties/jstatic_NULL_WEAPON_PROPERTIES) (NoScoreable/jm_getInstance) (RelativeRelationship/jstatic_NULL_RELATIVE_RELATIONSHIP))))))
+    
+(set jnew_6 (fn jnew_6 [_animationInterface _sourceLayerInterface _weaponLayerCircularStaticPool _weaponProperties _scoreableInterface _relativeRelationship]
+    (var this (table/setproto @{:jclass "BasicProjectileWeaponPart" :f_weaponLayerCircularStaticPool nil} jproto))
+    
+        (JR/superInit this (BasicWeaponPart/jnew_5 _animationInterface _sourceLayerInterface _weaponProperties _scoreableInterface _relativeRelationship))
+        (set (this :f_weaponLayerCircularStaticPool) _weaponLayerCircularStaticPool)
+    this))
+    
+(set jm_processScore (fn jm_processScore [this _allbinaryLayerManager _angle _otherAngle _weaponProperties _scoreableInterface]
+        (var _weaponLayer (:jm_getInstanceWeaponLayer (this :f_weaponLayerCircularStaticPool) (:jm_getOwnerLayerInterface this) (:jm_getX (this :f_relativeRelationship)) (:jm_getY (this :f_relativeRelationship)) (:jm_getZ (this :f_relativeRelationship)) _angle _otherAngle _weaponProperties _scoreableInterface))
+        (:jm_append _allbinaryLayerManager _weaponLayer)))
 
-local BasicProjectileWeaponPart = {}
-BasicProjectileWeaponPart.__index = BasicProjectileWeaponPart
-BasicProjectileWeaponPart.className = "BasicProjectileWeaponPart"
-setmetatable(BasicProjectileWeaponPart, {__index = BasicWeaponPart})
+(set jproto (table/setproto @{:jm_processScore jm_processScore} BasicWeaponPart/jproto))
 
-function BasicProjectileWeaponPart:_init_fields()
-    self.weaponLayerCircularStaticPool = nil
-end
-
-
-function BasicProjectileWeaponPart.createBasicProjectileWeaponPart(animationInterface, weaponLayerCircularStaticPool)
-        return BasicProjectileWeaponPart.new(animationInterface, AllBinaryLayer.NULL_ALLBINARY_LAYER, weaponLayerCircularStaticPool, WeaponProperties.NULL_WEAPON_PROPERTIES, NoScoreable.getInstance(), RelativeRelationship.NULL_RELATIVE_RELATIONSHIP)
-end
-
-
-function BasicProjectileWeaponPart.new(animationInterface, sourceLayerInterface, weaponLayerCircularStaticPool, weaponProperties, scoreableInterface, relativeRelationship)
-    local self = setmetatable(BasicWeaponPart.new(animationInterface, sourceLayerInterface, weaponProperties, scoreableInterface, relativeRelationship), BasicProjectileWeaponPart)
-    self:_init_fields()
-        -- super(...) made self above
-        self.weaponLayerCircularStaticPool = weaponLayerCircularStaticPool
-    return self
-end
-
-
--- throws Exception
-function BasicProjectileWeaponPart:processScore(allbinaryLayerManager, angle, otherAngle, weaponProperties, scoreableInterface)
-        local weaponLayer = self.weaponLayerCircularStaticPool:getInstanceWeaponLayer(self:getOwnerLayerInterface(), self.relativeRelationship:getX(), self.relativeRelationship:getY(), self.relativeRelationship:getZ(), angle, otherAngle, weaponProperties, scoreableInterface)
-        allbinaryLayerManager:append(weaponLayer)
-end
-
-return BasicProjectileWeaponPart
 

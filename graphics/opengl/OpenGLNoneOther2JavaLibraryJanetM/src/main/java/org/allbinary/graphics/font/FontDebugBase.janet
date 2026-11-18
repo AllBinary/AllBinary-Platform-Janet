@@ -1,53 +1,45 @@
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.font
+# Generated Code Do Not Modify
+# package org.allbinary.graphics.font
 
--- local Font = require("javax.microedition.lcdui.Font")
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+#OpenGLNoneOther2JavaLibrary
+# Java class FontDebugBase
+(var jproto nil)
+(var jcell_instanceBase :jnone)
+(var jstatic_instanceBase nil)
+(var jsetstatic_instanceBase nil)
+(var jnew_0 nil)
+(var jm_getInstance nil)
+(var jm_debugMetrics nil)
+(var jm_debugDpi nil)
+(var jm_debugDimension nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jstatic_instanceBase (fn jstatic_instanceBase []
+  (when (= jcell_instanceBase :jnone) (set jcell_instanceBase (jnew_0)))
+  jcell_instanceBase))
+(set jsetstatic_instanceBase (fn jsetstatic_instanceBase [value] (set jcell_instanceBase value)))
 
---OpenGLNoneOther2JavaLibrary
-local FontDebugBase = {}
-FontDebugBase.__index = FontDebugBase
-FontDebugBase.className = "FontDebugBase"
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "FontDebugBase" :f_SET_FONT nil} jproto))
+    (put this :f_SET_FONT "setFont")
+    this))
 
-function FontDebugBase:_init_fields()
-    self.SET_FONT = "setFont"
-end
+    
+(set jm_getInstance (fn jm_getInstance []
+    (label jreturn
+        (return jreturn (jstatic_instanceBase)))))
+    
+(set jm_debugMetrics (fn jm_debugMetrics [this _currentFont _convertedTextSize _displayMetrics _stringBuffer]
+    nil))
+    
+(set jm_debugDpi (fn jm_debugDpi [this _densityDpi _stringBuffer]
+    nil))
+    
+(set jm_debugDimension (fn jm_debugDimension [this _currentFont _convertedTextSize _longestDimensionTotalPixels _stringBuffer]
+    nil))
 
-function FontDebugBase.new()
-    local self = setmetatable({}, FontDebugBase)
-    self:_init_fields()
-    return self
-end
+(set jproto @{:jm_debugMetrics jm_debugMetrics :jm_debugDpi jm_debugDpi :jm_debugDimension jm_debugDimension})
 
-
-function FontDebugBase.getInstance()
-        return FontDebugBase.instanceBase
-end
-
-
-function FontDebugBase:debugMetrics(currentFont, convertedTextSize, displayMetrics, stringBuffer)
-end
-
-
-function FontDebugBase:debugDpi(densityDpi, stringBuffer)
-end
-
-
-function FontDebugBase:debugDimension(currentFont, convertedTextSize, longestDimensionTotalPixels, stringBuffer)
-end
-
-FontDebugBase.instanceBase = FontDebugBase.new()
-
-return FontDebugBase
 

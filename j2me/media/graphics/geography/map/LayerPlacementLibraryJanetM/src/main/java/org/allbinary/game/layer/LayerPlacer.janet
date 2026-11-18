@@ -1,127 +1,97 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.layer
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.game.layer
 
--- local Enumeration = require("java.util.Enumeration")
-local GPoint = require("org.allbinary.graphics.GPoint")
-local PointFactory = require("org.allbinary.graphics.PointFactory")
-local AllBinaryLayer = require("org.allbinary.layer.AllBinaryLayer")
-local LayerInterfaceFactory = require("org.allbinary.layer.LayerInterfaceFactory")
-local LayerInterfaceVisitor = require("org.allbinary.layer.LayerInterfaceVisitor")
-local ABHashtable = require("org.allbinary.util.ABHashtable")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
-local EnumerationUtil = require("org.allbinary.util.EnumerationUtil")
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(import ../../../../java/util/Enumeration :as Enumeration)
+(defn- PointFactory/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/graphics/PointFactory" "jm_getInstance" args))
+(defn- LayerInterfaceFactory/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/layer/LayerInterfaceFactory" "jm_getInstance" args))
+(defn- EnumerationUtil/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/util/EnumerationUtil" "jm_getInstance" args))
+(defn- LayerPlacementTypeFactory/jm_getInstance [& args] (JR/call jfile "./LayerPlacementTypeFactory" "jm_getInstance" args))
 
--- Java library Throwable. tostring gives the message like Java getMessage.
-local function java_exception(className, message, cause)
-    if cause == nil and type(message) == "table" then
-        cause = message
-        message = tostring(message)
-    end
-    local exception = {className = className, message = message, cause = cause}
-    function exception:getMessage() return self.message end
-    function exception:getCause() return self.cause end
-    function exception:printStackTrace() print(debug.traceback(tostring(self))) end
-    return setmetatable(exception, {__tostring = function(self) if self.message ~= nil then return tostring(self.message) end return self.className end})
-end
+# Java class LayerPlacer
+(var jproto nil)
+(var jnew_2 nil)
+(var jm_processList nil)
+(var jm_process nil)
+(var jm_getPoint nil)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+    
+(set jnew_2 (fn jnew_2 [_layerInterfaceVisitor _dimension]
+    (var this (table/setproto @{:jclass "LayerPlacer" :f_enumerationUtil nil :f_layerInterfaceVisitor nil :f_dimension nil} jproto))
+    (put this :f_enumerationUtil (EnumerationUtil/jm_getInstance))
+    
+    
+        (set (this :f_layerInterfaceVisitor) _layerInterfaceVisitor)
+        (set (this :f_dimension) _dimension)
+    this))
+    
+(set jm_processList (fn jm_processList [this _list]
+        (var _size (:jm_size _list))
+        (var _layerPlacementInterface nil)
+        (do
+            (var _index 0)
+            (while (< _index _size)
+                (do
+            (set _layerPlacementInterface ((_list :f_objectArray) _index))
+            (:jm_process this _layerPlacementInterface))
+                (do (set _index (JR/i32 (+ _index 1))))))))
+    
+(set jm_process (fn jm_process [this _layerPlacementInterface]
+        (var _relativePoint (:jm_getPoint this _layerPlacementInterface))
+        (var _layerInterfaceFactory (LayerInterfaceFactory/jm_getInstance))
+        (var _hashtable (:jm_getInstance _layerPlacementInterface))
+        (var _enumeration (:jm_keys _hashtable))
+        (var _point nil)
+        (var _layerHashtable nil)
+        (var _x 0)
+        (var _y 0)
+        (var _z 0)
+        (var _layerInterface nil)
+        (do
+            (while (:jm_hasMoreElements (this :f_enumerationUtil) _enumeration)
+                (do
+            (set _point (:jm_nextElement (this :f_enumerationUtil) _enumeration))
+            (set _layerHashtable (:jm_get _hashtable _point))
+            (set _x (JR/i32 (+ (:jm_getX _point) (:jm_getX _relativePoint))))
+            (set _y (JR/i32 (+ (:jm_getY _point) (:jm_getY _relativePoint))))
+            (set _z (JR/i32 (+ (:jm_getZ _point) (:jm_getZ _relativePoint))))
+            (set _layerInterface (:jm_getNexInstance _layerInterfaceFactory _layerHashtable _x _y _z))
+            (:jm_visit (this :f_layerInterfaceVisitor) _layerInterface))))))
+    
+(set jm_getPoint (fn jm_getPoint [this _layerPlacementInterface]
+    (label jreturn
+        (var _pointFactory (PointFactory/jm_getInstance))
+        (var _layerPlacementType (:jm_getLayerType _layerPlacementInterface))
+        (if (= _layerPlacementType ((LayerPlacementTypeFactory/jm_getInstance) :f_MAP))
+            (do
+            (var _width (:jm_getWidth _layerPlacementInterface))
+            (var _height (:jm_getHeight _layerPlacementInterface))
+            (var _x (JR/idiv (JR/i32 (- (:jm_getX (this :f_dimension)) _width)) 2))
+            (var _y (JR/idiv (JR/i32 (- (:jm_getY (this :f_dimension)) _height)) 2))
+            (return jreturn (:jm_createXY _pointFactory _x _y)))
+            (if (= _layerPlacementType ((LayerPlacementTypeFactory/jm_getInstance) :f_UP))
+            (do
+            (var _width (:jm_getWidth _layerPlacementInterface))
+            (var _height (:jm_getHeight _layerPlacementInterface))
+            (var _x (JR/idiv (JR/i32 (- (:jm_getX (this :f_dimension)) _width)) 2))
+            (var _y (JR/i32 (- _height)))
+            (return jreturn (:jm_createXY _pointFactory _x _y)))
+            (do
+            (error (JR/newException "Exception" "PlacementType Not Recognized"))))))))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jproto @{:jm_processList jm_processList :jm_process jm_process :jm_getPoint jm_getPoint})
 
-local LayerPlacer = {}
-LayerPlacer.__index = LayerPlacer
-LayerPlacer.className = "LayerPlacer"
-
-function LayerPlacer:_init_fields()
-    self.enumerationUtil = EnumerationUtil.getInstance()
-    self.layerInterfaceVisitor = nil
-    self.dimension = nil
-end
-
-
-function LayerPlacer.new(layerInterfaceVisitor, dimension)
-    local self = setmetatable({}, LayerPlacer)
-    self:_init_fields()
-        self.layerInterfaceVisitor = layerInterfaceVisitor
-        self.dimension = dimension
-    return self
-end
-
-
--- throws Exception
-function LayerPlacer:processList(list)
-        local size = list:size()
-        local layerPlacementInterface = nil
-        for index = 0, size - 1 do
-            layerPlacementInterface = list.objectArray[index + 1]
-            self:process(layerPlacementInterface)
-        end
-end
-
-
--- throws Exception
-function LayerPlacer:process(layerPlacementInterface)
-        local relativePoint = self:getPoint(layerPlacementInterface)
-        local layerInterfaceFactory = LayerInterfaceFactory.getInstance()
-        local hashtable = layerPlacementInterface:getInstance()
-        local enumeration = hashtable:keys()
-        local point = nil
-        local layerHashtable = nil
-        local x = 0
-        local y = 0
-        local z = 0
-        local layerInterface = nil
-        while self.enumerationUtil:hasMoreElements(enumeration) do
-            point = self.enumerationUtil:nextElement(enumeration)
-            layerHashtable = hashtable:get(point)
-            x = point:getX() + relativePoint:getX()
-            y = point:getY() + relativePoint:getY()
-            z = point:getZ() + relativePoint:getZ()
-            layerInterface = layerInterfaceFactory:getNexInstance(layerHashtable, x, y, z)
-            self.layerInterfaceVisitor:visit(layerInterface)
-        end
-end
-
-
--- throws Exception
-function LayerPlacer:getPoint(layerPlacementInterface)
-        local pointFactory = PointFactory.getInstance()
-        local layerPlacementType = layerPlacementInterface:getLayerType()
-        if layerPlacementType == LayerPlacementTypeFactory.getInstance().MAP then
-            local width = layerPlacementInterface:getWidth()
-            local height = layerPlacementInterface:getHeight()
-            local x = ((self.dimension:getX() - width) / 2)
-            local y = ((self.dimension:getY() - height) / 2)
-            return pointFactory:createXY(x, y)
-        elseif layerPlacementType == LayerPlacementTypeFactory.getInstance().UP then
-            local width = layerPlacementInterface:getWidth()
-            local height = layerPlacementInterface:getHeight()
-            local x = ((self.dimension:getX() - width) / 2)
-            local y = -height
-            return pointFactory:createXY(x, y)
-        else
-            error(java_exception("Exception", "PlacementType Not Recognized"), 0)
-        end
-end
-
-return LayerPlacer
 

@@ -23,6 +23,7 @@
 (var jproto nil)
 (var jcell_instance :jnone)
 (var jstatic_instance nil)
+(var jsetstatic_instance nil)
 (var jnew_0 nil)
 (var jm_getInstance nil)
 (var jm_add nil)
@@ -31,10 +32,12 @@
 (set jstatic_instance (fn jstatic_instance []
   (when (= jcell_instance :jnone) (set jcell_instance (jnew_0)))
   jcell_instance))
+(set jsetstatic_instance (fn jsetstatic_instance [value] (set jcell_instance value)))
 
 (set jnew_0 (fn jnew_0 []
     (var this (table/setproto @{:jclass "GameStatisticsFactory" :f_stringBuffer nil} jproto))
     (put this :f_stringBuffer (StringMaker/jnew_0))
+    (JR/superInit this (BaseGameStatistics/jnew_0))
     this))
 
     
@@ -51,7 +54,7 @@
     
 (set jm_toString (fn jm_toString [this]
     (label jreturn
-        (return jreturn (:jm_toString (:jm_append (:jm_append (StringMaker/jnew_0) (BaseGameStatistics/jm_toString this)) (:jm_toString (this :f_stringBuffer))))))))
+        (return jreturn (:jm_toString (:jm_append (:jm_append (StringMaker/jnew_0) ((get BaseGameStatistics/jproto :jm_toString) this)) (:jm_toString (this :f_stringBuffer))))))))
 
 (set jproto (table/setproto @{:jm_add jm_add :jm_toString jm_toString} BaseGameStatistics/jproto))
 

@@ -21,15 +21,18 @@
 (var jproto nil)
 (var jcell_NO_OPERATING_SYSTEM :jnone)
 (var jstatic_NO_OPERATING_SYSTEM nil)
+(var jsetstatic_NO_OPERATING_SYSTEM nil)
 (var jnew_0 nil)
 
 (set jstatic_NO_OPERATING_SYSTEM (fn jstatic_NO_OPERATING_SYSTEM []
   (when (= jcell_NO_OPERATING_SYSTEM :jnone) (set jcell_NO_OPERATING_SYSTEM (GenericOperatingSystem/jnew_0)))
   jcell_NO_OPERATING_SYSTEM))
+(set jsetstatic_NO_OPERATING_SYSTEM (fn jsetstatic_NO_OPERATING_SYSTEM [value] (set jcell_NO_OPERATING_SYSTEM value)))
 
     
 (set jnew_0 (fn jnew_0 []
     (var this (table/setproto @{:jclass "NoOperatingSystem"} jproto))
+    (JR/superInit this (GenericOperatingSystem/jnew_0))
     this))
 
 (set jproto (table/setproto @{} GenericOperatingSystem/jproto))

@@ -1,53 +1,38 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.ag.layer.pickup.points
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.game.ag.layer.pickup.points
 
-local AllBinaryLayer = require("org.allbinary.layer.AllBinaryLayer")
-local AllBinaryLayerFactoryInterface = require("org.allbinary.layer.AllBinaryLayerFactoryInterface")
+(import ../../../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- PointsLayer/jnew_1 [& args] (JR/call jfile "./PointsLayer" "jnew_1" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class PointsLayerFactory
+(var jproto nil)
+(var jnew_1 nil)
+(var jm_getInstance nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jnew_1 (fn jnew_1 [_points]
+    (var this (table/setproto @{:jclass "PointsLayerFactory" :f_points 0} jproto))
+    
+        (set (this :f_points) _points)
+    this))
+    
+(set jm_getInstance (fn jm_getInstance [this]
+    (label jreturn
+        (return jreturn (PointsLayer/jnew_1 (this :f_points))))))
 
-local PointsLayerFactory = {}
-PointsLayerFactory.__index = PointsLayerFactory
-PointsLayerFactory.className = "PointsLayerFactory"
+(set jproto @{:jm_getInstance jm_getInstance})
 
-function PointsLayerFactory:_init_fields()
-    self.points = nil
-end
-
-
-function PointsLayerFactory.new(points)
-    local self = setmetatable({}, PointsLayerFactory)
-    self:_init_fields()
-        self.points = points
-    return self
-end
-
-
--- throws Exception
-function PointsLayerFactory:getInstance()
-        return PointsLayer.new(self.points)
-end
-
-return PointsLayerFactory
 

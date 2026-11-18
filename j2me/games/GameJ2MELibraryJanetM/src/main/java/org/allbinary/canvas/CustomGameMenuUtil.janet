@@ -1,52 +1,45 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.canvas
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.canvas
 
-local AppletUtil = require("org.allbinary.AppletUtil")
-local J2MEUtil = require("org.allbinary.J2MEUtil")
-local GameCommandsFactory = require("org.allbinary.game.commands.GameCommandsFactory")
-local MyCanvas = require("org.allbinary.graphics.displayable.MyCanvas")
+(import ../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- AppletUtil/jm_isAppletLoader [& args] (JR/call jfile "../../../org/allbinary/AppletUtil" "jm_isAppletLoader" args))
+(defn- J2MEUtil/jm_isHTML [& args] (JR/call jfile "../../../org/allbinary/J2MEUtil" "jm_isHTML" args))
+(defn- GameCommandsFactory/jm_getInstance [& args] (JR/call jfile "../../../org/allbinary/game/commands/GameCommandsFactory" "jm_getInstance" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class CustomGameMenuUtil
+(var jproto nil)
+(var jnew_0 nil)
+(var jm_add nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "CustomGameMenuUtil"} jproto))
+    this))
 
-local CustomGameMenuUtil = {}
-CustomGameMenuUtil.__index = CustomGameMenuUtil
-CustomGameMenuUtil.className = "CustomGameMenuUtil"
+    
+(set jm_add (fn jm_add [_canvas]
+        (var _gameCommandsFactory (GameCommandsFactory/jm_getInstance))
+        (if (AppletUtil/jm_isAppletLoader _canvas)
+            (do
+            nil)
+            (if (J2MEUtil/jm_isHTML)
+            (do
+            nil)
+            (do
+            (:jm_addCommand _canvas (_gameCommandsFactory :f_EXIT_COMMAND)))))))
 
-function CustomGameMenuUtil.new()
-    local self = setmetatable({}, CustomGameMenuUtil)
-    return self
-end
+(set jproto @{})
 
-
-function CustomGameMenuUtil.add(canvas)
-        local gameCommandsFactory = GameCommandsFactory.getInstance()
-        if AppletUtil.isAppletLoader(canvas) then
-        elseif J2MEUtil.isHTML() then
-        else
-            canvas:addCommand(gameCommandsFactory.EXIT_COMMAND)
-        end
-end
-
-return CustomGameMenuUtil
 

@@ -1,48 +1,38 @@
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.form.item
+# Generated Code Do Not Modify
+# package org.allbinary.graphics.form.item
 
--- local Graphics = require("javax.microedition.lcdui.Graphics")
+(import ../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class ABCustomItemInterface
+(var jproto nil)
+(var jnew_0 nil)
+(var jm_getMinimumWidth nil)
+(var jm_getMinimumHeight nil)
+(var jm_getLabel nil)
+(var jm_paintXY nil)
+(var jm_paintUnselected nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "ABCustomItemInterface"} jproto))
+    this))
 
--- Java interface
-local ABCustomItemInterface = {}
-ABCustomItemInterface.__index = ABCustomItemInterface
-ABCustomItemInterface.className = "ABCustomItemInterface"
+    
+(set jm_getMinimumWidth (fn jm_getMinimumWidth [this]
+    (error (JR/newException "AbstractMethodError" "getMinimumWidth"))))
+    
+(set jm_getMinimumHeight (fn jm_getMinimumHeight [this]
+    (error (JR/newException "AbstractMethodError" "getMinimumHeight"))))
+    
+(set jm_getLabel (fn jm_getLabel [this]
+    (error (JR/newException "AbstractMethodError" "getLabel"))))
+    
+(set jm_paintXY (fn jm_paintXY [this _graphics _x _y]
+    (error (JR/newException "AbstractMethodError" "paintXY"))))
+    
+(set jm_paintUnselected (fn jm_paintUnselected [this _graphics _x _y]
+    (error (JR/newException "AbstractMethodError" "paintUnselected"))))
 
+(set jproto @{:jm_getMinimumWidth jm_getMinimumWidth :jm_getMinimumHeight jm_getMinimumHeight :jm_getLabel jm_getLabel :jm_paintXY jm_paintXY :jm_paintUnselected jm_paintUnselected})
 
-function ABCustomItemInterface:getMinimumWidth()
-    error("abstract method getMinimumWidth")
-end
-
-
-function ABCustomItemInterface:getMinimumHeight()
-    error("abstract method getMinimumHeight")
-end
-
-
-function ABCustomItemInterface:getLabel()
-    error("abstract method getLabel")
-end
-
-
-function ABCustomItemInterface:paintXY(graphics, x, y)
-    error("abstract method paintXY")
-end
-
-
-function ABCustomItemInterface:paintUnselected(graphics, x, y)
-    error("abstract method paintUnselected")
-end
-
-return ABCustomItemInterface
 

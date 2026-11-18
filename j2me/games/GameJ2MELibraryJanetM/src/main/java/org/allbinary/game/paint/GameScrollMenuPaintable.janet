@@ -1,80 +1,63 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.paint
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.game.paint
 
-local BasicColor = require("org.allbinary.graphics.color.BasicColor")
-local ColorChangeEventHandler = require("org.allbinary.graphics.color.ColorChangeEventHandler")
-local ColorChangeListener = require("org.allbinary.graphics.color.ColorChangeListener")
-local FormPaintable = require("org.allbinary.graphics.form.FormPaintable")
-local ScrollSelectionForm = require("org.allbinary.graphics.form.ScrollSelectionForm")
-local ABStringComponent = require("org.allbinary.graphics.form.item.ABStringComponent")
-local ABTextItem = require("org.allbinary.graphics.form.item.ABTextItem")
-local Paintable = require("org.allbinary.graphics.paint.Paintable")
-local AllBinaryEventObject = require("org.allbinary.logic.util.event.AllBinaryEventObject")
-local BasicGameDemoPaintable = require("org.allbinary.game.paint.BasicGameDemoPaintable")
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- ColorChangeEventHandler/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/graphics/color/ColorChangeEventHandler" "jm_getInstance" args))
+(import ./BasicGameDemoPaintable :as BasicGameDemoPaintable)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class GameScrollMenuPaintable
+(var jproto nil)
+(var jnew_4 nil)
+(var jm_setState nil)
+(var jm_onEvent nil)
+(var jm_setColor nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jnew_4 (fn jnew_4 [_mainDemoStatePaintable _ownershipPaintable _helpPaintableInterface _basicColor]
+    (var this (table/setproto @{:jclass "GameScrollMenuPaintable"} jproto))
+        (JR/superInit this (BasicGameDemoPaintable/jnew_3 _mainDemoStatePaintable _ownershipPaintable _helpPaintableInterface))
+        (:jm_setColor this _basicColor)
+        (:jm_addListenerInterface (ColorChangeEventHandler/jm_getInstance) this)
+    this))
+    
+(set jm_setState (fn jm_setState [this _state]
+        (:jm_setCurrentStatePaintable this (:jm_getMainDemoStatePaintable this))))
+    
+(set jm_onEvent (fn jm_onEvent [this _eventObject]
+    nil))
+    
+(set jm_setColor (fn jm_setColor [this _basicColor]
+        (var _mainGameDemoStatePaintable (:jm_getMainDemoStatePaintable this))
+        (var _formPaintable (:jm_getMenuPaintableInterface _mainGameDemoStatePaintable))
+        (var _scrollSelectionForm (:jm_getForm _formPaintable))
+        (JR/className (:jm_getOwnershipPaintableInterface _mainGameDemoStatePaintable))
+        (:jm_setButtonBasicColor _scrollSelectionForm _basicColor)
+        (var _item nil)
+        (var _stringComponent nil)
+        (do
+            (var _index (JR/i32 (- (:jm_size _scrollSelectionForm) 1)))
+            (while (>= _index 0)
+                (do
+            (set _item (:jm_get _scrollSelectionForm _index))
+            (set _stringComponent (:jm_getLabelStringComponent _item))
+            (if (not (nil? _stringComponent))
+                (do
+                (:jm_setForegroundBasicColor _stringComponent _basicColor))))
+                (do (set _index (JR/i32 (- _index 1))))))))
 
-local GameScrollMenuPaintable = {}
-GameScrollMenuPaintable.__index = GameScrollMenuPaintable
-GameScrollMenuPaintable.className = "GameScrollMenuPaintable"
-setmetatable(GameScrollMenuPaintable, {__index = BasicGameDemoPaintable})
+(set jproto (table/setproto @{:jm_setState jm_setState :jm_onEvent jm_onEvent :jm_setColor jm_setColor} BasicGameDemoPaintable/jproto))
 
-
-function GameScrollMenuPaintable.new(mainDemoStatePaintable, ownershipPaintable, helpPaintableInterface, basicColor)
-    local self = setmetatable(BasicGameDemoPaintable.new(mainDemoStatePaintable, ownershipPaintable, helpPaintableInterface), GameScrollMenuPaintable)
-        -- super(...) made self above
-        self:setColor(basicColor)
-        ColorChangeEventHandler.getInstance():addListenerInterface(self)
-    return self
-end
-
-
-function GameScrollMenuPaintable:setState(state)
-        self:setCurrentStatePaintable(self:getMainDemoStatePaintable())
-end
-
-
-function GameScrollMenuPaintable:onEvent(eventObject)
-end
-
-
-function GameScrollMenuPaintable:setColor(basicColor)
-        local mainGameDemoStatePaintable = self:getMainDemoStatePaintable()
-        local formPaintable = mainGameDemoStatePaintable:getMenuPaintableInterface()
-        local scrollSelectionForm = formPaintable:getForm()
-        mainGameDemoStatePaintable:getOwnershipPaintableInterface():setBasicColorP(basicColor)
-        scrollSelectionForm:setButtonBasicColor(basicColor)
-        local item = nil
-        local stringComponent = nil
-        for index = scrollSelectionForm:size() - 1, 0, -1 do
-            item = scrollSelectionForm:get(index)
-            stringComponent = item:getLabelStringComponent()
-            if stringComponent ~= nil then
-                stringComponent:setForegroundBasicColor(basicColor)
-            end
-        end
-end
-
-return GameScrollMenuPaintable
 

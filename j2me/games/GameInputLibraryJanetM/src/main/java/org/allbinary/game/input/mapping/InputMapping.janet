@@ -1,156 +1,123 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.input.mapping
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.game.input.mapping
 
-local Input = require("org.allbinary.game.input.Input")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
-local CommonLabels = require("org.allbinary.string.CommonLabels")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
-local BasicArrayListD = require("org.allbinary.util.BasicArrayListD")
-local StdUtil = require("org.allbinary.logic.StdUtil")
-local ABHashtable = require("org.allbinary.util.ABHashtable")
+(import ../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- LogUtil/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/logic/communication/log/LogUtil" "jm_getInstance" args))
+(defn- StringMaker/jnew_0 [& args] (JR/call jfile "../../../../../org/allbinary/logic/string/StringMaker" "jnew_0" args))
+(defn- StringUtil/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/logic/string/StringUtil" "jm_getInstance" args))
+(defn- CommonLabels/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/string/CommonLabels" "jm_getInstance" args))
+(defn- CommonStrings/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/string/CommonStrings" "jm_getInstance" args))
+(defn- BasicArrayListD/jnew_0 [& args] (JR/call jfile "../../../../../org/allbinary/util/BasicArrayListD" "jnew_0" args))
+(defn- StdUtil/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/logic/StdUtil" "jm_getInstance" args))
+(defn- InputToGameKeyMapping/jm_getNullInstance [& args] (JR/call jfile "./InputToGameKeyMapping" "jm_getNullInstance" args))
 
--- Java library Throwable. tostring gives the message like Java getMessage.
-local function java_exception(className, message, cause)
-    if cause == nil and type(message) == "table" then
-        cause = message
-        message = tostring(message)
-    end
-    local exception = {className = className, message = message, cause = cause}
-    function exception:getMessage() return self.message end
-    function exception:getCause() return self.cause end
-    function exception:printStackTrace() print(debug.traceback(tostring(self))) end
-    return setmetatable(exception, {__tostring = function(self) if self.message ~= nil then return tostring(self.message) end return self.className end})
-end
+# Java class InputMapping
+(var jproto nil)
+(var jnew_0 nil)
+(var jm_getTotalMapped nil)
+(var jm_isDefaultNew nil)
+(var jm_getDefault nil)
+(var jm_removeAll nil)
+(var jm_remove nil)
+(var jm_addMapping nil)
+(var jm_add nil)
+(var jm_isMapped nil)
+(var jm_getMappedInput nil)
+(var jm_getHashtable nil)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+    
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "InputMapping" :f_logUtil nil :f_commonStrings nil :f_hashtable nil :f_mappedList nil} jproto))
+    (put this :f_logUtil (LogUtil/jm_getInstance))
+    (put this :f_commonStrings (CommonStrings/jm_getInstance))
+    (put this :f_hashtable (:jm_createHashtable (StdUtil/jm_getInstance)))
+    (put this :f_mappedList (BasicArrayListD/jnew_0))
+    this))
+    
+(set jm_getTotalMapped (fn jm_getTotalMapped [this]
+    (label jreturn
+        (return jreturn (:jm_size (this :f_hashtable))))))
+    
+(set jm_isDefaultNew (fn jm_isDefaultNew [this]
+    (label jreturn
+        (return jreturn false))))
+    
+(set jm_getDefault (fn jm_getDefault [this]
+    (label jreturn
+        (return jreturn (InputToGameKeyMapping/jm_getNullInstance)))))
+    
+(set jm_removeAll (fn jm_removeAll [this]
+        (:jm_clear (this :f_hashtable))
+        (:jm_clear (this :f_mappedList))))
+    
+(set jm_remove (fn jm_remove [this _input _mappedToInput]
+        (var _stringBuffer (StringMaker/jnew_0))
+        (var _stringUtil (StringUtil/jm_getInstance))
+        (:jm_append _stringBuffer ((CommonLabels/jm_getInstance) :f_START_LABEL))
+        (:jm_append _stringBuffer (:jm_toString_1 _stringUtil _input))
+        (:jm_append _stringBuffer " == ")
+        (:jm_append _stringBuffer (:jm_toString_1 _stringUtil _mappedToInput))
+        (:jm_putF (this :f_logUtil) (:jm_toString _stringBuffer) this "InputMapping::remove")
+        (var _list (:jm_getMappedInput this _input))
+        (if (:jm_contains _list _mappedToInput)
+            (do
+            (:jm_remove _list _mappedToInput)
+            (:jm_remove (this :f_mappedList) _mappedToInput)
+            (:jm_delete _stringBuffer 0 (:jm_length _stringBuffer))
+            (:jm_append _stringBuffer "Removed: ")
+            (:jm_append _stringBuffer (:jm_toString_1 _stringUtil _input))
+            (:jm_append _stringBuffer " == ")
+            (:jm_append _stringBuffer (:jm_toString_1 _stringUtil _mappedToInput))
+            (:jm_putF (this :f_logUtil) (:jm_toString _stringBuffer) this "InputMapping::remove"))
+            (do
+            (:jm_delete _stringBuffer 0 (:jm_length _stringBuffer))
+            (:jm_append _stringBuffer "Not Deleted: ")
+            (:jm_append _stringBuffer (:jm_toString_1 _stringUtil _input))
+            (:jm_append _stringBuffer " == ")
+            (:jm_append _stringBuffer (:jm_toString_1 _stringUtil _mappedToInput))
+            (:jm_putF (this :f_logUtil) (:jm_toString _stringBuffer) this "InputMapping::remove")))))
+    
+(set jm_addMapping (fn jm_addMapping [this _inputToGameKeyMapping]
+        (error (JR/newException "Exception" ((this :f_commonStrings) :f_NOT_IMPLEMENTED)))))
+    
+(set jm_add (fn jm_add [this _input _mappedToInput]
+        (var _list (:jm_getMappedInput this _input))
+        (if (not (:jm_contains _list _mappedToInput))
+            (do
+            (:jm_add _list _mappedToInput)
+            (:jm_add (this :f_mappedList) _mappedToInput)))))
+    
+(set jm_isMapped (fn jm_isMapped [this _input]
+    (label jreturn
+        (return jreturn (:jm_contains (this :f_mappedList) _input)))))
+    
+(set jm_getMappedInput (fn jm_getMappedInput [this _id]
+    (label jreturn
+        (var _mappingInputCanBeNullList (:jm_get (this :f_hashtable) _id))
+        (if (nil? _mappingInputCanBeNullList)
+            (do
+            (var _list (BasicArrayListD/jnew_0))
+            (:jm_put (this :f_hashtable) _id _list)
+            (return jreturn _list)))
+        (return jreturn _mappingInputCanBeNullList))))
+    
+(set jm_getHashtable (fn jm_getHashtable [this]
+    (label jreturn
+        (return jreturn (this :f_hashtable)))))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jproto @{:jm_getTotalMapped jm_getTotalMapped :jm_isDefaultNew jm_isDefaultNew :jm_getDefault jm_getDefault :jm_removeAll jm_removeAll :jm_remove jm_remove :jm_addMapping jm_addMapping :jm_add jm_add :jm_isMapped jm_isMapped :jm_getMappedInput jm_getMappedInput :jm_getHashtable jm_getHashtable})
 
-local InputMapping = {}
-InputMapping.__index = InputMapping
-InputMapping.className = "InputMapping"
-
-function InputMapping:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-    self.commonStrings = CommonStrings.getInstance()
-    self.hashtable = StdUtil.getInstance():createHashtable()
-    self.mappedList = BasicArrayListD.new()
-end
-
-
-function InputMapping.new()
-    local self = setmetatable({}, InputMapping)
-    self:_init_fields()
-    return self
-end
-
-
-function InputMapping:getTotalMapped()
-        return self.hashtable:size()
-end
-
-
-function InputMapping:isDefaultNew()
-        return false
-end
-
-
-function InputMapping:getDefault()
-        return InputToGameKeyMapping.getNullInstance()
-end
-
-
-function InputMapping:removeAll()
-        self.hashtable:clear()
-        self.mappedList:clear()
-end
-
-
-function InputMapping:remove(input, mappedToInput)
-        local stringBuffer = StringMaker.new()
-        local stringUtil = StringUtil.getInstance()
-        stringBuffer:append(CommonLabels.getInstance().START_LABEL)
-        stringBuffer:append(stringUtil:toString(input))
-        stringBuffer:append(" == ")
-        stringBuffer:append(stringUtil:toString(mappedToInput))
-        self.logUtil:putF(tostring(stringBuffer), self, "InputMapping::remove")
-        local list = self:getMappedInput(input)
-        if list:contains(mappedToInput) then
-            list:remove(mappedToInput)
-            self.mappedList:remove(mappedToInput)
-            stringBuffer:delete(0, stringBuffer:length())
-            stringBuffer:append("Removed: ")
-            stringBuffer:append(stringUtil:toString(input))
-            stringBuffer:append(" == ")
-            stringBuffer:append(stringUtil:toString(mappedToInput))
-            self.logUtil:putF(tostring(stringBuffer), self, "InputMapping::remove")
-        else
-            stringBuffer:delete(0, stringBuffer:length())
-            stringBuffer:append("Not Deleted: ")
-            stringBuffer:append(stringUtil:toString(input))
-            stringBuffer:append(" == ")
-            stringBuffer:append(stringUtil:toString(mappedToInput))
-            self.logUtil:putF(tostring(stringBuffer), self, "InputMapping::remove")
-        end
-end
-
-
--- throws Exception
-function InputMapping:addMapping(inputToGameKeyMapping)
-        error(java_exception("Exception", self.commonStrings.NOT_IMPLEMENTED), 0)
-end
-
-
-function InputMapping:add(input, mappedToInput)
-        local list = self:getMappedInput(input)
-        if not list:contains(mappedToInput) then
-            list:add(mappedToInput)
-            self.mappedList:add(mappedToInput)
-        end
-end
-
-
-function InputMapping:isMapped(input)
-        return self.mappedList:contains(input)
-end
-
-
-function InputMapping:getMappedInput(id)
-        local mappingInputCanBeNullList = self.hashtable:get(id)
-        if mappingInputCanBeNullList == nil then
-            local list = BasicArrayListD.new()
-            self.hashtable:put(id, list)
-            return list
-        end
-        return mappingInputCanBeNullList
-end
-
-
-function InputMapping:getHashtable()
-        return self.hashtable
-end
-
-return InputMapping
 

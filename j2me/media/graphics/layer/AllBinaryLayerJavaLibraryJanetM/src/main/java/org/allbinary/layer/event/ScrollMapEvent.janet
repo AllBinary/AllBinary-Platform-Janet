@@ -1,74 +1,57 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.layer.event
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.layer.event
 
-local AllBinaryEventObject = require("org.allbinary.logic.util.event.AllBinaryEventObject")
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(import ../../../../org/allbinary/logic/util/event/AllBinaryEventObject :as AllBinaryEventObject)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class ScrollMapEvent
+(var jproto nil)
+(var jnew_1 nil)
+(var jm_setDx nil)
+(var jm_getDx nil)
+(var jm_setDy nil)
+(var jm_getDy nil)
+(var jm_setDxDy nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jnew_1 (fn jnew_1 [_anyType]
+    (var this (table/setproto @{:jclass "ScrollMapEvent" :f_dx 0 :f_dy 0} jproto))
+    
+    
+        (JR/superInit this (AllBinaryEventObject/jnew_1 _anyType))
+    this))
+    
+(set jm_setDx (fn jm_setDx [this _dx]
+        (set (this :f_dx) _dx)))
+    
+(set jm_getDx (fn jm_getDx [this]
+    (label jreturn
+        (return jreturn (this :f_dx)))))
+    
+(set jm_setDy (fn jm_setDy [this _dy]
+        (set (this :f_dy) _dy)))
+    
+(set jm_getDy (fn jm_getDy [this]
+    (label jreturn
+        (return jreturn (this :f_dy)))))
+    
+(set jm_setDxDy (fn jm_setDxDy [this _dx _dy]
+        (set (this :f_dx) _dx)
+        (set (this :f_dy) _dy)))
 
-local ScrollMapEvent = {}
-ScrollMapEvent.__index = ScrollMapEvent
-ScrollMapEvent.className = "ScrollMapEvent"
-setmetatable(ScrollMapEvent, {__index = AllBinaryEventObject})
+(set jproto (table/setproto @{:jm_setDx jm_setDx :jm_getDx jm_getDx :jm_setDy jm_setDy :jm_getDy jm_getDy :jm_setDxDy jm_setDxDy} AllBinaryEventObject/jproto))
 
-function ScrollMapEvent:_init_fields()
-    self.dx = 0
-    self.dy = 0
-end
-
-
-function ScrollMapEvent.new(anyType)
-    local self = setmetatable(AllBinaryEventObject.new(anyType), ScrollMapEvent)
-    self:_init_fields()
-        -- super(...) made self above
-    return self
-end
-
-
-function ScrollMapEvent:setDx(dx)
-        self.dx = dx
-end
-
-
-function ScrollMapEvent:getDx()
-        return self.dx
-end
-
-
-function ScrollMapEvent:setDy(dy)
-        self.dy = dy
-end
-
-
-function ScrollMapEvent:getDy()
-        return self.dy
-end
-
-
-function ScrollMapEvent:setDxDy(dx, dy)
-        self.dx = dx
-        self.dy = dy
-end
-
-return ScrollMapEvent
 

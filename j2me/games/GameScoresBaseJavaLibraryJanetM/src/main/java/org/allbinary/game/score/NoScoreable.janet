@@ -1,57 +1,53 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.score
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.game.score
 
-local Scoreable = require("org.allbinary.game.score.Scoreable")
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(import ./Scoreable :as Scoreable)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class NoScoreable
+(var jproto nil)
+(var jcell_SINGLETON :jnone)
+(var jstatic_SINGLETON nil)
+(var jsetstatic_SINGLETON nil)
+(var jnew_0 nil)
+(var jm_getInstance nil)
+(var jm_addPoints nil)
+(var jm_removePoints nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jstatic_SINGLETON (fn jstatic_SINGLETON []
+  (when (= jcell_SINGLETON :jnone) (set jcell_SINGLETON (jnew_0)))
+  jcell_SINGLETON))
+(set jsetstatic_SINGLETON (fn jsetstatic_SINGLETON [value] (set jcell_SINGLETON value)))
 
-local NoScoreable = {}
-NoScoreable.__index = NoScoreable
-NoScoreable.className = "NoScoreable"
-setmetatable(NoScoreable, {__index = Scoreable})
+    
+(set jm_getInstance (fn jm_getInstance []
+    (label jreturn
+        (return jreturn (jstatic_SINGLETON)))))
+    
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "NoScoreable"} jproto))
+        (JR/superInit this (Scoreable/jnew_1 0))
+    this))
+    
+(set jm_addPoints (fn jm_addPoints [this _points]
+    nil))
+    
+(set jm_removePoints (fn jm_removePoints [this _points]
+    nil))
 
+(set jproto (table/setproto @{:jm_addPoints jm_addPoints :jm_removePoints jm_removePoints} Scoreable/jproto))
 
-function NoScoreable.getInstance()
-        return NoScoreable.SINGLETON
-end
-
-
-function NoScoreable.new()
-    local self = setmetatable(Scoreable.new(0), NoScoreable)
-        -- super(...) made self above
-    return self
-end
-
-
-function NoScoreable:addPoints(points)
-end
-
-
-function NoScoreable:removePoints(points)
-end
-
-NoScoreable.SINGLETON = NoScoreable.new()
-
-return NoScoreable
 

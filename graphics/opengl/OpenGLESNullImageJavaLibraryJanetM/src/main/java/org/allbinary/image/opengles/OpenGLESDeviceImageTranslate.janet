@@ -1,59 +1,44 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2025 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.image.opengles
+# 
+# AllBinary Open License Version 1 
+# Copyright (c) 2025 AllBinary 
+#  
+# By agreeing to this license you and any business entity you represent are 
+# legally bound to the AllBinary Open License Version 1 legal agreement. 
+#  
+# You may obtain the AllBinary Open License Version 1 legal agreement from 
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+#  
+# Created By: Travis Berthelot 
+#   
+# Generated Code Do Not Modify
+# package org.allbinary.image.opengles
 
--- local GL10 = require("javax.microedition.khronos.opengles.GL10")
-local OpenGLESImageTranslate = require("org.allbinary.image.opengles.OpenGLESImageTranslate")
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(import ./OpenGLESImageTranslate :as OpenGLESImageTranslate)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class OpenGLESDeviceImageTranslate
+(var jproto nil)
+(var jnew_0 nil)
+(var jm_translate nil)
+(var jm_translate2 nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "OpenGLESDeviceImageTranslate" :f_translateX 0.0 :f_translateY 0.0 :f_translateX2 0.0 :f_translateY2 0.0} jproto))
+    (put this :f_translateX 0.0)
+    (put this :f_translateY 0.0)
+    (put this :f_translateX2 0.0)
+    (put this :f_translateY2 0.0)
+    (JR/superInit this (OpenGLESImageTranslate/jnew_0))
+    this))
 
-local OpenGLESDeviceImageTranslate = {}
-OpenGLESDeviceImageTranslate.__index = OpenGLESDeviceImageTranslate
-OpenGLESDeviceImageTranslate.className = "OpenGLESDeviceImageTranslate"
-setmetatable(OpenGLESDeviceImageTranslate, {__index = OpenGLESImageTranslate})
+    
+(set jm_translate (fn jm_translate [this _gl _openGLESImage _x _y]
+        (JR/className (_openGLESImage :f_imageProcessor))))
+    
+(set jm_translate2 (fn jm_translate2 [this _gl _openGLESImage]
+        (JR/className (_openGLESImage :f_imageProcessor))))
 
-function OpenGLESDeviceImageTranslate:_init_fields()
-    self.translateX = 0.0
-    self.translateY = 0.0
-    self.translateX2 = 0.0
-    self.translateY2 = 0.0
-end
+(set jproto (table/setproto @{:jm_translate jm_translate :jm_translate2 jm_translate2} OpenGLESImageTranslate/jproto))
 
-function OpenGLESDeviceImageTranslate.new()
-    local self = setmetatable(OpenGLESImageTranslate.new(), OpenGLESDeviceImageTranslate)
-    self:_init_fields()
-    return self
-end
-
-
-function OpenGLESDeviceImageTranslate:translate(gl, openGLESImage, x, y)
-        openGLESImage.imageProcessor:translate(gl, self.translateX + (openGLESImage.openGLESImageProperties.scaleX * x), self.translateY + (openGLESImage.openGLESImageProperties.scaleY * y))
-end
-
-
-function OpenGLESDeviceImageTranslate:translate2(gl, openGLESImage)
-        openGLESImage.imageProcessor:translate(gl, self.translateX2, self.translateY2)
-end
-
-return OpenGLESDeviceImageTranslate
 

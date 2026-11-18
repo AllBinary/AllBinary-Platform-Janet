@@ -1,82 +1,76 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2022 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.displayable
+# 
+# AllBinary Open License Version 1 
+# Copyright (c) 2022 AllBinary 
+#  
+# By agreeing to this license you and any business entity you represent are 
+# legally bound to the AllBinary Open License Version 1 legal agreement. 
+#  
+# You may obtain the AllBinary Open License Version 1 legal agreement from 
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+#  
+# Created By: Travis Berthelot 
+#   
+# Generated Code Do Not Modify
+# package org.allbinary.graphics.displayable
 
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- DisplayInfoSingleton/jm_getInstance [& args] (JR/call jfile "./DisplayInfoSingleton" "jm_getInstance" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class GameTickDisplayInfoSingleton
+(var jproto nil)
+(var jcell_instance :jnone)
+(var jstatic_instance nil)
+(var jsetstatic_instance nil)
+(var jnew_0 nil)
+(var jm_getInstance nil)
+(var jm_update nil)
+(var jm_getLastWidth nil)
+(var jm_getLastHeight nil)
+(var jm_getLastHalfWidth nil)
+(var jm_getLastHalfHeight nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jstatic_instance (fn jstatic_instance []
+  (when (= jcell_instance :jnone) (set jcell_instance (jnew_0)))
+  jcell_instance))
+(set jsetstatic_instance (fn jsetstatic_instance [value] (set jcell_instance value)))
 
-local GameTickDisplayInfoSingleton = {}
-GameTickDisplayInfoSingleton.__index = GameTickDisplayInfoSingleton
-GameTickDisplayInfoSingleton.className = "GameTickDisplayInfoSingleton"
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "GameTickDisplayInfoSingleton" :f_displayInfoSingleton nil :f_lastWidth 0 :f_lastHeight 0 :f_lastHalfWidth 0 :f_lastHalfHeight 0} jproto))
+    (put this :f_displayInfoSingleton (DisplayInfoSingleton/jm_getInstance))
+    (put this :f_lastWidth (:jm_getLastWidth (this :f_displayInfoSingleton)))
+    (put this :f_lastHeight (:jm_getLastHeight (this :f_displayInfoSingleton)))
+    (put this :f_lastHalfWidth (:jm_getLastHalfWidth (this :f_displayInfoSingleton)))
+    (put this :f_lastHalfHeight (:jm_getLastHalfHeight (this :f_displayInfoSingleton)))
+    this))
 
-function GameTickDisplayInfoSingleton:_init_fields()
-    self.displayInfoSingleton = DisplayInfoSingleton.getInstance()
-    self.lastWidth = self.displayInfoSingleton:getLastWidth()
-    self.lastHeight = self.displayInfoSingleton:getLastHeight()
-    self.lastHalfWidth = self.displayInfoSingleton:getLastHalfWidth()
-    self.lastHalfHeight = self.displayInfoSingleton:getLastHalfHeight()
-end
+    
+(set jm_getInstance (fn jm_getInstance []
+    (label jreturn
+        (return jreturn (jstatic_instance)))))
+    
+(set jm_update (fn jm_update [this]
+        (set (this :f_lastWidth) (:jm_getLastWidth (this :f_displayInfoSingleton)))
+        (set (this :f_lastHeight) (:jm_getLastHeight (this :f_displayInfoSingleton)))
+        (set (this :f_lastHalfWidth) (:jm_getLastHalfWidth (this :f_displayInfoSingleton)))
+        (set (this :f_lastHalfHeight) (:jm_getLastHalfHeight (this :f_displayInfoSingleton)))))
+    
+(set jm_getLastWidth (fn jm_getLastWidth [this]
+    (label jreturn
+        (return jreturn (this :f_lastWidth)))))
+    
+(set jm_getLastHeight (fn jm_getLastHeight [this]
+    (label jreturn
+        (return jreturn (this :f_lastHeight)))))
+    
+(set jm_getLastHalfWidth (fn jm_getLastHalfWidth [this]
+    (label jreturn
+        (return jreturn (this :f_lastHalfWidth)))))
+    
+(set jm_getLastHalfHeight (fn jm_getLastHalfHeight [this]
+    (label jreturn
+        (return jreturn (this :f_lastHalfHeight)))))
 
-function GameTickDisplayInfoSingleton.new()
-    local self = setmetatable({}, GameTickDisplayInfoSingleton)
-    self:_init_fields()
-    return self
-end
+(set jproto @{:jm_update jm_update :jm_getLastWidth jm_getLastWidth :jm_getLastHeight jm_getLastHeight :jm_getLastHalfWidth jm_getLastHalfWidth :jm_getLastHalfHeight jm_getLastHalfHeight})
 
-
-function GameTickDisplayInfoSingleton.getInstance()
-        return GameTickDisplayInfoSingleton.instance
-end
-
-
-function GameTickDisplayInfoSingleton:update()
-        self.lastWidth = self.displayInfoSingleton:getLastWidth()
-        self.lastHeight = self.displayInfoSingleton:getLastHeight()
-        self.lastHalfWidth = self.displayInfoSingleton:getLastHalfWidth()
-        self.lastHalfHeight = self.displayInfoSingleton:getLastHalfHeight()
-end
-
-
-function GameTickDisplayInfoSingleton:getLastWidth()
-        return self.lastWidth
-end
-
-
-function GameTickDisplayInfoSingleton:getLastHeight()
-        return self.lastHeight
-end
-
-
-function GameTickDisplayInfoSingleton:getLastHalfWidth()
-        return self.lastHalfWidth
-end
-
-
-function GameTickDisplayInfoSingleton:getLastHalfHeight()
-        return self.lastHalfHeight
-end
-
-GameTickDisplayInfoSingleton.instance = GameTickDisplayInfoSingleton.new()
-
-return GameTickDisplayInfoSingleton
 

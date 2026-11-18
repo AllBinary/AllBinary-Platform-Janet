@@ -1,105 +1,82 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---   
--- Generated Code Do Not Modify
--- package org.allbinary.animation.image.sprite
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#   
+# Generated Code Do Not Modify
+# package org.allbinary.animation.image.sprite
 
--- local Image = require("javax.microedition.lcdui.Image")
--- local Sprite = require("javax.microedition.lcdui.game.Sprite")
-local Animation = require("org.allbinary.animation.Animation")
-local AnimationBehaviorFactory = require("org.allbinary.animation.AnimationBehaviorFactory")
-local BaseImageAnimationFactory = require("org.allbinary.animation.image.BaseImageAnimationFactory")
-local BasicColorUtil = require("org.allbinary.graphics.color.BasicColorUtil")
-local AnimationFactorySpriteScaleUtil = require("org.allbinary.image.sprite.AnimationFactorySpriteScaleUtil")
-local PrimitiveIntUtil = require("org.allbinary.logic.math.PrimitiveIntUtil")
+(import ../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(import ../../../../../org/allbinary/animation/image/BaseImageAnimationFactory :as BaseImageAnimationFactory)
+(defn- BasicColorUtil/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/graphics/color/BasicColorUtil" "jm_getInstance" args))
+(defn- AnimationFactorySpriteScaleUtil/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/image/sprite/AnimationFactorySpriteScaleUtil" "jm_getInstance" args))
+(defn- PrimitiveIntUtil/jm_getArrayInstance [& args] (JR/call jfile "../../../../../org/allbinary/logic/math/PrimitiveIntUtil" "jm_getArrayInstance" args))
+(defn- SpriteIndexedAnimation/jnew_4 [& args] (JR/call jfile "./SpriteIndexedAnimation" "jnew_4" args))
+(defn- AdjustedSpriteIndexedAnimation/jnew_6 [& args] (JR/call jfile "./AdjustedSpriteIndexedAnimation" "jnew_6" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class OneRowSpriteIndexedAnimationFactory
+(var jproto nil)
+(var jnew_7 nil)
+(var jm_createFactoryDX nil)
+(var jm_createFactoryDXY nil)
+(var jm_createFactoryWH nil)
+(var jm_createFactory nil)
+(var jm_init nil)
+(var jm_initW nil)
+(var jm_getInstance nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jm_createFactoryDX (fn jm_createFactoryDX [_image _dx _animationBehaviorFactory]
+    (label jreturn
+        (var _oneRowSpriteIndexedAnimationFactory (jnew_7 _image (PrimitiveIntUtil/jm_getArrayInstance) (:jm_getHeight _image) (:jm_getHeight _image) 0 0 _animationBehaviorFactory))
+        (:jm_initW _oneRowSpriteIndexedAnimationFactory _dx)
+        (return jreturn _oneRowSpriteIndexedAnimationFactory))))
+    
+(set jm_createFactoryDXY (fn jm_createFactoryDXY [_image _dx _dy _animationBehaviorFactory]
+    (label jreturn
+        (var _oneRowSpriteIndexedAnimationFactory (jnew_7 _image (PrimitiveIntUtil/jm_getArrayInstance) (:jm_getHeight _image) (:jm_getHeight _image) 0 0 _animationBehaviorFactory))
+        (:jm_init _oneRowSpriteIndexedAnimationFactory _dx _dy)
+        (return jreturn _oneRowSpriteIndexedAnimationFactory))))
+    
+(set jm_createFactoryWH (fn jm_createFactoryWH [_image _width _height _animationBehaviorFactory]
+    (label jreturn
+        (return jreturn (jnew_7 _image (PrimitiveIntUtil/jm_getArrayInstance) _width _height 0 0 _animationBehaviorFactory)))))
+    
+(set jm_createFactory (fn jm_createFactory [_image _animationBehaviorFactory]
+    (label jreturn
+        (return jreturn (jnew_7 _image (PrimitiveIntUtil/jm_getArrayInstance) (:jm_getHeight _image) (:jm_getHeight _image) 0 0 _animationBehaviorFactory)))))
+    
+(set jnew_7 (fn jnew_7 [_image _sequenceArray _width _height _dx _dy _animationBehaviorFactory]
+    (var this (table/setproto @{:jclass "OneRowSpriteIndexedAnimationFactory" :f_animationFactorySpriteScaleUtil nil} jproto))
+    (put this :f_animationFactorySpriteScaleUtil (AnimationFactorySpriteScaleUtil/jm_getInstance))
+        (JR/superInit this (BaseImageAnimationFactory/jnew_7 _image _sequenceArray _width _height _dx _dy _animationBehaviorFactory))
+    this))
+    
+(set jm_init (fn jm_init [this _dx _dy]
+        (set ((this :f_animationFactoryInitializationVisitor) :f_dx) _dx)
+        (set ((this :f_animationFactoryInitializationVisitor) :f_dy) _dy)))
+    
+(set jm_initW (fn jm_initW [this _dx]
+        (:jm_init this _dx 0)
+        (set ((this :f_animationFactoryInitializationVisitor) :f_dx) (JR/i32 (+ ((this :f_animationFactoryInitializationVisitor) :f_dx) (JR/i32 (- (brshift ((this :f_animationFactoryInitializationVisitor) :f_width) 2))))))))
+    
+(set jm_getInstance (fn jm_getInstance [this _instanceId]
+    (label jreturn
+        (var _sprite (:jm_createImage (this :f_animationFactorySpriteScaleUtil) (:jm_getImage this) ((this :f_animationFactoryInitializationVisitor) :f_width) ((this :f_animationFactoryInitializationVisitor) :f_height) ((this :f_scaleProperties) :f_scaleWidth) ((this :f_scaleProperties) :f_scaleHeight)))
+        (if (or (not= ((this :f_animationFactoryInitializationVisitor) :f_dx) 0) (not= ((this :f_animationFactoryInitializationVisitor) :f_dy) 0))
+            (do
+            (return jreturn (AdjustedSpriteIndexedAnimation/jnew_6 _sprite (:jm_getImage this) ((BasicColorUtil/jm_getInstance) :f_ZERO_ARRAY) ((this :f_animationFactoryInitializationVisitor) :f_dx) ((this :f_animationFactoryInitializationVisitor) :f_dy) (:jm_getOrCreateInstance (this :f_animationBehaviorFactory)))))
+            (do
+            (return jreturn (SpriteIndexedAnimation/jnew_4 _sprite (:jm_getImage this) ((BasicColorUtil/jm_getInstance) :f_ZERO_ARRAY) (:jm_getOrCreateInstance (this :f_animationBehaviorFactory)))))))))
 
-local OneRowSpriteIndexedAnimationFactory = {}
-OneRowSpriteIndexedAnimationFactory.__index = OneRowSpriteIndexedAnimationFactory
-OneRowSpriteIndexedAnimationFactory.className = "OneRowSpriteIndexedAnimationFactory"
-setmetatable(OneRowSpriteIndexedAnimationFactory, {__index = BaseImageAnimationFactory})
+(set jproto (table/setproto @{:jm_init jm_init :jm_initW jm_initW :jm_getInstance jm_getInstance} BaseImageAnimationFactory/jproto))
 
-function OneRowSpriteIndexedAnimationFactory:_init_fields()
-    self.animationFactorySpriteScaleUtil = AnimationFactorySpriteScaleUtil.getInstance()
-end
-
-
--- throws Exception
-function OneRowSpriteIndexedAnimationFactory.createFactoryDX(image, dx, animationBehaviorFactory)
-        local oneRowSpriteIndexedAnimationFactory = OneRowSpriteIndexedAnimationFactory.new(image, PrimitiveIntUtil.getArrayInstance(), image:getHeight(), image:getHeight(), 0, 0, animationBehaviorFactory)
-        oneRowSpriteIndexedAnimationFactory:initW(dx)
-        return oneRowSpriteIndexedAnimationFactory
-end
-
-
--- throws Exception
-function OneRowSpriteIndexedAnimationFactory.createFactoryDXY(image, dx, dy, animationBehaviorFactory)
-        local oneRowSpriteIndexedAnimationFactory = OneRowSpriteIndexedAnimationFactory.new(image, PrimitiveIntUtil.getArrayInstance(), image:getHeight(), image:getHeight(), 0, 0, animationBehaviorFactory)
-        oneRowSpriteIndexedAnimationFactory:init(dx, dy)
-        return oneRowSpriteIndexedAnimationFactory
-end
-
-
--- throws Exception
-function OneRowSpriteIndexedAnimationFactory.createFactoryWH(image, width, height, animationBehaviorFactory)
-        return OneRowSpriteIndexedAnimationFactory.new(image, PrimitiveIntUtil.getArrayInstance(), width, height, 0, 0, animationBehaviorFactory)
-end
-
-
--- throws Exception
-function OneRowSpriteIndexedAnimationFactory.createFactory(image, animationBehaviorFactory)
-        return OneRowSpriteIndexedAnimationFactory.new(image, PrimitiveIntUtil.getArrayInstance(), image:getHeight(), image:getHeight(), 0, 0, animationBehaviorFactory)
-end
-
-
-function OneRowSpriteIndexedAnimationFactory.new(image, sequenceArray, width, height, dx, dy, animationBehaviorFactory)
-    local self = setmetatable(BaseImageAnimationFactory.new(image, sequenceArray, width, height, dx, dy, animationBehaviorFactory), OneRowSpriteIndexedAnimationFactory)
-    self:_init_fields()
-        -- super(...) made self above
-    return self
-end
-
-
-function OneRowSpriteIndexedAnimationFactory:init(dx, dy)
-        self.animationFactoryInitializationVisitor.dx = dx
-        self.animationFactoryInitializationVisitor.dy = dy
-end
-
-
-function OneRowSpriteIndexedAnimationFactory:initW(dx)
-        self:init(dx, 0)
-        self.animationFactoryInitializationVisitor.dx = self.animationFactoryInitializationVisitor.dx + (-(((self.animationFactoryInitializationVisitor.width) // (1 << (2)))))
-end
-
-
--- throws Exception
-function OneRowSpriteIndexedAnimationFactory:getInstance(instanceId)
-        local sprite = self.animationFactorySpriteScaleUtil:createImage(self:getImage(), self.animationFactoryInitializationVisitor.width, self.animationFactoryInitializationVisitor.height, self.scaleProperties.scaleWidth, self.scaleProperties.scaleHeight)
-        if self.animationFactoryInitializationVisitor.dx ~= 0 or self.animationFactoryInitializationVisitor.dy ~= 0 then
-            return AdjustedSpriteIndexedAnimation.new(sprite, self:getImage(), BasicColorUtil.getInstance().ZERO_ARRAY, self.animationFactoryInitializationVisitor.dx, self.animationFactoryInitializationVisitor.dy, self.animationBehaviorFactory:getOrCreateInstance())
-        else
-            return SpriteIndexedAnimation.new(sprite, self:getImage(), BasicColorUtil.getInstance().ZERO_ARRAY, self.animationBehaviorFactory:getOrCreateInstance())
-        end
-end
-
-return OneRowSpriteIndexedAnimationFactory
 

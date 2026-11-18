@@ -25,12 +25,12 @@
     
 (set jnew_1 (fn jnew_1 [_initialCapacity]
     (var this (table/setproto @{:jclass "ABHashtable"} jproto))
-        nil
+        (JR/superInit this (Hashtable/jnew_1 _initialCapacity))
     this))
     
 (set jnew_0 (fn jnew_0 []
     (var this (table/setproto @{:jclass "ABHashtable"} jproto))
-        nil
+        (JR/superInit this (Hashtable/jnew_0))
     this))
 
 (set jproto (table/setproto @{} Hashtable/jproto))

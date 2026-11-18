@@ -1,54 +1,49 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.score
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.game.score
 
--- local Command = require("javax.microedition.lcdui.Command")
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- Command/jnew_4 [& args] (JR/call jfile "../../../../javax/microedition/lcdui/Command" "jnew_4" args))
+(defn- Command/jstatic_SCREEN [& args] (JR/call jfile "../../../../javax/microedition/lcdui/Command" "jstatic_SCREEN" args))
+(defn- StringUtil/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/logic/string/StringUtil" "jm_getInstance" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class HighScoreCommands
+(var jproto nil)
+(var jcell_instance :jnone)
+(var jstatic_instance nil)
+(var jsetstatic_instance nil)
+(var jnew_0 nil)
+(var jm_getInstance nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jstatic_instance (fn jstatic_instance []
+  (when (= jcell_instance :jnone) (set jcell_instance (jnew_0)))
+  jcell_instance))
+(set jsetstatic_instance (fn jsetstatic_instance [value] (set jcell_instance value)))
 
-local HighScoreCommands = {}
-HighScoreCommands.__index = HighScoreCommands
-HighScoreCommands.className = "HighScoreCommands"
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "HighScoreCommands" :f_DISPLAY nil :f_PERSONAL nil :f_WORLD nil} jproto))
+    (put this :f_DISPLAY (Command/jnew_4 "Scores" ((StringUtil/jm_getInstance) :f_EMPTY_STRING) (Command/jstatic_SCREEN) 1))
+    (put this :f_PERSONAL (Command/jnew_4 "Personal" ((StringUtil/jm_getInstance) :f_EMPTY_STRING) (Command/jstatic_SCREEN) 1))
+    (put this :f_WORLD (Command/jnew_4 "World" ((StringUtil/jm_getInstance) :f_EMPTY_STRING) (Command/jstatic_SCREEN) 1))
+    this))
 
-function HighScoreCommands:_init_fields()
-    self.DISPLAY = Command.new("Scores", StringUtil.getInstance().EMPTY_STRING, Command.SCREEN, 1)
-    self.PERSONAL = Command.new("Personal", StringUtil.getInstance().EMPTY_STRING, Command.SCREEN, 1)
-    self.WORLD = Command.new("World", StringUtil.getInstance().EMPTY_STRING, Command.SCREEN, 1)
-end
+    
+(set jm_getInstance (fn jm_getInstance []
+    (label jreturn
+        (return jreturn (jstatic_instance)))))
 
-function HighScoreCommands.new()
-    local self = setmetatable({}, HighScoreCommands)
-    self:_init_fields()
-    return self
-end
+(set jproto @{})
 
-
-function HighScoreCommands.getInstance()
-        return HighScoreCommands.instance
-end
-
-HighScoreCommands.instance = HighScoreCommands.new()
-
-return HighScoreCommands
 

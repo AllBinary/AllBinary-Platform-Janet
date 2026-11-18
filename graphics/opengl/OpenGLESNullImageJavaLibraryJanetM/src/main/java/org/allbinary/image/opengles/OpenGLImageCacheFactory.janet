@@ -1,53 +1,51 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.image.opengles
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.image.opengles
 
-local ImageCache = require("org.allbinary.image.ImageCache")
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- ImageCache/jstatic_NULL_IMAGE_CACHE [& args] (JR/call jfile "../../../../org/allbinary/image/ImageCache" "jstatic_NULL_IMAGE_CACHE" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+#OpenGLESNullImageJavaLibrary
+# Java class OpenGLImageCacheFactory
+(var jproto nil)
+(var jcell_IMAGE_CACHE :jnone)
+(var jstatic_IMAGE_CACHE nil)
+(var jsetstatic_IMAGE_CACHE nil)
+(var jnew_0 nil)
+(var jm_getInstance nil)
+(var jm_init nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jstatic_IMAGE_CACHE (fn jstatic_IMAGE_CACHE []
+  (when (= jcell_IMAGE_CACHE :jnone) (set jcell_IMAGE_CACHE (ImageCache/jstatic_NULL_IMAGE_CACHE)))
+  jcell_IMAGE_CACHE))
+(set jsetstatic_IMAGE_CACHE (fn jsetstatic_IMAGE_CACHE [value] (set jcell_IMAGE_CACHE value)))
 
---OpenGLESNullImageJavaLibrary
-local OpenGLImageCacheFactory = {}
-OpenGLImageCacheFactory.__index = OpenGLImageCacheFactory
-OpenGLImageCacheFactory.className = "OpenGLImageCacheFactory"
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "OpenGLImageCacheFactory"} jproto))
+    this))
 
-function OpenGLImageCacheFactory.new()
-    local self = setmetatable({}, OpenGLImageCacheFactory)
-    return self
-end
+    
+(set jm_getInstance (fn jm_getInstance []
+    (label jreturn
+        (return jreturn (jstatic_IMAGE_CACHE)))))
+    
+(set jm_init (fn jm_init []
+        (if (nil? (jstatic_IMAGE_CACHE))
+            (do
+            nil))))
 
+(set jproto @{})
 
-function OpenGLImageCacheFactory.getInstance()
-        return OpenGLImageCacheFactory.IMAGE_CACHE
-end
-
-
-function OpenGLImageCacheFactory.init()
-        if OpenGLImageCacheFactory.IMAGE_CACHE == nil then
-        end
-end
-
-OpenGLImageCacheFactory.IMAGE_CACHE = ImageCache.NULL_IMAGE_CACHE
-
-return OpenGLImageCacheFactory
 

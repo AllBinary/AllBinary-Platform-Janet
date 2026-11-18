@@ -21,16 +21,19 @@
 (var jproto nil)
 (var jcell_eventHandler :jnone)
 (var jstatic_eventHandler nil)
+(var jsetstatic_eventHandler nil)
 (var jnew_0 nil)
 (var jm_getInstance nil)
 
 (set jstatic_eventHandler (fn jstatic_eventHandler []
   (when (= jcell_eventHandler :jnone) (set jcell_eventHandler (jnew_0)))
   jcell_eventHandler))
+(set jsetstatic_eventHandler (fn jsetstatic_eventHandler [value] (set jcell_eventHandler value)))
 
     
 (set jnew_0 (fn jnew_0 []
     (var this (table/setproto @{:jclass "ColorChangeEventHandler"} jproto))
+    (JR/superInit this (BasicEventHandler/jnew_0))
     this))
     
 (set jm_getInstance (fn jm_getInstance []

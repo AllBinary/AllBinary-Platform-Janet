@@ -1,61 +1,56 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2022 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.logic.communication.log.config.type
+# 
+# AllBinary Open License Version 1 
+# Copyright (c) 2022 AllBinary 
+#  
+# By agreeing to this license you and any business entity you represent are 
+# legally bound to the AllBinary Open License Version 1 legal agreement. 
+#  
+# You may obtain the AllBinary Open License Version 1 legal agreement from 
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+#  
+# Created By: Travis Berthelot 
+#   
+# Generated Code Do Not Modify
+# package org.allbinary.logic.communication.log.config.type
 
+(import ../../../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- LogConfigType/jnew_2 [& args] (JR/call jfile "./LogConfigType" "jnew_2" args))
+(defn- LogConfigTypes/jstatic_LOGGING [& args] (JR/call jfile "./LogConfigTypes" "jstatic_LOGGING" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class LogConfigTypeFactory
+(var jproto nil)
+(var jcell_instance :jnone)
+(var jstatic_instance nil)
+(var jsetstatic_instance nil)
+(var jnew_0 nil)
+(var jm_getInstance nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jstatic_instance (fn jstatic_instance []
+  (when (= jcell_instance :jnone) (set jcell_instance (jnew_0)))
+  jcell_instance))
+(set jsetstatic_instance (fn jsetstatic_instance [value] (set jcell_instance value)))
 
-local LogConfigTypeFactory = {}
-LogConfigTypeFactory.__index = LogConfigTypeFactory
-LogConfigTypeFactory.className = "LogConfigTypeFactory"
+    
+(set jm_getInstance (fn jm_getInstance []
+    (label jreturn
+        (return jreturn (jstatic_instance)))))
+    
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "LogConfigTypeFactory" :f_NO_DESCRIPTION nil :f_OS nil :f_FACTORYERROR nil :f_FILE nil :f_FILEERROR nil :f_IDLOGGING nil :f_REPLACE nil :f_REPLACE_INFO nil :f_REPLACEERROR nil} jproto))
+    (put this :f_NO_DESCRIPTION "No Description")
+    (put this :f_OS (LogConfigType/jnew_2 "Operating System" (this :f_NO_DESCRIPTION)))
+    (put this :f_FACTORYERROR (LogConfigType/jnew_2 "Factory Error" (this :f_NO_DESCRIPTION)))
+    (put this :f_FILE (LogConfigType/jnew_2 "File" (this :f_NO_DESCRIPTION)))
+    (put this :f_FILEERROR (LogConfigType/jnew_2 "File Error" (this :f_NO_DESCRIPTION)))
+    (put this :f_IDLOGGING (LogConfigType/jnew_2 "ID Logging" (this :f_NO_DESCRIPTION)))
+    (put this :f_REPLACE (LogConfigType/jnew_2 "Replace" (this :f_NO_DESCRIPTION)))
+    (put this :f_REPLACE_INFO (LogConfigType/jnew_2 "Replace Info" (this :f_NO_DESCRIPTION)))
+    (put this :f_REPLACEERROR (LogConfigType/jnew_2 "Replace Error" (this :f_NO_DESCRIPTION)))
+        (JR/className (LogConfigTypes/jstatic_LOGGING))
+        (JR/className (LogConfigTypes/jstatic_LOGGING))
+    this))
 
-function LogConfigTypeFactory:_init_fields()
-    self.NO_DESCRIPTION = "No Description"
-    self.OS = LogConfigType.new("Operating System", self.NO_DESCRIPTION)
-    self.FACTORYERROR = LogConfigType.new("Factory Error", self.NO_DESCRIPTION)
-    self.FILE = LogConfigType.new("File", self.NO_DESCRIPTION)
-    self.FILEERROR = LogConfigType.new("File Error", self.NO_DESCRIPTION)
-    self.IDLOGGING = LogConfigType.new("ID Logging", self.NO_DESCRIPTION)
-    self.REPLACE = LogConfigType.new("Replace", self.NO_DESCRIPTION)
-    self.REPLACE_INFO = LogConfigType.new("Replace Info", self.NO_DESCRIPTION)
-    self.REPLACEERROR = LogConfigType.new("Replace Error", self.NO_DESCRIPTION)
-end
+(set jproto @{})
 
-
-function LogConfigTypeFactory.getInstance()
-        return LogConfigTypeFactory.instance
-end
-
-
-function LogConfigTypeFactory.new()
-    local self = setmetatable({}, LogConfigTypeFactory)
-    self:_init_fields()
-        LogConfigTypes.LOGGING:add(self.OS)
-        LogConfigTypes.LOGGING:add(self.FACTORYERROR)
-    return self
-end
-
-LogConfigTypeFactory.instance = LogConfigTypeFactory.new()
-
-return LogConfigTypeFactory
 

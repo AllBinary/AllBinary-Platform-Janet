@@ -25,7 +25,7 @@
 (set jnew_2 (fn jnew_2 [_angle _name]
     (var this (table/setproto @{:jclass "NamedAngle" :f_name nil} jproto))
     
-        nil
+        (JR/superInit this (Angle/jnew_1 _angle))
         (set (this :f_name) _name)
     this))
 

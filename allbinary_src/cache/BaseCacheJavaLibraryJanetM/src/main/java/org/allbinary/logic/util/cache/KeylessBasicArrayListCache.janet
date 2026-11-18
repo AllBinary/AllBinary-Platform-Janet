@@ -32,6 +32,7 @@
     (var this (table/setproto @{:jclass "KeylessBasicArrayListCache" :f_logUtil nil :f_basicArrayListUtil nil} jproto))
     (put this :f_logUtil (LogUtil/jm_getInstance))
     (put this :f_basicArrayListUtil (BasicArrayListUtil/jm_getInstance))
+    (JR/superInit this (IndexedBasicArrayListCache/jnew_0))
     this))
     
 (set jm_get (fn jm_get [this]
@@ -48,7 +49,7 @@
             (return jreturn (:jm_getImmutableInstance (this :f_basicArrayListUtil)))))))))
     
 (set jm_clear (fn jm_clear [this]
-        (IndexedBasicArrayListCache/jm_clear this)
+        ((get IndexedBasicArrayListCache/jproto :jm_clear) this)
         (var _basicArrayList nil)
         (do
             (var _index (JR/i32 (- (:jm_size (this :f_list)) 1)))

@@ -1,84 +1,63 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.animation.vector
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.animation.vector
 
--- local Graphics = require("javax.microedition.lcdui.Graphics")
-local BasicColor = require("org.allbinary.graphics.color.BasicColor")
-local ColorCompositeInterface = require("org.allbinary.graphics.color.ColorCompositeInterface")
-local RectangleFilledAnimation = require("org.allbinary.animation.vector.RectangleFilledAnimation")
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(import ./RectangleFilledAnimation :as RectangleFilledAnimation)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class RectangleFilledAdjustedAnimation
+(var jproto nil)
+(var jnew_5 nil)
+(var jm_nextFrame nil)
+(var jm_paintXY nil)
+(var jm_setOffsetX nil)
+(var jm_setOffsetY nil)
+(var jm_getBasicColorP nil)
+(var jm_setBasicColorP nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jnew_5 (fn jnew_5 [_width _height _offsetX _offsetY _basicColor]
+    (var this (table/setproto @{:jclass "RectangleFilledAdjustedAnimation" :f_offsetX 0 :f_offsetY 0} jproto))
+    
+    
+        (JR/superInit this (RectangleFilledAnimation/jnew_3 _width _height _basicColor))
+        (set (this :f_offsetX) _offsetX)
+        (set (this :f_offsetY) _offsetY)
+        (:jm_setBasicColorP this _basicColor)
+    this))
+    
+(set jm_nextFrame (fn jm_nextFrame [this]
+    nil))
+    
+(set jm_paintXY (fn jm_paintXY [this _graphics _x _y]
+        (JR/className (this :f_basicSetColorUtil))
+        ((get RectangleFilledAnimation/jproto :jm_paintXY) this _graphics (JR/i32 (+ _x (this :f_offsetX))) (JR/i32 (+ _y (this :f_offsetY))))))
+    
+(set jm_setOffsetX (fn jm_setOffsetX [this _offsetX]
+        (set (this :f_offsetX) _offsetX)))
+    
+(set jm_setOffsetY (fn jm_setOffsetY [this _offsetY]
+        (set (this :f_offsetY) _offsetY)))
+    
+(set jm_getBasicColorP (fn jm_getBasicColorP [this]
+    (label jreturn
+        (return jreturn ((get RectangleFilledAnimation/jproto :jm_getBasicColorP) this)))))
+    
+(set jm_setBasicColorP (fn jm_setBasicColorP [this _basicColor]
+        ((get RectangleFilledAnimation/jproto :jm_setBasicColorP) this _basicColor)))
 
-local RectangleFilledAdjustedAnimation = {}
-RectangleFilledAdjustedAnimation.__index = RectangleFilledAdjustedAnimation
-RectangleFilledAdjustedAnimation.className = "RectangleFilledAdjustedAnimation"
-setmetatable(RectangleFilledAdjustedAnimation, {__index = RectangleFilledAnimation})
+(set jproto (table/setproto @{:jm_nextFrame jm_nextFrame :jm_paintXY jm_paintXY :jm_setOffsetX jm_setOffsetX :jm_setOffsetY jm_setOffsetY :jm_getBasicColorP jm_getBasicColorP :jm_setBasicColorP jm_setBasicColorP} RectangleFilledAnimation/jproto))
 
-function RectangleFilledAdjustedAnimation:_init_fields()
-    self.offsetX = nil
-    self.offsetY = nil
-end
-
-
-function RectangleFilledAdjustedAnimation.new(width, height, offsetX, offsetY, basicColor)
-    local self = setmetatable(RectangleFilledAnimation.new(width, height, basicColor), RectangleFilledAdjustedAnimation)
-    self:_init_fields()
-        -- super(...) made self above
-        self.offsetX = offsetX
-        self.offsetY = offsetY
-        self:setBasicColorP(basicColor)
-    return self
-end
-
-
-function RectangleFilledAdjustedAnimation:nextFrame()
-end
-
-
-function RectangleFilledAdjustedAnimation:paintXY(graphics, x, y)
-        self.basicSetColorUtil:setBasicColorP3(graphics, self:getBasicColorP(), self:getColor())
-        RectangleFilledAnimation.paintXY(self, graphics, x + self.offsetX, y + self.offsetY)
-end
-
-
-function RectangleFilledAdjustedAnimation:setOffsetX(offsetX)
-        self.offsetX = offsetX
-end
-
-
-function RectangleFilledAdjustedAnimation:setOffsetY(offsetY)
-        self.offsetY = offsetY
-end
-
-
-function RectangleFilledAdjustedAnimation:getBasicColorP()
-        return RectangleFilledAnimation.getBasicColorP(self)
-end
-
-
-function RectangleFilledAdjustedAnimation:setBasicColorP(basicColor)
-        RectangleFilledAnimation.setBasicColorP(self, basicColor)
-end
-
-return RectangleFilledAdjustedAnimation
 

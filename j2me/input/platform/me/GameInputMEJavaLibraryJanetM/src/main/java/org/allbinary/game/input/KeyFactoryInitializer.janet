@@ -1,51 +1,38 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.input
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.game.input
 
-local Init = require("org.allbinary.init.Init")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(import ../../../../org/allbinary/init/Init :as Init)
+(defn- LogUtil/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/logic/communication/log/LogUtil" "jm_getInstance" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class KeyFactoryInitializer
+(var jproto nil)
+(var jnew_0 nil)
+(var jm_init nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "KeyFactoryInitializer" :f_logUtil nil} jproto))
+    (put this :f_logUtil (LogUtil/jm_getInstance))
+    (JR/superInit this (Init/jnew_0))
+    this))
 
-local KeyFactoryInitializer = {}
-KeyFactoryInitializer.__index = KeyFactoryInitializer
-KeyFactoryInitializer.className = "KeyFactoryInitializer"
-setmetatable(KeyFactoryInitializer, {__index = Init})
+    
+(set jm_init (fn jm_init [this]
+        (:jm_putF (this :f_logUtil) ((this :f_commonStrings) :f_START) this ((this :f_commonStrings) :f_INIT))))
 
-function KeyFactoryInitializer:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-end
+(set jproto (table/setproto @{:jm_init jm_init} Init/jproto))
 
-function KeyFactoryInitializer.new()
-    local self = setmetatable(Init.new(), KeyFactoryInitializer)
-    self:_init_fields()
-    return self
-end
-
-
-function KeyFactoryInitializer:init()
-        self.logUtil:putF(self.commonStrings.START, self, self.commonStrings.INIT)
-end
-
-return KeyFactoryInitializer
 

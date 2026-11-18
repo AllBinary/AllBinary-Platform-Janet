@@ -1,51 +1,37 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.state
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.game.state
 
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class GameState
+(var jproto nil)
+(var jnew_2 nil)
+(var jm_toString nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jnew_2 (fn jnew_2 [_name _state]
+    (var this (table/setproto @{:jclass "GameState" :f_name nil} jproto))
+    
+        (set (this :f_name) _name)
+    this))
+    
+(set jm_toString (fn jm_toString [this]
+    (label jreturn
+        (return jreturn (this :f_name)))))
 
-local GameState = {}
-GameState.__index = GameState
-GameState.className = "GameState"
+(set jproto @{:jm_toString jm_toString})
 
-function GameState:_init_fields()
-    self.name = nil
-end
-
-
-function GameState.new(name, state)
-    local self = setmetatable({}, GameState)
-    self:_init_fields()
-        self.name = name
-    return self
-end
-
-
-function GameState:toString()
-        return self.name
-end
-GameState.__tostring = function(self) return self:toString() end
-
-return GameState
 

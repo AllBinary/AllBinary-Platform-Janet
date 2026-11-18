@@ -1,101 +1,85 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.direction
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.direction
 
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
+(import ../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- StringMaker/jnew_0 [& args] (JR/call jfile "../../../org/allbinary/logic/string/StringMaker" "jnew_0" args))
 
-local function java_new_array(default, size, ...)
-    local array = {n = size}
-    for index = 1, size do
-        if select("#", ...) > 0 then array[index] = java_new_array(default, ...) else array[index] = default end
-    end
-    return array
-end
+# Java class Direction
+(var jproto nil)
+(var jcell_directionArray :jnone)
+(var jstatic_directionArray nil)
+(var jsetstatic_directionArray nil)
+(var jnew_4 nil)
+(var jm_getInstance nil)
+(var jm_getValue nil)
+(var jm_getFrameFactor nil)
+(var jm_getOtherName nil)
+(var jm_getName nil)
+(var jm_toString nil)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(set jstatic_directionArray (fn jstatic_directionArray []
+  (when (= jcell_directionArray :jnone) (set jcell_directionArray (array/new-filled 13 nil)))
+  jcell_directionArray))
+(set jsetstatic_directionArray (fn jsetstatic_directionArray [value] (set jcell_directionArray value)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jnew_4 (fn jnew_4 [_name _otherName _value _frameFactor]
+    (var this (table/setproto @{:jclass "Direction" :f_name nil :f_otherName nil :f_value 0 :f_frameFactor 0} jproto))
+    
+    
+    
+    
+        (set (this :f_name) _name)
+        (set (this :f_otherName) _otherName)
+        (set (this :f_value) _value)
+        (set (this :f_frameFactor) _frameFactor)
+        (set ((jstatic_directionArray) _value) this)
+    this))
+    
+(set jm_getInstance (fn jm_getInstance [_direction]
+    (label jreturn
+        (return jreturn ((jstatic_directionArray) _direction)))))
+    
+(set jm_getValue (fn jm_getValue [this]
+    (label jreturn
+        (return jreturn (this :f_value)))))
+    
+(set jm_getFrameFactor (fn jm_getFrameFactor [this]
+    (label jreturn
+        (return jreturn (this :f_frameFactor)))))
+    
+(set jm_getOtherName (fn jm_getOtherName [this]
+    (label jreturn
+        (return jreturn (this :f_otherName)))))
+    
+(set jm_getName (fn jm_getName [this]
+    (label jreturn
+        (return jreturn (this :f_name)))))
+    
+(set jm_toString (fn jm_toString [this]
+    (label jreturn
+        (var _stringBuffer (StringMaker/jnew_0))
+        (:jm_append _stringBuffer "Direction: ")
+        (:jm_append _stringBuffer (:jm_getName this))
+        (:jm_append _stringBuffer " Or: ")
+        (:jm_append _stringBuffer (:jm_getOtherName this))
+        (:jm_append _stringBuffer " Value: ")
+        (:jm_appendint _stringBuffer (this :f_value))
+        (return jreturn (:jm_toString _stringBuffer)))))
 
-local Direction = {}
-Direction.__index = Direction
-Direction.className = "Direction"
+(set jproto @{:jm_getValue jm_getValue :jm_getFrameFactor jm_getFrameFactor :jm_getOtherName jm_getOtherName :jm_getName jm_getName :jm_toString jm_toString})
 
-function Direction:_init_fields()
-    self.name = nil
-    self.otherName = nil
-    self.value = nil
-    self.frameFactor = nil
-end
-
-
-function Direction.new(name, otherName, value, frameFactor)
-    local self = setmetatable({}, Direction)
-    self:_init_fields()
-        self.name = name
-        self.otherName = otherName
-        self.value = value
-        self.frameFactor = frameFactor
-        Direction.directionArray[value + 1] = self
-    return self
-end
-
-
-function Direction.getInstance(direction)
-        return Direction.directionArray[direction + 1]
-end
-
-
-function Direction:getValue()
-        return self.value
-end
-
-
-function Direction:getFrameFactor()
-        return self.frameFactor
-end
-
-
-function Direction:getOtherName()
-        return self.otherName
-end
-
-
-function Direction:getName()
-        return self.name
-end
-
-
-function Direction:toString()
-        local stringBuffer = StringMaker.new()
-        stringBuffer:append("Direction: ")
-        stringBuffer:append(self:getName())
-        stringBuffer:append(" Or: ")
-        stringBuffer:append(self:getOtherName())
-        stringBuffer:append(" Value: ")
-        stringBuffer:appendint(self.value)
-        return tostring(stringBuffer)
-end
-Direction.__tostring = function(self) return self:toString() end
-
-Direction.directionArray = java_new_array(nil, 13)
-
-return Direction
 

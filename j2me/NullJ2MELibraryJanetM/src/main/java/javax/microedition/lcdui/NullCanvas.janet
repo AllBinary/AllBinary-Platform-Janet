@@ -1,131 +1,109 @@
--- Generated Code Do Not Modify
--- package javax.microedition.lcdui
+# Generated Code Do Not Modify
+# package javax.microedition.lcdui
 
--- local Stack = require("java.util.Stack")
-local Canvas = require("javax.microedition.lcdui.Canvas")
+(import ../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(import ../../../java/util/Stack :as Stack)
+(import ./Canvas :as Canvas)
 
--- Java library Throwable. tostring gives the message like Java getMessage.
-local function java_exception(className, message, cause)
-    if cause == nil and type(message) == "table" then
-        cause = message
-        message = tostring(message)
-    end
-    local exception = {className = className, message = message, cause = cause}
-    function exception:getMessage() return self.message end
-    function exception:getCause() return self.cause end
-    function exception:printStackTrace() print(debug.traceback(tostring(self))) end
-    return setmetatable(exception, {__tostring = function(self) if self.message ~= nil then return tostring(self.message) end return self.className end})
-end
+# Java class NullCanvas
+(var jproto nil)
+(var jcell_NULL_CANVAS :jnone)
+(var jstatic_NULL_CANVAS nil)
+(var jsetstatic_NULL_CANVAS nil)
+(var jnew_0 nil)
+(var jm_setFullScreenMode nil)
+(var jm_sizeChanged nil)
+(var jm_getCommandStack nil)
+(var jm_isCommand nil)
+(var jm_addCommand nil)
+(var jm_removeCommand nil)
+(var jm_removeAllCommands nil)
+(var jm_setCommandListener nil)
+(var jm_getCustomCommandListener nil)
+(var jm_isPaused nil)
+(var jm_removePauseCommand nil)
+(var jm_pause nil)
+(var jm_unPause nil)
+(var jm_process nil)
+(var jm_paint nil)
+(var jm_destroy nil)
+(var jm_setPaused nil)
+(var jm_pointerDragged nil)
+(var jm_pointerPressed nil)
+(var jm_pointerReleased nil)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(set jstatic_NULL_CANVAS (fn jstatic_NULL_CANVAS []
+  (when (= jcell_NULL_CANVAS :jnone) (set jcell_NULL_CANVAS (jnew_0)))
+  jcell_NULL_CANVAS))
+(set jsetstatic_NULL_CANVAS (fn jsetstatic_NULL_CANVAS [value] (set jcell_NULL_CANVAS value)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "NullCanvas"} jproto))
+    (JR/superInit this (Canvas/jnew_0))
+    this))
+    
+(set jm_setFullScreenMode (fn jm_setFullScreenMode [this _mode]
+    nil))
+    
+(set jm_sizeChanged (fn jm_sizeChanged [this _w _h]
+    nil))
+    
+(set jm_getCommandStack (fn jm_getCommandStack [this]
+        (error (JR/newException "RuntimeException"))))
+    
+(set jm_isCommand (fn jm_isCommand [this _command]
+        (error (JR/newException "RuntimeException"))))
+    
+(set jm_addCommand (fn jm_addCommand [this _command]
+    nil))
+    
+(set jm_removeCommand (fn jm_removeCommand [this _command]
+    nil))
+    
+(set jm_removeAllCommands (fn jm_removeAllCommands [this]
+    nil))
+    
+(set jm_setCommandListener (fn jm_setCommandListener [this _l]
+    nil))
+    
+(set jm_getCustomCommandListener (fn jm_getCustomCommandListener [this]
+        (error (JR/newException "RuntimeException"))))
+    
+(set jm_isPaused (fn jm_isPaused [this]
+        (error (JR/newException "RuntimeException"))))
+    
+(set jm_removePauseCommand (fn jm_removePauseCommand [this]
+    nil))
+    
+(set jm_pause (fn jm_pause [this]
+    nil))
+    
+(set jm_unPause (fn jm_unPause [this]
+    nil))
+    
+(set jm_process (fn jm_process [this]
+    nil))
+    
+(set jm_paint (fn jm_paint [this _graphics]
+    nil))
+    
+(set jm_destroy (fn jm_destroy [this]
+    nil))
+    
+(set jm_setPaused (fn jm_setPaused [this _isPaused]
+        (error (JR/newException "RuntimeException"))))
+    
+(set jm_pointerDragged (fn jm_pointerDragged [this _x _y]
+    nil))
+    
+(set jm_pointerPressed (fn jm_pointerPressed [this _x _y]
+    nil))
+    
+(set jm_pointerReleased (fn jm_pointerReleased [this _x _y]
+    nil))
 
-local NullCanvas = {}
-NullCanvas.__index = NullCanvas
-NullCanvas.className = "NullCanvas"
-setmetatable(NullCanvas, {__index = Canvas})
+(set jproto (table/setproto @{:jm_setFullScreenMode jm_setFullScreenMode :jm_sizeChanged jm_sizeChanged :jm_getCommandStack jm_getCommandStack :jm_isCommand jm_isCommand :jm_addCommand jm_addCommand :jm_removeCommand jm_removeCommand :jm_removeAllCommands jm_removeAllCommands :jm_setCommandListener jm_setCommandListener :jm_getCustomCommandListener jm_getCustomCommandListener :jm_isPaused jm_isPaused :jm_removePauseCommand jm_removePauseCommand :jm_pause jm_pause :jm_unPause jm_unPause :jm_process jm_process :jm_paint jm_paint :jm_destroy jm_destroy :jm_setPaused jm_setPaused :jm_pointerDragged jm_pointerDragged :jm_pointerPressed jm_pointerPressed :jm_pointerReleased jm_pointerReleased} Canvas/jproto))
 
-
-function NullCanvas.new()
-    local self = setmetatable(Canvas.new(), NullCanvas)
-    return self
-end
-
-
-function NullCanvas:setFullScreenMode(mode)
-end
-
-
-function NullCanvas:sizeChanged(w, h)
-end
-
-
-function NullCanvas:getCommandStack()
-        error(java_exception("RuntimeException"), 0)
-end
-
-
-function NullCanvas:isCommand(command)
-        error(java_exception("RuntimeException"), 0)
-end
-
-
-function NullCanvas:addCommand(command)
-end
-
-
-function NullCanvas:removeCommand(command)
-end
-
-
-function NullCanvas:removeAllCommands()
-end
-
-
-function NullCanvas:setCommandListener(l)
-end
-
-
-function NullCanvas:getCustomCommandListener()
-        error(java_exception("RuntimeException"), 0)
-end
-
-
-function NullCanvas:isPaused()
-        error(java_exception("RuntimeException"), 0)
-end
-
-
-function NullCanvas:removePauseCommand()
-end
-
-
-function NullCanvas:pause()
-end
-
-
-function NullCanvas:unPause()
-end
-
-
--- throws Exception
-function NullCanvas:process()
-end
-
-
-function NullCanvas:paint(graphics)
-end
-
-
-function NullCanvas:destroy()
-end
-
-
-function NullCanvas:setPaused(isPaused)
-        error(java_exception("RuntimeException"), 0)
-end
-
-
-function NullCanvas:pointerDragged(x, y)
-end
-
-
-function NullCanvas:pointerPressed(x, y)
-end
-
-
-function NullCanvas:pointerReleased(x, y)
-end
-
-NullCanvas.NULL_CANVAS = NullCanvas.new()
-
-return NullCanvas
 

@@ -1,57 +1,46 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.util.cache
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.logic.util.cache
 
-local AbstractArrayListPool = require("org.allbinary.logic.util.cache.AbstractArrayListPool")
+(import ../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(import ./AbstractArrayListPool :as AbstractArrayListPool)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class BasicArrayListResetablePool
+(var jproto nil)
+(var jnew_1 nil)
+(var jm_clear nil)
+(var jm_remove nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jnew_1 (fn jnew_1 [_cacheableInterfaceFactoryInterface]
+    (var this (table/setproto @{:jclass "BasicArrayListResetablePool"} jproto))
+        (JR/superInit this (AbstractArrayListPool/jnew_1 _cacheableInterfaceFactoryInterface))
+    this))
+    
+(set jm_clear (fn jm_clear [this]
+    nil))
+    
+(set jm_remove (fn jm_remove [this _key]
+    (label jreturn
+        (var _size (JR/className (this :f_buffers)))
+        (if (> _size 0)
+            (do
+            (return jreturn (JR/className (this :f_buffers))))
+            (do
+            (return jreturn (:jm_getInstance (this :f_cacheableInterfaceFactoryInterface) _key)))))))
 
-local BasicArrayListResetablePool = {}
-BasicArrayListResetablePool.__index = BasicArrayListResetablePool
-BasicArrayListResetablePool.className = "BasicArrayListResetablePool"
-setmetatable(BasicArrayListResetablePool, {__index = AbstractArrayListPool})
+(set jproto (table/setproto @{:jm_clear jm_clear :jm_remove jm_remove} AbstractArrayListPool/jproto))
 
-
-function BasicArrayListResetablePool.new(cacheableInterfaceFactoryInterface)
-    local self = setmetatable(AbstractArrayListPool.new(cacheableInterfaceFactoryInterface), BasicArrayListResetablePool)
-        -- super(...) made self above
-    return self
-end
-
-
-function BasicArrayListResetablePool:clear()
-end
-
-
--- throws Exception
-function BasicArrayListResetablePool:remove(key)
-        local size = self.buffers:size()
-        if size > 0 then
-            return self.buffers:removeAt(size - 1)
-        else
-            return self.cacheableInterfaceFactoryInterface:getInstance(key)
-        end
-end
-
-return BasicArrayListResetablePool
 

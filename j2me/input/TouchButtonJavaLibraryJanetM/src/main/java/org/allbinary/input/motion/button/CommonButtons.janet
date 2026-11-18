@@ -1,73 +1,68 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.input.motion.button
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.input.motion.button
 
-local PointFactory = require("org.allbinary.graphics.PointFactory")
-local Rectangle = require("org.allbinary.graphics.Rectangle")
-local DisplayInfoSingleton = require("org.allbinary.graphics.displayable.DisplayInfoSingleton")
+(import ../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- PointFactory/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/graphics/PointFactory" "jm_getInstance" args))
+(defn- Rectangle/jnew_3 [& args] (JR/call jfile "../../../../../org/allbinary/graphics/Rectangle" "jnew_3" args))
+(defn- DisplayInfoSingleton/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/graphics/displayable/DisplayInfoSingleton" "jm_getInstance" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class CommonButtons
+(var jproto nil)
+(var jcell_instance :jnone)
+(var jstatic_instance nil)
+(var jsetstatic_instance nil)
+(var jnew_0 nil)
+(var jm_getInstance nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jstatic_instance (fn jstatic_instance []
+  (when (= jcell_instance :jnone) (set jcell_instance (jnew_0)))
+  jcell_instance))
+(set jsetstatic_instance (fn jsetstatic_instance [value] (set jcell_instance value)))
 
-local CommonButtons = {}
-CommonButtons.__index = CommonButtons
-CommonButtons.className = "CommonButtons"
+    
+(set jm_getInstance (fn jm_getInstance []
+    (label jreturn
+        (return jreturn (jstatic_instance)))))
+    
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "CommonButtons" :f_STANDARD_BUTTON_SIZE 0 :f_NORMAL_BUTTON nil :f_LARGE_BUTTON nil} jproto))
+    
+    
+    
+        (var _displayInfo (DisplayInfoSingleton/jm_getInstance))
+        (var _commonButtonSize 128)
+        (do
+            (var jbreak false)
+            (while (and (not jbreak) (> _commonButtonSize 64))
+                (label jcontinue
+            (var _totalColumns (JR/idiv (:jm_getLastWidth _displayInfo) _commonButtonSize))
+            (var _totalRows (JR/idiv (:jm_getLastHeight _displayInfo) _commonButtonSize))
+            (var _max _totalColumns)
+            (if (> _totalRows _max)
+                (do
+                (set _max _totalRows)))
+            (if (> _max 9)
+                (do
+                (do (set jbreak true) (return jcontinue))))
+            (set _commonButtonSize (brshift _commonButtonSize 1)))))
+        (set (this :f_STANDARD_BUTTON_SIZE) _commonButtonSize)
+        (set (this :f_NORMAL_BUTTON) (Rectangle/jnew_3 ((PointFactory/jm_getInstance) :f_ZERO_ZERO) (this :f_STANDARD_BUTTON_SIZE) (this :f_STANDARD_BUTTON_SIZE)))
+        (set (this :f_LARGE_BUTTON) (Rectangle/jnew_3 ((PointFactory/jm_getInstance) :f_ZERO_ZERO) (JR/i32 (blshift (this :f_STANDARD_BUTTON_SIZE) 1)) (JR/i32 (blshift (this :f_STANDARD_BUTTON_SIZE) 1))))
+    this))
 
-function CommonButtons:_init_fields()
-    self.STANDARD_BUTTON_SIZE = nil
-    self.NORMAL_BUTTON = nil
-    self.LARGE_BUTTON = nil
-end
+(set jproto @{})
 
-
-function CommonButtons.getInstance()
-        return CommonButtons.instance
-end
-
-
-function CommonButtons.new()
-    local self = setmetatable({}, CommonButtons)
-    self:_init_fields()
-        local displayInfo = DisplayInfoSingleton.getInstance()
-        local commonButtonSize = 128
-        while commonButtonSize > 64 do
-            local totalColumns = displayInfo:getLastWidth() / commonButtonSize
-            local totalRows = displayInfo:getLastHeight() / commonButtonSize
-            local max = totalColumns
-            if totalRows > max then
-                max = totalRows
-            end
-            if max > 9 then
-                break
-            end
-            commonButtonSize = ((commonButtonSize) // (1 << (1)))
-        end
-        self.STANDARD_BUTTON_SIZE = commonButtonSize
-        self.NORMAL_BUTTON = Rectangle.new(PointFactory.getInstance().ZERO_ZERO, self.STANDARD_BUTTON_SIZE, self.STANDARD_BUTTON_SIZE)
-        self.LARGE_BUTTON = Rectangle.new(PointFactory.getInstance().ZERO_ZERO, self.STANDARD_BUTTON_SIZE << 1, self.STANDARD_BUTTON_SIZE << 1)
-    return self
-end
-
-CommonButtons.instance = CommonButtons.new()
-
-return CommonButtons
 

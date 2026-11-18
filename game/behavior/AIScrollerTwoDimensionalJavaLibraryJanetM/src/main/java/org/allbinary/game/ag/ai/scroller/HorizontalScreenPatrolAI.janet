@@ -1,120 +1,92 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.ag.ai.scroller
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.game.ag.ai.scroller
 
--- local Canvas = require("javax.microedition.lcdui.Canvas")
-local BasicAI = require("org.allbinary.game.ai.BasicAI")
-local GameInput = require("org.allbinary.game.input.GameInput")
-local AllBinaryGameLayerManager = require("org.allbinary.game.layer.AllBinaryGameLayerManager")
-local MyRandomFactory = require("org.allbinary.game.rand.MyRandomFactory")
-local DisplayInfoSingleton = require("org.allbinary.graphics.displayable.DisplayInfoSingleton")
-local AllBinaryLayer = require("org.allbinary.layer.AllBinaryLayer")
-local AllBinaryLayerManager = require("org.allbinary.layer.AllBinaryLayerManager")
-local SmallIntegerSingletonFactory = require("org.allbinary.logic.math.SmallIntegerSingletonFactory")
-local PlayerQueue = require("org.allbinary.media.audio.PlayerQueue")
-local SecondaryPlayerQueueFactory = require("org.allbinary.media.audio.SecondaryPlayerQueueFactory")
-local Sound = require("org.allbinary.media.audio.Sound")
-local TimeDelayHelper = require("org.allbinary.time.TimeDelayHelper")
-local ABHashtable = require("org.allbinary.util.ABHashtable")
+(import ../../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- Canvas/jstatic_LEFT [& args] (JR/call jfile "../../../../../../javax/microedition/lcdui/Canvas" "jstatic_LEFT" args))
+(defn- Canvas/jstatic_KEY_NUM1 [& args] (JR/call jfile "../../../../../../javax/microedition/lcdui/Canvas" "jstatic_KEY_NUM1" args))
+(import ../../../../../../org/allbinary/game/ai/BasicAI :as BasicAI)
+(defn- MyRandomFactory/jm_getInstance [& args] (JR/call jfile "../../../../../../org/allbinary/game/rand/MyRandomFactory" "jm_getInstance" args))
+(defn- DisplayInfoSingleton/jm_getInstance [& args] (JR/call jfile "../../../../../../org/allbinary/graphics/displayable/DisplayInfoSingleton" "jm_getInstance" args))
+(defn- SmallIntegerSingletonFactory/jm_getInstance [& args] (JR/call jfile "../../../../../../org/allbinary/logic/math/SmallIntegerSingletonFactory" "jm_getInstance" args))
+(defn- SecondaryPlayerQueueFactory/jm_getInstance [& args] (JR/call jfile "../../../../../../org/allbinary/media/audio/SecondaryPlayerQueueFactory" "jm_getInstance" args))
+(defn- TimeDelayHelper/jnew_1 [& args] (JR/call jfile "../../../../../../org/allbinary/time/TimeDelayHelper" "jnew_1" args))
+(import ../../../../../../java/lang/Integer :as Integer)
 
--- Java library Throwable. tostring gives the message like Java getMessage.
-local function java_exception(className, message, cause)
-    if cause == nil and type(message) == "table" then
-        cause = message
-        message = tostring(message)
-    end
-    local exception = {className = className, message = message, cause = cause}
-    function exception:getMessage() return self.message end
-    function exception:getCause() return self.cause end
-    function exception:printStackTrace() print(debug.traceback(tostring(self))) end
-    return setmetatable(exception, {__tostring = function(self) if self.message ~= nil then return tostring(self.message) end return self.className end})
-end
+# Java class HorizontalScreenPatrolAI
+(var jproto nil)
+(var jcell_SOUND :jnone)
+(var jstatic_SOUND nil)
+(var jsetstatic_SOUND nil)
+(var jnew_3 nil)
+(var jm_processAI nil)
+(var jm_nextDirection nil)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(set jstatic_SOUND (fn jstatic_SOUND []
+  (when (= jcell_SOUND :jnone) (set jcell_SOUND (:jm_getAt (SmallIntegerSingletonFactory/jm_getInstance) 433)))
+  jcell_SOUND))
+(set jsetstatic_SOUND (fn jsetstatic_SOUND [value] (set jcell_SOUND value)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jnew_3 (fn jnew_3 [_hashtable _ownerLayerInterface _gameInput]
+    (var this (table/setproto @{:jclass "HorizontalScreenPatrolAI" :f_keyDirection 0 :f_displayInfoSingleton nil :f_firingX 0 :f_firedIndex 0 :f_MAX_FIRE 0 :f_timeDelayHelper nil :f_secondaryPlayerQueue nil :f_sound nil} jproto))
+    (put this :f_keyDirection (Canvas/jstatic_LEFT))
+    (put this :f_displayInfoSingleton (DisplayInfoSingleton/jm_getInstance))
+    (put this :f_firingX (:jm_getLastHalfWidth (this :f_displayInfoSingleton)))
+    (put this :f_firedIndex 0)
+    (put this :f_MAX_FIRE 28)
+    (put this :f_timeDelayHelper (TimeDelayHelper/jnew_1 240))
+    (put this :f_secondaryPlayerQueue (SecondaryPlayerQueueFactory/jm_getInstance))
+    
+        (JR/superInit this (BasicAI/jnew_2 _ownerLayerInterface _gameInput))
+        (set (this :f_sound) (:jm_get _hashtable (jstatic_SOUND)))
+        (if (nil? (this :f_sound))
+            (do
+            (error (JR/newException "Exception" "No Sound Provided!!"))))
+    this))
+    
+(set jm_processAI (fn jm_processAI [this _allBinaryLayerManager]
+        ((get BasicAI/jproto :jm_processKeyAI) this (this :f_keyDirection))
+        (if (:jm_isTimeTNT (this :f_timeDelayHelper))
+            (do
+            (var _layerInterface (:jm_getOwnerLayerInterface this))
+            (var _currentOwnerLayerX (:jm_getXP _layerInterface))
+            (if (< _currentOwnerLayerX (JR/i32 (- (:jm_getWidth _layerInterface))))
+                (do
+                (var _y (:jm_getAbsoluteNextIntAllowZero (MyRandomFactory/jm_getInstance) 50))
+                (:jm_setPosition _layerInterface (JR/i32 (+ (JR/i32 (+ (:jm_getLastWidth (this :f_displayInfoSingleton)) (:jm_getWidth _layerInterface))) 50)) _y (:jm_getZP _layerInterface))
+                (set (this :f_firedIndex) 0)
+                (set (this :f_firingX) (JR/i32 (+ (:jm_getLastHalfWidth (this :f_displayInfoSingleton)) (:jm_getNextInt (MyRandomFactory/jm_getInstance) (:jm_getLastHalfWidth (this :f_displayInfoSingleton))))))
+                (:jm_add (this :f_secondaryPlayerQueue) (this :f_sound))))
+            (if (and (< _currentOwnerLayerX (this :f_firingX)) (> _currentOwnerLayerX (JR/i32 (- (:jm_getWidth _layerInterface)))))
+                (do
+                ((get BasicAI/jproto :jm_processKeyAI) this (Canvas/jstatic_KEY_NUM1))
+                (var _gameLayerManager _allBinaryLayerManager)
+                (var _FIRE (brshift (JR/i32 (+ (JR/className (:jm_getGameInfo _gameLayerManager)) 12)) 2))
+                (if (> _FIRE (this :f_MAX_FIRE))
+                    (do
+                    (set _FIRE (this :f_MAX_FIRE))))
+                (if (> (this :f_firedIndex) _FIRE)
+                    (do
+                    (set (this :f_firedIndex) 0)
+                    (set (this :f_firingX) (Integer/jstatic_MIN_VALUE))))
+                (set (this :f_firedIndex) (JR/i32 (+ (this :f_firedIndex) 1)))))))))
+    
+(set jm_nextDirection (fn jm_nextDirection [this]
+    nil))
 
-local HorizontalScreenPatrolAI = {}
-HorizontalScreenPatrolAI.__index = HorizontalScreenPatrolAI
-HorizontalScreenPatrolAI.className = "HorizontalScreenPatrolAI"
-setmetatable(HorizontalScreenPatrolAI, {__index = BasicAI})
+(set jproto (table/setproto @{:jm_processAI jm_processAI :jm_nextDirection jm_nextDirection} BasicAI/jproto))
 
-function HorizontalScreenPatrolAI:_init_fields()
-    self.keyDirection = Canvas.LEFT
-    self.displayInfoSingleton = DisplayInfoSingleton.getInstance()
-    self.firingX = self.displayInfoSingleton:getLastHalfWidth()
-    self.firedIndex = 0
-    self.MAX_FIRE = 28
-    self.timeDelayHelper = TimeDelayHelper.new(240)
-    self.secondaryPlayerQueue = SecondaryPlayerQueueFactory.getInstance()
-    self.sound = nil
-end
-
-
-function HorizontalScreenPatrolAI.new(hashtable, ownerLayerInterface, gameInput)
-    local self = setmetatable(BasicAI.new(ownerLayerInterface, gameInput), HorizontalScreenPatrolAI)
-    self:_init_fields()
-        -- super(...) made self above
-        self.sound = hashtable:get(HorizontalScreenPatrolAI.SOUND)
-        if self.sound == nil then
-            error(java_exception("Exception", "No Sound Provided!!"), 0)
-        end
-    return self
-end
-
-
--- throws Exception
-function HorizontalScreenPatrolAI:processAI(allBinaryLayerManager)
-        BasicAI.processKeyAI(self, self.keyDirection)
-        if self.timeDelayHelper:isTimeTNT() then
-            local layerInterface = self:getOwnerLayerInterface()
-            local currentOwnerLayerX = layerInterface:getXP()
-            if currentOwnerLayerX < -layerInterface:getWidth() then
-                local y = MyRandomFactory.getInstance():getAbsoluteNextIntAllowZero(50)
-                layerInterface:setPosition(self.displayInfoSingleton:getLastWidth() + layerInterface:getWidth() + 50, y, layerInterface:getZP())
-                self.firedIndex = 0
-                self.firingX = self.displayInfoSingleton:getLastHalfWidth() + MyRandomFactory.getInstance():getNextInt(self.displayInfoSingleton:getLastHalfWidth())
-                self.secondaryPlayerQueue:add(self.sound)
-            end
-            if currentOwnerLayerX < self.firingX and currentOwnerLayerX > -layerInterface:getWidth() then
-                BasicAI.processKeyAI(self, Canvas.KEY_NUM1)
-                local gameLayerManager = allBinaryLayerManager
-                local FIRE = (((gameLayerManager:getGameInfo():getCurrentLevel() + 12)) // (1 << (2)))
-                if FIRE > self.MAX_FIRE then
-                    FIRE = self.MAX_FIRE
-                end
-                if self.firedIndex > FIRE then
-                    self.firedIndex = 0
-                    self.firingX = Integer.MIN_VALUE
-                end
-                self.firedIndex = self.firedIndex + 1
-            end
-        end
-end
-
-
-function HorizontalScreenPatrolAI:nextDirection()
-end
-
-HorizontalScreenPatrolAI.SOUND = SmallIntegerSingletonFactory.getInstance():getAt(433)
-
-return HorizontalScreenPatrolAI
 

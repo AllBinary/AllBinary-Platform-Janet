@@ -1,99 +1,74 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.animation.image
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.animation.image
 
--- local Graphics = require("javax.microedition.lcdui.Graphics")
--- local Image = require("javax.microedition.lcdui.Image")
-local AnimationBehavior = require("org.allbinary.animation.AnimationBehavior")
-local AngleInfo = require("org.allbinary.math.AngleInfo")
-local ImageArrayRotationAnimation = require("org.allbinary.animation.image.ImageArrayRotationAnimation")
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(import ./ImageArrayRotationAnimation :as ImageArrayRotationAnimation)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+#TWB - Adjustments should be done in the resource creation and not at the animation level
+# Java class AdjustedImageArrayRotationAnimation
+(var jproto nil)
+(var jnew_6 nil)
+(var jm_createAdjustedImageArrayRotationAnimationInfo nil)
+(var jm_createAnimation nil)
+(var jm_init nil)
+(var jm_paintXY nil)
+(var jm_setDx nil)
+(var jm_getDx nil)
+(var jm_setDy nil)
+(var jm_getDy nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jm_createAdjustedImageArrayRotationAnimationInfo (fn jm_createAdjustedImageArrayRotationAnimationInfo [_anyType _animationBehavior]
+    (label jreturn
+        (var _imageRotationAnimationInfo _anyType)
+        (return jreturn (jnew_6 (:jm_getImageArray _imageRotationAnimationInfo) (:jm_getAngleInfoP _imageRotationAnimationInfo) (:jm_getTotalAngle _imageRotationAnimationInfo) (:jm_getDx _imageRotationAnimationInfo) (:jm_getDy _imageRotationAnimationInfo) _animationBehavior)))))
+    
+(set jm_createAnimation (fn jm_createAnimation [_imageArray _angleInfo _totalAngle _animationBehavior]
+    (label jreturn
+        (return jreturn (jnew_6 _imageArray _angleInfo _totalAngle (JR/i32 (- (brshift (JR/className (_imageArray 0)) 2))) (JR/i32 (- (brshift (JR/className (_imageArray 0)) 2))) _animationBehavior)))))
+    
+(set jnew_6 (fn jnew_6 [_imageArray _angleInfo _totalAngle _dx _dy _animationBehavior]
+    (var this (table/setproto @{:jclass "AdjustedImageArrayRotationAnimation" :f_dx 0 :f_dy 0} jproto))
+    
+    
+        (JR/superInit this (ImageArrayRotationAnimation/jnew_4 _imageArray _angleInfo _totalAngle _animationBehavior))
+        (:jm_init this _dx _dy)
+    this))
+    
+(set jm_init (fn jm_init [this _dx _dy]
+        (:jm_setDx this _dx)
+        (:jm_setDy this _dy)))
+    
+(set jm_paintXY (fn jm_paintXY [this _graphics _x _y]
+        ((get ImageArrayRotationAnimation/jproto :jm_paintXY) this _graphics (JR/i32 (+ _x (this :f_dx))) (JR/i32 (+ _y (this :f_dy))))))
+    
+(set jm_setDx (fn jm_setDx [this _dx]
+        (set (this :f_dx) _dx)))
+    
+(set jm_getDx (fn jm_getDx [this]
+    (label jreturn
+        (return jreturn (this :f_dx)))))
+    
+(set jm_setDy (fn jm_setDy [this _dy]
+        (set (this :f_dy) _dy)))
+    
+(set jm_getDy (fn jm_getDy [this]
+    (label jreturn
+        (return jreturn (this :f_dy)))))
 
---TWB - Adjustments should be done in the resource creation and not at the animation level
-local AdjustedImageArrayRotationAnimation = {}
-AdjustedImageArrayRotationAnimation.__index = AdjustedImageArrayRotationAnimation
-AdjustedImageArrayRotationAnimation.className = "AdjustedImageArrayRotationAnimation"
-setmetatable(AdjustedImageArrayRotationAnimation, {__index = ImageArrayRotationAnimation})
+(set jproto (table/setproto @{:jm_init jm_init :jm_paintXY jm_paintXY :jm_setDx jm_setDx :jm_getDx jm_getDx :jm_setDy jm_setDy :jm_getDy jm_getDy} ImageArrayRotationAnimation/jproto))
 
-function AdjustedImageArrayRotationAnimation:_init_fields()
-    self.dx = 0
-    self.dy = 0
-end
-
-
--- throws Exception
-function AdjustedImageArrayRotationAnimation.createAdjustedImageArrayRotationAnimationInfo(anyType, animationBehavior)
-        local imageRotationAnimationInfo = anyType
-        return AdjustedImageArrayRotationAnimation.new(imageRotationAnimationInfo:getImageArray(), imageRotationAnimationInfo:getAngleInfoP(), imageRotationAnimationInfo:getTotalAngle(), imageRotationAnimationInfo:getDx(), imageRotationAnimationInfo:getDy(), animationBehavior)
-end
-
-
--- throws Exception
-function AdjustedImageArrayRotationAnimation.createAnimation(imageArray, angleInfo, totalAngle, animationBehavior)
-        return AdjustedImageArrayRotationAnimation.new(imageArray, angleInfo, totalAngle, -(((imageArray[1]:getWidth()) // (1 << (2)))), -(((imageArray[1]:getHeight()) // (1 << (2)))), animationBehavior)
-end
-
-
-function AdjustedImageArrayRotationAnimation.new(imageArray, angleInfo, totalAngle, dx, dy, animationBehavior)
-    local self = setmetatable(ImageArrayRotationAnimation.new(imageArray, angleInfo, totalAngle, animationBehavior), AdjustedImageArrayRotationAnimation)
-    self:_init_fields()
-        -- super(...) made self above
-        self:init(dx, dy)
-    return self
-end
-
-
--- throws Exception
-function AdjustedImageArrayRotationAnimation:init(dx, dy)
-        self:setDx(dx)
-        self:setDy(dy)
-end
-
-
-function AdjustedImageArrayRotationAnimation:paintXY(graphics, x, y)
-        ImageArrayRotationAnimation.paintXY(self, graphics, x + self.dx, y + self.dy)
-end
-
-
-function AdjustedImageArrayRotationAnimation:setDx(dx)
-        self.dx = dx
-end
-
-
-function AdjustedImageArrayRotationAnimation:getDx()
-        return self.dx
-end
-
-
-function AdjustedImageArrayRotationAnimation:setDy(dy)
-        self.dy = dy
-end
-
-
-function AdjustedImageArrayRotationAnimation:getDy()
-        return self.dy
-end
-
-return AdjustedImageArrayRotationAnimation
 

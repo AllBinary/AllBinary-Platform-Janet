@@ -1,260 +1,268 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.paint.help
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.game.paint.help
 
--- local Font = require("javax.microedition.lcdui.Font")
--- local Graphics = require("javax.microedition.lcdui.Graphics")
-local GameKey = require("org.allbinary.game.input.GameKey")
-local GameKeyFactory = require("org.allbinary.game.input.GameKeyFactory")
-local Input = require("org.allbinary.game.input.Input")
-local PlatformInputMappingFactory = require("org.allbinary.game.input.PlatformInputMappingFactory")
-local GameInputMapping = require("org.allbinary.game.input.mapping.GameInputMapping")
-local PersistentInputMapping = require("org.allbinary.game.input.mapping.PersistentInputMapping")
-local BasicColor = require("org.allbinary.graphics.color.BasicColor")
-local BasicColorFactory = require("org.allbinary.graphics.color.BasicColorFactory")
-local BasicColorUtil = require("org.allbinary.graphics.color.BasicColorUtil")
-local NullUtil = require("org.allbinary.logic.NullUtil")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
-local CommonLabels = require("org.allbinary.string.CommonLabels")
-local CommonSeps = require("org.allbinary.string.CommonSeps")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
-local HelpPaintable = require("org.allbinary.game.paint.help.HelpPaintable")
+(import ../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- GameKeyFactory/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/game/input/GameKeyFactory" "jm_getInstance" args))
+(defn- PlatformInputMappingFactory/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/game/input/PlatformInputMappingFactory" "jm_getInstance" args))
+(defn- BasicColorFactory/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/graphics/color/BasicColorFactory" "jm_getInstance" args))
+(defn- BasicColorUtil/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/graphics/color/BasicColorUtil" "jm_getInstance" args))
+(defn- LogUtil/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/logic/communication/log/LogUtil" "jm_getInstance" args))
+(defn- StringMaker/jnew_0 [& args] (JR/call jfile "../../../../../org/allbinary/logic/string/StringMaker" "jnew_0" args))
+(defn- StringUtil/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/logic/string/StringUtil" "jm_getInstance" args))
+(defn- CommonLabels/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/string/CommonLabels" "jm_getInstance" args))
+(defn- CommonSeps/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/string/CommonSeps" "jm_getInstance" args))
+(defn- CommonStrings/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/string/CommonStrings" "jm_getInstance" args))
+(import ./HelpPaintable :as HelpPaintable)
+(defn- UpdateMyFontProperties/jnew_0 [& args] (JR/call jfile "./UpdateMyFontProperties" "jnew_0" args))
 
-local function java_new_array(default, size, ...)
-    local array = {n = size}
-    for index = 1, size do
-        if select("#", ...) > 0 then array[index] = java_new_array(default, ...) else array[index] = default end
-    end
-    return array
-end
+# Java class InputMappingHelpPaintable
+(var jproto nil)
+(var jcell_AND :jnone)
+(var jstatic_AND nil)
+(var jsetstatic_AND nil)
+(var jcell_SEP :jnone)
+(var jstatic_SEP nil)
+(var jsetstatic_SEP nil)
+(var jcell_MORE_THAN_TWO_IN_LIST_AND :jnone)
+(var jstatic_MORE_THAN_TWO_IN_LIST_AND nil)
+(var jsetstatic_MORE_THAN_TWO_IN_LIST_AND nil)
+(var jnew_3 nil)
+(var jm_updateMeasurement nil)
+(var jm_update nil)
+(var jm_get nil)
+(var jm_paint nil)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(set jstatic_AND (fn jstatic_AND []
+  (when (= jcell_AND :jnone) (set jcell_AND " and "))
+  jcell_AND))
+(set jsetstatic_AND (fn jsetstatic_AND [value] (set jcell_AND value)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jstatic_SEP (fn jstatic_SEP []
+  (when (= jcell_SEP :jnone) (set jcell_SEP ", "))
+  jcell_SEP))
+(set jsetstatic_SEP (fn jsetstatic_SEP [value] (set jcell_SEP value)))
 
-local InputMappingHelpPaintable = {}
-InputMappingHelpPaintable.__index = InputMappingHelpPaintable
-InputMappingHelpPaintable.className = "InputMappingHelpPaintable"
-setmetatable(InputMappingHelpPaintable, {__index = HelpPaintable})
+(set jstatic_MORE_THAN_TWO_IN_LIST_AND (fn jstatic_MORE_THAN_TWO_IN_LIST_AND []
+  (when (= jcell_MORE_THAN_TWO_IN_LIST_AND :jnone) (set jcell_MORE_THAN_TWO_IN_LIST_AND ", and "))
+  jcell_MORE_THAN_TWO_IN_LIST_AND))
+(set jsetstatic_MORE_THAN_TWO_IN_LIST_AND (fn jsetstatic_MORE_THAN_TWO_IN_LIST_AND [value] (set jcell_MORE_THAN_TWO_IN_LIST_AND value)))
 
-function InputMappingHelpPaintable:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-    self.commonStrings = CommonStrings.getInstance()
-    self.commonSeps = CommonSeps.getInstance()
-    self.stringUtil = StringUtil.getInstance()
-    self.basicColorFactory = BasicColorFactory.getInstance()
-    self.NONE = GameKeyFactory.getInstance().NONE
-    self.EMPTY_STRING = StringUtil.getInstance().EMPTY_STRING
-    self.gameInputMappingArray = nil
-    self.keyMappingArray = java_new_array(nil, 0)
-    self.actionBasicColor = BasicColorUtil.getInstance().ZERO_ARRAY
-    self.inputBasicColorArray = java_new_array(nil, 0, 0)
-    self.selectedBasicColor = nil
-    self.updateMyFontProperties = UpdateMyFontProperties.new()
-end
+    
+(set jnew_3 (fn jnew_3 [_gameInputMappingArray _backgroundBasicColor _basicColor]
+    (var this (table/setproto @{:jclass "InputMappingHelpPaintable" :f_logUtil nil :f_commonStrings nil :f_commonSeps nil :f_stringUtil nil :f_basicColorFactory nil :f_NONE nil :f_EMPTY_STRING nil :f_gameInputMappingArray nil :f_keyMappingArray nil :f_actionBasicColor nil :f_inputBasicColorArray nil :f_selectedBasicColor nil :f_updateMyFontProperties nil} jproto))
+    (put this :f_logUtil (LogUtil/jm_getInstance))
+    (put this :f_commonStrings (CommonStrings/jm_getInstance))
+    (put this :f_commonSeps (CommonSeps/jm_getInstance))
+    (put this :f_stringUtil (StringUtil/jm_getInstance))
+    (put this :f_basicColorFactory (BasicColorFactory/jm_getInstance))
+    (put this :f_NONE ((GameKeyFactory/jm_getInstance) :f_NONE))
+    (put this :f_EMPTY_STRING ((StringUtil/jm_getInstance) :f_EMPTY_STRING))
+    
+    (put this :f_keyMappingArray (array/new-filled 0 nil))
+    (put this :f_actionBasicColor ((BasicColorUtil/jm_getInstance) :f_ZERO_ARRAY))
+    (put this :f_inputBasicColorArray (seq [jindex1 :range [0 0]] (array/new-filled 0 nil)))
+    
+    (put this :f_updateMyFontProperties (UpdateMyFontProperties/jnew_0))
+        (JR/superInit this (HelpPaintable/jnew_3 "Input Mapping" _backgroundBasicColor _basicColor))
+        (set (this :f_gameInputMappingArray) _gameInputMappingArray)
+        (:jm_update this (this :f_NONE) (this :f_NONE))
+        (if (or (= _backgroundBasicColor ((this :f_basicColorFactory) :f_WHITE)) (= _basicColor ((this :f_basicColorFactory) :f_WHITE)))
+            (do
+            (set (this :f_selectedBasicColor) ((this :f_basicColorFactory) :f_RED)))
+            (do
+            (set (this :f_selectedBasicColor) ((this :f_basicColorFactory) :f_WHITE))))
+    this))
+    
+(set jm_updateMeasurement (fn jm_updateMeasurement [this _graphics]
+        (var _font (:jm_getFont _graphics))
+        (var _updateMyFontProperties (UpdateMyFontProperties/jnew_0))
+        (set (_updateMyFontProperties :f_charHeight) (:jm_getHeight _font))
+        (var _stringMaker (StringMaker/jnew_0))
+        (var _inputInfo (this :f_inputInfo))
+        (var _size (length _inputInfo))
+        (set (_updateMyFontProperties :f_actionStringArray) (array/new-filled _size nil))
+        (set (_updateMyFontProperties :f_keymappingBeginWidthArray) (array/new-filled _size 0))
+        (set (_updateMyFontProperties :f_actionStringDeltaXArray) (array/new-filled _size 0))
+        (set (_updateMyFontProperties :f_inputDeltaXArray) (seq [jindex1 :range [0 _size]] (array/new-filled 0 0)))
+        (set (_updateMyFontProperties :f_sepArray) (seq [jindex1 :range [0 _size]] (array/new-filled 0 nil)))
+        (set (_updateMyFontProperties :f_sepWidthArray) (seq [jindex1 :range [0 _size]] (array/new-filled 0 0)))
+        (var _list nil)
+        (var _keyMappings nil)
+        (var _actionString nil)
+        (var _input nil)
+        (var _size2 0)
+        (do
+            (var _index 0)
+            (while (< _index _size)
+                (do
+            (set _list ((this :f_keyMappingArray) _index))
+            (set _keyMappings (:jm_get this _list))
+            (:jm_delete _stringMaker 0 (:jm_length _stringMaker))
+            (set _actionString (:jm_toString (:jm_append (:jm_append (:jm_append (:jm_append _stringMaker (_inputInfo _index)) ((this :f_commonSeps) :f_COLON)) ((this :f_commonSeps) :f_SPACE)) ((this :f_commonSeps) :f_SPACE))))
+            (set ((_updateMyFontProperties :f_actionStringArray) _index) _actionString)
+            (:jm_delete _stringMaker 0 (:jm_length _stringMaker))
+            (set ((_updateMyFontProperties :f_keymappingBeginWidthArray) _index) (brshift (:jm_stringWidth _font (:jm_toString (:jm_append (:jm_append _stringMaker ((_updateMyFontProperties :f_actionStringArray) _index)) _keyMappings))) 1))
+            (set ((_updateMyFontProperties :f_actionStringDeltaXArray) _index) (:jm_stringWidth _font _actionString))
+            (set _size2 (:jm_size _list))
+            (set ((_updateMyFontProperties :f_inputDeltaXArray) _index) (array/new-filled _size2 0))
+            (set ((_updateMyFontProperties :f_sepArray) _index) (array/new-filled _size2 nil))
+            (set ((_updateMyFontProperties :f_sepWidthArray) _index) (array/new-filled _size2 0))
+            (do
+                (var _index2 0)
+                (while (< _index2 _size2)
+                    (do
+                (set _input ((_list :f_objectArray) _index2))
+                (set (((_updateMyFontProperties :f_inputDeltaXArray) _index) _index2) (:jm_stringWidth _font (:jm_getName _input)))
+                (set (((_updateMyFontProperties :f_sepArray) _index) _index2) (this :f_EMPTY_STRING))
+                (if (< (JR/i32 (+ _index2 1)) (:jm_size _list))
+                    (do
+                    (if (= (:jm_size _list) 2)
+                        (do
+                        (set (((_updateMyFontProperties :f_sepArray) _index) _index2) (jstatic_AND)))
+                        (do
+                        (if (= (JR/i32 (+ _index2 2)) (:jm_size _list))
+                            (do
+                            (set (((_updateMyFontProperties :f_sepArray) _index) _index2) (jstatic_MORE_THAN_TWO_IN_LIST_AND)))
+                            (do
+                            (set (((_updateMyFontProperties :f_sepArray) _index) _index2) (jstatic_SEP))))))))
+                (if (not= (((_updateMyFontProperties :f_sepArray) _index) _index2) (this :f_EMPTY_STRING))
+                    (do
+                    (set (((_updateMyFontProperties :f_sepWidthArray) _index) _index2) (:jm_stringWidth _font (((_updateMyFontProperties :f_sepArray) _index) _index2))))))
+                    (do (set _index2 (JR/i32 (+ _index2 1)))))))
+                (do (set _index (JR/i32 (+ _index 1))))))
+        (set (this :f_updateMyFontProperties) _updateMyFontProperties)
+        ((get HelpPaintable/jproto :jm_updateMeasurement) this _graphics)))
+    
+(set jm_update (fn jm_update [this _selectedGameKey _selectedInput]
+        (var _stringMaker (StringMaker/jnew_0))
+        (:jm_putF (this :f_logUtil) (:jm_toString (:jm_append (:jm_append (:jm_append (:jm_append (:jm_append _stringMaker ((CommonLabels/jm_getInstance) :f_START_LABEL)) "selected GameKey: ") (:jm_toString_1 (this :f_stringUtil) _selectedGameKey)) " Input: ") (:jm_toString_1 (this :f_stringUtil) _selectedInput))) this ((this :f_commonStrings) :f_UPDATE))
+        (var _gameKeyMapping (:jm_getPersistentInputMappingInstance (PlatformInputMappingFactory/jm_getInstance)))
+        (var _size (length (this :f_gameInputMappingArray)))
+        (var _keyInfo (array/new-filled _size nil))
+        (var _keyMappingArray (array/new-filled _size nil))
+        (var _actionBasicColor (array/new-filled _size nil))
+        (var _inputBasicColorArray (array/new-filled _size nil))
+        (var _gameInputMapping nil)
+        (var _gameKey nil)
+        (var _list nil)
+        (do
+            (var _index 0)
+            (while (< _index _size)
+                (do
+            (set _gameInputMapping ((this :f_gameInputMappingArray) _index))
+            (set _gameKey (:jm_getGameKey _gameInputMapping))
+            (set _list (JR/className (:jm_getInputMapping _gameKeyMapping)))
+            (var _size2 (:jm_size _list))
+            (set (_inputBasicColorArray _index) (array/new-filled _size2 nil))
+            (do
+                (var _index2 0)
+                (while (< _index2 _size2)
+                    (do
+                (set ((_inputBasicColorArray _index) _index2) (this :f_basicColor)))
+                    (do (set _index2 (JR/i32 (+ _index2 1))))))
+            (if (= _gameKey _selectedGameKey)
+                (do
+                (:jm_delete _stringMaker 0 (:jm_length _stringMaker))
+                (:jm_putF (this :f_logUtil) (:jm_toString (:jm_append (:jm_append _stringMaker "Found: selected GameKey: ") (:jm_toString_1 (this :f_stringUtil) _selectedGameKey))) this ((this :f_commonStrings) :f_UPDATE))
+                (set (_actionBasicColor _index) (this :f_selectedBasicColor))
+                (var _indexOfSelectedInput (:jm_indexOf _list _selectedInput))
+                (if (>= _indexOfSelectedInput 0)
+                    (do
+                    (:jm_delete _stringMaker 0 (:jm_length _stringMaker))
+                    (:jm_putF (this :f_logUtil) (:jm_toString (:jm_append (:jm_append _stringMaker "Found: selected Input: ") (:jm_toString_1 (this :f_stringUtil) _selectedInput))) this ((this :f_commonStrings) :f_UPDATE))
+                    (set ((_inputBasicColorArray _index) _indexOfSelectedInput) (this :f_selectedBasicColor)))))
+                (do
+                (set (_actionBasicColor _index) (this :f_basicColor))))
+            (set (_keyInfo _index) (:jm_getName _gameInputMapping))
+            (set (_keyMappingArray _index) _list))
+                (do (set _index (JR/i32 (+ _index 1))))))
+        (set (this :f_keyMappingArray) _keyMappingArray)
+        (set (this :f_actionBasicColor) _actionBasicColor)
+        (set (this :f_inputBasicColorArray) _inputBasicColorArray)
+        ((get HelpPaintable/jproto :jm_setInputInfoP) this _keyInfo)
+        (set (this :f_myFontProcessor) (this :f_updateMyFontProcessor))))
+    
+(set jm_get (fn jm_get [this _keyList]
+    (label jreturn
+        (var _stringBuffer (StringMaker/jnew_0))
+        (var _key nil)
+        (var _size (:jm_size _keyList))
+        (do
+            (var _index 0)
+            (while (< _index _size)
+                (do
+            (set _key ((_keyList :f_objectArray) _index))
+            (:jm_append _stringBuffer (:jm_getName _key))
+            (if (< (JR/i32 (+ _index 1)) (:jm_size _keyList))
+                (do
+                (if (= (:jm_size _keyList) 2)
+                    (do
+                    (:jm_append _stringBuffer (jstatic_AND)))
+                    (do
+                    (if (= (JR/i32 (+ _index 2)) (:jm_size _keyList))
+                        (do
+                        (:jm_append _stringBuffer (jstatic_MORE_THAN_TWO_IN_LIST_AND)))
+                        (do
+                        (:jm_append _stringBuffer (jstatic_SEP)))))))))
+                (do (set _index (JR/i32 (+ _index 1))))))
+        (return jreturn (:jm_toString _stringBuffer)))))
+    
+(set jm_paint (fn jm_paint [this _graphics]
+        (JR/className (this :f_myFontProcessor))
+        (var _halfWidth (JR/className (this :f_displayInfo)))
+        (:jm_setColor _graphics (:jm_intValue (this :f_basicColor)))
+        (:jm_drawString _graphics (this :f_title) (JR/i32 (- _halfWidth (this :f_titleBeginWidth))) ((this :f_updateMyFontProperties) :f_charHeight) (this :f_anchor))
+        (var _inputInfo (this :f_inputInfo))
+        (var _size (length _inputInfo))
+        (var _y 0)
+        (var _deltaX 0)
+        (var _size2 0)
+        (var _actionString nil)
+        (var _input nil)
+        (var _list nil)
+        (var _sep nil)
+        (var _beginWidth 0)
+        (do
+            (var _index 0)
+            (while (< _index _size)
+                (do
+            (set _y (JR/i32 (* (JR/i32 (+ _index 3)) ((this :f_updateMyFontProperties) :f_charHeight))))
+            (set _deltaX 0)
+            (set _list ((this :f_keyMappingArray) _index))
+            (set _size2 (:jm_size _list))
+            (set _beginWidth (((this :f_updateMyFontProperties) :f_keymappingBeginWidthArray) _index))
+            (:jm_setColor _graphics (JR/className ((this :f_actionBasicColor) _index)))
+            (set _actionString (((this :f_updateMyFontProperties) :f_actionStringArray) _index))
+            (:jm_drawString _graphics _actionString (JR/i32 (+ (JR/i32 (- _halfWidth _beginWidth)) _deltaX)) _y (this :f_anchor))
+            (set _deltaX (JR/i32 (+ _deltaX (((this :f_updateMyFontProperties) :f_actionStringDeltaXArray) _index))))
+            (do
+                (var _index2 0)
+                (while (< _index2 _size2)
+                    (do
+                (set _input ((_list :f_objectArray) _index2))
+                (:jm_setColor _graphics (JR/className (((this :f_inputBasicColorArray) _index) _index2)))
+                (:jm_drawString _graphics (:jm_getName _input) (JR/i32 (+ (JR/i32 (- _halfWidth _beginWidth)) _deltaX)) _y (this :f_anchor))
+                (set _deltaX (JR/i32 (+ _deltaX ((((this :f_updateMyFontProperties) :f_inputDeltaXArray) _index) _index2))))
+                (set _sep ((((this :f_updateMyFontProperties) :f_sepArray) _index) _index2))
+                (:jm_setColor _graphics (:jm_intValue (this :f_basicColor)))
+                (:jm_drawString _graphics _sep (JR/i32 (+ (JR/i32 (- _halfWidth _beginWidth)) _deltaX)) _y (this :f_anchor))
+                (set _deltaX (JR/i32 (+ _deltaX ((((this :f_updateMyFontProperties) :f_sepWidthArray) _index) _index2)))))
+                    (do (set _index2 (JR/i32 (+ _index2 1)))))))
+                (do (set _index (JR/i32 (+ _index 1))))))))
 
+(set jproto (table/setproto @{:jm_updateMeasurement jm_updateMeasurement :jm_update jm_update :jm_get jm_get :jm_paint jm_paint} HelpPaintable/jproto))
 
-function InputMappingHelpPaintable.new(gameInputMappingArray, backgroundBasicColor, basicColor)
-    local self = setmetatable(HelpPaintable.new("Input Mapping", backgroundBasicColor, basicColor), InputMappingHelpPaintable)
-    self:_init_fields()
-        -- super(...) made self above
-        self.gameInputMappingArray = gameInputMappingArray
-        self:update(self.NONE, self.NONE)
-        if backgroundBasicColor == self.basicColorFactory.WHITE or basicColor == self.basicColorFactory.WHITE then
-            self.selectedBasicColor = self.basicColorFactory.RED
-        else
-            self.selectedBasicColor = self.basicColorFactory.WHITE
-        end
-    return self
-end
-
-
-function InputMappingHelpPaintable:updateMeasurement(graphics)
-        local font = graphics:getFont()
-        local updateMyFontProperties = UpdateMyFontProperties.new()
-        updateMyFontProperties.charHeight = font:getHeight()
-        local stringMaker = StringMaker.new()
-        local inputInfo = self.inputInfo
-        local size = (inputInfo.n or #inputInfo)
-        updateMyFontProperties.actionStringArray = java_new_array(nil, size)
-        updateMyFontProperties.keymappingBeginWidthArray = java_new_array(0, size)
-        updateMyFontProperties.actionStringDeltaXArray = java_new_array(0, size)
-        updateMyFontProperties.inputDeltaXArray = java_new_array(0, size, 0)
-        updateMyFontProperties.sepArray = java_new_array(nil, size, 0)
-        updateMyFontProperties.sepWidthArray = java_new_array(0, size, 0)
-        local list = nil
-        local keyMappings = nil
-        local actionString = nil
-        local input = nil
-        local size2 = 0
-        for index = 0, size - 1 do
-            list = self.keyMappingArray[index + 1]
-            keyMappings = self:get(list)
-            stringMaker:delete(0, stringMaker:length())
-            actionString = tostring(stringMaker:append(inputInfo[index + 1]):append(self.commonSeps.COLON):append(self.commonSeps.SPACE):append(self.commonSeps.SPACE))
-            updateMyFontProperties.actionStringArray[index + 1] = actionString
-            stringMaker:delete(0, stringMaker:length())
-            updateMyFontProperties.keymappingBeginWidthArray[index + 1] = (((font:stringWidth(tostring(stringMaker:append(updateMyFontProperties.actionStringArray[index + 1]):append(keyMappings)))) // (1 << (1))))
-            updateMyFontProperties.actionStringDeltaXArray[index + 1] = font:stringWidth(actionString)
-            size2 = list:size()
-            updateMyFontProperties.inputDeltaXArray[index + 1] = java_new_array(0, size2)
-            updateMyFontProperties.sepArray[index + 1] = java_new_array(nil, size2)
-            updateMyFontProperties.sepWidthArray[index + 1] = java_new_array(0, size2)
-            for index2 = 0, size2 - 1 do
-                input = list.objectArray[index2 + 1]
-                updateMyFontProperties.inputDeltaXArray[index + 1][index2 + 1] = font:stringWidth(input:getName())
-                updateMyFontProperties.sepArray[index + 1][index2 + 1] = self.EMPTY_STRING
-                if index2 + 1 < list:size() then
-                    if list:size() == 2 then
-                        updateMyFontProperties.sepArray[index + 1][index2 + 1] = InputMappingHelpPaintable.AND
-                    else
-                        if index2 + 2 == list:size() then
-                            updateMyFontProperties.sepArray[index + 1][index2 + 1] = InputMappingHelpPaintable.MORE_THAN_TWO_IN_LIST_AND
-                        else
-                            updateMyFontProperties.sepArray[index + 1][index2 + 1] = InputMappingHelpPaintable.SEP
-                        end
-                    end
-                end
-                if updateMyFontProperties.sepArray[index + 1][index2 + 1] ~= self.EMPTY_STRING then
-                    updateMyFontProperties.sepWidthArray[index + 1][index2 + 1] = font:stringWidth(updateMyFontProperties.sepArray[index + 1][index2 + 1])
-                end
-            end
-        end
-        self.updateMyFontProperties = updateMyFontProperties
-        HelpPaintable.updateMeasurement(self, graphics)
-end
-
-
-function InputMappingHelpPaintable:update(selectedGameKey, selectedInput)
-        local stringMaker = StringMaker.new()
-        self.logUtil:putF(tostring(stringMaker:append(CommonLabels.getInstance().START_LABEL):append("selected GameKey: "):append(self.stringUtil:toString(selectedGameKey)):append(" Input: "):append(self.stringUtil:toString(selectedInput))), self, self.commonStrings.UPDATE)
-        local gameKeyMapping = PlatformInputMappingFactory.getInstance():getPersistentInputMappingInstance()
-        local size = (self.gameInputMappingArray.n or #self.gameInputMappingArray)
-        local keyInfo = java_new_array(nil, size)
-        local keyMappingArray = java_new_array(nil, size)
-        local actionBasicColor = java_new_array(nil, size)
-        local inputBasicColorArray = java_new_array(nil, size)
-        local gameInputMapping = nil
-        local gameKey = nil
-        local list = nil
-        for index = 0, size - 1 do
-            gameInputMapping = self.gameInputMappingArray[index + 1]
-            gameKey = gameInputMapping:getGameKey()
-            list = gameKeyMapping:getInputMapping():getMappedInput(gameKey)
-            local size2 = list:size()
-            inputBasicColorArray[index + 1] = java_new_array(nil, size2)
-            for index2 = 0, size2 - 1 do
-                inputBasicColorArray[index + 1][index2 + 1] = self.basicColor
-            end
-            if gameKey == selectedGameKey then
-                stringMaker:delete(0, stringMaker:length())
-                self.logUtil:putF(tostring(stringMaker:append("Found: selected GameKey: "):append(self.stringUtil:toString(selectedGameKey))), self, self.commonStrings.UPDATE)
-                actionBasicColor[index + 1] = self.selectedBasicColor
-                local indexOfSelectedInput = list:indexOf(selectedInput)
-                if indexOfSelectedInput >= 0 then
-                    stringMaker:delete(0, stringMaker:length())
-                    self.logUtil:putF(tostring(stringMaker:append("Found: selected Input: "):append(self.stringUtil:toString(selectedInput))), self, self.commonStrings.UPDATE)
-                    inputBasicColorArray[index + 1][indexOfSelectedInput + 1] = self.selectedBasicColor
-                end
-            else
-                actionBasicColor[index + 1] = self.basicColor
-            end
-            keyInfo[index + 1] = gameInputMapping:getName()
-            keyMappingArray[index + 1] = list
-        end
-        self.keyMappingArray = keyMappingArray
-        self.actionBasicColor = actionBasicColor
-        self.inputBasicColorArray = inputBasicColorArray
-        HelpPaintable.setInputInfoP(self, keyInfo)
-        self.myFontProcessor = self.updateMyFontProcessor
-end
-
-
-function InputMappingHelpPaintable:get(keyList)
-        local stringBuffer = StringMaker.new()
-        local key = nil
-        local size = keyList:size()
-        for index = 0, size - 1 do
-            key = keyList.objectArray[index + 1]
-            stringBuffer:append(key:getName())
-            if index + 1 < keyList:size() then
-                if keyList:size() == 2 then
-                    stringBuffer:append(InputMappingHelpPaintable.AND)
-                else
-                    if index + 2 == keyList:size() then
-                        stringBuffer:append(InputMappingHelpPaintable.MORE_THAN_TWO_IN_LIST_AND)
-                    else
-                        stringBuffer:append(InputMappingHelpPaintable.SEP)
-                    end
-                end
-            end
-        end
-        return tostring(stringBuffer)
-end
-
-
-function InputMappingHelpPaintable:paint(graphics)
-        self.myFontProcessor:process(graphics)
-        local halfWidth = self.displayInfo:getLastHalfWidth()
-        graphics:setColor(math.tointeger(self.basicColor // 1))
-        graphics:drawString(self.title, halfWidth - self.titleBeginWidth, self.updateMyFontProperties.charHeight, self.anchor)
-        local inputInfo = self.inputInfo
-        local size = (inputInfo.n or #inputInfo)
-        local y = 0
-        local deltaX = 0
-        local size2 = 0
-        local actionString = nil
-        local input = nil
-        local list = nil
-        local sep = nil
-        local beginWidth = 0
-        for index = 0, size - 1 do
-            y = (index + 3) * self.updateMyFontProperties.charHeight
-            deltaX = 0
-            list = self.keyMappingArray[index + 1]
-            size2 = list:size()
-            beginWidth = self.updateMyFontProperties.keymappingBeginWidthArray[index + 1]
-            graphics:setColor(math.tointeger(self.actionBasicColor[index + 1] // 1))
-            actionString = self.updateMyFontProperties.actionStringArray[index + 1]
-            graphics:drawString(actionString, halfWidth - beginWidth + deltaX, y, self.anchor)
-            deltaX = deltaX + (self.updateMyFontProperties.actionStringDeltaXArray[index + 1])
-            for index2 = 0, size2 - 1 do
-                input = list.objectArray[index2 + 1]
-                graphics:setColor(math.tointeger(self.inputBasicColorArray[index + 1][index2 + 1] // 1))
-                graphics:drawString(input:getName(), halfWidth - beginWidth + deltaX, y, self.anchor)
-                deltaX = deltaX + (self.updateMyFontProperties.inputDeltaXArray[index + 1][index2 + 1])
-                sep = self.updateMyFontProperties.sepArray[index + 1][index2 + 1]
-                graphics:setColor(math.tointeger(self.basicColor // 1))
-                graphics:drawString(sep, halfWidth - beginWidth + deltaX, y, self.anchor)
-                deltaX = deltaX + (self.updateMyFontProperties.sepWidthArray[index + 1][index2 + 1])
-            end
-        end
-end
-
-InputMappingHelpPaintable.AND = " and "
-InputMappingHelpPaintable.SEP = ", "
-InputMappingHelpPaintable.MORE_THAN_TWO_IN_LIST_AND = ", and "
-
-return InputMappingHelpPaintable
 

@@ -1,64 +1,50 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---   
--- Generated Code Do Not Modify
--- package org.allbinary.game.collision.layer
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#   
+# Generated Code Do Not Modify
+# package org.allbinary.game.collision.layer
 
-local CollidableInterfaceCompositeInterface = require("org.allbinary.game.collision.CollidableInterfaceCompositeInterface")
-local CollidableCompositeLayer = require("org.allbinary.game.layer.CollidableCompositeLayer")
-local AllBinaryLayer = require("org.allbinary.layer.AllBinaryLayer")
-local AllBinaryLayerManager = require("org.allbinary.layer.AllBinaryLayerManager")
-local LayerProcessor = require("org.allbinary.layer.LayerProcessor")
+(import ../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(import ../../../../../org/allbinary/layer/LayerProcessor :as LayerProcessor)
+(defn- CollidableInterfaceLayerManager/jnew_0 [& args] (JR/call jfile "./CollidableInterfaceLayerManager" "jnew_0" args))
+(defn- AllBinaryCollisionManager/jm_getInstance [& args] (JR/call jfile "./AllBinaryCollisionManager" "jm_getInstance" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class CollidableInterfaceLayerProcessor
+(var jproto nil)
+(var jnew_0 nil)
+(var jm_processAt nil)
+(var jm_isProcessorLayer nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "CollidableInterfaceLayerProcessor"} jproto))
+        (JR/superInit this (LayerProcessor/jnew_1 (CollidableInterfaceLayerManager/jnew_0)))
+    this))
+    
+(set jm_processAt (fn jm_processAt [this _allBinaryLayerManager _layerInterface _index]
+        (var _collidableInterfaceCompositeInterface _layerInterface)
+        (if (JR/className (:jm_getCollidableInferface _collidableInterfaceCompositeInterface))
+            (do
+            (:jm_process (AllBinaryCollisionManager/jm_getInstance) (:jm_getLayerManager this) _collidableInterfaceCompositeInterface _index)))))
+    
+(set jm_isProcessorLayer (fn jm_isProcessorLayer [this _layerInterface]
+    (label jreturn
+        (if (:jm_implmentsCollidableInterface _layerInterface)
+            (do
+            (return jreturn true))
+            (do
+            (return jreturn false))))))
 
-local CollidableInterfaceLayerProcessor = {}
-CollidableInterfaceLayerProcessor.__index = CollidableInterfaceLayerProcessor
-CollidableInterfaceLayerProcessor.className = "CollidableInterfaceLayerProcessor"
-setmetatable(CollidableInterfaceLayerProcessor, {__index = LayerProcessor})
+(set jproto (table/setproto @{:jm_processAt jm_processAt :jm_isProcessorLayer jm_isProcessorLayer} LayerProcessor/jproto))
 
-
-function CollidableInterfaceLayerProcessor.new()
-    local self = setmetatable(LayerProcessor.new(CollidableInterfaceLayerManager.new()), CollidableInterfaceLayerProcessor)
-        -- super(...) made self above
-    return self
-end
-
-
--- throws Exception
-function CollidableInterfaceLayerProcessor:processAt(allBinaryLayerManager, layerInterface, index)
-        local collidableInterfaceCompositeInterface = layerInterface
-        if collidableInterfaceCompositeInterface:getCollidableInferface():isCollidable(collidableInterfaceCompositeInterface) then
-            AllBinaryCollisionManager.getInstance():process(self:getLayerManager(), collidableInterfaceCompositeInterface, index)
-        end
-end
-
-
-function CollidableInterfaceLayerProcessor:isProcessorLayer(layerInterface)
-        if layerInterface:implmentsCollidableInterface() then
-            return true
-        else
-            return false
-        end
-end
-
-return CollidableInterfaceLayerProcessor
 

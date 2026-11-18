@@ -1,57 +1,51 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.color
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.graphics.color
 
--- local Graphics = require("javax.microedition.lcdui.Graphics")
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class BasicColorSetUtil
+(var jproto nil)
+(var jcell_instance :jnone)
+(var jstatic_instance nil)
+(var jsetstatic_instance nil)
+(var jnew_0 nil)
+(var jm_getInstance nil)
+(var jm_setBasicColorP nil)
+(var jm_setBasicColorP3 nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jstatic_instance (fn jstatic_instance []
+  (when (= jcell_instance :jnone) (set jcell_instance (jnew_0)))
+  jcell_instance))
+(set jsetstatic_instance (fn jsetstatic_instance [value] (set jcell_instance value)))
 
-local BasicColorSetUtil = {}
-BasicColorSetUtil.__index = BasicColorSetUtil
-BasicColorSetUtil.className = "BasicColorSetUtil"
+    
+(set jm_getInstance (fn jm_getInstance []
+    (label jreturn
+        (return jreturn (jstatic_instance)))))
+    
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "BasicColorSetUtil"} jproto))
+    this))
+    
+(set jm_setBasicColorP (fn jm_setBasicColorP [this _graphics _basicColor]
+        (:jm_setColor _graphics (:jm_intValue _basicColor))))
+    
+(set jm_setBasicColorP3 (fn jm_setBasicColorP3 [this _graphics _basicColor _value]
+        (:jm_setColor _graphics _value)))
 
+(set jproto @{:jm_setBasicColorP jm_setBasicColorP :jm_setBasicColorP3 jm_setBasicColorP3})
 
-function BasicColorSetUtil.getInstance()
-        return BasicColorSetUtil.instance
-end
-
-
-function BasicColorSetUtil.new()
-    local self = setmetatable({}, BasicColorSetUtil)
-    return self
-end
-
-
-function BasicColorSetUtil:setBasicColorP(graphics, basicColor)
-        graphics:setColor(math.tointeger(basicColor // 1))
-end
-
-
-function BasicColorSetUtil:setBasicColorP3(graphics, basicColor, value)
-        graphics:setColor(value)
-end
-
-BasicColorSetUtil.instance = BasicColorSetUtil.new()
-
-return BasicColorSetUtil
 

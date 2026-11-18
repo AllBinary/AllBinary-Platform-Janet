@@ -1,109 +1,85 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.health
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.game.health
 
-local Animation = require("org.allbinary.animation.Animation")
-local BasicHudFactory = require("org.allbinary.game.graphics.hud.BasicHudFactory")
-local BasicColorFactory = require("org.allbinary.graphics.color.BasicColorFactory")
-local AllBinaryLayer = require("org.allbinary.layer.AllBinaryLayer")
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(import ../../../../org/allbinary/animation/Animation :as Animation)
+(defn- BasicHudFactory/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/game/graphics/hud/BasicHudFactory" "jm_getInstance" args))
+(defn- BasicColorFactory/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/graphics/color/BasicColorFactory" "jm_getInstance" args))
 
--- Java library Throwable. tostring gives the message like Java getMessage.
-local function java_exception(className, message, cause)
-    if cause == nil and type(message) == "table" then
-        cause = message
-        message = tostring(message)
-    end
-    local exception = {className = className, message = message, cause = cause}
-    function exception:getMessage() return self.message end
-    function exception:getCause() return self.cause end
-    function exception:printStackTrace() print(debug.traceback(tostring(self))) end
-    return setmetatable(exception, {__tostring = function(self) if self.message ~= nil then return tostring(self.message) end return self.className end})
-end
+# Java class HealthBarAnimation
+(var jproto nil)
+(var jnew_2 nil)
+(var jm_onHealthChange nil)
+(var jm_getY nil)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+    
+(set jnew_2 (fn jnew_2 [_layerInterface _location]
+    (var this (table/setproto @{:jclass "HealthBarAnimation" :f_basicColorFactory nil :f_x2 0 :f_thickness 0 :f_location 0 :f_allbinaryLayer nil} jproto))
+    (put this :f_basicColorFactory (BasicColorFactory/jm_getInstance))
+    
+    
+    
+    
+    (JR/superInit this (Animation/jnew_0))
+        (set (this :f_allbinaryLayer) _layerInterface)
+        (set (this :f_location) _location)
+        (var _basicHudFactory (BasicHudFactory/jm_getInstance))
+        (if (and (not= (this :f_location) (_basicHudFactory :f_TOPLEFT)) (not= (this :f_location) (_basicHudFactory :f_BOTTOMLEFT)))
+            (do
+            (error (JR/newException "Exception" "Location Not Valid"))))
+        (if (> (:jm_getWidth _layerInterface) 40)
+            (do
+            (set (this :f_thickness) 3))
+            (if (> (:jm_getWidth _layerInterface) 20)
+            (do
+            (set (this :f_thickness) 2))
+            (do
+            (set (this :f_thickness) 1))))
+    this))
+    
+(set jm_onHealthChange (fn jm_onHealthChange [this _newX2]
+        (set (this :f_x2) _newX2)
+        (var _quarter (brshift (:jm_getWidth (this :f_allbinaryLayer)) 2))
+        (if (> (this :f_x2) (JR/i32 (* _quarter 3)))
+            (do
+            (set (this :f_basicColor) ((this :f_basicColorFactory) :f_GREEN))
+            (set (this :f_colorP) (JR/className (this :f_basicColor))))
+            (if (> (this :f_x2) (JR/i32 (* _quarter 2)))
+            (do
+            (set (this :f_basicColor) ((this :f_basicColorFactory) :f_YELLOW))
+            (set (this :f_colorP) (JR/className (this :f_basicColor))))
+            (if (> (this :f_x2) _quarter)
+            (do
+            (set (this :f_basicColor) ((this :f_basicColorFactory) :f_ORANGE))
+            (set (this :f_colorP) (JR/className (this :f_basicColor))))
+            (do
+            (set (this :f_basicColor) ((this :f_basicColorFactory) :f_RED))
+            (set (this :f_colorP) (JR/className (this :f_basicColor)))))))))
+    
+(set jm_getY (fn jm_getY [this]
+    (label jreturn
+        (var _basicHudFactory (BasicHudFactory/jm_getInstance))
+        (if (= (this :f_location) (_basicHudFactory :f_TOPLEFT))
+            (do
+            (return jreturn (JR/i32 (- (JR/className (:jm_getViewPosition (this :f_allbinaryLayer))) 4))))
+            (if (= (this :f_location) (_basicHudFactory :f_BOTTOMLEFT))
+            (do
+            (return jreturn (JR/i32 (+ (JR/className (:jm_getViewPosition (this :f_allbinaryLayer))) 4))))))
+        (return jreturn (JR/i32 (- 1))))))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jproto (table/setproto @{:jm_onHealthChange jm_onHealthChange :jm_getY jm_getY} Animation/jproto))
 
-local HealthBarAnimation = {}
-HealthBarAnimation.__index = HealthBarAnimation
-HealthBarAnimation.className = "HealthBarAnimation"
-setmetatable(HealthBarAnimation, {__index = Animation})
-
-function HealthBarAnimation:_init_fields()
-    self.basicColorFactory = BasicColorFactory.getInstance()
-    self.x2 = 0
-    self.thickness = 0
-    self.location = nil
-    self.allbinaryLayer = nil
-end
-
-
-function HealthBarAnimation.new(layerInterface, location)
-    local self = setmetatable(Animation.new(), HealthBarAnimation)
-    self:_init_fields()
-        self.allbinaryLayer = layerInterface
-        self.location = location
-        local basicHudFactory = BasicHudFactory.getInstance()
-        if self.location ~= basicHudFactory.TOPLEFT and self.location ~= basicHudFactory.BOTTOMLEFT then
-            error(java_exception("Exception", "Location Not Valid"), 0)
-        end
-        if layerInterface:getWidth() > 40 then
-            self.thickness = 3
-        elseif layerInterface:getWidth() > 20 then
-            self.thickness = 2
-        else
-            self.thickness = 1
-        end
-    return self
-end
-
-
-function HealthBarAnimation:onHealthChange(newX2)
-        self.x2 = newX2
-        local quarter = (((self.allbinaryLayer:getWidth()) // (1 << (2))))
-        if self.x2 > quarter * 3 then
-            self.basicColor = self.basicColorFactory.GREEN
-            self.colorP = math.tointeger(self.basicColor // 1)
-        elseif self.x2 > quarter * 2 then
-            self.basicColor = self.basicColorFactory.YELLOW
-            self.colorP = math.tointeger(self.basicColor // 1)
-        elseif self.x2 > quarter then
-            self.basicColor = self.basicColorFactory.ORANGE
-            self.colorP = math.tointeger(self.basicColor // 1)
-        else
-            self.basicColor = self.basicColorFactory.RED
-            self.colorP = math.tointeger(self.basicColor // 1)
-        end
-end
-
-
-function HealthBarAnimation:getY()
-        local basicHudFactory = BasicHudFactory.getInstance()
-        if self.location == basicHudFactory.TOPLEFT then
-            return self.allbinaryLayer:getViewPosition():getY() - 4
-        elseif self.location == basicHudFactory.BOTTOMLEFT then
-            return self.allbinaryLayer:getViewPosition():getY2() + 4
-        end
-        return -1
-end
-
-return HealthBarAnimation
 

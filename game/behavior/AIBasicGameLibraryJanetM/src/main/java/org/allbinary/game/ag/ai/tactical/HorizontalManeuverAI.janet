@@ -1,109 +1,91 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.ag.ai.tactical
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.game.ag.ai.tactical
 
--- local Canvas = require("javax.microedition.lcdui.Canvas")
-local BasicAI = require("org.allbinary.game.ai.BasicAI")
-local GameInput = require("org.allbinary.game.input.GameInput")
-local DisplayInfoSingleton = require("org.allbinary.graphics.displayable.DisplayInfoSingleton")
-local AllBinaryLayer = require("org.allbinary.layer.AllBinaryLayer")
-local AllBinaryLayerManager = require("org.allbinary.layer.AllBinaryLayerManager")
+(import ../../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- Canvas/jstatic_KEY_POUND [& args] (JR/call jfile "../../../../../../javax/microedition/lcdui/Canvas" "jstatic_KEY_POUND" args))
+(defn- Canvas/jstatic_KEY_NUM0 [& args] (JR/call jfile "../../../../../../javax/microedition/lcdui/Canvas" "jstatic_KEY_NUM0" args))
+(import ../../../../../../org/allbinary/game/ai/BasicAI :as BasicAI)
+(defn- DisplayInfoSingleton/jm_getInstance [& args] (JR/call jfile "../../../../../../org/allbinary/graphics/displayable/DisplayInfoSingleton" "jm_getInstance" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class HorizontalManeuverAI
+(var jproto nil)
+(var jnew_2 nil)
+(var jm_processAI nil)
+(var jm_reverse nil)
+(var jm_accelerate nil)
+(var jm_drop nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jnew_2 (fn jnew_2 [_ownerLayerInterface _gameInput]
+    (var this (table/setproto @{:jclass "HorizontalManeuverAI" :f_currentRelativeAngle 0 :f_currentSpeed 0} jproto))
+    (put this :f_currentRelativeAngle 0)
+    
+        (JR/superInit this (BasicAI/jnew_2 _ownerLayerInterface _gameInput))
+        (set (this :f_currentSpeed) 5)
+    this))
+    
+(set jm_processAI (fn jm_processAI [this _allBinaryLayerManager]
+        (var _ownerLayerInterface (:jm_getOwnerLayerInterface this))
+        (var _x (:jm_getXP _ownerLayerInterface))
+        (if (<= (JR/i32 (- (:jm_getXP _ownerLayerInterface) (this :f_currentSpeed))) 0)
+            (do
+            (:jm_reverse this)
+            (:jm_drop this)))
+        (if (> (JR/i32 (+ (:jm_getX2 _ownerLayerInterface) (this :f_currentSpeed))) (:jm_getLastWidth (DisplayInfoSingleton/jm_getInstance)))
+            (do
+            (:jm_reverse this)
+            (:jm_accelerate this)
+            (:jm_drop this)))
+        (if (= (this :f_currentRelativeAngle) 0)
+            (do
+            (set _x (JR/i32 (+ _x (this :f_currentSpeed)))))
+            (if (= (this :f_currentRelativeAngle) 180)
+            (do
+            (set _x (JR/i32 (- _x (this :f_currentSpeed)))))))
+        (:jm_setPosition _ownerLayerInterface _x (:jm_getYP _ownerLayerInterface) (:jm_getZP _ownerLayerInterface))
+        (if (= (this :f_currentRelativeAngle) 0)
+            (do
+            ((get BasicAI/jproto :jm_processKeyAI) this (Canvas/jstatic_KEY_NUM0)))
+            (if (= (this :f_currentRelativeAngle) 180)
+            (do
+            ((get BasicAI/jproto :jm_processKeyAI) this (Canvas/jstatic_KEY_POUND)))))))
+    
+(set jm_reverse (fn jm_reverse [this]
+        (if (= (this :f_currentRelativeAngle) 180)
+            (do
+            (set (this :f_currentRelativeAngle) 0))
+            (if (= (this :f_currentRelativeAngle) 0)
+            (do
+            (set (this :f_currentRelativeAngle) 180))))))
+    
+(set jm_accelerate (fn jm_accelerate [this]
+        (if (< (this :f_currentSpeed) 20)
+            (do
+            (set (this :f_currentSpeed) (JR/i32 (+ (this :f_currentSpeed) 1)))))))
+    
+(set jm_drop (fn jm_drop [this]
+        (var _ownerLayerInterface (:jm_getOwnerLayerInterface this))
+        (var _y (:jm_getYP _ownerLayerInterface))
+        (if (> (JR/i32 (+ (:jm_getY2 _ownerLayerInterface) (:jm_getHeight _ownerLayerInterface))) (:jm_getLastHeight (DisplayInfoSingleton/jm_getInstance)))
+            (do
+            (set _y 0))
+            (do
+            (set _y (JR/i32 (+ _y (JR/i32 (+ (:jm_getHeight _ownerLayerInterface) 1)))))))
+        (:jm_setPosition _ownerLayerInterface (:jm_getXP _ownerLayerInterface) _y (:jm_getZP _ownerLayerInterface))))
 
-local HorizontalManeuverAI = {}
-HorizontalManeuverAI.__index = HorizontalManeuverAI
-HorizontalManeuverAI.className = "HorizontalManeuverAI"
-setmetatable(HorizontalManeuverAI, {__index = BasicAI})
+(set jproto (table/setproto @{:jm_processAI jm_processAI :jm_reverse jm_reverse :jm_accelerate jm_accelerate :jm_drop jm_drop} BasicAI/jproto))
 
-function HorizontalManeuverAI:_init_fields()
-    self.currentRelativeAngle = 0
-    self.currentSpeed = nil
-end
-
-
-function HorizontalManeuverAI.new(ownerLayerInterface, gameInput)
-    local self = setmetatable(BasicAI.new(ownerLayerInterface, gameInput), HorizontalManeuverAI)
-    self:_init_fields()
-        -- super(...) made self above
-        self.currentSpeed = 5
-    return self
-end
-
-
--- throws Exception
-function HorizontalManeuverAI:processAI(allBinaryLayerManager)
-        local ownerLayerInterface = self:getOwnerLayerInterface()
-        local x = ownerLayerInterface:getXP()
-        if ownerLayerInterface:getXP() - self.currentSpeed <= 0 then
-            self:reverse()
-            self:drop()
-        end
-        if ownerLayerInterface:getX2() + self.currentSpeed > DisplayInfoSingleton.getInstance():getLastWidth() then
-            self:reverse()
-            self:accelerate()
-            self:drop()
-        end
-        if self.currentRelativeAngle == 0 then
-            x = x + (self.currentSpeed)
-        elseif self.currentRelativeAngle == 180 then
-            x = x - (self.currentSpeed)
-        end
-        ownerLayerInterface:setPosition(x, ownerLayerInterface:getYP(), ownerLayerInterface:getZP())
-        if self.currentRelativeAngle == 0 then
-            BasicAI.processKeyAI(self, Canvas.KEY_NUM0)
-        elseif self.currentRelativeAngle == 180 then
-            BasicAI.processKeyAI(self, Canvas.KEY_POUND)
-        end
-end
-
-
-function HorizontalManeuverAI:reverse()
-        if self.currentRelativeAngle == 180 then
-            self.currentRelativeAngle = 0
-        elseif self.currentRelativeAngle == 0 then
-            self.currentRelativeAngle = 180
-        end
-end
-
-
-function HorizontalManeuverAI:accelerate()
-        if self.currentSpeed < 20 then
-            self.currentSpeed = self.currentSpeed + 1
-        end
-end
-
-
-function HorizontalManeuverAI:drop()
-        local ownerLayerInterface = self:getOwnerLayerInterface()
-        local y = ownerLayerInterface:getYP()
-        if ownerLayerInterface:getY2() + ownerLayerInterface:getHeight() > DisplayInfoSingleton.getInstance():getLastHeight() then
-            y = 0
-        else
-            y = y + (ownerLayerInterface:getHeight() + 1)
-        end
-        ownerLayerInterface:setPosition(ownerLayerInterface:getXP(), y, ownerLayerInterface:getZP())
-end
-
-return HorizontalManeuverAI
 

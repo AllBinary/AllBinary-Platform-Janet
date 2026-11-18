@@ -1,57 +1,44 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.animation.image
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.animation.image
 
-local AnimationBehavior = require("org.allbinary.animation.AnimationBehavior")
-local NullUtil = require("org.allbinary.logic.NullUtil")
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
-local CacheableInterface = require("org.allbinary.logic.util.cache.CacheableInterface")
-local AdjustedImageArrayRotationAnimation = require("org.allbinary.animation.image.AdjustedImageArrayRotationAnimation")
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- NullUtil/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/logic/NullUtil" "jm_getInstance" args))
+(defn- StringUtil/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/logic/string/StringUtil" "jm_getInstance" args))
+(import ./AdjustedImageArrayRotationAnimation :as AdjustedImageArrayRotationAnimation)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class ImageArrayRotationAnimationCacheable
+(var jproto nil)
+(var jnew_2 nil)
+(var jm_getKey nil)
+(var jm_toString nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jnew_2 (fn jnew_2 [_anyType _animationBehavior]
+    (var this (table/setproto @{:jclass "ImageArrayRotationAnimationCacheable"} jproto))
+        (JR/superInit this (AdjustedImageArrayRotationAnimation/jnew_6 (:jm_getImageArray _anyType) (:jm_getAngleInfoP _anyType) (:jm_getTotalAngle _anyType) (:jm_getDx _anyType) (:jm_getDy _anyType) _animationBehavior))
+    this))
+    
+(set jm_getKey (fn jm_getKey [this]
+    (label jreturn
+        (return jreturn ((NullUtil/jm_getInstance) :f_NULL_OBJECT)))))
+    
+(set jm_toString (fn jm_toString [this]
+    (label jreturn
+        (return jreturn ((StringUtil/jm_getInstance) :f_EMPTY_STRING)))))
 
-local ImageArrayRotationAnimationCacheable = {}
-ImageArrayRotationAnimationCacheable.__index = ImageArrayRotationAnimationCacheable
-ImageArrayRotationAnimationCacheable.className = "ImageArrayRotationAnimationCacheable"
-setmetatable(ImageArrayRotationAnimationCacheable, {__index = AdjustedImageArrayRotationAnimation})
+(set jproto (table/setproto @{:jm_getKey jm_getKey :jm_toString jm_toString} AdjustedImageArrayRotationAnimation/jproto))
 
-
-function ImageArrayRotationAnimationCacheable.new(anyType, animationBehavior)
-    local self = setmetatable(AdjustedImageArrayRotationAnimation.new((anyType):getImageArray(), (anyType):getAngleInfoP(), (anyType):getTotalAngle(), (anyType):getDx(), (anyType):getDy(), animationBehavior), ImageArrayRotationAnimationCacheable)
-        -- super(...) made self above
-    return self
-end
-
-
-function ImageArrayRotationAnimationCacheable:getKey()
-        return NullUtil.getInstance().NULL_OBJECT
-end
-
-
-function ImageArrayRotationAnimationCacheable:toString()
-        return StringUtil.getInstance().EMPTY_STRING
-end
-ImageArrayRotationAnimationCacheable.__tostring = function(self) return self:toString() end
-
-return ImageArrayRotationAnimationCacheable
 

@@ -1,71 +1,59 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2022 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
--- 
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.displayable.screen
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2022 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+# 
+# Generated Code Do Not Modify
+# package org.allbinary.graphics.displayable.screen
 
--- local Canvas = require("javax.microedition.lcdui.Canvas")
--- local Command = require("javax.microedition.lcdui.Command")
--- local CommandListener = require("javax.microedition.lcdui.CommandListener")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
-local BasicArrayListD = require("org.allbinary.util.BasicArrayListD")
+(import ../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- LogUtil/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/logic/communication/log/LogUtil" "jm_getInstance" args))
+(defn- CommonStrings/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/string/CommonStrings" "jm_getInstance" args))
+(defn- BasicArrayListD/jnew_0 [& args] (JR/call jfile "../../../../../org/allbinary/util/BasicArrayListD" "jnew_0" args))
+(defn- AboutCommandProcessor/jm_getInstance [& args] (JR/call jfile "./AboutCommandProcessor" "jm_getInstance" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class WebCommandProcessor
+(var jproto nil)
+(var jcell_instance :jnone)
+(var jstatic_instance nil)
+(var jsetstatic_instance nil)
+(var jnew_0 nil)
+(var jm_getInstance nil)
+(var jm_process nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jstatic_instance (fn jstatic_instance []
+  (when (= jcell_instance :jnone) (set jcell_instance (jnew_0)))
+  jcell_instance))
+(set jsetstatic_instance (fn jsetstatic_instance [value] (set jcell_instance value)))
 
-local WebCommandProcessor = {}
-WebCommandProcessor.__index = WebCommandProcessor
-WebCommandProcessor.className = "WebCommandProcessor"
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "WebCommandProcessor" :f_logUtil nil :f_aboutCommandProcessor nil :f_list nil} jproto))
+    (put this :f_logUtil (LogUtil/jm_getInstance))
+    (put this :f_aboutCommandProcessor (AboutCommandProcessor/jm_getInstance))
+    (put this :f_list (BasicArrayListD/jnew_0))
+    this))
 
-function WebCommandProcessor:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-    self.aboutCommandProcessor = AboutCommandProcessor.getInstance()
-    self.list = BasicArrayListD.new()
-end
+    
+(set jm_getInstance (fn jm_getInstance []
+    (label jreturn
+        (return jreturn (jstatic_instance)))))
+    
+(set jm_process (fn jm_process [this _midletCommandListener _command _canvas]
+        (try
+            (do
+            (:jm_removeAt (this :f_list) 0))
+            ([_e] (do
+            (var _commonStrings (CommonStrings/jm_getInstance))
+            (:jm_put (this :f_logUtil) (_commonStrings :f_EXCEPTION) this (_commonStrings :f_PROCESS) _e))))))
 
-function WebCommandProcessor.new()
-    local self = setmetatable({}, WebCommandProcessor)
-    self:_init_fields()
-    return self
-end
+(set jproto @{:jm_process jm_process})
 
-
-function WebCommandProcessor.getInstance()
-        return WebCommandProcessor.instance
-end
-
-
-function WebCommandProcessor:process(midletCommandListener, command, canvas)
-        local try_ok, try_error = pcall(function()
-            self.list:removeAt(0)
-        end)
-        if not try_ok then
-            local e = try_error
-            local commonStrings = CommonStrings.getInstance()
-            self.logUtil:put(commonStrings.EXCEPTION, self, commonStrings.PROCESS, e)
-        end
-end
-
-WebCommandProcessor.instance = WebCommandProcessor.new()
-
-return WebCommandProcessor
 

@@ -1,43 +1,33 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.io
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.logic.io
 
--- local DataInputStream = require("java.io.DataInputStream")
--- local InputStream = require("java.io.InputStream")
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(import ../../../../java/io/DataInputStream :as DataInputStream)
+(import ../../../../java/io/InputStream :as InputStream)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class AbDataInputStream
+(var jproto nil)
+(var jnew_1 nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jnew_1 (fn jnew_1 [_out]
+    (var this (table/setproto @{:jclass "AbDataInputStream"} jproto))
+        (JR/superInit this (DataInputStream/jnew_1 _out))
+    this))
 
-local AbDataInputStream = {}
-AbDataInputStream.__index = AbDataInputStream
-AbDataInputStream.className = "AbDataInputStream"
-setmetatable(AbDataInputStream, {__index = DataInputStream})
+(set jproto (table/setproto @{} DataInputStream/jproto))
 
-
-function AbDataInputStream.new(out)
-    local self = setmetatable(DataInputStream.new(out), AbDataInputStream)
-        -- super(...) made self above
-    return self
-end
-
-return AbDataInputStream
 

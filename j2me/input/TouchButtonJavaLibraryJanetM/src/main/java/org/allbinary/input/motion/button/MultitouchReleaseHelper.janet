@@ -1,60 +1,51 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
---
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
---
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
---
--- Created By: Travis Berthelot
--- 
--- Generated Code Do Not Modify
--- package org.allbinary.input.motion.button
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+#
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+#
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+#
+# Created By: Travis Berthelot
+# 
+# Generated Code Do Not Modify
+# package org.allbinary.input.motion.button
 
-local GameKeyEvent = require("org.allbinary.game.input.event.GameKeyEvent")
-local ReleaseHelper = require("org.allbinary.input.motion.button.ReleaseHelper")
+(import ../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(import ./ReleaseHelper :as ReleaseHelper)
+(defn- CancelTouchButtonInputFactory/jm_getInstance [& args] (JR/call jfile "./CancelTouchButtonInputFactory" "jm_getInstance" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class MultitouchReleaseHelper
+(var jproto nil)
+(var jnew_1 nil)
+(var jm_release nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jnew_1 (fn jnew_1 [_touchButtonRecognizer]
+    (var this (table/setproto @{:jclass "MultitouchReleaseHelper"} jproto))
+        (JR/superInit this (ReleaseHelper/jnew_1 _touchButtonRecognizer))
+    this))
+    
+(set jm_release (fn jm_release [this _touchButtonInput _deviceId]
+        (var _cancelTouchButtonInput (:jm_getCancel (CancelTouchButtonInputFactory/jm_getInstance) _touchButtonInput))
+        (var _nextTouchButtonInput nil)
+        (var _gameKeyEvent nil)
+        (do
+            (var _index (JR/i32 (- (JR/className ((this :f_touchButtonRecognizer) :f_currentlyPressedTouchButtonSingleton)) 1)))
+            (while (>= _index 0)
+                (do
+            (set _nextTouchButtonInput (JR/className ((this :f_touchButtonRecognizer) :f_currentlyPressedTouchButtonSingleton)))
+            (if (= _cancelTouchButtonInput _nextTouchButtonInput)
+                (do
+                (set _gameKeyEvent (:jm_getGameKeyEvent _nextTouchButtonInput))
+                (JR/className ((this :f_touchButtonRecognizer) :f_upGameKeyEventHandler))
+                (JR/className (JR/className ((this :f_touchButtonRecognizer) :f_upGameKeyEventHandler)))
+                (JR/className ((this :f_touchButtonRecognizer) :f_currentlyPressedTouchButtonSingleton)))))
+                (do (set _index (JR/i32 (- _index 1))))))))
 
-local MultitouchReleaseHelper = {}
-MultitouchReleaseHelper.__index = MultitouchReleaseHelper
-MultitouchReleaseHelper.className = "MultitouchReleaseHelper"
-setmetatable(MultitouchReleaseHelper, {__index = ReleaseHelper})
+(set jproto (table/setproto @{:jm_release jm_release} ReleaseHelper/jproto))
 
-
-function MultitouchReleaseHelper.new(touchButtonRecognizer)
-    local self = setmetatable(ReleaseHelper.new(touchButtonRecognizer), MultitouchReleaseHelper)
-        -- super(...) made self above
-    return self
-end
-
-
--- throws Exception
-function MultitouchReleaseHelper:release(touchButtonInput, deviceId)
-        local cancelTouchButtonInput = CancelTouchButtonInputFactory.getInstance():getCancel(touchButtonInput)
-        local nextTouchButtonInput = nil
-        local gameKeyEvent = nil
-        for index = self.touchButtonRecognizer.currentlyPressedTouchButtonSingleton:size() - 1, 0, -1 do
-            nextTouchButtonInput = self.touchButtonRecognizer.currentlyPressedTouchButtonSingleton:get(index)
-            if cancelTouchButtonInput == nextTouchButtonInput then
-                gameKeyEvent = nextTouchButtonInput:getGameKeyEvent()
-                self.touchButtonRecognizer.upGameKeyEventHandler:fireEvent(gameKeyEvent)
-                self.touchButtonRecognizer.upGameKeyEventHandler:getInstanceForDevice(deviceId):fireEvent(gameKeyEvent)
-                self.touchButtonRecognizer.currentlyPressedTouchButtonSingleton:removeAt(index)
-            end
-        end
-end
-
-return MultitouchReleaseHelper
 

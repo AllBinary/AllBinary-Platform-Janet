@@ -1,66 +1,55 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.input
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.game.input
 
-local PaintableInterface = require("org.allbinary.graphics.paint.PaintableInterface")
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(import ../../../../org/allbinary/graphics/paint/PaintableInterface :as PaintableInterface)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class TestInputInterface
+(var jproto nil)
+(var jnew_0 nil)
+(var jm_up nil)
+(var jm_down nil)
+(var jm_left nil)
+(var jm_right nil)
+(var jm_strafeLeft nil)
+(var jm_strafeRight nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "TestInputInterface"} jproto))
+    this))
 
--- Java interface
-local TestInputInterface = {}
-TestInputInterface.__index = TestInputInterface
-TestInputInterface.className = "TestInputInterface"
-setmetatable(TestInputInterface, {__index = PaintableInterface})
+    
+(set jm_up (fn jm_up [this]
+    (error (JR/newException "AbstractMethodError" "up"))))
+    
+(set jm_down (fn jm_down [this]
+    (error (JR/newException "AbstractMethodError" "down"))))
+    
+(set jm_left (fn jm_left [this]
+    (error (JR/newException "AbstractMethodError" "left"))))
+    
+(set jm_right (fn jm_right [this]
+    (error (JR/newException "AbstractMethodError" "right"))))
+    
+(set jm_strafeLeft (fn jm_strafeLeft [this]
+    (error (JR/newException "AbstractMethodError" "strafeLeft"))))
+    
+(set jm_strafeRight (fn jm_strafeRight [this]
+    (error (JR/newException "AbstractMethodError" "strafeRight"))))
 
+(set jproto @{:jm_up jm_up :jm_down jm_down :jm_left jm_left :jm_right jm_right :jm_strafeLeft jm_strafeLeft :jm_strafeRight jm_strafeRight})
 
-function TestInputInterface:up()
-    error("abstract method up")
-end
-
-
-function TestInputInterface:down()
-    error("abstract method down")
-end
-
-
-function TestInputInterface:left()
-    error("abstract method left")
-end
-
-
-function TestInputInterface:right()
-    error("abstract method right")
-end
-
-
-function TestInputInterface:strafeLeft()
-    error("abstract method strafeLeft")
-end
-
-
-function TestInputInterface:strafeRight()
-    error("abstract method strafeRight")
-end
-
-return TestInputInterface
 

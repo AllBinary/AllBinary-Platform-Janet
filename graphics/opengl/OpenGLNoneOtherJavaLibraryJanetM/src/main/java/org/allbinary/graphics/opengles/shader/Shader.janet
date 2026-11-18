@@ -1,49 +1,36 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2025 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.opengles.shader
+# 
+# AllBinary Open License Version 1 
+# Copyright (c) 2025 AllBinary 
+#  
+# By agreeing to this license you and any business entity you represent are 
+# legally bound to the AllBinary Open License Version 1 legal agreement. 
+#  
+# You may obtain the AllBinary Open License Version 1 legal agreement from 
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+#  
+# Created By: Travis Berthelot 
+#   
+# Generated Code Do Not Modify
+# package org.allbinary.graphics.opengles.shader
 
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
-local BasicArrayListUtil = require("org.allbinary.util.BasicArrayListUtil")
+(import ../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- StringUtil/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/logic/string/StringUtil" "jm_getInstance" args))
+(defn- BasicArrayListUtil/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/util/BasicArrayListUtil" "jm_getInstance" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class Shader
+(var jproto nil)
+(var jnew_0 nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "Shader" :f_shaderName nil :f_shaderStringList nil :f_shaderAsString nil :f_shaderHandle 0} jproto))
+    (put this :f_shaderName ((StringUtil/jm_getInstance) :f_EMPTY_STRING))
+    (put this :f_shaderStringList (:jm_getImmutableInstance (BasicArrayListUtil/jm_getInstance)))
+    (put this :f_shaderAsString ((StringUtil/jm_getInstance) :f_EMPTY_STRING))
+    
+    this))
 
-local Shader = {}
-Shader.__index = Shader
-Shader.className = "Shader"
 
-function Shader:_init_fields()
-    self.shaderName = StringUtil.getInstance().EMPTY_STRING
-    self.shaderStringList = BasicArrayListUtil.getInstance():getImmutableInstance()
-    self.shaderAsString = StringUtil.getInstance().EMPTY_STRING
-    self.shaderHandle = 0
-end
+(set jproto @{})
 
-function Shader.new()
-    local self = setmetatable({}, Shader)
-    self:_init_fields()
-    return self
-end
-
-return Shader
 

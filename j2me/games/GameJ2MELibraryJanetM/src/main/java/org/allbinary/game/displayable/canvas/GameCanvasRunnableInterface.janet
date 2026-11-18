@@ -1,116 +1,87 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.displayable.canvas
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.game.displayable.canvas
 
--- local CommandListener = require("javax.microedition.lcdui.CommandListener")
--- local ItemStateListener = require("javax.microedition.lcdui.ItemStateListener")
-local GameStateCompositeInterface = require("org.allbinary.game.state.GameStateCompositeInterface")
-local PaintableInterface = require("org.allbinary.graphics.paint.PaintableInterface")
-local RunnableInterface = require("org.allbinary.thread.RunnableInterface")
-local ABHashtable = require("org.allbinary.util.ABHashtable")
+(import ../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(import ../../../../../org/allbinary/thread/RunnableInterface :as RunnableInterface)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class GameCanvasRunnableInterface
+(var jproto nil)
+(var jnew_0 nil)
+(var jm_getTitle nil)
+(var jm_isInitialized nil)
+(var jm_isPaused nil)
+(var jm_unPause nil)
+(var jm_pause nil)
+(var jm_isHighScoreSubmitted nil)
+(var jm_setHighScoreSubmitted nil)
+(var jm_processGameOver nil)
+(var jm_isGameOver nil)
+(var jm_initCommands nil)
+(var jm_getCurrentStateHashtable nil)
+(var jm_getLoadStateHashtable nil)
+(var jm_setLoadStateHashtable nil)
+(var jm_getType nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "GameCanvasRunnableInterface"} jproto))
+    this))
 
--- Java interface
-local GameCanvasRunnableInterface = {}
-GameCanvasRunnableInterface.__index = GameCanvasRunnableInterface
-GameCanvasRunnableInterface.className = "GameCanvasRunnableInterface"
-setmetatable(GameCanvasRunnableInterface, {__index = RunnableInterface})
+    
+(set jm_getTitle (fn jm_getTitle [this]
+    (error (JR/newException "AbstractMethodError" "getTitle"))))
+    
+(set jm_isInitialized (fn jm_isInitialized [this]
+    (error (JR/newException "AbstractMethodError" "isInitialized"))))
+    
+(set jm_isPaused (fn jm_isPaused [this]
+    (error (JR/newException "AbstractMethodError" "isPaused"))))
+    
+(set jm_unPause (fn jm_unPause [this]
+    (error (JR/newException "AbstractMethodError" "unPause"))))
+    
+(set jm_pause (fn jm_pause [this]
+    (error (JR/newException "AbstractMethodError" "pause"))))
+    
+(set jm_isHighScoreSubmitted (fn jm_isHighScoreSubmitted [this]
+    (error (JR/newException "AbstractMethodError" "isHighScoreSubmitted"))))
+    
+(set jm_setHighScoreSubmitted (fn jm_setHighScoreSubmitted [this _highScoreSubmitted]
+    (error (JR/newException "AbstractMethodError" "setHighScoreSubmitted"))))
+    
+(set jm_processGameOver (fn jm_processGameOver [this]
+    (error (JR/newException "AbstractMethodError" "processGameOver"))))
+    
+(set jm_isGameOver (fn jm_isGameOver [this]
+    (error (JR/newException "AbstractMethodError" "isGameOver"))))
+    
+(set jm_initCommands (fn jm_initCommands [this _cmdListener]
+    (error (JR/newException "AbstractMethodError" "initCommands"))))
+    
+(set jm_getCurrentStateHashtable (fn jm_getCurrentStateHashtable [this]
+    (error (JR/newException "AbstractMethodError" "getCurrentStateHashtable"))))
+    
+(set jm_getLoadStateHashtable (fn jm_getLoadStateHashtable [this]
+    (error (JR/newException "AbstractMethodError" "getLoadStateHashtable"))))
+    
+(set jm_setLoadStateHashtable (fn jm_setLoadStateHashtable [this _hashtable]
+    (error (JR/newException "AbstractMethodError" "setLoadStateHashtable"))))
+    
+(set jm_getType (fn jm_getType [this]
+    (error (JR/newException "AbstractMethodError" "getType"))))
 
+(set jproto @{:jm_getTitle jm_getTitle :jm_isInitialized jm_isInitialized :jm_isPaused jm_isPaused :jm_unPause jm_unPause :jm_pause jm_pause :jm_isHighScoreSubmitted jm_isHighScoreSubmitted :jm_setHighScoreSubmitted jm_setHighScoreSubmitted :jm_processGameOver jm_processGameOver :jm_isGameOver jm_isGameOver :jm_initCommands jm_initCommands :jm_getCurrentStateHashtable jm_getCurrentStateHashtable :jm_getLoadStateHashtable jm_getLoadStateHashtable :jm_setLoadStateHashtable jm_setLoadStateHashtable :jm_getType jm_getType})
 
-function GameCanvasRunnableInterface:getTitle()
-    error("abstract method getTitle")
-end
-
-
-function GameCanvasRunnableInterface:isInitialized()
-    error("abstract method isInitialized")
-end
-
-
-function GameCanvasRunnableInterface:isPaused()
-    error("abstract method isPaused")
-end
-
-
-function GameCanvasRunnableInterface:unPause()
-    error("abstract method unPause")
-end
-
-
-function GameCanvasRunnableInterface:pause()
-    error("abstract method pause")
-end
-
-
-function GameCanvasRunnableInterface:isHighScoreSubmitted()
-    error("abstract method isHighScoreSubmitted")
-end
-
-
--- throws Exception
-function GameCanvasRunnableInterface:setHighScoreSubmitted(highScoreSubmitted)
-    error("abstract method setHighScoreSubmitted")
-end
-
-
--- throws Exception
-function GameCanvasRunnableInterface:processGameOver()
-    error("abstract method processGameOver")
-end
-
-
-function GameCanvasRunnableInterface:isGameOver()
-    error("abstract method isGameOver")
-end
-
-
-function GameCanvasRunnableInterface:initCommands(cmdListener)
-    error("abstract method initCommands")
-end
-
-
--- throws Exception
-function GameCanvasRunnableInterface:getCurrentStateHashtable()
-    error("abstract method getCurrentStateHashtable")
-end
-
-
--- throws Exception
-function GameCanvasRunnableInterface:getLoadStateHashtable()
-    error("abstract method getLoadStateHashtable")
-end
-
-
--- throws Exception
-function GameCanvasRunnableInterface:setLoadStateHashtable(hashtable)
-    error("abstract method setLoadStateHashtable")
-end
-
-
-function GameCanvasRunnableInterface:getType()
-    error("abstract method getType")
-end
-
-return GameCanvasRunnableInterface
 

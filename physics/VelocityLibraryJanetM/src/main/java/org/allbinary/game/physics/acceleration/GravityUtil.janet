@@ -1,57 +1,49 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.physics.acceleration
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.game.physics.acceleration
 
-local BasicVelocityProperties = require("org.allbinary.game.physics.velocity.BasicVelocityProperties")
+(import ../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class GravityUtil
+(var jproto nil)
+(var jcell_instance :jnone)
+(var jstatic_instance nil)
+(var jsetstatic_instance nil)
+(var jnew_0 nil)
+(var jm_getInstance nil)
+(var jm_process nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jstatic_instance (fn jstatic_instance []
+  (when (= jcell_instance :jnone) (set jcell_instance (jnew_0)))
+  jcell_instance))
+(set jsetstatic_instance (fn jsetstatic_instance [value] (set jcell_instance value)))
 
-local GravityUtil = {}
-GravityUtil.__index = GravityUtil
-GravityUtil.className = "GravityUtil"
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "GravityUtil" :f_GAME_GRAVITY_VELOCITY 0 :f_MAX_GAME_VELOCITY 0} jproto))
+    (put this :f_GAME_GRAVITY_VELOCITY 1800)
+    (put this :f_MAX_GAME_VELOCITY 18000)
+    this))
 
-function GravityUtil:_init_fields()
-    self.GAME_GRAVITY_VELOCITY = 1800
-    self.MAX_GAME_VELOCITY = 18000
-end
+    
+(set jm_getInstance (fn jm_getInstance []
+    (label jreturn
+        (return jreturn (jstatic_instance)))))
+    
+(set jm_process (fn jm_process [this _velocityProperties _customGravity]
+        (JR/className (:jm_getVelocityYBasicDecimalP _velocityProperties))))
 
-function GravityUtil.new()
-    local self = setmetatable({}, GravityUtil)
-    self:_init_fields()
-    return self
-end
+(set jproto @{:jm_process jm_process})
 
-
-function GravityUtil.getInstance()
-        return GravityUtil.instance
-end
-
-
-function GravityUtil:process(velocityProperties, customGravity)
-        velocityProperties:getVelocityYBasicDecimalP():addint(customGravity)
-end
-
-GravityUtil.instance = GravityUtil.new()
-
-return GravityUtil
 

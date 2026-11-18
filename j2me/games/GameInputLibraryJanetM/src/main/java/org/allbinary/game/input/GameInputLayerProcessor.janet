@@ -1,60 +1,47 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.input
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.game.input
 
-local AllBinaryLayer = require("org.allbinary.layer.AllBinaryLayer")
-local AllBinaryLayerManager = require("org.allbinary.layer.AllBinaryLayerManager")
-local LayerProcessor = require("org.allbinary.layer.LayerProcessor")
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(import ../../../../org/allbinary/layer/LayerProcessor :as LayerProcessor)
+(defn- GameInputLayerManager/jnew_0 [& args] (JR/call jfile "./GameInputLayerManager" "jnew_0" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class GameInputLayerProcessor
+(var jproto nil)
+(var jnew_0 nil)
+(var jm_processAt nil)
+(var jm_isProcessorLayer nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "GameInputLayerProcessor"} jproto))
+        (JR/superInit this (LayerProcessor/jnew_1 (GameInputLayerManager/jnew_0)))
+    this))
+    
+(set jm_processAt (fn jm_processAt [this _allBinaryLayerManager _layerInterface _index]
+        (var _gameInputInterface _layerInterface)
+        (:jm_processInput _gameInputInterface _allBinaryLayerManager)))
+    
+(set jm_isProcessorLayer (fn jm_isProcessorLayer [this _layerInterface]
+    (label jreturn
+        (if (:jm_implmentsGameInputInterface _layerInterface)
+            (do
+            (return jreturn true))
+            (do
+            (return jreturn false))))))
 
-local GameInputLayerProcessor = {}
-GameInputLayerProcessor.__index = GameInputLayerProcessor
-GameInputLayerProcessor.className = "GameInputLayerProcessor"
-setmetatable(GameInputLayerProcessor, {__index = LayerProcessor})
+(set jproto (table/setproto @{:jm_processAt jm_processAt :jm_isProcessorLayer jm_isProcessorLayer} LayerProcessor/jproto))
 
-
-function GameInputLayerProcessor.new()
-    local self = setmetatable(LayerProcessor.new(GameInputLayerManager.new()), GameInputLayerProcessor)
-        -- super(...) made self above
-    return self
-end
-
-
--- throws Exception
-function GameInputLayerProcessor:processAt(allBinaryLayerManager, layerInterface, index)
-        local gameInputInterface = layerInterface
-        gameInputInterface:processInput(allBinaryLayerManager)
-end
-
-
-function GameInputLayerProcessor:isProcessorLayer(layerInterface)
-        if layerInterface:implmentsGameInputInterface() then
-            return true
-        else
-            return false
-        end
-end
-
-return GameInputLayerProcessor
 

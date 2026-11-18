@@ -1,84 +1,76 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.ag.ai
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.game.ag.ai
 
-local StdUtil = require("org.allbinary.logic.StdUtil")
-local SmallIntegerSingletonFactory = require("org.allbinary.logic.math.SmallIntegerSingletonFactory")
-local TimeDelayHelper = require("org.allbinary.time.TimeDelayHelper")
-local ABHashtable = require("org.allbinary.util.ABHashtable")
+(import ../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- StdUtil/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/logic/StdUtil" "jm_getInstance" args))
+(defn- SmallIntegerSingletonFactory/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/logic/math/SmallIntegerSingletonFactory" "jm_getInstance" args))
+(import ../../../../../java/lang/Integer :as Integer)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class InputProbability
+(var jproto nil)
+(var jcell_INPUT_PROBABILITY :jnone)
+(var jstatic_INPUT_PROBABILITY nil)
+(var jsetstatic_INPUT_PROBABILITY nil)
+(var jnew_4 nil)
+(var jm_getLikelyhoodIntegerArray nil)
+(var jm_getRepeatLikelyhoodIntegerArray nil)
+(var jm_getMax nil)
+(var jm_getTimeDelayHelper nil)
+(var jm_toHashtable nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jstatic_INPUT_PROBABILITY (fn jstatic_INPUT_PROBABILITY []
+  (when (= jcell_INPUT_PROBABILITY :jnone) (set jcell_INPUT_PROBABILITY (:jm_getAt (SmallIntegerSingletonFactory/jm_getInstance) 0)))
+  jcell_INPUT_PROBABILITY))
+(set jsetstatic_INPUT_PROBABILITY (fn jsetstatic_INPUT_PROBABILITY [value] (set jcell_INPUT_PROBABILITY value)))
 
-local InputProbability = {}
-InputProbability.__index = InputProbability
-InputProbability.className = "InputProbability"
+    
+(set jnew_4 (fn jnew_4 [_likelyhoodIntegerArray _repeatLikelyhoodIntegerArray _max _timeDelayHelper]
+    (var this (table/setproto @{:jclass "InputProbability" :f_likelyhoodIntegerArray nil :f_repeatLikelyhoodIntegerArray nil :f_max 0 :f_timeDelayHelper nil} jproto))
+    
+    
+    
+    
+        (set (this :f_likelyhoodIntegerArray) _likelyhoodIntegerArray)
+        (set (this :f_repeatLikelyhoodIntegerArray) _repeatLikelyhoodIntegerArray)
+        (set (this :f_max) _max)
+        (set (this :f_timeDelayHelper) _timeDelayHelper)
+    this))
+    
+(set jm_getLikelyhoodIntegerArray (fn jm_getLikelyhoodIntegerArray [this]
+    (label jreturn
+        (return jreturn (this :f_likelyhoodIntegerArray)))))
+    
+(set jm_getRepeatLikelyhoodIntegerArray (fn jm_getRepeatLikelyhoodIntegerArray [this]
+    (label jreturn
+        (return jreturn (this :f_repeatLikelyhoodIntegerArray)))))
+    
+(set jm_getMax (fn jm_getMax [this]
+    (label jreturn
+        (return jreturn (this :f_max)))))
+    
+(set jm_getTimeDelayHelper (fn jm_getTimeDelayHelper [this]
+    (label jreturn
+        (return jreturn (this :f_timeDelayHelper)))))
+    
+(set jm_toHashtable (fn jm_toHashtable [this]
+    (label jreturn
+        (var _hashtable (:jm_createHashtable (StdUtil/jm_getInstance)))
+        (:jm_put _hashtable (jstatic_INPUT_PROBABILITY) this)
+        (return jreturn _hashtable))))
 
-function InputProbability:_init_fields()
-    self.likelyhoodIntegerArray = nil
-    self.repeatLikelyhoodIntegerArray = nil
-    self.max = nil
-    self.timeDelayHelper = nil
-end
+(set jproto @{:jm_getLikelyhoodIntegerArray jm_getLikelyhoodIntegerArray :jm_getRepeatLikelyhoodIntegerArray jm_getRepeatLikelyhoodIntegerArray :jm_getMax jm_getMax :jm_getTimeDelayHelper jm_getTimeDelayHelper :jm_toHashtable jm_toHashtable})
 
-
-function InputProbability.new(likelyhoodIntegerArray, repeatLikelyhoodIntegerArray, max, timeDelayHelper)
-    local self = setmetatable({}, InputProbability)
-    self:_init_fields()
-        self.likelyhoodIntegerArray = likelyhoodIntegerArray
-        self.repeatLikelyhoodIntegerArray = repeatLikelyhoodIntegerArray
-        self.max = max
-        self.timeDelayHelper = timeDelayHelper
-    return self
-end
-
-
-function InputProbability:getLikelyhoodIntegerArray()
-        return self.likelyhoodIntegerArray
-end
-
-
-function InputProbability:getRepeatLikelyhoodIntegerArray()
-        return self.repeatLikelyhoodIntegerArray
-end
-
-
-function InputProbability:getMax()
-        return self.max
-end
-
-
-function InputProbability:getTimeDelayHelper()
-        return self.timeDelayHelper
-end
-
-
-function InputProbability:toHashtable()
-        local hashtable = StdUtil.getInstance():createHashtable()
-        hashtable:put(InputProbability.INPUT_PROBABILITY, self)
-        return hashtable
-end
-
-InputProbability.INPUT_PROBABILITY = SmallIntegerSingletonFactory.getInstance():getAt(0)
-
-return InputProbability
 

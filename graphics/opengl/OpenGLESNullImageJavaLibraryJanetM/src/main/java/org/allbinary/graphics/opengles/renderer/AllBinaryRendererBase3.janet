@@ -1,64 +1,46 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2022 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.opengles.renderer
+# 
+# AllBinary Open License Version 1 
+# Copyright (c) 2022 AllBinary 
+#  
+# By agreeing to this license you and any business entity you represent are 
+# legally bound to the AllBinary Open License Version 1 legal agreement. 
+#  
+# You may obtain the AllBinary Open License Version 1 legal agreement from 
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+#  
+# Created By: Travis Berthelot 
+#   
+# Generated Code Do Not Modify
+# package org.allbinary.graphics.opengles.renderer
 
--- local GL10 = require("javax.microedition.khronos.opengles.GL10")
--- local Image = require("javax.microedition.lcdui.Image")
-local OpenGLESImage = require("org.allbinary.image.opengles.OpenGLESImage")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
-local BasicArrayListD = require("org.allbinary.util.BasicArrayListD")
+(import ../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- BasicArrayListD/jnew_0 [& args] (JR/call jfile "../../../../../org/allbinary/util/BasicArrayListD" "jnew_0" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class AllBinaryRendererBase3
+(var jproto nil)
+(var jnew_0 nil)
+(var jm_update nil)
+(var jm_add nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "AllBinaryRendererBase3" :f_list nil} jproto))
+    (put this :f_list (BasicArrayListD/jnew_0))
+    this))
 
-local AllBinaryRendererBase3 = {}
-AllBinaryRendererBase3.__index = AllBinaryRendererBase3
-AllBinaryRendererBase3.className = "AllBinaryRendererBase3"
+    
+(set jm_update (fn jm_update [this _gl]
+        (do
+            (while (> (:jm_size (this :f_list)) 0)
+                (do
+            (var _openGLESImage (:jm_removeAt (this :f_list) 0))
+            (if (not (nil? _openGLESImage))
+                (do
+                (:jm_set _openGLESImage _gl))))))))
+    
+(set jm_add (fn jm_add [this _image]
+        (:jm_add (this :f_list) _image)))
 
-function AllBinaryRendererBase3:_init_fields()
-    self.list = BasicArrayListD.new()
-end
+(set jproto @{:jm_update jm_update :jm_add jm_add})
 
-function AllBinaryRendererBase3.new()
-    local self = setmetatable({}, AllBinaryRendererBase3)
-    self:_init_fields()
-    return self
-end
-
-
--- throws Exception
-function AllBinaryRendererBase3:update(gl)
-        while self.list:size() > 0 do
-            local openGLESImage = self.list:removeAt(0)
-            if openGLESImage ~= nil then
-                openGLESImage:set(gl)
-            end
-        end
-end
-
-
-function AllBinaryRendererBase3:add(image)
-        self.list:add(image)
-end
-
-return AllBinaryRendererBase3
 

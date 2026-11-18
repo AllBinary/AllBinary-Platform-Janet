@@ -1,36 +1,25 @@
--- Generated Code Do Not Modify
--- package org.allbinary.animation
+# Generated Code Do Not Modify
+# package org.allbinary.animation
 
-local IndexedAnimation = require("org.allbinary.animation.IndexedAnimation")
+(import ../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(import ./IndexedAnimation :as IndexedAnimation)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class NullIndexedAnimation
+(var jproto nil)
+(var jnew_1 nil)
+(var jm_getAnimationSize nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jnew_1 (fn jnew_1 [_animationBehavior]
+    (var this (table/setproto @{:jclass "NullIndexedAnimation"} jproto))
+        (JR/superInit this (IndexedAnimation/jnew_1 _animationBehavior))
+    this))
+    
+(set jm_getAnimationSize (fn jm_getAnimationSize [this]
+    (label jreturn
+        (return jreturn 0))))
 
-local NullIndexedAnimation = {}
-NullIndexedAnimation.__index = NullIndexedAnimation
-NullIndexedAnimation.className = "NullIndexedAnimation"
-setmetatable(NullIndexedAnimation, {__index = IndexedAnimation})
+(set jproto (table/setproto @{:jm_getAnimationSize jm_getAnimationSize} IndexedAnimation/jproto))
 
-
-function NullIndexedAnimation.new(animationBehavior)
-    local self = setmetatable(IndexedAnimation.new(animationBehavior), NullIndexedAnimation)
-        -- super(...) made self above
-    return self
-end
-
-
--- throws Exception
-function NullIndexedAnimation:getAnimationSize()
-        return 0
-end
-
-return NullIndexedAnimation
 

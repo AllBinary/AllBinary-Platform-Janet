@@ -1,46 +1,43 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.physics.friction
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.game.physics.friction
 
+(import ../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class FrictionData
+(var jproto nil)
+(var jcell_FRICTION_DENOMINATOR :jnone)
+(var jstatic_FRICTION_DENOMINATOR nil)
+(var jsetstatic_FRICTION_DENOMINATOR nil)
+(var jnew_0 nil)
+(var jm_getFrictionDenominator nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jstatic_FRICTION_DENOMINATOR (fn jstatic_FRICTION_DENOMINATOR []
+  (when (= jcell_FRICTION_DENOMINATOR :jnone) (set jcell_FRICTION_DENOMINATOR 100))
+  jcell_FRICTION_DENOMINATOR))
+(set jsetstatic_FRICTION_DENOMINATOR (fn jsetstatic_FRICTION_DENOMINATOR [value] (set jcell_FRICTION_DENOMINATOR value)))
 
-local FrictionData = {}
-FrictionData.__index = FrictionData
-FrictionData.className = "FrictionData"
+    
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "FrictionData"} jproto))
+    this))
+    
+(set jm_getFrictionDenominator (fn jm_getFrictionDenominator []
+    (label jreturn
+        (return jreturn (jstatic_FRICTION_DENOMINATOR)))))
 
+(set jproto @{})
 
-function FrictionData.new()
-    local self = setmetatable({}, FrictionData)
-    return self
-end
-
-
-function FrictionData.getFrictionDenominator()
-        return FrictionData.FRICTION_DENOMINATOR
-end
-
-FrictionData.FRICTION_DENOMINATOR = 100
-
-return FrictionData
 

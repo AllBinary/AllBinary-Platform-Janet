@@ -1,66 +1,58 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.animation
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.animation
 
-local SpecialAnimation = require("org.allbinary.animation.special.SpecialAnimation")
-local ScaleProperties = require("org.allbinary.media.ScaleProperties")
-local AnimationInterfaceFactoryInterface = require("org.allbinary.animation.AnimationInterfaceFactoryInterface")
-local ProceduralAnimationInterfaceFactoryInterface = require("org.allbinary.animation.ProceduralAnimationInterfaceFactoryInterface")
+(import ../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- SpecialAnimation/jm_getInstance [& args] (JR/call jfile "../../../org/allbinary/animation/special/SpecialAnimation" "jm_getInstance" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class NullSpecialAnimationFactory
+(var jproto nil)
+(var jcell_NULL_SPECIAL_ANIMATION_FACTORY :jnone)
+(var jstatic_NULL_SPECIAL_ANIMATION_FACTORY nil)
+(var jsetstatic_NULL_SPECIAL_ANIMATION_FACTORY nil)
+(var jnew_0 nil)
+(var jm_getFactoryInstance nil)
+(var jm_getInstance nil)
+(var jm_getInstanceAnimation nil)
+(var jm_setInitialScale nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jstatic_NULL_SPECIAL_ANIMATION_FACTORY (fn jstatic_NULL_SPECIAL_ANIMATION_FACTORY []
+  (when (= jcell_NULL_SPECIAL_ANIMATION_FACTORY :jnone) (set jcell_NULL_SPECIAL_ANIMATION_FACTORY (jnew_0)))
+  jcell_NULL_SPECIAL_ANIMATION_FACTORY))
+(set jsetstatic_NULL_SPECIAL_ANIMATION_FACTORY (fn jsetstatic_NULL_SPECIAL_ANIMATION_FACTORY [value] (set jcell_NULL_SPECIAL_ANIMATION_FACTORY value)))
 
-local NullSpecialAnimationFactory = {}
-NullSpecialAnimationFactory.__index = NullSpecialAnimationFactory
-NullSpecialAnimationFactory.className = "NullSpecialAnimationFactory"
+    
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "NullSpecialAnimationFactory"} jproto))
+    this))
+    
+(set jm_getFactoryInstance (fn jm_getFactoryInstance []
+    (label jreturn
+        (return jreturn (jstatic_NULL_SPECIAL_ANIMATION_FACTORY)))))
+    
+(set jm_getInstance (fn jm_getInstance [this _instanceId]
+    (label jreturn
+        (return jreturn (SpecialAnimation/jm_getInstance)))))
+    
+(set jm_getInstanceAnimation (fn jm_getInstanceAnimation [this _animationInterface]
+    (label jreturn
+        (return jreturn (SpecialAnimation/jm_getInstance)))))
+    
+(set jm_setInitialScale (fn jm_setInitialScale [this _scaleProperties]
+    nil))
 
+(set jproto @{:jm_getInstance jm_getInstance :jm_getInstanceAnimation jm_getInstanceAnimation :jm_setInitialScale jm_setInitialScale})
 
-function NullSpecialAnimationFactory.new()
-    local self = setmetatable({}, NullSpecialAnimationFactory)
-    return self
-end
-
-
-function NullSpecialAnimationFactory.getFactoryInstance()
-        return NullSpecialAnimationFactory.NULL_SPECIAL_ANIMATION_FACTORY
-end
-
-
--- throws Exception
-function NullSpecialAnimationFactory:getInstance(instanceId)
-        return SpecialAnimation.getInstance()
-end
-
-
--- throws Exception
-function NullSpecialAnimationFactory:getInstanceAnimation(animationInterface)
-        return SpecialAnimation.getInstance()
-end
-
-
-function NullSpecialAnimationFactory:setInitialScale(scaleProperties)
-end
-
-NullSpecialAnimationFactory.NULL_SPECIAL_ANIMATION_FACTORY = NullSpecialAnimationFactory.new()
-
-return NullSpecialAnimationFactory
 

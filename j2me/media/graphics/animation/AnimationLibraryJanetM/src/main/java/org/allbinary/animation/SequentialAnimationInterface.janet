@@ -1,47 +1,39 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.animation
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.animation
 
-local AnimationInterface = require("org.allbinary.animation.AnimationInterface")
-local SequenceInterface = require("org.allbinary.animation.SequenceInterface")
+(import ../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(import ./AnimationInterface :as AnimationInterface)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class SequentialAnimationInterface
+(var jproto nil)
+(var jnew_0 nil)
+(var jm_getSize nil)
+(var jm_previousFrame nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "SequentialAnimationInterface"} jproto))
+    this))
 
--- Java interface
-local SequentialAnimationInterface = {}
-SequentialAnimationInterface.__index = SequentialAnimationInterface
-SequentialAnimationInterface.className = "SequentialAnimationInterface"
-setmetatable(SequentialAnimationInterface, {__index = AnimationInterface})
+    
+(set jm_getSize (fn jm_getSize [this]
+    (error (JR/newException "AbstractMethodError" "getSize"))))
+    
+(set jm_previousFrame (fn jm_previousFrame [this]
+    (error (JR/newException "AbstractMethodError" "previousFrame"))))
 
+(set jproto @{:jm_getSize jm_getSize :jm_previousFrame jm_previousFrame})
 
-function SequentialAnimationInterface:getSize()
-    error("abstract method getSize")
-end
-
-
-function SequentialAnimationInterface:previousFrame()
-    error("abstract method previousFrame")
-end
-
-return SequentialAnimationInterface
 

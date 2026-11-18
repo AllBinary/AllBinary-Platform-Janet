@@ -1,79 +1,61 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.system.security.licensing
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.logic.system.security.licensing
 
-local LicenseInitInfo = require("org.allbinary.business.init.LicenseInitInfo")
-local LicenseInitInfoUtil = require("org.allbinary.business.init.LicenseInitInfoUtil")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local PreLogUtil = require("org.allbinary.logic.communication.log.PreLogUtil")
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
-local StringValidationUtil = require("org.allbinary.logic.string.StringValidationUtil")
-local OperatingSystemFactory = require("org.allbinary.logic.system.os.OperatingSystemFactory")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
-local ClientInformation = require("org.allbinary.logic.system.security.licensing.ClientInformation")
+(import ../../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- LicenseInitInfoUtil/jm_getInstance [& args] (JR/call jfile "../../../../../../org/allbinary/business/init/LicenseInitInfoUtil" "jm_getInstance" args))
+(defn- LogUtil/jm_getInstance [& args] (JR/call jfile "../../../../../../org/allbinary/logic/communication/log/LogUtil" "jm_getInstance" args))
+(defn- PreLogUtil/jm_put [& args] (JR/call jfile "../../../../../../org/allbinary/logic/communication/log/PreLogUtil" "jm_put" args))
+(defn- StringMaker/jnew_0 [& args] (JR/call jfile "../../../../../../org/allbinary/logic/string/StringMaker" "jnew_0" args))
+(defn- StringValidationUtil/jm_getInstance [& args] (JR/call jfile "../../../../../../org/allbinary/logic/string/StringValidationUtil" "jm_getInstance" args))
+(defn- OperatingSystemFactory/jm_getInstance [& args] (JR/call jfile "../../../../../../org/allbinary/logic/system/os/OperatingSystemFactory" "jm_getInstance" args))
+(defn- CommonStrings/jm_getInstance [& args] (JR/call jfile "../../../../../../org/allbinary/string/CommonStrings" "jm_getInstance" args))
+(import ./ClientInformation :as ClientInformation)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# This is the information sent to the license server
+# Java class AbeClientInformation
+(var jproto nil)
+(var jnew_4 nil)
+(var jm_init nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jnew_4 (fn jnew_4 [_name _version _specialName _shortName]
+    (var this (table/setproto @{:jclass "AbeClientInformation" :f_logUtil nil} jproto))
+    (put this :f_logUtil (LogUtil/jm_getInstance))
+        (JR/superInit this (ClientInformation/jnew_4 _name _version _specialName _shortName))
+    this))
+    
+(set jm_init (fn jm_init [this]
+        (try
+            (do
+            (:jm_setOperatingSystemInterface this (:jm_getOperatingSystemInstance (OperatingSystemFactory/jm_getInstance)))
+            (var _licenseInitInfo (:jm_read (LicenseInitInfoUtil/jm_getInstance)))
+            (:jm_setLicenseId this (:jm_getLicenseId _licenseInitInfo))
+            (:jm_setLicenseServers this (:jm_getServerList _licenseInitInfo))
+            (var _stringValidationUtil (StringValidationUtil/jm_getInstance))
+            (if (:jm_isEmpty _stringValidationUtil (:jm_getLicenseId this))
+                (do
+                (var _NONE "No License Id")
+                (:jm_setLicenseId this _NONE)))
+            (var _commonStrings (CommonStrings/jm_getInstance))
+            (PreLogUtil/jm_put (:jm_toString (:jm_append (:jm_append (StringMaker/jnew_0) "Special Name: ") (:jm_getSpecialName this))) this (_commonStrings :f_CONSTRUCTOR)))
+            ([_e] (do
+            (var _logUtil (LogUtil/jm_getInstance))
+            (var _commonStrings (CommonStrings/jm_getInstance))
+            (:jm_put _logUtil (_commonStrings :f_EXCEPTION) this (_commonStrings :f_CONSTRUCTOR) _e))))))
 
--- This is the information sent to the license server
-local AbeClientInformation = {}
-AbeClientInformation.__index = AbeClientInformation
-AbeClientInformation.className = "AbeClientInformation"
-setmetatable(AbeClientInformation, {__index = ClientInformation})
+(set jproto (table/setproto @{:jm_init jm_init} ClientInformation/jproto))
 
-function AbeClientInformation:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-end
-
-
-function AbeClientInformation.new(name, version, specialName, shortName)
-    local self = setmetatable(ClientInformation.new(name, version, specialName, shortName), AbeClientInformation)
-    self:_init_fields()
-        -- super(...) made self above
-    return self
-end
-
-
-function AbeClientInformation:init()
-        local try_ok, try_error = pcall(function()
-            self:setOperatingSystemInterface(OperatingSystemFactory.getInstance():getOperatingSystemInstance())
-            local licenseInitInfo = LicenseInitInfoUtil.getInstance():read()
-            self:setLicenseId(licenseInitInfo:getLicenseId())
-            self:setLicenseServers(licenseInitInfo:getServerList())
-            local stringValidationUtil = StringValidationUtil.getInstance()
-            if stringValidationUtil:isEmpty(self:getLicenseId()) then
-                local NONE = "No License Id"
-                self:setLicenseId(NONE)
-            end
-            local commonStrings = CommonStrings.getInstance()
-            PreLogUtil.put(tostring(StringMaker.new():append("Special Name: "):append(self:getSpecialName())), self, commonStrings.CONSTRUCTOR)
-        end)
-        if not try_ok then
-            local e = try_error
-            local logUtil = LogUtil.getInstance()
-            local commonStrings = CommonStrings.getInstance()
-            logUtil:put(commonStrings.EXCEPTION, self, commonStrings.CONSTRUCTOR, e)
-        end
-end
-
-return AbeClientInformation
 

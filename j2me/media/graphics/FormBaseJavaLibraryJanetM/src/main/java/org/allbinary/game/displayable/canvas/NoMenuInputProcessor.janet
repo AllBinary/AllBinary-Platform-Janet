@@ -1,65 +1,59 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.displayable.canvas
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.game.displayable.canvas
 
--- local NullCanvas = require("javax.microedition.lcdui.NullCanvas")
-local GameKeyEvent = require("org.allbinary.game.input.event.GameKeyEvent")
-local MotionGestureEvent = require("org.allbinary.input.motion.gesture.observer.MotionGestureEvent")
-local BasicArrayListUtil = require("org.allbinary.util.BasicArrayListUtil")
-local BasicMenuInputProcessor = require("org.allbinary.game.displayable.canvas.BasicMenuInputProcessor")
+(import ../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- NullCanvas/jstatic_NULL_CANVAS [& args] (JR/call jfile "../../../../../javax/microedition/lcdui/NullCanvas" "jstatic_NULL_CANVAS" args))
+(defn- BasicArrayListUtil/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/util/BasicArrayListUtil" "jm_getInstance" args))
+(import ./BasicMenuInputProcessor :as BasicMenuInputProcessor)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class NoMenuInputProcessor
+(var jproto nil)
+(var jcell_SINGLETON :jnone)
+(var jstatic_SINGLETON nil)
+(var jsetstatic_SINGLETON nil)
+(var jnew_0 nil)
+(var jm_getInstance nil)
+(var jm_onDownGameKeyEvent nil)
+(var jm_onUpGameKeyEvent nil)
+(var jm_onMotionGestureEvent nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jstatic_SINGLETON (fn jstatic_SINGLETON []
+  (when (= jcell_SINGLETON :jnone) (set jcell_SINGLETON (jnew_0)))
+  jcell_SINGLETON))
+(set jsetstatic_SINGLETON (fn jsetstatic_SINGLETON [value] (set jcell_SINGLETON value)))
 
-local NoMenuInputProcessor = {}
-NoMenuInputProcessor.__index = NoMenuInputProcessor
-NoMenuInputProcessor.className = "NoMenuInputProcessor"
-setmetatable(NoMenuInputProcessor, {__index = BasicMenuInputProcessor})
+    
+(set jm_getInstance (fn jm_getInstance []
+    (label jreturn
+        (return jreturn (jstatic_SINGLETON)))))
+    
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "NoMenuInputProcessor"} jproto))
+        (JR/superInit this (BasicMenuInputProcessor/jnew_3 (:jm_getImmutableInstance (BasicArrayListUtil/jm_getInstance)) (JR/i32 (- 1)) (NullCanvas/jstatic_NULL_CANVAS)))
+    this))
+    
+(set jm_onDownGameKeyEvent (fn jm_onDownGameKeyEvent [this _gameKeyEvent]
+    nil))
+    
+(set jm_onUpGameKeyEvent (fn jm_onUpGameKeyEvent [this _gameKeyEvent]
+    nil))
+    
+(set jm_onMotionGestureEvent (fn jm_onMotionGestureEvent [this _motionGestureEvent]
+    nil))
 
+(set jproto (table/setproto @{:jm_onDownGameKeyEvent jm_onDownGameKeyEvent :jm_onUpGameKeyEvent jm_onUpGameKeyEvent :jm_onMotionGestureEvent jm_onMotionGestureEvent} BasicMenuInputProcessor/jproto))
 
-function NoMenuInputProcessor.getInstance()
-        return NoMenuInputProcessor.SINGLETON
-end
-
-
-function NoMenuInputProcessor.new()
-    local self = setmetatable(BasicMenuInputProcessor.new(BasicArrayListUtil.getInstance():getImmutableInstance(), -1, NullCanvas.NULL_CANVAS), NoMenuInputProcessor)
-        -- super(...) made self above
-    return self
-end
-
-
-function NoMenuInputProcessor:onDownGameKeyEvent(gameKeyEvent)
-end
-
-
-function NoMenuInputProcessor:onUpGameKeyEvent(gameKeyEvent)
-end
-
-
-function NoMenuInputProcessor:onMotionGestureEvent(motionGestureEvent)
-end
-
-NoMenuInputProcessor.SINGLETON = NoMenuInputProcessor.new()
-
-return NoMenuInputProcessor
 

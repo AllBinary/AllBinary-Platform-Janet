@@ -1,55 +1,45 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.form
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.graphics.form
 
-local Features = require("org.allbinary.game.configuration.feature.Features")
-local TouchFeatureFactory = require("org.allbinary.game.configuration.feature.TouchFeatureFactory")
-local Rectangle = require("org.allbinary.graphics.Rectangle")
-local BasicColor = require("org.allbinary.graphics.color.BasicColor")
-local ABCustomItem = require("org.allbinary.graphics.form.item.ABCustomItem")
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- Features/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/game/configuration/feature/Features" "jm_getInstance" args))
+(defn- TouchFeatureFactory/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/game/configuration/feature/TouchFeatureFactory" "jm_getInstance" args))
+(defn- ScrollSelectionFormNoneFactory/jm_getInstance [& args] (JR/call jfile "./ScrollSelectionFormNoneFactory" "jm_getInstance" args))
+(defn- CommandCurrentSelectionForm/jnew_6 [& args] (JR/call jfile "./CommandCurrentSelectionForm" "jnew_6" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class CommandCurrentSelectionFormFactory
+(var jproto nil)
+(var jnew_0 nil)
+(var jm_getInstance nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "CommandCurrentSelectionFormFactory"} jproto))
+    this))
 
-local CommandCurrentSelectionFormFactory = {}
-CommandCurrentSelectionFormFactory.__index = CommandCurrentSelectionFormFactory
-CommandCurrentSelectionFormFactory.className = "CommandCurrentSelectionFormFactory"
+    
+(set jm_getInstance (fn jm_getInstance [_title _items _rectangle _formType _border _moveForSmallScreen _backgroundBasicColor _foregroundBasicColor]
+    (label jreturn
+        (if (:jm_isFeature (Features/jm_getInstance) ((TouchFeatureFactory/jm_getInstance) :f_TOUCH_ENABLED))
+            (do
+            (var _scrollSelectionForm (CommandCurrentSelectionForm/jnew_6 _title _items _border _moveForSmallScreen _backgroundBasicColor _foregroundBasicColor))
+            (:jm_init _scrollSelectionForm _rectangle _formType)
+            (return jreturn _scrollSelectionForm))
+            (do
+            (return jreturn (ScrollSelectionFormNoneFactory/jm_getInstance)))))))
 
-function CommandCurrentSelectionFormFactory.new()
-    local self = setmetatable({}, CommandCurrentSelectionFormFactory)
-    return self
-end
+(set jproto @{})
 
-
--- throws Exception
-function CommandCurrentSelectionFormFactory.getInstance(title, items, rectangle, formType, border, moveForSmallScreen, backgroundBasicColor, foregroundBasicColor)
-        if Features.getInstance():isFeature(TouchFeatureFactory.getInstance().TOUCH_ENABLED) then
-            local scrollSelectionForm = CommandCurrentSelectionForm.new(title, items, border, moveForSmallScreen, backgroundBasicColor, foregroundBasicColor)
-            scrollSelectionForm:init(rectangle, formType)
-            return scrollSelectionForm
-        else
-            return ScrollSelectionFormNoneFactory.getInstance()
-        end
-end
-
-return CommandCurrentSelectionFormFactory
 

@@ -28,7 +28,7 @@
 (set jnew_1 (fn jnew_1 [_anyType]
     (var this (table/setproto @{:jclass "ColorChangeEvent" :f_basicColor nil} jproto))
     (put this :f_basicColor ((BasicColorFactory/jm_getInstance) :f_WHITE))
-        nil
+        (JR/superInit this (AllBinaryEventObject/jnew_1 _anyType))
     this))
     
 (set jm_setBasicColorP (fn jm_setBasicColorP [this _basicColor]

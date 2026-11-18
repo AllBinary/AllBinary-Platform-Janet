@@ -1,74 +1,59 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.form.item.validation
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.graphics.form.item.validation
 
-local TextNotificationUtil = require("org.allbinary.game.input.TextNotificationUtil")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local BooleanFactory = require("org.allbinary.logic.java.bool.BooleanFactory")
-local StringValidationUtil = require("org.allbinary.logic.string.StringValidationUtil")
-local Visitor = require("org.allbinary.logic.util.visitor.Visitor")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
+(import ../../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- TextNotificationUtil/jm_getInstance [& args] (JR/call jfile "../../../../../../org/allbinary/game/input/TextNotificationUtil" "jm_getInstance" args))
+(defn- LogUtil/jm_getInstance [& args] (JR/call jfile "../../../../../../org/allbinary/logic/communication/log/LogUtil" "jm_getInstance" args))
+(defn- BooleanFactory/jm_getInstance [& args] (JR/call jfile "../../../../../../org/allbinary/logic/java/bool/BooleanFactory" "jm_getInstance" args))
+(defn- StringValidationUtil/jm_getInstance [& args] (JR/call jfile "../../../../../../org/allbinary/logic/string/StringValidationUtil" "jm_getInstance" args))
+(import ../../../../../../org/allbinary/logic/util/visitor/Visitor :as Visitor)
+(defn- CommonStrings/jm_getInstance [& args] (JR/call jfile "../../../../../../org/allbinary/string/CommonStrings" "jm_getInstance" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class TextItemNumberVisitor
+(var jproto nil)
+(var jnew_0 nil)
+(var jm_visit nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "TextItemNumberVisitor" :f_logUtil nil} jproto))
+    (put this :f_logUtil (LogUtil/jm_getInstance))
+    (JR/superInit this (Visitor/jnew_0))
+    this))
+    
+(set jm_visit (fn jm_visit [this _anyType]
+    (label jreturn
+        (var _value _anyType)
+        (if (< (length _value) 2)
+            (do
+            (var _stringValidationUtil (StringValidationUtil/jm_getInstance))
+            (if (:jm_isNumber _stringValidationUtil _value)
+                (do
+                (return jreturn ((BooleanFactory/jm_getInstance) :f_TRUE)))
+                (do
+                (try
+                    (do
+                    (:jm_fireError (TextNotificationUtil/jm_getInstance) "Numbers Only"))
+                    ([_e] (do
+                    (var _commonStrings (CommonStrings/jm_getInstance))
+                    (:jm_put (this :f_logUtil) (_commonStrings :f_EXCEPTION) this (_commonStrings :f_VISIT) _e))))
+                (return jreturn ((BooleanFactory/jm_getInstance) :f_FALSE)))))
+            (do
+            (return jreturn ((BooleanFactory/jm_getInstance) :f_FALSE)))))))
 
-local TextItemNumberVisitor = {}
-TextItemNumberVisitor.__index = TextItemNumberVisitor
-TextItemNumberVisitor.className = "TextItemNumberVisitor"
-setmetatable(TextItemNumberVisitor, {__index = Visitor})
+(set jproto (table/setproto @{:jm_visit jm_visit} Visitor/jproto))
 
-function TextItemNumberVisitor:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-end
-
-
-function TextItemNumberVisitor.new()
-    local self = setmetatable(Visitor.new(), TextItemNumberVisitor)
-    self:_init_fields()
-    return self
-end
-
-
-function TextItemNumberVisitor:visit(anyType)
-        local value = anyType
-        if #value < 2 then
-            local stringValidationUtil = StringValidationUtil.getInstance()
-            if stringValidationUtil:isNumber(value) then
-                return BooleanFactory.getInstance().TRUE
-            else
-                local try_ok, try_error = pcall(function()
-                    TextNotificationUtil.getInstance():fireError("Numbers Only")
-                end)
-                if not try_ok then
-                    local e = try_error
-                    local commonStrings = CommonStrings.getInstance()
-                    self.logUtil:put(commonStrings.EXCEPTION, self, commonStrings.VISIT, e)
-                end
-                return BooleanFactory.getInstance().FALSE
-            end
-        else
-            return BooleanFactory.getInstance().FALSE
-        end
-end
-
-return TextItemNumberVisitor
 

@@ -1,137 +1,129 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.input
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.game.input
 
-local AnalogLocationInputFactory = require("org.allbinary.game.input.analog.AnalogLocationInputFactory")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- AnalogLocationInputFactory/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/game/input/analog/AnalogLocationInputFactory" "jm_getInstance" args))
+(defn- LogUtil/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/logic/communication/log/LogUtil" "jm_getInstance" args))
+(defn- StringMaker/jnew_0 [& args] (JR/call jfile "../../../../org/allbinary/logic/string/StringMaker" "jnew_0" args))
 
-local function java_new_array(default, size, ...)
-    local array = {n = size}
-    for index = 1, size do
-        if select("#", ...) > 0 then array[index] = java_new_array(default, ...) else array[index] = default end
-    end
-    return array
-end
+# Java class LocalPlayerInputIdFactory
+(var jproto nil)
+(var jcell_instance :jnone)
+(var jstatic_instance nil)
+(var jsetstatic_instance nil)
+(var jnew_0 nil)
+(var jm_getInstance nil)
+(var jm_getDeviceId nil)
+(var jm_getPlayerForDevice nil)
+(var jm_getTotalDevicesInPlay nil)
+(var jm_isPlayerInPlay nil)
+(var jm_setPlayerInPlay nil)
+(var jm_setPlayerOutOfPlay nil)
+(var jm_getPlayersInPlay nil)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(set jstatic_instance (fn jstatic_instance []
+  (when (= jcell_instance :jnone) (set jcell_instance (jnew_0)))
+  jcell_instance))
+(set jsetstatic_instance (fn jsetstatic_instance [value] (set jcell_instance value)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "LocalPlayerInputIdFactory" :f_logUtil nil :f_MAX_NUMBER_OF_PLAYERS 0 :f_MAX_FAST_DEVICEID 0 :f_deviceIdToplayerId nil :f_playerIdToDeviceId nil :f_playersInPlay nil :f_totalDevicesMapped 0} jproto))
+    (put this :f_logUtil (LogUtil/jm_getInstance))
+    (put this :f_MAX_NUMBER_OF_PLAYERS 6)
+    (put this :f_MAX_FAST_DEVICEID 65)
+    (put this :f_deviceIdToplayerId (array/new-filled (this :f_MAX_FAST_DEVICEID) 0))
+    (put this :f_playerIdToDeviceId (array/new-filled (this :f_MAX_NUMBER_OF_PLAYERS) 0))
+    (put this :f_playersInPlay (array/new-filled (this :f_MAX_NUMBER_OF_PLAYERS) false))
+    (put this :f_totalDevicesMapped 0)
+        (do
+            (var _index (JR/i32 (- (length (this :f_deviceIdToplayerId)) 1)))
+            (while (>= _index 0)
+                (do
+            (set ((this :f_deviceIdToplayerId) _index) (JR/i32 (- 1))))
+                (do (set _index (JR/i32 (- _index 1))))))
+    this))
+    
+(set jm_getInstance (fn jm_getInstance []
+    (label jreturn
+        (return jreturn (jstatic_instance)))))
+    
+(set jm_getDeviceId (fn jm_getDeviceId [this _playerInputId]
+    (label jreturn
+        (return jreturn ((this :f_playerIdToDeviceId) _playerInputId)))))
+    
+(set jm_getPlayerForDevice (fn jm_getPlayerForDevice [this _deviceId]
+    (label jreturn
+        (var _index 0)
+        (if (< _deviceId (this :f_MAX_FAST_DEVICEID))
+            (do
+            (var _playerInputId ((this :f_deviceIdToplayerId) _deviceId))
+            (if (not= _playerInputId (JR/i32 (- 1)))
+                (do
+                (return jreturn _playerInputId))))
+            (do
+            (do
+                (set _index (JR/i32 (- (this :f_totalDevicesMapped) 1)))
+                (while (>= _index 0)
+                    (do
+                (if (= ((this :f_playerIdToDeviceId) _index) _deviceId)
+                    (do
+                    (return jreturn _index))))
+                    (do (set _index (JR/i32 (- _index 1))))))))
+        (set _index (this :f_totalDevicesMapped))
+        (if (< _deviceId (this :f_MAX_FAST_DEVICEID))
+            (do
+            (set ((this :f_deviceIdToplayerId) _deviceId) _index))
+            (do
+            (:jm_putF (this :f_logUtil) (:jm_toString (:jm_append (:jm_appendint (:jm_append (StringMaker/jnew_0) "Added DeviceId: ") _deviceId) " beyond fast Id list")) this "getPlayerForDevice")))
+        (set ((this :f_playerIdToDeviceId) _index) _deviceId)
+        (:jm_addPlayer (AnalogLocationInputFactory/jm_getInstance) (this :f_totalDevicesMapped))
+        (set (this :f_totalDevicesMapped) (JR/i32 (+ (this :f_totalDevicesMapped) 1)))
+        (:jm_putF (this :f_logUtil) (:jm_toString (:jm_appendint (:jm_append (:jm_appendint (:jm_append (:jm_appendint (:jm_append (StringMaker/jnew_0) "Added DeviceId: ") _deviceId) " at: ") _index) " Total: ") (this :f_totalDevicesMapped))) this "getPlayerForDevice")
+        (return jreturn _index))))
+    
+(set jm_getTotalDevicesInPlay (fn jm_getTotalDevicesInPlay [this]
+    (label jreturn
+        (var _total 0)
+        (do
+            (var _index (JR/i32 (- (this :f_totalDevicesMapped) 1)))
+            (while (>= _index 0)
+                (do
+            (if (= ((this :f_playersInPlay) _index) true)
+                (do
+                (set _total (JR/i32 (+ _total 1))))))
+                (do (set _index (JR/i32 (- _index 1))))))
+        (return jreturn _total))))
+    
+(set jm_isPlayerInPlay (fn jm_isPlayerInPlay [this _playerInputId]
+    (label jreturn
+        (return jreturn ((this :f_playersInPlay) _playerInputId)))))
+    
+(set jm_setPlayerInPlay (fn jm_setPlayerInPlay [this _playerInputId]
+        (:jm_putF (this :f_logUtil) (:jm_toString (:jm_appendint (:jm_append (StringMaker/jnew_0) "Setting PlayerInPlay with playerInputId: ") _playerInputId)) this "setPlayerInPlay")
+        (set ((this :f_playersInPlay) _playerInputId) true)))
+    
+(set jm_setPlayerOutOfPlay (fn jm_setPlayerOutOfPlay [this _playerInputId]
+        (:jm_putF (this :f_logUtil) (:jm_toString (:jm_appendint (:jm_append (StringMaker/jnew_0) "Setting PlayerOutOfPlay with playerInputId: ") _playerInputId)) this "setPlayerOutOfPlay")
+        (set ((this :f_playersInPlay) _playerInputId) false)))
+    
+(set jm_getPlayersInPlay (fn jm_getPlayersInPlay [this]
+    (label jreturn
+        (return jreturn (this :f_playersInPlay)))))
 
-local LocalPlayerInputIdFactory = {}
-LocalPlayerInputIdFactory.__index = LocalPlayerInputIdFactory
-LocalPlayerInputIdFactory.className = "LocalPlayerInputIdFactory"
+(set jproto @{:jm_getDeviceId jm_getDeviceId :jm_getPlayerForDevice jm_getPlayerForDevice :jm_getTotalDevicesInPlay jm_getTotalDevicesInPlay :jm_isPlayerInPlay jm_isPlayerInPlay :jm_setPlayerInPlay jm_setPlayerInPlay :jm_setPlayerOutOfPlay jm_setPlayerOutOfPlay :jm_getPlayersInPlay jm_getPlayersInPlay})
 
-function LocalPlayerInputIdFactory:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-    self.MAX_NUMBER_OF_PLAYERS = 6
-    self.MAX_FAST_DEVICEID = 65
-    self.deviceIdToplayerId = java_new_array(0, self.MAX_FAST_DEVICEID)
-    self.playerIdToDeviceId = java_new_array(0, self.MAX_NUMBER_OF_PLAYERS)
-    self.playersInPlay = java_new_array(false, self.MAX_NUMBER_OF_PLAYERS)
-    self.totalDevicesMapped = 0
-end
-
-
-function LocalPlayerInputIdFactory.new()
-    local self = setmetatable({}, LocalPlayerInputIdFactory)
-    self:_init_fields()
-        for index = (self.deviceIdToplayerId.n or #self.deviceIdToplayerId) - 1, 0, -1 do
-            self.deviceIdToplayerId[index + 1] = -1
-        end
-    return self
-end
-
-
-function LocalPlayerInputIdFactory.getInstance()
-        return LocalPlayerInputIdFactory.instance
-end
-
-
-function LocalPlayerInputIdFactory:getDeviceId(playerInputId)
-        return self.playerIdToDeviceId[playerInputId + 1]
-end
-
-
-function LocalPlayerInputIdFactory:getPlayerForDevice(deviceId)
-        local index = 0
-        if deviceId < self.MAX_FAST_DEVICEID then
-            local playerInputId = self.deviceIdToplayerId[deviceId + 1]
-            if playerInputId ~= -1 then
-                return playerInputId
-            end
-        else
-            for index = self.totalDevicesMapped - 1, 0, -1 do
-                if self.playerIdToDeviceId[index + 1] == deviceId then
-                    return index
-                end
-            end
-        end
-        index = self.totalDevicesMapped
-        if deviceId < self.MAX_FAST_DEVICEID then
-            self.deviceIdToplayerId[deviceId + 1] = index
-        else
-            self.logUtil:putF(tostring(StringMaker.new():append("Added DeviceId: "):appendint(deviceId):append(" beyond fast Id list")), self, "getPlayerForDevice")
-        end
-        self.playerIdToDeviceId[index + 1] = deviceId
-        AnalogLocationInputFactory.getInstance():addPlayer(self.totalDevicesMapped)
-        self.totalDevicesMapped = self.totalDevicesMapped + 1
-        self.logUtil:putF(tostring(StringMaker.new():append("Added DeviceId: "):appendint(deviceId):append(" at: "):appendint(index):append(" Total: "):appendint(self.totalDevicesMapped)), self, "getPlayerForDevice")
-        return index
-end
-
-
-function LocalPlayerInputIdFactory:getTotalDevicesInPlay()
-        local total = 0
-        for index = self.totalDevicesMapped - 1, 0, -1 do
-            if self.playersInPlay[index + 1] == true then
-                total = total + 1
-            end
-        end
-        return total
-end
-
-
-function LocalPlayerInputIdFactory:isPlayerInPlay(playerInputId)
-        return self.playersInPlay[playerInputId + 1]
-end
-
-
-function LocalPlayerInputIdFactory:setPlayerInPlay(playerInputId)
-        self.logUtil:putF(tostring(StringMaker.new():append("Setting PlayerInPlay with playerInputId: "):appendint(playerInputId)), self, "setPlayerInPlay")
-        self.playersInPlay[playerInputId + 1] = true
-end
-
-
-function LocalPlayerInputIdFactory:setPlayerOutOfPlay(playerInputId)
-        self.logUtil:putF(tostring(StringMaker.new():append("Setting PlayerOutOfPlay with playerInputId: "):appendint(playerInputId)), self, "setPlayerOutOfPlay")
-        self.playersInPlay[playerInputId + 1] = false
-end
-
-
-function LocalPlayerInputIdFactory:getPlayersInPlay()
-        return self.playersInPlay
-end
-
-LocalPlayerInputIdFactory.instance = LocalPlayerInputIdFactory.new()
-
-return LocalPlayerInputIdFactory
 

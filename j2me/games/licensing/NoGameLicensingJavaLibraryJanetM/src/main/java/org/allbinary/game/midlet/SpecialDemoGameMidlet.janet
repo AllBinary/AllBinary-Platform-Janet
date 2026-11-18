@@ -1,53 +1,41 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.midlet
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.game.midlet
 
-local ClientInformationFactory = require("org.allbinary.logic.system.security.licensing.ClientInformationFactory")
-local LicenseServerInitFileUtil = require("org.allbinary.logic.system.security.licensing.LicenseServerInitFileUtil")
-local DemoGameMidlet = require("org.allbinary.game.midlet.DemoGameMidlet")
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- LicenseServerInitFileUtil/jnew_0 [& args] (JR/call jfile "../../../../org/allbinary/logic/system/security/licensing/LicenseServerInitFileUtil" "jnew_0" args))
+(import ./DemoGameMidlet :as DemoGameMidlet)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class SpecialDemoGameMidlet
+(var jproto nil)
+(var jnew_4 nil)
+(var jm_initView nil)
+(var jm_preInit nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jnew_4 (fn jnew_4 [_clientInformationFactory _licenseLoadingType _demoSetupFactory _licenseCheckRunnableFactory]
+    (var this (table/setproto @{:jclass "SpecialDemoGameMidlet"} jproto))
+        (JR/superInit this (DemoGameMidlet/jnew_1 _clientInformationFactory))
+    this))
+    
+(set jm_initView (fn jm_initView [this]
+    nil))
+    
+(set jm_preInit (fn jm_preInit [this]
+        (:jm_init (LicenseServerInitFileUtil/jnew_0))))
 
-local SpecialDemoGameMidlet = {}
-SpecialDemoGameMidlet.__index = SpecialDemoGameMidlet
-SpecialDemoGameMidlet.className = "SpecialDemoGameMidlet"
-setmetatable(SpecialDemoGameMidlet, {__index = DemoGameMidlet})
+(set jproto (table/setproto @{:jm_initView jm_initView :jm_preInit jm_preInit} DemoGameMidlet/jproto))
 
-
-function SpecialDemoGameMidlet.new(clientInformationFactory, licenseLoadingType, demoSetupFactory, licenseCheckRunnableFactory)
-    local self = setmetatable(DemoGameMidlet.new(clientInformationFactory), SpecialDemoGameMidlet)
-        -- super(...) made self above
-    return self
-end
-
-
-function SpecialDemoGameMidlet:initView()
-end
-
-
-function SpecialDemoGameMidlet:preInit()
-        LicenseServerInitFileUtil.new():init()
-end
-
-return SpecialDemoGameMidlet
 

@@ -1,45 +1,35 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.input.motion.gesture
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.input.motion.gesture
 
-local Input = require("org.allbinary.game.input.Input")
-local InputFactory = require("org.allbinary.game.input.InputFactory")
+(import ../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(import ../../../../../org/allbinary/game/input/Input :as Input)
+(defn- InputFactory/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/game/input/InputFactory" "jm_getInstance" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class MotionGestureInput
+(var jproto nil)
+(var jnew_2 nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jnew_2 (fn jnew_2 [_id _name]
+    (var this (table/setproto @{:jclass "MotionGestureInput"} jproto))
+        (JR/superInit this (Input/jnew_2 _id _name))
+        (var _inputFactory (InputFactory/jm_getInstance))
+        (:jm_add _inputFactory (:jm_getId this) this)
+    this))
 
-local MotionGestureInput = {}
-MotionGestureInput.__index = MotionGestureInput
-MotionGestureInput.className = "MotionGestureInput"
-setmetatable(MotionGestureInput, {__index = Input})
+(set jproto (table/setproto @{} Input/jproto))
 
-
-function MotionGestureInput.new(id, name)
-    local self = setmetatable(Input.new(id, name), MotionGestureInput)
-        -- super(...) made self above
-        local inputFactory = InputFactory.getInstance()
-        inputFactory:add(self:getId(), self)
-    return self
-end
-
-return MotionGestureInput
 

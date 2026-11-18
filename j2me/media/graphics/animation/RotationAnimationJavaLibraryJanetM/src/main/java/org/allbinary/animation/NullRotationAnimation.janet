@@ -1,49 +1,38 @@
--- Generated Code Do Not Modify
--- package org.allbinary.animation
+# Generated Code Do Not Modify
+# package org.allbinary.animation
 
-local AngleFactory = require("org.allbinary.math.AngleFactory")
-local AngleInfo = require("org.allbinary.math.AngleInfo")
-local CircularIndexUtil = require("org.allbinary.util.CircularIndexUtil")
-local RotationAnimation = require("org.allbinary.animation.RotationAnimation")
+(import ../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- AngleFactory/jm_getInstance [& args] (JR/call jfile "../../../org/allbinary/math/AngleFactory" "jm_getInstance" args))
+(defn- AngleInfo/jm_getInstance [& args] (JR/call jfile "../../../org/allbinary/math/AngleInfo" "jm_getInstance" args))
+(defn- CircularIndexUtil/jm_createInstance [& args] (JR/call jfile "../../../org/allbinary/util/CircularIndexUtil" "jm_createInstance" args))
+(import ./RotationAnimation :as RotationAnimation)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class NullRotationAnimation
+(var jproto nil)
+(var jnew_3 nil)
+(var jm_createTotalAngle nil)
+(var jm_createQuarter nil)
+(var jm_getAnimationSize nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jm_createTotalAngle (fn jm_createTotalAngle [_angleInfo _totalAngle _animationBehavior]
+    (label jreturn
+        (return jreturn (jnew_3 _angleInfo (CircularIndexUtil/jm_createInstance (JR/idiv _totalAngle (JR/className (:jm_getAngleIncrementInfo _angleInfo)))) _animationBehavior)))))
+    
+(set jm_createQuarter (fn jm_createQuarter [_animationBehavior]
+    (label jreturn
+        (return jreturn (jnew_3 (AngleInfo/jm_getInstance ((AngleFactory/jm_getInstance) :f_QUARTER_TOTAL_ANGLE)) (CircularIndexUtil/jm_createInstance 4) _animationBehavior)))))
+    
+(set jnew_3 (fn jnew_3 [_angleInfo _circularIndexUtil _animationBehavior]
+    (var this (table/setproto @{:jclass "NullRotationAnimation"} jproto))
+        (JR/superInit this (RotationAnimation/jnew_3 _angleInfo _circularIndexUtil _animationBehavior))
+    this))
+    
+(set jm_getAnimationSize (fn jm_getAnimationSize [this]
+    (label jreturn
+        (return jreturn 0))))
 
-local NullRotationAnimation = {}
-NullRotationAnimation.__index = NullRotationAnimation
-NullRotationAnimation.className = "NullRotationAnimation"
-setmetatable(NullRotationAnimation, {__index = RotationAnimation})
+(set jproto (table/setproto @{:jm_getAnimationSize jm_getAnimationSize} RotationAnimation/jproto))
 
-
-function NullRotationAnimation.createTotalAngle(angleInfo, totalAngle, animationBehavior)
-        return NullRotationAnimation.new(angleInfo, CircularIndexUtil.createInstance(totalAngle / angleInfo:getAngleIncrementInfo():getAngleIncrement()), animationBehavior)
-end
-
-
-function NullRotationAnimation.createQuarter(animationBehavior)
-        return NullRotationAnimation.new(AngleInfo.getInstance(AngleFactory.getInstance().QUARTER_TOTAL_ANGLE), CircularIndexUtil.createInstance(4), animationBehavior)
-end
-
-
-function NullRotationAnimation.new(angleInfo, circularIndexUtil, animationBehavior)
-    local self = setmetatable(RotationAnimation.new(angleInfo, circularIndexUtil, animationBehavior), NullRotationAnimation)
-        -- super(...) made self above
-    return self
-end
-
-
--- throws Exception
-function NullRotationAnimation:getAnimationSize()
-        return 0
-end
-
-return NullRotationAnimation
 

@@ -1,41 +1,31 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.input.magnetic.field
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.input.magnetic.field
 
-local AllBinarySensor = require("org.allbinary.input.AllBinarySensor")
+(import ../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(import ../../../../../org/allbinary/input/AllBinarySensor :as AllBinarySensor)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class AllBinaryMagneticFieldSensor
+(var jproto nil)
+(var jnew_0 nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "AllBinaryMagneticFieldSensor"} jproto))
+    this))
 
-local AllBinaryMagneticFieldSensor = {}
-AllBinaryMagneticFieldSensor.__index = AllBinaryMagneticFieldSensor
-AllBinaryMagneticFieldSensor.className = "AllBinaryMagneticFieldSensor"
-setmetatable(AllBinaryMagneticFieldSensor, {__index = AllBinarySensor})
+(set jproto (table/setproto @{} AllBinarySensor/jproto))
 
-
-function AllBinaryMagneticFieldSensor.new()
-    local self = setmetatable(AllBinarySensor.new(), AllBinaryMagneticFieldSensor)
-    return self
-end
-
-return AllBinaryMagneticFieldSensor
 

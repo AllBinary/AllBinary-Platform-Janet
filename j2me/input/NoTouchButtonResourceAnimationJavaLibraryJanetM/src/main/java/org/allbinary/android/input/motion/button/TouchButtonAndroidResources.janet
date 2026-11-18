@@ -1,44 +1,36 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.android.input.motion.button
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.android.input.motion.button
 
-local Init = require("org.allbinary.init.Init")
+(import ../../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(import ../../../../../../org/allbinary/init/Init :as Init)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class TouchButtonAndroidResources
+(var jproto nil)
+(var jnew_0 nil)
+(var jm_init nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "TouchButtonAndroidResources"} jproto))
+    (JR/superInit this (Init/jnew_0))
+    this))
 
-local TouchButtonAndroidResources = {}
-TouchButtonAndroidResources.__index = TouchButtonAndroidResources
-TouchButtonAndroidResources.className = "TouchButtonAndroidResources"
-setmetatable(TouchButtonAndroidResources, {__index = Init})
+    
+(set jm_init (fn jm_init [this]
+    nil))
 
-function TouchButtonAndroidResources.new()
-    local self = setmetatable(Init.new(), TouchButtonAndroidResources)
-    return self
-end
+(set jproto (table/setproto @{:jm_init jm_init} Init/jproto))
 
-
-function TouchButtonAndroidResources:init()
-end
-
-return TouchButtonAndroidResources
 

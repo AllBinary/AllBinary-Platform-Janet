@@ -1,47 +1,37 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.animation.image
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.animation.image
 
-local AnimationBehavior = require("org.allbinary.animation.AnimationBehavior")
-local CacheableInterface = require("org.allbinary.logic.util.cache.CacheableInterface")
-local CacheableInterfaceFactoryInterface = require("org.allbinary.logic.util.cache.CacheableInterfaceFactoryInterface")
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- AnimationBehavior/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/animation/AnimationBehavior" "jm_getInstance" args))
+(defn- ImageArrayRotationAnimationCacheable/jnew_2 [& args] (JR/call jfile "./ImageArrayRotationAnimationCacheable" "jnew_2" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class ImageArrayRotationAnimationCacheableInterfaceFactory
+(var jproto nil)
+(var jnew_0 nil)
+(var jm_getInstance nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "ImageArrayRotationAnimationCacheableInterfaceFactory"} jproto))
+    this))
 
-local ImageArrayRotationAnimationCacheableInterfaceFactory = {}
-ImageArrayRotationAnimationCacheableInterfaceFactory.__index = ImageArrayRotationAnimationCacheableInterfaceFactory
-ImageArrayRotationAnimationCacheableInterfaceFactory.className = "ImageArrayRotationAnimationCacheableInterfaceFactory"
+    
+(set jm_getInstance (fn jm_getInstance [this _key]
+    (label jreturn
+        (return jreturn (ImageArrayRotationAnimationCacheable/jnew_2 _key (AnimationBehavior/jm_getInstance))))))
 
-function ImageArrayRotationAnimationCacheableInterfaceFactory.new()
-    local self = setmetatable({}, ImageArrayRotationAnimationCacheableInterfaceFactory)
-    return self
-end
+(set jproto @{:jm_getInstance jm_getInstance})
 
-
--- throws Exception
-function ImageArrayRotationAnimationCacheableInterfaceFactory:getInstance(key)
-        return ImageArrayRotationAnimationCacheable.new(key, AnimationBehavior.getInstance())
-end
-
-return ImageArrayRotationAnimationCacheableInterfaceFactory
 

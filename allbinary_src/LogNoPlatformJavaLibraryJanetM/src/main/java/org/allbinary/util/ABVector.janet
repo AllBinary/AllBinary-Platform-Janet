@@ -23,6 +23,7 @@
 
 (set jnew_0 (fn jnew_0 []
     (var this (table/setproto @{:jclass "ABVector"} jproto))
+    (JR/superInit this (Vector/jnew_0))
     this))
 
 

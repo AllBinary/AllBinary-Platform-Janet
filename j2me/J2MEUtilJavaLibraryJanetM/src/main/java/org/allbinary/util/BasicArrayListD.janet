@@ -24,7 +24,7 @@
     
 (set jnew_0 (fn jnew_0 []
     (var this (table/setproto @{:jclass "BasicArrayListD"} jproto))
-        nil
+        (JR/superInit this (BasicArrayListS/jnew_1 7))
     this))
 
 (set jproto (table/setproto @{} BasicArrayListS/jproto))

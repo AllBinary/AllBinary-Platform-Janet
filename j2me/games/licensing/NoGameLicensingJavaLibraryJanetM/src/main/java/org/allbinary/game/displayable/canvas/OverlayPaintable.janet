@@ -1,64 +1,48 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.displayable.canvas
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.game.displayable.canvas
 
--- local Graphics = require("javax.microedition.lcdui.Graphics")
-local InitUpdatePaintable = require("org.allbinary.graphics.paint.InitUpdatePaintable")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
+(import ../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(import ../../../../../org/allbinary/graphics/paint/InitUpdatePaintable :as InitUpdatePaintable)
+(defn- LogUtil/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/logic/communication/log/LogUtil" "jm_getInstance" args))
+(defn- CommonStrings/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/string/CommonStrings" "jm_getInstance" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class OverlayPaintable
+(var jproto nil)
+(var jnew_0 nil)
+(var jm_update nil)
+(var jm_paint nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "OverlayPaintable" :f_logUtil nil} jproto))
+    (put this :f_logUtil (LogUtil/jm_getInstance))
+    (JR/superInit this (InitUpdatePaintable/jnew_0))
+    this))
+    
+(set jm_update (fn jm_update [this]
+        (try
+            (do
+            nil)
+            ([_e] (do
+            (var _commonStrings (CommonStrings/jm_getInstance))
+            (:jm_put (this :f_logUtil) (_commonStrings :f_EXCEPTION) this (_commonStrings :f_UPDATE) _e))))))
+    
+(set jm_paint (fn jm_paint [this _graphics]
+    nil))
 
-local OverlayPaintable = {}
-OverlayPaintable.__index = OverlayPaintable
-OverlayPaintable.className = "OverlayPaintable"
-setmetatable(OverlayPaintable, {__index = InitUpdatePaintable})
+(set jproto (table/setproto @{:jm_update jm_update :jm_paint jm_paint} InitUpdatePaintable/jproto))
 
-function OverlayPaintable:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-end
-
-
-function OverlayPaintable.new()
-    local self = setmetatable(InitUpdatePaintable.new(), OverlayPaintable)
-    self:_init_fields()
-    return self
-end
-
-
-function OverlayPaintable:update()
-        local try_ok, try_error = pcall(function()
-        end)
-        if not try_ok then
-            local e = try_error
-            local commonStrings = CommonStrings.getInstance()
-            self.logUtil:put(commonStrings.EXCEPTION, self, commonStrings.UPDATE, e)
-        end
-end
-
-
-function OverlayPaintable:paint(graphics)
-end
-
-return OverlayPaintable
 

@@ -1,24 +1,19 @@
--- Generated Code Do Not Modify
--- package javax.microedition.khronos.opengles
+# Generated Code Do Not Modify
+# package javax.microedition.khronos.opengles
 
-local GL10 = require("javax.microedition.khronos.opengles.GL10")
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(import ./GL10 :as GL10)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class GL11
+(var jproto nil)
+(var jnew_0 nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "GL11"} jproto))
+    this))
 
--- Java interface
-local GL11 = {}
-GL11.__index = GL11
-GL11.className = "GL11"
-setmetatable(GL11, {__index = GL10})
 
-return GL11
+(set jproto @{})
+
 

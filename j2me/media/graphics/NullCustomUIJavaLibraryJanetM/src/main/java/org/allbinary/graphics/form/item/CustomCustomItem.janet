@@ -1,45 +1,27 @@
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.form.item
+# Generated Code Do Not Modify
+# package org.allbinary.graphics.form.item
 
--- local Graphics = require("javax.microedition.lcdui.Graphics")
-local BasicColor = require("org.allbinary.graphics.color.BasicColor")
-local MyFontProcessor = require("org.allbinary.graphics.font.MyFontProcessor")
-local UpdateMyFontInterface = require("org.allbinary.graphics.font.UpdateMyFontInterface")
-local UpdateMyFontProcessor = require("org.allbinary.graphics.font.UpdateMyFontProcessor")
-local ABCustomItem = require("org.allbinary.graphics.form.item.ABCustomItem")
+(import ../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- UpdateMyFontProcessor/jnew_1 [& args] (JR/call jfile "../../../../../org/allbinary/graphics/font/UpdateMyFontProcessor" "jnew_1" args))
+(import ./ABCustomItem :as ABCustomItem)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class CustomCustomItem
+(var jproto nil)
+(var jnew_3 nil)
+(var jm_updateMeasurement nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jnew_3 (fn jnew_3 [_label _backgroundBasicColor _foregroundBasicColor]
+    (var this (table/setproto @{:jclass "CustomCustomItem" :f_updateMyFontProcessor nil :f_myFontProcessor nil} jproto))
+    (put this :f_updateMyFontProcessor (UpdateMyFontProcessor/jnew_1 this))
+    (put this :f_myFontProcessor (this :f_updateMyFontProcessor))
+        (JR/superInit this (ABCustomItem/jnew_3 _label _backgroundBasicColor _foregroundBasicColor))
+    this))
+    
+(set jm_updateMeasurement (fn jm_updateMeasurement [this _graphics]
+    nil))
 
-local CustomCustomItem = {}
-CustomCustomItem.__index = CustomCustomItem
-CustomCustomItem.className = "CustomCustomItem"
-setmetatable(CustomCustomItem, {__index = ABCustomItem})
+(set jproto (table/setproto @{:jm_updateMeasurement jm_updateMeasurement} ABCustomItem/jproto))
 
-function CustomCustomItem:_init_fields()
-    self.updateMyFontProcessor = UpdateMyFontProcessor.new(self)
-    self.myFontProcessor = self.updateMyFontProcessor
-end
-
-
-function CustomCustomItem.new(label, backgroundBasicColor, foregroundBasicColor)
-    local self = setmetatable(ABCustomItem.new(label, backgroundBasicColor, foregroundBasicColor), CustomCustomItem)
-    self:_init_fields()
-        -- super(...) made self above
-    return self
-end
-
-
-function CustomCustomItem:updateMeasurement(graphics)
-end
-
-return CustomCustomItem
 

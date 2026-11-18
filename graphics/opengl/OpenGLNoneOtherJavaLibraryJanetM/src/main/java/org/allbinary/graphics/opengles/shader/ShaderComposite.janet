@@ -1,83 +1,68 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2025 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.opengles.shader
+# 
+# AllBinary Open License Version 1 
+# Copyright (c) 2025 AllBinary 
+#  
+# By agreeing to this license you and any business entity you represent are 
+# legally bound to the AllBinary Open License Version 1 legal agreement. 
+#  
+# You may obtain the AllBinary Open License Version 1 legal agreement from 
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+#  
+# Created By: Travis Berthelot 
+#   
+# Generated Code Do Not Modify
+# package org.allbinary.graphics.opengles.shader
 
--- local GL10 = require("javax.microedition.khronos.opengles.GL10")
-local NullOpenGLProcessorFactory = require("org.allbinary.graphics.opengles.NullOpenGLProcessorFactory")
-local OpenGLProcessor = require("org.allbinary.graphics.opengles.OpenGLProcessor")
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
+(import ../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- NullOpenGLProcessorFactory/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/graphics/opengles/NullOpenGLProcessorFactory" "jm_getInstance" args))
+(defn- StringUtil/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/logic/string/StringUtil" "jm_getInstance" args))
+(defn- NullOpenGLTextureProcessor/jm_getInstance [& args] (JR/call jfile "./NullOpenGLTextureProcessor" "jm_getInstance" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class ShaderComposite
+(var jproto nil)
+(var jnew_8 nil)
+(var jm_init nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jnew_8 (fn jnew_8 [_requiresOpenGLVersion _shaderArray _compositeShaderUpdater _shaderInitializer _modelViewProjection _colorOpenGLProcessor _vertexOpenGLProcessor _disableProgramShaderOpenGLProcessor]
+    (var this (table/setproto @{:jclass "ShaderComposite" :f_disableProgramShaderOpenGLProcessor nil :f_requiresOpenGLVersion nil :f_shaderArray nil :f_shaderInitializer nil :f_compositeShaderUpdater nil :f_modelViewProjection nil :f_colorOpenGLProcessor nil :f_vertexOpenGLProcessor nil :f_useProgramShaderOpenGLProcessor nil :f_shaderMatrixOpenGLProcessor nil :f_colorEnableVertexAttribArrayOpenGLProcessor nil :f_normalEnableVertexAttribArrayOpenGLProcessor nil :f_vertexEnableVertexAttribArrayOpenGLProcessor nil :f_textureEnableVertexAttribArrayOpenGLProcessor nil :f_colorDisableVertexAttribArrayOpenGLProcessor nil :f_normalDisableVertexAttribArrayOpenGLProcessor nil :f_vertexDisableVertexAttribArrayOpenGLProcessor nil :f_textureDisableVertexAttribArrayOpenGLProcessor nil :f_uniformLightPositionOpenGLProcessor nil :f_uniformLightColorOpenGLProcessor nil :f_uniformCameraPositionOpenGLProcessor nil :f_uniformTextureUnitOpenGLProcessor nil :f_programHandle 0} jproto))
+    
+    
+    
+    
+    
+    
+    
+    
+    (put this :f_useProgramShaderOpenGLProcessor (NullOpenGLProcessorFactory/jm_getInstance))
+    (put this :f_shaderMatrixOpenGLProcessor (NullOpenGLProcessorFactory/jm_getInstance))
+    (put this :f_colorEnableVertexAttribArrayOpenGLProcessor (NullOpenGLProcessorFactory/jm_getInstance))
+    (put this :f_normalEnableVertexAttribArrayOpenGLProcessor (NullOpenGLProcessorFactory/jm_getInstance))
+    (put this :f_vertexEnableVertexAttribArrayOpenGLProcessor (NullOpenGLProcessorFactory/jm_getInstance))
+    (put this :f_textureEnableVertexAttribArrayOpenGLProcessor (NullOpenGLProcessorFactory/jm_getInstance))
+    (put this :f_colorDisableVertexAttribArrayOpenGLProcessor (NullOpenGLProcessorFactory/jm_getInstance))
+    (put this :f_normalDisableVertexAttribArrayOpenGLProcessor (NullOpenGLProcessorFactory/jm_getInstance))
+    (put this :f_vertexDisableVertexAttribArrayOpenGLProcessor (NullOpenGLProcessorFactory/jm_getInstance))
+    (put this :f_textureDisableVertexAttribArrayOpenGLProcessor (NullOpenGLProcessorFactory/jm_getInstance))
+    (put this :f_uniformLightPositionOpenGLProcessor (NullOpenGLTextureProcessor/jm_getInstance))
+    (put this :f_uniformLightColorOpenGLProcessor (NullOpenGLTextureProcessor/jm_getInstance))
+    (put this :f_uniformCameraPositionOpenGLProcessor (NullOpenGLTextureProcessor/jm_getInstance))
+    (put this :f_uniformTextureUnitOpenGLProcessor (NullOpenGLTextureProcessor/jm_getInstance))
+    
+        (set (this :f_requiresOpenGLVersion) _requiresOpenGLVersion)
+        (set (this :f_shaderArray) _shaderArray)
+        (set (this :f_shaderInitializer) _shaderInitializer)
+        (set (this :f_compositeShaderUpdater) _compositeShaderUpdater)
+        (set (this :f_modelViewProjection) _modelViewProjection)
+        (set (this :f_colorOpenGLProcessor) _colorOpenGLProcessor)
+        (set (this :f_vertexOpenGLProcessor) _vertexOpenGLProcessor)
+        (set (this :f_disableProgramShaderOpenGLProcessor) _disableProgramShaderOpenGLProcessor)
+    this))
+    
+(set jm_init (fn jm_init [this _gl]
+        (set (this :f_programHandle) (:jm_init (this :f_shaderInitializer) _gl (this :f_shaderArray) (:jm_getArrayInstance (StringUtil/jm_getInstance))))))
 
-local ShaderComposite = {}
-ShaderComposite.__index = ShaderComposite
-ShaderComposite.className = "ShaderComposite"
+(set jproto @{:jm_init jm_init})
 
-function ShaderComposite:_init_fields()
-    self.disableProgramShaderOpenGLProcessor = nil
-    self.requiresOpenGLVersion = nil
-    self.shaderArray = nil
-    self.shaderInitializer = nil
-    self.compositeShaderUpdater = nil
-    self.modelViewProjection = nil
-    self.colorOpenGLProcessor = nil
-    self.vertexOpenGLProcessor = nil
-    self.useProgramShaderOpenGLProcessor = NullOpenGLProcessorFactory.getInstance()
-    self.shaderMatrixOpenGLProcessor = NullOpenGLProcessorFactory.getInstance()
-    self.colorEnableVertexAttribArrayOpenGLProcessor = NullOpenGLProcessorFactory.getInstance()
-    self.normalEnableVertexAttribArrayOpenGLProcessor = NullOpenGLProcessorFactory.getInstance()
-    self.vertexEnableVertexAttribArrayOpenGLProcessor = NullOpenGLProcessorFactory.getInstance()
-    self.textureEnableVertexAttribArrayOpenGLProcessor = NullOpenGLProcessorFactory.getInstance()
-    self.colorDisableVertexAttribArrayOpenGLProcessor = NullOpenGLProcessorFactory.getInstance()
-    self.normalDisableVertexAttribArrayOpenGLProcessor = NullOpenGLProcessorFactory.getInstance()
-    self.vertexDisableVertexAttribArrayOpenGLProcessor = NullOpenGLProcessorFactory.getInstance()
-    self.textureDisableVertexAttribArrayOpenGLProcessor = NullOpenGLProcessorFactory.getInstance()
-    self.uniformLightPositionOpenGLProcessor = NullOpenGLTextureProcessor.getInstance()
-    self.uniformLightColorOpenGLProcessor = NullOpenGLTextureProcessor.getInstance()
-    self.uniformCameraPositionOpenGLProcessor = NullOpenGLTextureProcessor.getInstance()
-    self.uniformTextureUnitOpenGLProcessor = NullOpenGLTextureProcessor.getInstance()
-    self.programHandle = 0
-end
-
-
-function ShaderComposite.new(requiresOpenGLVersion, shaderArray, compositeShaderUpdater, shaderInitializer, modelViewProjection, colorOpenGLProcessor, vertexOpenGLProcessor, disableProgramShaderOpenGLProcessor)
-    local self = setmetatable({}, ShaderComposite)
-    self:_init_fields()
-        self.requiresOpenGLVersion = requiresOpenGLVersion
-        self.shaderArray = shaderArray
-        self.shaderInitializer = shaderInitializer
-        self.compositeShaderUpdater = compositeShaderUpdater
-        self.modelViewProjection = modelViewProjection
-        self.colorOpenGLProcessor = colorOpenGLProcessor
-        self.vertexOpenGLProcessor = vertexOpenGLProcessor
-        self.disableProgramShaderOpenGLProcessor = disableProgramShaderOpenGLProcessor
-    return self
-end
-
-
-function ShaderComposite:init(gl)
-        self.programHandle = self.shaderInitializer:init(gl, self.shaderArray, StringUtil.getInstance():getArrayInstance())
-end
-
-return ShaderComposite
 

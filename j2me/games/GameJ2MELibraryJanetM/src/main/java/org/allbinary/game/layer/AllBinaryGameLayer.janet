@@ -1,165 +1,114 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.layer
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.game.layer
 
--- local GL = require("javax.microedition.khronos.opengles.GL")
--- local Graphics = require("javax.microedition.lcdui.Graphics")
-local Rectangle = require("org.allbinary.graphics.Rectangle")
-local BasicColor = require("org.allbinary.graphics.color.BasicColor")
-local BasicColorFactory = require("org.allbinary.graphics.color.BasicColorFactory")
-local BasicColorSetUtil = require("org.allbinary.graphics.color.BasicColorSetUtil")
-local NullPaintable = require("org.allbinary.graphics.paint.NullPaintable")
-local Paintable = require("org.allbinary.graphics.paint.Paintable")
-local OpenGLSurfaceChangedInterface = require("org.allbinary.image.opengles.OpenGLSurfaceChangedInterface")
-local AllBinaryLayer = require("org.allbinary.layer.AllBinaryLayer")
-local AllBinaryLayerManager = require("org.allbinary.layer.AllBinaryLayerManager")
-local ForcedLogUtil = require("org.allbinary.logic.communication.log.ForcedLogUtil")
-local AllBinaryEventObject = require("org.allbinary.logic.util.event.AllBinaryEventObject")
-local EventStrings = require("org.allbinary.logic.util.event.EventStrings")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
-local BasicArrayListD = require("org.allbinary.util.BasicArrayListD")
-local ViewPositionBase = require("org.allbinary.view.ViewPositionBase")
-local ViewPositionEvent = require("org.allbinary.view.event.ViewPositionEvent")
-local ViewPositionEventListenerInterface = require("org.allbinary.view.event.ViewPositionEventListenerInterface")
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- BasicColorFactory/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/graphics/color/BasicColorFactory" "jm_getInstance" args))
+(defn- BasicColorSetUtil/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/graphics/color/BasicColorSetUtil" "jm_getInstance" args))
+(defn- NullPaintable/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/graphics/paint/NullPaintable" "jm_getInstance" args))
+(import ../../../../org/allbinary/layer/AllBinaryLayer :as AllBinaryLayer)
+(defn- ForcedLogUtil/jm_log [& args] (JR/call jfile "../../../../org/allbinary/logic/communication/log/ForcedLogUtil" "jm_log" args))
+(defn- EventStrings/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/logic/util/event/EventStrings" "jm_getInstance" args))
+(defn- CommonStrings/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/string/CommonStrings" "jm_getInstance" args))
+(defn- BasicArrayListD/jnew_0 [& args] (JR/call jfile "../../../../org/allbinary/util/BasicArrayListD" "jnew_0" args))
+(defn- SWTUtil/jstatic_isSWT [& args] (JR/call jfile "./SWTUtil" "jstatic_isSWT" args))
+(defn- SWTBlackPaintable/jnew_0 [& args] (JR/call jfile "./SWTBlackPaintable" "jnew_0" args))
+(defn- GameLayerUtil/jm_isOnScreen [& args] (JR/call jfile "./GameLayerUtil" "jm_isOnScreen" args))
 
--- Java library Throwable. tostring gives the message like Java getMessage.
-local function java_exception(className, message, cause)
-    if cause == nil and type(message) == "table" then
-        cause = message
-        message = tostring(message)
-    end
-    local exception = {className = className, message = message, cause = cause}
-    function exception:getMessage() return self.message end
-    function exception:getCause() return self.cause end
-    function exception:printStackTrace() print(debug.traceback(tostring(self))) end
-    return setmetatable(exception, {__tostring = function(self) if self.message ~= nil then return tostring(self.message) end return self.className end})
-end
+# Java class AllBinaryGameLayer
+(var jproto nil)
+(var jnew_3 nil)
+(var jm_createPaintable nil)
+(var jm_set nil)
+(var jm_move nil)
+(var jm_getGameKeyEventList nil)
+(var jm_processInput nil)
+(var jm_processTick nil)
+(var jm_onEvent nil)
+(var jm_onViewPositionChangeEvent nil)
+(var jm_onChangeEvent nil)
+(var jm_paintFirst nil)
+(var jm_paintDebug nil)
+(var jm_setWidth nil)
+(var jm_setHeight nil)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+    
+(set jm_createPaintable (fn jm_createPaintable []
+    (label jreturn
+        (if (SWTUtil/jstatic_isSWT)
+            (do
+            (return jreturn (SWTBlackPaintable/jnew_0))))
+        (return jreturn (NullPaintable/jm_getInstance)))))
+    
+(set jnew_3 (fn jnew_3 [_name _layerInfo _viewPosition]
+    (var this (table/setproto @{:jclass "AllBinaryGameLayer" :f_commonStrings nil :f_basicSetColorUtil nil :f_RED nil :f_paintable nil :f_gameKeyEventList nil} jproto))
+    (put this :f_commonStrings (CommonStrings/jm_getInstance))
+    (put this :f_basicSetColorUtil (BasicColorSetUtil/jm_getInstance))
+    (put this :f_RED ((BasicColorFactory/jm_getInstance) :f_RED))
+    (put this :f_paintable (jm_createPaintable))
+    (put this :f_gameKeyEventList (BasicArrayListD/jnew_0))
+        (JR/superInit this (AllBinaryLayer/jnew_3 _name _layerInfo _viewPosition))
+    this))
+    
+(set jm_set (fn jm_set [this _gl]
+        (error (JR/newException "Exception" ((this :f_commonStrings) :f_NOT_IMPLEMENTED)))))
+    
+(set jm_move (fn jm_move [this]
+    nil))
+    
+(set jm_getGameKeyEventList (fn jm_getGameKeyEventList [this]
+    (label jreturn
+        (return jreturn (this :f_gameKeyEventList)))))
+    
+(set jm_processInput (fn jm_processInput [this _allBinaryLayerManager]
+        (error (JR/newException "Exception" ((this :f_commonStrings) :f_NOT_IMPLEMENTED)))))
+    
+(set jm_processTick (fn jm_processTick [this _allBinaryLayerManager]
+        (error (JR/newException "Exception" ((this :f_commonStrings) :f_NOT_IMPLEMENTED)))))
+    
+(set jm_onEvent (fn jm_onEvent [this _eventObject]
+        (ForcedLogUtil/jm_log ((EventStrings/jm_getInstance) :f_PERFORMANCE_MESSAGE) this)))
+    
+(set jm_onViewPositionChangeEvent (fn jm_onViewPositionChangeEvent [this]
+        (:jm_onChangeEvent this (this :f_viewPositionEvent))))
+    
+(set jm_onChangeEvent (fn jm_onChangeEvent [this _layerManagerEvent]
+        (if (GameLayerUtil/jm_isOnScreen this)
+            (do
+            (:jm_setVisible this true))
+            (do
+            (:jm_setVisible this false)))))
+    
+(set jm_paintFirst (fn jm_paintFirst [this _graphics]
+        (:jm_paint (this :f_paintable) _graphics)))
+    
+(set jm_paintDebug (fn jm_paintDebug [this _graphics]
+        (var _viewPosition (:jm_getViewPosition this))
+        (var _viewX (:jm_getX _viewPosition))
+        (var _viewY (:jm_getY _viewPosition))
+        (:jm_setBasicColorP (this :f_basicSetColorUtil) _graphics (this :f_RED))
+        (:jm_drawRect _graphics _viewX _viewY (:jm_getWidth this) (:jm_getHeight this))))
+    
+(set jm_setWidth (fn jm_setWidth [this _width]
+        ((get AllBinaryLayer/jproto :jm_setLayerWidth) this _width)
+        (:jm_setHalfWidth this (brshift _width 1))))
+    
+(set jm_setHeight (fn jm_setHeight [this _height]
+        ((get AllBinaryLayer/jproto :jm_setLayerHeight) this _height)
+        (:jm_setHalfHeight this (brshift _height 1))))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jproto (table/setproto @{:jm_set jm_set :jm_move jm_move :jm_getGameKeyEventList jm_getGameKeyEventList :jm_processInput jm_processInput :jm_processTick jm_processTick :jm_onEvent jm_onEvent :jm_onViewPositionChangeEvent jm_onViewPositionChangeEvent :jm_onChangeEvent jm_onChangeEvent :jm_paintFirst jm_paintFirst :jm_paintDebug jm_paintDebug :jm_setWidth jm_setWidth :jm_setHeight jm_setHeight} AllBinaryLayer/jproto))
 
-local AllBinaryGameLayer = {}
-AllBinaryGameLayer.__index = AllBinaryGameLayer
-AllBinaryGameLayer.className = "AllBinaryGameLayer"
-setmetatable(AllBinaryGameLayer, {__index = AllBinaryLayer})
-
-function AllBinaryGameLayer:_init_fields()
-    self.commonStrings = CommonStrings.getInstance()
-    self.basicSetColorUtil = BasicColorSetUtil.getInstance()
-    self.RED = BasicColorFactory.getInstance().RED
-    self.paintable = AllBinaryGameLayer.createPaintable()
-    self.gameKeyEventList = BasicArrayListD.new()
-end
-
-
-function AllBinaryGameLayer.createPaintable()
-        if SWTUtil.isSWT then
-            return SWTBlackPaintable.new()
-        end
-        return NullPaintable.getInstance()
-end
-
-
-function AllBinaryGameLayer.new(name, layerInfo, viewPosition)
-    local self = setmetatable(AllBinaryLayer.new(name, layerInfo, viewPosition), AllBinaryGameLayer)
-    self:_init_fields()
-        -- super(...) made self above
-    return self
-end
-
-
--- throws Exception
-function AllBinaryGameLayer:set(gl)
-        error(java_exception("Exception", self.commonStrings.NOT_IMPLEMENTED), 0)
-end
-
-
-function AllBinaryGameLayer:move()
-end
-
-
-function AllBinaryGameLayer:getGameKeyEventList()
-        return self.gameKeyEventList
-end
-
-
--- throws Exception
-function AllBinaryGameLayer:processInput(allBinaryLayerManager)
-        error(java_exception("Exception", self.commonStrings.NOT_IMPLEMENTED), 0)
-end
-
-
--- throws Exception
-function AllBinaryGameLayer:processTick(allBinaryLayerManager)
-        error(java_exception("Exception", self.commonStrings.NOT_IMPLEMENTED), 0)
-end
-
-
-function AllBinaryGameLayer:onEvent(eventObject)
-        ForcedLogUtil.log(EventStrings.getInstance().PERFORMANCE_MESSAGE, self)
-end
-
-
--- throws Exception
-function AllBinaryGameLayer:onViewPositionChangeEvent()
-        self:onChangeEvent(self.viewPositionEvent)
-end
-
-
--- throws Exception
-function AllBinaryGameLayer:onChangeEvent(layerManagerEvent)
-        if GameLayerUtil.isOnScreen(self) then
-            self:setVisible(true)
-        else
-            self:setVisible(false)
-        end
-end
-
-
-function AllBinaryGameLayer:paintFirst(graphics)
-        self.paintable:paint(graphics)
-end
-
-
-function AllBinaryGameLayer:paintDebug(graphics)
-        local viewPosition = self:getViewPosition()
-        local viewX = viewPosition:getX()
-        local viewY = viewPosition:getY()
-        self.basicSetColorUtil:setBasicColorP(graphics, self.RED)
-        graphics:drawRect(viewX, viewY, self:getWidth(), self:getHeight())
-end
-
-
-function AllBinaryGameLayer:setWidth(width)
-        AllBinaryLayer.setLayerWidth(self, width)
-        self:setHalfWidth(((width) // (1 << (1))))
-end
-
-
-function AllBinaryGameLayer:setHeight(height)
-        AllBinaryLayer.setLayerHeight(self, height)
-        self:setHalfHeight(((height) // (1 << (1))))
-end
-
-return AllBinaryGameLayer
 

@@ -1,253 +1,220 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.input.mapping
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.game.input.mapping
 
--- local Canvas = require("javax.microedition.lcdui.Canvas")
-local GameKey = require("org.allbinary.game.input.GameKey")
-local GameKeyFactory = require("org.allbinary.game.input.GameKeyFactory")
-local Input = require("org.allbinary.game.input.Input")
-local InputFactory = require("org.allbinary.game.input.InputFactory")
-local NullUtil = require("org.allbinary.logic.NullUtil")
-local PreLogUtil = require("org.allbinary.logic.communication.log.PreLogUtil")
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
-local CommonLabels = require("org.allbinary.string.CommonLabels")
-local CommonSeps = require("org.allbinary.string.CommonSeps")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
-local BasicArrayListD = require("org.allbinary.util.BasicArrayListD")
-local InputMapping = require("org.allbinary.game.input.mapping.InputMapping")
+(import ../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- GameKeyFactory/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/game/input/GameKeyFactory" "jm_getInstance" args))
+(defn- InputFactory/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/game/input/InputFactory" "jm_getInstance" args))
+(defn- NullUtil/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/logic/NullUtil" "jm_getInstance" args))
+(defn- PreLogUtil/jm_putOE [& args] (JR/call jfile "../../../../../org/allbinary/logic/communication/log/PreLogUtil" "jm_putOE" args))
+(defn- StringMaker/jnew_0 [& args] (JR/call jfile "../../../../../org/allbinary/logic/string/StringMaker" "jnew_0" args))
+(defn- StringUtil/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/logic/string/StringUtil" "jm_getInstance" args))
+(defn- CommonLabels/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/string/CommonLabels" "jm_getInstance" args))
+(defn- CommonSeps/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/string/CommonSeps" "jm_getInstance" args))
+(defn- BasicArrayListD/jnew_0 [& args] (JR/call jfile "../../../../../org/allbinary/util/BasicArrayListD" "jnew_0" args))
+(import ./InputMapping :as InputMapping)
 
--- Java library Throwable. tostring gives the message like Java getMessage.
-local function java_exception(className, message, cause)
-    if cause == nil and type(message) == "table" then
-        cause = message
-        message = tostring(message)
-    end
-    local exception = {className = className, message = message, cause = cause}
-    function exception:getMessage() return self.message end
-    function exception:getCause() return self.cause end
-    function exception:printStackTrace() print(debug.traceback(tostring(self))) end
-    return setmetatable(exception, {__tostring = function(self) if self.message ~= nil then return tostring(self.message) end return self.className end})
-end
+# Java class InputToGameKeyMapping
+(var jproto nil)
+(var jcell_instance :jnone)
+(var jstatic_instance nil)
+(var jsetstatic_instance nil)
+(var jnew_0 nil)
+(var jm_getNullInstance nil)
+(var jm_clear nil)
+(var jm_removeAll nil)
+(var jm_addMapping nil)
+(var jm_addAll nil)
+(var jm_add nil)
+(var jm_remove nil)
+(var jm_set nil)
+(var jm_getMaxMappable nil)
+(var jm_getReverseInstance nil)
+(var jm_initGameKey nil)
+(var jm_getSmallestCanvasGameKeyCode nil)
+(var jm_init nil)
+(var jm_getInstanceForCanvas nil)
+(var jm_getInstance nil)
 
-local function java_new_array(default, size, ...)
-    local array = {n = size}
-    for index = 1, size do
-        if select("#", ...) > 0 then array[index] = java_new_array(default, ...) else array[index] = default end
-    end
-    return array
-end
+(set jstatic_instance (fn jstatic_instance []
+  (when (= jcell_instance :jnone) (set jcell_instance ((NullUtil/jm_getInstance) :f_NULL_OBJECT)))
+  jcell_instance))
+(set jsetstatic_instance (fn jsetstatic_instance [value] (set jcell_instance value)))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+    
+(set jm_getNullInstance (fn jm_getNullInstance []
+    (label jreturn
+        (if (= (jstatic_instance) ((NullUtil/jm_getInstance) :f_NULL_OBJECT))
+            (do
+            (set jcell_instance (jnew_0))))
+        (return jreturn (jstatic_instance)))))
+    
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "InputToGameKeyMapping" :f_gameKeyFactory nil :f_mappedGameKeys nil :f_platformToGameKeyMapping nil :f_negativePlatformToGameKeyMapping nil} jproto))
+    (put this :f_gameKeyFactory (GameKeyFactory/jm_getInstance))
+    (put this :f_mappedGameKeys @[((this :f_gameKeyFactory) :f_UP) ((this :f_gameKeyFactory) :f_DOWN) ((this :f_gameKeyFactory) :f_LEFT) ((this :f_gameKeyFactory) :f_RIGHT)])
+    (put this :f_platformToGameKeyMapping (array/new-filled ((InputFactory/jm_getInstance) :f_MAX) nil))
+    (put this :f_negativePlatformToGameKeyMapping (array/new-filled 0 nil))
+    (JR/superInit this (InputMapping/jnew_0))
+        (JR/className (this :f_logUtil))
+        (:jm_clear this)
+    this))
+    
+(set jm_clear (fn jm_clear [this]
+        (do
+            (var _index (JR/i32 (- (length (this :f_platformToGameKeyMapping)) 1)))
+            (while (>= _index 0)
+                (do
+            (set ((this :f_platformToGameKeyMapping) _index) ((this :f_gameKeyFactory) :f_NONE)))
+                (do (set _index (JR/i32 (- _index 1))))))))
+    
+(set jm_removeAll (fn jm_removeAll [this]
+        ((get InputMapping/jproto :jm_removeAll) this)
+        (:jm_clear this)))
+    
+(set jm_addMapping (fn jm_addMapping [this _inputToGameKeyMapping]
+        (do
+            (var _index (JR/i32 (- (:jm_getMaxMappable _inputToGameKeyMapping) 1)))
+            (while (>= _index 0)
+                (do
+            (var _input (:jm_getInstance _inputToGameKeyMapping _index))
+            (if (not= _input ((this :f_gameKeyFactory) :f_NONE))
+                (do
+                (:jm_addAll this _input (:jm_getMappedInput _inputToGameKeyMapping _input)))))
+                (do (set _index (JR/i32 (- _index 1))))))))
+    
+(set jm_addAll (fn jm_addAll [this _input _list]
+        (do
+            (var _index (JR/i32 (- (:jm_size _list) 1)))
+            (while (>= _index 0)
+                (do
+            (var _mappedToInput ((_list :f_objectArray) _index))
+            (:jm_add this _input _mappedToInput))
+                (do (set _index (JR/i32 (- _index 1))))))))
+    
+(set jm_add (fn jm_add [this _input _mappedToInput]
+        ((get InputMapping/jproto :jm_add) this _input _mappedToInput)
+        (:jm_set this _input _mappedToInput)))
+    
+(set jm_remove (fn jm_remove [this _input _mappedToInput]
+        (JR/className (this :f_logUtil))
+        ((get InputMapping/jproto :jm_remove) this _input _mappedToInput)
+        (:jm_set this _input ((this :f_gameKeyFactory) :f_NONE))))
+    
+(set jm_set (fn jm_set [this _input _mappedToInput]
+        (var _id (:jm_getId _mappedToInput))
+        (if (and (>= _id 0) (< _id (length (this :f_platformToGameKeyMapping))))
+            (do
+            (set ((this :f_platformToGameKeyMapping) _id) _input)))))
+    
+(set jm_getMaxMappable (fn jm_getMaxMappable [this]
+    (label jreturn
+        (return jreturn (length (this :f_platformToGameKeyMapping))))))
+    
+(set jm_getReverseInstance (fn jm_getReverseInstance [this _id]
+    (label jreturn
+        (var _list (BasicArrayListD/jnew_0))
+        (var _inputFactory (InputFactory/jm_getInstance))
+        (do
+            (var _index 0)
+            (while (< _index (length (this :f_platformToGameKeyMapping)))
+                (do
+            (if (= (JR/className ((this :f_platformToGameKeyMapping) _index)) _id)
+                (do
+                (var _input (:jm_getInstanceById _inputFactory _index))
+                (if (not (nil? _input))
+                    (do
+                    (:jm_add _list _input))))))
+                (do (set _index (JR/i32 (+ _index 1))))))
+        (return jreturn _list))))
+    
+(set jm_initGameKey (fn jm_initGameKey [this _canvas _gameKey]
+        (var _key (:jm_getKeyCode _canvas (:jm_getId _gameKey)))
+        (if (and (< _key 0) (< (JR/i32 (- _key)) (length (this :f_negativePlatformToGameKeyMapping))))
+            (do
+            (set ((this :f_negativePlatformToGameKeyMapping) (JR/i32 (- _key))) _gameKey))
+            (if (> _key 0)
+            (do
+            (if (= ((this :f_platformToGameKeyMapping) _key) ((this :f_gameKeyFactory) :f_NONE))
+                (do
+                (set ((this :f_platformToGameKeyMapping) _key) _gameKey))))
+            (do
+            (PreLogUtil/jm_putOE (:jm_toString (:jm_appendint (:jm_append (:jm_append (StringMaker/jnew_0) (:jm_toString _gameKey)) ((CommonSeps/jm_getInstance) :f_COLON_SEP)) _key)) this ((this :f_commonStrings) :f_INIT) (JR/newException "Exception")))))))
+    
+(set jm_getSmallestCanvasGameKeyCode (fn jm_getSmallestCanvasGameKeyCode [this _canvas]
+    (label jreturn
+        (var _nextKey 0)
+        (var _smallestKey 0)
+        (do
+            (var _index (length (this :f_mappedGameKeys)))
+            (while (>= (set _index (JR/i32 (- _index 1))) 0)
+                (do
+            (set _nextKey (:jm_getKeyCode _canvas (JR/className ((this :f_mappedGameKeys) _index))))
+            (if (< _nextKey _smallestKey)
+                (do
+                (set _smallestKey _nextKey))))))
+        (return jreturn _smallestKey))))
+    
+(set jm_init (fn jm_init [this _canvas]
+        (try
+            (do
+            (var _negativePlatformToGameKeyMapping (array/new-filled 0 nil))
+            (var _smallestKey (:jm_getSmallestCanvasGameKeyCode this _canvas))
+            (if (< _smallestKey 0)
+                (do
+                (set _smallestKey (JR/i32 (- _smallestKey 1)))
+                (if (< _smallestKey (JR/i32 (- 256)))
+                    (do
+                    (set _smallestKey (JR/i32 (- 256)))))
+                (set _negativePlatformToGameKeyMapping (array/new-filled (JR/i32 (- _smallestKey)) nil))
+                (do
+                    (var _index (length _negativePlatformToGameKeyMapping))
+                    (while (>= (set _index (JR/i32 (- _index 1))) 0)
+                        (do
+                    (set (_negativePlatformToGameKeyMapping _index) ((this :f_gameKeyFactory) :f_NONE)))))
+                (set (this :f_negativePlatformToGameKeyMapping) _negativePlatformToGameKeyMapping)))
+            (do
+                (var _index (length (this :f_mappedGameKeys)))
+                (while (>= (set _index (JR/i32 (- _index 1))) 0)
+                    (do
+                (:jm_initGameKey this _canvas ((this :f_mappedGameKeys) _index))))))
+            ([_t] (do
+            (JR/className (this :f_logUtil)))))))
+    
+(set jm_getInstanceForCanvas (fn jm_getInstanceForCanvas [this _canvas _id]
+    (label jreturn
+        (if (and (>= _id 0) (< _id (length (this :f_platformToGameKeyMapping))))
+            (do
+            (return jreturn ((this :f_platformToGameKeyMapping) _id)))
+            (if (and (< _id 0) (< (JR/i32 (- _id)) (length (this :f_negativePlatformToGameKeyMapping))))
+            (do
+            (return jreturn ((this :f_negativePlatformToGameKeyMapping) (JR/i32 (- _id)))))
+            (do
+            (return jreturn ((this :f_gameKeyFactory) :f_NONE))))))))
+    
+(set jm_getInstance (fn jm_getInstance [this _id]
+    (label jreturn
+        (if (and (>= _id 0) (< _id (length (this :f_platformToGameKeyMapping))))
+            (do
+            (return jreturn ((this :f_platformToGameKeyMapping) _id)))
+            (if (and (< _id 0) (< (JR/i32 (- _id)) (length (this :f_negativePlatformToGameKeyMapping))))
+            (do
+            (return jreturn ((this :f_negativePlatformToGameKeyMapping) (JR/i32 (- _id)))))
+            (do
+            (return jreturn ((this :f_gameKeyFactory) :f_NONE))))))))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jproto (table/setproto @{:jm_clear jm_clear :jm_removeAll jm_removeAll :jm_addMapping jm_addMapping :jm_addAll jm_addAll :jm_add jm_add :jm_remove jm_remove :jm_set jm_set :jm_getMaxMappable jm_getMaxMappable :jm_getReverseInstance jm_getReverseInstance :jm_initGameKey jm_initGameKey :jm_getSmallestCanvasGameKeyCode jm_getSmallestCanvasGameKeyCode :jm_init jm_init :jm_getInstanceForCanvas jm_getInstanceForCanvas :jm_getInstance jm_getInstance} InputMapping/jproto))
 
-local InputToGameKeyMapping = {}
-InputToGameKeyMapping.__index = InputToGameKeyMapping
-InputToGameKeyMapping.className = "InputToGameKeyMapping"
-setmetatable(InputToGameKeyMapping, {__index = InputMapping})
-
-function InputToGameKeyMapping:_init_fields()
-    self.gameKeyFactory = GameKeyFactory.getInstance()
-    self.mappedGameKeys = {self.gameKeyFactory.UP, self.gameKeyFactory.DOWN, self.gameKeyFactory.LEFT, self.gameKeyFactory.RIGHT}
-    self.platformToGameKeyMapping = java_new_array(nil, InputFactory.getInstance().MAX)
-    self.negativePlatformToGameKeyMapping = java_new_array(nil, 0)
-end
-
-
-function InputToGameKeyMapping.getNullInstance()
-        if InputToGameKeyMapping.instance == NullUtil.getInstance().NULL_OBJECT then
-            InputToGameKeyMapping.instance = InputToGameKeyMapping.new()
-        end
-        return InputToGameKeyMapping.instance
-end
-
-
-function InputToGameKeyMapping.new()
-    local self = setmetatable(InputMapping.new(), InputToGameKeyMapping)
-    self:_init_fields()
-        self.logUtil:putF(self.commonStrings.START, self, self.commonStrings.CONSTRUCTOR)
-        self:clear()
-    return self
-end
-
-
-function InputToGameKeyMapping:clear()
-        for index = (self.platformToGameKeyMapping.n or #self.platformToGameKeyMapping) - 1, 0, -1 do
-            self.platformToGameKeyMapping[index + 1] = self.gameKeyFactory.NONE
-        end
-end
-
-
-function InputToGameKeyMapping:removeAll()
-        InputMapping.removeAll(self)
-        self:clear()
-end
-
-
-function InputToGameKeyMapping:addMapping(inputToGameKeyMapping)
-        for index = inputToGameKeyMapping:getMaxMappable() - 1, 0, -1 do
-            local input = inputToGameKeyMapping:getInstance(index)
-            if input ~= self.gameKeyFactory.NONE then
-                self:addAll(input, inputToGameKeyMapping:getMappedInput(input))
-            end
-        end
-end
-
-
-function InputToGameKeyMapping:addAll(input, list)
-        for index = list:size() - 1, 0, -1 do
-            local mappedToInput = list.objectArray[index + 1]
-            self:add(input, mappedToInput)
-        end
-end
-
-
-function InputToGameKeyMapping:add(input, mappedToInput)
-        InputMapping.add(self, input, mappedToInput)
-        self:set(input, mappedToInput)
-end
-
-
-function InputToGameKeyMapping:remove(input, mappedToInput)
-        self.logUtil:putF(tostring(StringMaker.new():append(CommonLabels.getInstance().START_LABEL):append(StringUtil.getInstance():toString(input)):append(" == "):append(StringUtil.getInstance():toString(mappedToInput))), self, "InputToGameKeyMapping::remove")
-        InputMapping.remove(self, input, mappedToInput)
-        self:set(input, self.gameKeyFactory.NONE)
-end
-
-
-function InputToGameKeyMapping:set(input, mappedToInput)
-        local id = mappedToInput:getId()
-        if id >= 0 and id < (self.platformToGameKeyMapping.n or #self.platformToGameKeyMapping) then
-            self.platformToGameKeyMapping[id + 1] = input
-        end
-end
-
-
-function InputToGameKeyMapping:getMaxMappable()
-        return (self.platformToGameKeyMapping.n or #self.platformToGameKeyMapping)
-end
-
-
-function InputToGameKeyMapping:getReverseInstance(id)
-        local list = BasicArrayListD.new()
-        local inputFactory = InputFactory.getInstance()
-        for index = 0, (self.platformToGameKeyMapping.n or #self.platformToGameKeyMapping) - 1 do
-            if self.platformToGameKeyMapping[index + 1]:getId() == id then
-                local input = inputFactory:getInstanceById(index)
-                if input ~= nil then
-                    list:add(input)
-                end
-            end
-        end
-        return list
-end
-
-
--- throws Exception
-function InputToGameKeyMapping:initGameKey(canvas, gameKey)
-        local key = canvas:getKeyCode(gameKey:getId())
-        if key < 0 and -key < (self.negativePlatformToGameKeyMapping.n or #self.negativePlatformToGameKeyMapping) then
-            self.negativePlatformToGameKeyMapping[-key + 1] = gameKey
-        elseif key > 0 then
-            if self.platformToGameKeyMapping[key + 1] == self.gameKeyFactory.NONE then
-                self.platformToGameKeyMapping[key + 1] = gameKey
-            end
-        else
-            PreLogUtil.putOE(tostring(StringMaker.new():append(tostring(gameKey)):append(CommonSeps.getInstance().COLON_SEP):appendint(key)), self, self.commonStrings.INIT, java_exception("Exception"))
-        end
-end
-
-
--- throws Exception
-function InputToGameKeyMapping:getSmallestCanvasGameKeyCode(canvas)
-        local nextKey = 0
-        local smallestKey = 0
-        do
-            local index = (self.mappedGameKeys.n or #self.mappedGameKeys)
-            while (function() index = index - 1 return index end)() >= 0 do
-            nextKey = canvas:getKeyCode(self.mappedGameKeys[index + 1]:getId())
-            if nextKey < smallestKey then
-                smallestKey = nextKey
-            end
-            end
-        end
-        return smallestKey
-end
-
-
-function InputToGameKeyMapping:init(canvas)
-        local try_ok, try_error = pcall(function()
-            local negativePlatformToGameKeyMapping = java_new_array(nil, 0)
-            local smallestKey = self:getSmallestCanvasGameKeyCode(canvas)
-            if smallestKey < 0 then
-                smallestKey = smallestKey - 1
-                if smallestKey < -256 then
-                    smallestKey = -256
-                end
-                negativePlatformToGameKeyMapping = java_new_array(nil, -smallestKey)
-                do
-                    local index = (negativePlatformToGameKeyMapping.n or #negativePlatformToGameKeyMapping)
-                    while (function() index = index - 1 return index end)() >= 0 do
-                    negativePlatformToGameKeyMapping[index + 1] = self.gameKeyFactory.NONE
-                    end
-                end
-                self.negativePlatformToGameKeyMapping = negativePlatformToGameKeyMapping
-            end
-            do
-                local index = (self.mappedGameKeys.n or #self.mappedGameKeys)
-                while (function() index = index - 1 return index end)() >= 0 do
-                self:initGameKey(canvas, self.mappedGameKeys[index + 1])
-                end
-            end
-        end)
-        if not try_ok then
-            local t = try_error
-            self.logUtil:put(self.commonStrings.EXCEPTION, self, self.commonStrings.INIT, t)
-        end
-end
-
-
-function InputToGameKeyMapping:getInstanceForCanvas(canvas, id)
-        if id >= 0 and id < (self.platformToGameKeyMapping.n or #self.platformToGameKeyMapping) then
-            return self.platformToGameKeyMapping[id + 1]
-        elseif id < 0 and -id < (self.negativePlatformToGameKeyMapping.n or #self.negativePlatformToGameKeyMapping) then
-            return self.negativePlatformToGameKeyMapping[-id + 1]
-        else
-            return self.gameKeyFactory.NONE
-        end
-end
-
-
-function InputToGameKeyMapping:getInstance(id)
-        if id >= 0 and id < (self.platformToGameKeyMapping.n or #self.platformToGameKeyMapping) then
-            return self.platformToGameKeyMapping[id + 1]
-        elseif id < 0 and -id < (self.negativePlatformToGameKeyMapping.n or #self.negativePlatformToGameKeyMapping) then
-            return self.negativePlatformToGameKeyMapping[-id + 1]
-        else
-            return self.gameKeyFactory.NONE
-        end
-end
-
-InputToGameKeyMapping.instance = NullUtil.getInstance().NULL_OBJECT
-
-return InputToGameKeyMapping
 

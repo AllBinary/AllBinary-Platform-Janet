@@ -1,143 +1,100 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---   
--- Generated Code Do Not Modify
--- package org.allbinary.game.ag.layer.hud.basic
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#   
+# Generated Code Do Not Modify
+# package org.allbinary.game.ag.layer.hud.basic
 
--- local Font = require("javax.microedition.lcdui.Font")
--- local Graphics = require("javax.microedition.lcdui.Graphics")
-local BasicHud = require("org.allbinary.game.graphics.hud.BasicHud")
-local BasicHudFactory = require("org.allbinary.game.graphics.hud.BasicHudFactory")
-local BasicColor = require("org.allbinary.graphics.color.BasicColor")
-local MyFontProcessor = require("org.allbinary.graphics.font.MyFontProcessor")
-local PaintableInterface = require("org.allbinary.graphics.paint.PaintableInterface")
-local PrimitiveLongSingleton = require("org.allbinary.logic.math.PrimitiveLongSingleton")
-local PrimitiveLongUtil = require("org.allbinary.logic.math.PrimitiveLongUtil")
+(import ../../../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(import ../../../../../../../org/allbinary/game/graphics/hud/BasicHud :as BasicHud)
+(defn- BasicHudFactory/jm_getInstance [& args] (JR/call jfile "../../../../../../../org/allbinary/game/graphics/hud/BasicHudFactory" "jm_getInstance" args))
+(defn- MyFontProcessor/jm_defaultCharWidth [& args] (JR/call jfile "../../../../../../../org/allbinary/graphics/font/MyFontProcessor" "jm_defaultCharWidth" args))
+(defn- PrimitiveLongSingleton/jm_getInstance [& args] (JR/call jfile "../../../../../../../org/allbinary/logic/math/PrimitiveLongSingleton" "jm_getInstance" args))
+(defn- PrimitiveLongUtil/jm_createPowerOfTen [& args] (JR/call jfile "../../../../../../../org/allbinary/logic/math/PrimitiveLongUtil" "jm_createPowerOfTen" args))
 
--- Java library Throwable. tostring gives the message like Java getMessage.
-local function java_exception(className, message, cause)
-    if cause == nil and type(message) == "table" then
-        cause = message
-        message = tostring(message)
-    end
-    local exception = {className = className, message = message, cause = cause}
-    function exception:getMessage() return self.message end
-    function exception:getCause() return self.cause end
-    function exception:printStackTrace() print(debug.traceback(tostring(self))) end
-    return setmetatable(exception, {__tostring = function(self) if self.message ~= nil then return tostring(self.message) end return self.className end})
-end
+# Java class NumberStringHud
+(var jproto nil)
+(var jnew_6 nil)
+(var jm_updateMeasurement nil)
+(var jm_get nil)
+(var jm_add nil)
+(var jm_set nil)
+(var jm_reduce nil)
+(var jm_paint nil)
+(var jm_paintXY nil)
+(var jm_paintThreed nil)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+    
+(set jnew_6 (fn jnew_6 [_prependString _max _location _direction _bufferZone _basicColor]
+    (var this (table/setproto @{:jclass "NumberStringHud" :f_primitiveLongUtil nil :f_prependString nil :f_PREPEND_STRING nil :f_value 0 :f_max 0 :f_offset 0 :f_valueString nil :f_valueTotalDigits 0} jproto))
+    
+    
+    
+    
+    
+    
+    
+    
+        (JR/superInit this (BasicHud/jnew_4 _location _direction _bufferZone _basicColor))
+        (set (this :f_prependString) _prependString)
+        (set (this :f_PREPEND_STRING) (JR/toCharArray _prependString))
+        (set (this :f_valueString) (((PrimitiveLongSingleton/jm_getInstance) :f_NUMBER_CHAR_ARRAYS) 0))
+        (set (this :f_primitiveLongUtil) (PrimitiveLongUtil/jm_createPowerOfTen (JR/i32 (+ _max 1))))
+        (set (this :f_max) _max)
+        (set (this :f_value) 0)
+        (if (= _direction 0)
+            (do
+            (error (JR/newException "RuntimeException" ((BasicHudFactory/jm_getInstance) :f_DIRECTION_EXCEPTION)))))
+    this))
+    
+(set jm_updateMeasurement (fn jm_updateMeasurement [this _graphics]
+        (var _font (:jm_getFont _graphics))
+        (set (this :f_offset) (JR/i32 (+ (:jm_stringWidth _font (this :f_prependString)) (MyFontProcessor/jm_defaultCharWidth _font))))
+        ((get BasicHud/jproto :jm_updateMeasurement) this _graphics)))
+    
+(set jm_get (fn jm_get [this]
+    (label jreturn
+        (return jreturn (this :f_value)))))
+    
+(set jm_add (fn jm_add [this _value]
+        (:jm_set this (JR/i32 (+ (this :f_value) _value)))))
+    
+(set jm_set (fn jm_set [this _value]
+        (set (this :f_value) _value)
+        (if (> (this :f_value) (this :f_max))
+            (do
+            (set (this :f_value) 0)))
+        (set (this :f_valueString) (:jm_getCharArray (this :f_primitiveLongUtil) (this :f_value)))
+        (set (this :f_valueTotalDigits) (:jm_getCurrentTotalDigits (this :f_primitiveLongUtil)))))
+    
+(set jm_reduce (fn jm_reduce [this _value]
+        (:jm_set this (JR/i32 (- (this :f_value) _value)))))
+    
+(set jm_paint (fn jm_paint [this _graphics]
+        ((get BasicHud/jproto :jm_paintDX) this _graphics (this :f_PREPEND_STRING) 0 (length (this :f_PREPEND_STRING)) (this :f_valueString) 0 (this :f_valueTotalDigits) (this :f_offset))))
+    
+(set jm_paintXY (fn jm_paintXY [this _graphics _x _y]
+        (JR/className (this :f_myFontProcessor))
+        (var _charArray (this :f_PREPEND_STRING))
+        (var _len (length (this :f_PREPEND_STRING)))
+        (var _charArray2 (this :f_valueString))
+        (var _len2 (this :f_valueTotalDigits))
+        (JR/className (this :f_basicSetColorUtil))
+        (:jm_drawChars _graphics _charArray 0 _len _x _y 0)
+        (:jm_drawChars _graphics _charArray2 0 _len2 (JR/i32 (- _x (this :f_offset))) _y 0)))
+    
+(set jm_paintThreed (fn jm_paintThreed [this _graphics]
+    nil))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jproto (table/setproto @{:jm_updateMeasurement jm_updateMeasurement :jm_get jm_get :jm_add jm_add :jm_set jm_set :jm_reduce jm_reduce :jm_paint jm_paint :jm_paintXY jm_paintXY :jm_paintThreed jm_paintThreed} BasicHud/jproto))
 
-local function java_chars(text)
-    local chars = {}
-    for index = 1, #text do chars[index] = string.sub(text, index, index) end
-    return chars
-end
-
-local NumberStringHud = {}
-NumberStringHud.__index = NumberStringHud
-NumberStringHud.className = "NumberStringHud"
-setmetatable(NumberStringHud, {__index = BasicHud})
-
-function NumberStringHud:_init_fields()
-    self.primitiveLongUtil = nil
-    self.prependString = nil
-    self.PREPEND_STRING = nil
-    self.value = nil
-    self.max = nil
-    self.offset = 0
-    self.valueString = nil
-    self.valueTotalDigits = 0
-end
-
-
-function NumberStringHud.new(prependString, max, location, direction, bufferZone, basicColor)
-    local self = setmetatable(BasicHud.new(location, direction, bufferZone, basicColor), NumberStringHud)
-    self:_init_fields()
-        -- super(...) made self above
-        self.prependString = prependString
-        self.PREPEND_STRING = java_chars(prependString)
-        self.valueString = PrimitiveLongSingleton.getInstance().NUMBER_CHAR_ARRAYS[1]
-        self.primitiveLongUtil = PrimitiveLongUtil.createPowerOfTen(max + 1)
-        self.max = max
-        self.value = 0
-        if direction == 0 then
-            error(java_exception("RuntimeException", BasicHudFactory.getInstance().DIRECTION_EXCEPTION), 0)
-        end
-    return self
-end
-
-
-function NumberStringHud:updateMeasurement(graphics)
-        local font = graphics:getFont()
-        self.offset = font:stringWidth(self.prependString) + MyFontProcessor.defaultCharWidth(font)
-        BasicHud.updateMeasurement(self, graphics)
-end
-
-
-function NumberStringHud:get()
-        return self.value
-end
-
-
-function NumberStringHud:add(value)
-        self:set(self.value + value)
-end
-
-
-function NumberStringHud:set(value)
-        self.value = value
-        if self.value > self.max then
-            self.value = 0
-        end
-        self.valueString = self.primitiveLongUtil:getCharArray(self.value)
-        self.valueTotalDigits = self.primitiveLongUtil:getCurrentTotalDigits()
-end
-
-
-function NumberStringHud:reduce(value)
-        self:set(self.value - value)
-end
-
-
-function NumberStringHud:paint(graphics)
-        BasicHud.paintDX(self, graphics, self.PREPEND_STRING, 0, (self.PREPEND_STRING.n or #self.PREPEND_STRING), self.valueString, 0, self.valueTotalDigits, self.offset)
-end
-
-
-function NumberStringHud:paintXY(graphics, x, y)
-        self.myFontProcessor:process(graphics)
-        local charArray = self.PREPEND_STRING
-        local len = (self.PREPEND_STRING.n or #self.PREPEND_STRING)
-        local charArray2 = self.valueString
-        local len2 = self.valueTotalDigits
-        self.basicSetColorUtil:setBasicColorP(graphics, self:getBasicColorP())
-        graphics:drawChars(charArray, 0, len, x, y, 0)
-        graphics:drawChars(charArray2, 0, len2, x - self.offset, y, 0)
-end
-
-
-function NumberStringHud:paintThreed(graphics)
-end
-
-return NumberStringHud
 

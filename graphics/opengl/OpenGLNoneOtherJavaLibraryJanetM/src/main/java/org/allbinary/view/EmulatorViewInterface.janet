@@ -1,39 +1,30 @@
--- Generated Code Do Not Modify
--- package org.allbinary.view
+# Generated Code Do Not Modify
+# package org.allbinary.view
 
--- local Displayable = require("javax.microedition.lcdui.Displayable")
--- local MIDlet = require("javax.microedition.midlet.MIDlet")
+(import ../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class EmulatorViewInterface
+(var jproto nil)
+(var jnew_0 nil)
+(var jm_setMidlet nil)
+(var jm_onEmulatorInitComplete nil)
+(var jm_onSetDisplayable nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "EmulatorViewInterface"} jproto))
+    this))
 
--- Java interface
-local EmulatorViewInterface = {}
-EmulatorViewInterface.__index = EmulatorViewInterface
-EmulatorViewInterface.className = "EmulatorViewInterface"
+    
+(set jm_setMidlet (fn jm_setMidlet [this _midlet]
+    (error (JR/newException "AbstractMethodError" "setMidlet"))))
+    
+(set jm_onEmulatorInitComplete (fn jm_onEmulatorInitComplete [this _midletActivity]
+    (error (JR/newException "AbstractMethodError" "onEmulatorInitComplete"))))
+    
+(set jm_onSetDisplayable (fn jm_onSetDisplayable [this _displayable]
+    (error (JR/newException "AbstractMethodError" "onSetDisplayable"))))
 
+(set jproto @{:jm_setMidlet jm_setMidlet :jm_onEmulatorInitComplete jm_onEmulatorInitComplete :jm_onSetDisplayable jm_onSetDisplayable})
 
-function EmulatorViewInterface:setMidlet(midlet)
-    error("abstract method setMidlet")
-end
-
-
-function EmulatorViewInterface:onEmulatorInitComplete(midletActivity)
-    error("abstract method onEmulatorInitComplete")
-end
-
-
-function EmulatorViewInterface:onSetDisplayable(displayable)
-    error("abstract method onSetDisplayable")
-end
-
-return EmulatorViewInterface
 

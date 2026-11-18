@@ -23,6 +23,7 @@
 (var jproto nil)
 (var jcell_POINT_LABEL :jnone)
 (var jstatic_POINT_LABEL nil)
+(var jsetstatic_POINT_LABEL nil)
 (var jnew_3 nil)
 (var jm_getInstance nil)
 (var jm_getX nil)
@@ -37,6 +38,7 @@
 (set jstatic_POINT_LABEL (fn jstatic_POINT_LABEL []
   (when (= jcell_POINT_LABEL :jnone) (set jcell_POINT_LABEL "Point: "))
   jcell_POINT_LABEL))
+(set jsetstatic_POINT_LABEL (fn jsetstatic_POINT_LABEL [value] (set jcell_POINT_LABEL value)))
 
     
 (set jm_getInstance (fn jm_getInstance [_point]

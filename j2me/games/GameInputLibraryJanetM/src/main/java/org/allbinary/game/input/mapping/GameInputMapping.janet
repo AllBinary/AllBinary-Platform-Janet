@@ -1,69 +1,54 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.input.mapping
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.game.input.mapping
 
-local GameKey = require("org.allbinary.game.input.GameKey")
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
+(import ../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- GameKey/jstatic_NULL_GAME_KEY [& args] (JR/call jfile "../../../../../org/allbinary/game/input/GameKey" "jstatic_NULL_GAME_KEY" args))
+(defn- StringUtil/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/logic/string/StringUtil" "jm_getInstance" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class GameInputMapping
+(var jproto nil)
+(var jnew_2 nil)
+(var jm_setGameKey nil)
+(var jm_getGameKey nil)
+(var jm_setName nil)
+(var jm_getName nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jnew_2 (fn jnew_2 [_name _gameKey]
+    (var this (table/setproto @{:jclass "GameInputMapping" :f_name nil :f_gameKey nil} jproto))
+    (put this :f_name ((StringUtil/jm_getInstance) :f_EMPTY_STRING))
+    (put this :f_gameKey (GameKey/jstatic_NULL_GAME_KEY))
+        (:jm_setName this _name)
+        (:jm_setGameKey this _gameKey)
+    this))
+    
+(set jm_setGameKey (fn jm_setGameKey [this _gameKey]
+        (set (this :f_gameKey) _gameKey)))
+    
+(set jm_getGameKey (fn jm_getGameKey [this]
+    (label jreturn
+        (return jreturn (this :f_gameKey)))))
+    
+(set jm_setName (fn jm_setName [this _name]
+        (set (this :f_name) _name)))
+    
+(set jm_getName (fn jm_getName [this]
+    (label jreturn
+        (return jreturn (this :f_name)))))
 
-local GameInputMapping = {}
-GameInputMapping.__index = GameInputMapping
-GameInputMapping.className = "GameInputMapping"
+(set jproto @{:jm_setGameKey jm_setGameKey :jm_getGameKey jm_getGameKey :jm_setName jm_setName :jm_getName jm_getName})
 
-function GameInputMapping:_init_fields()
-    self.name = StringUtil.getInstance().EMPTY_STRING
-    self.gameKey = GameKey.NULL_GAME_KEY
-end
-
-
-function GameInputMapping.new(name, gameKey)
-    local self = setmetatable({}, GameInputMapping)
-    self:_init_fields()
-        self:setName(name)
-        self:setGameKey(gameKey)
-    return self
-end
-
-
-function GameInputMapping:setGameKey(gameKey)
-        self.gameKey = gameKey
-end
-
-
-function GameInputMapping:getGameKey()
-        return self.gameKey
-end
-
-
-function GameInputMapping:setName(name)
-        self.name = name
-end
-
-
-function GameInputMapping:getName()
-        return self.name
-end
-
-return GameInputMapping
 

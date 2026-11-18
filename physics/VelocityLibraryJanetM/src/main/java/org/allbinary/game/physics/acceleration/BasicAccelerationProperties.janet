@@ -1,67 +1,52 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.physics.acceleration
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.game.physics.acceleration
 
+(import ../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class BasicAccelerationProperties
+(var jproto nil)
+(var jnew_2 nil)
+(var jm_setReverse nil)
+(var jm_getReverse nil)
+(var jm_setForward nil)
+(var jm_getForward nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jnew_2 (fn jnew_2 [_forward _reverse]
+    (var this (table/setproto @{:jclass "BasicAccelerationProperties" :f_forward 0 :f_reverse 0} jproto))
+    
+    
+        (:jm_setForward this _forward)
+        (:jm_setReverse this _reverse)
+    this))
+    
+(set jm_setReverse (fn jm_setReverse [this _reverse]
+        (set (this :f_reverse) _reverse)))
+    
+(set jm_getReverse (fn jm_getReverse [this]
+    (label jreturn
+        (return jreturn (this :f_reverse)))))
+    
+(set jm_setForward (fn jm_setForward [this _forward]
+        (set (this :f_forward) _forward)))
+    
+(set jm_getForward (fn jm_getForward [this]
+    (label jreturn
+        (return jreturn (this :f_forward)))))
 
-local BasicAccelerationProperties = {}
-BasicAccelerationProperties.__index = BasicAccelerationProperties
-BasicAccelerationProperties.className = "BasicAccelerationProperties"
+(set jproto @{:jm_setReverse jm_setReverse :jm_getReverse jm_getReverse :jm_setForward jm_setForward :jm_getForward jm_getForward})
 
-function BasicAccelerationProperties:_init_fields()
-    self.forward = 0
-    self.reverse = 0
-end
-
-
-function BasicAccelerationProperties.new(forward, reverse)
-    local self = setmetatable({}, BasicAccelerationProperties)
-    self:_init_fields()
-        self:setForward(forward)
-        self:setReverse(reverse)
-    return self
-end
-
-
-function BasicAccelerationProperties:setReverse(reverse)
-        self.reverse = reverse
-end
-
-
-function BasicAccelerationProperties:getReverse()
-        return self.reverse
-end
-
-
-function BasicAccelerationProperties:setForward(forward)
-        self.forward = forward
-end
-
-
-function BasicAccelerationProperties:getForward()
-        return self.forward
-end
-
-return BasicAccelerationProperties
 

@@ -1,105 +1,76 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.animation.vector
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.animation.vector
 
--- local Graphics = require("javax.microedition.lcdui.Graphics")
-local Animation = require("org.allbinary.animation.Animation")
-local BasicColor = require("org.allbinary.graphics.color.BasicColor")
-local ColorCompositeInterface = require("org.allbinary.graphics.color.ColorCompositeInterface")
-local PositionInterface = require("org.allbinary.layer.PositionInterface")
-local NullUtil = require("org.allbinary.logic.NullUtil")
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(import ../../../../org/allbinary/animation/Animation :as Animation)
+(defn- NullUtil/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/logic/NullUtil" "jm_getInstance" args))
 
-local function java_new_array(default, size, ...)
-    local array = {n = size}
-    for index = 1, size do
-        if select("#", ...) > 0 then array[index] = java_new_array(default, ...) else array[index] = default end
-    end
-    return array
-end
+# Java class LineAnimation
+(var jproto nil)
+(var jnew_1 nil)
+(var jm_init nil)
+(var jm_setPosition nil)
+(var jm_paintXY nil)
+(var jm_nextFrame nil)
+(var jm_getBasicColorP nil)
+(var jm_setBasicColorP nil)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+    
+(set jnew_1 (fn jnew_1 [_basicColor]
+    (var this (table/setproto @{:jclass "LineAnimation" :f_newLine nil :f_tempLine nil :f_line nil} jproto))
+    (put this :f_newLine (seq [jindex1 :range [0 2]] (array/new-filled 2 0)))
+    (put this :f_tempLine ((NullUtil/jm_getInstance) :f_NULL_INT_ARRAY_ARRAY))
+    (put this :f_line (seq [jindex1 :range [0 2]] (array/new-filled 2 0)))
+    (JR/superInit this (Animation/jnew_0))
+        (:jm_setBasicColorP this _basicColor)
+    this))
+    
+(set jm_init (fn jm_init [this _x _y]
+        (set (((this :f_newLine) 0) 0) _x)
+        (set (((this :f_newLine) 0) 1) _y)
+        (set (((this :f_newLine) 1) 0) _x)
+        (set (((this :f_newLine) 1) 1) _y)
+        (set (this :f_tempLine) (this :f_line))
+        (set (this :f_line) (this :f_newLine))
+        (set (this :f_newLine) (this :f_tempLine))))
+    
+(set jm_setPosition (fn jm_setPosition [this _x _y _z]
+        (set (((this :f_newLine) 0) 0) (((this :f_line) 1) 0))
+        (set (((this :f_newLine) 0) 1) (((this :f_line) 1) 1))
+        (set (((this :f_newLine) 1) 0) _x)
+        (set (((this :f_newLine) 1) 1) _y)
+        (set (this :f_tempLine) (this :f_line))
+        (set (this :f_line) (this :f_newLine))
+        (set (this :f_newLine) (this :f_tempLine))))
+    
+(set jm_paintXY (fn jm_paintXY [this _graphics _x _y]
+        (var _currentLine (this :f_line))
+        (JR/className (this :f_basicSetColorUtil))
+        (:jm_drawLine _graphics ((_currentLine 0) 0) ((_currentLine 0) 1) ((_currentLine 1) 0) ((_currentLine 1) 1))))
+    
+(set jm_nextFrame (fn jm_nextFrame [this]
+    nil))
+    
+(set jm_getBasicColorP (fn jm_getBasicColorP [this]
+    (label jreturn
+        (return jreturn ((get Animation/jproto :jm_getBasicColorP) this)))))
+    
+(set jm_setBasicColorP (fn jm_setBasicColorP [this _basicColor]
+        ((get Animation/jproto :jm_setBasicColorP) this _basicColor)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jproto (table/setproto @{:jm_init jm_init :jm_setPosition jm_setPosition :jm_paintXY jm_paintXY :jm_nextFrame jm_nextFrame :jm_getBasicColorP jm_getBasicColorP :jm_setBasicColorP jm_setBasicColorP} Animation/jproto))
 
-local LineAnimation = {}
-LineAnimation.__index = LineAnimation
-LineAnimation.className = "LineAnimation"
-setmetatable(LineAnimation, {__index = Animation})
-
-function LineAnimation:_init_fields()
-    self.newLine = java_new_array(0, 2, 2)
-    self.tempLine = NullUtil.getInstance().NULL_INT_ARRAY_ARRAY
-    self.line = java_new_array(0, 2, 2)
-end
-
-
-function LineAnimation.new(basicColor)
-    local self = setmetatable(Animation.new(), LineAnimation)
-    self:_init_fields()
-        self:setBasicColorP(basicColor)
-    return self
-end
-
-
-function LineAnimation:init(x, y)
-        self.newLine[1][1] = x
-        self.newLine[1][2] = y
-        self.newLine[2][1] = x
-        self.newLine[2][2] = y
-        self.tempLine = self.line
-        self.line = self.newLine
-        self.newLine = self.tempLine
-end
-
-
-function LineAnimation:setPosition(x, y, z)
-        self.newLine[1][1] = self.line[2][1]
-        self.newLine[1][2] = self.line[2][2]
-        self.newLine[2][1] = x
-        self.newLine[2][2] = y
-        self.tempLine = self.line
-        self.line = self.newLine
-        self.newLine = self.tempLine
-end
-
-
-function LineAnimation:paintXY(graphics, x, y)
-        local currentLine = self.line
-        self.basicSetColorUtil:setBasicColorP3(graphics, self:getBasicColorP(), self:getColor())
-        graphics:drawLine(currentLine[1][1], currentLine[1][2], currentLine[2][1], currentLine[2][2])
-end
-
-
-function LineAnimation:nextFrame()
-end
-
-
-function LineAnimation:getBasicColorP()
-        return Animation.getBasicColorP(self)
-end
-
-
-function LineAnimation:setBasicColorP(basicColor)
-        Animation.setBasicColorP(self, basicColor)
-end
-
-return LineAnimation
 

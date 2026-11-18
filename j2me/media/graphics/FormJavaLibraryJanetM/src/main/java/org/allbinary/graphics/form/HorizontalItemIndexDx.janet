@@ -1,54 +1,39 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.form
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.graphics.form
 
-local ABCustomItem = require("org.allbinary.graphics.form.item.ABCustomItem")
-local ItemIndexDx = require("org.allbinary.graphics.form.ItemIndexDx")
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(import ./ItemIndexDx :as ItemIndexDx)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class HorizontalItemIndexDx
+(var jproto nil)
+(var jnew_1 nil)
+(var jm_getDx nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jnew_1 (fn jnew_1 [_scrollCurrentSelectionForm]
+    (var this (table/setproto @{:jclass "HorizontalItemIndexDx" :f_scrollCurrentSelectionForm nil} jproto))
+    
+    (JR/superInit this (ItemIndexDx/jnew_0))
+        (set (this :f_scrollCurrentSelectionForm) _scrollCurrentSelectionForm)
+    this))
+    
+(set jm_getDx (fn jm_getDx [this _index _item _dx _dy]
+    (label jreturn
+        (return jreturn (:jm_getXHorizontalForm (this :f_scrollCurrentSelectionForm) _index _item _dx _dy)))))
 
-local HorizontalItemIndexDx = {}
-HorizontalItemIndexDx.__index = HorizontalItemIndexDx
-HorizontalItemIndexDx.className = "HorizontalItemIndexDx"
-setmetatable(HorizontalItemIndexDx, {__index = ItemIndexDx})
+(set jproto (table/setproto @{:jm_getDx jm_getDx} ItemIndexDx/jproto))
 
-function HorizontalItemIndexDx:_init_fields()
-    self.scrollCurrentSelectionForm = nil
-end
-
-
-function HorizontalItemIndexDx.new(scrollCurrentSelectionForm)
-    local self = setmetatable(ItemIndexDx.new(), HorizontalItemIndexDx)
-    self:_init_fields()
-        self.scrollCurrentSelectionForm = scrollCurrentSelectionForm
-    return self
-end
-
-
--- throws Exception
-function HorizontalItemIndexDx:getDx(index, item, dx, dy)
-        return self.scrollCurrentSelectionForm:getXHorizontalForm(index, item, dx, dy)
-end
-
-return HorizontalItemIndexDx
 

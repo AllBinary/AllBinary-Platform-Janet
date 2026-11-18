@@ -1,157 +1,148 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.draw
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.graphics.draw
 
--- local Font = require("javax.microedition.lcdui.Font")
--- local Graphics = require("javax.microedition.lcdui.Graphics")
-local AndroidUtil = require("org.allbinary.AndroidUtil")
-local J2MEUtil = require("org.allbinary.J2MEUtil")
-local Anchor = require("org.allbinary.graphics.Anchor")
-local OpenGLFeatureUtil = require("org.allbinary.graphics.opengles.OpenGLFeatureUtil")
-local NullUtil = require("org.allbinary.logic.NullUtil")
-local PreLogUtil = require("org.allbinary.logic.communication.log.PreLogUtil")
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- AndroidUtil/jm_isAndroid [& args] (JR/call jfile "../../../../org/allbinary/AndroidUtil" "jm_isAndroid" args))
+(defn- J2MEUtil/jm_isHTML [& args] (JR/call jfile "../../../../org/allbinary/J2MEUtil" "jm_isHTML" args))
+(defn- Anchor/jstatic_TOP_LEFT [& args] (JR/call jfile "../../../../org/allbinary/graphics/Anchor" "jstatic_TOP_LEFT" args))
+(defn- OpenGLFeatureUtil/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/graphics/opengles/OpenGLFeatureUtil" "jm_getInstance" args))
+(defn- NullUtil/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/logic/NullUtil" "jm_getInstance" args))
+(defn- PreLogUtil/jm_put [& args] (JR/call jfile "../../../../org/allbinary/logic/communication/log/PreLogUtil" "jm_put" args))
+(defn- StringMaker/jnew_0 [& args] (JR/call jfile "../../../../org/allbinary/logic/string/StringMaker" "jnew_0" args))
+(defn- StringUtil/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/logic/string/StringUtil" "jm_getInstance" args))
 
-local function java_new_array(default, size, ...)
-    local array = {n = size}
-    for index = 1, size do
-        if select("#", ...) > 0 then array[index] = java_new_array(default, ...) else array[index] = default end
-    end
-    return array
-end
+# Java class DrawVerticalStringUtil
+(var jproto nil)
+(var jcell_instance :jnone)
+(var jstatic_instance nil)
+(var jsetstatic_instance nil)
+(var jnew_0 nil)
+(var jm_getInstance nil)
+(var jm_updateMeasurement nil)
+(var jm_paintVerticle nil)
+(var jm_drawCenterString nil)
+(var jm_drawCenterStrings nil)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(set jstatic_instance (fn jstatic_instance []
+  (when (= jcell_instance :jnone) (set jcell_instance (jnew_0)))
+  jcell_instance))
+(set jsetstatic_instance (fn jsetstatic_instance [value] (set jcell_instance value)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "DrawVerticalStringUtil" :f_EMPTY_STRING nil :f_anchor 0 :f_charHeight 0 :f_offsetY 0 :f_offsetXArray nil} jproto))
+    (put this :f_EMPTY_STRING ((StringUtil/jm_getInstance) :f_EMPTY_STRING))
+    (put this :f_anchor (Anchor/jstatic_TOP_LEFT))
+    
+    
+    (put this :f_offsetXArray ((NullUtil/jm_getInstance) :f_NULL_INT_ARRAY))
+    this))
 
-local DrawVerticalStringUtil = {}
-DrawVerticalStringUtil.__index = DrawVerticalStringUtil
-DrawVerticalStringUtil.className = "DrawVerticalStringUtil"
+    
+(set jm_getInstance (fn jm_getInstance []
+    (label jreturn
+        (return jreturn (jstatic_instance)))))
+    
+(set jm_updateMeasurement (fn jm_updateMeasurement [this _graphics _string]
+        (var _openGLFeatureUtil (OpenGLFeatureUtil/jm_getInstance))
+        (var _font (:jm_getFont _graphics))
+        (set (this :f_charHeight) (:jm_getHeight _font))
+        (set (this :f_offsetY) 0)
+        (if (J2MEUtil/jm_isHTML)
+            (do
+            (set (this :f_charHeight) (JR/i32 (+ (this :f_charHeight) 1))))
+            (if (:jm_isAnyThreed _openGLFeatureUtil)
+            (do
+            (set (this :f_charHeight) (JR/i32 (+ (this :f_charHeight) 2)))
+            (if (AndroidUtil/jm_isAndroid)
+                (do
+                nil)
+                (do
+                (set (this :f_offsetY) (JR/i32 (+ 2 (JR/idiv (JR/i32 (* (this :f_charHeight) 2)) 3)))))))))
+        (var _size (length _string))
+        (var _aChar 0)
+        (var _offsetXArray (array/new-filled _size 0))
+        (do
+            (var _index (JR/i32 (- _size 1)))
+            (while (>= _index 0)
+                (do
+            (set _aChar (get _string _index))
+            (if (:jm_isAnyThreed _openGLFeatureUtil)
+                (do
+                (set (_offsetXArray _index) (JR/idiv (:jm_charWidth _font _aChar) 2)))))
+                (do (set _index (JR/i32 (- _index 1))))))
+        (set (this :f_offsetXArray) _offsetXArray)))
+    
+(set jm_paintVerticle (fn jm_paintVerticle [this _graphics _string _x _y _anchor]
+        (var _size (length _string))
+        (var _aChar 0)
+        (do
+            (var _index (JR/i32 (- _size 1)))
+            (while (>= _index 0)
+                (do
+            (set _aChar (get _string _index))
+            (:jm_drawChar _graphics _aChar (JR/i32 (+ _x ((this :f_offsetXArray) _index))) (JR/i32 (+ (JR/i32 (+ _y (JR/i32 (* (this :f_charHeight) _index)))) (this :f_offsetY))) _anchor))
+                (do (set _index (JR/i32 (- _index 1))))))))
+    
+(set jm_drawCenterString (fn jm_drawCenterString [this _graphics _string _offset _length _x _y]
+        (var _width (brshift (JR/className (:jm_getFont _graphics)) 1))
+        (try
+            (do
+            (:jm_drawSubstring _graphics _string _offset _length (JR/i32 (- _x _width)) _y (this :f_anchor)))
+            ([_e] (do
+            (PreLogUtil/jm_put (:jm_toString (:jm_appendint (:jm_append (:jm_appendint (:jm_append (:jm_appendint (:jm_append (StringMaker/jnew_0) "Exception: stringLength: ") (length _string)) " offset: ") _offset) " currentLength: ") _length)) this "drawCenterString"))))))
+    
+(set jm_drawCenterStrings (fn jm_drawCenterStrings [this _graphics _stringArray _maxWidth _x _y]
+        (var _extraLines 0)
+        (do
+            (var _index 0)
+            (while (< _index (length _stringArray))
+                (do
+            (var _string (_stringArray _index))
+            (if (not= _string (this :f_EMPTY_STRING))
+                (do
+                (var _width (JR/className (:jm_getFont _graphics)))
+                (var _minTotalLines 1)
+                (if (> _width _maxWidth)
+                    (do
+                    (set _minTotalLines (JR/i32 (+ (JR/idiv _width _maxWidth) 1)))))
+                (var _linePortion (JR/idiv (length _string) _minTotalLines))
+                (var _offset 0)
+                (var _currentLength _linePortion)
+                (var _size (length _string))
+                (do
+                    (while (< _offset _size)
+                        (do
+                    (if (> (JR/i32 (+ _offset _currentLength)) _size)
+                        (do
+                        (set _currentLength (JR/i32 (- _size _offset)))))
+                    (if (not= (JR/i32 (+ _offset _currentLength)) _size)
+                        (do
+                        (do
+                            (while (and (> _currentLength 0) (not= (JR/className (_stringArray _index)) (get " " 0)))
+                                (do
+                            (set _currentLength (JR/i32 (- _currentLength 1))))))
+                        (if (<= _currentLength 4)
+                            (do
+                            (set _currentLength _linePortion)))))
+                    (:jm_drawCenterString this _graphics _string _offset _currentLength _x (JR/i32 (+ _y (JR/i32 (* (JR/i32 (+ _index (do (def jold _extraLines) (set _extraLines (JR/i32 (+ _extraLines 1))) jold))) (this :f_charHeight))))))
+                    (set _offset (JR/i32 (+ _offset _currentLength)))
+                    (set _currentLength _linePortion))))
+                (set _extraLines (JR/i32 (- _extraLines 1))))))
+                (do (set _index (JR/i32 (+ _index 1))))))))
 
-function DrawVerticalStringUtil:_init_fields()
-    self.EMPTY_STRING = StringUtil.getInstance().EMPTY_STRING
-    self.anchor = Anchor.TOP_LEFT
-    self.charHeight = 0
-    self.offsetY = 0
-    self.offsetXArray = NullUtil.getInstance().NULL_INT_ARRAY
-end
+(set jproto @{:jm_updateMeasurement jm_updateMeasurement :jm_paintVerticle jm_paintVerticle :jm_drawCenterString jm_drawCenterString :jm_drawCenterStrings jm_drawCenterStrings})
 
-function DrawVerticalStringUtil.new()
-    local self = setmetatable({}, DrawVerticalStringUtil)
-    self:_init_fields()
-    return self
-end
-
-
-function DrawVerticalStringUtil.getInstance()
-        return DrawVerticalStringUtil.instance
-end
-
-
-function DrawVerticalStringUtil:updateMeasurement(graphics, string)
-        local openGLFeatureUtil = OpenGLFeatureUtil.getInstance()
-        local font = graphics:getFont()
-        self.charHeight = font:getHeight()
-        self.offsetY = 0
-        if J2MEUtil.isHTML() then
-            self.charHeight = self.charHeight + (1)
-        elseif openGLFeatureUtil:isAnyThreed() then
-            self.charHeight = self.charHeight + (2)
-            if AndroidUtil.isAndroid() then
-            else
-                self.offsetY = 2 + (java_idiv(self.charHeight * 2, 3))
-            end
-        end
-        local size = #string
-        local aChar = "\0"
-        local offsetXArray = java_new_array(0, size)
-        for index = size - 1, 0, -1 do
-            aChar = string.sub(string, (index) + 1, (index) + 1)
-            if openGLFeatureUtil:isAnyThreed() then
-                offsetXArray[index + 1] = font:charWidth(aChar) / 2
-            end
-        end
-        self.offsetXArray = offsetXArray
-end
-
-
-function DrawVerticalStringUtil:paintVerticle(graphics, string, x, y, anchor)
-        local size = #string
-        local aChar = "\0"
-        for index = size - 1, 0, -1 do
-            aChar = string.sub(string, (index) + 1, (index) + 1)
-            graphics:drawChar(aChar, x + self.offsetXArray[index + 1], y + (self.charHeight * index) + self.offsetY, anchor)
-        end
-end
-
-
-function DrawVerticalStringUtil:drawCenterString(graphics, string, offset, length, x, y)
-        local width = (((graphics:getFont():substringWidth(string, offset, length)) // (1 << (1))))
-        local try_ok, try_error = pcall(function()
-            graphics:drawSubstring(string, offset, length, x - width, y, self.anchor)
-        end)
-        if not try_ok then
-            local e = try_error
-            PreLogUtil.put(tostring(StringMaker.new():append("Exception: stringLength: "):appendint(#string):append(" offset: "):appendint(offset):append(" currentLength: "):appendint(length)), self, "drawCenterString")
-        end
-end
-
-
-function DrawVerticalStringUtil:drawCenterStrings(graphics, stringArray, maxWidth, x, y)
-        local extraLines = 0
-        for index = 0, (stringArray.n or #stringArray) - 1 do
-            local string = stringArray[index + 1]
-            if string ~= self.EMPTY_STRING then
-                local width = graphics:getFont():stringWidth(string)
-                local minTotalLines = 1
-                if width > maxWidth then
-                    minTotalLines = (java_idiv(width, maxWidth)) + 1
-                end
-                local linePortion = java_idiv(#string, minTotalLines)
-                local offset = 0
-                local currentLength = linePortion
-                local size = #string
-                while offset < size do
-                    if offset + currentLength > size then
-                        currentLength = size - offset
-                    end
-                    if offset + currentLength ~= size then
-                        while currentLength > 0 and stringArray[index + 1]:charAt(offset + currentLength) ~= " " do
-                            currentLength = currentLength - 1
-                        end
-                        if currentLength <= 4 then
-                            currentLength = linePortion
-                        end
-                    end
-                    self:drawCenterString(graphics, string, offset, currentLength, x, y + ((index + (function() local value = extraLines extraLines = value + 1 return value end)()) * self.charHeight))
-                    offset = offset + currentLength
-                    currentLength = linePortion
-                end
-                extraLines = extraLines - 1
-            end
-        end
-end
-
-DrawVerticalStringUtil.instance = DrawVerticalStringUtil.new()
-
-return DrawVerticalStringUtil
 

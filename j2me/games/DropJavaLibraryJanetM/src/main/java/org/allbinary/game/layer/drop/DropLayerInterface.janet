@@ -1,43 +1,35 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.layer.drop
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.game.layer.drop
 
-local PickedUpLayerInterface = require("org.allbinary.game.layer.pickup.PickedUpLayerInterface")
-local LayerInterface = require("org.allbinary.layer.LayerInterface")
+(import ../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(import ../../../../../org/allbinary/layer/LayerInterface :as LayerInterface)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class DropLayerInterface
+(var jproto nil)
+(var jnew_0 nil)
+(var jm_getDroppedLayer nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "DropLayerInterface"} jproto))
+    this))
 
--- Java interface
-local DropLayerInterface = {}
-DropLayerInterface.__index = DropLayerInterface
-DropLayerInterface.className = "DropLayerInterface"
-setmetatable(DropLayerInterface, {__index = LayerInterface})
+    
+(set jm_getDroppedLayer (fn jm_getDroppedLayer [this]
+    (error (JR/newException "AbstractMethodError" "getDroppedLayer"))))
 
+(set jproto @{:jm_getDroppedLayer jm_getDroppedLayer})
 
--- throws Exception
-function DropLayerInterface:getDroppedLayer()
-    error("abstract method getDroppedLayer")
-end
-
-return DropLayerInterface
 

@@ -1,57 +1,50 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.midlet
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.game.midlet
 
-local AllBinaryEventObject = require("org.allbinary.logic.util.event.AllBinaryEventObject")
-local EventListenerInterface = require("org.allbinary.logic.util.event.EventListenerInterface")
-local BasicEventHandler = require("org.allbinary.logic.util.event.handler.BasicEventHandler")
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(import ../../../../org/allbinary/logic/util/event/handler/BasicEventHandler :as BasicEventHandler)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class DemoGameMidletEventHandler
+(var jproto nil)
+(var jcell_gameKeyEventHandler :jnone)
+(var jstatic_gameKeyEventHandler nil)
+(var jsetstatic_gameKeyEventHandler nil)
+(var jnew_0 nil)
+(var jm_getInstance nil)
+(var jm_process nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jstatic_gameKeyEventHandler (fn jstatic_gameKeyEventHandler []
+  (when (= jcell_gameKeyEventHandler :jnone) (set jcell_gameKeyEventHandler (jnew_0)))
+  jcell_gameKeyEventHandler))
+(set jsetstatic_gameKeyEventHandler (fn jsetstatic_gameKeyEventHandler [value] (set jcell_gameKeyEventHandler value)))
 
-local DemoGameMidletEventHandler = {}
-DemoGameMidletEventHandler.__index = DemoGameMidletEventHandler
-DemoGameMidletEventHandler.className = "DemoGameMidletEventHandler"
-setmetatable(DemoGameMidletEventHandler, {__index = BasicEventHandler})
+    
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "DemoGameMidletEventHandler"} jproto))
+    (JR/superInit this (BasicEventHandler/jnew_0))
+    this))
+    
+(set jm_getInstance (fn jm_getInstance []
+    (label jreturn
+        (return jreturn (jstatic_gameKeyEventHandler)))))
+    
+(set jm_process (fn jm_process [this _eventObject _eventListenerInterface]
+        (var _demoGameMidletEventListener _eventListenerInterface)
+        (:jm_onDemoGameMidletEvent _demoGameMidletEventListener _eventObject)))
 
+(set jproto (table/setproto @{:jm_process jm_process} BasicEventHandler/jproto))
 
-function DemoGameMidletEventHandler.new()
-    local self = setmetatable(BasicEventHandler.new(), DemoGameMidletEventHandler)
-    return self
-end
-
-
-function DemoGameMidletEventHandler.getInstance()
-        return DemoGameMidletEventHandler.gameKeyEventHandler
-end
-
-
--- throws Exception
-function DemoGameMidletEventHandler:process(eventObject, eventListenerInterface)
-        local demoGameMidletEventListener = eventListenerInterface
-        demoGameMidletEventListener:onDemoGameMidletEvent(eventObject)
-end
-
-DemoGameMidletEventHandler.gameKeyEventHandler = DemoGameMidletEventHandler.new()
-
-return DemoGameMidletEventHandler
 

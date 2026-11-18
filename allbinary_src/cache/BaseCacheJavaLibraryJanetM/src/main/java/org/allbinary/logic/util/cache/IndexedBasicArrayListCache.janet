@@ -42,6 +42,7 @@
     (put this :f_commonStrings (CommonStrings/jm_getInstance))
     (put this :f_size 0)
     (put this :f_index 0)
+    (JR/superInit this (BaseBasicArrayListCache/jnew_0))
     this))
     
 (set jm_init (fn jm_init [this _size]

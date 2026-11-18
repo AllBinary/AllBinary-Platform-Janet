@@ -1,61 +1,56 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.image
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.image
 
--- local GL = require("javax.microedition.khronos.opengles.GL")
--- local Graphics = require("javax.microedition.lcdui.Graphics")
--- local Image = require("javax.microedition.lcdui.Image")
+(import ../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class PreResourceImageUtil
+(var jproto nil)
+(var jcell_instance :jnone)
+(var jstatic_instance nil)
+(var jsetstatic_instance nil)
+(var jnew_0 nil)
+(var jm_getInstance nil)
+(var jm_encapsulate nil)
+(var jm_updateGL nil)
+(var jm_update nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jstatic_instance (fn jstatic_instance []
+  (when (= jcell_instance :jnone) (set jcell_instance (jnew_0)))
+  jcell_instance))
+(set jsetstatic_instance (fn jsetstatic_instance [value] (set jcell_instance value)))
 
-local PreResourceImageUtil = {}
-PreResourceImageUtil.__index = PreResourceImageUtil
-PreResourceImageUtil.className = "PreResourceImageUtil"
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "PreResourceImageUtil"} jproto))
+    this))
 
-function PreResourceImageUtil.new()
-    local self = setmetatable({}, PreResourceImageUtil)
-    return self
-end
+    
+(set jm_getInstance (fn jm_getInstance []
+    (label jreturn
+        (return jreturn (jstatic_instance)))))
+    
+(set jm_encapsulate (fn jm_encapsulate [this _image]
+    (label jreturn
+        (return jreturn _image))))
+    
+(set jm_updateGL (fn jm_updateGL [this _gl _image]
+    nil))
+    
+(set jm_update (fn jm_update [this _graphics _image]
+    nil))
 
+(set jproto @{:jm_encapsulate jm_encapsulate :jm_updateGL jm_updateGL :jm_update jm_update})
 
-function PreResourceImageUtil.getInstance()
-        return PreResourceImageUtil.instance
-end
-
-
-function PreResourceImageUtil:encapsulate(image)
-        return image
-end
-
-
-function PreResourceImageUtil:updateGL(gl, image)
-end
-
-
-function PreResourceImageUtil:update(graphics, image)
-end
-
-PreResourceImageUtil.instance = PreResourceImageUtil.new()
-
-return PreResourceImageUtil
 

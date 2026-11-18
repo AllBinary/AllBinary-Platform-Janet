@@ -21,11 +21,13 @@
 (var jproto nil)
 (var jcell_NULL_THREAD :jnone)
 (var jstatic_NULL_THREAD nil)
+(var jsetstatic_NULL_THREAD nil)
 (var jnew_0 nil)
 
 (set jstatic_NULL_THREAD (fn jstatic_NULL_THREAD []
   (when (= jcell_NULL_THREAD :jnone) (set jcell_NULL_THREAD (Thread/jnew_0)))
   jcell_NULL_THREAD))
+(set jsetstatic_NULL_THREAD (fn jsetstatic_NULL_THREAD [value] (set jcell_NULL_THREAD value)))
 
 (set jnew_0 (fn jnew_0 []
     (var this (table/setproto @{:jclass "NullThread"} jproto))

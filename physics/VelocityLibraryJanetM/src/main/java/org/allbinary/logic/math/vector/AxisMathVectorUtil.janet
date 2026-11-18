@@ -1,66 +1,60 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.math.vector
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.logic.math.vector
 
-local NoDecimalTrigTable = require("org.allbinary.math.NoDecimalTrigTable")
+(import ../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- NoDecimalTrigTable/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/math/NoDecimalTrigTable" "jm_getInstance" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class AxisMathVectorUtil
+(var jproto nil)
+(var jcell_instance :jnone)
+(var jstatic_instance nil)
+(var jsetstatic_instance nil)
+(var jnew_0 nil)
+(var jm_getInstance nil)
+(var jm_calculateX nil)
+(var jm_calculateY nil)
+(var jm_calculateZ nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jstatic_instance (fn jstatic_instance []
+  (when (= jcell_instance :jnone) (set jcell_instance (jnew_0)))
+  jcell_instance))
+(set jsetstatic_instance (fn jsetstatic_instance [value] (set jcell_instance value)))
 
-local AxisMathVectorUtil = {}
-AxisMathVectorUtil.__index = AxisMathVectorUtil
-AxisMathVectorUtil.className = "AxisMathVectorUtil"
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "AxisMathVectorUtil" :f_noDecimalTrigTable nil} jproto))
+    (put this :f_noDecimalTrigTable (NoDecimalTrigTable/jm_getInstance))
+    this))
 
-function AxisMathVectorUtil:_init_fields()
-    self.noDecimalTrigTable = NoDecimalTrigTable.getInstance()
-end
+    
+(set jm_getInstance (fn jm_getInstance []
+    (label jreturn
+        (return jreturn (jstatic_instance)))))
+    
+(set jm_calculateX (fn jm_calculateX [this _magnitude _angle]
+    (label jreturn
+        (return jreturn (JR/idiv (* _magnitude (:jm_cos (this :f_noDecimalTrigTable) _angle)) 10)))))
+    
+(set jm_calculateY (fn jm_calculateY [this _magnitude _angle]
+    (label jreturn
+        (return jreturn (JR/idiv (* _magnitude (:jm_sin (this :f_noDecimalTrigTable) _angle)) 10)))))
+    
+(set jm_calculateZ (fn jm_calculateZ [this _magnitude _otherAngle]
+    (label jreturn
+        (return jreturn (JR/idiv (* _magnitude (:jm_sin (this :f_noDecimalTrigTable) _otherAngle)) 10)))))
 
-function AxisMathVectorUtil.new()
-    local self = setmetatable({}, AxisMathVectorUtil)
-    self:_init_fields()
-    return self
-end
+(set jproto @{:jm_calculateX jm_calculateX :jm_calculateY jm_calculateY :jm_calculateZ jm_calculateZ})
 
-
-function AxisMathVectorUtil.getInstance()
-        return AxisMathVectorUtil.instance
-end
-
-
-function AxisMathVectorUtil:calculateX(magnitude, angle)
-        return magnitude * self.noDecimalTrigTable:cos(angle) / 10
-end
-
-
-function AxisMathVectorUtil:calculateY(magnitude, angle)
-        return magnitude * self.noDecimalTrigTable:sin(angle) / 10
-end
-
-
-function AxisMathVectorUtil:calculateZ(magnitude, otherAngle)
-        return magnitude * self.noDecimalTrigTable:sin(otherAngle) / 10
-end
-
-AxisMathVectorUtil.instance = AxisMathVectorUtil.new()
-
-return AxisMathVectorUtil
 

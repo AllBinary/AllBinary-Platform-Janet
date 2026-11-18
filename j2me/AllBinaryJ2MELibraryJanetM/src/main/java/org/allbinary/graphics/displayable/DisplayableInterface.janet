@@ -1,61 +1,50 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.displayable
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.graphics.displayable
 
--- local Command = require("javax.microedition.lcdui.Command")
--- local CommandListener = require("javax.microedition.lcdui.CommandListener")
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class DisplayableInterface
+(var jproto nil)
+(var jnew_0 nil)
+(var jm_addCommand nil)
+(var jm_getHeight nil)
+(var jm_getWidth nil)
+(var jm_removeCommand nil)
+(var jm_setCommandListener nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "DisplayableInterface"} jproto))
+    this))
 
--- Java interface
-local DisplayableInterface = {}
-DisplayableInterface.__index = DisplayableInterface
-DisplayableInterface.className = "DisplayableInterface"
+    
+(set jm_addCommand (fn jm_addCommand [this _cmd]
+    (error (JR/newException "AbstractMethodError" "addCommand"))))
+    
+(set jm_getHeight (fn jm_getHeight [this]
+    (error (JR/newException "AbstractMethodError" "getHeight"))))
+    
+(set jm_getWidth (fn jm_getWidth [this]
+    (error (JR/newException "AbstractMethodError" "getWidth"))))
+    
+(set jm_removeCommand (fn jm_removeCommand [this _cmd]
+    (error (JR/newException "AbstractMethodError" "removeCommand"))))
+    
+(set jm_setCommandListener (fn jm_setCommandListener [this _l]
+    (error (JR/newException "AbstractMethodError" "setCommandListener"))))
 
+(set jproto @{:jm_addCommand jm_addCommand :jm_getHeight jm_getHeight :jm_getWidth jm_getWidth :jm_removeCommand jm_removeCommand :jm_setCommandListener jm_setCommandListener})
 
-function DisplayableInterface:addCommand(cmd)
-    error("abstract method addCommand")
-end
-
-
-function DisplayableInterface:getHeight()
-    error("abstract method getHeight")
-end
-
-
-function DisplayableInterface:getWidth()
-    error("abstract method getWidth")
-end
-
-
-function DisplayableInterface:removeCommand(cmd)
-    error("abstract method removeCommand")
-end
-
-
-function DisplayableInterface:setCommandListener(l)
-    error("abstract method setCommandListener")
-end
-
-return DisplayableInterface
 

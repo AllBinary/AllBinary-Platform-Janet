@@ -1,81 +1,70 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.configuration
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.game.configuration
 
--- local CommandListener = require("javax.microedition.lcdui.CommandListener")
-local BasicColor = require("org.allbinary.graphics.color.BasicColor")
-local CommandForm = require("org.allbinary.graphics.displayable.screen.CommandForm")
-local Init = require("org.allbinary.init.Init")
-local NullUtil = require("org.allbinary.logic.NullUtil")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- CommandForm/jm_getNullCommandForm [& args] (JR/call jfile "../../../../org/allbinary/graphics/displayable/screen/CommandForm" "jm_getNullCommandForm" args))
+(defn- NullUtil/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/logic/NullUtil" "jm_getInstance" args))
+(defn- LogUtil/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/logic/communication/log/LogUtil" "jm_getInstance" args))
+(defn- CommonStrings/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/string/CommonStrings" "jm_getInstance" args))
+(defn- InGameOptionsForm/jnew_4 [& args] (JR/call jfile "./InGameOptionsForm" "jnew_4" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class InGameOptionsFormFactory
+(var jproto nil)
+(var jcell_instance :jnone)
+(var jstatic_instance nil)
+(var jsetstatic_instance nil)
+(var jnew_0 nil)
+(var jm_getInstance nil)
+(var jm_init nil)
+(var jm_get nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jstatic_instance (fn jstatic_instance []
+  (when (= jcell_instance :jnone) (set jcell_instance ((NullUtil/jm_getInstance) :f_NULL_OBJECT)))
+  jcell_instance))
+(set jsetstatic_instance (fn jsetstatic_instance [value] (set jcell_instance value)))
 
-local InGameOptionsFormFactory = {}
-InGameOptionsFormFactory.__index = InGameOptionsFormFactory
-InGameOptionsFormFactory.className = "InGameOptionsFormFactory"
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "InGameOptionsFormFactory" :f_logUtil nil :f_SINGLETON nil} jproto))
+    (put this :f_logUtil (LogUtil/jm_getInstance))
+    (put this :f_SINGLETON (CommandForm/jm_getNullCommandForm))
+    this))
 
-function InGameOptionsFormFactory:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-    self.SINGLETON = CommandForm.getNullCommandForm()
-end
+    
+(set jm_getInstance (fn jm_getInstance []
+    (label jreturn
+        (if (= (jstatic_instance) ((NullUtil/jm_getInstance) :f_NULL_OBJECT))
+            (do
+            (set jcell_instance (jnew_0))))
+        (return jreturn (jstatic_instance)))))
+    
+(set jm_init (fn jm_init [this _commandListener _initInterface _title _backgrounBasicColor _foregroundBasicColor]
+        (try
+            (do
+            (if (= (this :f_SINGLETON) (CommandForm/jm_getNullCommandForm))
+                (do
+                (:jm_init _initInterface)
+                (set (this :f_SINGLETON) (InGameOptionsForm/jnew_4 _commandListener _title _backgrounBasicColor _foregroundBasicColor)))))
+            ([_e] (do
+            (var _commonStrings (CommonStrings/jm_getInstance))
+            (:jm_put (this :f_logUtil) (_commonStrings :f_EXCEPTION) this (_commonStrings :f_INIT) _e))))))
+    
+(set jm_get (fn jm_get [this]
+    (label jreturn
+        (return jreturn (this :f_SINGLETON)))))
 
-function InGameOptionsFormFactory.new()
-    local self = setmetatable({}, InGameOptionsFormFactory)
-    self:_init_fields()
-    return self
-end
+(set jproto @{:jm_init jm_init :jm_get jm_get})
 
-
-function InGameOptionsFormFactory.getInstance()
-        if InGameOptionsFormFactory.instance == NullUtil.getInstance().NULL_OBJECT then
-            InGameOptionsFormFactory.instance = InGameOptionsFormFactory.new()
-        end
-        return InGameOptionsFormFactory.instance
-end
-
-
-function InGameOptionsFormFactory:init(commandListener, initInterface, title, backgrounBasicColor, foregroundBasicColor)
-        local try_ok, try_error = pcall(function()
-            if self.SINGLETON == CommandForm.getNullCommandForm() then
-                initInterface:init()
-                self.SINGLETON = InGameOptionsForm.new(commandListener, title, backgrounBasicColor, foregroundBasicColor)
-            end
-        end)
-        if not try_ok then
-            local e = try_error
-            local commonStrings = CommonStrings.getInstance()
-            self.logUtil:put(commonStrings.EXCEPTION, self, commonStrings.INIT, e)
-        end
-end
-
-
-function InGameOptionsFormFactory:get()
-        return self.SINGLETON
-end
-
-InGameOptionsFormFactory.instance = NullUtil.getInstance().NULL_OBJECT
-
-return InGameOptionsFormFactory
 

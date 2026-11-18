@@ -20,12 +20,14 @@
 (var jproto nil)
 (var jcell_NULL_EVENT_LISTENER :jnone)
 (var jstatic_NULL_EVENT_LISTENER nil)
+(var jsetstatic_NULL_EVENT_LISTENER nil)
 (var jnew_0 nil)
 (var jm_onEvent nil)
 
 (set jstatic_NULL_EVENT_LISTENER (fn jstatic_NULL_EVENT_LISTENER []
   (when (= jcell_NULL_EVENT_LISTENER :jnone) (set jcell_NULL_EVENT_LISTENER (jnew_0)))
   jcell_NULL_EVENT_LISTENER))
+(set jsetstatic_NULL_EVENT_LISTENER (fn jsetstatic_NULL_EVENT_LISTENER [value] (set jcell_NULL_EVENT_LISTENER value)))
 
 (set jnew_0 (fn jnew_0 []
     (var this (table/setproto @{:jclass "NullEventListener"} jproto))

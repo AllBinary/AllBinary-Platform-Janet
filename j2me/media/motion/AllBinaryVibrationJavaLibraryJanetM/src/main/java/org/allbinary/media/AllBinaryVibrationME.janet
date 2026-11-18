@@ -1,42 +1,34 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.media
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.media
 
+(import ../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class AllBinaryVibrationME
+(var jproto nil)
+(var jnew_0 nil)
+(var jm_vibrate nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "AllBinaryVibrationME"} jproto))
+    this))
 
-local AllBinaryVibrationME = {}
-AllBinaryVibrationME.__index = AllBinaryVibrationME
-AllBinaryVibrationME.className = "AllBinaryVibrationME"
+    
+(set jm_vibrate (fn jm_vibrate [this _duration _type _volume]
+    nil))
 
-function AllBinaryVibrationME.new()
-    local self = setmetatable({}, AllBinaryVibrationME)
-    return self
-end
+(set jproto @{:jm_vibrate jm_vibrate})
 
-
-function AllBinaryVibrationME:vibrate(duration, type, volume)
-end
-
-return AllBinaryVibrationME
 

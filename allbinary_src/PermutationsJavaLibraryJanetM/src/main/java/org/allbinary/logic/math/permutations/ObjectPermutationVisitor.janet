@@ -1,65 +1,53 @@
--- Generated Code Do Not Modify
--- package org.allbinary.logic.math.permutations
+# Generated Code Do Not Modify
+# package org.allbinary.logic.math.permutations
 
-local TsUtil = require("org.allbinary.TsUtil")
-local NullUtil = require("org.allbinary.logic.NullUtil")
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
-local Visitor = require("org.allbinary.logic.util.visitor.Visitor")
-local CommonSeps = require("org.allbinary.string.CommonSeps")
+(import ../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- TsUtil/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/TsUtil" "jm_getInstance" args))
+(defn- NullUtil/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/logic/NullUtil" "jm_getInstance" args))
+(defn- StringMaker/jnew_0 [& args] (JR/call jfile "../../../../../org/allbinary/logic/string/StringMaker" "jnew_0" args))
+(import ../../../../../org/allbinary/logic/util/visitor/Visitor :as Visitor)
+(defn- CommonSeps/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/string/CommonSeps" "jm_getInstance" args))
+(import ../../../../../java/lang/System :as System)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class ObjectPermutationVisitor
+(var jproto nil)
+(var jnew_1 nil)
+(var jm_visit nil)
+(var jm_print_1 nil)
+(var jm_print_2 nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jnew_1 (fn jnew_1 [_data]
+    (var this (table/setproto @{:jclass "ObjectPermutationVisitor" :f_data nil :f_stringBuilder nil} jproto))
+    
+    (put this :f_stringBuilder (StringMaker/jnew_0))
+    (JR/superInit this (Visitor/jnew_0))
+        (set (this :f_data) _data)
+    this))
+    
+(set jm_visit (fn jm_visit [this _anyType]
+    (label jreturn
+        (:jm_delete (this :f_stringBuilder) 0 (:jm_length (this :f_stringBuilder)))
+        (:jm_print_2 this (this :f_data) (this :f_stringBuilder))
+        (return jreturn ((NullUtil/jm_getInstance) :f_NULL_OBJECT)))))
+    
+(set jm_print_1 (fn jm_print_1 [this _data]
+        (var _stringBuilder (StringMaker/jnew_0))
+        (:jm_print_2 this _data _stringBuilder)))
+    
+(set jm_print_2 (fn jm_print_2 [this _data _stringBuilder]
+        (var _tsUtil (TsUtil/jm_getInstance))
+        (var _size (length _data))
+        (do
+            (var _i 0)
+            (while (< _i _size)
+                (do
+            (:jm_appendint _stringBuilder (:jm_hashCode_1 _tsUtil (_data _i)))
+            (:jm_append _stringBuilder ((CommonSeps/jm_getInstance) :f_SPACE)))
+                (do (set _i (JR/i32 (+ _i 1))))))
+        (print (:jm_toString _stringBuilder))))
 
-local ObjectPermutationVisitor = {}
-ObjectPermutationVisitor.__index = ObjectPermutationVisitor
-ObjectPermutationVisitor.className = "ObjectPermutationVisitor"
-setmetatable(ObjectPermutationVisitor, {__index = Visitor})
+(set jproto (table/setproto @{:jm_visit jm_visit :jm_print_1 jm_print_1 :jm_print_2 jm_print_2} Visitor/jproto))
 
-function ObjectPermutationVisitor:_init_fields()
-    self.data = nil
-    self.stringBuilder = StringMaker.new()
-end
-
-
-function ObjectPermutationVisitor.new(data)
-    local self = setmetatable(Visitor.new(), ObjectPermutationVisitor)
-    self:_init_fields()
-        self.data = data
-    return self
-end
-
-
-function ObjectPermutationVisitor:visit(anyType)
-        self.stringBuilder:delete(0, self.stringBuilder:length())
-        self:print(self.data, self.stringBuilder)
-        return NullUtil.getInstance().NULL_OBJECT
-end
-
-
-function ObjectPermutationVisitor:print(data)
-        local stringBuilder = StringMaker.new()
-        self:print(data, stringBuilder)
-end
-
-
--- Java overloaded method: Lua keeps the last definition
-function ObjectPermutationVisitor:print(data, stringBuilder)
-        local tsUtil = TsUtil.getInstance()
-        local size = (data.n or #data)
-        for i = 0, size - 1 do
-            stringBuilder:appendint(java_int(tsUtil:hashCode(data[i + 1])))
-            stringBuilder:append(CommonSeps.getInstance().SPACE)
-        end
-        print(tostring(stringBuilder))
-end
-
-return ObjectPermutationVisitor
 

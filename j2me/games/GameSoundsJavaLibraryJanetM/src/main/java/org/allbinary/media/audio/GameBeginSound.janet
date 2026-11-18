@@ -1,50 +1,46 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.media.audio
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.media.audio
 
-local CompositeSound = require("org.allbinary.media.audio.CompositeSound")
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(import ./CompositeSound :as CompositeSound)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+#Use 8hz16bitmono for most J2ME
+# Java class GameBeginSound
+(var jproto nil)
+(var jcell_soundInterface :jnone)
+(var jstatic_soundInterface nil)
+(var jsetstatic_soundInterface nil)
+(var jnew_0 nil)
+(var jm_getInstance nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jstatic_soundInterface (fn jstatic_soundInterface []
+  (when (= jcell_soundInterface :jnone) (set jcell_soundInterface (jnew_0)))
+  jcell_soundInterface))
+(set jsetstatic_soundInterface (fn jsetstatic_soundInterface [value] (set jcell_soundInterface value)))
 
---Use 8hz16bitmono for most J2ME
-local GameBeginSound = {}
-GameBeginSound.__index = GameBeginSound
-GameBeginSound.className = "GameBeginSound"
-setmetatable(GameBeginSound, {__index = CompositeSound})
+    
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "GameBeginSound"} jproto))
+        (JR/superInit this (CompositeSound/jnew_1 "resource:/wav/begin.wav"))
+    this))
+    
+(set jm_getInstance (fn jm_getInstance []
+    (label jreturn
+        (return jreturn (jstatic_soundInterface)))))
 
+(set jproto (table/setproto @{} CompositeSound/jproto))
 
-function GameBeginSound.new()
-    local self = setmetatable(CompositeSound.new("resource:/wav/begin.wav"), GameBeginSound)
-        -- super(...) made self above
-    return self
-end
-
-
-function GameBeginSound.getInstance()
-        return GameBeginSound.soundInterface
-end
-
-GameBeginSound.soundInterface = GameBeginSound.new()
-
-return GameBeginSound
 

@@ -1,53 +1,50 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.form
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.graphics.form
 
-local ItemPaintable = require("org.allbinary.graphics.form.ItemPaintable")
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(import ./ItemPaintable :as ItemPaintable)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class ItemPaintableFactory
+(var jproto nil)
+(var jcell_instance :jnone)
+(var jstatic_instance nil)
+(var jsetstatic_instance nil)
+(var jnew_0 nil)
+(var jm_getInstance nil)
+(var jm_getInstanceItemPaintable nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jstatic_instance (fn jstatic_instance []
+  (when (= jcell_instance :jnone) (set jcell_instance (jnew_0)))
+  jcell_instance))
+(set jsetstatic_instance (fn jsetstatic_instance [value] (set jcell_instance value)))
 
-local ItemPaintableFactory = {}
-ItemPaintableFactory.__index = ItemPaintableFactory
-ItemPaintableFactory.className = "ItemPaintableFactory"
-setmetatable(ItemPaintableFactory, {__index = ItemPaintable})
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "ItemPaintableFactory"} jproto))
+    (JR/superInit this (ItemPaintable/jnew_0))
+    this))
 
-function ItemPaintableFactory.new()
-    local self = setmetatable(ItemPaintable.new(), ItemPaintableFactory)
-    return self
-end
+    
+(set jm_getInstance (fn jm_getInstance []
+    (label jreturn
+        (return jreturn (jstatic_instance)))))
+    
+(set jm_getInstanceItemPaintable (fn jm_getInstanceItemPaintable [this _paintableForm]
+    (label jreturn
+        (return jreturn (jstatic_instance)))))
 
+(set jproto (table/setproto @{:jm_getInstanceItemPaintable jm_getInstanceItemPaintable} ItemPaintable/jproto))
 
-function ItemPaintableFactory.getInstance()
-        return ItemPaintableFactory.instance
-end
-
-
--- throws Exception
-function ItemPaintableFactory:getInstanceItemPaintable(paintableForm)
-        return ItemPaintableFactory.instance
-end
-
-ItemPaintableFactory.instance = ItemPaintableFactory.new()
-
-return ItemPaintableFactory
 

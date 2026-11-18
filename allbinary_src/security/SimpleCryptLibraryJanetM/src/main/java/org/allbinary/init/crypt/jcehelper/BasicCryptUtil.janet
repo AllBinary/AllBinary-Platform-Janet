@@ -1,100 +1,73 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.init.crypt.jcehelper
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.init.crypt.jcehelper
 
--- local ByteArrayInputStream = require("java.io.ByteArrayInputStream")
--- local ByteArrayOutputStream = require("java.io.ByteArrayOutputStream")
--- local InputStream = require("java.io.InputStream")
-local TsUtil = require("org.allbinary.TsUtil")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
+(import ../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(import ../../../../../java/io/ByteArrayInputStream :as ByteArrayInputStream)
+(import ../../../../../java/io/ByteArrayOutputStream :as ByteArrayOutputStream)
+(import ../../../../../java/io/InputStream :as InputStream)
+(defn- TsUtil/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/TsUtil" "jm_getInstance" args))
+(defn- LogUtil/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/logic/communication/log/LogUtil" "jm_getInstance" args))
 
--- Java library java.io.ByteArrayOutputStream
-local function java_byte_array_output_stream()
-    local stream = {buffer = {}}
-    function stream:write(value, offset, length)
-        if type(value) == "table" then
-            local first = (offset or 0) + 1
-            local last = first + (length or #value) - 1
-            for index = first, last do self.buffer[#self.buffer + 1] = string.char(value[index] % 256) end
-        elseif type(value) == "number" then
-            self.buffer[#self.buffer + 1] = string.char(value % 256)
-        else
-            self.buffer[#self.buffer + 1] = tostring(value)
-        end
-    end
-    function stream:toString() return table.concat(self.buffer) end
-    function stream:size() return #table.concat(self.buffer) end
-    function stream:reset() self.buffer = {} end
-    function stream:flush() end
-    function stream:close() end
-    return setmetatable(stream, {__tostring = function(self) return table.concat(self.buffer) end})
-end
+# Java class BasicCryptUtil
+(var jproto nil)
+(var jcell_instance :jnone)
+(var jstatic_instance nil)
+(var jsetstatic_instance nil)
+(var jnew_0 nil)
+(var jm_getInstance nil)
+(var jm_getDecryptedInputStream nil)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(set jstatic_instance (fn jstatic_instance []
+  (when (= jcell_instance :jnone) (set jcell_instance (jnew_0)))
+  jcell_instance))
+(set jsetstatic_instance (fn jsetstatic_instance [value] (set jcell_instance value)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "BasicCryptUtil" :f_logUtil nil :f_tsUtil nil :f_XML_START nil} jproto))
+    (put this :f_logUtil (LogUtil/jm_getInstance))
+    (put this :f_tsUtil (TsUtil/jm_getInstance))
+    (put this :f_XML_START "<?xml")
+    this))
 
-local BasicCryptUtil = {}
-BasicCryptUtil.__index = BasicCryptUtil
-BasicCryptUtil.className = "BasicCryptUtil"
+    
+(set jm_getInstance (fn jm_getInstance []
+    (label jreturn
+        (return jreturn (jstatic_instance)))))
+    
+(set jm_getDecryptedInputStream (fn jm_getDecryptedInputStream [this _inputStream _cryptInterface]
+    (label jreturn
+        (var _buffer (ByteArrayOutputStream/jnew_0))
+        (var _ch 0)
+        (do
+            (var jbreak false)
+            (while (and (not jbreak) true)
+                (label jcontinue
+            (set _ch (:jm_read _inputStream))
+            (if (= _ch (JR/i32 (- 1)))
+                (do
+                (do (set jbreak true) (return jcontinue))))
+            (:jm_write _buffer _ch))))
+        (var _decrypted (:jm_decrypt _cryptInterface (:jm_toByteArray _buffer)))
+        (var _decryptedString _decrypted)
+        (var _index (JR/indexOf _decryptedString (this :f_XML_START)))
+        (if (> _index 0)
+            (do
+            (set _decryptedString (JR/substring _decryptedString _index))))
+        (return jreturn (ByteArrayInputStream/jnew_1 (:jm_getByteArray (this :f_tsUtil) _decryptedString))))))
 
-function BasicCryptUtil:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-    self.tsUtil = TsUtil.getInstance()
-    self.XML_START = "<?xml"
-end
+(set jproto @{:jm_getDecryptedInputStream jm_getDecryptedInputStream})
 
-function BasicCryptUtil.new()
-    local self = setmetatable({}, BasicCryptUtil)
-    self:_init_fields()
-    return self
-end
-
-
-function BasicCryptUtil.getInstance()
-        return BasicCryptUtil.instance
-end
-
-
--- throws Exception
-function BasicCryptUtil:getDecryptedInputStream(inputStream, cryptInterface)
-        local buffer = java_byte_array_output_stream()
-        local ch = 0
-        while true do
-            ch = inputStream:read()
-            if ch == -1 then
-                break
-            end
-            buffer:write(ch)
-        end
-        local decrypted = cryptInterface:decrypt(buffer:toByteArray())
-        local decryptedString = string.char(table.unpack(decrypted))
-        local index = ((string.find(decryptedString, self.XML_START, 1, true) or 0) - 1)
-        if index > 0 then
-            decryptedString = string.sub(decryptedString, (index) + 1)
-        end
-        return ByteArrayInputStream.new(self.tsUtil:getByteArray(decryptedString))
-end
-
-BasicCryptUtil.instance = BasicCryptUtil.new()
-
-return BasicCryptUtil
 

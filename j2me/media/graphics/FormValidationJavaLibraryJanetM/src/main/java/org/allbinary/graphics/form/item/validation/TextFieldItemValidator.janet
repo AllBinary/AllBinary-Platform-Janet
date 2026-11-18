@@ -1,93 +1,83 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.form.item.validation
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.graphics.form.item.validation
 
-local ABTextFieldItem = require("org.allbinary.graphics.form.item.ABTextFieldItem")
-local ValidatorBase = require("org.allbinary.logic.control.validate.ValidatorBase")
-local BooleanFactory = require("org.allbinary.logic.java.bool.BooleanFactory")
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
-local BasicArrayListD = require("org.allbinary.util.BasicArrayListD")
+(import ../../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(import ../../../../../../org/allbinary/logic/control/validate/ValidatorBase :as ValidatorBase)
+(defn- BooleanFactory/jm_getInstance [& args] (JR/call jfile "../../../../../../org/allbinary/logic/java/bool/BooleanFactory" "jm_getInstance" args))
+(defn- StringMaker/jnew_0 [& args] (JR/call jfile "../../../../../../org/allbinary/logic/string/StringMaker" "jnew_0" args))
+(defn- BasicArrayListD/jnew_0 [& args] (JR/call jfile "../../../../../../org/allbinary/util/BasicArrayListD" "jnew_0" args))
+(import ../../../../../../java/lang/Boolean :as Boolean)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class TextFieldItemValidator
+(var jproto nil)
+(var jnew_4 nil)
+(var jm_isValid nil)
+(var jm_toList nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jnew_4 (fn jnew_4 [_textFieldItem _min _max _allowOnEmpty]
+    (var this (table/setproto @{:jclass "TextFieldItemValidator" :f_textFieldItem nil :f_min 0 :f_max 0 :f_allowOnEmpty false} jproto))
+    
+    
+    
+    
+    (JR/superInit this (ValidatorBase/jnew_0))
+        (set (this :f_textFieldItem) _textFieldItem)
+        (set (this :f_min) _min)
+        (set (this :f_max) _max)
+        (set (this :f_allowOnEmpty) _allowOnEmpty)
+    this))
+    
+(set jm_isValid (fn jm_isValid [this]
+    (label jreturn
+        (var _booleanFactory (BooleanFactory/jm_getInstance))
+        (var _result (_booleanFactory :f_TRUE))
+        (var _string (:jm_getString (this :f_textFieldItem)))
+        (var _textLength (length _string))
+        (if (or (and (= _textLength 0) (this :f_allowOnEmpty)) (and (> _textLength (this :f_min)) (< _textLength (this :f_max))))
+            (do
+            nil)
+            (do
+            (if (< _textLength (this :f_min))
+                (do
+                (set _result (_booleanFactory :f_FALSE)))
+                (if (> _textLength (this :f_max))
+                (do
+                (set _result (_booleanFactory :f_FALSE)))))))
+        (return jreturn _result))))
+    
+(set jm_toList (fn jm_toList [this]
+    (label jreturn
+        (var _list (BasicArrayListD/jnew_0))
+        (var _string (:jm_getString (this :f_textFieldItem)))
+        (var _textLength (length _string))
+        (if (and (> _textLength (this :f_min)) (< _textLength (this :f_max)))
+            (do
+            nil)
+            (do
+            (var _label (:jm_getLabel (this :f_textFieldItem)))
+            (var _name (JR/substring _label 0 (JR/i32 (- (length _label) 2))))
+            (if (< _textLength (this :f_min))
+                (do
+                (:jm_add _list (:jm_toString (:jm_append (:jm_append (StringMaker/jnew_0) _name) " is to short"))))
+                (if (> _textLength (this :f_max))
+                (do
+                (:jm_add _list (:jm_toString (:jm_append (:jm_append (StringMaker/jnew_0) _name) " is to long"))))))))
+        (return jreturn _list))))
 
-local TextFieldItemValidator = {}
-TextFieldItemValidator.__index = TextFieldItemValidator
-TextFieldItemValidator.className = "TextFieldItemValidator"
-setmetatable(TextFieldItemValidator, {__index = ValidatorBase})
+(set jproto (table/setproto @{:jm_isValid jm_isValid :jm_toList jm_toList} ValidatorBase/jproto))
 
-function TextFieldItemValidator:_init_fields()
-    self.textFieldItem = nil
-    self.min = nil
-    self.max = nil
-    self.allowOnEmpty = nil
-end
-
-
-function TextFieldItemValidator.new(textFieldItem, min, max, allowOnEmpty)
-    local self = setmetatable(ValidatorBase.new(), TextFieldItemValidator)
-    self:_init_fields()
-        self.textFieldItem = textFieldItem
-        self.min = min
-        self.max = max
-        self.allowOnEmpty = allowOnEmpty
-    return self
-end
-
-
-function TextFieldItemValidator:isValid()
-        local booleanFactory = BooleanFactory.getInstance()
-        local result = booleanFactory.TRUE
-        local string = self.textFieldItem:getString()
-        local textLength = #string
-        if (textLength == 0 and self.allowOnEmpty) or textLength > self.min and textLength < self.max then
-        else
-            if textLength < self.min then
-                result = booleanFactory.FALSE
-            elseif textLength > self.max then
-                result = booleanFactory.FALSE
-            end
-        end
-        return result
-end
-
-
-function TextFieldItemValidator:toList()
-        local list = BasicArrayListD.new()
-        local string = self.textFieldItem:getString()
-        local textLength = #string
-        if textLength > self.min and textLength < self.max then
-        else
-            local label = self.textFieldItem:getLabel()
-            local name = string.sub(label, (0) + 1, #label - 2)
-            if textLength < self.min then
-                list:add(tostring(StringMaker.new():append(name):append(" is to short")))
-            elseif textLength > self.max then
-                list:add(tostring(StringMaker.new():append(name):append(" is to long")))
-            end
-        end
-        return list
-end
-
-return TextFieldItemValidator
 

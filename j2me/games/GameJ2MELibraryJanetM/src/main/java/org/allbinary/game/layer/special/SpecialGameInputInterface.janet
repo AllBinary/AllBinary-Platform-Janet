@@ -1,110 +1,79 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.layer.special
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.game.layer.special
 
-local GameKeyEvent = require("org.allbinary.game.input.event.GameKeyEvent")
-local PaintableInterface = require("org.allbinary.graphics.paint.PaintableInterface")
-local AllBinaryLayerManager = require("org.allbinary.layer.AllBinaryLayerManager")
+(import ../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(import ../../../../../org/allbinary/graphics/paint/PaintableInterface :as PaintableInterface)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class SpecialGameInputInterface
+(var jproto nil)
+(var jnew_0 nil)
+(var jm_up nil)
+(var jm_down nil)
+(var jm_right nil)
+(var jm_left nil)
+(var jm_strafeLeft nil)
+(var jm_strafeRight nil)
+(var jm_fire nil)
+(var jm_special1 nil)
+(var jm_special2 nil)
+(var jm_special3 nil)
+(var jm_special4 nil)
+(var jm_special5 nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "SpecialGameInputInterface"} jproto))
+    this))
 
--- Java interface
-local SpecialGameInputInterface = {}
-SpecialGameInputInterface.__index = SpecialGameInputInterface
-SpecialGameInputInterface.className = "SpecialGameInputInterface"
-setmetatable(SpecialGameInputInterface, {__index = PaintableInterface})
+    
+(set jm_up (fn jm_up [this]
+    (error (JR/newException "AbstractMethodError" "up"))))
+    
+(set jm_down (fn jm_down [this]
+    (error (JR/newException "AbstractMethodError" "down"))))
+    
+(set jm_right (fn jm_right [this]
+    (error (JR/newException "AbstractMethodError" "right"))))
+    
+(set jm_left (fn jm_left [this]
+    (error (JR/newException "AbstractMethodError" "left"))))
+    
+(set jm_strafeLeft (fn jm_strafeLeft [this]
+    (error (JR/newException "AbstractMethodError" "strafeLeft"))))
+    
+(set jm_strafeRight (fn jm_strafeRight [this]
+    (error (JR/newException "AbstractMethodError" "strafeRight"))))
+    
+(set jm_fire (fn jm_fire [this _layerManager _gameKeyEvent]
+    (error (JR/newException "AbstractMethodError" "fire"))))
+    
+(set jm_special1 (fn jm_special1 [this _layerManager _gameKeyEvent]
+    (error (JR/newException "AbstractMethodError" "special1"))))
+    
+(set jm_special2 (fn jm_special2 [this _layerManager _gameKeyEvent]
+    (error (JR/newException "AbstractMethodError" "special2"))))
+    
+(set jm_special3 (fn jm_special3 [this _layerManager _gameKeyEvent]
+    (error (JR/newException "AbstractMethodError" "special3"))))
+    
+(set jm_special4 (fn jm_special4 [this _layerManager _gameKeyEvent]
+    (error (JR/newException "AbstractMethodError" "special4"))))
+    
+(set jm_special5 (fn jm_special5 [this _layerManager _gameKeyEvent]
+    (error (JR/newException "AbstractMethodError" "special5"))))
 
+(set jproto @{:jm_up jm_up :jm_down jm_down :jm_right jm_right :jm_left jm_left :jm_strafeLeft jm_strafeLeft :jm_strafeRight jm_strafeRight :jm_fire jm_fire :jm_special1 jm_special1 :jm_special2 jm_special2 :jm_special3 jm_special3 :jm_special4 jm_special4 :jm_special5 jm_special5})
 
--- throws Exception
-function SpecialGameInputInterface:up()
-    error("abstract method up")
-end
-
-
--- throws Exception
-function SpecialGameInputInterface:down()
-    error("abstract method down")
-end
-
-
--- throws Exception
-function SpecialGameInputInterface:right()
-    error("abstract method right")
-end
-
-
--- throws Exception
-function SpecialGameInputInterface:left()
-    error("abstract method left")
-end
-
-
--- throws Exception
-function SpecialGameInputInterface:strafeLeft()
-    error("abstract method strafeLeft")
-end
-
-
--- throws Exception
-function SpecialGameInputInterface:strafeRight()
-    error("abstract method strafeRight")
-end
-
-
--- throws Exception
-function SpecialGameInputInterface:fire(layerManager, gameKeyEvent)
-    error("abstract method fire")
-end
-
-
--- throws Exception
-function SpecialGameInputInterface:special1(layerManager, gameKeyEvent)
-    error("abstract method special1")
-end
-
-
--- throws Exception
-function SpecialGameInputInterface:special2(layerManager, gameKeyEvent)
-    error("abstract method special2")
-end
-
-
--- throws Exception
-function SpecialGameInputInterface:special3(layerManager, gameKeyEvent)
-    error("abstract method special3")
-end
-
-
--- throws Exception
-function SpecialGameInputInterface:special4(layerManager, gameKeyEvent)
-    error("abstract method special4")
-end
-
-
--- throws Exception
-function SpecialGameInputInterface:special5(layerManager, gameKeyEvent)
-    error("abstract method special5")
-end
-
-return SpecialGameInputInterface
 

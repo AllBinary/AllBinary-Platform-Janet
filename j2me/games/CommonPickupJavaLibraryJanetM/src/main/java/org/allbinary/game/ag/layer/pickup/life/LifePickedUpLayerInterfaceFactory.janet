@@ -1,78 +1,66 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.ag.layer.pickup.life
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.game.ag.layer.pickup.life
 
-local FeaturedAnimationInterfaceFactoryInterfaceFactory = require("org.allbinary.animation.FeaturedAnimationInterfaceFactoryInterfaceFactory")
-local CountedPickedUpLayerInterfaceFactory = require("org.allbinary.game.layer.pickup.CountedPickedUpLayerInterfaceFactory")
-local IconLayerFactory = require("org.allbinary.game.layer.pickup.IconLayerFactory")
-local PickedUpLayerInterfaceFactory = require("org.allbinary.game.layer.pickup.PickedUpLayerInterfaceFactory")
-local PickedUpLayerInterfaceFactoryInterface = require("org.allbinary.game.layer.pickup.PickedUpLayerInterfaceFactoryInterface")
-local PickedUpLayerTypeFactory = require("org.allbinary.game.layer.pickup.PickedUpLayerTypeFactory")
-local PickupProcessorInterface = require("org.allbinary.game.layer.pickup.PickupProcessorInterface")
-local AllBinaryLayer = require("org.allbinary.layer.AllBinaryLayer")
+(import ../../../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- FeaturedAnimationInterfaceFactoryInterfaceFactory/jm_getInstance [& args] (JR/call jfile "../../../../../../../org/allbinary/animation/FeaturedAnimationInterfaceFactoryInterfaceFactory" "jm_getInstance" args))
+(defn- CountedPickedUpLayerInterfaceFactory/jstatic_NULL_COUNTED_PICKUP_LAYER_FACTORY [& args] (JR/call jfile "../../../../../../../org/allbinary/game/layer/pickup/CountedPickedUpLayerInterfaceFactory" "jstatic_NULL_COUNTED_PICKUP_LAYER_FACTORY" args))
+(defn- IconLayerFactory/jm_getInstance [& args] (JR/call jfile "../../../../../../../org/allbinary/game/layer/pickup/IconLayerFactory" "jm_getInstance" args))
+(import ../../../../../../../org/allbinary/game/layer/pickup/PickedUpLayerInterfaceFactory :as PickedUpLayerInterfaceFactory)
+(defn- PickedUpLayerTypeFactory/jm_getInstance [& args] (JR/call jfile "../../../../../../../org/allbinary/game/layer/pickup/PickedUpLayerTypeFactory" "jm_getInstance" args))
+(defn- LifeLayerCircularStaticPool/jnew_2 [& args] (JR/call jfile "./LifeLayerCircularStaticPool" "jnew_2" args))
+(defn- LifeLayerFactory/jnew_0 [& args] (JR/call jfile "./LifeLayerFactory" "jnew_0" args))
+(defn- LifeResources/jm_getInstance [& args] (JR/call jfile "./LifeResources" "jm_getInstance" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class LifePickedUpLayerInterfaceFactory
+(var jproto nil)
+(var jcell_pickedUpLayerInterfaceFactoryInterface :jnone)
+(var jstatic_pickedUpLayerInterfaceFactoryInterface nil)
+(var jsetstatic_pickedUpLayerInterfaceFactoryInterface nil)
+(var jnew_0 nil)
+(var jm_init nil)
+(var jm_getTotal nil)
+(var jm_getInstance nil)
+(var jm_process nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jstatic_pickedUpLayerInterfaceFactoryInterface (fn jstatic_pickedUpLayerInterfaceFactoryInterface []
+  (when (= jcell_pickedUpLayerInterfaceFactoryInterface :jnone) (set jcell_pickedUpLayerInterfaceFactoryInterface (CountedPickedUpLayerInterfaceFactory/jstatic_NULL_COUNTED_PICKUP_LAYER_FACTORY)))
+  jcell_pickedUpLayerInterfaceFactoryInterface))
+(set jsetstatic_pickedUpLayerInterfaceFactoryInterface (fn jsetstatic_pickedUpLayerInterfaceFactoryInterface [value] (set jcell_pickedUpLayerInterfaceFactoryInterface value)))
 
-local LifePickedUpLayerInterfaceFactory = {}
-LifePickedUpLayerInterfaceFactory.__index = LifePickedUpLayerInterfaceFactory
-LifePickedUpLayerInterfaceFactory.className = "LifePickedUpLayerInterfaceFactory"
-setmetatable(LifePickedUpLayerInterfaceFactory, {__index = PickedUpLayerInterfaceFactory})
+    
+(set jm_init (fn jm_init []
+        (set jcell_pickedUpLayerInterfaceFactoryInterface (jnew_0))))
+    
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "LifePickedUpLayerInterfaceFactory" :f_pool nil} jproto))
+    (put this :f_pool (LifeLayerCircularStaticPool/jnew_2 (LifeLayerFactory/jnew_0) 1))
+        (JR/superInit this (PickedUpLayerInterfaceFactory/jnew_3 ((PickedUpLayerTypeFactory/jm_getInstance) :f_LIFE) (IconLayerFactory/jm_getInstance (JR/className (:jm_get (FeaturedAnimationInterfaceFactoryInterfaceFactory/jm_getInstance) ((LifeResources/jm_getInstance) :f_RESOURCE))) 10 10) (JR/className (:jm_get (FeaturedAnimationInterfaceFactoryInterfaceFactory/jm_getInstance) ((LifeResources/jm_getInstance) :f_RESOURCE)))))
+    this))
+    
+(set jm_getTotal (fn jm_getTotal [this]
+    (label jreturn
+        (return jreturn 1))))
+    
+(set jm_getInstance (fn jm_getInstance []
+    (label jreturn
+        (return jreturn (jstatic_pickedUpLayerInterfaceFactoryInterface)))))
+    
+(set jm_process (fn jm_process [this _sourceLayerInterface]
+        (:jm_visit (this :f_pool) _sourceLayerInterface)))
 
-function LifePickedUpLayerInterfaceFactory:_init_fields()
-    self.pool = LifeLayerCircularStaticPool.new(LifeLayerFactory.new(), 1)
-end
+(set jproto (table/setproto @{:jm_getTotal jm_getTotal :jm_process jm_process} PickedUpLayerInterfaceFactory/jproto))
 
-
--- throws Exception
-function LifePickedUpLayerInterfaceFactory.init()
-        LifePickedUpLayerInterfaceFactory.pickedUpLayerInterfaceFactoryInterface = LifePickedUpLayerInterfaceFactory.new()
-end
-
-
-function LifePickedUpLayerInterfaceFactory.new()
-    local self = setmetatable(PickedUpLayerInterfaceFactory.new(PickedUpLayerTypeFactory.getInstance().LIFE, IconLayerFactory.getInstance(FeaturedAnimationInterfaceFactoryInterfaceFactory.getInstance():get(LifeResources.getInstance().RESOURCE):getInstance(0), 10, 10), FeaturedAnimationInterfaceFactoryInterfaceFactory.getInstance():get(LifeResources.getInstance().RESOURCE):getInstance(0)), LifePickedUpLayerInterfaceFactory)
-    self:_init_fields()
-        -- super(...) made self above
-    return self
-end
-
-
-function LifePickedUpLayerInterfaceFactory:getTotal()
-        return 1
-end
-
-
-function LifePickedUpLayerInterfaceFactory.getInstance()
-        return LifePickedUpLayerInterfaceFactory.pickedUpLayerInterfaceFactoryInterface
-end
-
-
--- throws Exception
-function LifePickedUpLayerInterfaceFactory:process(sourceLayerInterface)
-        self.pool:visit(sourceLayerInterface)
-end
-
-LifePickedUpLayerInterfaceFactory.pickedUpLayerInterfaceFactoryInterface = CountedPickedUpLayerInterfaceFactory.NULL_COUNTED_PICKUP_LAYER_FACTORY
-
-return LifePickedUpLayerInterfaceFactory
 

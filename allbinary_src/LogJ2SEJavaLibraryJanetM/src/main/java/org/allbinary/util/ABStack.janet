@@ -23,6 +23,7 @@
 
 (set jnew_0 (fn jnew_0 []
     (var this (table/setproto @{:jclass "ABStack"} jproto))
+    (JR/superInit this (Stack/jnew_0))
     this))
 
 

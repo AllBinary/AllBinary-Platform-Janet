@@ -1,69 +1,61 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.canvas
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.canvas
 
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
-local BaseGameStatistics = require("org.allbinary.canvas.BaseGameStatistics")
+(import ../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- StringMaker/jnew_0 [& args] (JR/call jfile "../../../org/allbinary/logic/string/StringMaker" "jnew_0" args))
+(import ./BaseGameStatistics :as BaseGameStatistics)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+#ActualPlatform
+# Java class GameStatisticsFactory
+(var jproto nil)
+(var jcell_instance :jnone)
+(var jstatic_instance nil)
+(var jsetstatic_instance nil)
+(var jnew_0 nil)
+(var jm_getInstance nil)
+(var jm_add nil)
+(var jm_toString nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jstatic_instance (fn jstatic_instance []
+  (when (= jcell_instance :jnone) (set jcell_instance (jnew_0)))
+  jcell_instance))
+(set jsetstatic_instance (fn jsetstatic_instance [value] (set jcell_instance value)))
 
---ActualPlatform
-local GameStatisticsFactory = {}
-GameStatisticsFactory.__index = GameStatisticsFactory
-GameStatisticsFactory.className = "GameStatisticsFactory"
-setmetatable(GameStatisticsFactory, {__index = BaseGameStatistics})
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "GameStatisticsFactory" :f_stringBuffer nil} jproto))
+    (put this :f_stringBuffer (StringMaker/jnew_0))
+    (JR/superInit this (BaseGameStatistics/jnew_0))
+    this))
 
-function GameStatisticsFactory:_init_fields()
-    self.stringBuffer = StringMaker.new()
-end
+    
+(set jm_getInstance (fn jm_getInstance []
+    (label jreturn
+        (return jreturn (jstatic_instance)))))
+    
+(set jm_add (fn jm_add [this _string]
+        (if (> (:jm_length (this :f_stringBuffer)) 12000)
+            (do
+            (:jm_delete (this :f_stringBuffer) 0 (:jm_length (this :f_stringBuffer)))
+            (:jm_append (this :f_stringBuffer) "Old Stats Cleared")))
+        (:jm_append (this :f_stringBuffer) _string)))
+    
+(set jm_toString (fn jm_toString [this]
+    (label jreturn
+        (return jreturn (:jm_toString (:jm_append (:jm_append (StringMaker/jnew_0) ((get BaseGameStatistics/jproto :jm_toString) this)) (:jm_toString (this :f_stringBuffer))))))))
 
-function GameStatisticsFactory.new()
-    local self = setmetatable(BaseGameStatistics.new(), GameStatisticsFactory)
-    self:_init_fields()
-    return self
-end
+(set jproto (table/setproto @{:jm_add jm_add :jm_toString jm_toString} BaseGameStatistics/jproto))
 
-
-function GameStatisticsFactory.getInstance()
-        return GameStatisticsFactory.instance
-end
-
-
-function GameStatisticsFactory:add(string)
-        if self.stringBuffer:length() > 12000 then
-            self.stringBuffer:delete(0, self.stringBuffer:length())
-            self.stringBuffer:append("Old Stats Cleared")
-        end
-        self.stringBuffer:append(string)
-end
-
-
-function GameStatisticsFactory:toString()
-        return tostring(StringMaker.new():append(tostring(BaseGameStatistics)):append(tostring(self.stringBuffer)))
-end
-GameStatisticsFactory.__tostring = function(self) return self:toString() end
-
-GameStatisticsFactory.instance = GameStatisticsFactory.new()
-
-return GameStatisticsFactory
 

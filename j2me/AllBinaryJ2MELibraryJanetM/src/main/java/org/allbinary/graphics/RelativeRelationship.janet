@@ -1,80 +1,72 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.graphics
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.graphics
 
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
-local BasicArrayListUtil = require("org.allbinary.util.BasicArrayListUtil")
+(import ../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- BasicArrayListUtil/jm_getInstance [& args] (JR/call jfile "../../../org/allbinary/util/BasicArrayListUtil" "jm_getInstance" args))
+(defn- PointFactory/jm_getInstance [& args] (JR/call jfile "./PointFactory" "jm_getInstance" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class RelativeRelationship
+(var jproto nil)
+(var jcell_NULL_RELATIVE_RELATIONSHIP :jnone)
+(var jstatic_NULL_RELATIVE_RELATIONSHIP nil)
+(var jsetstatic_NULL_RELATIVE_RELATIONSHIP nil)
+(var jnew_2 nil)
+(var jm_getX nil)
+(var jm_getY nil)
+(var jm_getZ nil)
+(var jm_getTypesAllowedList nil)
+(var jm_setTypesAllowedList nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jstatic_NULL_RELATIVE_RELATIONSHIP (fn jstatic_NULL_RELATIVE_RELATIONSHIP []
+  (when (= jcell_NULL_RELATIVE_RELATIONSHIP :jnone) (set jcell_NULL_RELATIVE_RELATIONSHIP (jnew_2 ((PointFactory/jm_getInstance) :f_ZERO_ZERO) (:jm_getImmutableInstance (BasicArrayListUtil/jm_getInstance)))))
+  jcell_NULL_RELATIVE_RELATIONSHIP))
+(set jsetstatic_NULL_RELATIVE_RELATIONSHIP (fn jsetstatic_NULL_RELATIVE_RELATIONSHIP [value] (set jcell_NULL_RELATIVE_RELATIONSHIP value)))
 
-local RelativeRelationship = {}
-RelativeRelationship.__index = RelativeRelationship
-RelativeRelationship.className = "RelativeRelationship"
+    
+(set jnew_2 (fn jnew_2 [_point _typesAllowedList]
+    (var this (table/setproto @{:jclass "RelativeRelationship" :f_typesAllowedList nil :f_x 0 :f_y 0 :f_z 0} jproto))
+    
+    
+    
+    
+        (set (this :f_x) (:jm_getX _point))
+        (set (this :f_y) (:jm_getY _point))
+        (set (this :f_z) (:jm_getZ _point))
+        (set (this :f_typesAllowedList) _typesAllowedList)
+    this))
+    
+(set jm_getX (fn jm_getX [this]
+    (label jreturn
+        (return jreturn (this :f_x)))))
+    
+(set jm_getY (fn jm_getY [this]
+    (label jreturn
+        (return jreturn (this :f_y)))))
+    
+(set jm_getZ (fn jm_getZ [this]
+    (label jreturn
+        (return jreturn (this :f_z)))))
+    
+(set jm_getTypesAllowedList (fn jm_getTypesAllowedList [this]
+    (label jreturn
+        (return jreturn (this :f_typesAllowedList)))))
+    
+(set jm_setTypesAllowedList (fn jm_setTypesAllowedList [this _typesAllowedList]
+        (set (this :f_typesAllowedList) _typesAllowedList)))
 
-function RelativeRelationship:_init_fields()
-    self.typesAllowedList = nil
-    self.x = nil
-    self.y = nil
-    self.z = nil
-end
+(set jproto @{:jm_getX jm_getX :jm_getY jm_getY :jm_getZ jm_getZ :jm_getTypesAllowedList jm_getTypesAllowedList :jm_setTypesAllowedList jm_setTypesAllowedList})
 
-
-function RelativeRelationship.new(point, typesAllowedList)
-    local self = setmetatable({}, RelativeRelationship)
-    self:_init_fields()
-        self.x = point:getX()
-        self.y = point:getY()
-        self.z = point:getZ()
-        self.typesAllowedList = typesAllowedList
-    return self
-end
-
-
-function RelativeRelationship:getX()
-        return self.x
-end
-
-
-function RelativeRelationship:getY()
-        return self.y
-end
-
-
-function RelativeRelationship:getZ()
-        return self.z
-end
-
-
-function RelativeRelationship:getTypesAllowedList()
-        return self.typesAllowedList
-end
-
-
-function RelativeRelationship:setTypesAllowedList(typesAllowedList)
-        self.typesAllowedList = typesAllowedList
-end
-
-RelativeRelationship.NULL_RELATIVE_RELATIONSHIP = RelativeRelationship.new(PointFactory.getInstance().ZERO_ZERO, BasicArrayListUtil.getInstance():getImmutableInstance())
-
-return RelativeRelationship
 

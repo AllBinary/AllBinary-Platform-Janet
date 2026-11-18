@@ -1,78 +1,70 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.globals
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.globals
 
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
-local UrlGlobalsInterface = require("org.allbinary.globals.UrlGlobalsInterface")
+(import ../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- StringUtil/jm_getInstance [& args] (JR/call jfile "../../../org/allbinary/logic/string/StringUtil" "jm_getInstance" args))
+(import ./UrlGlobalsInterface :as UrlGlobalsInterface)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+#implements
+# Java class AppUrlGlobals
+(var jproto nil)
+(var jcell_NULL_APP_URL_GLOBALS :jnone)
+(var jstatic_NULL_APP_URL_GLOBALS nil)
+(var jsetstatic_NULL_APP_URL_GLOBALS nil)
+(var jnew_0 nil)
+(var jm_isTestingMode nil)
+(var jm_getWebappPath nil)
+(var jm_setWebappPath nil)
+(var jm_getTestHtmlPath nil)
+(var jm_getMainPath nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jstatic_NULL_APP_URL_GLOBALS (fn jstatic_NULL_APP_URL_GLOBALS []
+  (when (= jcell_NULL_APP_URL_GLOBALS :jnone) (set jcell_NULL_APP_URL_GLOBALS (jnew_0)))
+  jcell_NULL_APP_URL_GLOBALS))
+(set jsetstatic_NULL_APP_URL_GLOBALS (fn jsetstatic_NULL_APP_URL_GLOBALS [value] (set jcell_NULL_APP_URL_GLOBALS value)))
 
---implements
-local AppUrlGlobals = {}
-AppUrlGlobals.__index = AppUrlGlobals
-AppUrlGlobals.className = "AppUrlGlobals"
-setmetatable(AppUrlGlobals, {__index = UrlGlobalsInterface})
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "AppUrlGlobals" :f_path nil} jproto))
+    (put this :f_path ((StringUtil/jm_getInstance) :f_EMPTY_STRING))
+    (JR/superInit this (UrlGlobalsInterface/jnew_0))
+    this))
 
-function AppUrlGlobals:_init_fields()
-    self.path = StringUtil.getInstance().EMPTY_STRING
-end
+    
+(set jm_isTestingMode (fn jm_isTestingMode [this]
+    (label jreturn
+        (return jreturn false))))
+    
+(set jm_getWebappPath (fn jm_getWebappPath [this]
+    (label jreturn
+        (return jreturn (this :f_path)))))
+    
+(set jm_setWebappPath (fn jm_setWebappPath [this _path]
+        (set (this :f_path) _path)
+        (if (not (or (JR/endsWith (this :f_path) "\\") (JR/endsWith (this :f_path) "/")))
+            (do
+            (set (this :f_path) (string (this :f_path) "\\"))))))
+    
+(set jm_getTestHtmlPath (fn jm_getTestHtmlPath [this]
+    (label jreturn
+        (return jreturn ((StringUtil/jm_getInstance) :f_EMPTY_STRING)))))
+    
+(set jm_getMainPath (fn jm_getMainPath [this]
+    (label jreturn
+        (return jreturn (this :f_path)))))
 
-function AppUrlGlobals.new()
-    local self = setmetatable(UrlGlobalsInterface.new(), AppUrlGlobals)
-    self:_init_fields()
-    return self
-end
+(set jproto (table/setproto @{:jm_isTestingMode jm_isTestingMode :jm_getWebappPath jm_getWebappPath :jm_setWebappPath jm_setWebappPath :jm_getTestHtmlPath jm_getTestHtmlPath :jm_getMainPath jm_getMainPath} UrlGlobalsInterface/jproto))
 
-
-function AppUrlGlobals:isTestingMode()
-        return false
-end
-
-
-function AppUrlGlobals:getWebappPath()
-        return self.path
-end
-
-
-function AppUrlGlobals:setWebappPath(path)
-        self.path = path
-        if not (("\\" == "" or string.sub(self.path, -#"\\") == "\\") or ("/" == "" or string.sub(self.path, -#"/") == "/")) then
-            self.path = self.path .. "\\"
-        end
-end
-
-
-function AppUrlGlobals:getTestHtmlPath()
-        return StringUtil.getInstance().EMPTY_STRING
-end
-
-
--- throws Exception
-function AppUrlGlobals:getMainPath()
-        return self.path
-end
-
-AppUrlGlobals.NULL_APP_URL_GLOBALS = AppUrlGlobals.new()
-
-return AppUrlGlobals
 

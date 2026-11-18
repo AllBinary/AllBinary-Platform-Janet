@@ -1,44 +1,34 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.android.input.motion
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.android.input.motion
 
-local AnalogLocationInput = require("org.allbinary.game.input.analog.AnalogLocationInput")
-local AllBinaryLayerManager = require("org.allbinary.layer.AllBinaryLayerManager")
+(import ../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class AnalogLocationInputProcessor
+(var jproto nil)
+(var jnew_0 nil)
+(var jm_process nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "AnalogLocationInputProcessor"} jproto))
+    this))
 
-local AnalogLocationInputProcessor = {}
-AnalogLocationInputProcessor.__index = AnalogLocationInputProcessor
-AnalogLocationInputProcessor.className = "AnalogLocationInputProcessor"
+    
+(set jm_process (fn jm_process [this _allbinaryLayerManager _analogLocationInput]
+    nil))
 
-function AnalogLocationInputProcessor.new()
-    local self = setmetatable({}, AnalogLocationInputProcessor)
-    return self
-end
+(set jproto @{:jm_process jm_process})
 
-
-function AnalogLocationInputProcessor:process(allbinaryLayerManager, analogLocationInput)
-end
-
-return AnalogLocationInputProcessor
 

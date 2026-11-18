@@ -1,74 +1,57 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.animation
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.animation
 
-local BasicColor = require("org.allbinary.graphics.color.BasicColor")
-local NullUtil = require("org.allbinary.logic.NullUtil")
-local VectorInfo = require("org.allbinary.vector.VectorInfo")
-local ProceduralAnimationInterfaceFactoryInterface = require("org.allbinary.animation.ProceduralAnimationInterfaceFactoryInterface")
+(import ../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- NullUtil/jm_getInstance [& args] (JR/call jfile "../../../org/allbinary/logic/NullUtil" "jm_getInstance" args))
+(defn- VectorRotationGenerator/jm_getInstance [& args] (JR/call jfile "./VectorRotationGenerator" "jm_getInstance" args))
+(defn- VectorExplosionGenerator/jm_getInstance [& args] (JR/call jfile "./VectorExplosionGenerator" "jm_getInstance" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class IndependentVectorExplosionRotationAnimationFactory
+(var jproto nil)
+(var jnew_3 nil)
+(var jm_init nil)
+(var jm_getInstanceAnimation nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jnew_3 (fn jnew_3 [_vectorInfo _basicColor _vectorAnimationFactoryInterface]
+    (var this (table/setproto @{:jclass "IndependentVectorExplosionRotationAnimationFactory" :f_framePoints nil :f_vectorInfo nil :f_basicColor nil :f_vectorAnimationFactoryInterface nil :f_vectorExplosionGenerator nil} jproto))
+    (put this :f_framePoints ((NullUtil/jm_getInstance) :f_NULL_INT_ARRAY_ARRAY_ARRAY))
+    
+    
+    
+    (put this :f_vectorExplosionGenerator (VectorExplosionGenerator/jm_getInstance))
+        (set (this :f_vectorInfo) _vectorInfo)
+        (set (this :f_basicColor) _basicColor)
+        (set (this :f_vectorAnimationFactoryInterface) _vectorAnimationFactoryInterface)
+        (:jm_init this)
+    this))
+    
+(set jm_init (fn jm_init [this]
+        (set (this :f_framePoints) (:jm_getInstance (VectorRotationGenerator/jm_getInstance) (this :f_vectorInfo)))))
+    
+(set jm_getInstanceAnimation (fn jm_getInstanceAnimation [this _animationInterface]
+    (label jreturn
+        (var _frame 0)
+        (if (not (nil? _animationInterface))
+            (do
+            (var _rotationAnimationInterface _animationInterface)
+            (set _frame (:jm_getFrame _rotationAnimationInterface))))
+        (var _points (:jm_getInstance (this :f_vectorExplosionGenerator) ((this :f_framePoints) _frame) 6 ((this :f_vectorExplosionGenerator) :f_ROTATION)))
+        (return jreturn (:jm_getInstance (this :f_vectorAnimationFactoryInterface) _points (this :f_basicColor))))))
 
-local IndependentVectorExplosionRotationAnimationFactory = {}
-IndependentVectorExplosionRotationAnimationFactory.__index = IndependentVectorExplosionRotationAnimationFactory
-IndependentVectorExplosionRotationAnimationFactory.className = "IndependentVectorExplosionRotationAnimationFactory"
+(set jproto @{:jm_init jm_init :jm_getInstanceAnimation jm_getInstanceAnimation})
 
-function IndependentVectorExplosionRotationAnimationFactory:_init_fields()
-    self.framePoints = NullUtil.getInstance().NULL_INT_ARRAY_ARRAY_ARRAY
-    self.vectorInfo = nil
-    self.basicColor = nil
-    self.vectorAnimationFactoryInterface = nil
-    self.vectorExplosionGenerator = VectorExplosionGenerator.getInstance()
-end
-
-
-function IndependentVectorExplosionRotationAnimationFactory.new(vectorInfo, basicColor, vectorAnimationFactoryInterface)
-    local self = setmetatable({}, IndependentVectorExplosionRotationAnimationFactory)
-    self:_init_fields()
-        self.vectorInfo = vectorInfo
-        self.basicColor = basicColor
-        self.vectorAnimationFactoryInterface = vectorAnimationFactoryInterface
-        self:init()
-    return self
-end
-
-
--- throws Exception
-function IndependentVectorExplosionRotationAnimationFactory:init()
-        self.framePoints = VectorRotationGenerator.getInstance():getInstance(self.vectorInfo)
-end
-
-
--- throws Exception
-function IndependentVectorExplosionRotationAnimationFactory:getInstanceAnimation(animationInterface)
-        local frame = 0
-        if animationInterface ~= nil then
-            local rotationAnimationInterface = animationInterface
-            frame = rotationAnimationInterface:getFrame()
-        end
-        local points = self.vectorExplosionGenerator:getInstance(self.framePoints[frame + 1], 6, self.vectorExplosionGenerator.ROTATION)
-        return self.vectorAnimationFactoryInterface:getInstance(points, self.basicColor)
-end
-
-return IndependentVectorExplosionRotationAnimationFactory
 

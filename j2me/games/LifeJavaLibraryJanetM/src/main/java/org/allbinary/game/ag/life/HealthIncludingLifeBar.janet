@@ -1,83 +1,60 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.ag.life
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.game.ag.life
 
--- local Graphics = require("javax.microedition.lcdui.Graphics")
-local Health = require("org.allbinary.game.health.Health")
-local HealthBarAnimation = require("org.allbinary.game.health.HealthBarAnimation")
-local HealthBarTwodAnimation = require("org.allbinary.game.health.HealthBarTwodAnimation")
-local HealthInterface = require("org.allbinary.game.health.HealthInterface")
-local HealthListenerInterface = require("org.allbinary.game.health.HealthListenerInterface")
-local Paintable = require("org.allbinary.graphics.paint.Paintable")
-local AllBinaryLayer = require("org.allbinary.layer.AllBinaryLayer")
+(import ../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- HealthBarTwodAnimation/jnew_2 [& args] (JR/call jfile "../../../../../org/allbinary/game/health/HealthBarTwodAnimation" "jnew_2" args))
+(import ../../../../../org/allbinary/graphics/paint/Paintable :as Paintable)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class HealthIncludingLifeBar
+(var jproto nil)
+(var jnew_5 nil)
+(var jm_createHealthIncludingLifeBar nil)
+(var jm_onHealthChange nil)
+(var jm_paint nil)
+(var jm_paintThreed nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jm_createHealthIncludingLifeBar (fn jm_createHealthIncludingLifeBar [_layerInterface _life _healthInterface _location _direction]
+    (label jreturn
+        (return jreturn (jnew_5 _layerInterface _life _healthInterface (HealthBarTwodAnimation/jnew_2 _layerInterface _location) _direction)))))
+    
+(set jnew_5 (fn jnew_5 [_layerInterface _life _healthInterface _animationInterface _direction]
+    (var this (table/setproto @{:jclass "HealthIncludingLifeBar" :f_animationInterface nil :f_life nil :f_healthInterface nil :f_allbinaryLayer nil} jproto))
+    
+    
+    
+    
+    (JR/superInit this (Paintable/jnew_0))
+        (set (this :f_allbinaryLayer) _layerInterface)
+        (set (this :f_animationInterface) _animationInterface)
+        (set (this :f_life) _life)
+        (set (this :f_healthInterface) _healthInterface)
+        (:jm_addListener (this :f_healthInterface) this)
+        (:jm_onHealthChange this)
+    this))
+    
+(set jm_onHealthChange (fn jm_onHealthChange [this]
+        (:jm_onHealthChange (this :f_animationInterface) (JR/idiv (JR/i32 (* (JR/i32 (+ (:jm_getHealth (this :f_healthInterface)) (JR/i32 (* (:jm_getMaxHealth (this :f_healthInterface)) (:jm_get (this :f_life)))))) (:jm_getWidth (this :f_allbinaryLayer)))) (JR/i32 (+ (:jm_getMaxHealth (this :f_healthInterface)) (JR/i32 (* (:jm_getMaxHealth (this :f_healthInterface)) (:jm_getStartLives (this :f_life))))))))))
+    
+(set jm_paint (fn jm_paint [this _graphics]
+        (:jm_paintXY (this :f_animationInterface) _graphics 0 0)))
+    
+(set jm_paintThreed (fn jm_paintThreed [this _graphics]
+        (:jm_paintThreedXYZ (this :f_animationInterface) _graphics 0 0 0)))
 
-local HealthIncludingLifeBar = {}
-HealthIncludingLifeBar.__index = HealthIncludingLifeBar
-HealthIncludingLifeBar.className = "HealthIncludingLifeBar"
-setmetatable(HealthIncludingLifeBar, {__index = Paintable})
+(set jproto (table/setproto @{:jm_onHealthChange jm_onHealthChange :jm_paint jm_paint :jm_paintThreed jm_paintThreed} Paintable/jproto))
 
-function HealthIncludingLifeBar:_init_fields()
-    self.animationInterface = nil
-    self.life = nil
-    self.healthInterface = nil
-    self.allbinaryLayer = nil
-end
-
-
--- throws Exception
-function HealthIncludingLifeBar.createHealthIncludingLifeBar(layerInterface, life, healthInterface, location, direction)
-        return HealthIncludingLifeBar.new(layerInterface, life, healthInterface, HealthBarTwodAnimation.new(layerInterface, location), direction)
-end
-
-
-function HealthIncludingLifeBar.new(layerInterface, life, healthInterface, animationInterface, direction)
-    local self = setmetatable(Paintable.new(), HealthIncludingLifeBar)
-    self:_init_fields()
-        self.allbinaryLayer = layerInterface
-        self.animationInterface = animationInterface
-        self.life = life
-        self.healthInterface = healthInterface
-        self.healthInterface:addListener(self)
-        self:onHealthChange()
-    return self
-end
-
-
-function HealthIncludingLifeBar:onHealthChange()
-        self.animationInterface:onHealthChange(((self.healthInterface:getHealth() + (self.healthInterface:getMaxHealth() * self.life:get())) * self.allbinaryLayer:getWidth()) / (self.healthInterface:getMaxHealth() + (self.healthInterface:getMaxHealth() * self.life:getStartLives())))
-end
-
-
-function HealthIncludingLifeBar:paint(graphics)
-        self.animationInterface:paintXY(graphics, 0, 0)
-end
-
-
-function HealthIncludingLifeBar:paintThreed(graphics)
-        self.animationInterface:paintThreedXYZ(graphics, 0, 0, 0)
-end
-
-return HealthIncludingLifeBar
 

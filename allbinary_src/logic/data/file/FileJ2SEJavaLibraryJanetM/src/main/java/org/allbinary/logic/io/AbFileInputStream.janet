@@ -1,58 +1,45 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.io
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.logic.io
 
--- local File = require("java.io.File")
--- local FileInputStream = require("java.io.FileInputStream")
--- local FileNotFoundException = require("java.io.FileNotFoundException")
-local AbFile = require("org.allbinary.logic.io.file.AbFile")
-local AbFileNativeUtil = require("org.allbinary.logic.io.file.AbFileNativeUtil")
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(import ../../../../java/io/File :as File)
+(import ../../../../java/io/FileInputStream :as FileInputStream)
+(import ../../../../java/io/FileNotFoundException :as FileNotFoundException)
+(defn- AbFileNativeUtil/jm_get [& args] (JR/call jfile "../../../../org/allbinary/logic/io/file/AbFileNativeUtil" "jm_get" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class AbFileInputStream
+(var jproto nil)
+(var jnew_1 nil)
+(var jm_createFromAbFile nil)
+(var jm_createFromFile nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jnew_1 (fn jnew_1 [_name]
+    (var this (table/setproto @{:jclass "AbFileInputStream"} jproto))
+        (JR/superInit this (FileInputStream/jnew_1 _name))
+    this))
+    
+(set jm_createFromAbFile (fn jm_createFromAbFile [_file]
+    (label jreturn
+        (return jreturn (jnew_1 (JR/className (AbFileNativeUtil/jm_get _file)))))))
+    
+(set jm_createFromFile (fn jm_createFromFile [_file]
+    (label jreturn
+        (return jreturn (jnew_1 (:jm_getPath _file))))))
 
-local AbFileInputStream = {}
-AbFileInputStream.__index = AbFileInputStream
-AbFileInputStream.className = "AbFileInputStream"
-setmetatable(AbFileInputStream, {__index = FileInputStream})
+(set jproto (table/setproto @{} FileInputStream/jproto))
 
-
-function AbFileInputStream.new(name)
-    local self = setmetatable(FileInputStream.new(name), AbFileInputStream)
-        -- super(...) made self above
-    return self
-end
-
-
--- throws FileNotFoundException
-function AbFileInputStream.createFromAbFile(file)
-        return AbFileInputStream.new(AbFileNativeUtil.get(file):getPath())
-end
-
-
--- throws FileNotFoundException
-function AbFileInputStream.createFromFile(file)
-        return AbFileInputStream.new(file:getPath())
-end
-
-return AbFileInputStream
 

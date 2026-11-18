@@ -1,124 +1,98 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.animation.image
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.animation.image
 
--- local Graphics = require("javax.microedition.lcdui.Graphics")
--- local Image = require("javax.microedition.lcdui.Image")
-local DisposalUtil = require("org.allbinary.DisposalUtil")
-local AnimationBehavior = require("org.allbinary.animation.AnimationBehavior")
-local IndexedAnimation = require("org.allbinary.animation.IndexedAnimation")
-local Anchor = require("org.allbinary.graphics.Anchor")
-local PrimitiveIntUtil = require("org.allbinary.logic.math.PrimitiveIntUtil")
-local CircularIndexUtil = require("org.allbinary.util.CircularIndexUtil")
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- DisposalUtil/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/DisposalUtil" "jm_getInstance" args))
+(import ../../../../org/allbinary/animation/IndexedAnimation :as IndexedAnimation)
+(defn- Anchor/jstatic_TOP_LEFT [& args] (JR/call jfile "../../../../org/allbinary/graphics/Anchor" "jstatic_TOP_LEFT" args))
+(defn- PrimitiveIntUtil/jm_getArrayInstance [& args] (JR/call jfile "../../../../org/allbinary/logic/math/PrimitiveIntUtil" "jm_getArrayInstance" args))
+(defn- CircularIndexUtil/jm_createInstance [& args] (JR/call jfile "../../../../org/allbinary/util/CircularIndexUtil" "jm_createInstance" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class TweenedImageAnimation
+(var jproto nil)
+(var jnew_5 nil)
+(var jm_getAnimationSize nil)
+(var jm_nextFrame nil)
+(var jm_previousFrame nil)
+(var jm_setFrame nil)
+(var jm_getFrame nil)
+(var jm_getSize nil)
+(var jm_setSequence nil)
+(var jm_getSequence nil)
+(var jm_paintXY nil)
+(var jm_close nil)
+(var jm_finalize nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jnew_5 (fn jnew_5 [_image _dx _dy _totalFrames _animationBehavior]
+    (var this (table/setproto @{:jclass "TweenedImageAnimation" :f_image nil :f_dx 0 :f_dy 0 :f_totalFrames 0 :f_circularIndexUtil nil :f_anchor 0} jproto))
+    
+    
+    
+    
+    
+    (put this :f_anchor (Anchor/jstatic_TOP_LEFT))
+        (JR/superInit this (IndexedAnimation/jnew_1 _animationBehavior))
+        (set (this :f_image) _image)
+        (set (this :f_dx) _dx)
+        (set (this :f_dy) _dy)
+        (set (this :f_totalFrames) _totalFrames)
+        (set (this :f_circularIndexUtil) (CircularIndexUtil/jm_createInstance (this :f_totalFrames)))
+    this))
+    
+(set jm_getAnimationSize (fn jm_getAnimationSize [this]
+    (label jreturn
+        (return jreturn (:jm_getSize this)))))
+    
+(set jm_nextFrame (fn jm_nextFrame [this]
+        (:jm_next (this :f_circularIndexUtil))))
+    
+(set jm_previousFrame (fn jm_previousFrame [this]
+        (:jm_previous (this :f_circularIndexUtil))))
+    
+(set jm_setFrame (fn jm_setFrame [this _index]
+        (:jm_setIndex (this :f_circularIndexUtil) _index)))
+    
+(set jm_getFrame (fn jm_getFrame [this]
+    (label jreturn
+        (return jreturn (:jm_getIndex (this :f_circularIndexUtil))))))
+    
+(set jm_getSize (fn jm_getSize [this]
+    (label jreturn
+        (return jreturn (this :f_totalFrames)))))
+    
+(set jm_setSequence (fn jm_setSequence [this _sequence]
+    nil))
+    
+(set jm_getSequence (fn jm_getSequence [this]
+    (label jreturn
+        (return jreturn (PrimitiveIntUtil/jm_getArrayInstance)))))
+    
+(set jm_paintXY (fn jm_paintXY [this _graphics _x _y]
+        (var _frame (:jm_getFrame this))
+        (var _currentX (JR/i32 (* (this :f_dx) _frame)))
+        (var _currentY (JR/i32 (* (this :f_dy) _frame)))
+        (:jm_drawImage _graphics (this :f_image) (JR/i32 (+ _x _currentX)) (JR/i32 (+ _y _currentY)) (this :f_anchor))))
+    
+(set jm_close (fn jm_close [this]
+        (:jm_disposeImage (DisposalUtil/jm_getInstance) (this :f_image))))
+    
+(set jm_finalize (fn jm_finalize [this]
+        (:jm_disposeImage (DisposalUtil/jm_getInstance) (this :f_image))))
 
-local TweenedImageAnimation = {}
-TweenedImageAnimation.__index = TweenedImageAnimation
-TweenedImageAnimation.className = "TweenedImageAnimation"
-setmetatable(TweenedImageAnimation, {__index = IndexedAnimation})
+(set jproto (table/setproto @{:jm_getAnimationSize jm_getAnimationSize :jm_nextFrame jm_nextFrame :jm_previousFrame jm_previousFrame :jm_setFrame jm_setFrame :jm_getFrame jm_getFrame :jm_getSize jm_getSize :jm_setSequence jm_setSequence :jm_getSequence jm_getSequence :jm_paintXY jm_paintXY :jm_close jm_close :jm_finalize jm_finalize} IndexedAnimation/jproto))
 
-function TweenedImageAnimation:_init_fields()
-    self.image = nil
-    self.dx = nil
-    self.dy = nil
-    self.totalFrames = nil
-    self.circularIndexUtil = nil
-    self.anchor = Anchor.TOP_LEFT
-end
-
-
-function TweenedImageAnimation.new(image, dx, dy, totalFrames, animationBehavior)
-    local self = setmetatable(IndexedAnimation.new(animationBehavior), TweenedImageAnimation)
-    self:_init_fields()
-        -- super(...) made self above
-        self.image = image
-        self.dx = dx
-        self.dy = dy
-        self.totalFrames = totalFrames
-        self.circularIndexUtil = CircularIndexUtil.createInstance(self.totalFrames)
-    return self
-end
-
-
--- throws Exception
-function TweenedImageAnimation:getAnimationSize()
-        return self:getSize()
-end
-
-
-function TweenedImageAnimation:nextFrame()
-        self.circularIndexUtil:next()
-end
-
-
-function TweenedImageAnimation:previousFrame()
-        self.circularIndexUtil:previous()
-end
-
-
-function TweenedImageAnimation:setFrame(index)
-        self.circularIndexUtil:setIndex(index)
-end
-
-
-function TweenedImageAnimation:getFrame()
-        return self.circularIndexUtil:getIndex()
-end
-
-
-function TweenedImageAnimation:getSize()
-        return self.totalFrames
-end
-
-
-function TweenedImageAnimation:setSequence(sequence)
-end
-
-
-function TweenedImageAnimation:getSequence()
-        return PrimitiveIntUtil.getArrayInstance()
-end
-
-
-function TweenedImageAnimation:paintXY(graphics, x, y)
-        local frame = self:getFrame()
-        local currentX = self.dx * frame
-        local currentY = self.dy * frame
-        graphics:drawImage(self.image, x + currentX, y + currentY, self.anchor)
-end
-
-
--- throws Exception
-function TweenedImageAnimation:close()
-        DisposalUtil.getInstance():disposeImage(self.image)
-end
-
-
--- throws Throwable
-function TweenedImageAnimation:finalize()
-        DisposalUtil.getInstance():disposeImage(self.image)
-end
-
-return TweenedImageAnimation
 

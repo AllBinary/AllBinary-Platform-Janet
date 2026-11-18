@@ -1,75 +1,57 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.animation.vector
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.animation.vector
 
--- local Graphics = require("javax.microedition.lcdui.Graphics")
-local Animation = require("org.allbinary.animation.Animation")
-local BasicColor = require("org.allbinary.graphics.color.BasicColor")
-local ColorCompositeInterface = require("org.allbinary.graphics.color.ColorCompositeInterface")
-local AngleFactory = require("org.allbinary.math.AngleFactory")
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(import ../../../../org/allbinary/animation/Animation :as Animation)
+(defn- AngleFactory/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/math/AngleFactory" "jm_getInstance" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class CircleAnimation
+(var jproto nil)
+(var jnew_3 nil)
+(var jm_nextFrame nil)
+(var jm_paintXY nil)
+(var jm_getBasicColorP nil)
+(var jm_setBasicColorP nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jnew_3 (fn jnew_3 [_width _height _basicColor]
+    (var this (table/setproto @{:jclass "CircleAnimation" :f_TOTAL_ANGLE 0 :f_width 0 :f_height 0} jproto))
+    (put this :f_TOTAL_ANGLE ((AngleFactory/jm_getInstance) :f_TOTAL_ANGLE))
+    
+    
+    (JR/superInit this (Animation/jnew_0))
+        (set (this :f_width) _width)
+        (set (this :f_height) _height)
+        (:jm_setBasicColorP this _basicColor)
+    this))
+    
+(set jm_nextFrame (fn jm_nextFrame [this]
+    nil))
+    
+(set jm_paintXY (fn jm_paintXY [this _graphics _x _y]
+        (JR/className (this :f_basicSetColorUtil))
+        (:jm_drawArc _graphics _x _y (this :f_width) (this :f_height) 0 (this :f_TOTAL_ANGLE))))
+    
+(set jm_getBasicColorP (fn jm_getBasicColorP [this]
+    (label jreturn
+        (return jreturn ((get Animation/jproto :jm_getBasicColorP) this)))))
+    
+(set jm_setBasicColorP (fn jm_setBasicColorP [this _basicColor]
+        ((get Animation/jproto :jm_setBasicColorP) this _basicColor)))
 
-local CircleAnimation = {}
-CircleAnimation.__index = CircleAnimation
-CircleAnimation.className = "CircleAnimation"
-setmetatable(CircleAnimation, {__index = Animation})
+(set jproto (table/setproto @{:jm_nextFrame jm_nextFrame :jm_paintXY jm_paintXY :jm_getBasicColorP jm_getBasicColorP :jm_setBasicColorP jm_setBasicColorP} Animation/jproto))
 
-function CircleAnimation:_init_fields()
-    self.TOTAL_ANGLE = java_int(AngleFactory.getInstance().TOTAL_ANGLE)
-    self.width = nil
-    self.height = nil
-end
-
-
-function CircleAnimation.new(width, height, basicColor)
-    local self = setmetatable(Animation.new(), CircleAnimation)
-    self:_init_fields()
-        self.width = width
-        self.height = height
-        self:setBasicColorP(basicColor)
-    return self
-end
-
-
-function CircleAnimation:nextFrame()
-end
-
-
-function CircleAnimation:paintXY(graphics, x, y)
-        self.basicSetColorUtil:setBasicColorP3(graphics, self:getBasicColorP(), self:getColor())
-        graphics:drawArc(x, y, self.width, self.height, 0, self.TOTAL_ANGLE)
-end
-
-
-function CircleAnimation:getBasicColorP()
-        return Animation.getBasicColorP(self)
-end
-
-
-function CircleAnimation:setBasicColorP(basicColor)
-        Animation.setBasicColorP(self, basicColor)
-end
-
-return CircleAnimation
 

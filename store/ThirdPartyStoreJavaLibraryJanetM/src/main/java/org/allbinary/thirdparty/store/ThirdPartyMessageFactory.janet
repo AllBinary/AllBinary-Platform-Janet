@@ -1,52 +1,46 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.thirdparty.store
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.thirdparty.store
 
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class ThirdPartyMessageFactory
+(var jproto nil)
+(var jcell_instance :jnone)
+(var jstatic_instance nil)
+(var jsetstatic_instance nil)
+(var jnew_0 nil)
+(var jm_getInstance nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jstatic_instance (fn jstatic_instance []
+  (when (= jcell_instance :jnone) (set jcell_instance (jnew_0)))
+  jcell_instance))
+(set jsetstatic_instance (fn jsetstatic_instance [value] (set jcell_instance value)))
 
-local ThirdPartyMessageFactory = {}
-ThirdPartyMessageFactory.__index = ThirdPartyMessageFactory
-ThirdPartyMessageFactory.className = "ThirdPartyMessageFactory"
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "ThirdPartyMessageFactory" :f_AUTHORIZED nil :f_NOT_AUTHORIZED nil :f_LINKAGE_ERROR nil} jproto))
+    (put this :f_AUTHORIZED "Authorized")
+    (put this :f_NOT_AUTHORIZED "Not Authorized")
+    (put this :f_LINKAGE_ERROR "Linkage Error")
+    this))
 
-function ThirdPartyMessageFactory:_init_fields()
-    self.AUTHORIZED = "Authorized"
-    self.NOT_AUTHORIZED = "Not Authorized"
-    self.LINKAGE_ERROR = "Linkage Error"
-end
+    
+(set jm_getInstance (fn jm_getInstance []
+    (label jreturn
+        (return jreturn (jstatic_instance)))))
 
-function ThirdPartyMessageFactory.new()
-    local self = setmetatable({}, ThirdPartyMessageFactory)
-    self:_init_fields()
-    return self
-end
+(set jproto @{})
 
-
-function ThirdPartyMessageFactory.getInstance()
-        return ThirdPartyMessageFactory.instance
-end
-
-ThirdPartyMessageFactory.instance = ThirdPartyMessageFactory.new()
-
-return ThirdPartyMessageFactory
 

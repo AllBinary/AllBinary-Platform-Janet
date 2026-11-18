@@ -1,82 +1,61 @@
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.form
+# Generated Code Do Not Modify
+# package org.allbinary.graphics.form
 
-local GPoint = require("org.allbinary.graphics.GPoint")
-local Rectangle = require("org.allbinary.graphics.Rectangle")
-local RectangleFactory = require("org.allbinary.graphics.RectangleFactory")
-local BasicColor = require("org.allbinary.graphics.color.BasicColor")
-local BasicColorFactory = require("org.allbinary.graphics.color.BasicColorFactory")
-local CanvasStrings = require("org.allbinary.graphics.displayable.CanvasStrings")
-local ABCustomItem = require("org.allbinary.graphics.form.item.ABCustomItem")
-local NullUtil = require("org.allbinary.logic.NullUtil")
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
-local ABCustomForm = require("org.allbinary.graphics.form.ABCustomForm")
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- RectangleFactory/jstatic_SINGLETON [& args] (JR/call jfile "../../../../org/allbinary/graphics/RectangleFactory" "jstatic_SINGLETON" args))
+(defn- BasicColorFactory/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/graphics/color/BasicColorFactory" "jm_getInstance" args))
+(defn- CanvasStrings/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/graphics/displayable/CanvasStrings" "jm_getInstance" args))
+(defn- NullUtil/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/logic/NullUtil" "jm_getInstance" args))
+(defn- StringUtil/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/logic/string/StringUtil" "jm_getInstance" args))
+(import ./ABCustomForm :as ABCustomForm)
+(defn- FormTypeFactory/jm_getInstance [& args] (JR/call jfile "./FormTypeFactory" "jm_getInstance" args))
 
-local function java_new_array(default, size, ...)
-    local array = {n = size}
-    for index = 1, size do
-        if select("#", ...) > 0 then array[index] = java_new_array(default, ...) else array[index] = default end
-    end
-    return array
-end
+# Java class PaintableForm
+(var jproto nil)
+(var jcell_NULL_PAINTABLE_FORM :jnone)
+(var jstatic_NULL_PAINTABLE_FORM nil)
+(var jsetstatic_NULL_PAINTABLE_FORM nil)
+(var jnew_4 nil)
+(var jm_getNullPaintableForm nil)
+(var jm_init nil)
+(var jm_getWidth nil)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(set jstatic_NULL_PAINTABLE_FORM (fn jstatic_NULL_PAINTABLE_FORM []
+  (when (= jcell_NULL_PAINTABLE_FORM :jnone) (set jcell_NULL_PAINTABLE_FORM ((NullUtil/jm_getInstance) :f_NULL_OBJECT)))
+  jcell_NULL_PAINTABLE_FORM))
+(set jsetstatic_NULL_PAINTABLE_FORM (fn jsetstatic_NULL_PAINTABLE_FORM [value] (set jcell_NULL_PAINTABLE_FORM value)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jm_getNullPaintableForm (fn jm_getNullPaintableForm []
+    (label jreturn
+        (if (= (jstatic_NULL_PAINTABLE_FORM) ((NullUtil/jm_getInstance) :f_NULL_OBJECT))
+            (do
+            (set jcell_NULL_PAINTABLE_FORM (jnew_4 ((StringUtil/jm_getInstance) :f_EMPTY_STRING) (array/new-filled 0 nil) ((BasicColorFactory/jm_getInstance) :f_BLACK) ((BasicColorFactory/jm_getInstance) :f_WHITE)))))
+        (return jreturn (jstatic_NULL_PAINTABLE_FORM)))))
+    
+(set jnew_4 (fn jnew_4 [_title _items _backgroundBasicColor _foregroundBasicColor]
+    (var this (table/setproto @{:jclass "PaintableForm" :f_canvasStrings nil :f_rectangle nil :f_x 0 :f_y 0 :f_formType nil} jproto))
+    (put this :f_canvasStrings (CanvasStrings/jm_getInstance))
+    (put this :f_rectangle (RectangleFactory/jstatic_SINGLETON))
+    
+    
+    (put this :f_formType ((FormTypeFactory/jm_getInstance) :f_NULL_FORM_TYPE))
+        (JR/superInit this (ABCustomForm/jnew_4 _title _items _backgroundBasicColor _foregroundBasicColor))
+        (:jm_setSelectedIndex this 0)
+    this))
+    
+(set jm_init (fn jm_init [this _rectangle _formType]
+        (set (this :f_rectangle) _rectangle)
+        (var _point (:jm_getPoint (this :f_rectangle)))
+        (set (this :f_x) (:jm_getX _point))
+        (set (this :f_y) (:jm_getY _point))
+        (set (this :f_formType) _formType)))
+    
+(set jm_getWidth (fn jm_getWidth [this]
+    (label jreturn
+        (return jreturn (:jm_getWidth (this :f_rectangle))))))
 
-local PaintableForm = {}
-PaintableForm.__index = PaintableForm
-PaintableForm.className = "PaintableForm"
-setmetatable(PaintableForm, {__index = ABCustomForm})
+(set jproto (table/setproto @{:jm_init jm_init :jm_getWidth jm_getWidth} ABCustomForm/jproto))
 
-function PaintableForm:_init_fields()
-    self.canvasStrings = CanvasStrings.getInstance()
-    self.rectangle = RectangleFactory.SINGLETON
-    self.x = 0
-    self.y = 0
-    self.formType = FormTypeFactory.getInstance().NULL_FORM_TYPE
-end
-
-
-function PaintableForm.getNullPaintableForm()
-        if PaintableForm.NULL_PAINTABLE_FORM == NullUtil.getInstance().NULL_OBJECT then
-            PaintableForm.NULL_PAINTABLE_FORM = PaintableForm.new(StringUtil.getInstance().EMPTY_STRING, java_new_array(nil, 0), BasicColorFactory.getInstance().BLACK, BasicColorFactory.getInstance().WHITE)
-        end
-        return PaintableForm.NULL_PAINTABLE_FORM
-end
-
-
-function PaintableForm.new(title, items, backgroundBasicColor, foregroundBasicColor)
-    local self = setmetatable(ABCustomForm.new(title, items, backgroundBasicColor, foregroundBasicColor), PaintableForm)
-    self:_init_fields()
-        -- super(...) made self above
-        self:setSelectedIndex(0)
-    return self
-end
-
-
--- throws Exception
-function PaintableForm:init(rectangle, formType)
-        self.rectangle = rectangle
-        local point = self.rectangle:getPoint()
-        self.x = point:getX()
-        self.y = point:getY()
-        self.formType = formType
-end
-
-
-function PaintableForm:getWidth()
-        return self.rectangle:getWidth()
-end
-
-PaintableForm.NULL_PAINTABLE_FORM = NullUtil.getInstance().NULL_OBJECT
-
-return PaintableForm
 

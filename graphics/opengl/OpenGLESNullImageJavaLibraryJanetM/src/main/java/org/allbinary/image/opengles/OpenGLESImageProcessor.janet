@@ -1,62 +1,59 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2022 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.image.opengles
+# 
+# AllBinary Open License Version 1 
+# Copyright (c) 2022 AllBinary 
+#  
+# By agreeing to this license you and any business entity you represent are 
+# legally bound to the AllBinary Open License Version 1 legal agreement. 
+#  
+# You may obtain the AllBinary Open License Version 1 legal agreement from 
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+#  
+# Created By: Travis Berthelot 
+#   
+# Generated Code Do Not Modify
+# package org.allbinary.image.opengles
 
--- local GL10 = require("javax.microedition.khronos.opengles.GL10")
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class OpenGLESImageProcessor
+(var jproto nil)
+(var jcell_instance :jnone)
+(var jstatic_instance nil)
+(var jsetstatic_instance nil)
+(var jnew_0 nil)
+(var jm_getInstance nil)
+(var jm_translate nil)
+(var jm_rotate nil)
+(var jm_scale nil)
+(var jm_colorMask nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jstatic_instance (fn jstatic_instance []
+  (when (= jcell_instance :jnone) (set jcell_instance (jnew_0)))
+  jcell_instance))
+(set jsetstatic_instance (fn jsetstatic_instance [value] (set jcell_instance value)))
 
-local OpenGLESImageProcessor = {}
-OpenGLESImageProcessor.__index = OpenGLESImageProcessor
-OpenGLESImageProcessor.className = "OpenGLESImageProcessor"
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "OpenGLESImageProcessor"} jproto))
+    this))
 
-function OpenGLESImageProcessor.new()
-    local self = setmetatable({}, OpenGLESImageProcessor)
-    return self
-end
+    
+(set jm_getInstance (fn jm_getInstance []
+    (label jreturn
+        (return jreturn (jstatic_instance)))))
+    
+(set jm_translate (fn jm_translate [this _gl _translateX _translateY]
+    nil))
+    
+(set jm_rotate (fn jm_rotate [this _gl _angle]
+    nil))
+    
+(set jm_scale (fn jm_scale [this _gl _scaleX _scaleY]
+    nil))
+    
+(set jm_colorMask (fn jm_colorMask [this _gl _red _green _blue _alpha]
+    nil))
 
+(set jproto @{:jm_translate jm_translate :jm_rotate jm_rotate :jm_scale jm_scale :jm_colorMask jm_colorMask})
 
-function OpenGLESImageProcessor.getInstance()
-        return OpenGLESImageProcessor.instance
-end
-
-
-function OpenGLESImageProcessor:translate(gl, translateX, translateY)
-end
-
-
-function OpenGLESImageProcessor:rotate(gl, angle)
-end
-
-
-function OpenGLESImageProcessor:scale(gl, scaleX, scaleY)
-end
-
-
-function OpenGLESImageProcessor:colorMask(gl, red, green, blue, alpha)
-end
-
-OpenGLESImageProcessor.instance = OpenGLESImageProcessor.new()
-
-return OpenGLESImageProcessor
 

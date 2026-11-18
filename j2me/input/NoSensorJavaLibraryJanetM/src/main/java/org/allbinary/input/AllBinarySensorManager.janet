@@ -1,86 +1,76 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.input
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.input
 
-local AccelerometerSensorFactory = require("org.allbinary.input.accelerometer.AccelerometerSensorFactory")
-local GyroSensorFactory = require("org.allbinary.input.gyro.GyroSensorFactory")
-local NullUtil = require("org.allbinary.logic.NullUtil")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
-local BasicArrayListD = require("org.allbinary.util.BasicArrayListD")
+(import ../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- AccelerometerSensorFactory/jm_init [& args] (JR/call jfile "../../../org/allbinary/input/accelerometer/AccelerometerSensorFactory" "jm_init" args))
+(defn- GyroSensorFactory/jm_init [& args] (JR/call jfile "../../../org/allbinary/input/gyro/GyroSensorFactory" "jm_init" args))
+(defn- NullUtil/jm_getInstance [& args] (JR/call jfile "../../../org/allbinary/logic/NullUtil" "jm_getInstance" args))
+(defn- LogUtil/jm_getInstance [& args] (JR/call jfile "../../../org/allbinary/logic/communication/log/LogUtil" "jm_getInstance" args))
+(defn- CommonStrings/jm_getInstance [& args] (JR/call jfile "../../../org/allbinary/string/CommonStrings" "jm_getInstance" args))
+(defn- BasicArrayListD/jnew_0 [& args] (JR/call jfile "../../../org/allbinary/util/BasicArrayListD" "jnew_0" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class AllBinarySensorManager
+(var jproto nil)
+(var jcell_instance :jnone)
+(var jstatic_instance nil)
+(var jsetstatic_instance nil)
+(var jnew_0 nil)
+(var jm_getInstance nil)
+(var jm_init nil)
+(var jm_getSensorNamesList nil)
+(var jm_shutdown nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jstatic_instance (fn jstatic_instance []
+  (when (= jcell_instance :jnone) (set jcell_instance ((NullUtil/jm_getInstance) :f_NULL_OBJECT)))
+  jcell_instance))
+(set jsetstatic_instance (fn jsetstatic_instance [value] (set jcell_instance value)))
 
-local AllBinarySensorManager = {}
-AllBinarySensorManager.__index = AllBinarySensorManager
-AllBinarySensorManager.className = "AllBinarySensorManager"
+    
+(set jm_getInstance (fn jm_getInstance []
+    (label jreturn
+        (if (= (jstatic_instance) ((NullUtil/jm_getInstance) :f_NULL_OBJECT))
+            (do
+            (set jcell_instance (jnew_0))))
+        (return jreturn (jstatic_instance)))))
+    
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "AllBinarySensorManager" :f_logUtil nil :f_commonStrings nil :f_ORIENTATION_SENSOR_INPUT nil :f_ORIENTATION_TYPE nil :f_list nil} jproto))
+    (put this :f_logUtil (LogUtil/jm_getInstance))
+    (put this :f_commonStrings (CommonStrings/jm_getInstance))
+    (put this :f_ORIENTATION_SENSOR_INPUT "Orientation Sensor Input")
+    (put this :f_ORIENTATION_TYPE "Orientation Type")
+    (put this :f_list (BasicArrayListD/jnew_0))
+        (try
+            (do
+            (GyroSensorFactory/jm_init)
+            (AccelerometerSensorFactory/jm_init))
+            ([_e] (do
+            (:jm_put (this :f_logUtil) ((this :f_commonStrings) :f_EXCEPTION) this ((this :f_commonStrings) :f_CONSTRUCTOR) _e))))
+    this))
+    
+(set jm_init (fn jm_init [this]
+    nil))
+    
+(set jm_getSensorNamesList (fn jm_getSensorNamesList [this]
+    (label jreturn
+        (return jreturn (this :f_list)))))
+    
+(set jm_shutdown (fn jm_shutdown [this]
+    nil))
 
-function AllBinarySensorManager:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-    self.commonStrings = CommonStrings.getInstance()
-    self.ORIENTATION_SENSOR_INPUT = "Orientation Sensor Input"
-    self.ORIENTATION_TYPE = "Orientation Type"
-    self.list = BasicArrayListD.new()
-end
+(set jproto @{:jm_init jm_init :jm_getSensorNamesList jm_getSensorNamesList :jm_shutdown jm_shutdown})
 
-
-function AllBinarySensorManager.getInstance()
-        if AllBinarySensorManager.instance == NullUtil.getInstance().NULL_OBJECT then
-            AllBinarySensorManager.instance = AllBinarySensorManager.new()
-        end
-        return AllBinarySensorManager.instance
-end
-
-
-function AllBinarySensorManager.new()
-    local self = setmetatable({}, AllBinarySensorManager)
-    self:_init_fields()
-        local try_ok, try_error = pcall(function()
-            GyroSensorFactory.init()
-            AccelerometerSensorFactory.init()
-        end)
-        if not try_ok then
-            local e = try_error
-            self.logUtil:put(self.commonStrings.EXCEPTION, self, self.commonStrings.CONSTRUCTOR, e)
-        end
-    return self
-end
-
-
-function AllBinarySensorManager:init()
-end
-
-
-function AllBinarySensorManager:getSensorNamesList()
-        return self.list
-end
-
-
-function AllBinarySensorManager:shutdown()
-end
-
-AllBinarySensorManager.instance = NullUtil.getInstance().NULL_OBJECT
-
-return AllBinarySensorManager
 

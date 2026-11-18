@@ -1,94 +1,83 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.input
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.game.input
 
-local NullUtil = require("org.allbinary.logic.NullUtil")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local SmallIntegerSingletonFactory = require("org.allbinary.logic.math.SmallIntegerSingletonFactory")
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- NullUtil/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/logic/NullUtil" "jm_getInstance" args))
+(defn- LogUtil/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/logic/communication/log/LogUtil" "jm_getInstance" args))
+(defn- SmallIntegerSingletonFactory/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/logic/math/SmallIntegerSingletonFactory" "jm_getInstance" args))
+(defn- StringMaker/jnew_0 [& args] (JR/call jfile "../../../../org/allbinary/logic/string/StringMaker" "jnew_0" args))
+(defn- CommonStrings/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/string/CommonStrings" "jm_getInstance" args))
+(defn- Input/jnew_2 [& args] (JR/call jfile "./Input" "jnew_2" args))
 
-local function java_new_array(default, size, ...)
-    local array = {n = size}
-    for index = 1, size do
-        if select("#", ...) > 0 then array[index] = java_new_array(default, ...) else array[index] = default end
-    end
-    return array
-end
+# Java class InputFactory
+(var jproto nil)
+(var jcell_instance :jnone)
+(var jstatic_instance nil)
+(var jsetstatic_instance nil)
+(var jnew_0 nil)
+(var jm_getInstance nil)
+(var jm_add nil)
+(var jm_getInstanceById nil)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(set jstatic_instance (fn jstatic_instance []
+  (when (= jcell_instance :jnone) (set jcell_instance ((NullUtil/jm_getInstance) :f_NULL_OBJECT)))
+  jcell_instance))
+(set jsetstatic_instance (fn jsetstatic_instance [value] (set jcell_instance value)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jm_getInstance (fn jm_getInstance []
+    (label jreturn
+        (if (= (jstatic_instance) ((NullUtil/jm_getInstance) :f_NULL_OBJECT))
+            (do
+            (set jcell_instance (jnew_0))))
+        (return jreturn (jstatic_instance)))))
+    
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "InputFactory" :f_logUtil nil :f_commonStrings nil :f_KEY_CODE_LABEL nil :f_DEVICE_ID_LABEL nil :f_MAX 0 :f_inputIntegerArray nil :f_NO_INPUT nil} jproto))
+    (put this :f_logUtil (LogUtil/jm_getInstance))
+    (put this :f_commonStrings (CommonStrings/jm_getInstance))
+    (put this :f_KEY_CODE_LABEL "KeyCode: ")
+    (put this :f_DEVICE_ID_LABEL "DeviceId: ")
+    (put this :f_MAX (:jm_getMin (SmallIntegerSingletonFactory/jm_getInstance)))
+    (put this :f_inputIntegerArray (array/new-filled (this :f_MAX) nil))
+    (put this :f_NO_INPUT (Input/jnew_2 0 ((this :f_commonStrings) :f_UNKNOWN)))
+        (var _size (length (this :f_inputIntegerArray)))
+        (do
+            (var _index 0)
+            (while (< _index _size)
+                (do
+            (set ((this :f_inputIntegerArray) _index) (this :f_NO_INPUT)))
+                (do (set _index (JR/i32 (+ _index 1))))))
+    this))
+    
+(set jm_add (fn jm_add [this _id _input]
+        (set ((this :f_inputIntegerArray) _id) _input)))
+    
+(set jm_getInstanceById (fn jm_getInstanceById [this _id]
+    (var _id _id)
+    (label jreturn
+        (if (< _id 0)
+            (do
+            (set _id (JR/i32 (- _id)))))
+        (if (> _id (length (this :f_inputIntegerArray)))
+            (do
+            (:jm_putF (this :f_logUtil) (:jm_toString (:jm_appendint (:jm_append (StringMaker/jnew_0) "Warning id: ") _id)) this ((this :f_commonStrings) :f_GET_INSTANCE))
+            (return jreturn (this :f_NO_INPUT))))
+        (return jreturn ((this :f_inputIntegerArray) _id)))))
 
-local InputFactory = {}
-InputFactory.__index = InputFactory
-InputFactory.className = "InputFactory"
+(set jproto @{:jm_add jm_add :jm_getInstanceById jm_getInstanceById})
 
-function InputFactory:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-    self.commonStrings = CommonStrings.getInstance()
-    self.KEY_CODE_LABEL = "KeyCode: "
-    self.DEVICE_ID_LABEL = "DeviceId: "
-    self.MAX = SmallIntegerSingletonFactory.getInstance():getMin()
-    self.inputIntegerArray = java_new_array(nil, self.MAX)
-    self.NO_INPUT = Input.new(0, self.commonStrings.UNKNOWN)
-end
-
-
-function InputFactory.getInstance()
-        if InputFactory.instance == NullUtil.getInstance().NULL_OBJECT then
-            InputFactory.instance = InputFactory.new()
-        end
-        return InputFactory.instance
-end
-
-
-function InputFactory.new()
-    local self = setmetatable({}, InputFactory)
-    self:_init_fields()
-        local size = (self.inputIntegerArray.n or #self.inputIntegerArray)
-        for index = 0, size - 1 do
-            self.inputIntegerArray[index + 1] = self.NO_INPUT
-        end
-    return self
-end
-
-
-function InputFactory:add(id, input)
-        self.inputIntegerArray[id + 1] = input
-end
-
-
-function InputFactory:getInstanceById(id)
-        if id < 0 then
-            id = -id
-        end
-        if id > (self.inputIntegerArray.n or #self.inputIntegerArray) then
-            self.logUtil:putF(tostring(StringMaker.new():append("Warning id: "):appendint(id)), self, self.commonStrings.GET_INSTANCE)
-            return self.NO_INPUT
-        end
-        return self.inputIntegerArray[id + 1]
-end
-
-InputFactory.instance = NullUtil.getInstance().NULL_OBJECT
-
-return InputFactory
 

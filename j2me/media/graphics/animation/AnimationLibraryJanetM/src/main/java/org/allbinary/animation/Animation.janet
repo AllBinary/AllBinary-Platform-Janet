@@ -1,147 +1,123 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.animation
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.animation
 
--- local GL = require("javax.microedition.khronos.opengles.GL")
--- local Graphics = require("javax.microedition.lcdui.Graphics")
-local BasicColor = require("org.allbinary.graphics.color.BasicColor")
-local BasicColorFactory = require("org.allbinary.graphics.color.BasicColorFactory")
-local BasicColorSetUtil = require("org.allbinary.graphics.color.BasicColorSetUtil")
-local OpenGLSurfaceChangedInterface = require("org.allbinary.image.opengles.OpenGLSurfaceChangedInterface")
-local AnimationInterface = require("org.allbinary.animation.AnimationInterface")
+(import ../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- BasicColorFactory/jm_getInstance [& args] (JR/call jfile "../../../org/allbinary/graphics/color/BasicColorFactory" "jm_getInstance" args))
+(defn- BasicColorSetUtil/jm_getInstance [& args] (JR/call jfile "../../../org/allbinary/graphics/color/BasicColorSetUtil" "jm_getInstance" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class Animation
+(var jproto nil)
+(var jnew_0 nil)
+(var jm_setAlpha nil)
+(var jm_nextFrame nil)
+(var jm_paintXY nil)
+(var jm_paintThreedXYZ nil)
+(var jm_isThreed nil)
+(var jm_getBasicColorP nil)
+(var jm_setBasicColorP nil)
+(var jm_setBackgroundBasicColorP nil)
+(var jm_getChangeBasicColor nil)
+(var jm_changeBasicColor nil)
+(var jm_getChangeColor nil)
+(var jm_getColor nil)
+(var jm_setScale nil)
+(var jm_setMaxScale nil)
+(var jm_set nil)
+(var jm_setDx nil)
+(var jm_getDx nil)
+(var jm_setDy nil)
+(var jm_getDy nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "Animation" :f_basicSetColorUtil nil :f_basicColor nil :f_colorP 0 :f_changeBasicColorP nil :f_changeColorP 0 :f_alphaP 0} jproto))
+    (put this :f_basicSetColorUtil (BasicColorSetUtil/jm_getInstance))
+    (put this :f_basicColor ((BasicColorFactory/jm_getInstance) :f_WHITE))
+    
+    (put this :f_changeBasicColorP ((BasicColorFactory/jm_getInstance) :f_NULL_COLOR))
+    
+    
+    this))
+    
+(set jm_setAlpha (fn jm_setAlpha [this _alpha]
+        (set (this :f_alphaP) _alpha)))
+    
+(set jm_nextFrame (fn jm_nextFrame [this]
+    nil))
+    
+(set jm_paintXY (fn jm_paintXY [this _graphics _x _y]
+        (:jm_setBasicColorP3 (this :f_basicSetColorUtil) _graphics (:jm_getBasicColorP this) (:jm_getColor this))))
+    
+(set jm_paintThreedXYZ (fn jm_paintThreedXYZ [this _graphics _x _y _z]
+    nil))
+    
+(set jm_isThreed (fn jm_isThreed [this]
+    (label jreturn
+        (return jreturn false))))
+    
+(set jm_getBasicColorP (fn jm_getBasicColorP [this]
+    (label jreturn
+        (return jreturn (this :f_basicColor)))))
+    
+(set jm_setBasicColorP (fn jm_setBasicColorP [this _basicColor]
+        (set (this :f_basicColor) _basicColor)
+        (set (this :f_colorP) (:jm_intValue (this :f_basicColor)))))
+    
+(set jm_setBackgroundBasicColorP (fn jm_setBackgroundBasicColorP [this _basicColor]
+    nil))
+    
+(set jm_getChangeBasicColor (fn jm_getChangeBasicColor [this]
+    (label jreturn
+        (return jreturn (this :f_changeBasicColorP)))))
+    
+(set jm_changeBasicColor (fn jm_changeBasicColor [this _basicColor]
+        (set (this :f_changeBasicColorP) _basicColor)
+        (set (this :f_changeColorP) (:jm_intValue (this :f_changeBasicColorP)))))
+    
+(set jm_getChangeColor (fn jm_getChangeColor [this]
+    (label jreturn
+        (return jreturn (this :f_changeColorP)))))
+    
+(set jm_getColor (fn jm_getColor [this]
+    (label jreturn
+        (return jreturn (this :f_colorP)))))
+    
+(set jm_setScale (fn jm_setScale [this _scaleX _scaleY]
+    nil))
+    
+(set jm_setMaxScale (fn jm_setMaxScale [this _maxScaleX _maxScaleY]
+    nil))
+    
+(set jm_set (fn jm_set [this _gl]
+    nil))
+    
+(set jm_setDx (fn jm_setDx [this _dx]
+    nil))
+    
+(set jm_getDx (fn jm_getDx [this]
+    (label jreturn
+        (return jreturn 0))))
+    
+(set jm_setDy (fn jm_setDy [this _dy]
+    nil))
+    
+(set jm_getDy (fn jm_getDy [this]
+    (label jreturn
+        (return jreturn 0))))
 
-local Animation = {}
-Animation.__index = Animation
-Animation.className = "Animation"
+(set jproto @{:jm_setAlpha jm_setAlpha :jm_nextFrame jm_nextFrame :jm_paintXY jm_paintXY :jm_paintThreedXYZ jm_paintThreedXYZ :jm_isThreed jm_isThreed :jm_getBasicColorP jm_getBasicColorP :jm_setBasicColorP jm_setBasicColorP :jm_setBackgroundBasicColorP jm_setBackgroundBasicColorP :jm_getChangeBasicColor jm_getChangeBasicColor :jm_changeBasicColor jm_changeBasicColor :jm_getChangeColor jm_getChangeColor :jm_getColor jm_getColor :jm_setScale jm_setScale :jm_setMaxScale jm_setMaxScale :jm_set jm_set :jm_setDx jm_setDx :jm_getDx jm_getDx :jm_setDy jm_setDy :jm_getDy jm_getDy})
 
-function Animation:_init_fields()
-    self.basicSetColorUtil = BasicColorSetUtil.getInstance()
-    self.basicColor = BasicColorFactory.getInstance().WHITE
-    self.colorP = 0
-    self.changeBasicColorP = BasicColorFactory.getInstance().NULL_COLOR
-    self.changeColorP = 0
-    self.alphaP = 0
-end
-
-
-function Animation.new()
-    local self = setmetatable({}, Animation)
-    self:_init_fields()
-    return self
-end
-
-
-function Animation:setAlpha(alpha)
-        self.alphaP = alpha
-end
-
-
--- throws Exception
-function Animation:nextFrame()
-end
-
-
-function Animation:paintXY(graphics, x, y)
-        self.basicSetColorUtil:setBasicColorP3(graphics, self:getBasicColorP(), self:getColor())
-end
-
-
-function Animation:paintThreedXYZ(graphics, x, y, z)
-end
-
-
-function Animation:isThreed()
-        return false
-end
-
-
-function Animation:getBasicColorP()
-        return self.basicColor
-end
-
-
-function Animation:setBasicColorP(basicColor)
-        self.basicColor = basicColor
-        self.colorP = math.tointeger(self.basicColor // 1)
-end
-
-
-function Animation:setBackgroundBasicColorP(basicColor)
-end
-
-
-function Animation:getChangeBasicColor()
-        return self.changeBasicColorP
-end
-
-
-function Animation:changeBasicColor(basicColor)
-        self.changeBasicColorP = basicColor
-        self.changeColorP = math.tointeger(self.changeBasicColorP // 1)
-end
-
-
-function Animation:getChangeColor()
-        return self.changeColorP
-end
-
-
-function Animation:getColor()
-        return self.colorP
-end
-
-
-function Animation:setScale(scaleX, scaleY)
-end
-
-
-function Animation:setMaxScale(maxScaleX, maxScaleY)
-end
-
-
--- throws Exception
-function Animation:set(gl)
-end
-
-
-function Animation:setDx(dx)
-end
-
-
-function Animation:getDx()
-        return 0
-end
-
-
-function Animation:setDy(dy)
-end
-
-
-function Animation:getDy()
-        return 0
-end
-
-return Animation
 

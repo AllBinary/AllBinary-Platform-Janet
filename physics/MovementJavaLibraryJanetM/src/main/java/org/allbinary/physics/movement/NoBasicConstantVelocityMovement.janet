@@ -1,50 +1,38 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.physics.movement
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.physics.movement
 
-local AllBinaryGameLayer = require("org.allbinary.game.layer.AllBinaryGameLayer")
-local BasicVelocityProperties = require("org.allbinary.game.physics.velocity.BasicVelocityProperties")
-local BasicDecimal = require("org.allbinary.logic.math.BasicDecimal")
-local BasicConstantVelocityMovement = require("org.allbinary.physics.movement.BasicConstantVelocityMovement")
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- BasicVelocityProperties/jnew_0 [& args] (JR/call jfile "../../../../org/allbinary/game/physics/velocity/BasicVelocityProperties" "jnew_0" args))
+(defn- BasicDecimal/jstatic_ZERO_BIGDECIMAL [& args] (JR/call jfile "../../../../org/allbinary/logic/math/BasicDecimal" "jstatic_ZERO_BIGDECIMAL" args))
+(import ./BasicConstantVelocityMovement :as BasicConstantVelocityMovement)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class NoBasicConstantVelocityMovement
+(var jproto nil)
+(var jnew_0 nil)
+(var jm_process nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "NoBasicConstantVelocityMovement"} jproto))
+        (JR/superInit this (BasicConstantVelocityMovement/jnew_2 (BasicDecimal/jstatic_ZERO_BIGDECIMAL) (BasicVelocityProperties/jnew_0)))
+    this))
+    
+(set jm_process (fn jm_process [this _layer]
+    nil))
 
-local NoBasicConstantVelocityMovement = {}
-NoBasicConstantVelocityMovement.__index = NoBasicConstantVelocityMovement
-NoBasicConstantVelocityMovement.className = "NoBasicConstantVelocityMovement"
-setmetatable(NoBasicConstantVelocityMovement, {__index = BasicConstantVelocityMovement})
+(set jproto (table/setproto @{:jm_process jm_process} BasicConstantVelocityMovement/jproto))
 
-
-function NoBasicConstantVelocityMovement.new()
-    local self = setmetatable(BasicConstantVelocityMovement.new(BasicDecimal.ZERO_BIGDECIMAL, BasicVelocityProperties.new()), NoBasicConstantVelocityMovement)
-        -- super(...) made self above
-    return self
-end
-
-
--- throws Exception
-function NoBasicConstantVelocityMovement:process(layer)
-end
-
-return NoBasicConstantVelocityMovement
 

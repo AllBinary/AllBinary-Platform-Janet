@@ -1,117 +1,102 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.resource
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.game.resource
 
-local Features = require("org.allbinary.game.configuration.feature.Features")
-local GameFeatureControlledInterface = require("org.allbinary.game.configuration.feature.GameFeatureControlledInterface")
-local GraphicsFeatureFactory = require("org.allbinary.game.configuration.feature.GraphicsFeatureFactory")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
-local CommonLabels = require("org.allbinary.string.CommonLabels")
-local CommonSeps = require("org.allbinary.string.CommonSeps")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
-local BasicArrayListD = require("org.allbinary.util.BasicArrayListD")
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- Features/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/game/configuration/feature/Features" "jm_getInstance" args))
+(defn- GraphicsFeatureFactory/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/game/configuration/feature/GraphicsFeatureFactory" "jm_getInstance" args))
+(defn- LogUtil/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/logic/communication/log/LogUtil" "jm_getInstance" args))
+(defn- StringMaker/jnew_0 [& args] (JR/call jfile "../../../../org/allbinary/logic/string/StringMaker" "jnew_0" args))
+(defn- StringUtil/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/logic/string/StringUtil" "jm_getInstance" args))
+(defn- CommonLabels/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/string/CommonLabels" "jm_getInstance" args))
+(defn- CommonSeps/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/string/CommonSeps" "jm_getInstance" args))
+(defn- CommonStrings/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/string/CommonStrings" "jm_getInstance" args))
+(defn- BasicArrayListD/jnew_0 [& args] (JR/call jfile "../../../../org/allbinary/util/BasicArrayListD" "jnew_0" args))
+(defn- ResourceLoadingLevelFactory/jm_getInstance [& args] (JR/call jfile "./ResourceLoadingLevelFactory" "jm_getInstance" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class FeaturedResourceFactory
+(var jproto nil)
+(var jnew_0 nil)
+(var jm_init nil)
+(var jm_clear nil)
+(var jm_add nil)
+(var jm_getList nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "FeaturedResourceFactory" :f_logUtil nil :f_list nil :f_commonStrings nil :f_ANIMATION_FEATURES nil :f_IMAGE_LABEL nil :f_IMAGE_GRAPHICS_ARRAY nil :f_IMAGE_GRAPHICS_ROTATION nil :f_SPRITE_QUARTER nil :f_SPRITE_FULL nil :f_IS_LOADING_LEVEL_LABEL nil :f_IS_FEATURE nil :f_GAME_FEATURE_CONTROLLED nil} jproto))
+    (put this :f_logUtil (LogUtil/jm_getInstance))
+    (put this :f_list (BasicArrayListD/jnew_0))
+    (put this :f_commonStrings (CommonStrings/jm_getInstance))
+    (put this :f_ANIMATION_FEATURES "Animation Features: Vector: ")
+    (put this :f_IMAGE_LABEL " Image: ")
+    (put this :f_IMAGE_GRAPHICS_ARRAY "Image Array: ")
+    (put this :f_IMAGE_GRAPHICS_ROTATION "Image Rotate: ")
+    (put this :f_SPRITE_QUARTER " Sprite Quarter: ")
+    (put this :f_SPRITE_FULL " Sprite Full: ")
+    (put this :f_IS_LOADING_LEVEL_LABEL " isLoadingLevel ")
+    (put this :f_IS_FEATURE " isFeature: ")
+    (put this :f_GAME_FEATURE_CONTROLLED "GameFeatureControlledInterface: ")
+    this))
+    
+(set jm_init (fn jm_init [this _level]
+        (var _size (:jm_size (this :f_list)))
+        (do
+            (var _index 0)
+            (while (< _index _size)
+                (do
+            (var _featureInterface (((this :f_list) :f_objectArray) _index))
+            (var _isLoadingLevel (:jm_isLoadingLevel _featureInterface _level))
+            (var _isFeature (:jm_isFeature _featureInterface))
+            (:jm_putF (this :f_logUtil) (:jm_toString (:jm_appendboolean (:jm_append (:jm_appendboolean (:jm_append (:jm_append (:jm_append (:jm_append (:jm_append (StringMaker/jnew_0) (this :f_GAME_FEATURE_CONTROLLED)) (:jm_toString _featureInterface)) (this :f_IS_LOADING_LEVEL_LABEL)) (:jm_getLevelString (ResourceLoadingLevelFactory/jm_getInstance) _level)) ((CommonSeps/jm_getInstance) :f_COLON_SEP)) _isLoadingLevel) (this :f_IS_FEATURE)) _isFeature)) this ((this :f_commonStrings) :f_INIT))
+            (if (and _isLoadingLevel _isFeature)
+                (do
+                (:jm_init _featureInterface _level))))
+                (do (set _index (JR/i32 (+ _index 1))))))
+        (var _features (Features/jm_getInstance))
+        (var _graphicsFeatureFactory (GraphicsFeatureFactory/jm_getInstance))
+        (var _stringBuffer (StringMaker/jnew_0))
+        (:jm_append _stringBuffer (this :f_ANIMATION_FEATURES))
+        (:jm_appendboolean _stringBuffer (:jm_isFeature _features (_graphicsFeatureFactory :f_VECTOR_GRAPHICS)))
+        (:jm_append _stringBuffer (this :f_IMAGE_LABEL))
+        (:jm_appendboolean _stringBuffer (:jm_isFeature _features (_graphicsFeatureFactory :f_IMAGE_GRAPHICS)))
+        (:jm_putF (this :f_logUtil) (:jm_toString _stringBuffer) this ((this :f_commonStrings) :f_INIT))
+        (if (:jm_isFeature _features (_graphicsFeatureFactory :f_IMAGE_GRAPHICS))
+            (do
+            (:jm_delete _stringBuffer 0 (:jm_length _stringBuffer))
+            (:jm_append _stringBuffer (this :f_IMAGE_GRAPHICS_ARRAY))
+            (:jm_appendboolean _stringBuffer (:jm_isFeature _features (_graphicsFeatureFactory :f_IMAGE_TO_ARRAY_GRAPHICS)))
+            (:jm_append _stringBuffer (this :f_IMAGE_GRAPHICS_ROTATION))
+            (:jm_appendboolean _stringBuffer (:jm_isFeature _features (_graphicsFeatureFactory :f_IMAGE_TO_ARRAY_GRAPHICS)))
+            (:jm_append _stringBuffer (this :f_SPRITE_QUARTER))
+            (:jm_appendboolean _stringBuffer (:jm_isFeature _features (_graphicsFeatureFactory :f_SPRITE_QUARTER_ROTATION_GRAPHICS)))
+            (:jm_append _stringBuffer (this :f_SPRITE_FULL))
+            (:jm_appendboolean _stringBuffer (:jm_isFeature _features (_graphicsFeatureFactory :f_SPRITE_FULL_GRAPHICS)))
+            (:jm_putF (this :f_logUtil) (:jm_toString _stringBuffer) this ((this :f_commonStrings) :f_INIT))))))
+    
+(set jm_clear (fn jm_clear [this]
+        (:jm_clear (this :f_list))))
+    
+(set jm_add (fn jm_add [this _featureInterface]
+        (:jm_putF (this :f_logUtil) (:jm_toString (:jm_append (:jm_append (StringMaker/jnew_0) ((CommonLabels/jm_getInstance) :f_START_LABEL)) (:jm_toString_1 (StringUtil/jm_getInstance) _featureInterface))) this ((this :f_commonStrings) :f_ADD))
+        (:jm_add (this :f_list) _featureInterface)))
+    
+(set jm_getList (fn jm_getList [this]
+    (label jreturn
+        (return jreturn (this :f_list)))))
 
-local FeaturedResourceFactory = {}
-FeaturedResourceFactory.__index = FeaturedResourceFactory
-FeaturedResourceFactory.className = "FeaturedResourceFactory"
+(set jproto @{:jm_init jm_init :jm_clear jm_clear :jm_add jm_add :jm_getList jm_getList})
 
-function FeaturedResourceFactory:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-    self.list = BasicArrayListD.new()
-    self.commonStrings = CommonStrings.getInstance()
-    self.ANIMATION_FEATURES = "Animation Features: Vector: "
-    self.IMAGE_LABEL = " Image: "
-    self.IMAGE_GRAPHICS_ARRAY = "Image Array: "
-    self.IMAGE_GRAPHICS_ROTATION = "Image Rotate: "
-    self.SPRITE_QUARTER = " Sprite Quarter: "
-    self.SPRITE_FULL = " Sprite Full: "
-    self.IS_LOADING_LEVEL_LABEL = " isLoadingLevel "
-    self.IS_FEATURE = " isFeature: "
-    self.GAME_FEATURE_CONTROLLED = "GameFeatureControlledInterface: "
-end
-
-
-function FeaturedResourceFactory.new()
-    local self = setmetatable({}, FeaturedResourceFactory)
-    self:_init_fields()
-    return self
-end
-
-
--- throws Exception
-function FeaturedResourceFactory:init(level)
-        local size = self.list:size()
-        for index = 0, size - 1 do
-            local featureInterface = self.list.objectArray[index + 1]
-            local isLoadingLevel = featureInterface:isLoadingLevel(level)
-            local isFeature = featureInterface:isFeature()
-            self.logUtil:putF(tostring(StringMaker.new():append(self.GAME_FEATURE_CONTROLLED):append(tostring(featureInterface)):append(self.IS_LOADING_LEVEL_LABEL):append(ResourceLoadingLevelFactory.getInstance():getLevelString(level)):append(CommonSeps.getInstance().COLON_SEP):appendboolean(isLoadingLevel):append(self.IS_FEATURE):appendboolean(isFeature)), self, self.commonStrings.INIT)
-            if isLoadingLevel and isFeature then
-                featureInterface:init(level)
-            end
-        end
-        local features = Features.getInstance()
-        local graphicsFeatureFactory = GraphicsFeatureFactory.getInstance()
-        local stringBuffer = StringMaker.new()
-        stringBuffer:append(self.ANIMATION_FEATURES)
-        stringBuffer:appendboolean(features:isFeature(graphicsFeatureFactory.VECTOR_GRAPHICS))
-        stringBuffer:append(self.IMAGE_LABEL)
-        stringBuffer:appendboolean(features:isFeature(graphicsFeatureFactory.IMAGE_GRAPHICS))
-        self.logUtil:putF(tostring(stringBuffer), self, self.commonStrings.INIT)
-        if features:isFeature(graphicsFeatureFactory.IMAGE_GRAPHICS) then
-            stringBuffer:delete(0, stringBuffer:length())
-            stringBuffer:append(self.IMAGE_GRAPHICS_ARRAY)
-            stringBuffer:appendboolean(features:isFeature(graphicsFeatureFactory.IMAGE_TO_ARRAY_GRAPHICS))
-            stringBuffer:append(self.IMAGE_GRAPHICS_ROTATION)
-            stringBuffer:appendboolean(features:isFeature(graphicsFeatureFactory.IMAGE_TO_ARRAY_GRAPHICS))
-            stringBuffer:append(self.SPRITE_QUARTER)
-            stringBuffer:appendboolean(features:isFeature(graphicsFeatureFactory.SPRITE_QUARTER_ROTATION_GRAPHICS))
-            stringBuffer:append(self.SPRITE_FULL)
-            stringBuffer:appendboolean(features:isFeature(graphicsFeatureFactory.SPRITE_FULL_GRAPHICS))
-            self.logUtil:putF(tostring(stringBuffer), self, self.commonStrings.INIT)
-        end
-end
-
-
-function FeaturedResourceFactory:clear()
-        self.list:clear()
-end
-
-
-function FeaturedResourceFactory:add(featureInterface)
-        self.logUtil:putF(tostring(StringMaker.new():append(CommonLabels.getInstance().START_LABEL):append(StringUtil.getInstance():toString(featureInterface))), self, self.commonStrings.ADD)
-        self.list:add(featureInterface)
-end
-
-
-function FeaturedResourceFactory:getList()
-        return self.list
-end
-
-return FeaturedResourceFactory
 

@@ -1,96 +1,61 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.init
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.game.init
 
--- local CommandListener = require("javax.microedition.lcdui.CommandListener")
-local ResourceInitialization = require("org.allbinary.game.resource.ResourceInitialization")
-local ResourceLoadingLevelFactory = require("org.allbinary.game.resource.ResourceLoadingLevelFactory")
-local PointFactory = require("org.allbinary.graphics.PointFactory")
-local ProgressCanvas = require("org.allbinary.graphics.canvas.transition.progress.ProgressCanvas")
-local ProgressCanvasFactory = require("org.allbinary.graphics.canvas.transition.progress.ProgressCanvasFactory")
-local SmallIntegerSingletonFactory = require("org.allbinary.logic.math.SmallIntegerSingletonFactory")
-local AbeClientInformationInterface = require("org.allbinary.logic.system.security.licensing.AbeClientInformationInterface")
-local AngleFactory = require("org.allbinary.math.AngleFactory")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
-local BaseGameInitialization = require("org.allbinary.game.init.BaseGameInitialization")
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- ResourceLoadingLevelFactory/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/game/resource/ResourceLoadingLevelFactory" "jm_getInstance" args))
+(defn- PointFactory/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/graphics/PointFactory" "jm_getInstance" args))
+(defn- ProgressCanvasFactory/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/graphics/canvas/transition/progress/ProgressCanvasFactory" "jm_getInstance" args))
+(defn- SmallIntegerSingletonFactory/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/logic/math/SmallIntegerSingletonFactory" "jm_getInstance" args))
+(defn- AngleFactory/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/math/AngleFactory" "jm_getInstance" args))
+(defn- CommonStrings/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/string/CommonStrings" "jm_getInstance" args))
+(import ./BaseGameInitialization :as BaseGameInitialization)
 
--- Java library Throwable. tostring gives the message like Java getMessage.
-local function java_exception(className, message, cause)
-    if cause == nil and type(message) == "table" then
-        cause = message
-        message = tostring(message)
-    end
-    local exception = {className = className, message = message, cause = cause}
-    function exception:getMessage() return self.message end
-    function exception:getCause() return self.cause end
-    function exception:printStackTrace() print(debug.traceback(tostring(self))) end
-    return setmetatable(exception, {__tostring = function(self) if self.message ~= nil then return tostring(self.message) end return self.className end})
-end
+# Java class CommonGameInitialization
+(var jproto nil)
+(var jnew_2 nil)
+(var jm_init nil)
+(var jm_initGame nil)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+    
+(set jnew_2 (fn jnew_2 [_resourceInitializationArray _portion]
+    (var this (table/setproto @{:jclass "CommonGameInitialization" :f_commonStrings nil} jproto))
+    (put this :f_commonStrings (CommonStrings/jm_getInstance))
+        (JR/superInit this (BaseGameInitialization/jnew_2 _resourceInitializationArray _portion))
+    this))
+    
+(set jm_init (fn jm_init [this _abeClientInformation _commandListener _level]
+        ((get BaseGameInitialization/jproto :jm_init) this _abeClientInformation _commandListener _level)
+        (var _resourceLoadingLevelFactory (ResourceLoadingLevelFactory/jm_getInstance))
+        (if (and (not (:jm_isGameInitialized this)) (= _level (JR/className (_resourceLoadingLevelFactory :f_LOAD_ALL))))
+            (do
+            (:jm_setGameInitialized this true)
+            (var _progressCanvas (ProgressCanvasFactory/jm_getInstance))
+            (:jm_init (SmallIntegerSingletonFactory/jm_getInstance))
+            (:jm_addNormalPortion _progressCanvas 50 "Integers")
+            (:jm_init (PointFactory/jm_getInstance))
+            (:jm_addNormalPortion _progressCanvas 50 "Points")
+            (AngleFactory/jm_getInstance)
+            (:jm_addNormalPortion _progressCanvas 50 "Angles")
+            (:jm_initGame this)
+            (JR/className ((this :f_resourceInitializationArray) (this :f_GAME_RESOURCES)))))
+        ((get BaseGameInitialization/jproto :jm_resourceInitialization) this _level)))
+    
+(set jm_initGame (fn jm_initGame [this]
+        (error (JR/newException "Exception" ((this :f_commonStrings) :f_NOT_IMPLEMENTED)))))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jproto (table/setproto @{:jm_init jm_init :jm_initGame jm_initGame} BaseGameInitialization/jproto))
 
-local CommonGameInitialization = {}
-CommonGameInitialization.__index = CommonGameInitialization
-CommonGameInitialization.className = "CommonGameInitialization"
-setmetatable(CommonGameInitialization, {__index = BaseGameInitialization})
-
-function CommonGameInitialization:_init_fields()
-    self.commonStrings = CommonStrings.getInstance()
-end
-
-
-function CommonGameInitialization.new(resourceInitializationArray, portion)
-    local self = setmetatable(BaseGameInitialization.new(resourceInitializationArray, portion), CommonGameInitialization)
-    self:_init_fields()
-        -- super(...) made self above
-    return self
-end
-
-
--- throws Exception
-function CommonGameInitialization:init(abeClientInformation, commandListener, level)
-        BaseGameInitialization.init(self, abeClientInformation, commandListener, level)
-        local resourceLoadingLevelFactory = ResourceLoadingLevelFactory.getInstance()
-        if not self:isGameInitialized() and level == resourceLoadingLevelFactory.LOAD_ALL:getLevel() then
-            self:setGameInitialized(true)
-            local progressCanvas = ProgressCanvasFactory.getInstance()
-            SmallIntegerSingletonFactory.getInstance():init()
-            progressCanvas:addNormalPortion(50, "Integers")
-            PointFactory.getInstance():init()
-            progressCanvas:addNormalPortion(50, "Points")
-            AngleFactory.getInstance()
-            progressCanvas:addNormalPortion(50, "Angles")
-            self:initGame()
-            self.resourceInitializationArray[self.GAME_RESOURCES + 1]:init()
-        end
-        BaseGameInitialization.resourceInitialization(self, level)
-end
-
-
--- throws Exception
-function CommonGameInitialization:initGame()
-        error(java_exception("Exception", self.commonStrings.NOT_IMPLEMENTED), 0)
-end
-
-return CommonGameInitialization
 

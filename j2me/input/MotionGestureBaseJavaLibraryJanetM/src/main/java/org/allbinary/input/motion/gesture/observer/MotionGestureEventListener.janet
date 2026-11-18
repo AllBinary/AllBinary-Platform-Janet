@@ -1,87 +1,71 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.input.motion.gesture.observer
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.input.motion.gesture.observer
 
-local BaseMotionGestureEventListener = require("org.allbinary.input.motion.gesture.observer.BaseMotionGestureEventListener")
+(import ../../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(import ./BaseMotionGestureEventListener :as BaseMotionGestureEventListener)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class MotionGestureEventListener
+(var jproto nil)
+(var jnew_0 nil)
+(var jm_onPressedMotionGestureEvent nil)
+(var jm_onUpMotionGestureEvent nil)
+(var jm_onDownMotionGestureEvent nil)
+(var jm_onLeftMotionGestureEvent nil)
+(var jm_onRightMotionGestureEvent nil)
+(var jm_onDiagonalDownRightMotionGestureEvent nil)
+(var jm_onDiagonalDownLeftMotionGestureEvent nil)
+(var jm_onDiagonalUpRightMotionGestureEvent nil)
+(var jm_onDiagonalUpLeftMotionGestureEvent nil)
+(var jm_released nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "MotionGestureEventListener"} jproto))
+    this))
 
--- Java interface
-local MotionGestureEventListener = {}
-MotionGestureEventListener.__index = MotionGestureEventListener
-MotionGestureEventListener.className = "MotionGestureEventListener"
-setmetatable(MotionGestureEventListener, {__index = BaseMotionGestureEventListener})
+    
+(set jm_onPressedMotionGestureEvent (fn jm_onPressedMotionGestureEvent [this _ev]
+    (error (JR/newException "AbstractMethodError" "onPressedMotionGestureEvent"))))
+    
+(set jm_onUpMotionGestureEvent (fn jm_onUpMotionGestureEvent [this _ev]
+    (error (JR/newException "AbstractMethodError" "onUpMotionGestureEvent"))))
+    
+(set jm_onDownMotionGestureEvent (fn jm_onDownMotionGestureEvent [this _ev]
+    (error (JR/newException "AbstractMethodError" "onDownMotionGestureEvent"))))
+    
+(set jm_onLeftMotionGestureEvent (fn jm_onLeftMotionGestureEvent [this _ev]
+    (error (JR/newException "AbstractMethodError" "onLeftMotionGestureEvent"))))
+    
+(set jm_onRightMotionGestureEvent (fn jm_onRightMotionGestureEvent [this _ev]
+    (error (JR/newException "AbstractMethodError" "onRightMotionGestureEvent"))))
+    
+(set jm_onDiagonalDownRightMotionGestureEvent (fn jm_onDiagonalDownRightMotionGestureEvent [this _ev]
+    (error (JR/newException "AbstractMethodError" "onDiagonalDownRightMotionGestureEvent"))))
+    
+(set jm_onDiagonalDownLeftMotionGestureEvent (fn jm_onDiagonalDownLeftMotionGestureEvent [this _ev]
+    (error (JR/newException "AbstractMethodError" "onDiagonalDownLeftMotionGestureEvent"))))
+    
+(set jm_onDiagonalUpRightMotionGestureEvent (fn jm_onDiagonalUpRightMotionGestureEvent [this _ev]
+    (error (JR/newException "AbstractMethodError" "onDiagonalUpRightMotionGestureEvent"))))
+    
+(set jm_onDiagonalUpLeftMotionGestureEvent (fn jm_onDiagonalUpLeftMotionGestureEvent [this _ev]
+    (error (JR/newException "AbstractMethodError" "onDiagonalUpLeftMotionGestureEvent"))))
+    
+(set jm_released (fn jm_released [this _ev]
+    (error (JR/newException "AbstractMethodError" "released"))))
 
+(set jproto @{:jm_onPressedMotionGestureEvent jm_onPressedMotionGestureEvent :jm_onUpMotionGestureEvent jm_onUpMotionGestureEvent :jm_onDownMotionGestureEvent jm_onDownMotionGestureEvent :jm_onLeftMotionGestureEvent jm_onLeftMotionGestureEvent :jm_onRightMotionGestureEvent jm_onRightMotionGestureEvent :jm_onDiagonalDownRightMotionGestureEvent jm_onDiagonalDownRightMotionGestureEvent :jm_onDiagonalDownLeftMotionGestureEvent jm_onDiagonalDownLeftMotionGestureEvent :jm_onDiagonalUpRightMotionGestureEvent jm_onDiagonalUpRightMotionGestureEvent :jm_onDiagonalUpLeftMotionGestureEvent jm_onDiagonalUpLeftMotionGestureEvent :jm_released jm_released})
 
-function MotionGestureEventListener:onPressedMotionGestureEvent(ev)
-    error("abstract method onPressedMotionGestureEvent")
-end
-
-
-function MotionGestureEventListener:onUpMotionGestureEvent(ev)
-    error("abstract method onUpMotionGestureEvent")
-end
-
-
-function MotionGestureEventListener:onDownMotionGestureEvent(ev)
-    error("abstract method onDownMotionGestureEvent")
-end
-
-
-function MotionGestureEventListener:onLeftMotionGestureEvent(ev)
-    error("abstract method onLeftMotionGestureEvent")
-end
-
-
-function MotionGestureEventListener:onRightMotionGestureEvent(ev)
-    error("abstract method onRightMotionGestureEvent")
-end
-
-
-function MotionGestureEventListener:onDiagonalDownRightMotionGestureEvent(ev)
-    error("abstract method onDiagonalDownRightMotionGestureEvent")
-end
-
-
-function MotionGestureEventListener:onDiagonalDownLeftMotionGestureEvent(ev)
-    error("abstract method onDiagonalDownLeftMotionGestureEvent")
-end
-
-
-function MotionGestureEventListener:onDiagonalUpRightMotionGestureEvent(ev)
-    error("abstract method onDiagonalUpRightMotionGestureEvent")
-end
-
-
-function MotionGestureEventListener:onDiagonalUpLeftMotionGestureEvent(ev)
-    error("abstract method onDiagonalUpLeftMotionGestureEvent")
-end
-
-
--- throws Exception
-function MotionGestureEventListener:released(ev)
-    error("abstract method released")
-end
-
-return MotionGestureEventListener
 

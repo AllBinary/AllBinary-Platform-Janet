@@ -1,111 +1,89 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.layer.resources
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.game.layer.resources
 
-local BaseResourceAnimationInterfaceFactoryInterfaceFactory = require("org.allbinary.animation.resource.BaseResourceAnimationInterfaceFactoryInterfaceFactory")
-local Features = require("org.allbinary.game.configuration.feature.Features")
-local MainFeatureFactory = require("org.allbinary.game.configuration.feature.MainFeatureFactory")
-local GameLayerPlacementInterfaceBasicArrayListFactoryInterfaceFactory = require("org.allbinary.game.layer.GameLayerPlacementInterfaceBasicArrayListFactoryInterfaceFactory")
-local LayerPlacementInterfaceBasicArrayListFactoryInterface = require("org.allbinary.game.layer.LayerPlacementInterfaceBasicArrayListFactoryInterface")
-local ResourceLoadingLevelFactory = require("org.allbinary.game.resource.ResourceLoadingLevelFactory")
-local ImageCache = require("org.allbinary.image.ImageCache")
-local PreLogUtil = require("org.allbinary.logic.communication.log.PreLogUtil")
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
+(import ../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- Features/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/game/configuration/feature/Features" "jm_getInstance" args))
+(defn- MainFeatureFactory/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/game/configuration/feature/MainFeatureFactory" "jm_getInstance" args))
+(defn- ResourceLoadingLevelFactory/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/game/resource/ResourceLoadingLevelFactory" "jm_getInstance" args))
+(defn- PreLogUtil/jm_put [& args] (JR/call jfile "../../../../../org/allbinary/logic/communication/log/PreLogUtil" "jm_put" args))
+(defn- StringMaker/jnew_0 [& args] (JR/call jfile "../../../../../org/allbinary/logic/string/StringMaker" "jnew_0" args))
+(defn- CommonStrings/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/string/CommonStrings" "jm_getInstance" args))
+(defn- OnDemandResources/jstatic_NULL_ON_DEMAND_RESOURCES [& args] (JR/call jfile "./OnDemandResources" "jstatic_NULL_ON_DEMAND_RESOURCES" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class OnDemandLoader
+(var jproto nil)
+(var jnew_3 nil)
+(var jm_init nil)
+(var jm_initAll nil)
+(var jm_initLevel nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jnew_3 (fn jnew_3 [_onDemandResourcesFactory _gameLayerPlacementInterfaceBasicArrayListFactoryInterfaceFactory _resourceAnimationInterfaceFactoryInterfaceFactory]
+    (var this (table/setproto @{:jclass "OnDemandLoader" :f_onDemandResourcesFactory nil :f_gameLayerPlacementInterfaceBasicArrayListFactoryInterfaceFactory nil :f_resourceAnimationInterfaceFactoryInterfaceFactory nil} jproto))
+    
+    
+    
+        (set (this :f_onDemandResourcesFactory) _onDemandResourcesFactory)
+        (set (this :f_gameLayerPlacementInterfaceBasicArrayListFactoryInterfaceFactory) _gameLayerPlacementInterfaceBasicArrayListFactoryInterfaceFactory)
+        (set (this :f_resourceAnimationInterfaceFactoryInterfaceFactory) _resourceAnimationInterfaceFactoryInterfaceFactory)
+    this))
+    
+(set jm_init (fn jm_init [this _imageCache _level _loadingString]
+    (label jreturn
+        (var _resourceLoadingLevelFactory (ResourceLoadingLevelFactory/jm_getInstance))
+        (if (:jm_isFeature (Features/jm_getInstance) ((MainFeatureFactory/jm_getInstance) :f_LOAD_ALL))
+            (do
+            (if (:jm_isInitialized (this :f_resourceAnimationInterfaceFactoryInterfaceFactory))
+                (do
+                (return jreturn)))
+            (:jm_initAll this _imageCache _loadingString))
+            (if (not= _level (JR/className (_resourceLoadingLevelFactory :f_LOAD_ALL)))
+            (do
+            (var _layerPlacementInterfaceBasicArrayListFactoryInterface (:jm_getInstance (this :f_gameLayerPlacementInterfaceBasicArrayListFactoryInterfaceFactory) _level))
+            (:jm_initLevel this _layerPlacementInterfaceBasicArrayListFactoryInterface _imageCache _level _loadingString)))))))
+    
+(set jm_initAll (fn jm_initAll [this _imageCache _loadingString]
+        (var _index 0)
+        (var _portion 120)
+        (var _onDemandResources nil)
+        (do
+            (var _onDemandIndex (:jm_size (this :f_onDemandResourcesFactory)))
+            (while (>= (set _onDemandIndex (JR/i32 (- _onDemandIndex 1))) 0)
+                (do
+            (set _onDemandResources (:jm_remove (this :f_onDemandResourcesFactory) _onDemandIndex))
+            (if (not= _onDemandResources (OnDemandResources/jstatic_NULL_ON_DEMAND_RESOURCES))
+                (do
+                (set _index (:jm_initAt _onDemandResources _imageCache (this :f_resourceAnimationInterfaceFactoryInterfaceFactory) _portion _loadingString _index)))))))))
+    
+(set jm_initLevel (fn jm_initLevel [this _layerPlacementInterfaceBasicArrayListFactoryInterface _imageCache _level _loadingString]
+        (var _commonStrings (CommonStrings/jm_getInstance))
+        (var _portion 120)
+        (var _index 0)
+        (var _onDemandArray (:jm_getOnDemandResources _layerPlacementInterfaceBasicArrayListFactoryInterface))
+        (PreLogUtil/jm_put (:jm_toString (:jm_appendint (:jm_append (StringMaker/jnew_0) (_commonStrings :f_START)) (length _onDemandArray))) this "initLevel")
+        (var _onDemandResources nil)
+        (do
+            (var _onDemandIndex (length _onDemandArray))
+            (while (>= (set _onDemandIndex (JR/i32 (- _onDemandIndex 1))) 0)
+                (do
+            (set _onDemandResources (:jm_remove (this :f_onDemandResourcesFactory) (_onDemandArray _onDemandIndex)))
+            (if (not= _onDemandResources (OnDemandResources/jstatic_NULL_ON_DEMAND_RESOURCES))
+                (do
+                (set _index (:jm_initAt _onDemandResources _imageCache (this :f_resourceAnimationInterfaceFactoryInterfaceFactory) _portion _loadingString _index)))))))))
 
-local OnDemandLoader = {}
-OnDemandLoader.__index = OnDemandLoader
-OnDemandLoader.className = "OnDemandLoader"
+(set jproto @{:jm_init jm_init :jm_initAll jm_initAll :jm_initLevel jm_initLevel})
 
-function OnDemandLoader:_init_fields()
-    self.onDemandResourcesFactory = nil
-    self.gameLayerPlacementInterfaceBasicArrayListFactoryInterfaceFactory = nil
-    self.resourceAnimationInterfaceFactoryInterfaceFactory = nil
-end
-
-
-function OnDemandLoader.new(onDemandResourcesFactory, gameLayerPlacementInterfaceBasicArrayListFactoryInterfaceFactory, resourceAnimationInterfaceFactoryInterfaceFactory)
-    local self = setmetatable({}, OnDemandLoader)
-    self:_init_fields()
-        self.onDemandResourcesFactory = onDemandResourcesFactory
-        self.gameLayerPlacementInterfaceBasicArrayListFactoryInterfaceFactory = gameLayerPlacementInterfaceBasicArrayListFactoryInterfaceFactory
-        self.resourceAnimationInterfaceFactoryInterfaceFactory = resourceAnimationInterfaceFactoryInterfaceFactory
-    return self
-end
-
-
--- throws Exception
-function OnDemandLoader:init(imageCache, level, loadingString)
-        local resourceLoadingLevelFactory = ResourceLoadingLevelFactory.getInstance()
-        if Features.getInstance():isFeature(MainFeatureFactory.getInstance().LOAD_ALL) then
-            if self.resourceAnimationInterfaceFactoryInterfaceFactory:isInitialized() then
-                return
-            end
-            self:initAll(imageCache, loadingString)
-        elseif level ~= resourceLoadingLevelFactory.LOAD_ALL:getLevel() then
-            local layerPlacementInterfaceBasicArrayListFactoryInterface = self.gameLayerPlacementInterfaceBasicArrayListFactoryInterfaceFactory:getInstance(level)
-            self:initLevel(layerPlacementInterfaceBasicArrayListFactoryInterface, imageCache, level, loadingString)
-        end
-end
-
-
--- throws Exception
-function OnDemandLoader:initAll(imageCache, loadingString)
-        local index = 0
-        local portion = 120
-        local onDemandResources = nil
-        do
-            local onDemandIndex = self.onDemandResourcesFactory:size()
-            while (function() onDemandIndex = onDemandIndex - 1 return onDemandIndex end)() >= 0 do
-            onDemandResources = self.onDemandResourcesFactory:remove(onDemandIndex)
-            if onDemandResources ~= OnDemandResources.NULL_ON_DEMAND_RESOURCES then
-                index = onDemandResources:initAt(imageCache, self.resourceAnimationInterfaceFactoryInterfaceFactory, portion, loadingString, index)
-            end
-            end
-        end
-end
-
-
--- throws Exception
-function OnDemandLoader:initLevel(layerPlacementInterfaceBasicArrayListFactoryInterface, imageCache, level, loadingString)
-        local commonStrings = CommonStrings.getInstance()
-        local portion = 120
-        local index = 0
-        local onDemandArray = layerPlacementInterfaceBasicArrayListFactoryInterface:getOnDemandResources()
-        PreLogUtil.put(tostring(StringMaker.new():append(commonStrings.START):appendint((onDemandArray.n or #onDemandArray))), self, "initLevel")
-        local onDemandResources = nil
-        do
-            local onDemandIndex = (onDemandArray.n or #onDemandArray)
-            while (function() onDemandIndex = onDemandIndex - 1 return onDemandIndex end)() >= 0 do
-            onDemandResources = self.onDemandResourcesFactory:remove(onDemandArray[onDemandIndex + 1])
-            if onDemandResources ~= OnDemandResources.NULL_ON_DEMAND_RESOURCES then
-                index = onDemandResources:initAt(imageCache, self.resourceAnimationInterfaceFactoryInterfaceFactory, portion, loadingString, index)
-            end
-            end
-        end
-end
-
-return OnDemandLoader
 

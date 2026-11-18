@@ -1,60 +1,45 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---   
--- Generated Code Do Not Modify
--- package org.allbinary.game.ag.layer.hud.basic.score
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#   
+# Generated Code Do Not Modify
+# package org.allbinary.game.ag.layer.hud.basic.score
 
--- local Font = require("javax.microedition.lcdui.Font")
--- local Graphics = require("javax.microedition.lcdui.Graphics")
-local NumberStringHud = require("org.allbinary.game.ag.layer.hud.basic.NumberStringHud")
-local BasicColor = require("org.allbinary.graphics.color.BasicColor")
-local BasicColorFactory = require("org.allbinary.graphics.color.BasicColorFactory")
+(import ../../../../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(import ../../../../../../../../org/allbinary/game/ag/layer/hud/basic/NumberStringHud :as NumberStringHud)
+(defn- BasicColorFactory/jm_getInstance [& args] (JR/call jfile "../../../../../../../../org/allbinary/graphics/color/BasicColorFactory" "jm_getInstance" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class ScoreHudWidget
+(var jproto nil)
+(var jnew_5 nil)
+(var jm_getInstance nil)
+(var jm_updateMeasurement nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jm_getInstance (fn jm_getInstance [_maxscore _location _direction]
+    (label jreturn
+        (return jreturn (jnew_5 _maxscore _location _direction 2 ((BasicColorFactory/jm_getInstance) :f_GREY))))))
+    
+(set jnew_5 (fn jnew_5 [_maxscore _location _direction _bufferZone _basicColor]
+    (var this (table/setproto @{:jclass "ScoreHudWidget"} jproto))
+        (JR/superInit this (NumberStringHud/jnew_6 "Pts " _maxscore _location _direction _bufferZone _basicColor))
+        (set (this :f_updateMaxHeight) 14)
+    this))
+    
+(set jm_updateMeasurement (fn jm_updateMeasurement [this _graphics]
+        (var _font (:jm_getFont _graphics))
+        (set (this :f_updateMaxWidth) (JR/i32 (* (:jm_getSize _font) 5)))
+        ((get NumberStringHud/jproto :jm_updateMeasurement) this _graphics)))
 
-local ScoreHudWidget = {}
-ScoreHudWidget.__index = ScoreHudWidget
-ScoreHudWidget.className = "ScoreHudWidget"
-setmetatable(ScoreHudWidget, {__index = NumberStringHud})
+(set jproto (table/setproto @{:jm_updateMeasurement jm_updateMeasurement} NumberStringHud/jproto))
 
-
--- throws Exception
-function ScoreHudWidget.getInstance(maxscore, location, direction)
-        return ScoreHudWidget.new(maxscore, location, direction, 2, BasicColorFactory.getInstance().GREY)
-end
-
-
-function ScoreHudWidget.new(maxscore, location, direction, bufferZone, basicColor)
-    local self = setmetatable(NumberStringHud.new("Pts ", maxscore, location, direction, bufferZone, basicColor), ScoreHudWidget)
-        -- super(...) made self above
-        self.updateMaxHeight = 14
-    return self
-end
-
-
-function ScoreHudWidget:updateMeasurement(graphics)
-        local font = graphics:getFont()
-        self.updateMaxWidth = font:getSize() * 5
-        NumberStringHud.updateMeasurement(self, graphics)
-end
-
-return ScoreHudWidget
 

@@ -21,12 +21,14 @@
 (var jproto nil)
 (var jcell_instance :jnone)
 (var jstatic_instance nil)
+(var jsetstatic_instance nil)
 (var jnew_0 nil)
 (var jm_getInstance nil)
 
 (set jstatic_instance (fn jstatic_instance []
   (when (= jcell_instance :jnone) (set jcell_instance (jnew_0)))
   jcell_instance))
+(set jsetstatic_instance (fn jsetstatic_instance [value] (set jcell_instance value)))
 
 (set jnew_0 (fn jnew_0 []
     (var this (table/setproto @{:jclass "CommonSeps" :f_NEW_LINE nil :f_SEMICOLON nil :f_EQUALS nil :f_SPACE nil :f_COMMA nil :f_COLON nil :f_PERIOD nil :f_UNDERSCORE nil :f_COLON_SEP nil :f_COMMA_SEP nil :f_PARENTHESIS_OPEN nil :f_PARENTHESIS_CLOSE nil :f_BRACE_OPEN nil :f_BRACE_CLOSE nil :f_BRACKET_OPEN nil :f_BRACKET_CLOSE nil :f_DASH nil :f_PERCENT nil :f_AMPERSAND nil :f_FORWARD_SLASH nil :f_BACK_SLASH nil :f_QUESTION nil :f_QUOTE nil :f_QUOTE_END nil :f_COMMENT nil :f_INDENT nil} jproto))

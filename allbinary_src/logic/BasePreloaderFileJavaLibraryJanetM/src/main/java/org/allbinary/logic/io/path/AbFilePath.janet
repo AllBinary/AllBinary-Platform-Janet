@@ -1,48 +1,40 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.io.path
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.logic.io.path
 
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
-local AbPath = require("org.allbinary.logic.io.path.AbPath")
+(import ../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- StringUtil/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/logic/string/StringUtil" "jm_getInstance" args))
+(import ./AbPath :as AbPath)
+(defn- AbPathData/jm_getInstance [& args] (JR/call jfile "./AbPathData" "jm_getInstance" args))
+(defn- PathUtil/jm_getInstance [& args] (JR/call jfile "./PathUtil" "jm_getInstance" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class AbFilePath
+(var jproto nil)
+(var jnew_1 nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jnew_1 (fn jnew_1 [_aPath]
+    (var this (table/setproto @{:jclass "AbFilePath"} jproto))
+        (JR/superInit this (AbPath/jnew_2 ((StringUtil/jm_getInstance) :f_EMPTY_STRING) ((StringUtil/jm_getInstance) :f_EMPTY_STRING)))
+        (var _pathData (AbPathData/jm_getInstance))
+        (var _abPathUtil (PathUtil/jm_getInstance))
+        (set (this :f_schema) (:jm_getSchema this _aPath))
+        (:jm_setName this (:jm_getNameFromPath _pathData _aPath))
+        (:jm_setPath this (:jm_adjust _abPathUtil (:jm_getPathFromPath this (JR/toString (:jm_removeNameFromPath _abPathUtil _aPath)))))
+    this))
 
-local AbFilePath = {}
-AbFilePath.__index = AbFilePath
-AbFilePath.className = "AbFilePath"
-setmetatable(AbFilePath, {__index = AbPath})
+(set jproto (table/setproto @{} AbPath/jproto))
 
-
-function AbFilePath.new(aPath)
-    local self = setmetatable(AbPath.new(StringUtil.getInstance().EMPTY_STRING, StringUtil.getInstance().EMPTY_STRING), AbFilePath)
-        -- super(...) made self above
-        local pathData = AbPathData.getInstance()
-        local abPathUtil = PathUtil.getInstance()
-        self.schema = self:getSchema(aPath)
-        self:setName(pathData:getNameFromPath(aPath))
-        self:setPath(abPathUtil:adjust(self:getPathFromPath(tostring(abPathUtil:removeNameFromPath(aPath)))))
-    return self
-end
-
-return AbFilePath
 

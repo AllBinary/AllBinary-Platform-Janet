@@ -1,57 +1,42 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.layer.weapon
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.game.layer.weapon
 
-local Animation = require("org.allbinary.animation.Animation")
-local FeaturedAnimationInterfaceFactoryInterfaceFactory = require("org.allbinary.animation.FeaturedAnimationInterfaceFactoryInterfaceFactory")
-local NullIndexedAnimationFactory = require("org.allbinary.animation.NullIndexedAnimationFactory")
-local ExplosionResources = require("org.allbinary.game.combat.damage.ExplosionResources")
-local RemoteInfo = require("org.allbinary.game.multiplayer.layer.RemoteInfo")
-local Rectangle = require("org.allbinary.graphics.Rectangle")
-local Movement = require("org.allbinary.physics.movement.Movement")
-local ViewPositionBase = require("org.allbinary.view.ViewPositionBase")
-local WeaponLayer = require("org.allbinary.game.layer.weapon.WeaponLayer")
+(import ../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- FeaturedAnimationInterfaceFactoryInterfaceFactory/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/animation/FeaturedAnimationInterfaceFactoryInterfaceFactory" "jm_getInstance" args))
+(defn- NullIndexedAnimationFactory/jm_getFactoryInstance [& args] (JR/call jfile "../../../../../org/allbinary/animation/NullIndexedAnimationFactory" "jm_getFactoryInstance" args))
+(defn- ExplosionResources/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/game/combat/damage/ExplosionResources" "jm_getInstance" args))
+(import ./WeaponLayer :as WeaponLayer)
+(defn- CollidableWeaponBehavior/jnew_1 [& args] (JR/call jfile "./CollidableWeaponBehavior" "jnew_1" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class SimpleWeaponLayer
+(var jproto nil)
+(var jnew_8 nil)
+(var jm_createDestroyed nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jm_createDestroyed (fn jm_createDestroyed []
+    (label jreturn
+        (return jreturn (JR/className (:jm_getProcedural (FeaturedAnimationInterfaceFactoryInterfaceFactory/jm_getInstance) ((ExplosionResources/jm_getInstance) :f_THIRD_EXPLOSION_RESOURCE)))))))
+    
+(set jnew_8 (fn jnew_8 [_name _remoteInfo _multiPlayerType _movement _animationInterface _destroyedAnimationInterface _rectangle _viewPosition]
+    (var this (table/setproto @{:jclass "SimpleWeaponLayer"} jproto))
+        (JR/superInit this (WeaponLayer/jnew_8 _name _remoteInfo _multiPlayerType _movement _animationInterface _destroyedAnimationInterface _rectangle _viewPosition))
+        (:jm_setCollidableInferface this (CollidableWeaponBehavior/jnew_1 true))
+    this))
 
-local SimpleWeaponLayer = {}
-SimpleWeaponLayer.__index = SimpleWeaponLayer
-SimpleWeaponLayer.className = "SimpleWeaponLayer"
-setmetatable(SimpleWeaponLayer, {__index = WeaponLayer})
+(set jproto (table/setproto @{} WeaponLayer/jproto))
 
-
--- throws Exception
-function SimpleWeaponLayer.createDestroyed()
-        return FeaturedAnimationInterfaceFactoryInterfaceFactory.getInstance():getProcedural(ExplosionResources.getInstance().THIRD_EXPLOSION_RESOURCE):getInstanceAnimation(NullIndexedAnimationFactory.getFactoryInstance():getInstance(0))
-end
-
-
-function SimpleWeaponLayer.new(name, remoteInfo, multiPlayerType, movement, animationInterface, destroyedAnimationInterface, rectangle, viewPosition)
-    local self = setmetatable(WeaponLayer.new(name, remoteInfo, multiPlayerType, movement, animationInterface, destroyedAnimationInterface, rectangle, viewPosition), SimpleWeaponLayer)
-        -- super(...) made self above
-        self:setCollidableInferface(CollidableWeaponBehavior.new(true))
-    return self
-end
-
-return SimpleWeaponLayer
 

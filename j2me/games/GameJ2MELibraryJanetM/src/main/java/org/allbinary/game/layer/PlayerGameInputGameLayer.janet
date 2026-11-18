@@ -1,78 +1,60 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.layer
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.game.layer
 
--- local Graphics = require("javax.microedition.lcdui.Graphics")
-local PlayerGameInput = require("org.allbinary.game.input.PlayerGameInput")
-local PlayerGameInputCompositeInterface = require("org.allbinary.game.input.PlayerGameInputCompositeInterface")
-local PointFactory = require("org.allbinary.graphics.PointFactory")
-local Rectangle = require("org.allbinary.graphics.Rectangle")
-local CanvasStrings = require("org.allbinary.graphics.displayable.CanvasStrings")
-local AllBinaryLayerManager = require("org.allbinary.layer.AllBinaryLayerManager")
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
-local BasicArrayListD = require("org.allbinary.util.BasicArrayListD")
-local StaticViewPosition = require("org.allbinary.view.StaticViewPosition")
-local AllBinaryGameLayer = require("org.allbinary.game.layer.AllBinaryGameLayer")
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- PlayerGameInput/jnew_3 [& args] (JR/call jfile "../../../../org/allbinary/game/input/PlayerGameInput" "jnew_3" args))
+(defn- PointFactory/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/graphics/PointFactory" "jm_getInstance" args))
+(defn- Rectangle/jnew_3 [& args] (JR/call jfile "../../../../org/allbinary/graphics/Rectangle" "jnew_3" args))
+(defn- CanvasStrings/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/graphics/displayable/CanvasStrings" "jm_getInstance" args))
+(defn- StringUtil/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/logic/string/StringUtil" "jm_getInstance" args))
+(defn- BasicArrayListD/jnew_0 [& args] (JR/call jfile "../../../../org/allbinary/util/BasicArrayListD" "jnew_0" args))
+(defn- StaticViewPosition/jnew_3 [& args] (JR/call jfile "../../../../org/allbinary/view/StaticViewPosition" "jnew_3" args))
+(import ./AllBinaryGameLayer :as AllBinaryGameLayer)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class PlayerGameInputGameLayer
+(var jproto nil)
+(var jnew_1 nil)
+(var jm_getPlayerGameInput nil)
+(var jm_initInputProcessors nil)
+(var jm_processInput nil)
+(var jm_paint nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jnew_1 (fn jnew_1 [_playerInputId]
+    (var this (table/setproto @{:jclass "PlayerGameInputGameLayer" :f_playerGameInput nil} jproto))
+    
+        (JR/superInit this (AllBinaryGameLayer/jnew_3 ((StringUtil/jm_getInstance) :f_EMPTY_STRING) (Rectangle/jnew_3 ((PointFactory/jm_getInstance) :f_ZERO_ZERO) 0 0) (StaticViewPosition/jnew_3 0 0 0)))
+        (set (this :f_playerGameInput) (PlayerGameInput/jnew_3 (:jm_getGameKeyEventList this) (BasicArrayListD/jnew_0) _playerInputId))
+        (var _canvasStrings (CanvasStrings/jm_getInstance))
+        (JR/className (this :f_logUtil))
+    this))
+    
+(set jm_getPlayerGameInput (fn jm_getPlayerGameInput [this]
+    (label jreturn
+        (return jreturn (this :f_playerGameInput)))))
+    
+(set jm_initInputProcessors (fn jm_initInputProcessors [this]
+    nil))
+    
+(set jm_processInput (fn jm_processInput [this _myManager]
+    nil))
+    
+(set jm_paint (fn jm_paint [this _graphics]
+    nil))
 
-local PlayerGameInputGameLayer = {}
-PlayerGameInputGameLayer.__index = PlayerGameInputGameLayer
-PlayerGameInputGameLayer.className = "PlayerGameInputGameLayer"
-setmetatable(PlayerGameInputGameLayer, {__index = AllBinaryGameLayer})
+(set jproto (table/setproto @{:jm_getPlayerGameInput jm_getPlayerGameInput :jm_initInputProcessors jm_initInputProcessors :jm_processInput jm_processInput :jm_paint jm_paint} AllBinaryGameLayer/jproto))
 
-function PlayerGameInputGameLayer:_init_fields()
-    self.playerGameInput = nil
-end
-
-
-function PlayerGameInputGameLayer.new(playerInputId)
-    local self = setmetatable(AllBinaryGameLayer.new(StringUtil.getInstance().EMPTY_STRING, Rectangle.new(PointFactory.getInstance().ZERO_ZERO, 0, 0), StaticViewPosition.new(0, 0, 0)), PlayerGameInputGameLayer)
-    self:_init_fields()
-        -- super(...) made self above
-        self.playerGameInput = PlayerGameInput.new(self:getGameKeyEventList(), BasicArrayListD.new(), playerInputId)
-        local canvasStrings = CanvasStrings.getInstance()
-        self.logUtil:putF("Danger Danger Danger: Should Not Be Called Except For Testing Input", self, canvasStrings.PAINT)
-    return self
-end
-
-
-function PlayerGameInputGameLayer:getPlayerGameInput()
-        return self.playerGameInput
-end
-
-
-function PlayerGameInputGameLayer:initInputProcessors()
-end
-
-
--- throws Exception
-function PlayerGameInputGameLayer:processInput(myManager)
-end
-
-
-function PlayerGameInputGameLayer:paint(graphics)
-end
-
-return PlayerGameInputGameLayer
 

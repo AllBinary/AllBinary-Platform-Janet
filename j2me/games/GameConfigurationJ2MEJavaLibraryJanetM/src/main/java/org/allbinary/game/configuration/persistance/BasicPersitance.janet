@@ -1,119 +1,101 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.configuration.persistance
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.game.configuration.persistance
 
--- local RecordStore = require("javax.microedition.rms.RecordStore")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local PreLogUtil = require("org.allbinary.logic.communication.log.PreLogUtil")
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
-local AbeClientInformationInterface = require("org.allbinary.logic.system.security.licensing.AbeClientInformationInterface")
-local PlatformRecordIdUtil = require("org.allbinary.persistance.PlatformRecordIdUtil")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
-local BasicArrayListD = require("org.allbinary.util.BasicArrayListD")
+(import ../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- RecordStore/jm_deleteRecordStore [& args] (JR/call jfile "../../../../../javax/microedition/rms/RecordStore" "jm_deleteRecordStore" args))
+(defn- RecordStore/jm_openRecordStore [& args] (JR/call jfile "../../../../../javax/microedition/rms/RecordStore" "jm_openRecordStore" args))
+(defn- LogUtil/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/logic/communication/log/LogUtil" "jm_getInstance" args))
+(defn- PreLogUtil/jm_put [& args] (JR/call jfile "../../../../../org/allbinary/logic/communication/log/PreLogUtil" "jm_put" args))
+(defn- StringMaker/jnew_0 [& args] (JR/call jfile "../../../../../org/allbinary/logic/string/StringMaker" "jnew_0" args))
+(defn- PlatformRecordIdUtil/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/persistance/PlatformRecordIdUtil" "jm_getInstance" args))
+(defn- CommonStrings/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/string/CommonStrings" "jm_getInstance" args))
+(defn- BasicArrayListD/jnew_0 [& args] (JR/call jfile "../../../../../org/allbinary/util/BasicArrayListD" "jnew_0" args))
+(import ../../../../../java/lang/Integer :as Integer)
+(defn- PersistanceStrings/jm_getInstance [& args] (JR/call jfile "./PersistanceStrings" "jm_getInstance" args))
+(defn- NullRecordStore/jstatic_NULL_RECORD_STORE [& args] (JR/call jfile "./NullRecordStore" "jstatic_NULL_RECORD_STORE" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class BasicPersitance
+(var jproto nil)
+(var jnew_1 nil)
+(var jm_deleteRecoreStore nil)
+(var jm_deleteAll nil)
+(var jm_delete nil)
+(var jm_getRecordId nil)
+(var jm_getList nil)
+(var jm_getIds nil)
+(var jm_clear nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jnew_1 (fn jnew_1 [_recordId]
+    (var this (table/setproto @{:jclass "BasicPersitance" :f_logUtil nil :f_commonStrings nil :f_persistanceStrings nil :f_platformRecordIdUtil nil :f_recordId nil :f_valueList nil :f_idList nil} jproto))
+    (put this :f_logUtil (LogUtil/jm_getInstance))
+    (put this :f_commonStrings (CommonStrings/jm_getInstance))
+    (put this :f_persistanceStrings (PersistanceStrings/jm_getInstance))
+    (put this :f_platformRecordIdUtil (PlatformRecordIdUtil/jm_getInstance))
+    
+    (put this :f_valueList (BasicArrayListD/jnew_0))
+    (put this :f_idList (BasicArrayListD/jnew_0))
+        (set (this :f_recordId) _recordId)
+    this))
+    
+(set jm_deleteRecoreStore (fn jm_deleteRecoreStore [this _abeClientInformation]
+        (RecordStore/jm_deleteRecordStore (:jm_getRecordId this _abeClientInformation))))
+    
+(set jm_deleteAll (fn jm_deleteAll [this _abeClientInformation]
+        (var _size (:jm_size (this :f_idList)))
+        (do
+            (var _index 0)
+            (while (< _index _size)
+                (do
+            (var _integer (((this :f_idList) :f_objectArray) _index))
+            (:jm_delete this _abeClientInformation (:jm_intValue _integer)))
+                (do (set _index (JR/i32 (+ _index 1))))))
+        (:jm_clear this)))
+    
+(set jm_delete (fn jm_delete [this _abeClientInformation _deleteId]
+        (var _recordStore (NullRecordStore/jstatic_NULL_RECORD_STORE))
+        (defer (do
+            (if (not (nil? _recordStore))
+                (do
+                (PreLogUtil/jm_put ((this :f_persistanceStrings) :f_CLOSING_RECORDSTORE) this ((this :f_commonStrings) :f_delete))
+                (:jm_closeRecordStore _recordStore))))
+            (try
+            (do
+            (:jm_putF (this :f_logUtil) (:jm_toString (:jm_appendint (:jm_append (StringMaker/jnew_0) ((this :f_persistanceStrings) :f_DELETING_WITH_ID)) _deleteId)) this ((this :f_commonStrings) :f_delete))
+            (set _recordStore (RecordStore/jm_openRecordStore (:jm_getRecordId this _abeClientInformation) true))
+            (:jm_deleteRecord _recordStore _deleteId))
+            ([_e] (do
+            (error _e)))))))
+    
+(set jm_getRecordId (fn jm_getRecordId [this _abeClientInformation]
+    (label jreturn
+        (return jreturn (:jm_getRecordId (this :f_platformRecordIdUtil) _abeClientInformation (this :f_recordId))))))
+    
+(set jm_getList (fn jm_getList [this]
+    (label jreturn
+        (return jreturn (this :f_valueList)))))
+    
+(set jm_getIds (fn jm_getIds [this]
+    (label jreturn
+        (return jreturn (this :f_idList)))))
+    
+(set jm_clear (fn jm_clear [this]
+        (:jm_clear (this :f_valueList))
+        (:jm_clear (this :f_idList))))
 
-local BasicPersitance = {}
-BasicPersitance.__index = BasicPersitance
-BasicPersitance.className = "BasicPersitance"
+(set jproto @{:jm_deleteRecoreStore jm_deleteRecoreStore :jm_deleteAll jm_deleteAll :jm_delete jm_delete :jm_getRecordId jm_getRecordId :jm_getList jm_getList :jm_getIds jm_getIds :jm_clear jm_clear})
 
-function BasicPersitance:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-    self.commonStrings = CommonStrings.getInstance()
-    self.persistanceStrings = PersistanceStrings.getInstance()
-    self.platformRecordIdUtil = PlatformRecordIdUtil.getInstance()
-    self.recordId = nil
-    self.valueList = BasicArrayListD.new()
-    self.idList = BasicArrayListD.new()
-end
-
-
-function BasicPersitance.new(recordId)
-    local self = setmetatable({}, BasicPersitance)
-    self:_init_fields()
-        self.recordId = recordId
-    return self
-end
-
-
--- throws Exception
-function BasicPersitance:deleteRecoreStore(abeClientInformation)
-        RecordStore.deleteRecordStore(self:getRecordId(abeClientInformation))
-end
-
-
--- throws Exception
-function BasicPersitance:deleteAll(abeClientInformation)
-        local size = self.idList:size()
-        for index = 0, size - 1 do
-            local integer = self.idList.objectArray[index + 1]
-            self:delete(abeClientInformation, math.tointeger(integer // 1))
-        end
-        self:clear()
-end
-
-
--- throws Exception
-function BasicPersitance:delete(abeClientInformation, deleteId)
-        local recordStore = NullRecordStore.NULL_RECORD_STORE
-        local try_ok, try_error = pcall(function()
-            self.logUtil:putF(tostring(StringMaker.new():append(self.persistanceStrings.DELETING_WITH_ID):appendint(deleteId)), self, self.commonStrings.delete)
-            recordStore = RecordStore.openRecordStore(self:getRecordId(abeClientInformation), true)
-            recordStore:deleteRecord(deleteId)
-        end)
-        if not try_ok then
-            local e = try_error
-            error(e, 0)
-        end
-        do -- finally
-            if recordStore ~= nil then
-                PreLogUtil.put(self.persistanceStrings.CLOSING_RECORDSTORE, self, self.commonStrings.delete)
-                recordStore:closeRecordStore()
-            end
-        end
-end
-
-
-function BasicPersitance:getRecordId(abeClientInformation)
-        return self.platformRecordIdUtil:getRecordId(abeClientInformation, self.recordId)
-end
-
-
-function BasicPersitance:getList()
-        return self.valueList
-end
-
-
-function BasicPersitance:getIds()
-        return self.idList
-end
-
-
-function BasicPersitance:clear()
-        self.valueList:clear()
-        self.idList:clear()
-end
-
-return BasicPersitance
 

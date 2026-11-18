@@ -1,80 +1,71 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.ag.ai
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.game.ag.ai
 
--- local Canvas = require("javax.microedition.lcdui.Canvas")
-local SmallIntegerSingletonFactory = require("org.allbinary.logic.math.SmallIntegerSingletonFactory")
-local NoTimeDelayHelper = require("org.allbinary.time.NoTimeDelayHelper")
-local ABHashtable = require("org.allbinary.util.ABHashtable")
+(import ../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- Canvas/jstatic_UP [& args] (JR/call jfile "../../../../../javax/microedition/lcdui/Canvas" "jstatic_UP" args))
+(defn- Canvas/jstatic_DOWN [& args] (JR/call jfile "../../../../../javax/microedition/lcdui/Canvas" "jstatic_DOWN" args))
+(defn- Canvas/jstatic_LEFT [& args] (JR/call jfile "../../../../../javax/microedition/lcdui/Canvas" "jstatic_LEFT" args))
+(defn- Canvas/jstatic_RIGHT [& args] (JR/call jfile "../../../../../javax/microedition/lcdui/Canvas" "jstatic_RIGHT" args))
+(defn- Canvas/jstatic_KEY_NUM7 [& args] (JR/call jfile "../../../../../javax/microedition/lcdui/Canvas" "jstatic_KEY_NUM7" args))
+(defn- Canvas/jstatic_KEY_NUM9 [& args] (JR/call jfile "../../../../../javax/microedition/lcdui/Canvas" "jstatic_KEY_NUM9" args))
+(defn- Canvas/jstatic_KEY_NUM1 [& args] (JR/call jfile "../../../../../javax/microedition/lcdui/Canvas" "jstatic_KEY_NUM1" args))
+(defn- SmallIntegerSingletonFactory/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/logic/math/SmallIntegerSingletonFactory" "jm_getInstance" args))
+(defn- NoTimeDelayHelper/jstatic_SINGLETON [& args] (JR/call jfile "../../../../../org/allbinary/time/NoTimeDelayHelper" "jstatic_SINGLETON" args))
+(import ../../../../../java/lang/Integer :as Integer)
+(defn- InputProbability/jnew_4 [& args] (JR/call jfile "./InputProbability" "jnew_4" args))
 
-local function java_new_array(default, size, ...)
-    local array = {n = size}
-    for index = 1, size do
-        if select("#", ...) > 0 then array[index] = java_new_array(default, ...) else array[index] = default end
-    end
-    return array
-end
+# Java class BasicProbabilityAIDataFactory
+(var jproto nil)
+(var jnew_0 nil)
+(var jm_getInstance nil)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "BasicProbabilityAIDataFactory"} jproto))
+    this))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jm_getInstance (fn jm_getInstance [this]
+    (label jreturn
+        (var _likelyhoodIntegerArray (seq [jindex1 :range [0 (JR/i32 (+ (Canvas/jstatic_KEY_NUM9) 1))]] (array/new-filled 2 nil)))
+        (var _smallIntegerSingletonFactory (SmallIntegerSingletonFactory/jm_getInstance))
+        (set ((_likelyhoodIntegerArray (Canvas/jstatic_UP)) 0) (:jm_getAt _smallIntegerSingletonFactory 0))
+        (set ((_likelyhoodIntegerArray (Canvas/jstatic_UP)) 1) (:jm_getAt _smallIntegerSingletonFactory 10))
+        (set ((_likelyhoodIntegerArray (Canvas/jstatic_DOWN)) 0) (:jm_getAt _smallIntegerSingletonFactory 10))
+        (set ((_likelyhoodIntegerArray (Canvas/jstatic_DOWN)) 1) (:jm_getAt _smallIntegerSingletonFactory 14))
+        (set ((_likelyhoodIntegerArray (Canvas/jstatic_LEFT)) 0) (:jm_getAt _smallIntegerSingletonFactory 14))
+        (set ((_likelyhoodIntegerArray (Canvas/jstatic_LEFT)) 1) (:jm_getAt _smallIntegerSingletonFactory 18))
+        (set ((_likelyhoodIntegerArray (Canvas/jstatic_RIGHT)) 0) (:jm_getAt _smallIntegerSingletonFactory 18))
+        (set ((_likelyhoodIntegerArray (Canvas/jstatic_RIGHT)) 1) (:jm_getAt _smallIntegerSingletonFactory 22))
+        (set ((_likelyhoodIntegerArray (Canvas/jstatic_KEY_NUM7)) 0) (:jm_getAt _smallIntegerSingletonFactory 22))
+        (set ((_likelyhoodIntegerArray (Canvas/jstatic_KEY_NUM7)) 1) (:jm_getAt _smallIntegerSingletonFactory 26))
+        (set ((_likelyhoodIntegerArray (Canvas/jstatic_KEY_NUM9)) 0) (:jm_getAt _smallIntegerSingletonFactory 26))
+        (set ((_likelyhoodIntegerArray (Canvas/jstatic_KEY_NUM9)) 1) (:jm_getAt _smallIntegerSingletonFactory 30))
+        (set ((_likelyhoodIntegerArray (Canvas/jstatic_KEY_NUM1)) 0) (:jm_getAt _smallIntegerSingletonFactory 30))
+        (set ((_likelyhoodIntegerArray (Canvas/jstatic_KEY_NUM1)) 1) (:jm_getAt _smallIntegerSingletonFactory 40))
+        (var _repeatLikelyhoodIntegerArray (array/new-filled (JR/i32 (+ (Canvas/jstatic_KEY_NUM9) 1)) nil))
+        (set (_repeatLikelyhoodIntegerArray (Canvas/jstatic_UP)) (:jm_getAt _smallIntegerSingletonFactory 0))
+        (set (_repeatLikelyhoodIntegerArray (Canvas/jstatic_DOWN)) (:jm_getAt _smallIntegerSingletonFactory 0))
+        (set (_repeatLikelyhoodIntegerArray (Canvas/jstatic_LEFT)) (:jm_getAt _smallIntegerSingletonFactory 0))
+        (set (_repeatLikelyhoodIntegerArray (Canvas/jstatic_RIGHT)) (:jm_getAt _smallIntegerSingletonFactory 0))
+        (set (_repeatLikelyhoodIntegerArray (Canvas/jstatic_KEY_NUM7)) (:jm_getAt _smallIntegerSingletonFactory 0))
+        (set (_repeatLikelyhoodIntegerArray (Canvas/jstatic_KEY_NUM9)) (:jm_getAt _smallIntegerSingletonFactory 0))
+        (set (_repeatLikelyhoodIntegerArray (Canvas/jstatic_KEY_NUM1)) (:jm_getAt _smallIntegerSingletonFactory 10))
+        (var _inputProbability (InputProbability/jnew_4 _likelyhoodIntegerArray _repeatLikelyhoodIntegerArray 42 (NoTimeDelayHelper/jstatic_SINGLETON)))
+        (return jreturn (:jm_toHashtable _inputProbability)))))
 
-local BasicProbabilityAIDataFactory = {}
-BasicProbabilityAIDataFactory.__index = BasicProbabilityAIDataFactory
-BasicProbabilityAIDataFactory.className = "BasicProbabilityAIDataFactory"
+(set jproto @{:jm_getInstance jm_getInstance})
 
-function BasicProbabilityAIDataFactory.new()
-    local self = setmetatable({}, BasicProbabilityAIDataFactory)
-    return self
-end
-
-
-function BasicProbabilityAIDataFactory:getInstance()
-        local likelyhoodIntegerArray = java_new_array(nil, Canvas.KEY_NUM9 + 1, 2)
-        local smallIntegerSingletonFactory = SmallIntegerSingletonFactory.getInstance()
-        likelyhoodIntegerArray[Canvas.UP + 1][1] = smallIntegerSingletonFactory:getAt(0)
-        likelyhoodIntegerArray[Canvas.UP + 1][2] = smallIntegerSingletonFactory:getAt(10)
-        likelyhoodIntegerArray[Canvas.DOWN + 1][1] = smallIntegerSingletonFactory:getAt(10)
-        likelyhoodIntegerArray[Canvas.DOWN + 1][2] = smallIntegerSingletonFactory:getAt(14)
-        likelyhoodIntegerArray[Canvas.LEFT + 1][1] = smallIntegerSingletonFactory:getAt(14)
-        likelyhoodIntegerArray[Canvas.LEFT + 1][2] = smallIntegerSingletonFactory:getAt(18)
-        likelyhoodIntegerArray[Canvas.RIGHT + 1][1] = smallIntegerSingletonFactory:getAt(18)
-        likelyhoodIntegerArray[Canvas.RIGHT + 1][2] = smallIntegerSingletonFactory:getAt(22)
-        likelyhoodIntegerArray[Canvas.KEY_NUM7 + 1][1] = smallIntegerSingletonFactory:getAt(22)
-        likelyhoodIntegerArray[Canvas.KEY_NUM7 + 1][2] = smallIntegerSingletonFactory:getAt(26)
-        likelyhoodIntegerArray[Canvas.KEY_NUM9 + 1][1] = smallIntegerSingletonFactory:getAt(26)
-        likelyhoodIntegerArray[Canvas.KEY_NUM9 + 1][2] = smallIntegerSingletonFactory:getAt(30)
-        likelyhoodIntegerArray[Canvas.KEY_NUM1 + 1][1] = smallIntegerSingletonFactory:getAt(30)
-        likelyhoodIntegerArray[Canvas.KEY_NUM1 + 1][2] = smallIntegerSingletonFactory:getAt(40)
-        local repeatLikelyhoodIntegerArray = java_new_array(nil, Canvas.KEY_NUM9 + 1)
-        repeatLikelyhoodIntegerArray[Canvas.UP + 1] = smallIntegerSingletonFactory:getAt(0)
-        repeatLikelyhoodIntegerArray[Canvas.DOWN + 1] = smallIntegerSingletonFactory:getAt(0)
-        repeatLikelyhoodIntegerArray[Canvas.LEFT + 1] = smallIntegerSingletonFactory:getAt(0)
-        repeatLikelyhoodIntegerArray[Canvas.RIGHT + 1] = smallIntegerSingletonFactory:getAt(0)
-        repeatLikelyhoodIntegerArray[Canvas.KEY_NUM7 + 1] = smallIntegerSingletonFactory:getAt(0)
-        repeatLikelyhoodIntegerArray[Canvas.KEY_NUM9 + 1] = smallIntegerSingletonFactory:getAt(0)
-        repeatLikelyhoodIntegerArray[Canvas.KEY_NUM1 + 1] = smallIntegerSingletonFactory:getAt(10)
-        local inputProbability = InputProbability.new(likelyhoodIntegerArray, repeatLikelyhoodIntegerArray, 42, NoTimeDelayHelper.SINGLETON)
-        return inputProbability:toHashtable()
-end
-
-return BasicProbabilityAIDataFactory
 

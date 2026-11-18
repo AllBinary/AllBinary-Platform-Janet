@@ -1,77 +1,52 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.input.gyro
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.input.gyro
 
-local CompleteMotionGestureInputEventListenerInterface = require("org.allbinary.game.input.CompleteMotionGestureInputEventListenerInterface")
-local NoCompleteMotionGestureInputEventListener = require("org.allbinary.game.input.motion.action.NoCompleteMotionGestureInputEventListener")
-local AllBinarySensor = require("org.allbinary.input.AllBinarySensor")
-local Orientation = require("org.allbinary.logic.math.Orientation")
-local PrimitiveFloatUtil = require("org.allbinary.logic.math.PrimitiveFloatUtil")
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- NoCompleteMotionGestureInputEventListener/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/game/input/motion/action/NoCompleteMotionGestureInputEventListener" "jm_getInstance" args))
+(import ../../../../org/allbinary/input/AllBinarySensor :as AllBinarySensor)
+(defn- PrimitiveFloatUtil/jm_getArrayInstance [& args] (JR/call jfile "../../../../org/allbinary/logic/math/PrimitiveFloatUtil" "jm_getArrayInstance" args))
 
--- Java library Throwable. tostring gives the message like Java getMessage.
-local function java_exception(className, message, cause)
-    if cause == nil and type(message) == "table" then
-        cause = message
-        message = tostring(message)
-    end
-    local exception = {className = className, message = message, cause = cause}
-    function exception:getMessage() return self.message end
-    function exception:getCause() return self.cause end
-    function exception:printStackTrace() print(debug.traceback(tostring(self))) end
-    return setmetatable(exception, {__tostring = function(self) if self.message ~= nil then return tostring(self.message) end return self.className end})
-end
+# Java class AllBinaryOrientationSensor
+(var jproto nil)
+(var jcell_NULL_ALLBINARY_ORIENTATION_SENSOR :jnone)
+(var jstatic_NULL_ALLBINARY_ORIENTATION_SENSOR nil)
+(var jsetstatic_NULL_ALLBINARY_ORIENTATION_SENSOR nil)
+(var jnew_0 nil)
+(var jm_setCompleteMotionGestureInputEventListener nil)
+(var jm_getOrientation nil)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(set jstatic_NULL_ALLBINARY_ORIENTATION_SENSOR (fn jstatic_NULL_ALLBINARY_ORIENTATION_SENSOR []
+  (when (= jcell_NULL_ALLBINARY_ORIENTATION_SENSOR :jnone) (set jcell_NULL_ALLBINARY_ORIENTATION_SENSOR (jnew_0)))
+  jcell_NULL_ALLBINARY_ORIENTATION_SENSOR))
+(set jsetstatic_NULL_ALLBINARY_ORIENTATION_SENSOR (fn jsetstatic_NULL_ALLBINARY_ORIENTATION_SENSOR [value] (set jcell_NULL_ALLBINARY_ORIENTATION_SENSOR value)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jm_setCompleteMotionGestureInputEventListener (fn jm_setCompleteMotionGestureInputEventListener [this _completeMotionGestureInputEventListenerInterface]
+        (set (this :f_listener) _completeMotionGestureInputEventListenerInterface)))
+    
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "AllBinaryOrientationSensor" :f_sensorDataFloatArray nil :f_listener nil} jproto))
+    (put this :f_sensorDataFloatArray (PrimitiveFloatUtil/jm_getArrayInstance))
+    (put this :f_listener (NoCompleteMotionGestureInputEventListener/jm_getInstance))
+    (JR/superInit this (AllBinarySensor/jnew_0))
+    this))
+    
+(set jm_getOrientation (fn jm_getOrientation [this]
+        (error (JR/newException "Exception" ((this :f_commonStrings) :f_NOT_IMPLEMENTED)))))
 
-local AllBinaryOrientationSensor = {}
-AllBinaryOrientationSensor.__index = AllBinaryOrientationSensor
-AllBinaryOrientationSensor.className = "AllBinaryOrientationSensor"
-setmetatable(AllBinaryOrientationSensor, {__index = AllBinarySensor})
+(set jproto (table/setproto @{:jm_setCompleteMotionGestureInputEventListener jm_setCompleteMotionGestureInputEventListener :jm_getOrientation jm_getOrientation} AllBinarySensor/jproto))
 
-function AllBinaryOrientationSensor:_init_fields()
-    self.sensorDataFloatArray = PrimitiveFloatUtil.getArrayInstance()
-    self.listener = NoCompleteMotionGestureInputEventListener.getInstance()
-end
-
-
-function AllBinaryOrientationSensor:setCompleteMotionGestureInputEventListener(completeMotionGestureInputEventListenerInterface)
-        self.listener = completeMotionGestureInputEventListenerInterface
-end
-
-
-function AllBinaryOrientationSensor.new()
-    local self = setmetatable(AllBinarySensor.new(), AllBinaryOrientationSensor)
-    self:_init_fields()
-    return self
-end
-
-
--- throws Exception
-function AllBinaryOrientationSensor:getOrientation()
-        error(java_exception("Exception", self.commonStrings.NOT_IMPLEMENTED), 0)
-end
-
-AllBinaryOrientationSensor.NULL_ALLBINARY_ORIENTATION_SENSOR = AllBinaryOrientationSensor.new()
-
-return AllBinaryOrientationSensor
 

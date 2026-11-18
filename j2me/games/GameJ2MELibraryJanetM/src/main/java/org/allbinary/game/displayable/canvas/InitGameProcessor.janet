@@ -1,58 +1,41 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2026 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.displayable.canvas
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2026 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.game.displayable.canvas
 
-local Processor = require("org.allbinary.canvas.Processor")
-local ProgressCanvasFactory = require("org.allbinary.graphics.canvas.transition.progress.ProgressCanvasFactory")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
+(import ../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(import ../../../../../org/allbinary/canvas/Processor :as Processor)
+(defn- ProgressCanvasFactory/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/graphics/canvas/transition/progress/ProgressCanvasFactory" "jm_getInstance" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class InitGameProcessor
+(var jproto nil)
+(var jnew_1 nil)
+(var jm_process nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jnew_1 (fn jnew_1 [_gameCanvas]
+    (var this (table/setproto @{:jclass "InitGameProcessor" :f_gameCanvas nil} jproto))
+    
+    (JR/superInit this (Processor/jnew_0))
+        (set (this :f_gameCanvas) _gameCanvas)
+    this))
+    
+(set jm_process (fn jm_process [this]
+        (if (:jm_isInGame (ProgressCanvasFactory/jm_getInstance))
+            (do
+            (:jm_setProcessGameProcessorInit (this :f_gameCanvas))))))
 
-local InitGameProcessor = {}
-InitGameProcessor.__index = InitGameProcessor
-InitGameProcessor.className = "InitGameProcessor"
-setmetatable(InitGameProcessor, {__index = Processor})
+(set jproto (table/setproto @{:jm_process jm_process} Processor/jproto))
 
-function InitGameProcessor:_init_fields()
-    self.gameCanvas = nil
-end
-
-
-function InitGameProcessor.new(gameCanvas)
-    local self = setmetatable(Processor.new(), InitGameProcessor)
-    self:_init_fields()
-        self.gameCanvas = gameCanvas
-    return self
-end
-
-
--- throws Exception
-function InitGameProcessor:process()
-        if ProgressCanvasFactory.getInstance():isInGame() then
-            self.gameCanvas:setProcessGameProcessorInit()
-        end
-end
-
-return InitGameProcessor
 

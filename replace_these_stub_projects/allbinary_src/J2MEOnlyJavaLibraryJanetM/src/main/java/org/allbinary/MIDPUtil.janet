@@ -1,81 +1,73 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2026 AllBinary
---
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
---
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
---
--- Created By: Travis Berthelot
--- 
--- Generated Code Do Not Modify
--- package org.allbinary
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2026 AllBinary
+#
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+#
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+#
+# Created By: Travis Berthelot
+# 
+# Generated Code Do Not Modify
+# package org.allbinary
 
--- local IOException = require("java.io.IOException")
--- local InputStream = require("java.io.InputStream")
--- local Form = require("javax.microedition.lcdui.Form")
--- local Image = require("javax.microedition.lcdui.Image")
--- local Item = require("javax.microedition.lcdui.Item")
--- local Manager = require("javax.microedition.media.Manager")
--- local MediaException = require("javax.microedition.media.MediaException")
--- local Player = require("javax.microedition.media.Player")
+(import ../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(import ../../java/io/IOException :as IOException)
+(import ../../java/io/InputStream :as InputStream)
+(defn- Image/jm_createImage [& args] (JR/call jfile "../../javax/microedition/lcdui/Image" "jm_createImage" args))
+(defn- Manager/jm_createPlayer [& args] (JR/call jfile "../../javax/microedition/media/Manager" "jm_createPlayer" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+#like microemu-playn, so the languages without overloading can be generated. J2ME uses the MIDP overloads.
+# Java class MIDPUtil
+(var jproto nil)
+(var jcell_instance :jnone)
+(var jstatic_instance nil)
+(var jsetstatic_instance nil)
+(var jnew_0 nil)
+(var jm_getInstance nil)
+(var jm_createImageWH nil)
+(var jm_createImageFromByteArray nil)
+(var jm_createImageFromInputStream nil)
+(var jm_createPlayerFromInputStream nil)
+(var jm_appendItem nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jstatic_instance (fn jstatic_instance []
+  (when (= jcell_instance :jnone) (set jcell_instance (jnew_0)))
+  jcell_instance))
+(set jsetstatic_instance (fn jsetstatic_instance [value] (set jcell_instance value)))
 
---like microemu-playn, so the languages without overloading can be generated. J2ME uses the MIDP overloads.
-local MIDPUtil = {}
-MIDPUtil.__index = MIDPUtil
-MIDPUtil.className = "MIDPUtil"
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "MIDPUtil"} jproto))
+    this))
 
-function MIDPUtil.new()
-    local self = setmetatable({}, MIDPUtil)
-    return self
-end
+    
+(set jm_getInstance (fn jm_getInstance []
+    (label jreturn
+        (return jreturn (jstatic_instance)))))
+    
+(set jm_createImageWH (fn jm_createImageWH [this _width _height]
+    (label jreturn
+        (return jreturn (Image/jm_createImage _width _height)))))
+    
+(set jm_createImageFromByteArray (fn jm_createImageFromByteArray [this _imageData _imageOffset _imageLength]
+    (label jreturn
+        (return jreturn (Image/jm_createImage _imageData _imageOffset _imageLength)))))
+    
+(set jm_createImageFromInputStream (fn jm_createImageFromInputStream [this _inputStream]
+    (label jreturn
+        (return jreturn (Image/jm_createImage _inputStream)))))
+    
+(set jm_createPlayerFromInputStream (fn jm_createPlayerFromInputStream [this _inputStream _type]
+    (label jreturn
+        (return jreturn (Manager/jm_createPlayer _inputStream _type)))))
+    
+(set jm_appendItem (fn jm_appendItem [this _form _item]
+    (label jreturn
+        (return jreturn (:jm_append _form _item)))))
 
+(set jproto @{:jm_createImageWH jm_createImageWH :jm_createImageFromByteArray jm_createImageFromByteArray :jm_createImageFromInputStream jm_createImageFromInputStream :jm_createPlayerFromInputStream jm_createPlayerFromInputStream :jm_appendItem jm_appendItem})
 
-function MIDPUtil.getInstance()
-        return MIDPUtil.instance
-end
-
-
-function MIDPUtil:createImageWH(width, height)
-        return Image.createImage(width, height)
-end
-
-
-function MIDPUtil:createImageFromByteArray(imageData, imageOffset, imageLength)
-        return Image.createImage(imageData, imageOffset, imageLength)
-end
-
-
--- throws IOException
-function MIDPUtil:createImageFromInputStream(inputStream)
-        return Image.createImage(inputStream)
-end
-
-
--- throws IOException, MediaException
-function MIDPUtil:createPlayerFromInputStream(inputStream, type)
-        return Manager.createPlayer(inputStream, type)
-end
-
-
-function MIDPUtil:appendItem(form, item)
-        return form:append(item)
-end
-
-MIDPUtil.instance = MIDPUtil.new()
-
-return MIDPUtil
 

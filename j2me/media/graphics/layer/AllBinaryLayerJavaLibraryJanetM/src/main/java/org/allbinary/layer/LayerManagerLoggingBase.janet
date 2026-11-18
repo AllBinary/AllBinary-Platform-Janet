@@ -1,59 +1,50 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
--- 
--- Generated Code Do Not Modify
--- package org.allbinary.layer
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+# 
+# Generated Code Do Not Modify
+# package org.allbinary.layer
 
+(import ../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class LayerManagerLoggingBase
+(var jproto nil)
+(var jnew_0 nil)
+(var jm_append nil)
+(var jm_appendAt nil)
+(var jm_remove nil)
+(var jm_removeResult nil)
+(var jm_clear nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "LayerManagerLoggingBase"} jproto))
+    this))
 
-local LayerManagerLoggingBase = {}
-LayerManagerLoggingBase.__index = LayerManagerLoggingBase
-LayerManagerLoggingBase.className = "LayerManagerLoggingBase"
+    
+(set jm_append (fn jm_append [this _layerInterface]
+    nil))
+    
+(set jm_appendAt (fn jm_appendAt [this _layerInterface _index]
+    nil))
+    
+(set jm_remove (fn jm_remove [this _layerInterface]
+    nil))
+    
+(set jm_removeResult (fn jm_removeResult [this _layerManager _layerInterface _result]
+    nil))
+    
+(set jm_clear (fn jm_clear [this]
+    nil))
 
-function LayerManagerLoggingBase.new()
-    local self = setmetatable({}, LayerManagerLoggingBase)
-    return self
-end
+(set jproto @{:jm_append jm_append :jm_appendAt jm_appendAt :jm_remove jm_remove :jm_removeResult jm_removeResult :jm_clear jm_clear})
 
-
--- throws Exception
-function LayerManagerLoggingBase:append(layerInterface)
-end
-
-
-function LayerManagerLoggingBase:appendAt(layerInterface, index)
-end
-
-
-function LayerManagerLoggingBase:remove(layerInterface)
-end
-
-
-function LayerManagerLoggingBase:removeResult(layerManager, layerInterface, result)
-end
-
-
-function LayerManagerLoggingBase:clear()
-end
-
-return LayerManagerLoggingBase
 

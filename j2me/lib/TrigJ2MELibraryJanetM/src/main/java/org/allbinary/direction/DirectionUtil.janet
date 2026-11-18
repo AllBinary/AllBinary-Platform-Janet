@@ -1,82 +1,67 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.direction
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.direction
 
-local Angle = require("org.allbinary.math.Angle")
-local AngleFactory = require("org.allbinary.math.AngleFactory")
+(import ../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- AngleFactory/jm_getInstance [& args] (JR/call jfile "../../../org/allbinary/math/AngleFactory" "jm_getInstance" args))
+(defn- DirectionFactory/jm_getInstance [& args] (JR/call jfile "./DirectionFactory" "jm_getInstance" args))
 
-local function java_new_array(default, size, ...)
-    local array = {n = size}
-    for index = 1, size do
-        if select("#", ...) > 0 then array[index] = java_new_array(default, ...) else array[index] = default end
-    end
-    return array
-end
+# Java class DirectionUtil
+(var jproto nil)
+(var jcell_instance :jnone)
+(var jstatic_instance nil)
+(var jsetstatic_instance nil)
+(var jnew_0 nil)
+(var jm_getInstance nil)
+(var jm_getAngle nil)
+(var jm_getFrameAngle nil)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(set jstatic_instance (fn jstatic_instance []
+  (when (= jcell_instance :jnone) (set jcell_instance (jnew_0)))
+  jcell_instance))
+(set jsetstatic_instance (fn jsetstatic_instance [value] (set jcell_instance value)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jm_getInstance (fn jm_getInstance []
+    (label jreturn
+        (return jreturn (jstatic_instance)))))
+    
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "DirectionUtil" :f_directionArray nil :f_directionArray2 nil} jproto))
+    (put this :f_directionArray (array/new-filled 10 nil))
+    (put this :f_directionArray2 (array/new-filled 10 nil))
+        (var _angleFactory (AngleFactory/jm_getInstance))
+        (var _directionFactory (DirectionFactory/jm_getInstance))
+        (set ((this :f_directionArray) (JR/className (_directionFactory :f_LEFT))) (_angleFactory :f_LEFT))
+        (set ((this :f_directionArray) (JR/className (_directionFactory :f_RIGHT))) (_angleFactory :f_RIGHT))
+        (set ((this :f_directionArray) (JR/className (_directionFactory :f_UP))) (_angleFactory :f_UP))
+        (set ((this :f_directionArray) (JR/className (_directionFactory :f_DOWN))) (_angleFactory :f_DOWN))
+        (set ((this :f_directionArray2) (JR/className (_directionFactory :f_LEFT))) (_angleFactory :f_LEFT))
+        (set ((this :f_directionArray2) (JR/className (_directionFactory :f_RIGHT))) (_angleFactory :f_RIGHT))
+        (set ((this :f_directionArray2) (JR/className (_directionFactory :f_UP))) (_angleFactory :f_UP))
+        (set ((this :f_directionArray2) (JR/className (_directionFactory :f_DOWN))) (_angleFactory :f_DOWN))
+    this))
+    
+(set jm_getAngle (fn jm_getAngle [this _direction]
+    (label jreturn
+        (return jreturn ((this :f_directionArray2) (:jm_getValue _direction))))))
+    
+(set jm_getFrameAngle (fn jm_getFrameAngle [this _direction]
+    (label jreturn
+        (return jreturn ((this :f_directionArray) (:jm_getValue _direction))))))
 
-local DirectionUtil = {}
-DirectionUtil.__index = DirectionUtil
-DirectionUtil.className = "DirectionUtil"
+(set jproto @{:jm_getAngle jm_getAngle :jm_getFrameAngle jm_getFrameAngle})
 
-function DirectionUtil:_init_fields()
-    self.directionArray = java_new_array(nil, 10)
-    self.directionArray2 = java_new_array(nil, 10)
-end
-
-
-function DirectionUtil.getInstance()
-        return DirectionUtil.instance
-end
-
-
-function DirectionUtil.new()
-    local self = setmetatable({}, DirectionUtil)
-    self:_init_fields()
-        local angleFactory = AngleFactory.getInstance()
-        local directionFactory = DirectionFactory.getInstance()
-        self.directionArray[directionFactory.LEFT:getValue() + 1] = angleFactory.LEFT
-        self.directionArray[directionFactory.RIGHT:getValue() + 1] = angleFactory.RIGHT
-        self.directionArray[directionFactory.UP:getValue() + 1] = angleFactory.UP
-        self.directionArray[directionFactory.DOWN:getValue() + 1] = angleFactory.DOWN
-        self.directionArray2[directionFactory.LEFT:getValue() + 1] = angleFactory.LEFT
-        self.directionArray2[directionFactory.RIGHT:getValue() + 1] = angleFactory.RIGHT
-        self.directionArray2[directionFactory.UP:getValue() + 1] = angleFactory.UP
-        self.directionArray2[directionFactory.DOWN:getValue() + 1] = angleFactory.DOWN
-    return self
-end
-
-
-function DirectionUtil:getAngle(direction)
-        return self.directionArray2[direction:getValue() + 1]
-end
-
-
-function DirectionUtil:getFrameAngle(direction)
-        return self.directionArray[direction:getValue() + 1]
-end
-
-DirectionUtil.instance = DirectionUtil.new()
-
-return DirectionUtil
 

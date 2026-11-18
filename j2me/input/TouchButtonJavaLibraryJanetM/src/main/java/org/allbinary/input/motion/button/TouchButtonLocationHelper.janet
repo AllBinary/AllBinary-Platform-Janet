@@ -1,108 +1,95 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.input.motion.button
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.input.motion.button
 
-local DisplayInfoSingleton = require("org.allbinary.graphics.displayable.DisplayInfoSingleton")
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
+(import ../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- DisplayInfoSingleton/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/graphics/displayable/DisplayInfoSingleton" "jm_getInstance" args))
+(defn- StringMaker/jnew_0 [& args] (JR/call jfile "../../../../../org/allbinary/logic/string/StringMaker" "jnew_0" args))
+(defn- CommonButtons/jm_getInstance [& args] (JR/call jfile "./CommonButtons" "jm_getInstance" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class TouchButtonLocationHelper
+(var jproto nil)
+(var jnew_0 nil)
+(var jm_getTotalColumns nil)
+(var jm_getTotalRows nil)
+(var jm_getColumnsRemainder nil)
+(var jm_getRowsRemainder nil)
+(var jm_getColumnsRemainderHalf nil)
+(var jm_getRowsRemainderHalf nil)
+(var jm_toString nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "TouchButtonLocationHelper" :f_totalColumns 0 :f_totalRows 0 :f_columnsRemainder 0 :f_rowsRemainder 0 :f_columnsRemainderHalf 0 :f_rowsRemainderHalf 0} jproto))
+    
+    
+    
+    
+    
+    
+        (var _buttonSize ((CommonButtons/jm_getInstance) :f_STANDARD_BUTTON_SIZE))
+        (var _displayInfo (DisplayInfoSingleton/jm_getInstance))
+        (set (this :f_totalColumns) (math/round (/ (:jm_getLastWidth _displayInfo) _buttonSize)))
+        (set (this :f_totalRows) (math/round (/ (:jm_getLastHeight _displayInfo) _buttonSize)))
+        (set (this :f_columnsRemainder) (% (:jm_getLastWidth _displayInfo) _buttonSize))
+        (set (this :f_columnsRemainderHalf) (brshift (this :f_columnsRemainder) 1))
+        (set (this :f_rowsRemainder) (% (:jm_getLastHeight _displayInfo) _buttonSize))
+        (set (this :f_rowsRemainderHalf) (brshift (this :f_rowsRemainder) 1))
+    this))
+    
+(set jm_getTotalColumns (fn jm_getTotalColumns [this]
+    (label jreturn
+        (return jreturn (this :f_totalColumns)))))
+    
+(set jm_getTotalRows (fn jm_getTotalRows [this]
+    (label jreturn
+        (return jreturn (this :f_totalRows)))))
+    
+(set jm_getColumnsRemainder (fn jm_getColumnsRemainder [this]
+    (label jreturn
+        (return jreturn (this :f_columnsRemainder)))))
+    
+(set jm_getRowsRemainder (fn jm_getRowsRemainder [this]
+    (label jreturn
+        (return jreturn (this :f_rowsRemainder)))))
+    
+(set jm_getColumnsRemainderHalf (fn jm_getColumnsRemainderHalf [this]
+    (label jreturn
+        (return jreturn (this :f_columnsRemainderHalf)))))
+    
+(set jm_getRowsRemainderHalf (fn jm_getRowsRemainderHalf [this]
+    (label jreturn
+        (return jreturn (this :f_rowsRemainderHalf)))))
+    
+(set jm_toString (fn jm_toString [this]
+    (label jreturn
+        (var _stringBuffer (StringMaker/jnew_0))
+        (:jm_append _stringBuffer "totalColumns: ")
+        (:jm_appendint _stringBuffer (this :f_totalColumns))
+        (:jm_append _stringBuffer " totalRows: ")
+        (:jm_appendint _stringBuffer (this :f_totalRows))
+        (:jm_append _stringBuffer " columnsRemainder: ")
+        (:jm_appendint _stringBuffer (this :f_columnsRemainder))
+        (:jm_append _stringBuffer " rowsRemainder: ")
+        (:jm_appendint _stringBuffer (this :f_rowsRemainder))
+        (:jm_append _stringBuffer " columnsRemainderHalf: ")
+        (:jm_appendint _stringBuffer (this :f_columnsRemainderHalf))
+        (:jm_append _stringBuffer " rowsRemainderHalf: ")
+        (:jm_appendint _stringBuffer (this :f_rowsRemainderHalf))
+        (return jreturn (:jm_toString _stringBuffer)))))
 
-local TouchButtonLocationHelper = {}
-TouchButtonLocationHelper.__index = TouchButtonLocationHelper
-TouchButtonLocationHelper.className = "TouchButtonLocationHelper"
+(set jproto @{:jm_getTotalColumns jm_getTotalColumns :jm_getTotalRows jm_getTotalRows :jm_getColumnsRemainder jm_getColumnsRemainder :jm_getRowsRemainder jm_getRowsRemainder :jm_getColumnsRemainderHalf jm_getColumnsRemainderHalf :jm_getRowsRemainderHalf jm_getRowsRemainderHalf :jm_toString jm_toString})
 
-function TouchButtonLocationHelper:_init_fields()
-    self.totalColumns = nil
-    self.totalRows = nil
-    self.columnsRemainder = nil
-    self.rowsRemainder = nil
-    self.columnsRemainderHalf = nil
-    self.rowsRemainderHalf = nil
-end
-
-
-function TouchButtonLocationHelper.new()
-    local self = setmetatable({}, TouchButtonLocationHelper)
-    self:_init_fields()
-        local buttonSize = CommonButtons.getInstance().STANDARD_BUTTON_SIZE
-        local displayInfo = DisplayInfoSingleton.getInstance()
-        self.totalColumns = math.floor((displayInfo:getLastWidth() + 0.0) / (buttonSize + 0.0) + 0.5)
-        self.totalRows = math.floor((displayInfo:getLastHeight() + 0.0) / (buttonSize + 0.0) + 0.5)
-        self.columnsRemainder = displayInfo:getLastWidth() % buttonSize
-        self.columnsRemainderHalf = (((self.columnsRemainder) // (1 << (1))))
-        self.rowsRemainder = displayInfo:getLastHeight() % buttonSize
-        self.rowsRemainderHalf = (((self.rowsRemainder) // (1 << (1))))
-    return self
-end
-
-
-function TouchButtonLocationHelper:getTotalColumns()
-        return self.totalColumns
-end
-
-
-function TouchButtonLocationHelper:getTotalRows()
-        return self.totalRows
-end
-
-
-function TouchButtonLocationHelper:getColumnsRemainder()
-        return self.columnsRemainder
-end
-
-
-function TouchButtonLocationHelper:getRowsRemainder()
-        return self.rowsRemainder
-end
-
-
-function TouchButtonLocationHelper:getColumnsRemainderHalf()
-        return self.columnsRemainderHalf
-end
-
-
-function TouchButtonLocationHelper:getRowsRemainderHalf()
-        return self.rowsRemainderHalf
-end
-
-
-function TouchButtonLocationHelper:toString()
-        local stringBuffer = StringMaker.new()
-        stringBuffer:append("totalColumns: ")
-        stringBuffer:appendint(self.totalColumns)
-        stringBuffer:append(" totalRows: ")
-        stringBuffer:appendint(self.totalRows)
-        stringBuffer:append(" columnsRemainder: ")
-        stringBuffer:appendint(self.columnsRemainder)
-        stringBuffer:append(" rowsRemainder: ")
-        stringBuffer:appendint(self.rowsRemainder)
-        stringBuffer:append(" columnsRemainderHalf: ")
-        stringBuffer:appendint(self.columnsRemainderHalf)
-        stringBuffer:append(" rowsRemainderHalf: ")
-        stringBuffer:appendint(self.rowsRemainderHalf)
-        return tostring(stringBuffer)
-end
-TouchButtonLocationHelper.__tostring = function(self) return self:toString() end
-
-return TouchButtonLocationHelper
 

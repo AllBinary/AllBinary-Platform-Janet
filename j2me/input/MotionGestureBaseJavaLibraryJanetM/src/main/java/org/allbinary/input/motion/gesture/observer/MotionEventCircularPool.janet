@@ -1,61 +1,47 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.input.motion.gesture.observer
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.input.motion.gesture.observer
 
-local InputFactory = require("org.allbinary.game.input.InputFactory")
-local MotionGestureInput = require("org.allbinary.input.motion.gesture.MotionGestureInput")
-local TouchMotionGestureFactory = require("org.allbinary.input.motion.gesture.TouchMotionGestureFactory")
-local AllBinaryEventCircularPool = require("org.allbinary.logic.util.event.AllBinaryEventCircularPool")
+(import ../../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- InputFactory/jm_getInstance [& args] (JR/call jfile "../../../../../../org/allbinary/game/input/InputFactory" "jm_getInstance" args))
+(defn- TouchMotionGestureFactory/jm_getInstance [& args] (JR/call jfile "../../../../../../org/allbinary/input/motion/gesture/TouchMotionGestureFactory" "jm_getInstance" args))
+(defn- AllBinaryEventCircularPool/jnew_1 [& args] (JR/call jfile "../../../../../../org/allbinary/logic/util/event/AllBinaryEventCircularPool" "jnew_1" args))
+(defn- MotionEventFactory/jnew_2 [& args] (JR/call jfile "./MotionEventFactory" "jnew_2" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class MotionEventCircularPool
+(var jproto nil)
+(var jnew_1 nil)
+(var jm_createPool nil)
+(var jm_getInstance nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jm_createPool (fn jm_createPool [_id]
+    (label jreturn
+        (return jreturn (jnew_1 _id)))))
+    
+(set jnew_1 (fn jnew_1 [_id]
+    (var this (table/setproto @{:jclass "MotionEventCircularPool" :f_MIN 0 :f_eventPool nil} jproto))
+    (put this :f_MIN (JR/className ((TouchMotionGestureFactory/jm_getInstance) :f_LAST_MOTION)))
+    (put this :f_eventPool (AllBinaryEventCircularPool/jnew_1 (JR/i32 (- (JR/i32 (- ((InputFactory/jm_getInstance) :f_MAX) 1)) (this :f_MIN)))))
+        (:jm_initAllBinaryEventCircularPool (this :f_eventPool) (MotionEventFactory/jnew_2 (this :f_eventPool) _id))
+    this))
+    
+(set jm_getInstance (fn jm_getInstance [this _motionGestureInput]
+    (label jreturn
+        (return jreturn (:jm_getInstance (this :f_eventPool) (JR/i32 (- (:jm_getId _motionGestureInput) (this :f_MIN))))))))
 
-local MotionEventCircularPool = {}
-MotionEventCircularPool.__index = MotionEventCircularPool
-MotionEventCircularPool.className = "MotionEventCircularPool"
+(set jproto @{:jm_getInstance jm_getInstance})
 
-function MotionEventCircularPool:_init_fields()
-    self.MIN = TouchMotionGestureFactory.getInstance().LAST_MOTION:getId()
-    self.eventPool = AllBinaryEventCircularPool.new((InputFactory.getInstance().MAX - 1) - self.MIN)
-end
-
-
-function MotionEventCircularPool.createPool(id)
-        return MotionEventCircularPool.new(id)
-end
-
-
-function MotionEventCircularPool.new(id)
-    local self = setmetatable({}, MotionEventCircularPool)
-    self:_init_fields()
-        self.eventPool:initAllBinaryEventCircularPool(MotionEventFactory.new(self.eventPool, id))
-    return self
-end
-
-
--- throws Exception
-function MotionEventCircularPool:getInstance(motionGestureInput)
-        return self.eventPool:getInstance(motionGestureInput:getId() - self.MIN)
-end
-
-return MotionEventCircularPool
 

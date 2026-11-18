@@ -1,72 +1,54 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.animation.image
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.animation.image
 
--- local Image = require("javax.microedition.lcdui.Image")
-local Animation = require("org.allbinary.animation.Animation")
-local AnimationBehavior = require("org.allbinary.animation.AnimationBehavior")
-local AnimationBehaviorFactory = require("org.allbinary.animation.AnimationBehaviorFactory")
-local AnimationInterfaceFactoryInterface = require("org.allbinary.animation.AnimationInterfaceFactoryInterface")
-local ForcedLogUtil = require("org.allbinary.logic.communication.log.ForcedLogUtil")
-local ScaleProperties = require("org.allbinary.media.ScaleProperties")
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- AnimationBehavior/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/animation/AnimationBehavior" "jm_getInstance" args))
+(defn- ImageArrayAnimation/jnew_2 [& args] (JR/call jfile "./ImageArrayAnimation" "jnew_2" args))
+(defn- AdjustedImageArrayAnimation/jnew_4 [& args] (JR/call jfile "./AdjustedImageArrayAnimation" "jnew_4" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class ImageArrayAnimationFactory
+(var jproto nil)
+(var jnew_4 nil)
+(var jm_getInstance nil)
+(var jm_setInitialScale nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jnew_4 (fn jnew_4 [_imageArray _dx _dy _animationBehaviorFactory]
+    (var this (table/setproto @{:jclass "ImageArrayAnimationFactory" :f_dx 0 :f_dy 0 :f_imageArray nil :f_animationBehaviorFactory nil} jproto))
+    (put this :f_dx 0)
+    (put this :f_dy 0)
+    
+    
+        (set (this :f_imageArray) _imageArray)
+        (set (this :f_animationBehaviorFactory) _animationBehaviorFactory)
+        (set (this :f_dx) _dx)
+        (set (this :f_dy) _dy)
+    this))
+    
+(set jm_getInstance (fn jm_getInstance [this _instanceId]
+    (label jreturn
+        (if (or (not= (this :f_dx) 0) (not= (this :f_dy) 0))
+            (do
+            (return jreturn (AdjustedImageArrayAnimation/jnew_4 (this :f_imageArray) (this :f_dx) (this :f_dy) (:jm_getOrCreateInstance (this :f_animationBehaviorFactory)))))
+            (do
+            (return jreturn (ImageArrayAnimation/jnew_2 (this :f_imageArray) (AnimationBehavior/jm_getInstance))))))))
+    
+(set jm_setInitialScale (fn jm_setInitialScale [this _scaleProperties]
+    nil))
 
-local ImageArrayAnimationFactory = {}
-ImageArrayAnimationFactory.__index = ImageArrayAnimationFactory
-ImageArrayAnimationFactory.className = "ImageArrayAnimationFactory"
+(set jproto @{:jm_getInstance jm_getInstance :jm_setInitialScale jm_setInitialScale})
 
-function ImageArrayAnimationFactory:_init_fields()
-    self.dx = 0
-    self.dy = 0
-    self.imageArray = nil
-    self.animationBehaviorFactory = nil
-end
-
-
-function ImageArrayAnimationFactory.new(imageArray, dx, dy, animationBehaviorFactory)
-    local self = setmetatable({}, ImageArrayAnimationFactory)
-    self:_init_fields()
-        self.imageArray = imageArray
-        self.animationBehaviorFactory = animationBehaviorFactory
-        self.dx = dx
-        self.dy = dy
-    return self
-end
-
-
--- throws Exception
-function ImageArrayAnimationFactory:getInstance(instanceId)
-        if self.dx ~= 0 or self.dy ~= 0 then
-            return AdjustedImageArrayAnimation.new(self.imageArray, self.dx, self.dy, self.animationBehaviorFactory:getOrCreateInstance())
-        else
-            return ImageArrayAnimation.new(self.imageArray, AnimationBehavior.getInstance())
-        end
-end
-
-
-function ImageArrayAnimationFactory:setInitialScale(scaleProperties)
-end
-
-return ImageArrayAnimationFactory
 

@@ -1,42 +1,32 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2025 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.opengles.shader
+# 
+# AllBinary Open License Version 1 
+# Copyright (c) 2025 AllBinary 
+#  
+# By agreeing to this license you and any business entity you represent are 
+# legally bound to the AllBinary Open License Version 1 legal agreement. 
+#  
+# You may obtain the AllBinary Open License Version 1 legal agreement from 
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+#  
+# Created By: Travis Berthelot 
+#   
+# Generated Code Do Not Modify
+# package org.allbinary.graphics.opengles.shader
 
-local CompositeShaderUpdater = require("org.allbinary.graphics.opengles.shader.CompositeShaderUpdater")
+(import ../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(import ./CompositeShaderUpdater :as CompositeShaderUpdater)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class SimpleCompositeShaderUpdater
+(var jproto nil)
+(var jnew_4 nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jnew_4 (fn jnew_4 [_uniformBlockArray _uniformArray _attributeArray _attributeHandleArray]
+    (var this (table/setproto @{:jclass "SimpleCompositeShaderUpdater"} jproto))
+        (JR/superInit this (CompositeShaderUpdater/jnew_4 _uniformBlockArray _uniformArray _attributeArray _attributeHandleArray))
+    this))
 
-local SimpleCompositeShaderUpdater = {}
-SimpleCompositeShaderUpdater.__index = SimpleCompositeShaderUpdater
-SimpleCompositeShaderUpdater.className = "SimpleCompositeShaderUpdater"
-setmetatable(SimpleCompositeShaderUpdater, {__index = CompositeShaderUpdater})
+(set jproto (table/setproto @{} CompositeShaderUpdater/jproto))
 
-
-function SimpleCompositeShaderUpdater.new(uniformBlockArray, uniformArray, attributeArray, attributeHandleArray)
-    local self = setmetatable(CompositeShaderUpdater.new(uniformBlockArray, uniformArray, attributeArray, attributeHandleArray), SimpleCompositeShaderUpdater)
-        -- super(...) made self above
-    return self
-end
-
-return SimpleCompositeShaderUpdater
 

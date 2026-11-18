@@ -1,87 +1,68 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.util.cache
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.logic.util.cache
 
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
-local AbstractArrayListPool = require("org.allbinary.logic.util.cache.AbstractArrayListPool")
+(import ../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(import ./AbstractArrayListPool :as AbstractArrayListPool)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class BasicArrayListPool
+(var jproto nil)
+(var jnew_1 nil)
+(var jm_clear nil)
+(var jm_remove nil)
+(var jm_addAll nil)
+(var jm_releaseUsedBackToPool nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jnew_1 (fn jnew_1 [_cacheableInterfaceFactoryInterface]
+    (var this (table/setproto @{:jclass "BasicArrayListPool"} jproto))
+        (JR/superInit this (AbstractArrayListPool/jnew_1 _cacheableInterfaceFactoryInterface))
+    this))
+    
+(set jm_clear (fn jm_clear [this]
+        (JR/className (this :f_buffers))))
+    
+(set jm_remove (fn jm_remove [this _key]
+    (label jreturn
+        (var _size (JR/className (this :f_buffers)))
+        (if (> _size 0)
+            (do
+            (return jreturn (JR/className (this :f_buffers))))
+            (do
+            (return jreturn (:jm_getInstance (this :f_cacheableInterfaceFactoryInterface) _key)))))))
+    
+(set jm_addAll (fn jm_addAll [this _usedList]
+        (do
+            (var _index (:jm_size _usedList))
+            (while (>= (set _index (JR/i32 (- _index 1))) 0)
+                (do
+            (var _anyType ((_usedList :f_objectArray) _index))
+            (:jm_add this _anyType))))
+        (:jm_clear _usedList)))
+    
+(set jm_releaseUsedBackToPool (fn jm_releaseUsedBackToPool [this _usedList]
+        (do
+            (var _index (:jm_size _usedList))
+            (while (>= (set _index (JR/i32 (- _index 1))) 0)
+                (do
+            (var _list ((_usedList :f_objectArray) _index))
+            (if (= (:jm_size _list) 0)
+                (do
+                (:jm_removeAt _usedList _index)
+                (:jm_add this _list))))))))
 
-local BasicArrayListPool = {}
-BasicArrayListPool.__index = BasicArrayListPool
-BasicArrayListPool.className = "BasicArrayListPool"
-setmetatable(BasicArrayListPool, {__index = AbstractArrayListPool})
+(set jproto (table/setproto @{:jm_clear jm_clear :jm_remove jm_remove :jm_addAll jm_addAll :jm_releaseUsedBackToPool jm_releaseUsedBackToPool} AbstractArrayListPool/jproto))
 
-
-function BasicArrayListPool.new(cacheableInterfaceFactoryInterface)
-    local self = setmetatable(AbstractArrayListPool.new(cacheableInterfaceFactoryInterface), BasicArrayListPool)
-        -- super(...) made self above
-    return self
-end
-
-
-function BasicArrayListPool:clear()
-        self.buffers:clear()
-end
-
-
--- throws Exception
-function BasicArrayListPool:remove(key)
-        local size = self.buffers:size()
-        if size > 0 then
-            return self.buffers:removeAt(size - 1)
-        else
-            return self.cacheableInterfaceFactoryInterface:getInstance(key)
-        end
-end
-
-
--- throws Exception
-function BasicArrayListPool:addAll(usedList)
-        do
-            local index = usedList:size()
-            while (function() index = index - 1 return index end)() >= 0 do
-            local anyType = usedList.objectArray[index + 1]
-            self:add(anyType)
-            end
-        end
-        usedList:clear()
-end
-
-
--- throws Exception
-function BasicArrayListPool:releaseUsedBackToPool(usedList)
-        do
-            local index = usedList:size()
-            while (function() index = index - 1 return index end)() >= 0 do
-            local list = usedList.objectArray[index + 1]
-            if list:size() == 0 then
-                usedList:removeAt(index)
-                self:add(list)
-            end
-            end
-        end
-end
-
-return BasicArrayListPool
 

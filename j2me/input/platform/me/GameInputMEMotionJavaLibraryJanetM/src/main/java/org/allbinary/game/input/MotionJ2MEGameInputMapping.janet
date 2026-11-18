@@ -1,46 +1,38 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.input
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.game.input
 
-local InputToGameKeyMapping = require("org.allbinary.game.input.mapping.InputToGameKeyMapping")
-local J2MEGameInputMapping = require("org.allbinary.game.input.J2MEGameInputMapping")
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(import ./J2MEGameInputMapping :as J2MEGameInputMapping)
+(defn- MotionJ2MEDefaultGameInputMapping/jnew_0 [& args] (JR/call jfile "./MotionJ2MEDefaultGameInputMapping" "jnew_0" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class MotionJ2MEGameInputMapping
+(var jproto nil)
+(var jnew_0 nil)
+(var jm_getDefault nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "MotionJ2MEGameInputMapping"} jproto))
+    (JR/superInit this (J2MEGameInputMapping/jnew_0))
+    this))
 
-local MotionJ2MEGameInputMapping = {}
-MotionJ2MEGameInputMapping.__index = MotionJ2MEGameInputMapping
-MotionJ2MEGameInputMapping.className = "MotionJ2MEGameInputMapping"
-setmetatable(MotionJ2MEGameInputMapping, {__index = J2MEGameInputMapping})
+    
+(set jm_getDefault (fn jm_getDefault [this]
+    (label jreturn
+        (return jreturn (:jm_getInputMapping (MotionJ2MEDefaultGameInputMapping/jnew_0))))))
 
-function MotionJ2MEGameInputMapping.new()
-    local self = setmetatable(J2MEGameInputMapping.new(), MotionJ2MEGameInputMapping)
-    return self
-end
+(set jproto (table/setproto @{:jm_getDefault jm_getDefault} J2MEGameInputMapping/jproto))
 
-
-function MotionJ2MEGameInputMapping:getDefault()
-        return MotionJ2MEDefaultGameInputMapping.new():getInputMapping()
-end
-
-return MotionJ2MEGameInputMapping
 

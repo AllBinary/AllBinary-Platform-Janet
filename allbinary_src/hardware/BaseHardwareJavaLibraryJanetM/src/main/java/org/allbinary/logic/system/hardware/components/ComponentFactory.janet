@@ -22,12 +22,14 @@
 (var jproto nil)
 (var jcell_instance :jnone)
 (var jstatic_instance nil)
+(var jsetstatic_instance nil)
 (var jnew_0 nil)
 (var jm_getInstance nil)
 
 (set jstatic_instance (fn jstatic_instance []
   (when (= jcell_instance :jnone) (set jcell_instance (jnew_0)))
   jcell_instance))
+(set jsetstatic_instance (fn jsetstatic_instance [value] (set jcell_instance value)))
 
 (set jnew_0 (fn jnew_0 []
     (var this (table/setproto @{:jclass "ComponentFactory" :f_VGA nil :f_IDE nil :f_SCSI nil :f_BRIDGE nil :f_ETHERNET nil :f_USB nil :f_MULTIMEDIA nil :f_PCI nil :f_RAID nil :f_SMBUS nil :f_PIC nil :f_Class nil :f_UNKNOWN nil} jproto))

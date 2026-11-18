@@ -1,80 +1,64 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.input
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.game.input
 
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- StringMaker/jnew_0 [& args] (JR/call jfile "../../../../org/allbinary/logic/string/StringMaker" "jnew_0" args))
+(defn- StringUtil/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/logic/string/StringUtil" "jm_getInstance" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class Input
+(var jproto nil)
+(var jnew_2 nil)
+(var jm_getId nil)
+(var jm_setId nil)
+(var jm_getName nil)
+(var jm_setName nil)
+(var jm_toString nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jnew_2 (fn jnew_2 [_id _name]
+    (var this (table/setproto @{:jclass "Input" :f_id 0 :f_name nil} jproto))
+    
+    (put this :f_name ((StringUtil/jm_getInstance) :f_EMPTY_STRING))
+        (:jm_setId this _id)
+        (:jm_setName this _name)
+    this))
+    
+(set jm_getId (fn jm_getId [this]
+    (label jreturn
+        (return jreturn (this :f_id)))))
+    
+(set jm_setId (fn jm_setId [this _key]
+        (set (this :f_id) _key)))
+    
+(set jm_getName (fn jm_getName [this]
+    (label jreturn
+        (return jreturn (this :f_name)))))
+    
+(set jm_setName (fn jm_setName [this _keyName]
+        (set (this :f_name) _keyName)))
+    
+(set jm_toString (fn jm_toString [this]
+    (label jreturn
+        (var _stringBuffer (StringMaker/jnew_0))
+        (:jm_append _stringBuffer "Name: ")
+        (:jm_append _stringBuffer (:jm_getName this))
+        (:jm_append _stringBuffer " Id: ")
+        (:jm_appendint _stringBuffer (:jm_getId this))
+        (return jreturn (:jm_toString _stringBuffer)))))
 
-local Input = {}
-Input.__index = Input
-Input.className = "Input"
+(set jproto @{:jm_getId jm_getId :jm_setId jm_setId :jm_getName jm_getName :jm_setName jm_setName :jm_toString jm_toString})
 
-function Input:_init_fields()
-    self.id = 0
-    self.name = StringUtil.getInstance().EMPTY_STRING
-end
-
-
-function Input.new(id, name)
-    local self = setmetatable({}, Input)
-    self:_init_fields()
-        self:setId(id)
-        self:setName(name)
-    return self
-end
-
-
-function Input:getId()
-        return self.id
-end
-
-
-function Input:setId(key)
-        self.id = key
-end
-
-
-function Input:getName()
-        return self.name
-end
-
-
-function Input:setName(keyName)
-        self.name = keyName
-end
-
-
-function Input:toString()
-        local stringBuffer = StringMaker.new()
-        stringBuffer:append("Name: ")
-        stringBuffer:append(self:getName())
-        stringBuffer:append(" Id: ")
-        stringBuffer:appendint(self:getId())
-        return tostring(stringBuffer)
-end
-Input.__tostring = function(self) return self:toString() end
-
-return Input
 

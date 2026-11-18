@@ -1,42 +1,31 @@
--- Generated Code Do Not Modify
--- package org.allbinary.view
+# Generated Code Do Not Modify
+# package org.allbinary.view
 
-local GameInitializedListenerInterface = require("org.allbinary.game.configuration.event.GameInitializedListenerInterface")
-local DemoGameMidletEventListener = require("org.allbinary.game.midlet.DemoGameMidletEventListener")
-local MidletCompositeInterface = require("org.allbinary.midlet.MidletCompositeInterface")
-local EmulatorViewInterface = require("org.allbinary.view.EmulatorViewInterface")
+(import ../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(import ../../../org/allbinary/midlet/MidletCompositeInterface :as MidletCompositeInterface)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class AllBinaryMidletViewInterface
+(var jproto nil)
+(var jnew_0 nil)
+(var jm_onResume nil)
+(var jm_onPause nil)
+(var jm_onDestroy nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "AllBinaryMidletViewInterface"} jproto))
+    this))
 
--- Java interface
-local AllBinaryMidletViewInterface = {}
-AllBinaryMidletViewInterface.__index = AllBinaryMidletViewInterface
-AllBinaryMidletViewInterface.className = "AllBinaryMidletViewInterface"
-setmetatable(AllBinaryMidletViewInterface, {__index = MidletCompositeInterface})
+    
+(set jm_onResume (fn jm_onResume [this]
+    (error (JR/newException "AbstractMethodError" "onResume"))))
+    
+(set jm_onPause (fn jm_onPause [this]
+    (error (JR/newException "AbstractMethodError" "onPause"))))
+    
+(set jm_onDestroy (fn jm_onDestroy [this]
+    (error (JR/newException "AbstractMethodError" "onDestroy"))))
 
+(set jproto @{:jm_onResume jm_onResume :jm_onPause jm_onPause :jm_onDestroy jm_onDestroy})
 
-function AllBinaryMidletViewInterface:onResume()
-    error("abstract method onResume")
-end
-
-
-function AllBinaryMidletViewInterface:onPause()
-    error("abstract method onPause")
-end
-
-
-function AllBinaryMidletViewInterface:onDestroy()
-    error("abstract method onDestroy")
-end
-
-return AllBinaryMidletViewInterface
 

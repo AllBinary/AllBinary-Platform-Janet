@@ -1,59 +1,51 @@
--- Generated Code Do Not Modify
--- package org.allbinary.business.advertisement
+# Generated Code Do Not Modify
+# package org.allbinary.business.advertisement
 
-local GameAdState = require("org.allbinary.game.GameAdState")
-local SoftwareInformation = require("org.allbinary.logic.system.SoftwareInformation")
-local GameAdStateFactoryInterface = require("org.allbinary.business.advertisement.GameAdStateFactoryInterface")
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- GameAdState/jnew_1 [& args] (JR/call jfile "../../../../org/allbinary/game/GameAdState" "jnew_1" args))
+(defn- AppNameLicensingAdConfiguration/jnew_0 [& args] (JR/call jfile "./AppNameLicensingAdConfiguration" "jnew_0" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class GameAdStateFactory
+(var jproto nil)
+(var jcell_instance :jnone)
+(var jstatic_instance nil)
+(var jsetstatic_instance nil)
+(var jnew_0 nil)
+(var jm_getInstance nil)
+(var jm_getCurrentInstance nil)
+(var jm_getInstanceForApp nil)
+(var jm_isEnabled nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jstatic_instance (fn jstatic_instance []
+  (when (= jcell_instance :jnone) (set jcell_instance (jnew_0)))
+  jcell_instance))
+(set jsetstatic_instance (fn jsetstatic_instance [value] (set jcell_instance value)))
 
-local GameAdStateFactory = {}
-GameAdStateFactory.__index = GameAdStateFactory
-GameAdStateFactory.className = "GameAdStateFactory"
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "GameAdStateFactory" :f_gameAdStateArray nil :f_gameAdState nil} jproto))
+    (put this :f_gameAdStateArray @[(GameAdState/jnew_1 (AppNameLicensingAdConfiguration/jnew_0))])
+    (put this :f_gameAdState ((this :f_gameAdStateArray) 0))
+    this))
 
-function GameAdStateFactory:_init_fields()
-    self.gameAdStateArray = {GameAdState.new(AppNameLicensingAdConfiguration.new())}
-    self.gameAdState = self.gameAdStateArray[1]
-end
+    
+(set jm_getInstance (fn jm_getInstance []
+    (label jreturn
+        (return jreturn (jstatic_instance)))))
+    
+(set jm_getCurrentInstance (fn jm_getCurrentInstance [this]
+    (label jreturn
+        (return jreturn (this :f_gameAdState)))))
+    
+(set jm_getInstanceForApp (fn jm_getInstanceForApp [this _softwareInformation]
+    (label jreturn
+        (set (this :f_gameAdState) ((this :f_gameAdStateArray) 0))
+        (return jreturn ((this :f_gameAdStateArray) 0)))))
+    
+(set jm_isEnabled (fn jm_isEnabled [this]
+    (label jreturn
+        (return jreturn false))))
 
-function GameAdStateFactory.new()
-    local self = setmetatable({}, GameAdStateFactory)
-    self:_init_fields()
-    return self
-end
+(set jproto @{:jm_getCurrentInstance jm_getCurrentInstance :jm_getInstanceForApp jm_getInstanceForApp :jm_isEnabled jm_isEnabled})
 
-
-function GameAdStateFactory.getInstance()
-        return GameAdStateFactory.instance
-end
-
-
-function GameAdStateFactory:getCurrentInstance()
-        return self.gameAdState
-end
-
-
--- throws Exception
-function GameAdStateFactory:getInstanceForApp(softwareInformation)
-        self.gameAdState = self.gameAdStateArray[1]
-        return self.gameAdStateArray[1]
-end
-
-
-function GameAdStateFactory:isEnabled()
-        return false
-end
-
-GameAdStateFactory.instance = GameAdStateFactory.new()
-
-return GameAdStateFactory
 

@@ -1,53 +1,40 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.animation.image
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.animation.image
 
--- local Image = require("javax.microedition.lcdui.Image")
-local Animation = require("org.allbinary.animation.Animation")
-local AnimationBehaviorFactory = require("org.allbinary.animation.AnimationBehaviorFactory")
-local PrimitiveIntUtil = require("org.allbinary.logic.math.PrimitiveIntUtil")
-local BaseImageAnimationFactory = require("org.allbinary.animation.image.BaseImageAnimationFactory")
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- PrimitiveIntUtil/jm_getArrayInstance [& args] (JR/call jfile "../../../../org/allbinary/logic/math/PrimitiveIntUtil" "jm_getArrayInstance" args))
+(import ./BaseImageAnimationFactory :as BaseImageAnimationFactory)
+(defn- BottomToTopImageAnimation/jnew_2 [& args] (JR/call jfile "./BottomToTopImageAnimation" "jnew_2" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class BottomToTopImageAnimationFactory
+(var jproto nil)
+(var jnew_2 nil)
+(var jm_getInstance nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jnew_2 (fn jnew_2 [_image _animationBehaviorFactory]
+    (var this (table/setproto @{:jclass "BottomToTopImageAnimationFactory"} jproto))
+        (JR/superInit this (BaseImageAnimationFactory/jnew_7 _image (PrimitiveIntUtil/jm_getArrayInstance) (:jm_getWidth _image) (:jm_getHeight _image) 0 0 _animationBehaviorFactory))
+    this))
+    
+(set jm_getInstance (fn jm_getInstance [this _instanceId]
+    (label jreturn
+        (var _scaledImage (JR/className (this :f_animationFactoryImageScaleUtil)))
+        (return jreturn (BottomToTopImageAnimation/jnew_2 _scaledImage (:jm_getOrCreateInstance (this :f_animationBehaviorFactory)))))))
 
-local BottomToTopImageAnimationFactory = {}
-BottomToTopImageAnimationFactory.__index = BottomToTopImageAnimationFactory
-BottomToTopImageAnimationFactory.className = "BottomToTopImageAnimationFactory"
-setmetatable(BottomToTopImageAnimationFactory, {__index = BaseImageAnimationFactory})
+(set jproto (table/setproto @{:jm_getInstance jm_getInstance} BaseImageAnimationFactory/jproto))
 
-
-function BottomToTopImageAnimationFactory.new(image, animationBehaviorFactory)
-    local self = setmetatable(BaseImageAnimationFactory.new(image, PrimitiveIntUtil.getArrayInstance(), image:getWidth(), image:getHeight(), 0, 0, animationBehaviorFactory), BottomToTopImageAnimationFactory)
-        -- super(...) made self above
-    return self
-end
-
-
--- throws Exception
-function BottomToTopImageAnimationFactory:getInstance(instanceId)
-        local scaledImage = self.animationFactoryImageScaleUtil:createImage(self:getImage(), self.animationFactoryInitializationVisitor.width, self.animationFactoryInitializationVisitor.height, self.scaleProperties.scaleWidth, self.scaleProperties.scaleHeight)
-        return BottomToTopImageAnimation.new(scaledImage, self.animationBehaviorFactory:getOrCreateInstance())
-end
-
-return BottomToTopImageAnimationFactory
 

@@ -1,64 +1,46 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.animation
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.animation
 
-local ScaleProperties = require("org.allbinary.media.ScaleProperties")
-local AnimationInterfaceFactoryInterface = require("org.allbinary.animation.AnimationInterfaceFactoryInterface")
-local ProceduralAnimationInterfaceFactoryInterface = require("org.allbinary.animation.ProceduralAnimationInterfaceFactoryInterface")
+(import ../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class SingletonAnimationInterfaceFactory
+(var jproto nil)
+(var jnew_1 nil)
+(var jm_getInstance nil)
+(var jm_getInstanceAnimation nil)
+(var jm_setInitialScale nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jnew_1 (fn jnew_1 [_animationInterface]
+    (var this (table/setproto @{:jclass "SingletonAnimationInterfaceFactory" :f_animationInterface nil} jproto))
+    
+        (set (this :f_animationInterface) _animationInterface)
+    this))
+    
+(set jm_getInstance (fn jm_getInstance [this _instanceId]
+    (label jreturn
+        (return jreturn (this :f_animationInterface)))))
+    
+(set jm_getInstanceAnimation (fn jm_getInstanceAnimation [this _animationInterface]
+    (label jreturn
+        (return jreturn (this :f_animationInterface)))))
+    
+(set jm_setInitialScale (fn jm_setInitialScale [this _scaleProperties]
+    nil))
 
-local SingletonAnimationInterfaceFactory = {}
-SingletonAnimationInterfaceFactory.__index = SingletonAnimationInterfaceFactory
-SingletonAnimationInterfaceFactory.className = "SingletonAnimationInterfaceFactory"
+(set jproto @{:jm_getInstance jm_getInstance :jm_getInstanceAnimation jm_getInstanceAnimation :jm_setInitialScale jm_setInitialScale})
 
-function SingletonAnimationInterfaceFactory:_init_fields()
-    self.animationInterface = nil
-end
-
-
-function SingletonAnimationInterfaceFactory.new(animationInterface)
-    local self = setmetatable({}, SingletonAnimationInterfaceFactory)
-    self:_init_fields()
-        self.animationInterface = animationInterface
-    return self
-end
-
-
--- throws Exception
-function SingletonAnimationInterfaceFactory:getInstance(instanceId)
-        return self.animationInterface
-end
-
-
--- throws Exception
-function SingletonAnimationInterfaceFactory:getInstanceAnimation(animationInterface)
-        return self.animationInterface
-end
-
-
-function SingletonAnimationInterfaceFactory:setInitialScale(scaleProperties)
-end
-
-return SingletonAnimationInterfaceFactory
 

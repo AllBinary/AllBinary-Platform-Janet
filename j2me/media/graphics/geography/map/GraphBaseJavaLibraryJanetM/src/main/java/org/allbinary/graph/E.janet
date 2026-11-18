@@ -1,33 +1,31 @@
--- Generated Code Do Not Modify
--- package org.allbinary.graph
+# Generated Code Do Not Modify
+# package org.allbinary.graph
 
+(import ../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class E
+(var jproto nil)
+(var jcell_e :jnone)
+(var jstatic_e nil)
+(var jsetstatic_e nil)
+(var jnew_0 nil)
+(var jm_newInstance nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jstatic_e (fn jstatic_e []
+  (when (= jcell_e :jnone) (set jcell_e (jnew_0)))
+  jcell_e))
+(set jsetstatic_e (fn jsetstatic_e [value] (set jcell_e value)))
 
-local E = {}
-E.__index = E
-E.className = "E"
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "E"} jproto))
+    this))
 
-function E.new()
-    local self = setmetatable({}, E)
-    return self
-end
+    
+(set jm_newInstance (fn jm_newInstance [this]
+    (label jreturn
+        (return jreturn (jstatic_e)))))
 
+(set jproto @{:jm_newInstance jm_newInstance})
 
-function E:newInstance()
-        return E.e
-end
-
-E.e = E.new()
-
-return E
 

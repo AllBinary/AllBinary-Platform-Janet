@@ -1,52 +1,39 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---   
--- Generated Code Do Not Modify
--- package org.allbinary.animation.image
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#   
+# Generated Code Do Not Modify
+# package org.allbinary.animation.image
 
--- local Image = require("javax.microedition.lcdui.Image")
-local Animation = require("org.allbinary.animation.Animation")
-local AnimationBehaviorFactory = require("org.allbinary.animation.AnimationBehaviorFactory")
-local BaseImageAnimationFactory = require("org.allbinary.animation.image.BaseImageAnimationFactory")
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(import ./BaseImageAnimationFactory :as BaseImageAnimationFactory)
+(defn- TopToBottomImageAnimation/jnew_3 [& args] (JR/call jfile "./TopToBottomImageAnimation" "jnew_3" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class TopToBottomImageAnimationFactory
+(var jproto nil)
+(var jnew_3 nil)
+(var jm_getInstance nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jnew_3 (fn jnew_3 [_image _sequenceArray _animationBehaviorFactory]
+    (var this (table/setproto @{:jclass "TopToBottomImageAnimationFactory"} jproto))
+        (JR/superInit this (BaseImageAnimationFactory/jnew_7 _image _sequenceArray (:jm_getWidth _image) (:jm_getHeight _image) 0 0 _animationBehaviorFactory))
+    this))
+    
+(set jm_getInstance (fn jm_getInstance [this _instanceId]
+    (label jreturn
+        (var _scaledImage (JR/className (this :f_animationFactoryImageScaleUtil)))
+        (return jreturn (TopToBottomImageAnimation/jnew_3 _scaledImage (:jm_getSequenceArray this) (:jm_getOrCreateInstance (this :f_animationBehaviorFactory)))))))
 
-local TopToBottomImageAnimationFactory = {}
-TopToBottomImageAnimationFactory.__index = TopToBottomImageAnimationFactory
-TopToBottomImageAnimationFactory.className = "TopToBottomImageAnimationFactory"
-setmetatable(TopToBottomImageAnimationFactory, {__index = BaseImageAnimationFactory})
+(set jproto (table/setproto @{:jm_getInstance jm_getInstance} BaseImageAnimationFactory/jproto))
 
-
-function TopToBottomImageAnimationFactory.new(image, sequenceArray, animationBehaviorFactory)
-    local self = setmetatable(BaseImageAnimationFactory.new(image, sequenceArray, image:getWidth(), image:getHeight(), 0, 0, animationBehaviorFactory), TopToBottomImageAnimationFactory)
-        -- super(...) made self above
-    return self
-end
-
-
--- throws Exception
-function TopToBottomImageAnimationFactory:getInstance(instanceId)
-        local scaledImage = self.animationFactoryImageScaleUtil:createImage(self:getImage(), self.animationFactoryInitializationVisitor.width, self.animationFactoryInitializationVisitor.height, self.scaleProperties.scaleWidth, self.scaleProperties.scaleHeight)
-        return TopToBottomImageAnimation.new(scaledImage, self:getSequenceArray(), self.animationBehaviorFactory:getOrCreateInstance())
-end
-
-return TopToBottomImageAnimationFactory
 

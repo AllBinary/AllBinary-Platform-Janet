@@ -1,52 +1,42 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.input.accelerometer
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.input.accelerometer
 
-local AllBinaryOrientationSensor = require("org.allbinary.input.gyro.AllBinaryOrientationSensor")
-local Orientation = require("org.allbinary.logic.math.Orientation")
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(import ../../../../org/allbinary/input/gyro/AllBinaryOrientationSensor :as AllBinaryOrientationSensor)
+(defn- Orientation/jstatic_NONE [& args] (JR/call jfile "../../../../org/allbinary/logic/math/Orientation" "jstatic_NONE" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class NoAccelerometerSensor
+(var jproto nil)
+(var jnew_0 nil)
+(var jm_getOrientation nil)
+(var jm_onSensorChange nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "NoAccelerometerSensor"} jproto))
+    (JR/superInit this (AllBinaryOrientationSensor/jnew_0))
+    this))
+    
+(set jm_getOrientation (fn jm_getOrientation [this]
+    (label jreturn
+        (return jreturn (Orientation/jstatic_NONE)))))
+    
+(set jm_onSensorChange (fn jm_onSensorChange [this]
+    nil))
 
-local NoAccelerometerSensor = {}
-NoAccelerometerSensor.__index = NoAccelerometerSensor
-NoAccelerometerSensor.className = "NoAccelerometerSensor"
-setmetatable(NoAccelerometerSensor, {__index = AllBinaryOrientationSensor})
+(set jproto (table/setproto @{:jm_getOrientation jm_getOrientation :jm_onSensorChange jm_onSensorChange} AllBinaryOrientationSensor/jproto))
 
-
-function NoAccelerometerSensor.new()
-    local self = setmetatable(AllBinaryOrientationSensor.new(), NoAccelerometerSensor)
-    return self
-end
-
-
--- throws Exception
-function NoAccelerometerSensor:getOrientation()
-        return Orientation.NONE
-end
-
-
-function NoAccelerometerSensor:onSensorChange()
-end
-
-return NoAccelerometerSensor
 

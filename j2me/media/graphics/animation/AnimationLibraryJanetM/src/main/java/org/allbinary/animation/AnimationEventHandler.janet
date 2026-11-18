@@ -1,48 +1,45 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.animation
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.animation
 
-local BasicEventHandler = require("org.allbinary.logic.util.event.handler.BasicEventHandler")
+(import ../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(import ../../../org/allbinary/logic/util/event/handler/BasicEventHandler :as BasicEventHandler)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class AnimationEventHandler
+(var jproto nil)
+(var jcell_eventHandler :jnone)
+(var jstatic_eventHandler nil)
+(var jsetstatic_eventHandler nil)
+(var jnew_0 nil)
+(var jm_getInstance nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jstatic_eventHandler (fn jstatic_eventHandler []
+  (when (= jcell_eventHandler :jnone) (set jcell_eventHandler (jnew_0)))
+  jcell_eventHandler))
+(set jsetstatic_eventHandler (fn jsetstatic_eventHandler [value] (set jcell_eventHandler value)))
 
-local AnimationEventHandler = {}
-AnimationEventHandler.__index = AnimationEventHandler
-AnimationEventHandler.className = "AnimationEventHandler"
-setmetatable(AnimationEventHandler, {__index = BasicEventHandler})
+    
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "AnimationEventHandler"} jproto))
+    (JR/superInit this (BasicEventHandler/jnew_0))
+    this))
+    
+(set jm_getInstance (fn jm_getInstance []
+    (label jreturn
+        (return jreturn (jstatic_eventHandler)))))
 
+(set jproto (table/setproto @{} BasicEventHandler/jproto))
 
-function AnimationEventHandler.new()
-    local self = setmetatable(BasicEventHandler.new(), AnimationEventHandler)
-    return self
-end
-
-
-function AnimationEventHandler.getInstance()
-        return AnimationEventHandler.eventHandler
-end
-
-AnimationEventHandler.eventHandler = AnimationEventHandler.new()
-
-return AnimationEventHandler
 

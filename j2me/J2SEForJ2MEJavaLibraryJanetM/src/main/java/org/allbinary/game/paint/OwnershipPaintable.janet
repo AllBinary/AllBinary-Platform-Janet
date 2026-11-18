@@ -1,98 +1,78 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.paint
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.game.paint
 
--- local Font = require("javax.microedition.lcdui.Font")
--- local Graphics = require("javax.microedition.lcdui.Graphics")
-local Anchor = require("org.allbinary.graphics.Anchor")
-local BasicColor = require("org.allbinary.graphics.color.BasicColor")
-local BasicColorFactory = require("org.allbinary.graphics.color.BasicColorFactory")
-local DisplayInfoSingleton = require("org.allbinary.graphics.displayable.DisplayInfoSingleton")
-local MyFontProcessor = require("org.allbinary.graphics.font.MyFontProcessor")
-local UpdateMyFontInterface = require("org.allbinary.graphics.font.UpdateMyFontInterface")
-local UpdateMyFontProcessor = require("org.allbinary.graphics.font.UpdateMyFontProcessor")
-local Paintable = require("org.allbinary.graphics.paint.Paintable")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- Anchor/jstatic_TOP_LEFT [& args] (JR/call jfile "../../../../org/allbinary/graphics/Anchor" "jstatic_TOP_LEFT" args))
+(defn- BasicColorFactory/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/graphics/color/BasicColorFactory" "jm_getInstance" args))
+(defn- DisplayInfoSingleton/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/graphics/displayable/DisplayInfoSingleton" "jm_getInstance" args))
+(defn- MyFontProcessor/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/graphics/font/MyFontProcessor" "jm_getInstance" args))
+(defn- UpdateMyFontProcessor/jnew_1 [& args] (JR/call jfile "../../../../org/allbinary/graphics/font/UpdateMyFontProcessor" "jnew_1" args))
+(import ../../../../org/allbinary/graphics/paint/Paintable :as Paintable)
+(defn- LogUtil/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/logic/communication/log/LogUtil" "jm_getInstance" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+#J2SEForJ2ME
+# Java class OwnershipPaintable
+(var jproto nil)
+(var jnew_0 nil)
+(var jm_getInstance nil)
+(var jm_updateMeasurement nil)
+(var jm_setBasicColorP nil)
+(var jm_getBasicColorP nil)
+(var jm_paint nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jm_getInstance (fn jm_getInstance []
+    (label jreturn
+        (return jreturn (jnew_0)))))
+    
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "OwnershipPaintable" :f_logUtil nil :f_displayInfo nil :f_myFontProcessor nil :f_COPYRIGHT nil :f_basicColor nil :f_color 0 :f_anchor 0 :f_COPYRIGHT_Y 0 :f_beginWidth 0} jproto))
+    (put this :f_logUtil (LogUtil/jm_getInstance))
+    (put this :f_displayInfo (DisplayInfoSingleton/jm_getInstance))
+    (put this :f_myFontProcessor (UpdateMyFontProcessor/jnew_1 this))
+    (put this :f_COPYRIGHT "AllBinary Copyright (c) 2011")
+    (put this :f_basicColor ((BasicColorFactory/jm_getInstance) :f_WHITE))
+    (put this :f_color (:jm_intValue (this :f_basicColor)))
+    (put this :f_anchor (Anchor/jstatic_TOP_LEFT))
+    
+    
+    (JR/superInit this (Paintable/jnew_0))
+    this))
+    
+(set jm_updateMeasurement (fn jm_updateMeasurement [this _graphics]
+        (var _font (:jm_getFont _graphics))
+        (set (this :f_COPYRIGHT_Y) (JR/i32 (* 2 (:jm_getHeight _font))))
+        (set (this :f_beginWidth) (brshift (:jm_stringWidth _font (this :f_COPYRIGHT)) 1))
+        (set (this :f_myFontProcessor) (MyFontProcessor/jm_getInstance))))
+    
+(set jm_setBasicColorP (fn jm_setBasicColorP [this _basicColor]
+        (set (this :f_basicColor) _basicColor)
+        (set (this :f_color) (:jm_intValue _basicColor))))
+    
+(set jm_getBasicColorP (fn jm_getBasicColorP [this]
+    (label jreturn
+        (return jreturn (this :f_basicColor)))))
+    
+(set jm_paint (fn jm_paint [this _graphics]
+        (:jm_process (this :f_myFontProcessor) _graphics)
+        (:jm_setColor _graphics (this :f_color))
+        (var _halfWidth (:jm_getLastHalfWidth (this :f_displayInfo)))
+        (var _height (:jm_getLastHeight (this :f_displayInfo)))
+        (:jm_drawString _graphics (this :f_COPYRIGHT) (JR/i32 (- _halfWidth (this :f_beginWidth))) (JR/i32 (- _height (this :f_COPYRIGHT_Y))) (this :f_anchor))))
 
---J2SEForJ2ME
-local OwnershipPaintable = {}
-OwnershipPaintable.__index = OwnershipPaintable
-OwnershipPaintable.className = "OwnershipPaintable"
-setmetatable(OwnershipPaintable, {__index = Paintable})
+(set jproto (table/setproto @{:jm_updateMeasurement jm_updateMeasurement :jm_setBasicColorP jm_setBasicColorP :jm_getBasicColorP jm_getBasicColorP :jm_paint jm_paint} Paintable/jproto))
 
-function OwnershipPaintable:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-    self.displayInfo = DisplayInfoSingleton.getInstance()
-    self.myFontProcessor = UpdateMyFontProcessor.new(self)
-    self.COPYRIGHT = "AllBinary Copyright (c) 2011"
-    self.basicColor = BasicColorFactory.getInstance().WHITE
-    self.color = math.tointeger(self.basicColor // 1)
-    self.anchor = Anchor.TOP_LEFT
-    self.COPYRIGHT_Y = 0
-    self.beginWidth = 0
-end
-
-
-function OwnershipPaintable.getInstance()
-        return OwnershipPaintable.new()
-end
-
-
-function OwnershipPaintable.new()
-    local self = setmetatable(Paintable.new(), OwnershipPaintable)
-    self:_init_fields()
-    return self
-end
-
-
-function OwnershipPaintable:updateMeasurement(graphics)
-        local font = graphics:getFont()
-        self.COPYRIGHT_Y = 2 * font:getHeight()
-        self.beginWidth = (((font:stringWidth(self.COPYRIGHT)) // (1 << (1))))
-        self.myFontProcessor = MyFontProcessor.getInstance()
-end
-
-
-function OwnershipPaintable:setBasicColorP(basicColor)
-        self.basicColor = basicColor
-        self.color = math.tointeger(basicColor // 1)
-end
-
-
-function OwnershipPaintable:getBasicColorP()
-        return self.basicColor
-end
-
-
-function OwnershipPaintable:paint(graphics)
-        self.myFontProcessor:process(graphics)
-        graphics:setColor(self.color)
-        local halfWidth = self.displayInfo:getLastHalfWidth()
-        local height = self.displayInfo:getLastHeight()
-        graphics:drawString(self.COPYRIGHT, halfWidth - self.beginWidth, height - self.COPYRIGHT_Y, self.anchor)
-end
-
-return OwnershipPaintable
 

@@ -1,50 +1,40 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
---
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
---
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
---
--- Created By: Travis Berthelot
--- 
--- Generated Code Do Not Modify
--- package org.allbinary.animation
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+#
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+#
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+#
+# Created By: Travis Berthelot
+# 
+# Generated Code Do Not Modify
+# package org.allbinary.animation
 
--- local Graphics = require("javax.microedition.lcdui.Graphics")
-local AngleFactory = require("org.allbinary.math.AngleFactory")
-local AngleInfo = require("org.allbinary.math.AngleInfo")
-local CircularIndexUtil = require("org.allbinary.util.CircularIndexUtil")
-local NullRotationAnimation = require("org.allbinary.animation.NullRotationAnimation")
+(import ../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- AngleFactory/jm_getInstance [& args] (JR/call jfile "../../../org/allbinary/math/AngleFactory" "jm_getInstance" args))
+(defn- AngleInfo/jm_getInstance [& args] (JR/call jfile "../../../org/allbinary/math/AngleInfo" "jm_getInstance" args))
+(defn- CircularIndexUtil/jm_createInstance [& args] (JR/call jfile "../../../org/allbinary/util/CircularIndexUtil" "jm_createInstance" args))
+(import ./NullRotationAnimation :as NullRotationAnimation)
+(defn- IndexedAnimationBehavior/jnew_2 [& args] (JR/call jfile "./IndexedAnimationBehavior" "jnew_2" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class NullRotationAnimation2
+(var jproto nil)
+(var jnew_0 nil)
+(var jm_paintXY nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "NullRotationAnimation2"} jproto))
+        (JR/superInit this (NullRotationAnimation/jnew_3 (AngleInfo/jm_getInstance ((AngleFactory/jm_getInstance) :f_QUARTER_TOTAL_ANGLE)) (CircularIndexUtil/jm_createInstance 4) (IndexedAnimationBehavior/jnew_2 1 250)))
+    this))
+    
+(set jm_paintXY (fn jm_paintXY [this _graphics _x _y]
+    nil))
 
-local NullRotationAnimation2 = {}
-NullRotationAnimation2.__index = NullRotationAnimation2
-NullRotationAnimation2.className = "NullRotationAnimation2"
-setmetatable(NullRotationAnimation2, {__index = NullRotationAnimation})
+(set jproto (table/setproto @{:jm_paintXY jm_paintXY} NullRotationAnimation/jproto))
 
-
-function NullRotationAnimation2.new()
-    local self = setmetatable(NullRotationAnimation.new(AngleInfo.getInstance(AngleFactory.getInstance().QUARTER_TOTAL_ANGLE), CircularIndexUtil.createInstance(4), IndexedAnimationBehavior.new(1, 250)), NullRotationAnimation2)
-        -- super(...) made self above
-    return self
-end
-
-
-function NullRotationAnimation2:paintXY(graphics, x, y)
-end
-
-return NullRotationAnimation2
 

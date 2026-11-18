@@ -1,67 +1,65 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2025 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary
+# 
+# AllBinary Open License Version 1 
+# Copyright (c) 2025 AllBinary 
+#  
+# By agreeing to this license you and any business entity you represent are 
+# legally bound to the AllBinary Open License Version 1 legal agreement. 
+#  
+# You may obtain the AllBinary Open License Version 1 legal agreement from 
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+#  
+# Created By: Travis Berthelot 
+#   
+# Generated Code Do Not Modify
+# package org.allbinary
 
--- local HashMap = require("java.util.HashMap")
--- local Map = require("java.util.Map")
--- local Set = require("java.util.Set")
+(import ../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(import ../../java/util/HashMap :as HashMap)
+(import ../../java/util/Map :as Map)
+(import ../../java/util/Set :as Set)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+#J2SEForJ2ME
+# Java class J2SEUtil
+(var jproto nil)
+(var jcell_instance :jnone)
+(var jstatic_instance nil)
+(var jsetstatic_instance nil)
+(var jnew_0 nil)
+(var jm_getInstance nil)
+(var jm_getHashMapAsArray nil)
+(var jm_getMapAsArray nil)
+(var jm_getSetAsArray nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jstatic_instance (fn jstatic_instance []
+  (when (= jcell_instance :jnone) (set jcell_instance (jnew_0)))
+  jcell_instance))
+(set jsetstatic_instance (fn jsetstatic_instance [value] (set jcell_instance value)))
 
---J2SEForJ2ME
-local J2SEUtil = {}
-J2SEUtil.__index = J2SEUtil
-J2SEUtil.className = "J2SEUtil"
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "J2SEUtil"} jproto))
+    this))
 
-function J2SEUtil.new()
-    local self = setmetatable({}, J2SEUtil)
-    return self
-end
+    
+(set jm_getInstance (fn jm_getInstance []
+    (label jreturn
+        (return jreturn (jstatic_instance)))))
+    
+(set jm_getHashMapAsArray (fn jm_getHashMapAsArray [this _hashMap]
+    (label jreturn
+        (var _objectArray (JR/className (:jm_keySet _hashMap)))
+        (return jreturn _objectArray))))
+    
+(set jm_getMapAsArray (fn jm_getMapAsArray [this _map]
+    (label jreturn
+        (var _objectArray (JR/className (:jm_keySet _map)))
+        (return jreturn _objectArray))))
+    
+(set jm_getSetAsArray (fn jm_getSetAsArray [this _set]
+    (label jreturn
+        (var _objectArray (:jm_toArray _set))
+        (return jreturn _objectArray))))
 
+(set jproto @{:jm_getHashMapAsArray jm_getHashMapAsArray :jm_getMapAsArray jm_getMapAsArray :jm_getSetAsArray jm_getSetAsArray})
 
-function J2SEUtil.getInstance()
-        return J2SEUtil.instance
-end
-
-
-function J2SEUtil:getHashMapAsArray(hashMap)
-        local objectArray = hashMap:keySet():toArray()
-        return objectArray
-end
-
-
-function J2SEUtil:getMapAsArray(map)
-        local objectArray = map:keySet():toArray()
-        return objectArray
-end
-
-
-function J2SEUtil:getSetAsArray(set)
-        local objectArray = set:toArray()
-        return objectArray
-end
-
-J2SEUtil.instance = J2SEUtil.new()
-
-return J2SEUtil
 

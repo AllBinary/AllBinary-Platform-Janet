@@ -1,66 +1,46 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.displayable.canvas
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.game.displayable.canvas
 
-local ProgressCanvas = require("org.allbinary.graphics.canvas.transition.progress.ProgressCanvas")
-local ProgressCanvasFactory = require("org.allbinary.graphics.canvas.transition.progress.ProgressCanvasFactory")
-local PaintableComposite = require("org.allbinary.graphics.paint.PaintableComposite")
-local PaintableInterface = require("org.allbinary.graphics.paint.PaintableInterface")
+(import ../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- ProgressCanvasFactory/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/graphics/canvas/transition/progress/ProgressCanvasFactory" "jm_getInstance" args))
+(defn- PaintableComposite/jnew_1 [& args] (JR/call jfile "../../../../../org/allbinary/graphics/paint/PaintableComposite" "jnew_1" args))
 
-local function java_new_array(default, size, ...)
-    local array = {n = size}
-    for index = 1, size do
-        if select("#", ...) > 0 then array[index] = java_new_array(default, ...) else array[index] = default end
-    end
-    return array
-end
+# Java class DemoCanvasProgressUtil
+(var jproto nil)
+(var jnew_0 nil)
+(var jm_showProgress nil)
+(var jm_showProgressOptionallyInTheBackground nil)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "DemoCanvasProgressUtil"} jproto))
+    this))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jm_showProgress (fn jm_showProgress [_demoCanvas]
+        (jm_showProgressOptionallyInTheBackground _demoCanvas false)))
+    
+(set jm_showProgressOptionallyInTheBackground (fn jm_showProgressOptionallyInTheBackground [_demoCanvas _background]
+        (var _progressCanvas (ProgressCanvasFactory/jm_getInstance))
+        (:jm_startBackground _progressCanvas _background)
+        (var _paintableArray (array/new-filled 2 nil))
+        (set (_paintableArray 0) _progressCanvas)
+        (set (_paintableArray 1) (:jm_getDefaultPaintableInterface _demoCanvas))
+        (:jm_setDefaultPaintableInterface _demoCanvas (PaintableComposite/jnew_1 _paintableArray))
+        (:jm_setPaintableInterface _demoCanvas (:jm_getDefaultPaintableInterface _demoCanvas))))
 
-local DemoCanvasProgressUtil = {}
-DemoCanvasProgressUtil.__index = DemoCanvasProgressUtil
-DemoCanvasProgressUtil.className = "DemoCanvasProgressUtil"
+(set jproto @{})
 
-function DemoCanvasProgressUtil.new()
-    local self = setmetatable({}, DemoCanvasProgressUtil)
-    return self
-end
-
-
-function DemoCanvasProgressUtil.showProgress(demoCanvas)
-        DemoCanvasProgressUtil.showProgressOptionallyInTheBackground(demoCanvas, false)
-end
-
-
-function DemoCanvasProgressUtil.showProgressOptionallyInTheBackground(demoCanvas, background)
-        local progressCanvas = ProgressCanvasFactory.getInstance()
-        progressCanvas:startBackground(background)
-        local paintableArray = java_new_array(nil, 2)
-        paintableArray[1] = progressCanvas
-        paintableArray[2] = demoCanvas:getDefaultPaintableInterface()
-        demoCanvas:setDefaultPaintableInterface(PaintableComposite.new(paintableArray))
-        demoCanvas:setPaintableInterface(demoCanvas:getDefaultPaintableInterface())
-end
-
-return DemoCanvasProgressUtil
 

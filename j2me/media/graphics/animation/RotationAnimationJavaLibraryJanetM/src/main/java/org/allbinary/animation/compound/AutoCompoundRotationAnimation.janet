@@ -1,195 +1,154 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.animation.compound
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.animation.compound
 
--- local GL = require("javax.microedition.khronos.opengles.GL")
--- local Graphics = require("javax.microedition.lcdui.Graphics")
-local AnimationBehavior = require("org.allbinary.animation.AnimationBehavior")
-local IndexedAnimation = require("org.allbinary.animation.IndexedAnimation")
-local RotationAnimation = require("org.allbinary.animation.RotationAnimation")
-local Direction = require("org.allbinary.direction.Direction")
-local PrimitiveIntUtil = require("org.allbinary.logic.math.PrimitiveIntUtil")
-local Angle = require("org.allbinary.math.Angle")
-local AngleFactory = require("org.allbinary.math.AngleFactory")
-local AngleInfo = require("org.allbinary.math.AngleInfo")
-local CircularIndexUtil = require("org.allbinary.util.CircularIndexUtil")
-local CompoundAnimationInterface = require("org.allbinary.animation.compound.CompoundAnimationInterface")
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(import ../../../../org/allbinary/animation/RotationAnimation :as RotationAnimation)
+(defn- PrimitiveIntUtil/jm_getArrayInstance [& args] (JR/call jfile "../../../../org/allbinary/logic/math/PrimitiveIntUtil" "jm_getArrayInstance" args))
+(defn- AngleFactory/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/math/AngleFactory" "jm_getInstance" args))
+(defn- AngleInfo/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/math/AngleInfo" "jm_getInstance" args))
+(defn- CircularIndexUtil/jm_createInstance [& args] (JR/call jfile "../../../../org/allbinary/util/CircularIndexUtil" "jm_createInstance" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class AutoCompoundRotationAnimation
+(var jproto nil)
+(var jnew_2 nil)
+(var jm_setFrame nil)
+(var jm_getFrame nil)
+(var jm_getAnimationSize nil)
+(var jm_getSize nil)
+(var jm_previousFrame nil)
+(var jm_nextFrame nil)
+(var jm_previousRotation nil)
+(var jm_nextRotation nil)
+(var jm_setSequence nil)
+(var jm_getSequence nil)
+(var jm_paintXY nil)
+(var jm_paintThreedXYZ nil)
+(var jm_getCurrentAnimation nil)
+(var jm_nextAnimation nil)
+(var jm_previousAnimation nil)
+(var jm_setAnimation nil)
+(var jm_setFrameByDirection nil)
+(var jm_setFrameToAngle nil)
+(var jm_adjustFrameToAngle nil)
+(var jm_adjustFrame nil)
+(var jm_getAngleInfoP nil)
+(var jm_getAnimationInterfaceArray nil)
+(var jm_setAnimationInterfaceArray nil)
+(var jm_set nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jnew_2 (fn jnew_2 [_animationInterfaceArray _animationBehavior]
+    (var this (table/setproto @{:jclass "AutoCompoundRotationAnimation" :f_animationInterfaceArray nil} jproto))
+    
+        (JR/superInit this (RotationAnimation/jnew_3 (AngleInfo/jm_getInstance ((AngleFactory/jm_getInstance) :f_QUARTER_TOTAL_ANGLE)) (CircularIndexUtil/jm_createInstance 4) _animationBehavior))
+        (set (this :f_animationInterfaceArray) _animationInterfaceArray)
+        (set (this :f_circularIndexUtil) (CircularIndexUtil/jm_createInstance (length (this :f_animationInterfaceArray))))
+    this))
+    
+(set jm_setFrame (fn jm_setFrame [this _index]
+        (JR/className ((this :f_animationInterfaceArray) (JR/className (this :f_circularIndexUtil))))))
+    
+(set jm_getFrame (fn jm_getFrame [this]
+    (label jreturn
+        (return jreturn (JR/className ((this :f_animationInterfaceArray) (JR/className (this :f_circularIndexUtil))))))))
+    
+(set jm_getAnimationSize (fn jm_getAnimationSize [this]
+    (label jreturn
+        (return jreturn (JR/className ((this :f_animationInterfaceArray) (JR/className (this :f_circularIndexUtil))))))))
+    
+(set jm_getSize (fn jm_getSize [this]
+    (label jreturn
+        (return jreturn (JR/className ((this :f_animationInterfaceArray) (JR/className (this :f_circularIndexUtil))))))))
+    
+(set jm_previousFrame (fn jm_previousFrame [this]
+        (JR/className (this :f_circularIndexUtil))
+        (JR/className ((this :f_animationInterfaceArray) (JR/className (this :f_circularIndexUtil))))))
+    
+(set jm_nextFrame (fn jm_nextFrame [this]
+        (JR/className (this :f_circularIndexUtil))
+        (JR/className ((this :f_animationInterfaceArray) (JR/className (this :f_circularIndexUtil))))))
+    
+(set jm_previousRotation (fn jm_previousRotation [this]
+        (JR/className ((this :f_animationInterfaceArray) (JR/className (this :f_circularIndexUtil))))))
+    
+(set jm_nextRotation (fn jm_nextRotation [this]
+        (JR/className ((this :f_animationInterfaceArray) (JR/className (this :f_circularIndexUtil))))))
+    
+(set jm_setSequence (fn jm_setSequence [this _sequence]
+    nil))
+    
+(set jm_getSequence (fn jm_getSequence [this]
+    (label jreturn
+        (return jreturn (PrimitiveIntUtil/jm_getArrayInstance)))))
+    
+(set jm_paintXY (fn jm_paintXY [this _graphics _x _y]
+        (JR/className ((this :f_animationInterfaceArray) (JR/className (this :f_circularIndexUtil))))))
+    
+(set jm_paintThreedXYZ (fn jm_paintThreedXYZ [this _graphics _x _y _z]
+        (JR/className ((this :f_animationInterfaceArray) (JR/className (this :f_circularIndexUtil))))))
+    
+(set jm_getCurrentAnimation (fn jm_getCurrentAnimation [this]
+    (label jreturn
+        (return jreturn ((this :f_animationInterfaceArray) (JR/className (this :f_circularIndexUtil)))))))
+    
+(set jm_nextAnimation (fn jm_nextAnimation [this]
+        (var _frame (:jm_getFrame this))
+        (JR/className (this :f_circularIndexUtil))
+        (:jm_setFrame this _frame)))
+    
+(set jm_previousAnimation (fn jm_previousAnimation [this]
+        (var _frame (:jm_getFrame this))
+        (JR/className (this :f_circularIndexUtil))
+        (:jm_setFrame this _frame)))
+    
+(set jm_setAnimation (fn jm_setAnimation [this _index]
+        (var _frame (:jm_getFrame this))
+        (JR/className (this :f_circularIndexUtil))
+        (:jm_setFrame this _frame)))
+    
+(set jm_setFrameByDirection (fn jm_setFrameByDirection [this _direction]
+        (JR/className ((this :f_animationInterfaceArray) (JR/className (this :f_circularIndexUtil))))))
+    
+(set jm_setFrameToAngle (fn jm_setFrameToAngle [this _angle]
+        (JR/className ((this :f_animationInterfaceArray) (JR/className (this :f_circularIndexUtil))))))
+    
+(set jm_adjustFrameToAngle (fn jm_adjustFrameToAngle [this _newAngle]
+        (:jm_adjustFrame this (:jm_getValue _newAngle))))
+    
+(set jm_adjustFrame (fn jm_adjustFrame [this _angle]
+        (JR/className ((this :f_animationInterfaceArray) (JR/className (this :f_circularIndexUtil))))))
+    
+(set jm_getAngleInfoP (fn jm_getAngleInfoP [this]
+    (label jreturn
+        (return jreturn (JR/className ((this :f_animationInterfaceArray) (JR/className (this :f_circularIndexUtil))))))))
+    
+(set jm_getAnimationInterfaceArray (fn jm_getAnimationInterfaceArray [this]
+    (label jreturn
+        (return jreturn (this :f_animationInterfaceArray)))))
+    
+(set jm_setAnimationInterfaceArray (fn jm_setAnimationInterfaceArray [this _animationInterfaceArray]
+        (set (this :f_animationInterfaceArray) _animationInterfaceArray)))
+    
+(set jm_set (fn jm_set [this _gl]
+        (do
+            (var _index (length (this :f_animationInterfaceArray)))
+            (while (>= (set _index (JR/i32 (- _index 1))) 0)
+                (do
+            (JR/className ((this :f_animationInterfaceArray) _index)))))))
 
-local AutoCompoundRotationAnimation = {}
-AutoCompoundRotationAnimation.__index = AutoCompoundRotationAnimation
-AutoCompoundRotationAnimation.className = "AutoCompoundRotationAnimation"
-setmetatable(AutoCompoundRotationAnimation, {__index = RotationAnimation})
+(set jproto (table/setproto @{:jm_setFrame jm_setFrame :jm_getFrame jm_getFrame :jm_getAnimationSize jm_getAnimationSize :jm_getSize jm_getSize :jm_previousFrame jm_previousFrame :jm_nextFrame jm_nextFrame :jm_previousRotation jm_previousRotation :jm_nextRotation jm_nextRotation :jm_setSequence jm_setSequence :jm_getSequence jm_getSequence :jm_paintXY jm_paintXY :jm_paintThreedXYZ jm_paintThreedXYZ :jm_getCurrentAnimation jm_getCurrentAnimation :jm_nextAnimation jm_nextAnimation :jm_previousAnimation jm_previousAnimation :jm_setAnimation jm_setAnimation :jm_setFrameByDirection jm_setFrameByDirection :jm_setFrameToAngle jm_setFrameToAngle :jm_adjustFrameToAngle jm_adjustFrameToAngle :jm_adjustFrame jm_adjustFrame :jm_getAngleInfoP jm_getAngleInfoP :jm_getAnimationInterfaceArray jm_getAnimationInterfaceArray :jm_setAnimationInterfaceArray jm_setAnimationInterfaceArray :jm_set jm_set} RotationAnimation/jproto))
 
-function AutoCompoundRotationAnimation:_init_fields()
-    self.animationInterfaceArray = nil
-end
-
-
-function AutoCompoundRotationAnimation.new(animationInterfaceArray, animationBehavior)
-    local self = setmetatable(RotationAnimation.new(AngleInfo.getInstance(AngleFactory.getInstance().QUARTER_TOTAL_ANGLE), CircularIndexUtil.createInstance(4), animationBehavior), AutoCompoundRotationAnimation)
-    self:_init_fields()
-        -- super(...) made self above
-        self.animationInterfaceArray = animationInterfaceArray
-        self.circularIndexUtil = CircularIndexUtil.createInstance((self.animationInterfaceArray.n or #self.animationInterfaceArray))
-    return self
-end
-
-
-function AutoCompoundRotationAnimation:setFrame(index)
-        self.animationInterfaceArray[self.circularIndexUtil:getIndex() + 1]:setFrame(index)
-end
-
-
-function AutoCompoundRotationAnimation:getFrame()
-        return self.animationInterfaceArray[self.circularIndexUtil:getIndex() + 1]:getFrame()
-end
-
-
--- throws Exception
-function AutoCompoundRotationAnimation:getAnimationSize()
-        return self.animationInterfaceArray[self.circularIndexUtil:getIndex() + 1]:getAnimationSize()
-end
-
-
-function AutoCompoundRotationAnimation:getSize()
-        return self.animationInterfaceArray[self.circularIndexUtil:getIndex() + 1]:getSize()
-end
-
-
-function AutoCompoundRotationAnimation:previousFrame()
-        self.circularIndexUtil:previous()
-        self.animationInterfaceArray[self.circularIndexUtil:getIndex() + 1]:previousFrame()
-end
-
-
--- throws Exception
-function AutoCompoundRotationAnimation:nextFrame()
-        self.circularIndexUtil:next()
-        self.animationInterfaceArray[self.circularIndexUtil:getIndex() + 1]:nextFrame()
-end
-
-
-function AutoCompoundRotationAnimation:previousRotation()
-        self.animationInterfaceArray[self.circularIndexUtil:getIndex() + 1]:previousRotation()
-end
-
-
-function AutoCompoundRotationAnimation:nextRotation()
-        self.animationInterfaceArray[self.circularIndexUtil:getIndex() + 1]:nextRotation()
-end
-
-
-function AutoCompoundRotationAnimation:setSequence(sequence)
-end
-
-
-function AutoCompoundRotationAnimation:getSequence()
-        return PrimitiveIntUtil.getArrayInstance()
-end
-
-
-function AutoCompoundRotationAnimation:paintXY(graphics, x, y)
-        self.animationInterfaceArray[self.circularIndexUtil:getIndex() + 1]:paintXY(graphics, x, y)
-end
-
-
-function AutoCompoundRotationAnimation:paintThreedXYZ(graphics, x, y, z)
-        self.animationInterfaceArray[self.circularIndexUtil:getIndex() + 1]:paintThreedXYZ(graphics, x, y, z)
-end
-
-
-function AutoCompoundRotationAnimation:getCurrentAnimation()
-        return self.animationInterfaceArray[self.circularIndexUtil:getIndex() + 1]
-end
-
-
-function AutoCompoundRotationAnimation:nextAnimation()
-        local frame = self:getFrame()
-        self.circularIndexUtil:next()
-        self:setFrame(frame)
-end
-
-
-function AutoCompoundRotationAnimation:previousAnimation()
-        local frame = self:getFrame()
-        self.circularIndexUtil:previous()
-        self:setFrame(frame)
-end
-
-
-function AutoCompoundRotationAnimation:setAnimation(index)
-        local frame = self:getFrame()
-        self.circularIndexUtil:setIndex(index)
-        self:setFrame(frame)
-end
-
-
-function AutoCompoundRotationAnimation:setFrameByDirection(direction)
-        self.animationInterfaceArray[self.circularIndexUtil:getIndex() + 1]:setFrameByDirection(direction)
-end
-
-
-function AutoCompoundRotationAnimation:setFrameToAngle(angle)
-        self.animationInterfaceArray[self.circularIndexUtil:getIndex() + 1]:setFrameToAngle(angle)
-end
-
-
-function AutoCompoundRotationAnimation:adjustFrameToAngle(newAngle)
-        self:adjustFrame(newAngle:getValue())
-end
-
-
-function AutoCompoundRotationAnimation:adjustFrame(angle)
-        self.animationInterfaceArray[self.circularIndexUtil:getIndex() + 1]:adjustFrame(angle)
-end
-
-
-function AutoCompoundRotationAnimation:getAngleInfoP()
-        return self.animationInterfaceArray[self.circularIndexUtil:getIndex() + 1]:getAngleInfoP()
-end
-
-
-function AutoCompoundRotationAnimation:getAnimationInterfaceArray()
-        return self.animationInterfaceArray
-end
-
-
-function AutoCompoundRotationAnimation:setAnimationInterfaceArray(animationInterfaceArray)
-        self.animationInterfaceArray = animationInterfaceArray
-end
-
-
--- throws Exception
-function AutoCompoundRotationAnimation:set(gl)
-        do
-            local index = (self.animationInterfaceArray.n or #self.animationInterfaceArray)
-            while (function() index = index - 1 return index end)() >= 0 do
-            self.animationInterfaceArray[index + 1]:set(gl)
-            end
-        end
-end
-
-return AutoCompoundRotationAnimation
 

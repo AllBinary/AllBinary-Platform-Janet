@@ -1,64 +1,49 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.ag.layer.hud.basic.score
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.game.ag.layer.hud.basic.score
 
-local Scoreable = require("org.allbinary.game.score.Scoreable")
+(import ../../../../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(import ../../../../../../../../org/allbinary/game/score/Scoreable :as Scoreable)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class ScoreableAddOnlyForHud
+(var jproto nil)
+(var jnew_1 nil)
+(var jm_removePoints nil)
+(var jm_addPoints nil)
+(var jm_getScoreHudWidget nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jnew_1 (fn jnew_1 [_scoreVectorGraphic]
+    (var this (table/setproto @{:jclass "ScoreableAddOnlyForHud" :f_scoreHudWidget nil} jproto))
+    
+        (JR/superInit this (Scoreable/jnew_1 0))
+        (set (this :f_scoreHudWidget) _scoreVectorGraphic)
+        (:jm_set (:jm_getScoreHudWidget this) 0)
+    this))
+    
+(set jm_removePoints (fn jm_removePoints [this _points]
+    nil))
+    
+(set jm_addPoints (fn jm_addPoints [this _points]
+        ((get Scoreable/jproto :jm_addPoints) this _points)
+        (:jm_add (:jm_getScoreHudWidget this) _points)))
+    
+(set jm_getScoreHudWidget (fn jm_getScoreHudWidget [this]
+    (label jreturn
+        (return jreturn (this :f_scoreHudWidget)))))
 
-local ScoreableAddOnlyForHud = {}
-ScoreableAddOnlyForHud.__index = ScoreableAddOnlyForHud
-ScoreableAddOnlyForHud.className = "ScoreableAddOnlyForHud"
-setmetatable(ScoreableAddOnlyForHud, {__index = Scoreable})
+(set jproto (table/setproto @{:jm_removePoints jm_removePoints :jm_addPoints jm_addPoints :jm_getScoreHudWidget jm_getScoreHudWidget} Scoreable/jproto))
 
-function ScoreableAddOnlyForHud:_init_fields()
-    self.scoreHudWidget = nil
-end
-
-
-function ScoreableAddOnlyForHud.new(scoreVectorGraphic)
-    local self = setmetatable(Scoreable.new(0), ScoreableAddOnlyForHud)
-    self:_init_fields()
-        -- super(...) made self above
-        self.scoreHudWidget = scoreVectorGraphic
-        self:getScoreHudWidget():set(0)
-    return self
-end
-
-
-function ScoreableAddOnlyForHud:removePoints(points)
-end
-
-
-function ScoreableAddOnlyForHud:addPoints(points)
-        Scoreable.addPoints(self, points)
-        self:getScoreHudWidget():add(points)
-end
-
-
-function ScoreableAddOnlyForHud:getScoreHudWidget()
-        return self.scoreHudWidget
-end
-
-return ScoreableAddOnlyForHud
 

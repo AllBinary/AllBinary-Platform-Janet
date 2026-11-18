@@ -1,57 +1,45 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---   
--- Generated Code Do Not Modify
--- package org.allbinary.animation.image
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#   
+# Generated Code Do Not Modify
+# package org.allbinary.animation.image
 
--- local Image = require("javax.microedition.lcdui.Image")
-local Animation = require("org.allbinary.animation.Animation")
-local AnimationBehaviorFactory = require("org.allbinary.animation.AnimationBehaviorFactory")
-local BaseImageAnimationFactory = require("org.allbinary.animation.image.BaseImageAnimationFactory")
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(import ./BaseImageAnimationFactory :as BaseImageAnimationFactory)
+(defn- LeftToRightImageAnimation/jnew_3 [& args] (JR/call jfile "./LeftToRightImageAnimation" "jnew_3" args))
+(defn- AdjustedLeftToRightImageAnimation/jnew_5 [& args] (JR/call jfile "./AdjustedLeftToRightImageAnimation" "jnew_5" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class LeftToRightImageAnimationFactory
+(var jproto nil)
+(var jnew_5 nil)
+(var jm_getInstance nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jnew_5 (fn jnew_5 [_image _sequenceArray _dx _dy _animationBehaviorFactory]
+    (var this (table/setproto @{:jclass "LeftToRightImageAnimationFactory"} jproto))
+        (JR/superInit this (BaseImageAnimationFactory/jnew_7 _image _sequenceArray (:jm_getWidth _image) (:jm_getHeight _image) _dx _dy _animationBehaviorFactory))
+    this))
+    
+(set jm_getInstance (fn jm_getInstance [this _instanceId]
+    (label jreturn
+        (var _scaledImage (JR/className (this :f_animationFactoryImageScaleUtil)))
+        (if (or (not= ((this :f_animationFactoryInitializationVisitor) :f_dx) 0) (not= ((this :f_animationFactoryInitializationVisitor) :f_dy) 0))
+            (do
+            (JR/className (this :f_animationFactoryImageScaleUtil))
+            (return jreturn (AdjustedLeftToRightImageAnimation/jnew_5 _scaledImage (:jm_getSequenceArray this) ((this :f_animationFactoryInitializationVisitor) :f_dx) ((this :f_animationFactoryInitializationVisitor) :f_dy) (:jm_getOrCreateInstance (this :f_animationBehaviorFactory)))))
+            (do
+            (return jreturn (LeftToRightImageAnimation/jnew_3 _scaledImage (:jm_getSequenceArray this) (:jm_getOrCreateInstance (this :f_animationBehaviorFactory)))))))))
 
-local LeftToRightImageAnimationFactory = {}
-LeftToRightImageAnimationFactory.__index = LeftToRightImageAnimationFactory
-LeftToRightImageAnimationFactory.className = "LeftToRightImageAnimationFactory"
-setmetatable(LeftToRightImageAnimationFactory, {__index = BaseImageAnimationFactory})
+(set jproto (table/setproto @{:jm_getInstance jm_getInstance} BaseImageAnimationFactory/jproto))
 
-
-function LeftToRightImageAnimationFactory.new(image, sequenceArray, dx, dy, animationBehaviorFactory)
-    local self = setmetatable(BaseImageAnimationFactory.new(image, sequenceArray, image:getWidth(), image:getHeight(), dx, dy, animationBehaviorFactory), LeftToRightImageAnimationFactory)
-        -- super(...) made self above
-    return self
-end
-
-
--- throws Exception
-function LeftToRightImageAnimationFactory:getInstance(instanceId)
-        local scaledImage = self.animationFactoryImageScaleUtil:createImage(self:getImage(), self.animationFactoryInitializationVisitor.width, self.animationFactoryInitializationVisitor.height, self.scaleProperties.scaleWidth, self.scaleProperties.scaleHeight)
-        if self.animationFactoryInitializationVisitor.dx ~= 0 or self.animationFactoryInitializationVisitor.dy ~= 0 then
-            self.animationFactoryImageScaleUtil:processAdjust(self)
-            return AdjustedLeftToRightImageAnimation.new(scaledImage, self:getSequenceArray(), self.animationFactoryInitializationVisitor.dx, self.animationFactoryInitializationVisitor.dy, self.animationBehaviorFactory:getOrCreateInstance())
-        else
-            return LeftToRightImageAnimation.new(scaledImage, self:getSequenceArray(), self.animationBehaviorFactory:getOrCreateInstance())
-        end
-end
-
-return LeftToRightImageAnimationFactory
 

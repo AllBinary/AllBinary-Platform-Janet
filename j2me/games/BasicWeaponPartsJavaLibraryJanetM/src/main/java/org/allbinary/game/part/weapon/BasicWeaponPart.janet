@@ -1,145 +1,109 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.part.weapon
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.game.part.weapon
 
--- local Graphics = require("javax.microedition.lcdui.Graphics")
-local Animation = require("org.allbinary.animation.Animation")
-local NullAnimationFactory = require("org.allbinary.animation.NullAnimationFactory")
-local WeaponProperties = require("org.allbinary.game.combat.weapon.WeaponProperties")
-local PartInterface = require("org.allbinary.game.part.PartInterface")
-local NoScoreable = require("org.allbinary.game.score.NoScoreable")
-local ScoreableInterface = require("org.allbinary.game.score.ScoreableInterface")
-local RelativeRelationship = require("org.allbinary.graphics.RelativeRelationship")
-local AllBinaryLayer = require("org.allbinary.layer.AllBinaryLayer")
-local AllBinaryLayerManager = require("org.allbinary.layer.AllBinaryLayerManager")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
-local ViewPositionBase = require("org.allbinary.view.ViewPositionBase")
-local SalvoInterface = require("org.allbinary.game.part.weapon.SalvoInterface")
+(import ../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- NullAnimationFactory/jm_getFactoryInstance [& args] (JR/call jfile "../../../../../org/allbinary/animation/NullAnimationFactory" "jm_getFactoryInstance" args))
+(defn- WeaponProperties/jstatic_NULL_WEAPON_PROPERTIES [& args] (JR/call jfile "../../../../../org/allbinary/game/combat/weapon/WeaponProperties" "jstatic_NULL_WEAPON_PROPERTIES" args))
+(defn- NoScoreable/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/game/score/NoScoreable" "jm_getInstance" args))
+(defn- RelativeRelationship/jstatic_NULL_RELATIVE_RELATIONSHIP [& args] (JR/call jfile "../../../../../org/allbinary/graphics/RelativeRelationship" "jstatic_NULL_RELATIVE_RELATIONSHIP" args))
+(defn- AllBinaryLayer/jstatic_NULL_ALLBINARY_LAYER [& args] (JR/call jfile "../../../../../org/allbinary/layer/AllBinaryLayer" "jstatic_NULL_ALLBINARY_LAYER" args))
+(defn- CommonStrings/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/string/CommonStrings" "jm_getInstance" args))
 
--- Java library Throwable. tostring gives the message like Java getMessage.
-local function java_exception(className, message, cause)
-    if cause == nil and type(message) == "table" then
-        cause = message
-        message = tostring(message)
-    end
-    local exception = {className = className, message = message, cause = cause}
-    function exception:getMessage() return self.message end
-    function exception:getCause() return self.cause end
-    function exception:printStackTrace() print(debug.traceback(tostring(self))) end
-    return setmetatable(exception, {__tostring = function(self) if self.message ~= nil then return tostring(self.message) end return self.className end})
-end
+# Java class BasicWeaponPart
+(var jproto nil)
+(var jcell_NULL_BASIC_WEAPON_PART :jnone)
+(var jstatic_NULL_BASIC_WEAPON_PART nil)
+(var jsetstatic_NULL_BASIC_WEAPON_PART nil)
+(var jnew_5 nil)
+(var jm_createBasicWeaponPart nil)
+(var jm_init nil)
+(var jm_process nil)
+(var jm_processScore nil)
+(var jm_getOwnerLayerInterface nil)
+(var jm_setOwnerLayerInterface nil)
+(var jm_getAnimationInterface nil)
+(var jm_setAnimationInterface nil)
+(var jm_paint nil)
+(var jm_paintThreed nil)
+(var jm_getWeaponProperties nil)
+(var jm_setWeaponProperties nil)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(set jstatic_NULL_BASIC_WEAPON_PART (fn jstatic_NULL_BASIC_WEAPON_PART []
+  (when (= jcell_NULL_BASIC_WEAPON_PART :jnone) (set jcell_NULL_BASIC_WEAPON_PART (jm_createBasicWeaponPart (JR/className (NullAnimationFactory/jm_getFactoryInstance)))))
+  jcell_NULL_BASIC_WEAPON_PART))
+(set jsetstatic_NULL_BASIC_WEAPON_PART (fn jsetstatic_NULL_BASIC_WEAPON_PART [value] (set jcell_NULL_BASIC_WEAPON_PART value)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jm_createBasicWeaponPart (fn jm_createBasicWeaponPart [_animationInterface]
+    (label jreturn
+        (return jreturn (jnew_5 _animationInterface (AllBinaryLayer/jstatic_NULL_ALLBINARY_LAYER) (WeaponProperties/jstatic_NULL_WEAPON_PROPERTIES) (NoScoreable/jm_getInstance) (RelativeRelationship/jstatic_NULL_RELATIVE_RELATIONSHIP))))))
+    
+(set jnew_5 (fn jnew_5 [_animationInterface _sourceLayerInterface _weaponProperties _scoreableInterface _relativeRelationship]
+    (var this (table/setproto @{:jclass "BasicWeaponPart" :f_animationInterface nil :f_ownerLayerInterface nil :f_weaponProperties nil :f_scoreableInterface nil :f_relativeRelationship nil} jproto))
+    (put this :f_animationInterface (JR/className (NullAnimationFactory/jm_getFactoryInstance)))
+    (put this :f_ownerLayerInterface (AllBinaryLayer/jstatic_NULL_ALLBINARY_LAYER))
+    (put this :f_weaponProperties (WeaponProperties/jstatic_NULL_WEAPON_PROPERTIES))
+    (put this :f_scoreableInterface (NoScoreable/jm_getInstance))
+    (put this :f_relativeRelationship (RelativeRelationship/jstatic_NULL_RELATIVE_RELATIONSHIP))
+        (:jm_init this _sourceLayerInterface _weaponProperties _scoreableInterface _relativeRelationship)
+        (:jm_setAnimationInterface this _animationInterface)
+    this))
+    
+(set jm_init (fn jm_init [this _sourceLayerInterface _weaponProperties _scoreableInterface _relativeRelationship]
+        (:jm_setOwnerLayerInterface this _sourceLayerInterface)
+        (:jm_setWeaponProperties this _weaponProperties)
+        (set (this :f_scoreableInterface) _scoreableInterface)
+        (set (this :f_relativeRelationship) _relativeRelationship)))
+    
+(set jm_process (fn jm_process [this _allbinaryLayerManager _angle _otherAngle]
+        (:jm_processScore this _allbinaryLayerManager _angle _otherAngle (:jm_getWeaponProperties this) (this :f_scoreableInterface))))
+    
+(set jm_processScore (fn jm_processScore [this _allbinaryLayerManager _angle _otherAngle _weaponProperties _scoreableInterface]
+        (error (JR/newException "Exception" ((CommonStrings/jm_getInstance) :f_NOT_IMPLEMENTED)))))
+    
+(set jm_getOwnerLayerInterface (fn jm_getOwnerLayerInterface [this]
+    (label jreturn
+        (return jreturn (this :f_ownerLayerInterface)))))
+    
+(set jm_setOwnerLayerInterface (fn jm_setOwnerLayerInterface [this _ownerLayerInterface]
+        (set (this :f_ownerLayerInterface) _ownerLayerInterface)))
+    
+(set jm_getAnimationInterface (fn jm_getAnimationInterface [this]
+    (label jreturn
+        (return jreturn (this :f_animationInterface)))))
+    
+(set jm_setAnimationInterface (fn jm_setAnimationInterface [this _animationInterface]
+        (set (this :f_animationInterface) _animationInterface)))
+    
+(set jm_paint (fn jm_paint [this _graphics]
+        (var _viewPosition (:jm_getViewPosition (:jm_getOwnerLayerInterface this)))
+        (var _viewX (:jm_getX _viewPosition))
+        (var _viewY (:jm_getY _viewPosition))
+        (:jm_paintXY (this :f_animationInterface) _graphics _viewX _viewY)))
+    
+(set jm_paintThreed (fn jm_paintThreed [this _graphics]
+    nil))
+    
+(set jm_getWeaponProperties (fn jm_getWeaponProperties [this]
+    (label jreturn
+        (return jreturn (this :f_weaponProperties)))))
+    
+(set jm_setWeaponProperties (fn jm_setWeaponProperties [this _weaponProperties]
+        (set (this :f_weaponProperties) _weaponProperties)))
 
-local BasicWeaponPart = {}
-BasicWeaponPart.__index = BasicWeaponPart
-BasicWeaponPart.className = "BasicWeaponPart"
+(set jproto @{:jm_init jm_init :jm_process jm_process :jm_processScore jm_processScore :jm_getOwnerLayerInterface jm_getOwnerLayerInterface :jm_setOwnerLayerInterface jm_setOwnerLayerInterface :jm_getAnimationInterface jm_getAnimationInterface :jm_setAnimationInterface jm_setAnimationInterface :jm_paint jm_paint :jm_paintThreed jm_paintThreed :jm_getWeaponProperties jm_getWeaponProperties :jm_setWeaponProperties jm_setWeaponProperties})
 
-function BasicWeaponPart:_init_fields()
-    self.animationInterface = NullAnimationFactory.getFactoryInstance():getInstance(0)
-    self.ownerLayerInterface = AllBinaryLayer.NULL_ALLBINARY_LAYER
-    self.weaponProperties = WeaponProperties.NULL_WEAPON_PROPERTIES
-    self.scoreableInterface = NoScoreable.getInstance()
-    self.relativeRelationship = RelativeRelationship.NULL_RELATIVE_RELATIONSHIP
-end
-
-
-function BasicWeaponPart.createBasicWeaponPart(animationInterface)
-        return BasicWeaponPart.new(animationInterface, AllBinaryLayer.NULL_ALLBINARY_LAYER, WeaponProperties.NULL_WEAPON_PROPERTIES, NoScoreable.getInstance(), RelativeRelationship.NULL_RELATIVE_RELATIONSHIP)
-end
-
-
-function BasicWeaponPart.new(animationInterface, sourceLayerInterface, weaponProperties, scoreableInterface, relativeRelationship)
-    local self = setmetatable({}, BasicWeaponPart)
-    self:_init_fields()
-        self:init(sourceLayerInterface, weaponProperties, scoreableInterface, relativeRelationship)
-        self:setAnimationInterface(animationInterface)
-    return self
-end
-
-
-function BasicWeaponPart:init(sourceLayerInterface, weaponProperties, scoreableInterface, relativeRelationship)
-        self:setOwnerLayerInterface(sourceLayerInterface)
-        self:setWeaponProperties(weaponProperties)
-        self.scoreableInterface = scoreableInterface
-        self.relativeRelationship = relativeRelationship
-end
-
-
--- throws Exception
-function BasicWeaponPart:process(allbinaryLayerManager, angle, otherAngle)
-        self:processScore(allbinaryLayerManager, angle, otherAngle, self:getWeaponProperties(), self.scoreableInterface)
-end
-
-
--- throws Exception
-function BasicWeaponPart:processScore(allbinaryLayerManager, angle, otherAngle, weaponProperties, scoreableInterface)
-        error(java_exception("Exception", CommonStrings.getInstance().NOT_IMPLEMENTED), 0)
-end
-
-
-function BasicWeaponPart:getOwnerLayerInterface()
-        return self.ownerLayerInterface
-end
-
-
-function BasicWeaponPart:setOwnerLayerInterface(ownerLayerInterface)
-        self.ownerLayerInterface = ownerLayerInterface
-end
-
-
-function BasicWeaponPart:getAnimationInterface()
-        return self.animationInterface
-end
-
-
-function BasicWeaponPart:setAnimationInterface(animationInterface)
-        self.animationInterface = animationInterface
-end
-
-
-function BasicWeaponPart:paint(graphics)
-        local viewPosition = self:getOwnerLayerInterface():getViewPosition()
-        local viewX = viewPosition:getX()
-        local viewY = viewPosition:getY()
-        self.animationInterface:paintXY(graphics, viewX, viewY)
-end
-
-
-function BasicWeaponPart:paintThreed(graphics)
-end
-
-
-function BasicWeaponPart:getWeaponProperties()
-        return self.weaponProperties
-end
-
-
-function BasicWeaponPart:setWeaponProperties(weaponProperties)
-        self.weaponProperties = weaponProperties
-end
-
-BasicWeaponPart.NULL_BASIC_WEAPON_PART = BasicWeaponPart.createBasicWeaponPart(NullAnimationFactory.getFactoryInstance():getInstance(0))
-
-return BasicWeaponPart
 

@@ -1,53 +1,38 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.displayable.canvas
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.game.displayable.canvas
 
--- local Graphics = require("javax.microedition.lcdui.Graphics")
-local Paintable = require("org.allbinary.graphics.paint.Paintable")
+(import ../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(import ../../../../../org/allbinary/graphics/paint/Paintable :as Paintable)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class GameCanvasNonBotPaintable
+(var jproto nil)
+(var jnew_1 nil)
+(var jm_paint nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jnew_1 (fn jnew_1 [_gameCanvas]
+    (var this (table/setproto @{:jclass "GameCanvasNonBotPaintable" :f_gameCanvas nil} jproto))
+    
+    (JR/superInit this (Paintable/jnew_0))
+        (set (this :f_gameCanvas) _gameCanvas)
+    this))
+    
+(set jm_paint (fn jm_paint [this _graphics]
+        (:jm_nonBotPaint (this :f_gameCanvas) _graphics)))
 
-local GameCanvasNonBotPaintable = {}
-GameCanvasNonBotPaintable.__index = GameCanvasNonBotPaintable
-GameCanvasNonBotPaintable.className = "GameCanvasNonBotPaintable"
-setmetatable(GameCanvasNonBotPaintable, {__index = Paintable})
+(set jproto (table/setproto @{:jm_paint jm_paint} Paintable/jproto))
 
-function GameCanvasNonBotPaintable:_init_fields()
-    self.gameCanvas = nil
-end
-
-
-function GameCanvasNonBotPaintable.new(gameCanvas)
-    local self = setmetatable(Paintable.new(), GameCanvasNonBotPaintable)
-    self:_init_fields()
-        self.gameCanvas = gameCanvas
-    return self
-end
-
-
-function GameCanvasNonBotPaintable:paint(graphics)
-        self.gameCanvas:nonBotPaint(graphics)
-end
-
-return GameCanvasNonBotPaintable
 

@@ -1,76 +1,60 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.displayable.canvas
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.game.displayable.canvas
 
-local Processor = require("org.allbinary.canvas.Processor")
-local HighScores = require("org.allbinary.game.score.HighScores")
-local HighScoresHelperBase = require("org.allbinary.game.score.HighScoresHelperBase")
-local NullHighScoresSingletonFactory = require("org.allbinary.game.score.NullHighScoresSingletonFactory")
-local GameStateFactory = require("org.allbinary.game.state.GameStateFactory")
-local NullPaintable = require("org.allbinary.graphics.paint.NullPaintable")
+(import ../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(import ../../../../../org/allbinary/canvas/Processor :as Processor)
+(defn- NullHighScoresSingletonFactory/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/game/score/NullHighScoresSingletonFactory" "jm_getInstance" args))
+(defn- GameStateFactory/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/game/state/GameStateFactory" "jm_getInstance" args))
+(defn- NullPaintable/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/graphics/paint/NullPaintable" "jm_getInstance" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class EndGameProcessor
+(var jproto nil)
+(var jnew_1 nil)
+(var jm_process nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jnew_1 (fn jnew_1 [_gameCanvas]
+    (var this (table/setproto @{:jclass "EndGameProcessor" :f_gameStateFactory nil :f_gameCanvas nil :f_WAIT 0} jproto))
+    (put this :f_gameStateFactory (GameStateFactory/jm_getInstance))
+    
+    (put this :f_WAIT 5000)
+    (JR/superInit this (Processor/jnew_0))
+        (set (this :f_gameCanvas) _gameCanvas)
+    this))
+    
+(set jm_process (fn jm_process [this]
+        (if (:jm_isHighScoreSubmitted (this :f_gameCanvas))
+            (do
+            (if (JR/className (:jm_getGameStateTimeHelper (this :f_gameCanvas)))
+                (do
+                (if (= (:jm_getGameState (this :f_gameCanvas)) ((this :f_gameStateFactory) :f_SHOW_END_RESULT_GAME_STATE))
+                    (do
+                    (var _highScoresBase ((this :f_gameCanvas) :f_highScoresHelper))
+                    (var _highScores (:jm_getSelectedHighScores _highScoresBase))
+                    (if (not= _highScores (NullHighScoresSingletonFactory/jm_getInstance))
+                        (do
+                        (:jm_selectHighScores _highScoresBase)
+                        (JR/className (:jm_getRealHighScoresPaintable (this :f_gameCanvas)))
+                        (:jm_setGameState (this :f_gameCanvas) ((this :f_gameStateFactory) :f_SHOW_HIGH_SCORE_GAME_STATE))
+                        (:jm_setHighScoresPaintable (this :f_gameCanvas) (:jm_getRealHighScoresPaintable (this :f_gameCanvas))))))
+                    (if (= (:jm_getGameState (this :f_gameCanvas)) ((this :f_gameStateFactory) :f_SHOW_HIGH_SCORE_GAME_STATE))
+                    (do
+                    (:jm_setGameState (this :f_gameCanvas) ((this :f_gameStateFactory) :f_SHOW_END_RESULT_GAME_STATE))
+                    (:jm_setHighScoresPaintable (this :f_gameCanvas) (NullPaintable/jm_getInstance)))))))))))
 
-local EndGameProcessor = {}
-EndGameProcessor.__index = EndGameProcessor
-EndGameProcessor.className = "EndGameProcessor"
-setmetatable(EndGameProcessor, {__index = Processor})
+(set jproto (table/setproto @{:jm_process jm_process} Processor/jproto))
 
-function EndGameProcessor:_init_fields()
-    self.gameStateFactory = GameStateFactory.getInstance()
-    self.gameCanvas = nil
-    self.WAIT = 5000
-end
-
-
-function EndGameProcessor.new(gameCanvas)
-    local self = setmetatable(Processor.new(), EndGameProcessor)
-    self:_init_fields()
-        self.gameCanvas = gameCanvas
-    return self
-end
-
-
--- throws Exception
-function EndGameProcessor:process()
-        if self.gameCanvas:isHighScoreSubmitted() then
-            if self.gameCanvas:getGameStateTimeHelper():isElapsedTNT(self.WAIT) then
-                if self.gameCanvas:getGameState() == self.gameStateFactory.SHOW_END_RESULT_GAME_STATE then
-                    local highScoresBase = self.gameCanvas.highScoresHelper
-                    local highScores = highScoresBase:getSelectedHighScores()
-                    if highScores ~= NullHighScoresSingletonFactory.getInstance() then
-                        highScoresBase:selectHighScores()
-                        self.gameCanvas:getRealHighScoresPaintable():setHighScores(highScores)
-                        self.gameCanvas:setGameState(self.gameStateFactory.SHOW_HIGH_SCORE_GAME_STATE)
-                        self.gameCanvas:setHighScoresPaintable(self.gameCanvas:getRealHighScoresPaintable())
-                    end
-                elseif self.gameCanvas:getGameState() == self.gameStateFactory.SHOW_HIGH_SCORE_GAME_STATE then
-                    self.gameCanvas:setGameState(self.gameStateFactory.SHOW_END_RESULT_GAME_STATE)
-                    self.gameCanvas:setHighScoresPaintable(NullPaintable.getInstance())
-                end
-            end
-        end
-end
-
-return EndGameProcessor
 

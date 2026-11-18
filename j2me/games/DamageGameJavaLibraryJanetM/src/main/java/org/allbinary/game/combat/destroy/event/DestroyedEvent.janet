@@ -1,86 +1,69 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.combat.destroy.event
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.game.combat.destroy.event
 
-local AllBinaryGameCanvas = require("org.allbinary.game.displayable.canvas.AllBinaryGameCanvas")
-local NullGameCanvas = require("org.allbinary.game.displayable.canvas.NullGameCanvas")
-local AllBinaryLayer = require("org.allbinary.layer.AllBinaryLayer")
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
-local AllBinaryEventObject = require("org.allbinary.logic.util.event.AllBinaryEventObject")
+(import ../../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- NullGameCanvas/jm_getInstance [& args] (JR/call jfile "../../../../../../org/allbinary/game/displayable/canvas/NullGameCanvas" "jm_getInstance" args))
+(defn- AllBinaryLayer/jstatic_NULL_ALLBINARY_LAYER [& args] (JR/call jfile "../../../../../../org/allbinary/layer/AllBinaryLayer" "jstatic_NULL_ALLBINARY_LAYER" args))
+(defn- StringMaker/jnew_0 [& args] (JR/call jfile "../../../../../../org/allbinary/logic/string/StringMaker" "jnew_0" args))
+(defn- StringUtil/jm_getInstance [& args] (JR/call jfile "../../../../../../org/allbinary/logic/string/StringUtil" "jm_getInstance" args))
+(import ../../../../../../org/allbinary/logic/util/event/AllBinaryEventObject :as AllBinaryEventObject)
+(defn- DestroyedEventHandler/jm_getInstance [& args] (JR/call jfile "./DestroyedEventHandler" "jm_getInstance" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class DestroyedEvent
+(var jproto nil)
+(var jnew_1 nil)
+(var jm_getAllBinaryGameCanvas nil)
+(var jm_getLayerInterface nil)
+(var jm_setAllBinaryGameCanvas nil)
+(var jm_setLayerInterfaceForCircularStaticPool nil)
+(var jm_toString nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jnew_1 (fn jnew_1 [_combatGameCanvas]
+    (var this (table/setproto @{:jclass "DestroyedEvent" :f_allBinaryGameCanvas nil :f_allBinaryLayerInterface nil} jproto))
+    (put this :f_allBinaryGameCanvas (NullGameCanvas/jm_getInstance))
+    (put this :f_allBinaryLayerInterface (AllBinaryLayer/jstatic_NULL_ALLBINARY_LAYER))
+        (JR/superInit this (AllBinaryEventObject/jnew_1 (DestroyedEventHandler/jm_getInstance)))
+        (:jm_setAllBinaryGameCanvas this _combatGameCanvas)
+    this))
+    
+(set jm_getAllBinaryGameCanvas (fn jm_getAllBinaryGameCanvas [this]
+    (label jreturn
+        (return jreturn (this :f_allBinaryGameCanvas)))))
+    
+(set jm_getLayerInterface (fn jm_getLayerInterface [this]
+    (label jreturn
+        (return jreturn (this :f_allBinaryLayerInterface)))))
+    
+(set jm_setAllBinaryGameCanvas (fn jm_setAllBinaryGameCanvas [this _allBinaryGameCanvas]
+        (set (this :f_allBinaryGameCanvas) _allBinaryGameCanvas)))
+    
+(set jm_setLayerInterfaceForCircularStaticPool (fn jm_setLayerInterfaceForCircularStaticPool [this _allBinaryLayerInterface]
+        (set (this :f_allBinaryLayerInterface) _allBinaryLayerInterface)))
+    
+(set jm_toString (fn jm_toString [this]
+    (label jreturn
+        (var _stringBuffer (StringMaker/jnew_0))
+        (:jm_append _stringBuffer "DestroyedEvent: \n")
+        (:jm_append _stringBuffer "AllBinaryLayerInterface: ")
+        (:jm_append _stringBuffer (:jm_toString (this :f_allBinaryLayerInterface)))
+        (:jm_append _stringBuffer "\nAllBinaryGameCanvas: ")
+        (:jm_append _stringBuffer (:jm_toString_1 (StringUtil/jm_getInstance) (:jm_getAllBinaryGameCanvas this)))
+        (return jreturn (:jm_toString _stringBuffer)))))
 
-local DestroyedEvent = {}
-DestroyedEvent.__index = DestroyedEvent
-DestroyedEvent.className = "DestroyedEvent"
-setmetatable(DestroyedEvent, {__index = AllBinaryEventObject})
+(set jproto (table/setproto @{:jm_getAllBinaryGameCanvas jm_getAllBinaryGameCanvas :jm_getLayerInterface jm_getLayerInterface :jm_setAllBinaryGameCanvas jm_setAllBinaryGameCanvas :jm_setLayerInterfaceForCircularStaticPool jm_setLayerInterfaceForCircularStaticPool :jm_toString jm_toString} AllBinaryEventObject/jproto))
 
-function DestroyedEvent:_init_fields()
-    self.allBinaryGameCanvas = NullGameCanvas.getInstance()
-    self.allBinaryLayerInterface = AllBinaryLayer.NULL_ALLBINARY_LAYER
-end
-
-
-function DestroyedEvent.new(combatGameCanvas)
-    local self = setmetatable(AllBinaryEventObject.new(DestroyedEventHandler.getInstance()), DestroyedEvent)
-    self:_init_fields()
-        -- super(...) made self above
-        self:setAllBinaryGameCanvas(combatGameCanvas)
-    return self
-end
-
-
-function DestroyedEvent:getAllBinaryGameCanvas()
-        return self.allBinaryGameCanvas
-end
-
-
-function DestroyedEvent:getLayerInterface()
-        return self.allBinaryLayerInterface
-end
-
-
-function DestroyedEvent:setAllBinaryGameCanvas(allBinaryGameCanvas)
-        self.allBinaryGameCanvas = allBinaryGameCanvas
-end
-
-
-function DestroyedEvent:setLayerInterfaceForCircularStaticPool(allBinaryLayerInterface)
-        self.allBinaryLayerInterface = allBinaryLayerInterface
-end
-
-
-function DestroyedEvent:toString()
-        local stringBuffer = StringMaker.new()
-        stringBuffer:append("DestroyedEvent: \n")
-        stringBuffer:append("AllBinaryLayerInterface: ")
-        stringBuffer:append(tostring(self.allBinaryLayerInterface))
-        stringBuffer:append("\nAllBinaryGameCanvas: ")
-        stringBuffer:append(StringUtil.getInstance():toString(self:getAllBinaryGameCanvas()))
-        return tostring(stringBuffer)
-end
-DestroyedEvent.__tostring = function(self) return self:toString() end
-
-return DestroyedEvent
 

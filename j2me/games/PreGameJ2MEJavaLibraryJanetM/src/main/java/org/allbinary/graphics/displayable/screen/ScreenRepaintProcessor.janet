@@ -1,54 +1,39 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.displayable.screen
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.graphics.displayable.screen
 
--- local Displayable = require("javax.microedition.lcdui.Displayable")
-local Processor = require("org.allbinary.canvas.Processor")
+(import ../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(import ../../../../../org/allbinary/canvas/Processor :as Processor)
+(defn- ScreenRepaintUtil/jm_repaint [& args] (JR/call jfile "./ScreenRepaintUtil" "jm_repaint" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class ScreenRepaintProcessor
+(var jproto nil)
+(var jnew_1 nil)
+(var jm_process nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jnew_1 (fn jnew_1 [_displayable]
+    (var this (table/setproto @{:jclass "ScreenRepaintProcessor" :f_displayable nil} jproto))
+    
+    (JR/superInit this (Processor/jnew_0))
+        (set (this :f_displayable) _displayable)
+    this))
+    
+(set jm_process (fn jm_process [this]
+        (ScreenRepaintUtil/jm_repaint (this :f_displayable))))
 
-local ScreenRepaintProcessor = {}
-ScreenRepaintProcessor.__index = ScreenRepaintProcessor
-ScreenRepaintProcessor.className = "ScreenRepaintProcessor"
-setmetatable(ScreenRepaintProcessor, {__index = Processor})
+(set jproto (table/setproto @{:jm_process jm_process} Processor/jproto))
 
-function ScreenRepaintProcessor:_init_fields()
-    self.displayable = nil
-end
-
-
-function ScreenRepaintProcessor.new(displayable)
-    local self = setmetatable(Processor.new(), ScreenRepaintProcessor)
-    self:_init_fields()
-        self.displayable = displayable
-    return self
-end
-
-
--- throws Exception
-function ScreenRepaintProcessor:process()
-        ScreenRepaintUtil.repaint(self.displayable)
-end
-
-return ScreenRepaintProcessor
 

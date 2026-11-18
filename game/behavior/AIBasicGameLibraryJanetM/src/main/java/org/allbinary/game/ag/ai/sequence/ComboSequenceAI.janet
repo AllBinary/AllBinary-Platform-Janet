@@ -1,57 +1,44 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.ag.ai.sequence
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.game.ag.ai.sequence
 
-local ArtificialIntelligenceInterface = require("org.allbinary.ai.ArtificialIntelligenceInterface")
-local GameInput = require("org.allbinary.game.input.GameInput")
-local AllBinaryLayer = require("org.allbinary.layer.AllBinaryLayer")
-local AllBinaryLayerManager = require("org.allbinary.layer.AllBinaryLayerManager")
-local SequenceAI = require("org.allbinary.game.ag.ai.sequence.SequenceAI")
+(import ../../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(import ./SequenceAI :as SequenceAI)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class ComboSequenceAI
+(var jproto nil)
+(var jnew_3 nil)
+(var jm_processAI nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jnew_3 (fn jnew_3 [_artificialIntelligenceInterface _ownerLayerInterface _gameInput]
+    (var this (table/setproto @{:jclass "ComboSequenceAI"} jproto))
+        (JR/superInit this (SequenceAI/jnew_3 _artificialIntelligenceInterface _ownerLayerInterface _gameInput))
+    this))
+    
+(set jm_processAI (fn jm_processAI [this _allBinaryLayerManager]
+        (var _artificialIntelligenceInterfaceArray (:jm_getArtificialIntelligenceInterface this))
+        (var _size (length _artificialIntelligenceInterfaceArray))
+        (do
+            (var _index 0)
+            (while (< _index _size)
+                (do
+            (:jm_setIndex this _index)
+            ((get SequenceAI/jproto :jm_processAI) this _allBinaryLayerManager))
+                (do (set _index (JR/i32 (+ _index 1))))))))
 
-local ComboSequenceAI = {}
-ComboSequenceAI.__index = ComboSequenceAI
-ComboSequenceAI.className = "ComboSequenceAI"
-setmetatable(ComboSequenceAI, {__index = SequenceAI})
+(set jproto (table/setproto @{:jm_processAI jm_processAI} SequenceAI/jproto))
 
-
-function ComboSequenceAI.new(artificialIntelligenceInterface, ownerLayerInterface, gameInput)
-    local self = setmetatable(SequenceAI.new(artificialIntelligenceInterface, ownerLayerInterface, gameInput), ComboSequenceAI)
-        -- super(...) made self above
-    return self
-end
-
-
--- throws Exception
-function ComboSequenceAI:processAI(allBinaryLayerManager)
-        local artificialIntelligenceInterfaceArray = self:getArtificialIntelligenceInterface()
-        local size = (artificialIntelligenceInterfaceArray.n or #artificialIntelligenceInterfaceArray)
-        for index = 0, size - 1 do
-            self:setIndex(index)
-            SequenceAI.processAI(self, allBinaryLayerManager)
-        end
-end
-
-return ComboSequenceAI
 

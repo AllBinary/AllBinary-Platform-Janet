@@ -22,6 +22,7 @@
 (var jproto nil)
 (var jcell_NULL_CIRCULAR_INDEX_UTIL :jnone)
 (var jstatic_NULL_CIRCULAR_INDEX_UTIL nil)
+(var jsetstatic_NULL_CIRCULAR_INDEX_UTIL nil)
 (var jnew_2 nil)
 (var jm_next nil)
 (var jm_previous nil)
@@ -36,6 +37,7 @@
 (set jstatic_NULL_CIRCULAR_INDEX_UTIL (fn jstatic_NULL_CIRCULAR_INDEX_UTIL []
   (when (= jcell_NULL_CIRCULAR_INDEX_UTIL :jnone) (set jcell_NULL_CIRCULAR_INDEX_UTIL (jnew_2 0 0)))
   jcell_NULL_CIRCULAR_INDEX_UTIL))
+(set jsetstatic_NULL_CIRCULAR_INDEX_UTIL (fn jsetstatic_NULL_CIRCULAR_INDEX_UTIL [value] (set jcell_NULL_CIRCULAR_INDEX_UTIL value)))
 
     
 (set jnew_2 (fn jnew_2 [_index _size]

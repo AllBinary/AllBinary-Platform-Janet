@@ -1,35 +1,39 @@
--- 
--- To change this license header, choose License Headers in Project Properties. 
--- To change this template file, choose Tools | Templates 
--- and open the template in the editor.  
--- Generated Code Do Not Modify
--- package org.allbinary.game.multiplayer.layer
+# 
+# To change this license header, choose License Headers in Project Properties. 
+# To change this template file, choose Tools | Templates 
+# and open the template in the editor.  
+# Generated Code Do Not Modify
+# package org.allbinary.game.multiplayer.layer
 
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
+(import ../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- StringUtil/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/logic/string/StringUtil" "jm_getInstance" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class RemoteInfo
+(var jproto nil)
+(var jcell_NEW_PLAYER_ID :jnone)
+(var jstatic_NEW_PLAYER_ID nil)
+(var jsetstatic_NEW_PLAYER_ID nil)
+(var jcell_REMOTE_INFO :jnone)
+(var jstatic_REMOTE_INFO nil)
+(var jsetstatic_REMOTE_INFO nil)
+(var jnew_4 nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jstatic_NEW_PLAYER_ID (fn jstatic_NEW_PLAYER_ID []
+  (when (= jcell_NEW_PLAYER_ID :jnone) (set jcell_NEW_PLAYER_ID 0))
+  jcell_NEW_PLAYER_ID))
+(set jsetstatic_NEW_PLAYER_ID (fn jsetstatic_NEW_PLAYER_ID [value] (set jcell_NEW_PLAYER_ID value)))
 
-local RemoteInfo = {}
-RemoteInfo.__index = RemoteInfo
-RemoteInfo.className = "RemoteInfo"
+(set jstatic_REMOTE_INFO (fn jstatic_REMOTE_INFO []
+  (when (= jcell_REMOTE_INFO :jnone) (set jcell_REMOTE_INFO (jnew_4 ((StringUtil/jm_getInstance) :f_EMPTY_STRING) (JR/i32 (- 1)) (JR/i32 (- 1)) (jstatic_NEW_PLAYER_ID))))
+  jcell_REMOTE_INFO))
+(set jsetstatic_REMOTE_INFO (fn jsetstatic_REMOTE_INFO [value] (set jcell_REMOTE_INFO value)))
 
+    
+(set jnew_4 (fn jnew_4 [_username _actorSessionId _playerInputId _id]
+    (var this (table/setproto @{:jclass "RemoteInfo"} jproto))
+    this))
 
-function RemoteInfo.new(username, actorSessionId, playerInputId, id)
-    local self = setmetatable({}, RemoteInfo)
-    return self
-end
+(set jproto @{})
 
-RemoteInfo.NEW_PLAYER_ID = 0
-RemoteInfo.REMOTE_INFO = RemoteInfo.new(StringUtil.getInstance().EMPTY_STRING, -1, -1, RemoteInfo.NEW_PLAYER_ID)
-
-return RemoteInfo
 

@@ -1,56 +1,49 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.ag.ai
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.game.ag.ai
 
-local ArtificialIntelligenceInterface = require("org.allbinary.ai.ArtificialIntelligenceInterface")
-local ArtificialIntelligenceInterfaceFactoryInterface = require("org.allbinary.game.ai.ArtificialIntelligenceInterfaceFactoryInterface")
-local GameInput = require("org.allbinary.game.input.GameInput")
-local AllBinaryLayer = require("org.allbinary.layer.AllBinaryLayer")
-local ABHashtable = require("org.allbinary.util.ABHashtable")
+(import ../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- NullAI/jnew_0 [& args] (JR/call jfile "./NullAI" "jnew_0" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class NullAIFactory
+(var jproto nil)
+(var jcell_NULL_AI :jnone)
+(var jstatic_NULL_AI nil)
+(var jsetstatic_NULL_AI nil)
+(var jnew_0 nil)
+(var jm_getInstance_3 nil)
+(var jm_getInstance_0 nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jstatic_NULL_AI (fn jstatic_NULL_AI []
+  (when (= jcell_NULL_AI :jnone) (set jcell_NULL_AI (NullAI/jnew_0)))
+  jcell_NULL_AI))
+(set jsetstatic_NULL_AI (fn jsetstatic_NULL_AI [value] (set jcell_NULL_AI value)))
 
-local NullAIFactory = {}
-NullAIFactory.__index = NullAIFactory
-NullAIFactory.className = "NullAIFactory"
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "NullAIFactory"} jproto))
+    this))
 
-function NullAIFactory.new()
-    local self = setmetatable({}, NullAIFactory)
-    return self
-end
+    
+(set jm_getInstance_3 (fn jm_getInstance_3 [this _hashtable _ownerLayerInterface _gameInput]
+    (label jreturn
+        (return jreturn (jstatic_NULL_AI)))))
+    
+(set jm_getInstance_0 (fn jm_getInstance_0 []
+    (label jreturn
+        (return jreturn (jstatic_NULL_AI)))))
 
+(set jproto @{:jm_getInstance_3 jm_getInstance_3})
 
-function NullAIFactory:getInstance(hashtable, ownerLayerInterface, gameInput)
-        return NullAIFactory.NULL_AI
-end
-
-
--- Java overloaded method: Lua keeps the last definition
-function NullAIFactory.getInstance()
-        return NullAIFactory.NULL_AI
-end
-
-NullAIFactory.NULL_AI = NullAI.new()
-
-return NullAIFactory
 

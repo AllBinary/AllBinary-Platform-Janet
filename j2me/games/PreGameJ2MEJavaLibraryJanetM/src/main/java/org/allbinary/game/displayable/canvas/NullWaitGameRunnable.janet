@@ -1,47 +1,45 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2022 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.game.displayable.canvas
+# 
+# AllBinary Open License Version 1 
+# Copyright (c) 2022 AllBinary 
+#  
+# By agreeing to this license you and any business entity you represent are 
+# legally bound to the AllBinary Open License Version 1 legal agreement. 
+#  
+# You may obtain the AllBinary Open License Version 1 legal agreement from 
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+#  
+# Created By: Travis Berthelot 
+#   
+# Generated Code Do Not Modify
+# package org.allbinary.game.displayable.canvas
 
-local GameRunnable = require("org.allbinary.game.displayable.canvas.GameRunnable")
+(import ../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(import ./GameRunnable :as GameRunnable)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class NullWaitGameRunnable
+(var jproto nil)
+(var jcell_instance :jnone)
+(var jstatic_instance nil)
+(var jsetstatic_instance nil)
+(var jnew_0 nil)
+(var jm_getInstance nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jstatic_instance (fn jstatic_instance []
+  (when (= jcell_instance :jnone) (set jcell_instance (jnew_0)))
+  jcell_instance))
+(set jsetstatic_instance (fn jsetstatic_instance [value] (set jcell_instance value)))
 
-local NullWaitGameRunnable = {}
-NullWaitGameRunnable.__index = NullWaitGameRunnable
-NullWaitGameRunnable.className = "NullWaitGameRunnable"
-setmetatable(NullWaitGameRunnable, {__index = GameRunnable})
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "NullWaitGameRunnable"} jproto))
+    (JR/superInit this (GameRunnable/jnew_0))
+    this))
 
-function NullWaitGameRunnable.new()
-    local self = setmetatable(GameRunnable.new(), NullWaitGameRunnable)
-    return self
-end
+    
+(set jm_getInstance (fn jm_getInstance []
+    (label jreturn
+        (return jreturn (jstatic_instance)))))
 
+(set jproto (table/setproto @{} GameRunnable/jproto))
 
-function NullWaitGameRunnable.getInstance()
-        return NullWaitGameRunnable.instance
-end
-
-NullWaitGameRunnable.instance = NullWaitGameRunnable.new()
-
-return NullWaitGameRunnable
 

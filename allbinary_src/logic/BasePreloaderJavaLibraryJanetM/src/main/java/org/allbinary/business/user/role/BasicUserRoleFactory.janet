@@ -22,12 +22,14 @@
 (var jproto nil)
 (var jcell_instance :jnone)
 (var jstatic_instance nil)
+(var jsetstatic_instance nil)
 (var jnew_0 nil)
 (var jm_getInstance nil)
 
 (set jstatic_instance (fn jstatic_instance []
   (when (= jcell_instance :jnone) (set jcell_instance (jnew_0)))
   jcell_instance))
+(set jsetstatic_instance (fn jsetstatic_instance [value] (set jcell_instance value)))
 
 (set jnew_0 (fn jnew_0 []
     (var this (table/setproto @{:jclass "BasicUserRoleFactory" :f_INACTIVITYTIMEOUT 0 :f_CUSTOMERTIMEOUT 0 :f_CUSTOMERMAXSESSIONTIME 0 :f_MAXSESSIONTIME 0 :f_INSTALLER nil :f_ADMINISTRATOR nil :f_CUSTOMER nil :f_SUBSCRIBERCUSTOMER nil :f_WHOLESALECUSTOMER nil :f_STOREMANAGER nil :f_PRODUCTMANAGER nil :f_CUSTOMERMANAGER nil :f_PAYMENTMANAGER nil :f_ORDERMANAGER nil :f_WEBMANAGER nil :f_REVIEWER nil :f_SHIPPING nil :f_ADJUSTER nil :f_WORKFLOWEDITOR nil :f_WIZARD nil :f_VIEWEDITOR nil} jproto))

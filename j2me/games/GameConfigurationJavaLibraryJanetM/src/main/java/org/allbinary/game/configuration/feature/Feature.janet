@@ -1,73 +1,63 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.configuration.feature
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.game.configuration.feature
 
-local ChangedGameFeatureListener = require("org.allbinary.game.configuration.event.ChangedGameFeatureListener")
-local StdUtil = require("org.allbinary.logic.StdUtil")
-local ABHashtable = require("org.allbinary.util.ABHashtable")
+(import ../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- ChangedGameFeatureListener/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/game/configuration/event/ChangedGameFeatureListener" "jm_getInstance" args))
+(defn- StdUtil/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/logic/StdUtil" "jm_getInstance" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class Feature
+(var jproto nil)
+(var jcell_hashtable :jnone)
+(var jstatic_hashtable nil)
+(var jsetstatic_hashtable nil)
+(var jnew_1 nil)
+(var jm_getInstance nil)
+(var jm_add nil)
+(var jm_toString nil)
+(var jm_getName nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jstatic_hashtable (fn jstatic_hashtable []
+  (when (= jcell_hashtable :jnone) (set jcell_hashtable (:jm_createHashtable (StdUtil/jm_getInstance))))
+  jcell_hashtable))
+(set jsetstatic_hashtable (fn jsetstatic_hashtable [value] (set jcell_hashtable value)))
 
-local Feature = {}
-Feature.__index = Feature
-Feature.className = "Feature"
+    
+(set jnew_1 (fn jnew_1 [_name]
+    (var this (table/setproto @{:jclass "Feature" :f_name nil} jproto))
+    
+        (set (this :f_name) _name)
+        (jm_add _name this)
+        (:jm_add (ChangedGameFeatureListener/jm_getInstance) this)
+    this))
+    
+(set jm_getInstance (fn jm_getInstance [_name]
+    (label jreturn
+        (return jreturn (JR/className (jstatic_hashtable))))))
+    
+(set jm_add (fn jm_add [_name _gameFeature]
+        (JR/className (jstatic_hashtable))))
+    
+(set jm_toString (fn jm_toString [this]
+    (label jreturn
+        (return jreturn (:jm_getName this)))))
+    
+(set jm_getName (fn jm_getName [this]
+    (label jreturn
+        (return jreturn (this :f_name)))))
 
-function Feature:_init_fields()
-    self.name = nil
-end
+(set jproto @{:jm_toString jm_toString :jm_getName jm_getName})
 
-
-function Feature.new(name)
-    local self = setmetatable({}, Feature)
-    self:_init_fields()
-        self.name = name
-        Feature.add(name, self)
-        ChangedGameFeatureListener.getInstance():add(self)
-    return self
-end
-
-
-function Feature.getInstance(name)
-        return Feature.hashtable:get(name)
-end
-
-
-function Feature.add(name, gameFeature)
-        Feature.hashtable:put(name, gameFeature)
-end
-
-
-function Feature:toString()
-        return self:getName()
-end
-Feature.__tostring = function(self) return self:toString() end
-
-
-function Feature:getName()
-        return self.name
-end
-
-Feature.hashtable = StdUtil.getInstance():createHashtable()
-
-return Feature
 

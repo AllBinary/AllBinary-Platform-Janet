@@ -1,47 +1,36 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.physics
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.game.physics
 
-local FrictionData = require("org.allbinary.game.physics.friction.FrictionData")
-local DragVelocityBehavior = require("org.allbinary.game.physics.velocity.DragVelocityBehavior")
-local VelocityProperties = require("org.allbinary.game.physics.velocity.VelocityProperties")
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- FrictionData/jm_getFrictionDenominator [& args] (JR/call jfile "../../../../org/allbinary/game/physics/friction/FrictionData" "jm_getFrictionDenominator" args))
+(defn- DragVelocityBehavior/jstatic_instance [& args] (JR/call jfile "../../../../org/allbinary/game/physics/velocity/DragVelocityBehavior" "jstatic_instance" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class FrictionProperties
+(var jproto nil)
+(var jnew_0 nil)
+(var jm_friction nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "FrictionProperties"} jproto))
+    this))
+    
+(set jm_friction (fn jm_friction [this _velocityProperties _nominator]
+        (JR/className (DragVelocityBehavior/jstatic_instance))))
 
-local FrictionProperties = {}
-FrictionProperties.__index = FrictionProperties
-FrictionProperties.className = "FrictionProperties"
+(set jproto @{:jm_friction jm_friction})
 
-
-function FrictionProperties.new()
-    local self = setmetatable({}, FrictionProperties)
-    return self
-end
-
-
-function FrictionProperties:friction(velocityProperties, nominator)
-        DragVelocityBehavior.instance:reduce(velocityProperties, nominator, FrictionData.getFrictionDenominator())
-end
-
-return FrictionProperties
 

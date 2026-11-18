@@ -1,94 +1,79 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.graphics
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.graphics
 
+(import ../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- PointFactory/jm_getInstance [& args] (JR/call jfile "./PointFactory" "jm_getInstance" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class Line
+(var jproto nil)
+(var jnew_2 nil)
+(var jm_getGradient nil)
+(var jm_update nil)
+(var jm_getDeltaX nil)
+(var jm_getDeltaY nil)
+(var jm_getP1 nil)
+(var jm_getP2 nil)
+(var jm_setP1 nil)
+(var jm_setP2 nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jnew_2 (fn jnew_2 [_p1 _p2]
+    (var this (table/setproto @{:jclass "Line" :f_p1 nil :f_p2 nil :f_deltaX 0.0 :f_deltaY 0.0} jproto))
+    
+    
+    
+    
+        (set (this :f_p1) ((PointFactory/jm_getInstance) :f_ZERO_ZERO))
+        (set (this :f_p2) (this :f_p1))
+        (:jm_setP1 this _p1)
+        (:jm_setP2 this _p2)
+    this))
+    
+(set jm_getGradient (fn jm_getGradient [this]
+    (label jreturn
+        (return jreturn (/ (:jm_getDeltaY this) (:jm_getDeltaX this))))))
+    
+(set jm_update (fn jm_update [this]
+        (set (this :f_deltaX) (- (:jm_getX (:jm_getP1 this)) (:jm_getX (:jm_getP2 this))))
+        (set (this :f_deltaY) (- (:jm_getY (:jm_getP1 this)) (:jm_getY (:jm_getP2 this))))))
+    
+(set jm_getDeltaX (fn jm_getDeltaX [this]
+    (label jreturn
+        (return jreturn (this :f_deltaX)))))
+    
+(set jm_getDeltaY (fn jm_getDeltaY [this]
+    (label jreturn
+        (return jreturn (this :f_deltaY)))))
+    
+(set jm_getP1 (fn jm_getP1 [this]
+    (label jreturn
+        (return jreturn (this :f_p1)))))
+    
+(set jm_getP2 (fn jm_getP2 [this]
+    (label jreturn
+        (return jreturn (this :f_p2)))))
+    
+(set jm_setP1 (fn jm_setP1 [this _p1]
+        (set (this :f_p1) _p1)
+        (:jm_update this)))
+    
+(set jm_setP2 (fn jm_setP2 [this _p2]
+        (set (this :f_p2) _p2)
+        (:jm_update this)))
 
-local Line = {}
-Line.__index = Line
-Line.className = "Line"
+(set jproto @{:jm_getGradient jm_getGradient :jm_update jm_update :jm_getDeltaX jm_getDeltaX :jm_getDeltaY jm_getDeltaY :jm_getP1 jm_getP1 :jm_getP2 jm_getP2 :jm_setP1 jm_setP1 :jm_setP2 jm_setP2})
 
-function Line:_init_fields()
-    self.p1 = nil
-    self.p2 = nil
-    self.deltaX = 0.0
-    self.deltaY = 0.0
-end
-
-
-function Line.new(p1, p2)
-    local self = setmetatable({}, Line)
-    self:_init_fields()
-        self.p1 = PointFactory.getInstance().ZERO_ZERO
-        self.p2 = self.p1
-        self:setP1(p1)
-        self:setP2(p2)
-    return self
-end
-
-
-function Line:getGradient()
-        return self:getDeltaY() / self:getDeltaX()
-end
-
-
-function Line:update()
-        self.deltaX = (self:getP1():getX() + 0.0) - self:getP2():getX()
-        self.deltaY = (self:getP1():getY() + 0.0) - self:getP2():getY()
-end
-
-
-function Line:getDeltaX()
-        return self.deltaX
-end
-
-
-function Line:getDeltaY()
-        return self.deltaY
-end
-
-
-function Line:getP1()
-        return self.p1
-end
-
-
-function Line:getP2()
-        return self.p2
-end
-
-
-function Line:setP1(p1)
-        self.p1 = p1
-        self:update()
-end
-
-
-function Line:setP2(p2)
-        self.p2 = p2
-        self:update()
-end
-
-return Line
 

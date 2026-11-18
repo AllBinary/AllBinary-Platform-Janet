@@ -1,39 +1,21 @@
--- Generated Code Do Not Modify
--- package org.allbinary.business.advertisement
+# Generated Code Do Not Modify
+# package org.allbinary.business.advertisement
 
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
-local AdConfiguration = require("org.allbinary.business.advertisement.AdConfiguration")
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- StringUtil/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/logic/string/StringUtil" "jm_getInstance" args))
+(import ./AdConfiguration :as AdConfiguration)
 
-local function java_new_array(default, size, ...)
-    local array = {n = size}
-    for index = 1, size do
-        if select("#", ...) > 0 then array[index] = java_new_array(default, ...) else array[index] = default end
-    end
-    return array
-end
+# Java class AppNameLicensingAdConfiguration
+(var jproto nil)
+(var jnew_0 nil)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+    
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "AppNameLicensingAdConfiguration"} jproto))
+        (JR/superInit this (AdConfiguration/jnew_1 @[((StringUtil/jm_getInstance) :f_EMPTY_STRING) ((StringUtil/jm_getInstance) :f_EMPTY_STRING) ((StringUtil/jm_getInstance) :f_EMPTY_STRING)]))
+    this))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jproto (table/setproto @{} AdConfiguration/jproto))
 
-local AppNameLicensingAdConfiguration = {}
-AppNameLicensingAdConfiguration.__index = AppNameLicensingAdConfiguration
-AppNameLicensingAdConfiguration.className = "AppNameLicensingAdConfiguration"
-setmetatable(AppNameLicensingAdConfiguration, {__index = AdConfiguration})
-
-
-function AppNameLicensingAdConfiguration.new()
-    local self = setmetatable(AdConfiguration.new({StringUtil.getInstance().EMPTY_STRING, StringUtil.getInstance().EMPTY_STRING, StringUtil.getInstance().EMPTY_STRING}), AppNameLicensingAdConfiguration)
-        -- super(...) made self above
-    return self
-end
-
-return AppNameLicensingAdConfiguration
 

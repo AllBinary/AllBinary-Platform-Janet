@@ -1,97 +1,78 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.business.init
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.business.init
 
-local DebugFactory = require("org.allbinary.debug.DebugFactory")
-local NoDebug = require("org.allbinary.debug.NoDebug")
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
-local BasicArrayListD = require("org.allbinary.util.BasicArrayListD")
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- DebugFactory/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/debug/DebugFactory" "jm_getInstance" args))
+(defn- NoDebug/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/debug/NoDebug" "jm_getInstance" args))
+(defn- StringUtil/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/logic/string/StringUtil" "jm_getInstance" args))
+(defn- BasicArrayListD/jnew_0 [& args] (JR/call jfile "../../../../org/allbinary/util/BasicArrayListD" "jnew_0" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class LicenseInitInfo
+(var jproto nil)
+(var jnew_0 nil)
+(var jm_getLicenseId nil)
+(var jm_getServer nil)
+(var jm_getNumberOfServers nil)
+(var jm_setLicenseId nil)
+(var jm_clearServers nil)
+(var jm_setServer nil)
+(var jm_addServer nil)
+(var jm_getServerList nil)
+(var jm_setServerList nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "LicenseInitInfo" :f_id nil :f_serverVector nil} jproto))
+    (put this :f_id ((StringUtil/jm_getInstance) :f_EMPTY_STRING))
+    (put this :f_serverVector (BasicArrayListD/jnew_0))
+    this))
+    
+(set jm_getLicenseId (fn jm_getLicenseId [this]
+    (label jreturn
+        (return jreturn (this :f_id)))))
+    
+(set jm_getServer (fn jm_getServer [this _index]
+    (label jreturn
+        (return jreturn (((this :f_serverVector) :f_objectArray) _index)))))
+    
+(set jm_getNumberOfServers (fn jm_getNumberOfServers [this]
+    (label jreturn
+        (return jreturn (:jm_size (this :f_serverVector))))))
+    
+(set jm_setLicenseId (fn jm_setLicenseId [this _value]
+        (set (this :f_id) _value)))
+    
+(set jm_clearServers (fn jm_clearServers [this]
+        (set (this :f_serverVector) (BasicArrayListD/jnew_0))))
+    
+(set jm_setServer (fn jm_setServer [this _value _index]
+        (:jm_addAt (this :f_serverVector) _index _value)))
+    
+(set jm_addServer (fn jm_addServer [this _value]
+        (:jm_add (this :f_serverVector) _value)))
+    
+(set jm_getServerList (fn jm_getServerList [this]
+    (label jreturn
+        (return jreturn (this :f_serverVector)))))
+    
+(set jm_setServerList (fn jm_setServerList [this _servers]
+        (if (= (DebugFactory/jm_getInstance) (NoDebug/jm_getInstance))
+            (do
+            (set (this :f_serverVector) _servers)))))
 
-local LicenseInitInfo = {}
-LicenseInitInfo.__index = LicenseInitInfo
-LicenseInitInfo.className = "LicenseInitInfo"
+(set jproto @{:jm_getLicenseId jm_getLicenseId :jm_getServer jm_getServer :jm_getNumberOfServers jm_getNumberOfServers :jm_setLicenseId jm_setLicenseId :jm_clearServers jm_clearServers :jm_setServer jm_setServer :jm_addServer jm_addServer :jm_getServerList jm_getServerList :jm_setServerList jm_setServerList})
 
-function LicenseInitInfo:_init_fields()
-    self.id = StringUtil.getInstance().EMPTY_STRING
-    self.serverVector = BasicArrayListD.new()
-end
-
-
-function LicenseInitInfo.new()
-    local self = setmetatable({}, LicenseInitInfo)
-    self:_init_fields()
-    return self
-end
-
-
-function LicenseInitInfo:getLicenseId()
-        return self.id
-end
-
-
-function LicenseInitInfo:getServer(index)
-        return self.serverVector.objectArray[index + 1]
-end
-
-
-function LicenseInitInfo:getNumberOfServers()
-        return self.serverVector:size()
-end
-
-
-function LicenseInitInfo:setLicenseId(value)
-        self.id = value
-end
-
-
-function LicenseInitInfo:clearServers()
-        self.serverVector = BasicArrayListD.new()
-end
-
-
-function LicenseInitInfo:setServer(value, index)
-        self.serverVector:addAt(index, value)
-end
-
-
-function LicenseInitInfo:addServer(value)
-        self.serverVector:add(value)
-end
-
-
-function LicenseInitInfo:getServerList()
-        return self.serverVector
-end
-
-
-function LicenseInitInfo:setServerList(servers)
-        if DebugFactory.getInstance() == NoDebug.getInstance() then
-            self.serverVector = servers
-        end
-end
-
-return LicenseInitInfo
 

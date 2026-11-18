@@ -1,51 +1,42 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.layer.pickup
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.game.layer.pickup
 
-local Animation = require("org.allbinary.animation.Animation")
-local AllBinaryLayer = require("org.allbinary.layer.AllBinaryLayer")
+(import ../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class PickedUpLayerInterfaceFactoryInterface
+(var jproto nil)
+(var jnew_0 nil)
+(var jm_getPickedUpLayerType nil)
+(var jm_getIconLayer nil)
+(var jm_getAnimationInterface nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "PickedUpLayerInterfaceFactoryInterface"} jproto))
+    this))
 
--- Java interface
-local PickedUpLayerInterfaceFactoryInterface = {}
-PickedUpLayerInterfaceFactoryInterface.__index = PickedUpLayerInterfaceFactoryInterface
-PickedUpLayerInterfaceFactoryInterface.className = "PickedUpLayerInterfaceFactoryInterface"
+    
+(set jm_getPickedUpLayerType (fn jm_getPickedUpLayerType [this]
+    (error (JR/newException "AbstractMethodError" "getPickedUpLayerType"))))
+    
+(set jm_getIconLayer (fn jm_getIconLayer [this]
+    (error (JR/newException "AbstractMethodError" "getIconLayer"))))
+    
+(set jm_getAnimationInterface (fn jm_getAnimationInterface [this]
+    (error (JR/newException "AbstractMethodError" "getAnimationInterface"))))
 
+(set jproto @{:jm_getPickedUpLayerType jm_getPickedUpLayerType :jm_getIconLayer jm_getIconLayer :jm_getAnimationInterface jm_getAnimationInterface})
 
-function PickedUpLayerInterfaceFactoryInterface:getPickedUpLayerType()
-    error("abstract method getPickedUpLayerType")
-end
-
-
-function PickedUpLayerInterfaceFactoryInterface:getIconLayer()
-    error("abstract method getIconLayer")
-end
-
-
-function PickedUpLayerInterfaceFactoryInterface:getAnimationInterface()
-    error("abstract method getAnimationInterface")
-end
-
-return PickedUpLayerInterfaceFactoryInterface
 

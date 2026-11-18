@@ -1,49 +1,47 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2022 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary
+# 
+# AllBinary Open License Version 1 
+# Copyright (c) 2022 AllBinary 
+#  
+# By agreeing to this license you and any business entity you represent are 
+# legally bound to the AllBinary Open License Version 1 legal agreement. 
+#  
+# You may obtain the AllBinary Open License Version 1 legal agreement from 
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+#  
+# Created By: Travis Berthelot 
+#   
+# Generated Code Do Not Modify
+# package org.allbinary
 
+(import ../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class ThreedResources
+(var jproto nil)
+(var jcell_threedResources :jnone)
+(var jstatic_threedResources nil)
+(var jsetstatic_threedResources nil)
+(var jnew_0 nil)
+(var jm_getThreedResources nil)
+(var jm_add nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jstatic_threedResources (fn jstatic_threedResources []
+  (when (= jcell_threedResources :jnone) (set jcell_threedResources (jnew_0)))
+  jcell_threedResources))
+(set jsetstatic_threedResources (fn jsetstatic_threedResources [value] (set jcell_threedResources value)))
 
-local ThreedResources = {}
-ThreedResources.__index = ThreedResources
-ThreedResources.className = "ThreedResources"
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "ThreedResources"} jproto))
+    this))
 
-function ThreedResources.new()
-    local self = setmetatable({}, ThreedResources)
-    return self
-end
+    
+(set jm_getThreedResources (fn jm_getThreedResources []
+    (label jreturn
+        (return jreturn (jstatic_threedResources)))))
+    
+(set jm_add (fn jm_add [this]
+    nil))
 
+(set jproto @{:jm_add jm_add})
 
-function ThreedResources.getThreedResources()
-        return ThreedResources.threedResources
-end
-
-
-function ThreedResources:add()
-end
-
-ThreedResources.threedResources = ThreedResources.new()
-
-return ThreedResources
 

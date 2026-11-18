@@ -1,76 +1,70 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.direction
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.direction
 
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
-local CommonPhoneStrings = require("org.allbinary.string.CommonPhoneStrings")
-local CommonSeps = require("org.allbinary.string.CommonSeps")
+(import ../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- StringMaker/jnew_0 [& args] (JR/call jfile "../../../org/allbinary/logic/string/StringMaker" "jnew_0" args))
+(defn- CommonPhoneStrings/jm_getInstance [& args] (JR/call jfile "../../../org/allbinary/string/CommonPhoneStrings" "jm_getInstance" args))
+(defn- CommonSeps/jm_getInstance [& args] (JR/call jfile "../../../org/allbinary/string/CommonSeps" "jm_getInstance" args))
+(defn- Direction/jnew_4 [& args] (JR/call jfile "./Direction" "jnew_4" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class DirectionFactory
+(var jproto nil)
+(var jcell_instance :jnone)
+(var jstatic_instance nil)
+(var jsetstatic_instance nil)
+(var jnew_0 nil)
+(var jm_getInstance nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jstatic_instance (fn jstatic_instance []
+  (when (= jcell_instance :jnone) (set jcell_instance (jnew_0)))
+  jcell_instance))
+(set jsetstatic_instance (fn jsetstatic_instance [value] (set jcell_instance value)))
 
-local DirectionFactory = {}
-DirectionFactory.__index = DirectionFactory
-DirectionFactory.className = "DirectionFactory"
+    
+(set jm_getInstance (fn jm_getInstance []
+    (label jreturn
+        (return jreturn (jstatic_instance)))))
+    
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "DirectionFactory" :f_NAME nil :f_LEFT nil :f_RIGHT nil :f_DOWN nil :f_UP nil :f_UP_LEFT nil :f_UP_RIGHT nil :f_DOWN_LEFT nil :f_DOWN_RIGHT nil :f_NOT_BORDERED_WITH nil :f_NO_DIRECTION nil :f_TOP nil :f_BOTTOM nil :f_ALL_DIRECTION nil} jproto))
+    (put this :f_NAME "DIRECTION")
+    (put this :f_LEFT (Direction/jnew_4 ((CommonPhoneStrings/jm_getInstance) :f_LEFT) "WEST" 0 1))
+    (put this :f_RIGHT (Direction/jnew_4 ((CommonPhoneStrings/jm_getInstance) :f_RIGHT) "EAST" 1 0))
+    (put this :f_DOWN (Direction/jnew_4 ((CommonPhoneStrings/jm_getInstance) :f_DOWN) "SOUTH" 2 0))
+    (put this :f_UP (Direction/jnew_4 ((CommonPhoneStrings/jm_getInstance) :f_UP) "NORTH" 3 0))
+    
+    
+    
+    
+    (put this :f_NOT_BORDERED_WITH (Direction/jnew_4 "NOT_BORDERED_WITH" "NOT_BORDERED_WITH" 8 0))
+    (put this :f_NO_DIRECTION (Direction/jnew_4 "NO_DIRECTION" "NO_DIRECTION" 9 0))
+    (put this :f_TOP (Direction/jnew_4 "TOP" "TOP" 10 0))
+    (put this :f_BOTTOM (Direction/jnew_4 "BOTTOM" "BOTTOM" 11 0))
+    (put this :f_ALL_DIRECTION (Direction/jnew_4 "ALL_DIRECTION" "ALL_DIRECTION" 12 0))
+        (var _stringBuffer (StringMaker/jnew_0))
+        (var _commonSeps (CommonSeps/jm_getInstance))
+        (set (this :f_UP_LEFT) (Direction/jnew_4 "UP LEFT" (:jm_toString (:jm_append (:jm_append (:jm_append _stringBuffer (:jm_getOtherName (this :f_UP))) (_commonSeps :f_SPACE)) (:jm_getOtherName (this :f_LEFT)))) 4 0))
+        (:jm_delete _stringBuffer 0 (:jm_length _stringBuffer))
+        (set (this :f_UP_RIGHT) (Direction/jnew_4 "UP RIGHT" (:jm_toString (:jm_append (:jm_append (:jm_append _stringBuffer (:jm_getOtherName (this :f_UP))) (_commonSeps :f_SPACE)) (:jm_getOtherName (this :f_RIGHT)))) 5 0))
+        (:jm_delete _stringBuffer 0 (:jm_length _stringBuffer))
+        (set (this :f_DOWN_LEFT) (Direction/jnew_4 "DOWN LEFT" (:jm_toString (:jm_append (:jm_append (:jm_append _stringBuffer (:jm_getOtherName (this :f_DOWN))) (_commonSeps :f_SPACE)) (:jm_getOtherName (this :f_LEFT)))) 6 0))
+        (:jm_delete _stringBuffer 0 (:jm_length _stringBuffer))
+        (set (this :f_DOWN_RIGHT) (Direction/jnew_4 "DOWN RIGHT" (:jm_toString (:jm_append (:jm_append (:jm_append _stringBuffer (:jm_getOtherName (this :f_DOWN))) (_commonSeps :f_SPACE)) (:jm_getOtherName (this :f_RIGHT)))) 7 0))
+    this))
 
-function DirectionFactory:_init_fields()
-    self.NAME = "DIRECTION"
-    self.LEFT = Direction.new(CommonPhoneStrings.getInstance().LEFT, "WEST", 0, 1)
-    self.RIGHT = Direction.new(CommonPhoneStrings.getInstance().RIGHT, "EAST", 1, 0)
-    self.DOWN = Direction.new(CommonPhoneStrings.getInstance().DOWN, "SOUTH", 2, 0)
-    self.UP = Direction.new(CommonPhoneStrings.getInstance().UP, "NORTH", 3, 0)
-    self.UP_LEFT = nil
-    self.UP_RIGHT = nil
-    self.DOWN_LEFT = nil
-    self.DOWN_RIGHT = nil
-    self.NOT_BORDERED_WITH = Direction.new("NOT_BORDERED_WITH", "NOT_BORDERED_WITH", 8, 0)
-    self.NO_DIRECTION = Direction.new("NO_DIRECTION", "NO_DIRECTION", 9, 0)
-    self.TOP = Direction.new("TOP", "TOP", 10, 0)
-    self.BOTTOM = Direction.new("BOTTOM", "BOTTOM", 11, 0)
-    self.ALL_DIRECTION = Direction.new("ALL_DIRECTION", "ALL_DIRECTION", 12, 0)
-end
+(set jproto @{})
 
-
-function DirectionFactory.getInstance()
-        return DirectionFactory.instance
-end
-
-
-function DirectionFactory.new()
-    local self = setmetatable({}, DirectionFactory)
-    self:_init_fields()
-        local stringBuffer = StringMaker.new()
-        local commonSeps = CommonSeps.getInstance()
-        self.UP_LEFT = Direction.new("UP LEFT", tostring(stringBuffer:append(self.UP:getOtherName()):append(commonSeps.SPACE):append(self.LEFT:getOtherName())), 4, 0)
-        stringBuffer:delete(0, stringBuffer:length())
-        self.UP_RIGHT = Direction.new("UP RIGHT", tostring(stringBuffer:append(self.UP:getOtherName()):append(commonSeps.SPACE):append(self.RIGHT:getOtherName())), 5, 0)
-        stringBuffer:delete(0, stringBuffer:length())
-        self.DOWN_LEFT = Direction.new("DOWN LEFT", tostring(stringBuffer:append(self.DOWN:getOtherName()):append(commonSeps.SPACE):append(self.LEFT:getOtherName())), 6, 0)
-        stringBuffer:delete(0, stringBuffer:length())
-        self.DOWN_RIGHT = Direction.new("DOWN RIGHT", tostring(stringBuffer:append(self.DOWN:getOtherName()):append(commonSeps.SPACE):append(self.RIGHT:getOtherName())), 7, 0)
-    return self
-end
-
-DirectionFactory.instance = DirectionFactory.new()
-
-return DirectionFactory
 

@@ -25,6 +25,7 @@
 (var jproto nil)
 (var jcell_LOG_SUCCESS :jnone)
 (var jstatic_LOG_SUCCESS nil)
+(var jsetstatic_LOG_SUCCESS nil)
 (var jnew_0 nil)
 (var jm_put nil)
 (var jm_putOE nil)
@@ -35,6 +36,7 @@
 (set jstatic_LOG_SUCCESS (fn jstatic_LOG_SUCCESS []
   (when (= jcell_LOG_SUCCESS :jnone) (set jcell_LOG_SUCCESS "org.allbinary: "))
   jcell_LOG_SUCCESS))
+(set jsetstatic_LOG_SUCCESS (fn jsetstatic_LOG_SUCCESS [value] (set jcell_LOG_SUCCESS value)))
 
     
 (set jnew_0 (fn jnew_0 []

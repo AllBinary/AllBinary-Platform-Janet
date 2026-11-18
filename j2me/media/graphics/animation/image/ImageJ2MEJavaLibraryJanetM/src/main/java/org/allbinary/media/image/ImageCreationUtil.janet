@@ -1,62 +1,56 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.media.image
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.media.image
 
--- local Image = require("javax.microedition.lcdui.Image")
-local GameFeatureImageCacheFactory = require("org.allbinary.image.GameFeatureImageCacheFactory")
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- GameFeatureImageCacheFactory/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/image/GameFeatureImageCacheFactory" "jm_getInstance" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class ImageCreationUtil
+(var jproto nil)
+(var jcell_instance :jnone)
+(var jstatic_instance nil)
+(var jsetstatic_instance nil)
+(var jnew_0 nil)
+(var jm_getInstance nil)
+(var jm_createImageWH nil)
+(var jm_createImage nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jstatic_instance (fn jstatic_instance []
+  (when (= jcell_instance :jnone) (set jcell_instance (jnew_0)))
+  jcell_instance))
+(set jsetstatic_instance (fn jsetstatic_instance [value] (set jcell_instance value)))
 
-local ImageCreationUtil = {}
-ImageCreationUtil.__index = ImageCreationUtil
-ImageCreationUtil.className = "ImageCreationUtil"
+    
+(set jm_getInstance (fn jm_getInstance []
+    (label jreturn
+        (return jreturn (jstatic_instance)))))
+    
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "ImageCreationUtil"} jproto))
+    this))
+    
+(set jm_createImageWH (fn jm_createImageWH [this _width _height]
+    (label jreturn
+        (var _image (:jm_get (GameFeatureImageCacheFactory/jm_getInstance) (JR/className this) _width _height))
+        (return jreturn _image))))
+    
+(set jm_createImage (fn jm_createImage [this _width _height _maxScaleX _maxScaleY]
+    (label jreturn
+        (var _image (:jm_get (GameFeatureImageCacheFactory/jm_getInstance) (JR/className this) (JR/i32 (+ (JR/d2i (* _width _maxScaleX)) 1)) (JR/i32 (+ (JR/d2i (* _height _maxScaleY)) 1))))
+        (return jreturn _image))))
 
+(set jproto @{:jm_createImageWH jm_createImageWH :jm_createImage jm_createImage})
 
-function ImageCreationUtil.getInstance()
-        return ImageCreationUtil.instance
-end
-
-
-function ImageCreationUtil.new()
-    local self = setmetatable({}, ImageCreationUtil)
-    return self
-end
-
-
--- throws Exception
-function ImageCreationUtil:createImageWH(width, height)
-        local image = GameFeatureImageCacheFactory.getInstance():get(getmetatable(self).className, width, height)
-        return image
-end
-
-
--- throws Exception
-function ImageCreationUtil:createImage(width, height, maxScaleX, maxScaleY)
-        local image = GameFeatureImageCacheFactory.getInstance():get(getmetatable(self).className, java_int(((width + 0.0) * maxScaleX)) + 1, java_int(((height + 0.0) * maxScaleY)) + 1)
-        return image
-end
-
-ImageCreationUtil.instance = ImageCreationUtil.new()
-
-return ImageCreationUtil
 

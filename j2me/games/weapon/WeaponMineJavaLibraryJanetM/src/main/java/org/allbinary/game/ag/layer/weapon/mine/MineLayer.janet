@@ -1,85 +1,73 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.ag.layer.weapon.mine
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.game.ag.layer.weapon.mine
 
-local DropWeaponSound = require("org.allbinary.ag.weapon.media.audio.DropWeaponSound")
-local FeaturedAnimationInterfaceFactoryInterfaceFactory = require("org.allbinary.animation.FeaturedAnimationInterfaceFactoryInterfaceFactory")
-local SimpleWeaponLayer = require("org.allbinary.game.layer.weapon.SimpleWeaponLayer")
-local RemoteInfo = require("org.allbinary.game.multiplayer.layer.RemoteInfo")
-local PointFactory = require("org.allbinary.graphics.PointFactory")
-local Rectangle = require("org.allbinary.graphics.Rectangle")
-local AllBinaryLayer = require("org.allbinary.layer.AllBinaryLayer")
-local SecondaryPlayerQueueFactory = require("org.allbinary.media.audio.SecondaryPlayerQueueFactory")
-local NoMovementFactory = require("org.allbinary.physics.movement.NoMovementFactory")
-local ViewPositionBase = require("org.allbinary.view.ViewPositionBase")
-local ViewPositionEventHandler = require("org.allbinary.view.event.ViewPositionEventHandler")
+(import ../../../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- DropWeaponSound/jm_getInstance [& args] (JR/call jfile "../../../../../../../org/allbinary/ag/weapon/media/audio/DropWeaponSound" "jm_getInstance" args))
+(defn- FeaturedAnimationInterfaceFactoryInterfaceFactory/jm_getInstance [& args] (JR/call jfile "../../../../../../../org/allbinary/animation/FeaturedAnimationInterfaceFactoryInterfaceFactory" "jm_getInstance" args))
+(import ../../../../../../../org/allbinary/game/layer/weapon/SimpleWeaponLayer :as SimpleWeaponLayer)
+(defn- RemoteInfo/jstatic_REMOTE_INFO [& args] (JR/call jfile "../../../../../../../org/allbinary/game/multiplayer/layer/RemoteInfo" "jstatic_REMOTE_INFO" args))
+(defn- PointFactory/jm_getInstance [& args] (JR/call jfile "../../../../../../../org/allbinary/graphics/PointFactory" "jm_getInstance" args))
+(defn- Rectangle/jnew_3 [& args] (JR/call jfile "../../../../../../../org/allbinary/graphics/Rectangle" "jnew_3" args))
+(defn- SecondaryPlayerQueueFactory/jm_getInstance [& args] (JR/call jfile "../../../../../../../org/allbinary/media/audio/SecondaryPlayerQueueFactory" "jm_getInstance" args))
+(defn- NoMovementFactory/jm_getInstance [& args] (JR/call jfile "../../../../../../../org/allbinary/physics/movement/NoMovementFactory" "jm_getInstance" args))
+(defn- ViewPositionEventHandler/jm_getInstance [& args] (JR/call jfile "../../../../../../../org/allbinary/view/event/ViewPositionEventHandler" "jm_getInstance" args))
+(defn- MineWeaponResources/jm_getInstance [& args] (JR/call jfile "./MineWeaponResources" "jm_getInstance" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class MineLayer
+(var jproto nil)
+(var jcell_NAME :jnone)
+(var jstatic_NAME nil)
+(var jsetstatic_NAME nil)
+(var jnew_1 nil)
+(var jm_initXYZ nil)
+(var jm_damage nil)
+(var jm_getDamage nil)
+(var jm_setDestroyed nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jstatic_NAME (fn jstatic_NAME []
+  (when (= jcell_NAME :jnone) (set jcell_NAME "MineLayer"))
+  jcell_NAME))
+(set jsetstatic_NAME (fn jsetstatic_NAME [value] (set jcell_NAME value)))
 
-local MineLayer = {}
-MineLayer.__index = MineLayer
-MineLayer.className = "MineLayer"
-setmetatable(MineLayer, {__index = SimpleWeaponLayer})
+    
+(set jnew_1 (fn jnew_1 [_viewPosition]
+    (var this (table/setproto @{:jclass "MineLayer" :f_viewPositionEventHandler nil} jproto))
+    (put this :f_viewPositionEventHandler (ViewPositionEventHandler/jm_getInstance))
+        (JR/superInit this (SimpleWeaponLayer/jnew_8 (jstatic_NAME) (RemoteInfo/jstatic_REMOTE_INFO) (JR/i32 (- 1)) (:jm_getMovmentInstance (NoMovementFactory/jm_getInstance)) (JR/className (:jm_get (FeaturedAnimationInterfaceFactoryInterfaceFactory/jm_getInstance) ((MineWeaponResources/jm_getInstance) :f_RESOURCE))) (SimpleWeaponLayer/jm_createDestroyed) (Rectangle/jnew_3 ((PointFactory/jm_getInstance) :f_ZERO_ZERO) 10 10) _viewPosition))
+    this))
+    
+(set jm_initXYZ (fn jm_initXYZ [this _x _y _z]
+        (:jm_setPosition this (JR/i32 (+ _x 5)) (JR/i32 (+ _y 5)) _z)
+        (:jm_addListener (this :f_viewPositionEventHandler) this)
+        (:jm_add (SecondaryPlayerQueueFactory/jm_getInstance) (DropWeaponSound/jm_getInstance))))
+    
+(set jm_damage (fn jm_damage [this _damage _damageType]
+        (set (this :f_totalDamage) (JR/i32 (+ (:jm_getInitDamage this) 1)))))
+    
+(set jm_getDamage (fn jm_getDamage [this _damageType]
+    (label jreturn
+        ((get SimpleWeaponLayer/jproto :jm_getDamage) this _damageType)
+        (return jreturn (:jm_getInitDamage this)))))
+    
+(set jm_setDestroyed (fn jm_setDestroyed [this _destroyed]
+        ((get SimpleWeaponLayer/jproto :jm_setDestroyed) this _destroyed)
+        (if (:jm_isDestroyed this)
+            (do
+            (:jm_removeListener (this :f_viewPositionEventHandler) this)))))
 
-function MineLayer:_init_fields()
-    self.viewPositionEventHandler = ViewPositionEventHandler.getInstance()
-end
+(set jproto (table/setproto @{:jm_initXYZ jm_initXYZ :jm_damage jm_damage :jm_getDamage jm_getDamage :jm_setDestroyed jm_setDestroyed} SimpleWeaponLayer/jproto))
 
-
-function MineLayer.new(viewPosition)
-    local self = setmetatable(SimpleWeaponLayer.new(MineLayer.NAME, RemoteInfo.REMOTE_INFO, -1, NoMovementFactory.getInstance():getMovmentInstance(), FeaturedAnimationInterfaceFactoryInterfaceFactory.getInstance():get(MineWeaponResources.getInstance().RESOURCE):getInstance(0), SimpleWeaponLayer.createDestroyed(), Rectangle.new(PointFactory.getInstance().ZERO_ZERO, 10, 10), viewPosition), MineLayer)
-    self:_init_fields()
-        -- super(...) made self above
-    return self
-end
-
-
-function MineLayer:initXYZ(x, y, z)
-        self:setPosition(x + 5, y + 5, z)
-        self.viewPositionEventHandler:addListener(self)
-        SecondaryPlayerQueueFactory.getInstance():add(DropWeaponSound.getInstance())
-end
-
-
-function MineLayer:damage(damage, damageType)
-        self.totalDamage = self:getInitDamage() + 1
-end
-
-
-function MineLayer:getDamage(damageType)
-        SimpleWeaponLayer.getDamage(self, damageType)
-        return self:getInitDamage()
-end
-
-
-function MineLayer:setDestroyed(destroyed)
-        SimpleWeaponLayer.setDestroyed(self, destroyed)
-        if self:isDestroyed() then
-            self.viewPositionEventHandler:removeListener(self)
-        end
-end
-
-MineLayer.NAME = "MineLayer"
-
-return MineLayer
 

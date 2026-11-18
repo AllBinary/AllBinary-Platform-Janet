@@ -1,207 +1,171 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.score.displayable
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.game.score.displayable
 
--- local Command = require("javax.microedition.lcdui.Command")
--- local CommandListener = require("javax.microedition.lcdui.CommandListener")
--- local Graphics = require("javax.microedition.lcdui.Graphics")
-local GameInfo = require("org.allbinary.game.GameInfo")
-local GameCommandsFactory = require("org.allbinary.game.commands.GameCommandsFactory")
-local GameCommandCanvas = require("org.allbinary.game.displayable.canvas.GameCommandCanvas")
-local AllBinaryGameLayerManager = require("org.allbinary.game.layer.AllBinaryGameLayerManager")
-local ColorFillBasePaintable = require("org.allbinary.game.paint.ColorFillBasePaintable")
-local ColorFillPaintableFactory = require("org.allbinary.game.paint.ColorFillPaintableFactory")
-local HighScoreCommandsFactory = require("org.allbinary.game.score.HighScoreCommandsFactory")
-local HighScores = require("org.allbinary.game.score.HighScores")
-local HighScoresCanvasInputProcessor = require("org.allbinary.game.score.HighScoresCanvasInputProcessor")
-local HighScoresCanvasInputProcessorFactoryInterface = require("org.allbinary.game.score.HighScoresCanvasInputProcessorFactoryInterface")
-local HighScoresFactoryInterface = require("org.allbinary.game.score.HighScoresFactoryInterface")
-local HighScoresHelperBase = require("org.allbinary.game.score.HighScoresHelperBase")
-local HighScoresPaintable = require("org.allbinary.game.score.HighScoresPaintable")
-local HighScoresResultsListener = require("org.allbinary.game.score.HighScoresResultsListener")
-local NoHighScoresFactory = require("org.allbinary.game.score.NoHighScoresFactory")
-local NullHighScoresSingletonFactory = require("org.allbinary.game.score.NullHighScoresSingletonFactory")
-local BasicColorFactory = require("org.allbinary.graphics.color.BasicColorFactory")
-local NullPaintable = require("org.allbinary.graphics.paint.NullPaintable")
-local Paintable = require("org.allbinary.graphics.paint.Paintable")
-local SimpleTextPaintable = require("org.allbinary.graphics.paint.SimpleTextPaintable")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
-local SecondaryThreadPool = require("org.allbinary.thread.SecondaryThreadPool")
+(import ../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- GameCommandsFactory/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/game/commands/GameCommandsFactory" "jm_getInstance" args))
+(import ../../../../../org/allbinary/game/displayable/canvas/GameCommandCanvas :as GameCommandCanvas)
+(defn- ColorFillPaintableFactory/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/game/paint/ColorFillPaintableFactory" "jm_getInstance" args))
+(defn- HighScoreCommandsFactory/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/game/score/HighScoreCommandsFactory" "jm_getInstance" args))
+(defn- HighScoresHelperBase/jnew_0 [& args] (JR/call jfile "../../../../../org/allbinary/game/score/HighScoresHelperBase" "jnew_0" args))
+(defn- NoHighScoresFactory/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/game/score/NoHighScoresFactory" "jm_getInstance" args))
+(defn- NullHighScoresSingletonFactory/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/game/score/NullHighScoresSingletonFactory" "jm_getInstance" args))
+(defn- BasicColorFactory/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/graphics/color/BasicColorFactory" "jm_getInstance" args))
+(defn- NullPaintable/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/graphics/paint/NullPaintable" "jm_getInstance" args))
+(defn- SimpleTextPaintable/jnew_2 [& args] (JR/call jfile "../../../../../org/allbinary/graphics/paint/SimpleTextPaintable" "jnew_2" args))
+(defn- StringMaker/jnew_0 [& args] (JR/call jfile "../../../../../org/allbinary/logic/string/StringMaker" "jnew_0" args))
+(defn- SecondaryThreadPool/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/thread/SecondaryThreadPool" "jm_getInstance" args))
+(defn- HighScoreRunnable/jnew_1 [& args] (JR/call jfile "./HighScoreRunnable" "jnew_1" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class HighScoresCanvas
+(var jproto nil)
+(var jcell_NAME :jnone)
+(var jstatic_NAME nil)
+(var jsetstatic_NAME nil)
+(var jnew_6 nil)
+(var jm_initCommands nil)
+(var jm_open nil)
+(var jm_close nil)
+(var jm_paint nil)
+(var jm_executeUpdate nil)
+(var jm_getHighScoresPaintable nil)
+(var jm_setHighScoresArray nil)
+(var jm_updateCommand nil)
+(var jm_getGameInfo nil)
+(var jm_setPaintable nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jstatic_NAME (fn jstatic_NAME []
+  (when (= jcell_NAME :jnone) (set jcell_NAME "HighScoresCanvas"))
+  jcell_NAME))
+(set jsetstatic_NAME (fn jsetstatic_NAME [value] (set jcell_NAME value)))
 
-local HighScoresCanvas = {}
-HighScoresCanvas.__index = HighScoresCanvas
-HighScoresCanvas.className = "HighScoresCanvas"
-setmetatable(HighScoresCanvas, {__index = GameCommandCanvas})
+    
+(set jnew_6 (fn jnew_6 [_commandListener _allBinaryGameLayerManager _gameInfo _paintable _highScoresFactoryInterface _highScoresCanvasInputProcessorFactoryInterface]
+    (var this (table/setproto @{:jclass "HighScoresCanvas" :f_paintable nil :f_highScoreCommandsFactory nil :f_waitPaintable nil :f_highScoresPaintable nil :f_highScoresFactoryInterface nil :f_colorFillPaintable nil :f_highScoresHelper nil :f_gameInfo nil :f_highScoresCanvasInputProcessor nil :f_currentCommand nil :f_hasPainted false} jproto))
+    (put this :f_paintable (NullPaintable/jm_getInstance))
+    (put this :f_highScoreCommandsFactory (HighScoreCommandsFactory/jm_getInstance))
+    (put this :f_waitPaintable (SimpleTextPaintable/jnew_2 ((this :f_commonStrings) :f_PLEASE_WAIT_FOR_SERVER) ((BasicColorFactory/jm_getInstance) :f_WHITE)))
+    
+    
+    
+    (put this :f_highScoresHelper (HighScoresHelperBase/jnew_0))
+    
+    
+    (put this :f_currentCommand (((this :f_highScoreCommandsFactory) :f_HIGH_SCORE_COMMANDS) 0))
+    (put this :f_hasPainted false)
+        (JR/superInit this (GameCommandCanvas/jnew_4 _commandListener (jstatic_NAME) (:jm_getBackgroundBasicColor _allBinaryGameLayerManager) (:jm_getForegroundBasicColor _allBinaryGameLayerManager)))
+        (JR/className (this :f_logUtil))
+        (set (this :f_highScoresPaintable) _paintable)
+        (set (this :f_highScoresFactoryInterface) _highScoresFactoryInterface)
+        (set (this :f_highScoresCanvasInputProcessor) (:jm_getInstance _highScoresCanvasInputProcessorFactoryInterface this))
+        (set (this :f_gameInfo) _gameInfo)
+        (:jm_setBasicColorP (this :f_waitPaintable) (:jm_getForegroundBasicColor _allBinaryGameLayerManager))
+        (:jm_setBasicColorP (:jm_getHighScoresPaintable this) (:jm_getForegroundBasicColor _allBinaryGameLayerManager))
+        (set (this :f_colorFillPaintable) (:jm_getInstance (ColorFillPaintableFactory/jm_getInstance) (:jm_getBackgroundBasicColor _allBinaryGameLayerManager) false))
+        (if (= (length (:jm_getHighScoresArray (this :f_highScoresHelper))) (length ((NoHighScoresFactory/jm_getInstance) :f_NO_HIGH_SCORES)))
+            (do
+            (:jm_setPaintable this (this :f_waitPaintable)))
+            (do
+            (JR/className (this :f_logUtil))
+            (:jm_updateCommand this (this :f_currentCommand))
+            (:jm_setPaintable this (:jm_getHighScoresPaintable this))))
+        (:jm_runTask (SecondaryThreadPool/jm_getInstance) (HighScoreRunnable/jnew_1 this))
+    this))
+    
+(set jm_initCommands (fn jm_initCommands [this _cmdListener]
+        (:jm_removeAllCommands this)
+        (:jm_addCommand this ((GameCommandsFactory/jm_getInstance) :f_CLOSE_AND_SHOW_GAME_CANVAS))
+        (:jm_setCommandListener this _cmdListener)))
+    
+(set jm_open (fn jm_open [this]
+        ((get GameCommandCanvas/jproto :jm_open) this)
+        (:jm_open (this :f_highScoresCanvasInputProcessor))))
+    
+(set jm_close (fn jm_close [this]
+        ((get GameCommandCanvas/jproto :jm_close) this)
+        (:jm_close (this :f_highScoresCanvasInputProcessor))))
+    
+(set jm_paint (fn jm_paint [this _graphics]
+        (:jm_paint (this :f_colorFillPaintable) _graphics)
+        (:jm_paint (this :f_paintable) _graphics)
+        (if (not= (this :f_waitPaintable) (this :f_paintable))
+            (do
+            (:jm_paint (this :f_highScoresCanvasInputProcessor) _graphics)))
+        ((get GameCommandCanvas/jproto :jm_paint) this _graphics)
+        (set (this :f_hasPainted) true)))
+    
+(set jm_executeUpdate (fn jm_executeUpdate [this]
+        (try
+            (do
+            (:jm_fetchHighScores (this :f_highScoresFactoryInterface) (:jm_getGameInfo this) this))
+            ([_e] (do
+            (JR/className (this :f_logUtil)))))))
+    
+(set jm_getHighScoresPaintable (fn jm_getHighScoresPaintable [this]
+    (label jreturn
+        (return jreturn (this :f_highScoresPaintable)))))
+    
+(set jm_setHighScoresArray (fn jm_setHighScoresArray [this _highScoresArray]
+        (try
+            (do
+            (if (not (nil? _highScoresArray))
+                (do
+                (JR/className (this :f_logUtil)))
+                (do
+                (JR/className (this :f_logUtil))))
+            (:jm_setHighScoresArray (this :f_highScoresHelper) _highScoresArray)
+            (:jm_updateCommand this (this :f_currentCommand))
+            (:jm_setPaintable this (:jm_getHighScoresPaintable this)))
+            ([_e] (do
+            (JR/className (this :f_logUtil)))))))
+    
+(set jm_updateCommand (fn jm_updateCommand [this _command]
+        (JR/className (this :f_logUtil))
+        (var _gameCommandsFactory (GameCommandsFactory/jm_getInstance))
+        (if (:jm_isHighScoreCommand (this :f_highScoreCommandsFactory) _command)
+            (do
+            (var _index (:jm_getIndex (this :f_highScoreCommandsFactory) _command))
+            (var _nextIndex (JR/i32 (+ _index 1)))
+            (var _highScoresArray (:jm_getHighScoresArray (this :f_highScoresHelper)))
+            (if (>= _nextIndex (length _highScoresArray))
+                (do
+                (set _nextIndex 0)))
+            (if (> (length _highScoresArray) 0)
+                (do
+                (:jm_setHighScores (:jm_getHighScoresPaintable this) (_highScoresArray _index)))
+                (do
+                (:jm_setHighScores (:jm_getHighScoresPaintable this) (NullHighScoresSingletonFactory/jm_getInstance))))
+            (if (not= _index _nextIndex)
+                (do
+                (:jm_removeAllCommands this)
+                (:jm_addCommand this (_gameCommandsFactory :f_CLOSE_AND_SHOW_GAME_CANVAS))
+                (:jm_addCommand this (((this :f_highScoreCommandsFactory) :f_HIGH_SCORE_COMMANDS) _nextIndex))))))
+        (set (this :f_currentCommand) _command)
+        (:jm_close this)
+        ((get GameCommandCanvas/jproto :jm_initMenu) this)
+        (:jm_open this)
+        (JR/className (this :f_repaintBehavior))))
+    
+(set jm_getGameInfo (fn jm_getGameInfo [this]
+    (label jreturn
+        (return jreturn (this :f_gameInfo)))))
+    
+(set jm_setPaintable (fn jm_setPaintable [this _paintable]
+        (set (this :f_paintable) _paintable)
+        (JR/className (this :f_repaintBehavior))))
 
-function HighScoresCanvas:_init_fields()
-    self.paintable = NullPaintable.getInstance()
-    self.highScoreCommandsFactory = HighScoreCommandsFactory.getInstance()
-    self.waitPaintable = SimpleTextPaintable.new(self.commonStrings.PLEASE_WAIT_FOR_SERVER, BasicColorFactory.getInstance().WHITE)
-    self.highScoresPaintable = nil
-    self.highScoresFactoryInterface = nil
-    self.colorFillPaintable = nil
-    self.highScoresHelper = HighScoresHelperBase.new()
-    self.gameInfo = nil
-    self.highScoresCanvasInputProcessor = nil
-    self.currentCommand = self.highScoreCommandsFactory.HIGH_SCORE_COMMANDS[1]
-    self.hasPainted = false
-end
+(set jproto (table/setproto @{:jm_initCommands jm_initCommands :jm_open jm_open :jm_close jm_close :jm_paint jm_paint :jm_executeUpdate jm_executeUpdate :jm_getHighScoresPaintable jm_getHighScoresPaintable :jm_setHighScoresArray jm_setHighScoresArray :jm_updateCommand jm_updateCommand :jm_getGameInfo jm_getGameInfo :jm_setPaintable jm_setPaintable} GameCommandCanvas/jproto))
 
-
-function HighScoresCanvas.new(commandListener, allBinaryGameLayerManager, gameInfo, paintable, highScoresFactoryInterface, highScoresCanvasInputProcessorFactoryInterface)
-    local self = setmetatable(GameCommandCanvas.new(commandListener, HighScoresCanvas.NAME, allBinaryGameLayerManager:getBackgroundBasicColor(), allBinaryGameLayerManager:getForegroundBasicColor()), HighScoresCanvas)
-    self:_init_fields()
-        -- super(...) made self above
-        self.logUtil:putF(self.commonStrings.START, self, self.commonStrings.CONSTRUCTOR)
-        self.highScoresPaintable = paintable
-        self.highScoresFactoryInterface = highScoresFactoryInterface
-        self.highScoresCanvasInputProcessor = highScoresCanvasInputProcessorFactoryInterface:getInstance(self)
-        self.gameInfo = gameInfo
-        self.waitPaintable:setBasicColorP(allBinaryGameLayerManager:getForegroundBasicColor())
-        self:getHighScoresPaintable():setBasicColorP(allBinaryGameLayerManager:getForegroundBasicColor())
-        self.colorFillPaintable = ColorFillPaintableFactory.getInstance():getInstance(allBinaryGameLayerManager:getBackgroundBasicColor(), false)
-        if (self.highScoresHelper:getHighScoresArray().n or #self.highScoresHelper:getHighScoresArray()) == (NoHighScoresFactory.getInstance().NO_HIGH_SCORES.n or #NoHighScoresFactory.getInstance().NO_HIGH_SCORES) then
-            self:setPaintable(self.waitPaintable)
-        else
-            self.logUtil:putF("Show HighScores that are already loaded", self, self.commonStrings.CONSTRUCTOR)
-            self:updateCommand(self.currentCommand)
-            self:setPaintable(self:getHighScoresPaintable())
-        end
-        SecondaryThreadPool.getInstance():runTask(HighScoreRunnable.new(self))
-    return self
-end
-
-
-function HighScoresCanvas:initCommands(cmdListener)
-        self:removeAllCommands()
-        self:addCommand(GameCommandsFactory.getInstance().CLOSE_AND_SHOW_GAME_CANVAS)
-        self:setCommandListener(cmdListener)
-end
-
-
-function HighScoresCanvas:open()
-        GameCommandCanvas.open(self)
-        self.highScoresCanvasInputProcessor:open()
-end
-
-
--- throws Exception
-function HighScoresCanvas:close()
-        GameCommandCanvas.close(self)
-        self.highScoresCanvasInputProcessor:close()
-end
-
-
-function HighScoresCanvas:paint(graphics)
-        self.colorFillPaintable:paint(graphics)
-        self.paintable:paint(graphics)
-        if self.waitPaintable ~= self.paintable then
-            self.highScoresCanvasInputProcessor:paint(graphics)
-        end
-        GameCommandCanvas.paint(self, graphics)
-        self.hasPainted = true
-end
-
-
-function HighScoresCanvas:executeUpdate()
-        local try_ok, try_error = pcall(function()
-            self.highScoresFactoryInterface:fetchHighScores(self:getGameInfo(), self)
-        end)
-        if not try_ok then
-            local e = try_error
-            self.logUtil:put(self.commonStrings.EXCEPTION, self, self.commonStrings.UPDATE, e)
-        end
-end
-
-
-function HighScoresCanvas:getHighScoresPaintable()
-        return self.highScoresPaintable
-end
-
-
-function HighScoresCanvas:setHighScoresArray(highScoresArray)
-        local try_ok, try_error = pcall(function()
-            if highScoresArray ~= nil then
-                self.logUtil:putF(tostring(StringMaker.new():append(self.commonStrings.START):appendint((highScoresArray.n or #highScoresArray))), self, "setHighScoresArray")
-            else
-                self.logUtil:putF(self.commonStrings.START, self, "setHighScoresArray")
-            end
-            self.highScoresHelper:setHighScoresArray(highScoresArray)
-            self:updateCommand(self.currentCommand)
-            self:setPaintable(self:getHighScoresPaintable())
-        end)
-        if not try_ok then
-            local e = try_error
-            self.logUtil:put(self.commonStrings.EXCEPTION, self, self.commonStrings.UPDATE, e)
-        end
-end
-
-
--- throws Exception
-function HighScoresCanvas:updateCommand(command)
-        self.logUtil:putF(tostring(StringMaker.new():append(self.commonStrings.START):append(self.stringUtil:toString(command))), self, self.commonStrings.UPDATE)
-        local gameCommandsFactory = GameCommandsFactory.getInstance()
-        if self.highScoreCommandsFactory:isHighScoreCommand(command) then
-            local index = self.highScoreCommandsFactory:getIndex(command)
-            local nextIndex = index + 1
-            local highScoresArray = self.highScoresHelper:getHighScoresArray()
-            if nextIndex >= (highScoresArray.n or #highScoresArray) then
-                nextIndex = 0
-            end
-            if (highScoresArray.n or #highScoresArray) > 0 then
-                self:getHighScoresPaintable():setHighScores(highScoresArray[index + 1])
-            else
-                self:getHighScoresPaintable():setHighScores(NullHighScoresSingletonFactory.getInstance())
-            end
-            if index ~= nextIndex then
-                self:removeAllCommands()
-                self:addCommand(gameCommandsFactory.CLOSE_AND_SHOW_GAME_CANVAS)
-                self:addCommand(self.highScoreCommandsFactory.HIGH_SCORE_COMMANDS[nextIndex + 1])
-            end
-        end
-        self.currentCommand = command
-        self:close()
-        GameCommandCanvas.initMenu(self)
-        self:open()
-        self.repaintBehavior:onChangeRepaint(self)
-end
-
-
-function HighScoresCanvas:getGameInfo()
-        return self.gameInfo
-end
-
-
-function HighScoresCanvas:setPaintable(paintable)
-        self.paintable = paintable
-        self.repaintBehavior:onChangeRepaint(self)
-end
-
-HighScoresCanvas.NAME = "HighScoresCanvas"
-
-return HighScoresCanvas
 

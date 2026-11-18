@@ -22,6 +22,7 @@
 (var jproto nil)
 (var jcell_ZERO_BIGDECIMAL :jnone)
 (var jstatic_ZERO_BIGDECIMAL nil)
+(var jsetstatic_ZERO_BIGDECIMAL nil)
 (var jnew_1 nil)
 (var jm_createBigDecimal nil)
 (var jm_setint nil)
@@ -49,6 +50,7 @@
 (set jstatic_ZERO_BIGDECIMAL (fn jstatic_ZERO_BIGDECIMAL []
   (when (= jcell_ZERO_BIGDECIMAL :jnone) (set jcell_ZERO_BIGDECIMAL (jnew_1 0)))
   jcell_ZERO_BIGDECIMAL))
+(set jsetstatic_ZERO_BIGDECIMAL (fn jsetstatic_ZERO_BIGDECIMAL [value] (set jcell_ZERO_BIGDECIMAL value)))
 
     
 (set jm_createBigDecimal (fn jm_createBigDecimal [_bigDecimal]

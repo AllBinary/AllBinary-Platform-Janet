@@ -1,58 +1,50 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2022 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.image.opengles
+# 
+# AllBinary Open License Version 1 
+# Copyright (c) 2022 AllBinary 
+#  
+# By agreeing to this license you and any business entity you represent are 
+# legally bound to the AllBinary Open License Version 1 legal agreement. 
+#  
+# You may obtain the AllBinary Open License Version 1 legal agreement from 
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+#  
+# Created By: Travis Berthelot 
+#   
+# Generated Code Do Not Modify
+# package org.allbinary.image.opengles
 
--- local Image = require("javax.microedition.lcdui.Image")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
-local BasicArrayListD = require("org.allbinary.util.BasicArrayListD")
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- BasicArrayListD/jnew_0 [& args] (JR/call jfile "../../../../org/allbinary/util/BasicArrayListD" "jnew_0" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class OpenGLESImageExclusionUtil
+(var jproto nil)
+(var jcell_instance :jnone)
+(var jstatic_instance nil)
+(var jsetstatic_instance nil)
+(var jnew_0 nil)
+(var jm_getInstance nil)
+(var jm_isCustomScaling nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jstatic_instance (fn jstatic_instance []
+  (when (= jcell_instance :jnone) (set jcell_instance (jnew_0)))
+  jcell_instance))
+(set jsetstatic_instance (fn jsetstatic_instance [value] (set jcell_instance value)))
 
-local OpenGLESImageExclusionUtil = {}
-OpenGLESImageExclusionUtil.__index = OpenGLESImageExclusionUtil
-OpenGLESImageExclusionUtil.className = "OpenGLESImageExclusionUtil"
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "OpenGLESImageExclusionUtil" :f_list nil} jproto))
+    (put this :f_list (BasicArrayListD/jnew_0))
+    this))
 
-function OpenGLESImageExclusionUtil:_init_fields()
-    self.list = BasicArrayListD.new()
-end
+    
+(set jm_getInstance (fn jm_getInstance []
+    (label jreturn
+        (return jreturn (jstatic_instance)))))
+    
+(set jm_isCustomScaling (fn jm_isCustomScaling [this _image]
+    (label jreturn
+        (return jreturn false))))
 
-function OpenGLESImageExclusionUtil.new()
-    local self = setmetatable({}, OpenGLESImageExclusionUtil)
-    self:_init_fields()
-    return self
-end
+(set jproto @{:jm_isCustomScaling jm_isCustomScaling})
 
-
-function OpenGLESImageExclusionUtil.getInstance()
-        return OpenGLESImageExclusionUtil.instance
-end
-
-
-function OpenGLESImageExclusionUtil:isCustomScaling(image)
-        return false
-end
-
-OpenGLESImageExclusionUtil.instance = OpenGLESImageExclusionUtil.new()
-
-return OpenGLESImageExclusionUtil
 

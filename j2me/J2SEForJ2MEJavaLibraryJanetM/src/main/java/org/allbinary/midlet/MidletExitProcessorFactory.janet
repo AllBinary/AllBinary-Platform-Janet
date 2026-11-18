@@ -1,58 +1,56 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.midlet
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.midlet
 
--- local MIDlet = require("javax.microedition.midlet.MIDlet")
-local AppletUtil = require("org.allbinary.AppletUtil")
-local J2MEUtil = require("org.allbinary.J2MEUtil")
-local Processor = require("org.allbinary.canvas.Processor")
+(import ../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- AppletUtil/jm_isAppletLoader [& args] (JR/call jfile "../../../org/allbinary/AppletUtil" "jm_isAppletLoader" args))
+(defn- J2MEUtil/jm_isJ2ME [& args] (JR/call jfile "../../../org/allbinary/J2MEUtil" "jm_isJ2ME" args))
+(defn- Processor/jm_getInstance [& args] (JR/call jfile "../../../org/allbinary/canvas/Processor" "jm_getInstance" args))
+(defn- MidletExitProcessor/jnew_1 [& args] (JR/call jfile "./MidletExitProcessor" "jnew_1" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class MidletExitProcessorFactory
+(var jproto nil)
+(var jcell_instance :jnone)
+(var jstatic_instance nil)
+(var jsetstatic_instance nil)
+(var jnew_0 nil)
+(var jm_getInstance nil)
+(var jm_getExitInstance nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jstatic_instance (fn jstatic_instance []
+  (when (= jcell_instance :jnone) (set jcell_instance (jnew_0)))
+  jcell_instance))
+(set jsetstatic_instance (fn jsetstatic_instance [value] (set jcell_instance value)))
 
-local MidletExitProcessorFactory = {}
-MidletExitProcessorFactory.__index = MidletExitProcessorFactory
-MidletExitProcessorFactory.className = "MidletExitProcessorFactory"
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "MidletExitProcessorFactory"} jproto))
+    this))
 
-function MidletExitProcessorFactory.new()
-    local self = setmetatable({}, MidletExitProcessorFactory)
-    return self
-end
+    
+(set jm_getInstance (fn jm_getInstance []
+    (label jreturn
+        (return jreturn (jstatic_instance)))))
+    
+(set jm_getExitInstance (fn jm_getExitInstance [this _midlet]
+    (label jreturn
+        (if (or (AppletUtil/jm_isAppletLoader _midlet) (J2MEUtil/jm_isJ2ME))
+            (do
+            (return jreturn (Processor/jm_getInstance)))
+            (do
+            (return jreturn (MidletExitProcessor/jnew_1 _midlet)))))))
 
+(set jproto @{:jm_getExitInstance jm_getExitInstance})
 
-function MidletExitProcessorFactory.getInstance()
-        return MidletExitProcessorFactory.instance
-end
-
-
-function MidletExitProcessorFactory:getExitInstance(midlet)
-        if AppletUtil.isAppletLoader(midlet) or J2MEUtil.isJ2ME() then
-            return Processor.getInstance()
-        else
-            return MidletExitProcessor.new(midlet)
-        end
-end
-
-MidletExitProcessorFactory.instance = MidletExitProcessorFactory.new()
-
-return MidletExitProcessorFactory
 

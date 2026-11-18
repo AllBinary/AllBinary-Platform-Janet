@@ -1,76 +1,61 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.io.file
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.logic.io.file
 
--- local File = require("java.io.File")
-local PreLogUtil = require("org.allbinary.logic.communication.log.PreLogUtil")
+(import ../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(import ../../../../../java/io/File :as File)
+(defn- PreLogUtil/jm_putSE [& args] (JR/call jfile "../../../../../org/allbinary/logic/communication/log/PreLogUtil" "jm_putSE" args))
+(defn- AbFile/jnew_1 [& args] (JR/call jfile "./AbFile" "jnew_1" args))
+(defn- AbFile/jstatic_NULL_FILE [& args] (JR/call jfile "./AbFile" "jstatic_NULL_FILE" args))
 
-local function java_new_array(default, size, ...)
-    local array = {n = size}
-    for index = 1, size do
-        if select("#", ...) > 0 then array[index] = java_new_array(default, ...) else array[index] = default end
-    end
-    return array
-end
+# Java class FileWrapperUtil
+(var jproto nil)
+(var jnew_0 nil)
+(var jm_wrapFiles nil)
+(var jm_wrapFile nil)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "FileWrapperUtil"} jproto))
+    this))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jm_wrapFiles (fn jm_wrapFiles [_files]
+    (label jreturn
+        (try
+            (do
+            (var _abFileArray (array/new-filled (length _files) nil))
+            (do
+                (var _index (JR/i32 (- (length _files) 1)))
+                (while (>= _index 0)
+                    (do
+                (set (_abFileArray _index) (AbFile/jnew_1 (_files _index))))
+                    (do (set _index (JR/i32 (- _index 1))))))
+            (return jreturn _abFileArray))
+            ([_e] (do
+            (PreLogUtil/jm_putSE "Exception Wrapping Files" "FileWrapperUtil" "wrapFiles" _e)
+            (return jreturn (array/new-filled 0 nil))))))))
+    
+(set jm_wrapFile (fn jm_wrapFile [_file]
+    (label jreturn
+        (try
+            (do
+            (return jreturn (AbFile/jnew_1 _file)))
+            ([_e] (do
+            (PreLogUtil/jm_putSE "Exception Wrapping File" "FileWrapperUtil" "wrapFile" _e)
+            (return jreturn (AbFile/jstatic_NULL_FILE))))))))
 
-local FileWrapperUtil = {}
-FileWrapperUtil.__index = FileWrapperUtil
-FileWrapperUtil.className = "FileWrapperUtil"
+(set jproto @{})
 
-function FileWrapperUtil.new()
-    local self = setmetatable({}, FileWrapperUtil)
-    return self
-end
-
-
-function FileWrapperUtil.wrapFiles(files)
-        local try_ok, try_error = pcall(function()
-            local abFileArray = java_new_array(nil, (files.n or #files))
-            for index = (files.n or #files) - 1, 0, -1 do
-                abFileArray[index + 1] = AbFile.new(files[index + 1])
-            end
-            return abFileArray
-        end)
-        if not try_ok then
-            local e = try_error
-            PreLogUtil.putSE("Exception Wrapping Files", "FileWrapperUtil", "wrapFiles", e)
-            return java_new_array(nil, 0)
-        end
-end
-
-
-function FileWrapperUtil.wrapFile(file)
-        local try_ok, try_error = pcall(function()
-            return AbFile.new(file)
-        end)
-        if not try_ok then
-            local e = try_error
-            PreLogUtil.putSE("Exception Wrapping File", "FileWrapperUtil", "wrapFile", e)
-            return AbFile.NULL_FILE
-        end
-end
-
-return FileWrapperUtil
 

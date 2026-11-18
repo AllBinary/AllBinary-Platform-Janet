@@ -1,57 +1,51 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.displayable.canvas
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.game.displayable.canvas
 
-local CommandTextItemArrayFactory = require("org.allbinary.graphics.form.item.CommandTextItemArrayFactory")
-local LimitCommandsVisitor = require("org.allbinary.graphics.form.item.LimitCommandsVisitor")
+(import ../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- CommandTextItemArrayFactory/jnew_1 [& args] (JR/call jfile "../../../../../org/allbinary/graphics/form/item/CommandTextItemArrayFactory" "jnew_1" args))
+(defn- LimitCommandsVisitor/jnew_0 [& args] (JR/call jfile "../../../../../org/allbinary/graphics/form/item/LimitCommandsVisitor" "jnew_0" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class DemoLimitedCommandTextItemArrayFactory
+(var jproto nil)
+(var jcell_instance :jnone)
+(var jstatic_instance nil)
+(var jsetstatic_instance nil)
+(var jnew_0 nil)
+(var jm_getInstance nil)
+(var jm_getCommandTextItemArrayFactory nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jstatic_instance (fn jstatic_instance []
+  (when (= jcell_instance :jnone) (set jcell_instance (jnew_0)))
+  jcell_instance))
+(set jsetstatic_instance (fn jsetstatic_instance [value] (set jcell_instance value)))
 
-local DemoLimitedCommandTextItemArrayFactory = {}
-DemoLimitedCommandTextItemArrayFactory.__index = DemoLimitedCommandTextItemArrayFactory
-DemoLimitedCommandTextItemArrayFactory.className = "DemoLimitedCommandTextItemArrayFactory"
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "DemoLimitedCommandTextItemArrayFactory" :f_commandTextItemArrayFactory nil} jproto))
+    (put this :f_commandTextItemArrayFactory (CommandTextItemArrayFactory/jnew_1 (LimitCommandsVisitor/jnew_0)))
+    this))
 
-function DemoLimitedCommandTextItemArrayFactory:_init_fields()
-    self.commandTextItemArrayFactory = CommandTextItemArrayFactory.new(LimitCommandsVisitor.new())
-end
+    
+(set jm_getInstance (fn jm_getInstance []
+    (label jreturn
+        (return jreturn (jstatic_instance)))))
+    
+(set jm_getCommandTextItemArrayFactory (fn jm_getCommandTextItemArrayFactory [this]
+    (label jreturn
+        (return jreturn (this :f_commandTextItemArrayFactory)))))
 
-function DemoLimitedCommandTextItemArrayFactory.new()
-    local self = setmetatable({}, DemoLimitedCommandTextItemArrayFactory)
-    self:_init_fields()
-    return self
-end
+(set jproto @{:jm_getCommandTextItemArrayFactory jm_getCommandTextItemArrayFactory})
 
-
-function DemoLimitedCommandTextItemArrayFactory.getInstance()
-        return DemoLimitedCommandTextItemArrayFactory.instance
-end
-
-
-function DemoLimitedCommandTextItemArrayFactory:getCommandTextItemArrayFactory()
-        return self.commandTextItemArrayFactory
-end
-
-DemoLimitedCommandTextItemArrayFactory.instance = DemoLimitedCommandTextItemArrayFactory.new()
-
-return DemoLimitedCommandTextItemArrayFactory
 

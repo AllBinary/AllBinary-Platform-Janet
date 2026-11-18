@@ -1,27 +1,19 @@
--- Generated Code Do Not Modify
--- package java.lang
+# Generated Code Do Not Modify
+# package java.lang
+
+(import ../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+
+#J2SE to J2ME compatibility
+# Java class Deprecated
+(var jproto nil)
+(var jnew_0 nil)
+
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "Deprecated"} jproto))
+    this))
 
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(set jproto @{})
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
---J2SE to J2ME compatibility
-local Deprecated = {}
-Deprecated.__index = Deprecated
-Deprecated.className = "Deprecated"
-
-function Deprecated.new()
-    local self = setmetatable({}, Deprecated)
-    return self
-end
-
-return Deprecated
 

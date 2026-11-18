@@ -24,6 +24,7 @@
 (var jproto nil)
 (var jcell_LOG :jnone)
 (var jstatic_LOG nil)
+(var jsetstatic_LOG nil)
 (var jnew_0 nil)
 (var jm_getInstanceD nil)
 (var jm_getInstance nil)
@@ -32,6 +33,7 @@
 (set jstatic_LOG (fn jstatic_LOG []
   (when (= jcell_LOG :jnone) (set jcell_LOG (Log/jnew_4 ((StringUtil/jm_getInstance) :f_EMPTY_STRING) ((NullUtil/jm_getInstance) :f_NULL_OBJECT) ((StringUtil/jm_getInstance) :f_EMPTY_STRING) ((NullUtil/jm_getInstance) :f_NULL_OBJECT))))
   jcell_LOG))
+(set jsetstatic_LOG (fn jsetstatic_LOG [value] (set jcell_LOG value)))
 
 (set jnew_0 (fn jnew_0 []
     (var this (table/setproto @{:jclass "LogFactory"} jproto))

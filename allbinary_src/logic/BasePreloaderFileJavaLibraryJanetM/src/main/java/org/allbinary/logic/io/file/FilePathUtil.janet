@@ -1,54 +1,47 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.io.file
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.logic.io.file
 
-local AbPathData = require("org.allbinary.logic.io.path.AbPathData")
-local StringValidationUtil = require("org.allbinary.logic.string.StringValidationUtil")
+(import ../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- AbPathData/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/logic/io/path/AbPathData" "jm_getInstance" args))
+(defn- StringValidationUtil/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/logic/string/StringValidationUtil" "jm_getInstance" args))
+(defn- FilePathData/jm_getInstance [& args] (JR/call jfile "./FilePathData" "jm_getInstance" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+#Used to correct user input for paths
+# Java class FilePathUtil
+(var jproto nil)
+(var jnew_0 nil)
+(var jm_adjust nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "FilePathUtil"} jproto))
+    this))
+    
+(set jm_adjust (fn jm_adjust [_path]
+    (var _path _path)
+    (label jreturn
+        (var _abPathData (AbPathData/jm_getInstance))
+        (var _stringValidationUtil (StringValidationUtil/jm_getInstance))
+        (var _filePathData (FilePathData/jm_getInstance))
+        (if (:jm_isEmpty _stringValidationUtil _path)
+            (do
+            (return jreturn (_filePathData :f_PATH_START))))
+        (set _path (JR/replace _path (_abPathData :f_SEPARATORCHAR) (_filePathData :f_SEPARATORCHAR)))
+        (return jreturn _path))))
 
---Used to correct user input for paths
-local FilePathUtil = {}
-FilePathUtil.__index = FilePathUtil
-FilePathUtil.className = "FilePathUtil"
+(set jproto @{})
 
-
-function FilePathUtil.new()
-    local self = setmetatable({}, FilePathUtil)
-    return self
-end
-
-
-function FilePathUtil.adjust(path)
-        local abPathData = AbPathData.getInstance()
-        local stringValidationUtil = StringValidationUtil.getInstance()
-        local filePathData = FilePathData.getInstance()
-        if stringValidationUtil:isEmpty(path) then
-            return filePathData.PATH_START
-        end
-        path = path:replace(abPathData.SEPARATORCHAR, filePathData.SEPARATORCHAR)
-        return path
-end
-
-return FilePathUtil
 

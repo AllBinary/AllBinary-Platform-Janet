@@ -1,50 +1,44 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.collision
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.game.collision
 
-local Features = require("org.allbinary.game.configuration.feature.Features")
-local GameFeatureFactory = require("org.allbinary.game.configuration.feature.GameFeatureFactory")
-local AllBinaryLayer = require("org.allbinary.layer.AllBinaryLayer")
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- Features/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/game/configuration/feature/Features" "jm_getInstance" args))
+(defn- GameFeatureFactory/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/game/configuration/feature/GameFeatureFactory" "jm_getInstance" args))
+(defn- AllBinaryLayer/jstatic_NULL_ALLBINARY_LAYER [& args] (JR/call jfile "../../../../org/allbinary/layer/AllBinaryLayer" "jstatic_NULL_ALLBINARY_LAYER" args))
+(defn- SourceCollisionHelper/jnew_1 [& args] (JR/call jfile "./SourceCollisionHelper" "jnew_1" args))
+(defn- CollisionHelper/jnew_1 [& args] (JR/call jfile "./CollisionHelper" "jnew_1" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class CollidableHelperFactory
+(var jproto nil)
+(var jnew_0 nil)
+(var jm_getInstance nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "CollidableHelperFactory"} jproto))
+    this))
 
-local CollidableHelperFactory = {}
-CollidableHelperFactory.__index = CollidableHelperFactory
-CollidableHelperFactory.className = "CollidableHelperFactory"
+    
+(set jm_getInstance (fn jm_getInstance []
+    (label jreturn
+        (if (:jm_isFeature (Features/jm_getInstance) ((GameFeatureFactory/jm_getInstance) :f_COLLISIONS_WITH_SOURCE))
+            (do
+            (return jreturn (CollisionHelper/jnew_1 (AllBinaryLayer/jstatic_NULL_ALLBINARY_LAYER))))
+            (do
+            (return jreturn (SourceCollisionHelper/jnew_1 (AllBinaryLayer/jstatic_NULL_ALLBINARY_LAYER))))))))
 
-function CollidableHelperFactory.new()
-    local self = setmetatable({}, CollidableHelperFactory)
-    return self
-end
+(set jproto @{})
 
-
-function CollidableHelperFactory.getInstance()
-        if Features.getInstance():isFeature(GameFeatureFactory.getInstance().COLLISIONS_WITH_SOURCE) then
-            return CollisionHelper.new(AllBinaryLayer.NULL_ALLBINARY_LAYER)
-        else
-            return SourceCollisionHelper.new(AllBinaryLayer.NULL_ALLBINARY_LAYER)
-        end
-end
-
-return CollidableHelperFactory
 

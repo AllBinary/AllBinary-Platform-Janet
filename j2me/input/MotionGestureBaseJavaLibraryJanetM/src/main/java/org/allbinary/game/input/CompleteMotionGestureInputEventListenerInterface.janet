@@ -1,41 +1,35 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.input
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.game.input
 
-local EventListenerInterface = require("org.allbinary.logic.util.event.EventListenerInterface")
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(import ../../../../org/allbinary/logic/util/event/EventListenerInterface :as EventListenerInterface)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class CompleteMotionGestureInputEventListenerInterface
+(var jproto nil)
+(var jnew_0 nil)
+(var jm_onCompleteMotionGestureInputEvent nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "CompleteMotionGestureInputEventListenerInterface"} jproto))
+    this))
 
--- Java interface
-local CompleteMotionGestureInputEventListenerInterface = {}
-CompleteMotionGestureInputEventListenerInterface.__index = CompleteMotionGestureInputEventListenerInterface
-CompleteMotionGestureInputEventListenerInterface.className = "CompleteMotionGestureInputEventListenerInterface"
-setmetatable(CompleteMotionGestureInputEventListenerInterface, {__index = EventListenerInterface})
+    
+(set jm_onCompleteMotionGestureInputEvent (fn jm_onCompleteMotionGestureInputEvent [this _completeMotionGestureInputEvent]
+    (error (JR/newException "AbstractMethodError" "onCompleteMotionGestureInputEvent"))))
 
+(set jproto @{:jm_onCompleteMotionGestureInputEvent jm_onCompleteMotionGestureInputEvent})
 
-function CompleteMotionGestureInputEventListenerInterface:onCompleteMotionGestureInputEvent(completeMotionGestureInputEvent)
-    error("abstract method onCompleteMotionGestureInputEvent")
-end
-
-return CompleteMotionGestureInputEventListenerInterface
 

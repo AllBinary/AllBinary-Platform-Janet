@@ -1,106 +1,84 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.paint.help
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.game.paint.help
 
--- local Font = require("javax.microedition.lcdui.Font")
--- local Graphics = require("javax.microedition.lcdui.Graphics")
-local Anchor = require("org.allbinary.graphics.Anchor")
-local BasicColor = require("org.allbinary.graphics.color.BasicColor")
-local DisplayInfoSingleton = require("org.allbinary.graphics.displayable.DisplayInfoSingleton")
-local MyFontProcessor = require("org.allbinary.graphics.font.MyFontProcessor")
-local UpdateMyFontInterface = require("org.allbinary.graphics.font.UpdateMyFontInterface")
-local UpdateMyFontProcessor = require("org.allbinary.graphics.font.UpdateMyFontProcessor")
-local Paintable = require("org.allbinary.graphics.paint.Paintable")
-local NullUtil = require("org.allbinary.logic.NullUtil")
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
+(import ../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- Anchor/jstatic_TOP_LEFT [& args] (JR/call jfile "../../../../../org/allbinary/graphics/Anchor" "jstatic_TOP_LEFT" args))
+(defn- DisplayInfoSingleton/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/graphics/displayable/DisplayInfoSingleton" "jm_getInstance" args))
+(defn- MyFontProcessor/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/graphics/font/MyFontProcessor" "jm_getInstance" args))
+(defn- UpdateMyFontProcessor/jnew_1 [& args] (JR/call jfile "../../../../../org/allbinary/graphics/font/UpdateMyFontProcessor" "jnew_1" args))
+(import ../../../../../org/allbinary/graphics/paint/Paintable :as Paintable)
+(defn- NullUtil/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/logic/NullUtil" "jm_getInstance" args))
+(defn- StringUtil/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/logic/string/StringUtil" "jm_getInstance" args))
 
-local function java_new_array(default, size, ...)
-    local array = {n = size}
-    for index = 1, size do
-        if select("#", ...) > 0 then array[index] = java_new_array(default, ...) else array[index] = default end
-    end
-    return array
-end
+# Java class HelpPaintable
+(var jproto nil)
+(var jnew_3 nil)
+(var jm_updateMeasurement nil)
+(var jm_setInputInfoP nil)
+(var jm_paint nil)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+    
+(set jnew_3 (fn jnew_3 [_title _backgroundBasicColor _basicColor]
+    (var this (table/setproto @{:jclass "HelpPaintable" :f_displayInfo nil :f_updateMyFontProcessor nil :f_myFontProcessor nil :f_anchor 0 :f_title nil :f_inputInfo nil :f_basicColor nil :f_titleBeginWidth 0 :f_beginWidthArray nil :f_charHeight 0} jproto))
+    (put this :f_displayInfo (DisplayInfoSingleton/jm_getInstance))
+    (put this :f_updateMyFontProcessor (UpdateMyFontProcessor/jnew_1 this))
+    (put this :f_myFontProcessor (this :f_updateMyFontProcessor))
+    (put this :f_anchor (Anchor/jstatic_TOP_LEFT))
+    
+    (put this :f_inputInfo (:jm_getArrayInstance (StringUtil/jm_getInstance)))
+    
+    
+    (put this :f_beginWidthArray ((NullUtil/jm_getInstance) :f_NULL_INT_ARRAY))
+    
+    (JR/superInit this (Paintable/jnew_0))
+        (set (this :f_title) _title)
+        (set (this :f_basicColor) _basicColor)
+    this))
+    
+(set jm_updateMeasurement (fn jm_updateMeasurement [this _graphics]
+        (var _font (:jm_getFont _graphics))
+        (set (this :f_titleBeginWidth) (brshift (:jm_stringWidth _font (this :f_title)) 1))
+        (set (this :f_charHeight) (:jm_getHeight _font))
+        (var _size (length (this :f_inputInfo)))
+        (do
+            (var _index 0)
+            (while (< _index _size)
+                (do
+            (set ((this :f_beginWidthArray) _index) (brshift (:jm_stringWidth _font ((this :f_inputInfo) _index)) 1)))
+                (do (set _index (JR/i32 (+ _index 1))))))
+        (set (this :f_myFontProcessor) (MyFontProcessor/jm_getInstance))))
+    
+(set jm_setInputInfoP (fn jm_setInputInfoP [this _inputInfo]
+        (set (this :f_inputInfo) _inputInfo)
+        (set (this :f_beginWidthArray) (array/new-filled (length (this :f_inputInfo)) 0))
+        (set (this :f_myFontProcessor) (this :f_updateMyFontProcessor))))
+    
+(set jm_paint (fn jm_paint [this _graphics]
+        (:jm_process (this :f_myFontProcessor) _graphics)
+        (var _halfWidth (:jm_getLastHalfWidth (this :f_displayInfo)))
+        (:jm_setColor _graphics (:jm_intValue (this :f_basicColor)))
+        (:jm_drawString _graphics (this :f_title) (JR/i32 (- _halfWidth (this :f_titleBeginWidth))) (this :f_charHeight) (this :f_anchor))
+        (var _size (length (this :f_inputInfo)))
+        (do
+            (var _index 0)
+            (while (< _index _size)
+                (do
+            (:jm_drawString _graphics ((this :f_inputInfo) _index) (JR/i32 (- _halfWidth ((this :f_beginWidthArray) _index))) (JR/i32 (* (JR/i32 (+ _index 3)) (this :f_charHeight))) (this :f_anchor)))
+                (do (set _index (JR/i32 (+ _index 1))))))))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jproto (table/setproto @{:jm_updateMeasurement jm_updateMeasurement :jm_setInputInfoP jm_setInputInfoP :jm_paint jm_paint} Paintable/jproto))
 
-local HelpPaintable = {}
-HelpPaintable.__index = HelpPaintable
-HelpPaintable.className = "HelpPaintable"
-setmetatable(HelpPaintable, {__index = Paintable})
-
-function HelpPaintable:_init_fields()
-    self.displayInfo = DisplayInfoSingleton.getInstance()
-    self.updateMyFontProcessor = UpdateMyFontProcessor.new(self)
-    self.myFontProcessor = self.updateMyFontProcessor
-    self.anchor = Anchor.TOP_LEFT
-    self.title = nil
-    self.inputInfo = StringUtil.getInstance():getArrayInstance()
-    self.basicColor = nil
-    self.titleBeginWidth = 0
-    self.beginWidthArray = NullUtil.getInstance().NULL_INT_ARRAY
-    self.charHeight = 0
-end
-
-
-function HelpPaintable.new(title, backgroundBasicColor, basicColor)
-    local self = setmetatable(Paintable.new(), HelpPaintable)
-    self:_init_fields()
-        self.title = title
-        self.basicColor = basicColor
-    return self
-end
-
-
-function HelpPaintable:updateMeasurement(graphics)
-        local font = graphics:getFont()
-        self.titleBeginWidth = (((font:stringWidth(self.title)) // (1 << (1))))
-        self.charHeight = font:getHeight()
-        local size = (self.inputInfo.n or #self.inputInfo)
-        for index = 0, size - 1 do
-            self.beginWidthArray[index + 1] = (((font:stringWidth(self.inputInfo[index + 1])) // (1 << (1))))
-        end
-        self.myFontProcessor = MyFontProcessor.getInstance()
-end
-
-
-function HelpPaintable:setInputInfoP(inputInfo)
-        self.inputInfo = inputInfo
-        self.beginWidthArray = java_new_array(0, (self.inputInfo.n or #self.inputInfo))
-        self.myFontProcessor = self.updateMyFontProcessor
-end
-
-
-function HelpPaintable:paint(graphics)
-        self.myFontProcessor:process(graphics)
-        local halfWidth = self.displayInfo:getLastHalfWidth()
-        graphics:setColor(math.tointeger(self.basicColor // 1))
-        graphics:drawString(self.title, halfWidth - self.titleBeginWidth, self.charHeight, self.anchor)
-        local size = (self.inputInfo.n or #self.inputInfo)
-        for index = 0, size - 1 do
-            graphics:drawString(self.inputInfo[index + 1], halfWidth - self.beginWidthArray[index + 1], (index + 3) * self.charHeight, self.anchor)
-        end
-end
-
-return HelpPaintable
 

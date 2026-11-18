@@ -1,45 +1,35 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.animation.image
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.animation.image
 
-local Animation = require("org.allbinary.animation.Animation")
-local AnimationBehavior = require("org.allbinary.animation.AnimationBehavior")
-local SingletonAnimationInterfaceFactory = require("org.allbinary.animation.SingletonAnimationInterfaceFactory")
-local AnimationFrameToImageUtil = require("org.allbinary.image.AnimationFrameToImageUtil")
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- AnimationBehavior/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/animation/AnimationBehavior" "jm_getInstance" args))
+(import ../../../../org/allbinary/animation/SingletonAnimationInterfaceFactory :as SingletonAnimationInterfaceFactory)
+(defn- AnimationFrameToImageUtil/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/image/AnimationFrameToImageUtil" "jm_getInstance" args))
+(defn- ImageAnimation/jnew_2 [& args] (JR/call jfile "./ImageAnimation" "jnew_2" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class ImageAnimationSingletonInterfaceFactory
+(var jproto nil)
+(var jnew_3 nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jnew_3 (fn jnew_3 [_animationInterface _width _height]
+    (var this (table/setproto @{:jclass "ImageAnimationSingletonInterfaceFactory"} jproto))
+        (JR/superInit this (SingletonAnimationInterfaceFactory/jnew_1 (ImageAnimation/jnew_2 (:jm_getInstanceWH (AnimationFrameToImageUtil/jm_getInstance) _width _height _animationInterface) (AnimationBehavior/jm_getInstance))))
+    this))
 
-local ImageAnimationSingletonInterfaceFactory = {}
-ImageAnimationSingletonInterfaceFactory.__index = ImageAnimationSingletonInterfaceFactory
-ImageAnimationSingletonInterfaceFactory.className = "ImageAnimationSingletonInterfaceFactory"
-setmetatable(ImageAnimationSingletonInterfaceFactory, {__index = SingletonAnimationInterfaceFactory})
+(set jproto (table/setproto @{} SingletonAnimationInterfaceFactory/jproto))
 
-
-function ImageAnimationSingletonInterfaceFactory.new(animationInterface, width, height)
-    local self = setmetatable(SingletonAnimationInterfaceFactory.new(ImageAnimation.new(AnimationFrameToImageUtil.getInstance():getInstanceWH(width, height, animationInterface), AnimationBehavior.getInstance())), ImageAnimationSingletonInterfaceFactory)
-        -- super(...) made self above
-    return self
-end
-
-return ImageAnimationSingletonInterfaceFactory
 

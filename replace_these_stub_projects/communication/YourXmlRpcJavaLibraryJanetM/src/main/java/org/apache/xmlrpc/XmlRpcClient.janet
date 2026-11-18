@@ -1,62 +1,43 @@
--- Generated Code Do Not Modify
--- package org.apache.xmlrpc
+# Generated Code Do Not Modify
+# package org.apache.xmlrpc
 
--- local IOException = require("java.io.IOException")
--- local MalformedURLException = require("java.net.MalformedURLException")
--- local URL = require("java.net.URL")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
-local BasicArrayListD = require("org.allbinary.util.BasicArrayListD")
-local CryptInterface = require("org.allbinary.init.crypt.jcehelper.CryptInterface")
-local NullUtil = require("org.allbinary.logic.NullUtil")
-local XmlRpcHandler = require("org.apache.xmlrpc.XmlRpcHandler")
+(import ../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(import ../../../java/io/IOException :as IOException)
+(import ../../../java/net/MalformedURLException :as MalformedURLException)
+(import ../../../java/net/URL :as URL)
+(defn- NullUtil/jm_getInstance [& args] (JR/call jfile "../../../org/allbinary/logic/NullUtil" "jm_getInstance" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class XmlRpcClient
+(var jproto nil)
+(var jnew_1 nil)
+(var jm_getURL nil)
+(var jm_setBasicAuthentication nil)
+(var jm_execute nil)
+(var jm_executeWithCrypt nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jnew_1 (fn jnew_1 [_url]
+    (var this (table/setproto @{:jclass "XmlRpcClient" :f_url nil} jproto))
+    
+        (set (this :f_url) (URL/jnew_1 _url))
+    this))
+    
+(set jm_getURL (fn jm_getURL [this]
+    (label jreturn
+        (return jreturn (this :f_url)))))
+    
+(set jm_setBasicAuthentication (fn jm_setBasicAuthentication [this _user _password]
+    nil))
+    
+(set jm_execute (fn jm_execute [this _method _params]
+    (label jreturn
+        (return jreturn ((NullUtil/jm_getInstance) :f_NULL_OBJECT)))))
+    
+(set jm_executeWithCrypt (fn jm_executeWithCrypt [this _method _params _cryptInterface]
+    (label jreturn
+        (return jreturn ((NullUtil/jm_getInstance) :f_NULL_OBJECT)))))
 
-local XmlRpcClient = {}
-XmlRpcClient.__index = XmlRpcClient
-XmlRpcClient.className = "XmlRpcClient"
+(set jproto @{:jm_getURL jm_getURL :jm_setBasicAuthentication jm_setBasicAuthentication :jm_execute jm_execute :jm_executeWithCrypt jm_executeWithCrypt})
 
-function XmlRpcClient:_init_fields()
-    self.url = nil
-end
-
-
-function XmlRpcClient.new(url)
-    local self = setmetatable({}, XmlRpcClient)
-    self:_init_fields()
-        self.url = URL.new(url)
-    return self
-end
-
-
-function XmlRpcClient:getURL()
-        return self.url
-end
-
-
-function XmlRpcClient:setBasicAuthentication(user, password)
-end
-
-
--- throws XmlRpcException, IOException
-function XmlRpcClient:execute(method, params)
-        return NullUtil.getInstance().NULL_OBJECT
-end
-
-
--- throws XmlRpcException, IOException
-function XmlRpcClient:executeWithCrypt(method, params, cryptInterface)
-        return NullUtil.getInstance().NULL_OBJECT
-end
-
-return XmlRpcClient
 

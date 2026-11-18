@@ -1,56 +1,53 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.system.security.licensing
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.logic.system.security.licensing
 
-local LockedUtilInterface = require("org.allbinary.logic.system.security.licensing.LockedUtilInterface")
+(import ../../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class LockedUtil
+(var jproto nil)
+(var jcell_instance :jnone)
+(var jstatic_instance nil)
+(var jsetstatic_instance nil)
+(var jnew_0 nil)
+(var jm_getInstance nil)
+(var jm_isLocked nil)
+(var jm_isLockedFeature nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jstatic_instance (fn jstatic_instance []
+  (when (= jcell_instance :jnone) (set jcell_instance (jnew_0)))
+  jcell_instance))
+(set jsetstatic_instance (fn jsetstatic_instance [value] (set jcell_instance value)))
 
-local LockedUtil = {}
-LockedUtil.__index = LockedUtil
-LockedUtil.className = "LockedUtil"
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "LockedUtil"} jproto))
+    this))
 
-function LockedUtil.new()
-    local self = setmetatable({}, LockedUtil)
-    return self
-end
+    
+(set jm_getInstance (fn jm_getInstance []
+    (label jreturn
+        (return jreturn (jstatic_instance)))))
+    
+(set jm_isLocked (fn jm_isLocked [this]
+    (label jreturn
+        (return jreturn true))))
+    
+(set jm_isLockedFeature (fn jm_isLockedFeature [this _lockableFeatrue]
+    (label jreturn
+        (return jreturn true))))
 
+(set jproto @{:jm_isLocked jm_isLocked :jm_isLockedFeature jm_isLockedFeature})
 
-function LockedUtil.getInstance()
-        return LockedUtil.instance
-end
-
-
-function LockedUtil:isLocked()
-        return true
-end
-
-
-function LockedUtil:isLockedFeature(lockableFeatrue)
-        return true
-end
-
-LockedUtil.instance = LockedUtil.new()
-
-return LockedUtil
 

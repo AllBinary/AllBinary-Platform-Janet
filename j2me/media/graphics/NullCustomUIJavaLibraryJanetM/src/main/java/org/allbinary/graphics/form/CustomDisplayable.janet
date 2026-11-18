@@ -1,30 +1,22 @@
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.form
+# Generated Code Do Not Modify
+# package org.allbinary.graphics.form
 
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class CustomDisplayable
+(var jproto nil)
+(var jnew_0 nil)
+(var jm_setTitle nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "CustomDisplayable"} jproto))
+    this))
 
-local CustomDisplayable = {}
-CustomDisplayable.__index = CustomDisplayable
-CustomDisplayable.className = "CustomDisplayable"
+    
+(set jm_setTitle (fn jm_setTitle [this _title]
+    nil))
 
-function CustomDisplayable.new()
-    local self = setmetatable({}, CustomDisplayable)
-    return self
-end
+(set jproto @{:jm_setTitle jm_setTitle})
 
-
-function CustomDisplayable:setTitle(title)
-end
-
-return CustomDisplayable
 

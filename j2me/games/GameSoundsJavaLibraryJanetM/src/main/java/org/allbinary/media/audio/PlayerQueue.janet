@@ -1,107 +1,94 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.media.audio
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.media.audio
 
-local PreLogUtil = require("org.allbinary.logic.communication.log.PreLogUtil")
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
-local BasicArrayListD = require("org.allbinary.util.BasicArrayListD")
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- PreLogUtil/jm_put [& args] (JR/call jfile "../../../../org/allbinary/logic/communication/log/PreLogUtil" "jm_put" args))
+(defn- StringMaker/jnew_0 [& args] (JR/call jfile "../../../../org/allbinary/logic/string/StringMaker" "jnew_0" args))
+(defn- StringUtil/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/logic/string/StringUtil" "jm_getInstance" args))
+(defn- CommonStrings/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/string/CommonStrings" "jm_getInstance" args))
+(defn- BasicArrayListD/jnew_0 [& args] (JR/call jfile "../../../../org/allbinary/util/BasicArrayListD" "jnew_0" args))
+(defn- NoSound/jm_getInstance [& args] (JR/call jfile "./NoSound" "jm_getInstance" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class PlayerQueue
+(var jproto nil)
+(var jcell_TOTAL :jnone)
+(var jstatic_TOTAL nil)
+(var jsetstatic_TOTAL nil)
+(var jnew_1 nil)
+(var jm_add nil)
+(var jm_process nil)
+(var jm_clear nil)
+(var jm_toString nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jstatic_TOTAL (fn jstatic_TOTAL []
+  (when (= jcell_TOTAL :jnone) (set jcell_TOTAL "Sounds In Queue: "))
+  jcell_TOTAL))
+(set jsetstatic_TOTAL (fn jsetstatic_TOTAL [value] (set jcell_TOTAL value)))
 
-local PlayerQueue = {}
-PlayerQueue.__index = PlayerQueue
-PlayerQueue.className = "PlayerQueue"
+    
+(set jnew_1 (fn jnew_1 [_max]
+    (var this (table/setproto @{:jclass "PlayerQueue" :f_commonStrings nil :f_list nil :f_max 0} jproto))
+    (put this :f_commonStrings (CommonStrings/jm_getInstance))
+    (put this :f_list (BasicArrayListD/jnew_0))
+    
+        (set (this :f_max) _max)
+    this))
+    
+(set jm_add (fn jm_add [this _sound]
+        (try
+            (do
+            (if (not (:jm_contains (this :f_list) _sound))
+                (do
+                (:jm_add (this :f_list) _sound))))
+            ([_e] (do
+            (PreLogUtil/jm_put ((this :f_commonStrings) :f_EXCEPTION) this ((this :f_commonStrings) :f_ADD)))))))
+    
+(set jm_process (fn jm_process [this]
+    (label jreturn
+        (var _sound (NoSound/jm_getInstance))
+        (try
+            (do
+            (var _played false)
+            (if (> (:jm_size (this :f_list)) 0)
+                (do
+                (set _sound (:jm_removeAt (this :f_list) 0))
+                (if (not (nil? _sound))
+                    (do
+                    (JR/className (:jm_getPlayerP _sound))))
+                (do
+                    (while (> (:jm_size (this :f_list)) (this :f_max))
+                        (do
+                    (:jm_removeAt (this :f_list) 0))))
+                (set _played true)))
+            (return jreturn _played))
+            ([_e] (do
+            (var _resource ((StringUtil/jm_getInstance) :f_EMPTY_STRING))
+            (if (not (nil? _sound))
+                (do
+                (set _resource (:jm_getResource _sound))))
+            (PreLogUtil/jm_put (:jm_toString (:jm_append (:jm_append (StringMaker/jnew_0) ((this :f_commonStrings) :f_EXCEPTION_LABEL)) _resource)) this ((this :f_commonStrings) :f_PROCESS))
+            (return jreturn false)))))))
+    
+(set jm_clear (fn jm_clear [this]
+        (:jm_clear (this :f_list))))
+    
+(set jm_toString (fn jm_toString [this]
+    (label jreturn
+        (return jreturn (:jm_toString (:jm_appendint (:jm_append (StringMaker/jnew_0) (jstatic_TOTAL)) (:jm_size (this :f_list))))))))
 
-function PlayerQueue:_init_fields()
-    self.commonStrings = CommonStrings.getInstance()
-    self.list = BasicArrayListD.new()
-    self.max = nil
-end
+(set jproto @{:jm_add jm_add :jm_process jm_process :jm_clear jm_clear :jm_toString jm_toString})
 
-
-function PlayerQueue.new(max)
-    local self = setmetatable({}, PlayerQueue)
-    self:_init_fields()
-        self.max = max
-    return self
-end
-
-
-function PlayerQueue:add(sound)
-        local try_ok, try_error = pcall(function()
-            if not self.list:contains(sound) then
-                self.list:add(sound)
-            end
-        end)
-        if not try_ok then
-            local e = try_error
-            PreLogUtil.put(self.commonStrings.EXCEPTION, self, self.commonStrings.ADD)
-        end
-end
-
-
-function PlayerQueue:process()
-        local sound = NoSound.getInstance()
-        local try_ok, try_error = pcall(function()
-            local played = false
-            if self.list:size() > 0 then
-                sound = self.list:removeAt(0)
-                if sound ~= nil then
-                    sound:getPlayerP():start()
-                end
-                while self.list:size() > self.max do
-                    self.list:removeAt(0)
-                end
-                played = true
-            end
-            return played
-        end)
-        if not try_ok then
-            local e = try_error
-            local resource = StringUtil.getInstance().EMPTY_STRING
-            if sound ~= nil then
-                resource = sound:getResource()
-            end
-            PreLogUtil.put(tostring(StringMaker.new():append(self.commonStrings.EXCEPTION_LABEL):append(resource)), self, self.commonStrings.PROCESS)
-            return false
-        end
-end
-
-
-function PlayerQueue:clear()
-        self.list:clear()
-end
-
-
-function PlayerQueue:toString()
-        return tostring(StringMaker.new():append(PlayerQueue.TOTAL):appendint(self.list:size()))
-end
-PlayerQueue.__tostring = function(self) return self:toString() end
-
-PlayerQueue.TOTAL = "Sounds In Queue: "
-
-return PlayerQueue
 

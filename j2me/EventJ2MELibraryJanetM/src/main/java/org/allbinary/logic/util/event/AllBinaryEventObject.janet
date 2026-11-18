@@ -21,6 +21,7 @@
 (var jproto nil)
 (var jcell_NULL_EVENT :jnone)
 (var jstatic_NULL_EVENT nil)
+(var jsetstatic_NULL_EVENT nil)
 (var jnew_1 nil)
 (var jm_getSource nil)
 (var jm_setSource nil)
@@ -28,6 +29,7 @@
 (set jstatic_NULL_EVENT (fn jstatic_NULL_EVENT []
   (when (= jcell_NULL_EVENT :jnone) (set jcell_NULL_EVENT (jnew_1 ((NullUtil/jm_getInstance) :f_NULL_OBJECT))))
   jcell_NULL_EVENT))
+(set jsetstatic_NULL_EVENT (fn jsetstatic_NULL_EVENT [value] (set jcell_NULL_EVENT value)))
 
     
 (set jnew_1 (fn jnew_1 [_anyType]

@@ -1,64 +1,49 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.ag.ai
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.game.ag.ai
 
-local ArtificialIntelligenceInterface = require("org.allbinary.ai.ArtificialIntelligenceInterface")
-local TopULayerBounds = require("org.allbinary.bounds.TopULayerBounds")
-local ArtificialIntelligenceInterfaceFactoryInterface = require("org.allbinary.game.ai.ArtificialIntelligenceInterfaceFactoryInterface")
-local GameInput = require("org.allbinary.game.input.GameInput")
-local VelocityInterface = require("org.allbinary.game.physics.velocity.VelocityInterface")
-local VelocityInterfaceCompositeInterface = require("org.allbinary.game.physics.velocity.VelocityInterfaceCompositeInterface")
-local GPoint = require("org.allbinary.graphics.GPoint")
-local PointFactory = require("org.allbinary.graphics.PointFactory")
-local Rectangle = require("org.allbinary.graphics.Rectangle")
-local DisplayInfoSingleton = require("org.allbinary.graphics.displayable.DisplayInfoSingleton")
-local AllBinaryLayer = require("org.allbinary.layer.AllBinaryLayer")
-local ABHashtable = require("org.allbinary.util.ABHashtable")
+(import ../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- TopULayerBounds/jnew_1 [& args] (JR/call jfile "../../../../../org/allbinary/bounds/TopULayerBounds" "jnew_1" args))
+(defn- PointFactory/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/graphics/PointFactory" "jm_getInstance" args))
+(defn- Rectangle/jnew_3 [& args] (JR/call jfile "../../../../../org/allbinary/graphics/Rectangle" "jnew_3" args))
+(defn- DisplayInfoSingleton/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/graphics/displayable/DisplayInfoSingleton" "jm_getInstance" args))
+(defn- BoundBounceAI/jnew_4 [& args] (JR/call jfile "./BoundBounceAI" "jnew_4" args))
+(defn- ReverseVelocityBoundsVisitor/jnew_1 [& args] (JR/call jfile "./ReverseVelocityBoundsVisitor" "jnew_1" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class TopUBoundBounceAIFactory
+(var jproto nil)
+(var jnew_0 nil)
+(var jm_getInstance nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "TopUBoundBounceAIFactory"} jproto))
+    this))
 
-local TopUBoundBounceAIFactory = {}
-TopUBoundBounceAIFactory.__index = TopUBoundBounceAIFactory
-TopUBoundBounceAIFactory.className = "TopUBoundBounceAIFactory"
+    
+(set jm_getInstance (fn jm_getInstance [this _hashtable _ownerLayerInterface _gameInput]
+    (label jreturn
+        (var _velocityInterfaceCompositeInterface _ownerLayerInterface)
+        (var _velocityInterface (:jm_getVelocityProperties _velocityInterfaceCompositeInterface))
+        (var _maxDistancePerTick (brshift (:jm_getMaxForwardVelocity _velocityInterface) (JR/className (:jm_getVelocityXBasicDecimalP _velocityInterface))))
+        (var _halfWidth (JR/i32 (+ (JR/i32 (+ (JR/i32 (* (:jm_getWidth _ownerLayerInterface) 2)) _maxDistancePerTick)) 1)))
+        (var _halfHeight (JR/i32 (+ (JR/i32 (+ (JR/i32 (* (:jm_getHeight _ownerLayerInterface) 2)) _maxDistancePerTick)) 1)))
+        (var _point (:jm_createXY (PointFactory/jm_getInstance) _halfWidth (JR/i32 (+ _halfHeight 60))))
+        (var _displayInfo (DisplayInfoSingleton/jm_getInstance))
+        (var _rectangle (Rectangle/jnew_3 _point (JR/i32 (- (JR/i32 (- (:jm_getLastWidth _displayInfo) _halfWidth)) (:jm_getX _point))) (JR/i32 (- (JR/i32 (- (:jm_getLastHeight _displayInfo) _halfHeight)) (:jm_getY _point)))))
+        (return jreturn (BoundBounceAI/jnew_4 _ownerLayerInterface _gameInput (TopULayerBounds/jnew_1 _rectangle) (ReverseVelocityBoundsVisitor/jnew_1 _ownerLayerInterface))))))
 
-function TopUBoundBounceAIFactory.new()
-    local self = setmetatable({}, TopUBoundBounceAIFactory)
-    return self
-end
+(set jproto @{:jm_getInstance jm_getInstance})
 
-
--- throws Exception
-function TopUBoundBounceAIFactory:getInstance(hashtable, ownerLayerInterface, gameInput)
-        local velocityInterfaceCompositeInterface = ownerLayerInterface
-        local velocityInterface = velocityInterfaceCompositeInterface:getVelocityProperties()
-        local maxDistancePerTick = (((velocityInterface:getMaxForwardVelocity()) // (1 << (velocityInterface:getVelocityXBasicDecimalP():getScaledFactor()))))
-        local halfWidth = ownerLayerInterface:getWidth() * 2 + maxDistancePerTick + 1
-        local halfHeight = ownerLayerInterface:getHeight() * 2 + maxDistancePerTick + 1
-        local point = PointFactory.getInstance():createXY(halfWidth, halfHeight + 60)
-        local displayInfo = DisplayInfoSingleton.getInstance()
-        local rectangle = Rectangle.new(point, (displayInfo:getLastWidth() - halfWidth - point:getX()), (displayInfo:getLastHeight() - halfHeight - point:getY()))
-        return BoundBounceAI.new(ownerLayerInterface, gameInput, TopULayerBounds.new(rectangle), ReverseVelocityBoundsVisitor.new(ownerLayerInterface))
-end
-
-return TopUBoundBounceAIFactory
 

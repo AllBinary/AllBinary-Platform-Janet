@@ -1,63 +1,53 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.input
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.game.input
 
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
-local Input = require("org.allbinary.game.input.Input")
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- StringUtil/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/logic/string/StringUtil" "jm_getInstance" args))
+(import ./Input :as Input)
+(defn- InputFactory/jm_getInstance [& args] (JR/call jfile "./InputFactory" "jm_getInstance" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class PCGameKey
+(var jproto nil)
+(var jnew_2 nil)
+(var jm_toString nil)
+(var jm_getString nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jnew_2 (fn jnew_2 [_keyCode _name]
+    (var this (table/setproto @{:jclass "PCGameKey"} jproto))
+        (JR/superInit this (Input/jnew_2 _keyCode _name))
+        (var _id (:jm_getId this))
+        (if (>= _id 0)
+            (do
+            (:jm_add (InputFactory/jm_getInstance) _id this)))
+    this))
+    
+(set jm_toString (fn jm_toString [this]
+    (label jreturn
+        (return jreturn (string "PCGameKey: " ((get Input/jproto :jm_toString) this))))))
+    
+(set jm_getString (fn jm_getString [_keyCode]
+    (label jreturn
+        (var _input (:jm_getInstanceById (InputFactory/jm_getInstance) _keyCode))
+        (if (not (nil? _input))
+            (do
+            (return jreturn (:jm_getName _input)))
+            (do
+            (return jreturn ((StringUtil/jm_getInstance) :f_EMPTY_STRING)))))))
 
-local PCGameKey = {}
-PCGameKey.__index = PCGameKey
-PCGameKey.className = "PCGameKey"
-setmetatable(PCGameKey, {__index = Input})
+(set jproto (table/setproto @{:jm_toString jm_toString} Input/jproto))
 
-
-function PCGameKey.new(keyCode, name)
-    local self = setmetatable(Input.new(keyCode, name), PCGameKey)
-        -- super(...) made self above
-        local id = self:getId()
-        if id >= 0 then
-            InputFactory.getInstance():add(id, self)
-        end
-    return self
-end
-
-
-function PCGameKey:toString()
-        return "PCGameKey: " .. tostring(Input)
-end
-PCGameKey.__tostring = function(self) return self:toString() end
-
-
-function PCGameKey.getString(keyCode)
-        local input = InputFactory.getInstance():getInstanceById(keyCode)
-        if input ~= nil then
-            return input:getName()
-        else
-            return StringUtil.getInstance().EMPTY_STRING
-        end
-end
-
-return PCGameKey
 

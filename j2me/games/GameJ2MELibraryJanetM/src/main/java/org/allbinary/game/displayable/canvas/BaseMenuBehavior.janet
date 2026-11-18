@@ -1,76 +1,68 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2022 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.game.displayable.canvas
+# 
+# AllBinary Open License Version 1 
+# Copyright (c) 2022 AllBinary 
+#  
+# By agreeing to this license you and any business entity you represent are 
+# legally bound to the AllBinary Open License Version 1 legal agreement. 
+#  
+# You may obtain the AllBinary Open License Version 1 legal agreement from 
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+#  
+# Created By: Travis Berthelot 
+#   
+# Generated Code Do Not Modify
+# package org.allbinary.game.displayable.canvas
 
-local DisplayChangeEvent = require("org.allbinary.graphics.displayable.event.DisplayChangeEvent")
-local NullPaintable = require("org.allbinary.graphics.paint.NullPaintable")
+(import ../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- NullPaintable/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/graphics/paint/NullPaintable" "jm_getInstance" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class BaseMenuBehavior
+(var jproto nil)
+(var jcell_instance :jnone)
+(var jstatic_instance nil)
+(var jsetstatic_instance nil)
+(var jnew_0 nil)
+(var jm_getInstance nil)
+(var jm_onDisplayChangeEvent nil)
+(var jm_initSpecialPaint nil)
+(var jm_initMenu nil)
+(var jm_updateMenu nil)
+(var jm_popupMenu nil)
+(var jm_closeMenu nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jstatic_instance (fn jstatic_instance []
+  (when (= jcell_instance :jnone) (set jcell_instance (jnew_0)))
+  jcell_instance))
+(set jsetstatic_instance (fn jsetstatic_instance [value] (set jcell_instance value)))
 
-local BaseMenuBehavior = {}
-BaseMenuBehavior.__index = BaseMenuBehavior
-BaseMenuBehavior.className = "BaseMenuBehavior"
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "BaseMenuBehavior"} jproto))
+    this))
 
-function BaseMenuBehavior.new()
-    local self = setmetatable({}, BaseMenuBehavior)
-    return self
-end
+    
+(set jm_getInstance (fn jm_getInstance []
+    (label jreturn
+        (return jreturn (jstatic_instance)))))
+    
+(set jm_onDisplayChangeEvent (fn jm_onDisplayChangeEvent [this _allBinaryGameCanvas _displayChangeEvent]
+    nil))
+    
+(set jm_initSpecialPaint (fn jm_initSpecialPaint [this _allBinaryGameCanvas]
+        (:jm_setNonBotPaintableP _allBinaryGameCanvas (NullPaintable/jm_getInstance))))
+    
+(set jm_initMenu (fn jm_initMenu [this _allBinaryGameCanvas]
+    nil))
+    
+(set jm_updateMenu (fn jm_updateMenu [this _allBinaryGameCanvas]
+    nil))
+    
+(set jm_popupMenu (fn jm_popupMenu [this _allBinaryGameCanvas]
+    nil))
+    
+(set jm_closeMenu (fn jm_closeMenu [this _allBinaryGameCanvas]
+    nil))
 
+(set jproto @{:jm_onDisplayChangeEvent jm_onDisplayChangeEvent :jm_initSpecialPaint jm_initSpecialPaint :jm_initMenu jm_initMenu :jm_updateMenu jm_updateMenu :jm_popupMenu jm_popupMenu :jm_closeMenu jm_closeMenu})
 
-function BaseMenuBehavior.getInstance()
-        return BaseMenuBehavior.instance
-end
-
-
--- throws Exception
-function BaseMenuBehavior:onDisplayChangeEvent(allBinaryGameCanvas, displayChangeEvent)
-end
-
-
-function BaseMenuBehavior:initSpecialPaint(allBinaryGameCanvas)
-        allBinaryGameCanvas:setNonBotPaintableP(NullPaintable.getInstance())
-end
-
-
--- throws Exception
-function BaseMenuBehavior:initMenu(allBinaryGameCanvas)
-end
-
-
--- throws Exception
-function BaseMenuBehavior:updateMenu(allBinaryGameCanvas)
-end
-
-
--- throws Exception
-function BaseMenuBehavior:popupMenu(allBinaryGameCanvas)
-end
-
-
-function BaseMenuBehavior:closeMenu(allBinaryGameCanvas)
-end
-
-BaseMenuBehavior.instance = BaseMenuBehavior.new()
-
-return BaseMenuBehavior
 

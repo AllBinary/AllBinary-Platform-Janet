@@ -1,54 +1,38 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.form
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.graphics.form
 
-local Processor = require("org.allbinary.canvas.Processor")
-local PlayerGameInputCompositeInterface = require("org.allbinary.game.input.PlayerGameInputCompositeInterface")
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(import ../../../../org/allbinary/canvas/Processor :as Processor)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class FormPlayerGameInputProcessor
+(var jproto nil)
+(var jnew_1 nil)
+(var jm_process nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jnew_1 (fn jnew_1 [_playerGameInputCompositeInterface]
+    (var this (table/setproto @{:jclass "FormPlayerGameInputProcessor" :f_playerGameInputCompositeInterface nil} jproto))
+    
+    (JR/superInit this (Processor/jnew_0))
+        (set (this :f_playerGameInputCompositeInterface) _playerGameInputCompositeInterface)
+    this))
+    
+(set jm_process (fn jm_process [this]
+        (JR/className (:jm_getPlayerGameInput (this :f_playerGameInputCompositeInterface)))))
 
-local FormPlayerGameInputProcessor = {}
-FormPlayerGameInputProcessor.__index = FormPlayerGameInputProcessor
-FormPlayerGameInputProcessor.className = "FormPlayerGameInputProcessor"
-setmetatable(FormPlayerGameInputProcessor, {__index = Processor})
+(set jproto (table/setproto @{:jm_process jm_process} Processor/jproto))
 
-function FormPlayerGameInputProcessor:_init_fields()
-    self.playerGameInputCompositeInterface = nil
-end
-
-
-function FormPlayerGameInputProcessor.new(playerGameInputCompositeInterface)
-    local self = setmetatable(Processor.new(), FormPlayerGameInputProcessor)
-    self:_init_fields()
-        self.playerGameInputCompositeInterface = playerGameInputCompositeInterface
-    return self
-end
-
-
--- throws Exception
-function FormPlayerGameInputProcessor:process()
-        self.playerGameInputCompositeInterface:getPlayerGameInput():update()
-end
-
-return FormPlayerGameInputProcessor
 

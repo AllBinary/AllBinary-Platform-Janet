@@ -1,78 +1,68 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.configuration
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.game.configuration
 
-local StdUtil = require("org.allbinary.logic.StdUtil")
-local ABHashtable = require("org.allbinary.util.ABHashtable")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
-local BasicArrayListD = require("org.allbinary.util.BasicArrayListD")
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- StdUtil/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/logic/StdUtil" "jm_getInstance" args))
+(defn- BasicArrayListD/jnew_0 [& args] (JR/call jfile "../../../../org/allbinary/util/BasicArrayListD" "jnew_0" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class GameConfigurationSingleton
+(var jproto nil)
+(var jcell_SINGLETON :jnone)
+(var jstatic_SINGLETON nil)
+(var jsetstatic_SINGLETON nil)
+(var jnew_0 nil)
+(var jm_getInstance nil)
+(var jm_getInstanceByName nil)
+(var jm_getOptionsBasicArrayList nil)
+(var jm_add nil)
+(var jm_getHashtable nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jstatic_SINGLETON (fn jstatic_SINGLETON []
+  (when (= jcell_SINGLETON :jnone) (set jcell_SINGLETON (jnew_0)))
+  jcell_SINGLETON))
+(set jsetstatic_SINGLETON (fn jsetstatic_SINGLETON [value] (set jcell_SINGLETON value)))
 
-local GameConfigurationSingleton = {}
-GameConfigurationSingleton.__index = GameConfigurationSingleton
-GameConfigurationSingleton.className = "GameConfigurationSingleton"
+    
+(set jm_getInstance (fn jm_getInstance []
+    (label jreturn
+        (return jreturn (jstatic_SINGLETON)))))
+    
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "GameConfigurationSingleton" :f_list nil :f_hashtable nil} jproto))
+    
+    
+        (set (this :f_list) (BasicArrayListD/jnew_0))
+        (set (this :f_hashtable) (:jm_createHashtable (StdUtil/jm_getInstance)))
+    this))
+    
+(set jm_getInstanceByName (fn jm_getInstanceByName [this _name]
+    (label jreturn
+        (return jreturn (:jm_get (this :f_hashtable) _name)))))
+    
+(set jm_getOptionsBasicArrayList (fn jm_getOptionsBasicArrayList [this]
+    (label jreturn
+        (return jreturn (this :f_list)))))
+    
+(set jm_add (fn jm_add [this _gameConfiguration]
+        (:jm_add (this :f_list) _gameConfiguration)))
+    
+(set jm_getHashtable (fn jm_getHashtable [this]
+    (label jreturn
+        (return jreturn (this :f_hashtable)))))
 
-function GameConfigurationSingleton:_init_fields()
-    self.list = nil
-    self.hashtable = nil
-end
+(set jproto @{:jm_getInstanceByName jm_getInstanceByName :jm_getOptionsBasicArrayList jm_getOptionsBasicArrayList :jm_add jm_add :jm_getHashtable jm_getHashtable})
 
-
-function GameConfigurationSingleton.getInstance()
-        return GameConfigurationSingleton.SINGLETON
-end
-
-
-function GameConfigurationSingleton.new()
-    local self = setmetatable({}, GameConfigurationSingleton)
-    self:_init_fields()
-        self.list = BasicArrayListD.new()
-        self.hashtable = StdUtil.getInstance():createHashtable()
-    return self
-end
-
-
-function GameConfigurationSingleton:getInstanceByName(name)
-        return self.hashtable:get(name)
-end
-
-
-function GameConfigurationSingleton:getOptionsBasicArrayList()
-        return self.list
-end
-
-
-function GameConfigurationSingleton:add(gameConfiguration)
-        self.list:add(gameConfiguration)
-end
-
-
-function GameConfigurationSingleton:getHashtable()
-        return self.hashtable
-end
-
-GameConfigurationSingleton.SINGLETON = GameConfigurationSingleton.new()
-
-return GameConfigurationSingleton
 

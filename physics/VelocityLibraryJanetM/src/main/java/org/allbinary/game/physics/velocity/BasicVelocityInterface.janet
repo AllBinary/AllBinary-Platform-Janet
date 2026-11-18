@@ -1,97 +1,78 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.physics.velocity
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.game.physics.velocity
 
-local Direction = require("org.allbinary.direction.Direction")
-local BasicDecimal = require("org.allbinary.logic.math.BasicDecimal")
-local Angle = require("org.allbinary.math.Angle")
+(import ../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class BasicVelocityInterface
+(var jproto nil)
+(var jnew_0 nil)
+(var jm_getVelocityXBasicDecimalP nil)
+(var jm_getVelocityYBasicDecimalP nil)
+(var jm_zero nil)
+(var jm_setVelocityWithBigDecimalAndDirection nil)
+(var jm_addVelocityWithBigDecimalAndDirection nil)
+(var jm_setVelocityWithDirection nil)
+(var jm_addVelocityWithDirection nil)
+(var jm_setVelocityWithBigDecimal nil)
+(var jm_addVelocityWithBigDecimal nil)
+(var jm_setVelocity nil)
+(var jm_addVelocity nil)
+(var jm_addVelocityi nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "BasicVelocityInterface"} jproto))
+    this))
 
--- Java interface
-local BasicVelocityInterface = {}
-BasicVelocityInterface.__index = BasicVelocityInterface
-BasicVelocityInterface.className = "BasicVelocityInterface"
+    
+(set jm_getVelocityXBasicDecimalP (fn jm_getVelocityXBasicDecimalP [this]
+    (error (JR/newException "AbstractMethodError" "getVelocityXBasicDecimalP"))))
+    
+(set jm_getVelocityYBasicDecimalP (fn jm_getVelocityYBasicDecimalP [this]
+    (error (JR/newException "AbstractMethodError" "getVelocityYBasicDecimalP"))))
+    
+(set jm_zero (fn jm_zero [this]
+    (error (JR/newException "AbstractMethodError" "zero"))))
+    
+(set jm_setVelocityWithBigDecimalAndDirection (fn jm_setVelocityWithBigDecimalAndDirection [this _magnitudeBasicDecimal _direction _otherDirection]
+    (error (JR/newException "AbstractMethodError" "setVelocityWithBigDecimalAndDirection"))))
+    
+(set jm_addVelocityWithBigDecimalAndDirection (fn jm_addVelocityWithBigDecimalAndDirection [this _magnitudeBasicDecimal _direction _otherDirection]
+    (error (JR/newException "AbstractMethodError" "addVelocityWithBigDecimalAndDirection"))))
+    
+(set jm_setVelocityWithDirection (fn jm_setVelocityWithDirection [this _magnitude _direction _otherDirection]
+    (error (JR/newException "AbstractMethodError" "setVelocityWithDirection"))))
+    
+(set jm_addVelocityWithDirection (fn jm_addVelocityWithDirection [this _magnitude _direction _otherDirection]
+    (error (JR/newException "AbstractMethodError" "addVelocityWithDirection"))))
+    
+(set jm_setVelocityWithBigDecimal (fn jm_setVelocityWithBigDecimal [this _magnitudeBasicDecimal _angle _otherAngle]
+    (error (JR/newException "AbstractMethodError" "setVelocityWithBigDecimal"))))
+    
+(set jm_addVelocityWithBigDecimal (fn jm_addVelocityWithBigDecimal [this _magnitudeBasicDecimal _angle _otherAngle]
+    (error (JR/newException "AbstractMethodError" "addVelocityWithBigDecimal"))))
+    
+(set jm_setVelocity (fn jm_setVelocity [this _magnitude _angle _otherAngle]
+    (error (JR/newException "AbstractMethodError" "setVelocity"))))
+    
+(set jm_addVelocity (fn jm_addVelocity [this _magnitude _angle _otherAngle]
+    (error (JR/newException "AbstractMethodError" "addVelocity"))))
+    
+(set jm_addVelocityi (fn jm_addVelocityi [this _magnitude _angle _otherAngle]
+    (error (JR/newException "AbstractMethodError" "addVelocityi"))))
 
+(set jproto @{:jm_getVelocityXBasicDecimalP jm_getVelocityXBasicDecimalP :jm_getVelocityYBasicDecimalP jm_getVelocityYBasicDecimalP :jm_zero jm_zero :jm_setVelocityWithBigDecimalAndDirection jm_setVelocityWithBigDecimalAndDirection :jm_addVelocityWithBigDecimalAndDirection jm_addVelocityWithBigDecimalAndDirection :jm_setVelocityWithDirection jm_setVelocityWithDirection :jm_addVelocityWithDirection jm_addVelocityWithDirection :jm_setVelocityWithBigDecimal jm_setVelocityWithBigDecimal :jm_addVelocityWithBigDecimal jm_addVelocityWithBigDecimal :jm_setVelocity jm_setVelocity :jm_addVelocity jm_addVelocity :jm_addVelocityi jm_addVelocityi})
 
-function BasicVelocityInterface:getVelocityXBasicDecimalP()
-    error("abstract method getVelocityXBasicDecimalP")
-end
-
-
-function BasicVelocityInterface:getVelocityYBasicDecimalP()
-    error("abstract method getVelocityYBasicDecimalP")
-end
-
-
-function BasicVelocityInterface:zero()
-    error("abstract method zero")
-end
-
-
-function BasicVelocityInterface:setVelocityWithBigDecimalAndDirection(magnitudeBasicDecimal, direction, otherDirection)
-    error("abstract method setVelocityWithBigDecimalAndDirection")
-end
-
-
-function BasicVelocityInterface:addVelocityWithBigDecimalAndDirection(magnitudeBasicDecimal, direction, otherDirection)
-    error("abstract method addVelocityWithBigDecimalAndDirection")
-end
-
-
-function BasicVelocityInterface:setVelocityWithDirection(magnitude, direction, otherDirection)
-    error("abstract method setVelocityWithDirection")
-end
-
-
-function BasicVelocityInterface:addVelocityWithDirection(magnitude, direction, otherDirection)
-    error("abstract method addVelocityWithDirection")
-end
-
-
-function BasicVelocityInterface:setVelocityWithBigDecimal(magnitudeBasicDecimal, angle, otherAngle)
-    error("abstract method setVelocityWithBigDecimal")
-end
-
-
-function BasicVelocityInterface:addVelocityWithBigDecimal(magnitudeBasicDecimal, angle, otherAngle)
-    error("abstract method addVelocityWithBigDecimal")
-end
-
-
-function BasicVelocityInterface:setVelocity(magnitude, angle, otherAngle)
-    error("abstract method setVelocity")
-end
-
-
-function BasicVelocityInterface:addVelocity(magnitude, angle, otherAngle)
-    error("abstract method addVelocity")
-end
-
-
-function BasicVelocityInterface:addVelocityi(magnitude, angle, otherAngle)
-    error("abstract method addVelocityi")
-end
-
-return BasicVelocityInterface
 

@@ -1,53 +1,42 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.paint
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.graphics.paint
 
--- local Graphics = require("javax.microedition.lcdui.Graphics")
-local BasicColor = require("org.allbinary.graphics.color.BasicColor")
-local PaintableInterface = require("org.allbinary.graphics.paint.PaintableInterface")
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class Paintable
+(var jproto nil)
+(var jnew_0 nil)
+(var jm_setBasicColorP nil)
+(var jm_paint nil)
+(var jm_paintThreed nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "Paintable"} jproto))
+    this))
 
-local Paintable = {}
-Paintable.__index = Paintable
-Paintable.className = "Paintable"
+    
+(set jm_setBasicColorP (fn jm_setBasicColorP [this _basicColor]
+    nil))
+    
+(set jm_paint (fn jm_paint [this _graphics]
+    nil))
+    
+(set jm_paintThreed (fn jm_paintThreed [this _graphics]
+    nil))
 
-function Paintable.new()
-    local self = setmetatable({}, Paintable)
-    return self
-end
+(set jproto @{:jm_setBasicColorP jm_setBasicColorP :jm_paint jm_paint :jm_paintThreed jm_paintThreed})
 
-
-function Paintable:setBasicColorP(basicColor)
-end
-
-
-function Paintable:paint(graphics)
-end
-
-
-function Paintable:paintThreed(graphics)
-end
-
-return Paintable
 

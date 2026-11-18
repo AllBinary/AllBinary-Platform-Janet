@@ -1,82 +1,75 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.input.motion
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.input.motion
 
-local CustomGPoint = require("org.allbinary.graphics.CustomGPoint")
-local GPointCircularPool = require("org.allbinary.graphics.GPointCircularPool")
-local MotionGestureRecognizer = require("org.allbinary.input.motion.gesture.MotionGestureRecognizer")
-local MotionRecognizer = require("org.allbinary.input.motion.MotionRecognizer")
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- GPointCircularPool/jnew_1 [& args] (JR/call jfile "../../../../org/allbinary/graphics/GPointCircularPool" "jnew_1" args))
+(defn- MotionGestureRecognizer/jnew_1 [& args] (JR/call jfile "../../../../org/allbinary/input/motion/gesture/MotionGestureRecognizer" "jnew_1" args))
+(import ./MotionRecognizer :as MotionRecognizer)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class GestureOnlyMotionRecognizer
+(var jproto nil)
+(var jcell_index :jnone)
+(var jstatic_index nil)
+(var jsetstatic_index nil)
+(var jcell_pointCircularPool :jnone)
+(var jstatic_pointCircularPool nil)
+(var jsetstatic_pointCircularPool nil)
+(var jnew_0 nil)
+(var jm_processStartMotionEvent nil)
+(var jm_processEndMotionEvent nil)
+(var jm_processDraggedMotionEvent nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jstatic_index (fn jstatic_index []
+  (when (= jcell_index :jnone) (set jcell_index 0))
+  jcell_index))
+(set jsetstatic_index (fn jsetstatic_index [value] (set jcell_index value)))
 
-local GestureOnlyMotionRecognizer = {}
-GestureOnlyMotionRecognizer.__index = GestureOnlyMotionRecognizer
-GestureOnlyMotionRecognizer.className = "GestureOnlyMotionRecognizer"
-setmetatable(GestureOnlyMotionRecognizer, {__index = MotionRecognizer})
+(set jstatic_pointCircularPool (fn jstatic_pointCircularPool []
+  (when (= jcell_pointCircularPool :jnone) (set jcell_pointCircularPool (GPointCircularPool/jnew_1 40)))
+  jcell_pointCircularPool))
+(set jsetstatic_pointCircularPool (fn jsetstatic_pointCircularPool [value] (set jcell_pointCircularPool value)))
 
-function GestureOnlyMotionRecognizer:_init_fields()
-    self.motionGestureRecognizer = nil
-    self.id = nil
-end
+    
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "GestureOnlyMotionRecognizer" :f_motionGestureRecognizer nil :f_id 0} jproto))
+    
+    
+    (JR/superInit this (MotionRecognizer/jnew_0))
+        (set (this :f_id) (do (def jold (jstatic_index)) (set jcell_index (JR/i32 (+ (jstatic_index) 1))) jold))
+        (set (this :f_motionGestureRecognizer) (MotionGestureRecognizer/jnew_1 (this :f_id)))
+    this))
+    
+(set jm_processStartMotionEvent (fn jm_processStartMotionEvent [this _x _y _deviceId _modifiers]
+        (var _point (JR/className (jstatic_pointCircularPool)))
+        (:jm_setX _point _x)
+        (:jm_setY _point _y)
+        (:jm_processPressedMotionEvent (this :f_motionGestureRecognizer) _point _deviceId _modifiers)))
+    
+(set jm_processEndMotionEvent (fn jm_processEndMotionEvent [this _x _y _deviceId _modifiers]
+        (var _point (JR/className (jstatic_pointCircularPool)))
+        (:jm_setX _point _x)
+        (:jm_setY _point _y)
+        (:jm_processReleasedMotionEvent (this :f_motionGestureRecognizer) _point _deviceId _modifiers)))
+    
+(set jm_processDraggedMotionEvent (fn jm_processDraggedMotionEvent [this _x _y _deviceId _modifiers]
+        (var _point (JR/className (jstatic_pointCircularPool)))
+        (:jm_setX _point _x)
+        (:jm_setY _point _y)
+        (:jm_processDraggedMotionEvent (this :f_motionGestureRecognizer) _point _deviceId _modifiers)))
 
+(set jproto (table/setproto @{:jm_processStartMotionEvent jm_processStartMotionEvent :jm_processEndMotionEvent jm_processEndMotionEvent :jm_processDraggedMotionEvent jm_processDraggedMotionEvent} MotionRecognizer/jproto))
 
-function GestureOnlyMotionRecognizer.new()
-    local self = setmetatable(MotionRecognizer.new(), GestureOnlyMotionRecognizer)
-    self:_init_fields()
-        self.id = (function() local value = GestureOnlyMotionRecognizer.index GestureOnlyMotionRecognizer.index = value + 1 return value end)()
-        self.motionGestureRecognizer = MotionGestureRecognizer.new(self.id)
-    return self
-end
-
-
--- throws Exception
-function GestureOnlyMotionRecognizer:processStartMotionEvent(x, y, deviceId, modifiers)
-        local point = GestureOnlyMotionRecognizer.pointCircularPool:getNextInstance()
-        point:setX(x)
-        point:setY(y)
-        self.motionGestureRecognizer:processPressedMotionEvent(point, deviceId, modifiers)
-end
-
-
--- throws Exception
-function GestureOnlyMotionRecognizer:processEndMotionEvent(x, y, deviceId, modifiers)
-        local point = GestureOnlyMotionRecognizer.pointCircularPool:getNextInstance()
-        point:setX(x)
-        point:setY(y)
-        self.motionGestureRecognizer:processReleasedMotionEvent(point, deviceId, modifiers)
-end
-
-
--- throws Exception
-function GestureOnlyMotionRecognizer:processDraggedMotionEvent(x, y, deviceId, modifiers)
-        local point = GestureOnlyMotionRecognizer.pointCircularPool:getNextInstance()
-        point:setX(x)
-        point:setY(y)
-        self.motionGestureRecognizer:processDraggedMotionEvent(point, deviceId, modifiers)
-end
-
-GestureOnlyMotionRecognizer.index = 0
-GestureOnlyMotionRecognizer.pointCircularPool = GPointCircularPool.new(40)
-
-return GestureOnlyMotionRecognizer
 

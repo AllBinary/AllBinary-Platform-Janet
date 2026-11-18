@@ -1,58 +1,55 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.displayable.screen
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.graphics.displayable.screen
 
--- local Displayable = require("javax.microedition.lcdui.Displayable")
-local J2MEUtil = require("org.allbinary.J2MEUtil")
-local Processor = require("org.allbinary.canvas.Processor")
+(import ../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- J2MEUtil/jm_isJ2ME [& args] (JR/call jfile "../../../../../org/allbinary/J2MEUtil" "jm_isJ2ME" args))
+(defn- Processor/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/canvas/Processor" "jm_getInstance" args))
+(defn- ScreenRepaintProcessor/jnew_1 [& args] (JR/call jfile "./ScreenRepaintProcessor" "jnew_1" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class ScreenRepaintProcessorFactory
+(var jproto nil)
+(var jcell_instance :jnone)
+(var jstatic_instance nil)
+(var jsetstatic_instance nil)
+(var jnew_0 nil)
+(var jm_getInstance nil)
+(var jm_create nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jstatic_instance (fn jstatic_instance []
+  (when (= jcell_instance :jnone) (set jcell_instance (jnew_0)))
+  jcell_instance))
+(set jsetstatic_instance (fn jsetstatic_instance [value] (set jcell_instance value)))
 
-local ScreenRepaintProcessorFactory = {}
-ScreenRepaintProcessorFactory.__index = ScreenRepaintProcessorFactory
-ScreenRepaintProcessorFactory.className = "ScreenRepaintProcessorFactory"
+    
+(set jm_getInstance (fn jm_getInstance []
+    (label jreturn
+        (return jreturn (jstatic_instance)))))
+    
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "ScreenRepaintProcessorFactory"} jproto))
+    this))
+    
+(set jm_create (fn jm_create [this _displayable]
+    (label jreturn
+        (if (not (J2MEUtil/jm_isJ2ME))
+            (do
+            (return jreturn (ScreenRepaintProcessor/jnew_1 _displayable)))
+            (do
+            (return jreturn (Processor/jm_getInstance)))))))
 
+(set jproto @{:jm_create jm_create})
 
-function ScreenRepaintProcessorFactory.getInstance()
-        return ScreenRepaintProcessorFactory.instance
-end
-
-
-function ScreenRepaintProcessorFactory.new()
-    local self = setmetatable({}, ScreenRepaintProcessorFactory)
-    return self
-end
-
-
-function ScreenRepaintProcessorFactory:create(displayable)
-        if not J2MEUtil.isJ2ME() then
-            return ScreenRepaintProcessor.new(displayable)
-        else
-            return Processor.getInstance()
-        end
-end
-
-ScreenRepaintProcessorFactory.instance = ScreenRepaintProcessorFactory.new()
-
-return ScreenRepaintProcessorFactory
 

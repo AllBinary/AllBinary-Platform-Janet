@@ -1,81 +1,71 @@
--- Generated Code Do Not Modify
--- package org.allbinary.game.input.analog
+# Generated Code Do Not Modify
+# package org.allbinary.game.input.analog
 
-local CustomGPoint = require("org.allbinary.graphics.CustomGPoint")
+(import ../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- CustomGPoint/jnew_3 [& args] (JR/call jfile "../../../../../org/allbinary/graphics/CustomGPoint" "jnew_3" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class AnalogLocationInput
+(var jproto nil)
+(var jcell_NULL_ANALOG_LOCATION_INPUT :jnone)
+(var jstatic_NULL_ANALOG_LOCATION_INPUT nil)
+(var jsetstatic_NULL_ANALOG_LOCATION_INPUT nil)
+(var jnew_1 nil)
+(var jm_getPlayerId nil)
+(var jm_getCustomGPoint nil)
+(var jm_getRz nil)
+(var jm_setRz nil)
+(var jm_getRightTrigger nil)
+(var jm_setRightTrigger nil)
+(var jm_getLeftTrigger nil)
+(var jm_setLeftTrigger nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jstatic_NULL_ANALOG_LOCATION_INPUT (fn jstatic_NULL_ANALOG_LOCATION_INPUT []
+  (when (= jcell_NULL_ANALOG_LOCATION_INPUT :jnone) (set jcell_NULL_ANALOG_LOCATION_INPUT (jnew_1 (JR/i32 (- 1)))))
+  jcell_NULL_ANALOG_LOCATION_INPUT))
+(set jsetstatic_NULL_ANALOG_LOCATION_INPUT (fn jsetstatic_NULL_ANALOG_LOCATION_INPUT [value] (set jcell_NULL_ANALOG_LOCATION_INPUT value)))
 
-local AnalogLocationInput = {}
-AnalogLocationInput.__index = AnalogLocationInput
-AnalogLocationInput.className = "AnalogLocationInput"
+    
+(set jnew_1 (fn jnew_1 [_playerId]
+    (var this (table/setproto @{:jclass "AnalogLocationInput" :f_playerId 0 :f_customGPoint nil :f_rz 0 :f_rightTrigger 0 :f_leftTrigger 0} jproto))
+    
+    
+    
+    
+    
+        (set (this :f_playerId) _playerId)
+        (set (this :f_customGPoint) (CustomGPoint/jnew_3 0 0 0))
+    this))
+    
+(set jm_getPlayerId (fn jm_getPlayerId [this]
+    (label jreturn
+        (return jreturn (this :f_playerId)))))
+    
+(set jm_getCustomGPoint (fn jm_getCustomGPoint [this]
+    (label jreturn
+        (return jreturn (this :f_customGPoint)))))
+    
+(set jm_getRz (fn jm_getRz [this]
+    (label jreturn
+        (return jreturn (this :f_rz)))))
+    
+(set jm_setRz (fn jm_setRz [this _rz]
+        (set (this :f_rz) _rz)))
+    
+(set jm_getRightTrigger (fn jm_getRightTrigger [this]
+    (label jreturn
+        (return jreturn (this :f_rightTrigger)))))
+    
+(set jm_setRightTrigger (fn jm_setRightTrigger [this _rightTrigger]
+        (set (this :f_rightTrigger) _rightTrigger)))
+    
+(set jm_getLeftTrigger (fn jm_getLeftTrigger [this]
+    (label jreturn
+        (return jreturn (this :f_leftTrigger)))))
+    
+(set jm_setLeftTrigger (fn jm_setLeftTrigger [this _leftTrigger]
+        (set (this :f_leftTrigger) _leftTrigger)))
 
-function AnalogLocationInput:_init_fields()
-    self.playerId = nil
-    self.customGPoint = nil
-    self.rz = 0
-    self.rightTrigger = 0
-    self.leftTrigger = 0
-end
+(set jproto @{:jm_getPlayerId jm_getPlayerId :jm_getCustomGPoint jm_getCustomGPoint :jm_getRz jm_getRz :jm_setRz jm_setRz :jm_getRightTrigger jm_getRightTrigger :jm_setRightTrigger jm_setRightTrigger :jm_getLeftTrigger jm_getLeftTrigger :jm_setLeftTrigger jm_setLeftTrigger})
 
-
-function AnalogLocationInput.new(playerId)
-    local self = setmetatable({}, AnalogLocationInput)
-    self:_init_fields()
-        self.playerId = playerId
-        self.customGPoint = CustomGPoint.new(0, 0, 0)
-    return self
-end
-
-
-function AnalogLocationInput:getPlayerId()
-        return self.playerId
-end
-
-
-function AnalogLocationInput:getCustomGPoint()
-        return self.customGPoint
-end
-
-
-function AnalogLocationInput:getRz()
-        return self.rz
-end
-
-
-function AnalogLocationInput:setRz(rz)
-        self.rz = rz
-end
-
-
-function AnalogLocationInput:getRightTrigger()
-        return self.rightTrigger
-end
-
-
-function AnalogLocationInput:setRightTrigger(rightTrigger)
-        self.rightTrigger = rightTrigger
-end
-
-
-function AnalogLocationInput:getLeftTrigger()
-        return self.leftTrigger
-end
-
-
-function AnalogLocationInput:setLeftTrigger(leftTrigger)
-        self.leftTrigger = leftTrigger
-end
-
-AnalogLocationInput.NULL_ANALOG_LOCATION_INPUT = AnalogLocationInput.new(-1)
-
-return AnalogLocationInput
 

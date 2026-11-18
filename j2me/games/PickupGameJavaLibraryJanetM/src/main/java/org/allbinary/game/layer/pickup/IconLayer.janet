@@ -1,72 +1,60 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.layer.pickup
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.game.layer.pickup
 
--- local Graphics = require("javax.microedition.lcdui.Graphics")
-local Animation = require("org.allbinary.animation.Animation")
-local NullAnimationFactory = require("org.allbinary.animation.NullAnimationFactory")
-local PointFactory = require("org.allbinary.graphics.PointFactory")
-local Rectangle = require("org.allbinary.graphics.Rectangle")
-local AllBinaryLayer = require("org.allbinary.layer.AllBinaryLayer")
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
-local ViewPosition = require("org.allbinary.view.ViewPosition")
+(import ../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- NullAnimationFactory/jm_getFactoryInstance [& args] (JR/call jfile "../../../../../org/allbinary/animation/NullAnimationFactory" "jm_getFactoryInstance" args))
+(defn- PointFactory/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/graphics/PointFactory" "jm_getInstance" args))
+(defn- Rectangle/jnew_3 [& args] (JR/call jfile "../../../../../org/allbinary/graphics/Rectangle" "jnew_3" args))
+(import ../../../../../org/allbinary/layer/AllBinaryLayer :as AllBinaryLayer)
+(defn- StringUtil/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/logic/string/StringUtil" "jm_getInstance" args))
+(defn- ViewPosition/jm_getInstanceD [& args] (JR/call jfile "../../../../../org/allbinary/view/ViewPosition" "jm_getInstanceD" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class IconLayer
+(var jproto nil)
+(var jcell_NULL_ICON_LAYER :jnone)
+(var jstatic_NULL_ICON_LAYER nil)
+(var jsetstatic_NULL_ICON_LAYER nil)
+(var jnew_3 nil)
+(var jm_paint nil)
+(var jm_paintThreed nil)
+(var jm_getAnimationInterface nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jstatic_NULL_ICON_LAYER (fn jstatic_NULL_ICON_LAYER []
+  (when (= jcell_NULL_ICON_LAYER :jnone) (set jcell_NULL_ICON_LAYER (jnew_3 (JR/className (NullAnimationFactory/jm_getFactoryInstance)) 0 0)))
+  jcell_NULL_ICON_LAYER))
+(set jsetstatic_NULL_ICON_LAYER (fn jsetstatic_NULL_ICON_LAYER [value] (set jcell_NULL_ICON_LAYER value)))
 
-local IconLayer = {}
-IconLayer.__index = IconLayer
-IconLayer.className = "IconLayer"
-setmetatable(IconLayer, {__index = AllBinaryLayer})
+    
+(set jnew_3 (fn jnew_3 [_animationInterface _width _height]
+    (var this (table/setproto @{:jclass "IconLayer" :f_animationInterface nil} jproto))
+    
+        (JR/superInit this (AllBinaryLayer/jnew_3 ((StringUtil/jm_getInstance) :f_EMPTY_STRING) (Rectangle/jnew_3 ((PointFactory/jm_getInstance) :f_ZERO_ZERO) _width _height) (ViewPosition/jm_getInstanceD)))
+        (set (this :f_animationInterface) _animationInterface)
+    this))
+    
+(set jm_paint (fn jm_paint [this _graphics]
+        (:jm_paintXY (this :f_animationInterface) _graphics (this :f_x) (this :f_y))))
+    
+(set jm_paintThreed (fn jm_paintThreed [this _graphics]
+        (:jm_paintThreedXYZ (this :f_animationInterface) _graphics (this :f_x) (this :f_y) (this :f_z))))
+    
+(set jm_getAnimationInterface (fn jm_getAnimationInterface [this]
+    (label jreturn
+        (return jreturn (this :f_animationInterface)))))
 
-function IconLayer:_init_fields()
-    self.animationInterface = nil
-end
+(set jproto (table/setproto @{:jm_paint jm_paint :jm_paintThreed jm_paintThreed :jm_getAnimationInterface jm_getAnimationInterface} AllBinaryLayer/jproto))
 
-
-function IconLayer.new(animationInterface, width, height)
-    local self = setmetatable(AllBinaryLayer.new(StringUtil.getInstance().EMPTY_STRING, Rectangle.new(PointFactory.getInstance().ZERO_ZERO, width, height), ViewPosition.getInstanceD()), IconLayer)
-    self:_init_fields()
-        -- super(...) made self above
-        self.animationInterface = animationInterface
-    return self
-end
-
-
-function IconLayer:paint(graphics)
-        self.animationInterface:paintXY(graphics, self.x, self.y)
-end
-
-
-function IconLayer:paintThreed(graphics)
-        self.animationInterface:paintThreedXYZ(graphics, self.x, self.y, self.z)
-end
-
-
-function IconLayer:getAnimationInterface()
-        return self.animationInterface
-end
-
-IconLayer.NULL_ICON_LAYER = IconLayer.new(NullAnimationFactory.getFactoryInstance():getInstance(0), 0, 0)
-
-return IconLayer
 

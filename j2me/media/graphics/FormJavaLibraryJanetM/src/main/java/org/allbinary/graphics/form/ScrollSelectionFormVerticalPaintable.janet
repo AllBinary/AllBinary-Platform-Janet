@@ -1,55 +1,39 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.form
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.graphics.form
 
--- local Graphics = require("javax.microedition.lcdui.Graphics")
-local ABCustomItem = require("org.allbinary.graphics.form.item.ABCustomItem")
-local ItemIndexPaintable = require("org.allbinary.graphics.form.ItemIndexPaintable")
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(import ./ItemIndexPaintable :as ItemIndexPaintable)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class ScrollSelectionFormVerticalPaintable
+(var jproto nil)
+(var jnew_1 nil)
+(var jm_paint nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jnew_1 (fn jnew_1 [_scrollSelectionForm]
+    (var this (table/setproto @{:jclass "ScrollSelectionFormVerticalPaintable" :f_scrollSelectionForm nil} jproto))
+    
+    (JR/superInit this (ItemIndexPaintable/jnew_0))
+        (set (this :f_scrollSelectionForm) _scrollSelectionForm)
+    this))
+    
+(set jm_paint (fn jm_paint [this _graphics _index _item _dx _dy]
+    (label jreturn
+        (return jreturn (:jm_paintItemVertical (this :f_scrollSelectionForm) _graphics _index _item _dx _dy)))))
 
-local ScrollSelectionFormVerticalPaintable = {}
-ScrollSelectionFormVerticalPaintable.__index = ScrollSelectionFormVerticalPaintable
-ScrollSelectionFormVerticalPaintable.className = "ScrollSelectionFormVerticalPaintable"
-setmetatable(ScrollSelectionFormVerticalPaintable, {__index = ItemIndexPaintable})
+(set jproto (table/setproto @{:jm_paint jm_paint} ItemIndexPaintable/jproto))
 
-function ScrollSelectionFormVerticalPaintable:_init_fields()
-    self.scrollSelectionForm = nil
-end
-
-
-function ScrollSelectionFormVerticalPaintable.new(scrollSelectionForm)
-    local self = setmetatable(ItemIndexPaintable.new(), ScrollSelectionFormVerticalPaintable)
-    self:_init_fields()
-        self.scrollSelectionForm = scrollSelectionForm
-    return self
-end
-
-
--- throws Exception
-function ScrollSelectionFormVerticalPaintable:paint(graphics, index, item, dx, dy)
-        return self.scrollSelectionForm:paintItemVertical(graphics, index, item, dx, dy)
-end
-
-return ScrollSelectionFormVerticalPaintable
 

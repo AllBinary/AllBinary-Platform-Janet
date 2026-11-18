@@ -1,130 +1,104 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---   
--- Generated Code Do Not Modify
--- package org.allbinary.animation.image.sprite
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#   
+# Generated Code Do Not Modify
+# package org.allbinary.animation.image.sprite
 
--- local Image = require("javax.microedition.lcdui.Image")
--- local Sprite = require("javax.microedition.lcdui.game.Sprite")
-local Animation = require("org.allbinary.animation.Animation")
-local AnimationBehaviorFactory = require("org.allbinary.animation.AnimationBehaviorFactory")
-local ProceduralAnimationInterfaceFactoryInterface = require("org.allbinary.animation.ProceduralAnimationInterfaceFactoryInterface")
-local BaseImageAnimationFactory = require("org.allbinary.animation.image.BaseImageAnimationFactory")
-local AnimationFactorySpriteScaleUtil = require("org.allbinary.image.sprite.AnimationFactorySpriteScaleUtil")
-local ForcedLogUtil = require("org.allbinary.logic.communication.log.ForcedLogUtil")
-local PrimitiveIntUtil = require("org.allbinary.logic.math.PrimitiveIntUtil")
+(import ../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- AnimationBehaviorFactory/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/animation/AnimationBehaviorFactory" "jm_getInstance" args))
+(import ../../../../../org/allbinary/animation/image/BaseImageAnimationFactory :as BaseImageAnimationFactory)
+(defn- AnimationFactorySpriteScaleUtil/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/image/sprite/AnimationFactorySpriteScaleUtil" "jm_getInstance" args))
+(defn- ForcedLogUtil/jm_log [& args] (JR/call jfile "../../../../../org/allbinary/logic/communication/log/ForcedLogUtil" "jm_log" args))
+(defn- PrimitiveIntUtil/jm_getArrayInstance [& args] (JR/call jfile "../../../../../org/allbinary/logic/math/PrimitiveIntUtil" "jm_getArrayInstance" args))
+(defn- AllBinarySpriteRotationAnimation/jnew_3 [& args] (JR/call jfile "./AllBinarySpriteRotationAnimation" "jnew_3" args))
+(defn- AllBinaryAdjustedSpriteRotationAnimation/jnew_5 [& args] (JR/call jfile "./AllBinaryAdjustedSpriteRotationAnimation" "jnew_5" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class AllBinarySpriteRotationAnimationFactory
+(var jproto nil)
+(var jnew_7 nil)
+(var jm_createWHDY nil)
+(var jm_createWH nil)
+(var jm_createDXY nil)
+(var jm_createDXYQ nil)
+(var jm_createQ nil)
+(var jm_createWHF nil)
+(var jm_init nil)
+(var jm_initWH nil)
+(var jm_getInstance nil)
+(var jm_getInstanceAnimation nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jm_createWHDY (fn jm_createWHDY [_image _dx _dy _animationBehaviorFactory]
+    (label jreturn
+        (var _spriteRotationAnimationFactory (jnew_7 _image (PrimitiveIntUtil/jm_getArrayInstance) (brshift (:jm_getHeight _image) 2) (brshift (:jm_getHeight _image) 2) 0 0 _animationBehaviorFactory))
+        (:jm_initWH _spriteRotationAnimationFactory _dx _dy)
+        (return jreturn _spriteRotationAnimationFactory))))
+    
+(set jm_createWH (fn jm_createWH [_image _animationBehaviorFactory]
+    (label jreturn
+        (return jreturn (jm_createWHDY _image 0 0 _animationBehaviorFactory)))))
+    
+(set jm_createDXY (fn jm_createDXY [_image _dx _dy _animationBehaviorFactory]
+    (label jreturn
+        (var _spriteRotationAnimationFactory (jnew_7 _image (PrimitiveIntUtil/jm_getArrayInstance) (:jm_getHeight _image) (:jm_getHeight _image) 0 0 _animationBehaviorFactory))
+        (:jm_init _spriteRotationAnimationFactory _dx _dy)
+        (return jreturn _spriteRotationAnimationFactory))))
+    
+(set jm_createDXYQ (fn jm_createDXYQ [_image _dx _dy _animationBehaviorFactory]
+    (label jreturn
+        (var _spriteRotationAnimationFactory (jnew_7 _image (PrimitiveIntUtil/jm_getArrayInstance) (brshift (:jm_getHeight _image) 2) (brshift (:jm_getHeight _image) 2) 0 0 _animationBehaviorFactory))
+        (:jm_init _spriteRotationAnimationFactory _dx _dy)
+        (return jreturn _spriteRotationAnimationFactory))))
+    
+(set jm_createQ (fn jm_createQ [_image _animationBehaviorFactory]
+    (label jreturn
+        (return jreturn (jnew_7 _image (PrimitiveIntUtil/jm_getArrayInstance) (brshift (:jm_getHeight _image) 2) (brshift (:jm_getHeight _image) 2) 0 0 _animationBehaviorFactory)))))
+    
+(set jm_createWHF (fn jm_createWHF [_image _animationBehaviorFactory]
+    (label jreturn
+        (return jreturn (jnew_7 _image (PrimitiveIntUtil/jm_getArrayInstance) (:jm_getHeight _image) (:jm_getHeight _image) 0 0 _animationBehaviorFactory)))))
+    
+(set jnew_7 (fn jnew_7 [_image _sequenceArray _width _height _dx _dy _animationBehaviorFactory]
+    (var this (table/setproto @{:jclass "AllBinarySpriteRotationAnimationFactory" :f_animationFactorySpriteScaleUtil nil} jproto))
+    (put this :f_animationFactorySpriteScaleUtil (AnimationFactorySpriteScaleUtil/jm_getInstance))
+        (JR/superInit this (BaseImageAnimationFactory/jnew_7 _image _sequenceArray _width _height _dx _dy _animationBehaviorFactory))
+        (if (= _animationBehaviorFactory (AnimationBehaviorFactory/jm_getInstance))
+            (do
+            (ForcedLogUtil/jm_log "Using default AnimationBehaviorFactory with IndexedAnimationFactory" this)))
+    this))
+    
+(set jm_init (fn jm_init [this _dx _dy]
+        (set ((this :f_animationFactoryInitializationVisitor) :f_dx) _dx)
+        (set ((this :f_animationFactoryInitializationVisitor) :f_dy) _dy)))
+    
+(set jm_initWH (fn jm_initWH [this _dx _dy]
+        (:jm_init this _dx _dy)
+        (set ((this :f_animationFactoryInitializationVisitor) :f_dx) (JR/i32 (+ ((this :f_animationFactoryInitializationVisitor) :f_dx) (JR/idiv (JR/i32 (- ((this :f_animationFactoryInitializationVisitor) :f_width))) 5))))
+        (set ((this :f_animationFactoryInitializationVisitor) :f_dy) (JR/i32 (+ ((this :f_animationFactoryInitializationVisitor) :f_dy) (JR/idiv (JR/i32 (- ((this :f_animationFactoryInitializationVisitor) :f_height))) 5))))))
+    
+(set jm_getInstance (fn jm_getInstance [this _instanceId]
+    (label jreturn
+        (var _sprite (:jm_createImage (this :f_animationFactorySpriteScaleUtil) (:jm_getImage this) ((this :f_animationFactoryInitializationVisitor) :f_width) ((this :f_animationFactoryInitializationVisitor) :f_height) ((this :f_scaleProperties) :f_scaleWidth) ((this :f_scaleProperties) :f_scaleHeight)))
+        (if (or (not= ((this :f_animationFactoryInitializationVisitor) :f_dx) 0) (not= ((this :f_animationFactoryInitializationVisitor) :f_dy) 0))
+            (do
+            (return jreturn (AllBinaryAdjustedSpriteRotationAnimation/jnew_5 _sprite (:jm_getImage this) ((this :f_animationFactoryInitializationVisitor) :f_dx) ((this :f_animationFactoryInitializationVisitor) :f_dy) (:jm_getOrCreateInstance (this :f_animationBehaviorFactory)))))
+            (do
+            (return jreturn (AllBinarySpriteRotationAnimation/jnew_3 _sprite (:jm_getImage this) (:jm_getOrCreateInstance (this :f_animationBehaviorFactory)))))))))
+    
+(set jm_getInstanceAnimation (fn jm_getInstanceAnimation [this _animationInterface]
+    (label jreturn
+        (return jreturn (:jm_getInstance this 0)))))
 
-local AllBinarySpriteRotationAnimationFactory = {}
-AllBinarySpriteRotationAnimationFactory.__index = AllBinarySpriteRotationAnimationFactory
-AllBinarySpriteRotationAnimationFactory.className = "AllBinarySpriteRotationAnimationFactory"
-setmetatable(AllBinarySpriteRotationAnimationFactory, {__index = BaseImageAnimationFactory})
+(set jproto (table/setproto @{:jm_init jm_init :jm_initWH jm_initWH :jm_getInstance jm_getInstance :jm_getInstanceAnimation jm_getInstanceAnimation} BaseImageAnimationFactory/jproto))
 
-function AllBinarySpriteRotationAnimationFactory:_init_fields()
-    self.animationFactorySpriteScaleUtil = AnimationFactorySpriteScaleUtil.getInstance()
-end
-
-
--- throws Exception
-function AllBinarySpriteRotationAnimationFactory.createWHDY(image, dx, dy, animationBehaviorFactory)
-        local spriteRotationAnimationFactory = AllBinarySpriteRotationAnimationFactory.new(image, PrimitiveIntUtil.getArrayInstance(), (((image:getHeight()) // (1 << (2)))), (((image:getHeight()) // (1 << (2)))), 0, 0, animationBehaviorFactory)
-        spriteRotationAnimationFactory:initWH(dx, dy)
-        return spriteRotationAnimationFactory
-end
-
-
--- throws Exception
-function AllBinarySpriteRotationAnimationFactory.createWH(image, animationBehaviorFactory)
-        return AllBinarySpriteRotationAnimationFactory.createWHDY(image, 0, 0, animationBehaviorFactory)
-end
-
-
--- throws Exception
-function AllBinarySpriteRotationAnimationFactory.createDXY(image, dx, dy, animationBehaviorFactory)
-        local spriteRotationAnimationFactory = AllBinarySpriteRotationAnimationFactory.new(image, PrimitiveIntUtil.getArrayInstance(), image:getHeight(), image:getHeight(), 0, 0, animationBehaviorFactory)
-        spriteRotationAnimationFactory:init(dx, dy)
-        return spriteRotationAnimationFactory
-end
-
-
--- throws Exception
-function AllBinarySpriteRotationAnimationFactory.createDXYQ(image, dx, dy, animationBehaviorFactory)
-        local spriteRotationAnimationFactory = AllBinarySpriteRotationAnimationFactory.new(image, PrimitiveIntUtil.getArrayInstance(), (((image:getHeight()) // (1 << (2)))), (((image:getHeight()) // (1 << (2)))), 0, 0, animationBehaviorFactory)
-        spriteRotationAnimationFactory:init(dx, dy)
-        return spriteRotationAnimationFactory
-end
-
-
--- throws Exception
-function AllBinarySpriteRotationAnimationFactory.createQ(image, animationBehaviorFactory)
-        return AllBinarySpriteRotationAnimationFactory.new(image, PrimitiveIntUtil.getArrayInstance(), (((image:getHeight()) // (1 << (2)))), (((image:getHeight()) // (1 << (2)))), 0, 0, animationBehaviorFactory)
-end
-
-
--- throws Exception
-function AllBinarySpriteRotationAnimationFactory.createWHF(image, animationBehaviorFactory)
-        return AllBinarySpriteRotationAnimationFactory.new(image, PrimitiveIntUtil.getArrayInstance(), image:getHeight(), image:getHeight(), 0, 0, animationBehaviorFactory)
-end
-
-
-function AllBinarySpriteRotationAnimationFactory.new(image, sequenceArray, width, height, dx, dy, animationBehaviorFactory)
-    local self = setmetatable(BaseImageAnimationFactory.new(image, sequenceArray, width, height, dx, dy, animationBehaviorFactory), AllBinarySpriteRotationAnimationFactory)
-    self:_init_fields()
-        -- super(...) made self above
-        if animationBehaviorFactory == AnimationBehaviorFactory.getInstance() then
-            ForcedLogUtil.log("Using default AnimationBehaviorFactory with IndexedAnimationFactory", self)
-        end
-    return self
-end
-
-
-function AllBinarySpriteRotationAnimationFactory:init(dx, dy)
-        self.animationFactoryInitializationVisitor.dx = dx
-        self.animationFactoryInitializationVisitor.dy = dy
-end
-
-
-function AllBinarySpriteRotationAnimationFactory:initWH(dx, dy)
-        self:init(dx, dy)
-        self.animationFactoryInitializationVisitor.dx = self.animationFactoryInitializationVisitor.dx + (-self.animationFactoryInitializationVisitor.width / 5)
-        self.animationFactoryInitializationVisitor.dy = self.animationFactoryInitializationVisitor.dy + (-self.animationFactoryInitializationVisitor.height / 5)
-end
-
-
--- throws Exception
-function AllBinarySpriteRotationAnimationFactory:getInstance(instanceId)
-        local sprite = self.animationFactorySpriteScaleUtil:createImage(self:getImage(), self.animationFactoryInitializationVisitor.width, self.animationFactoryInitializationVisitor.height, self.scaleProperties.scaleWidth, self.scaleProperties.scaleHeight)
-        if self.animationFactoryInitializationVisitor.dx ~= 0 or self.animationFactoryInitializationVisitor.dy ~= 0 then
-            return AllBinaryAdjustedSpriteRotationAnimation.new(sprite, self:getImage(), self.animationFactoryInitializationVisitor.dx, self.animationFactoryInitializationVisitor.dy, self.animationBehaviorFactory:getOrCreateInstance())
-        else
-            return AllBinarySpriteRotationAnimation.new(sprite, self:getImage(), self.animationBehaviorFactory:getOrCreateInstance())
-        end
-end
-
-
--- throws Exception
-function AllBinarySpriteRotationAnimationFactory:getInstanceAnimation(animationInterface)
-        return self:getInstance(0)
-end
-
-return AllBinarySpriteRotationAnimationFactory
 

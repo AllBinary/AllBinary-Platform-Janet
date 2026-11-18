@@ -1,51 +1,42 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.midlet
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.midlet
 
--- local Displayable = require("javax.microedition.lcdui.Displayable")
--- local MIDlet = require("javax.microedition.midlet.MIDlet")
+(import ../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class MidletCompositeInterface
+(var jproto nil)
+(var jnew_0 nil)
+(var jm_setMidlet nil)
+(var jm_getMidlet nil)
+(var jm_getDisplayable nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "MidletCompositeInterface"} jproto))
+    this))
 
--- Java interface
-local MidletCompositeInterface = {}
-MidletCompositeInterface.__index = MidletCompositeInterface
-MidletCompositeInterface.className = "MidletCompositeInterface"
+    
+(set jm_setMidlet (fn jm_setMidlet [this _midlet]
+    (error (JR/newException "AbstractMethodError" "setMidlet"))))
+    
+(set jm_getMidlet (fn jm_getMidlet [this]
+    (error (JR/newException "AbstractMethodError" "getMidlet"))))
+    
+(set jm_getDisplayable (fn jm_getDisplayable [this]
+    (error (JR/newException "AbstractMethodError" "getDisplayable"))))
 
+(set jproto @{:jm_setMidlet jm_setMidlet :jm_getMidlet jm_getMidlet :jm_getDisplayable jm_getDisplayable})
 
-function MidletCompositeInterface:setMidlet(midlet)
-    error("abstract method setMidlet")
-end
-
-
-function MidletCompositeInterface:getMidlet()
-    error("abstract method getMidlet")
-end
-
-
-function MidletCompositeInterface:getDisplayable()
-    error("abstract method getDisplayable")
-end
-
-return MidletCompositeInterface
 

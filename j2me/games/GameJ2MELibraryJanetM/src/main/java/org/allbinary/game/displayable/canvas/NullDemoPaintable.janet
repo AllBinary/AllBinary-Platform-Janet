@@ -1,45 +1,42 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2025 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.game.displayable.canvas
+# 
+# AllBinary Open License Version 1 
+# Copyright (c) 2025 AllBinary 
+#  
+# By agreeing to this license you and any business entity you represent are 
+# legally bound to the AllBinary Open License Version 1 legal agreement. 
+#  
+# You may obtain the AllBinary Open License Version 1 legal agreement from 
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+#  
+# Created By: Travis Berthelot 
+#   
+# Generated Code Do Not Modify
+# package org.allbinary.game.displayable.canvas
 
-local DemoPaintableInterface = require("org.allbinary.game.displayable.canvas.DemoPaintableInterface")
+(import ../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class NullDemoPaintable
+(var jproto nil)
+(var jcell_NULL_DEMO_PAINTABLE :jnone)
+(var jstatic_NULL_DEMO_PAINTABLE nil)
+(var jsetstatic_NULL_DEMO_PAINTABLE nil)
+(var jnew_0 nil)
+(var jm_showGamePaintable nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jstatic_NULL_DEMO_PAINTABLE (fn jstatic_NULL_DEMO_PAINTABLE []
+  (when (= jcell_NULL_DEMO_PAINTABLE :jnone) (set jcell_NULL_DEMO_PAINTABLE (jnew_0)))
+  jcell_NULL_DEMO_PAINTABLE))
+(set jsetstatic_NULL_DEMO_PAINTABLE (fn jsetstatic_NULL_DEMO_PAINTABLE [value] (set jcell_NULL_DEMO_PAINTABLE value)))
 
-local NullDemoPaintable = {}
-NullDemoPaintable.__index = NullDemoPaintable
-NullDemoPaintable.className = "NullDemoPaintable"
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "NullDemoPaintable"} jproto))
+    this))
 
-function NullDemoPaintable.new()
-    local self = setmetatable({}, NullDemoPaintable)
-    return self
-end
+    
+(set jm_showGamePaintable (fn jm_showGamePaintable [this]
+    nil))
 
+(set jproto @{:jm_showGamePaintable jm_showGamePaintable})
 
-function NullDemoPaintable:showGamePaintable()
-end
-
-NullDemoPaintable.NULL_DEMO_PAINTABLE = NullDemoPaintable.new()
-
-return NullDemoPaintable
 

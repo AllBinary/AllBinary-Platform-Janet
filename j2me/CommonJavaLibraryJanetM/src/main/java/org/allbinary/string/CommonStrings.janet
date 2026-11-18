@@ -20,12 +20,14 @@
 (var jproto nil)
 (var jcell_instance :jnone)
 (var jstatic_instance nil)
+(var jsetstatic_instance nil)
 (var jnew_0 nil)
 (var jm_getInstance nil)
 
 (set jstatic_instance (fn jstatic_instance []
   (when (= jcell_instance :jnone) (set jcell_instance (jnew_0)))
   jcell_instance))
+(set jsetstatic_instance (fn jsetstatic_instance [value] (set jcell_instance value)))
 
 (set jnew_0 (fn jnew_0 []
     (var this (table/setproto @{:jclass "CommonStrings" :f_EMPTY nil :f_CREATE_IMAGE nil :f_PLEASE_WAIT nil :f_PLEASE_WAIT_FOR_SERVER nil :f_PERIODS nil :f_LOADING nil :f_CONSTRUCTOR nil :f_START nil :f_END nil :f_EXCEPTION nil :f_EXCEPTION_LABEL nil :f_CLEANUP nil :f_INIT nil :f_CLOSE nil :f_UP nil :f_DOWN nil :f_LEFT nil :f_RIGHT nil :f_DIRECTION_NAME nil :f_CREATE nil :f_REMOVE nil :f_UPDATE nil :f_DELETE nil :f_delete nil :f_LOAD nil :f_SAVE nil :f_ADD nil :f_DROP nil :f_INSERT nil :f_VISIT nil :f_START_METHOD_NAME nil :f_END_METHOD_NAME nil :f_GET nil :f_PROCESS nil :f_GET_INSTANCE nil :f_GET_LIST nil :f_RUN nil :f_START_RUNNABLE nil :f_RUNNING nil :f_END_RUNNABLE nil :f_DISABLE nil :f_ENABLE nil :f_SUCCESS nil :f_FAILURE nil :f_NOT_IMPLEMENTED nil :f_UNKNOWN nil :f_ON_EVENT nil :f_IS_VALID nil :f_TOSTRING nil :f_ADD_LISTENER nil :f_REMOVE_LISTENER nil :f_SIZE nil} jproto))

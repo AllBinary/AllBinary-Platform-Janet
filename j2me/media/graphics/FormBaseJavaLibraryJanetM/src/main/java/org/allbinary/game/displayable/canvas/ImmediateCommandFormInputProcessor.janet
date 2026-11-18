@@ -1,114 +1,84 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.displayable.canvas
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.game.displayable.canvas
 
-local GameKeyEvent = require("org.allbinary.game.input.event.GameKeyEvent")
-local ScrollSelectionForm = require("org.allbinary.graphics.form.ScrollSelectionForm")
-local MotionGestureEvent = require("org.allbinary.input.motion.gesture.observer.MotionGestureEvent")
-local TimeDelayHelper = require("org.allbinary.time.TimeDelayHelper")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
-local CommandFormInputProcessor = require("org.allbinary.game.displayable.canvas.CommandFormInputProcessor")
+(import ../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- TimeDelayHelper/jnew_1 [& args] (JR/call jfile "../../../../../org/allbinary/time/TimeDelayHelper" "jnew_1" args))
+(import ./CommandFormInputProcessor :as CommandFormInputProcessor)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class ImmediateCommandFormInputProcessor
+(var jproto nil)
+(var jnew_4 nil)
+(var jm_onPressGameKeyEvent nil)
+(var jm_onDownGameKeyEvent nil)
+(var jm_onUpGameKeyEvent nil)
+(var jm_onMotionGestureEvent nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jnew_4 (fn jnew_4 [_gameKeyEventList _playerInputId _gameCommandCanvas _form]
+    (var this (table/setproto @{:jclass "ImmediateCommandFormInputProcessor" :f_timeHelper nil :f_gameCommandCanvas nil} jproto))
+    (put this :f_timeHelper (TimeDelayHelper/jnew_1 25))
+    
+        (JR/superInit this (CommandFormInputProcessor/jnew_4 _gameKeyEventList _playerInputId _gameCommandCanvas _form))
+        (set (this :f_gameCommandCanvas) _gameCommandCanvas)
+    this))
+    
+(set jm_onPressGameKeyEvent (fn jm_onPressGameKeyEvent [this _gameKeyEvent]
+        (try
+            (do
+            ((get CommandFormInputProcessor/jproto :jm_onPressGameKeyEvent) this _gameKeyEvent)
+            (if (:jm_isTimeTNT (this :f_timeHelper))
+                (do
+                (:jm_processInputList this)
+                (JR/className ((this :f_gameCommandCanvas) :f_repaintBehavior)))))
+            ([_e] (do
+            (JR/className (this :f_logUtil)))))))
+    
+(set jm_onDownGameKeyEvent (fn jm_onDownGameKeyEvent [this _gameKeyEvent]
+        (try
+            (do
+            ((get CommandFormInputProcessor/jproto :jm_onDownGameKeyEvent) this _gameKeyEvent)
+            (if (:jm_isTimeTNT (this :f_timeHelper))
+                (do
+                (:jm_processInputList this)
+                (JR/className ((this :f_gameCommandCanvas) :f_repaintBehavior)))))
+            ([_e] (do
+            (JR/className (this :f_logUtil)))))))
+    
+(set jm_onUpGameKeyEvent (fn jm_onUpGameKeyEvent [this _gameKeyEvent]
+        (try
+            (do
+            ((get CommandFormInputProcessor/jproto :jm_onUpGameKeyEvent) this _gameKeyEvent)
+            (if (:jm_isTimeTNT (this :f_timeHelper))
+                (do
+                (:jm_processInputList this)
+                (JR/className ((this :f_gameCommandCanvas) :f_repaintBehavior)))))
+            ([_e] (do
+            (JR/className (this :f_logUtil)))))))
+    
+(set jm_onMotionGestureEvent (fn jm_onMotionGestureEvent [this _motionGestureEvent]
+        (try
+            (do
+            ((get CommandFormInputProcessor/jproto :jm_onMotionGestureEvent) this _motionGestureEvent)
+            (if (:jm_isTimeTNT (this :f_timeHelper))
+                (do
+                (:jm_processInputList this)
+                (JR/className ((this :f_gameCommandCanvas) :f_repaintBehavior)))))
+            ([_e] (do
+            (JR/className (this :f_logUtil)))))))
 
-local ImmediateCommandFormInputProcessor = {}
-ImmediateCommandFormInputProcessor.__index = ImmediateCommandFormInputProcessor
-ImmediateCommandFormInputProcessor.className = "ImmediateCommandFormInputProcessor"
-setmetatable(ImmediateCommandFormInputProcessor, {__index = CommandFormInputProcessor})
+(set jproto (table/setproto @{:jm_onPressGameKeyEvent jm_onPressGameKeyEvent :jm_onDownGameKeyEvent jm_onDownGameKeyEvent :jm_onUpGameKeyEvent jm_onUpGameKeyEvent :jm_onMotionGestureEvent jm_onMotionGestureEvent} CommandFormInputProcessor/jproto))
 
-function ImmediateCommandFormInputProcessor:_init_fields()
-    self.timeHelper = TimeDelayHelper.new(25)
-    self.gameCommandCanvas = nil
-end
-
-
-function ImmediateCommandFormInputProcessor.new(gameKeyEventList, playerInputId, gameCommandCanvas, form)
-    local self = setmetatable(CommandFormInputProcessor.new(gameKeyEventList, playerInputId, gameCommandCanvas, form), ImmediateCommandFormInputProcessor)
-    self:_init_fields()
-        -- super(...) made self above
-        self.gameCommandCanvas = gameCommandCanvas
-    return self
-end
-
-
-function ImmediateCommandFormInputProcessor:onPressGameKeyEvent(gameKeyEvent)
-        local try_ok, try_error = pcall(function()
-            CommandFormInputProcessor.onPressGameKeyEvent(self, gameKeyEvent)
-            if self.timeHelper:isTimeTNT() then
-                self:processInputList()
-                self.gameCommandCanvas.repaintBehavior:onChangeRepaint(self:getCanvas())
-            end
-        end)
-        if not try_ok then
-            local e = try_error
-            self.logUtil:put(self.commonStrings.EXCEPTION, self, self.gameInputStrings.ON_PRESS_GAME_KEY, e)
-        end
-end
-
-
-function ImmediateCommandFormInputProcessor:onDownGameKeyEvent(gameKeyEvent)
-        local try_ok, try_error = pcall(function()
-            CommandFormInputProcessor.onDownGameKeyEvent(self, gameKeyEvent)
-            if self.timeHelper:isTimeTNT() then
-                self:processInputList()
-                self.gameCommandCanvas.repaintBehavior:onChangeRepaint(self:getCanvas())
-            end
-        end)
-        if not try_ok then
-            local e = try_error
-            self.logUtil:put(self.commonStrings.EXCEPTION, self, self.gameInputStrings.ON_DOWN_GAME_KEY, e)
-        end
-end
-
-
-function ImmediateCommandFormInputProcessor:onUpGameKeyEvent(gameKeyEvent)
-        local try_ok, try_error = pcall(function()
-            CommandFormInputProcessor.onUpGameKeyEvent(self, gameKeyEvent)
-            if self.timeHelper:isTimeTNT() then
-                self:processInputList()
-                self.gameCommandCanvas.repaintBehavior:onChangeRepaint(self:getCanvas())
-            end
-        end)
-        if not try_ok then
-            local e = try_error
-            self.logUtil:put(self.commonStrings.EXCEPTION, self, self.gameInputStrings.ON_UP_GAME_KEY, e)
-        end
-end
-
-
-function ImmediateCommandFormInputProcessor:onMotionGestureEvent(motionGestureEvent)
-        local try_ok, try_error = pcall(function()
-            CommandFormInputProcessor.onMotionGestureEvent(self, motionGestureEvent)
-            if self.timeHelper:isTimeTNT() then
-                self:processInputList()
-                self.gameCommandCanvas.repaintBehavior:onChangeRepaint(self:getCanvas())
-            end
-        end)
-        if not try_ok then
-            local e = try_error
-            self.logUtil:put(self.commonStrings.EXCEPTION, self, "onMotionGestureEvent", e)
-        end
-end
-
-return ImmediateCommandFormInputProcessor
 

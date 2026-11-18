@@ -1,150 +1,128 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2022 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.threed
+# 
+# AllBinary Open License Version 1 
+# Copyright (c) 2022 AllBinary 
+#  
+# By agreeing to this license you and any business entity you represent are 
+# legally bound to the AllBinary Open License Version 1 legal agreement. 
+#  
+# You may obtain the AllBinary Open License Version 1 legal agreement from 
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+#  
+# Created By: Travis Berthelot 
+#   
+# Generated Code Do Not Modify
+# package org.allbinary.graphics.threed
 
--- local Font = require("javax.microedition.lcdui.Font")
--- local MIDlet = require("javax.microedition.midlet.MIDlet")
--- java.lang.Runnable has no Lua module
-local Runnable = {}
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(import ../../../../java/lang/Runnable :as Runnable)
 
--- Java library Throwable. tostring gives the message like Java getMessage.
-local function java_exception(className, message, cause)
-    if cause == nil and type(message) == "table" then
-        cause = message
-        message = tostring(message)
-    end
-    local exception = {className = className, message = message, cause = cause}
-    function exception:getMessage() return self.message end
-    function exception:getCause() return self.cause end
-    function exception:printStackTrace() print(debug.traceback(tostring(self))) end
-    return setmetatable(exception, {__tostring = function(self) if self.message ~= nil then return tostring(self.message) end return self.className end})
-end
+#OpenGLNone
+# Java class SWTJOGLProcessor
+(var jproto nil)
+(var jcell_instance :jnone)
+(var jstatic_instance nil)
+(var jsetstatic_instance nil)
+(var jnew_0 nil)
+(var jm_getInstance nil)
+(var jm_init nil)
+(var jm_isHolderCreated nil)
+(var jm_setRenderer nil)
+(var jm_isJOGL nil)
+(var jm_createSurface nil)
+(var jm_onSurfaceCreated nil)
+(var jm_onSurfaceChangedForEvent nil)
+(var jm_onSurfaceChanged nil)
+(var jm_onSurfaceChangedWH nil)
+(var jm_addListener nil)
+(var jm_addListeners nil)
+(var jm_run nil)
+(var jm_clear nil)
+(var jm_setCustom nil)
+(var jm_setRatioProcessor nil)
+(var jm_isPortraitRatioProcessor nil)
+(var jm_charWidth nil)
+(var jm_charsWidth nil)
+(var jm_stringWidth nil)
+(var jm_substringWidth nil)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(set jstatic_instance (fn jstatic_instance []
+  (when (= jcell_instance :jnone) (set jcell_instance (jnew_0)))
+  jcell_instance))
+(set jsetstatic_instance (fn jsetstatic_instance [value] (set jcell_instance value)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "SWTJOGLProcessor"} jproto))
+    this))
 
---OpenGLNone
-local SWTJOGLProcessor = {}
-SWTJOGLProcessor.__index = SWTJOGLProcessor
-SWTJOGLProcessor.className = "SWTJOGLProcessor"
+    
+(set jm_getInstance (fn jm_getInstance []
+    (label jreturn
+        (return jreturn (jstatic_instance)))))
+    
+(set jm_init (fn jm_init [this _display _comp]
+    nil))
+    
+(set jm_isHolderCreated (fn jm_isHolderCreated [this]
+    (label jreturn
+        (return jreturn true))))
+    
+(set jm_setRenderer (fn jm_setRenderer [this _renderer]
+    nil))
+    
+(set jm_isJOGL (fn jm_isJOGL [this]
+    (label jreturn
+        (return jreturn false))))
+    
+(set jm_createSurface (fn jm_createSurface [this]
+    nil))
+    
+(set jm_onSurfaceCreated (fn jm_onSurfaceCreated [this]
+    nil))
+    
+(set jm_onSurfaceChangedForEvent (fn jm_onSurfaceChangedForEvent [this _event]
+    nil))
+    
+(set jm_onSurfaceChanged (fn jm_onSurfaceChanged [this]
+    nil))
+    
+(set jm_onSurfaceChangedWH (fn jm_onSurfaceChangedWH [this _width _height]
+    nil))
+    
+(set jm_addListener (fn jm_addListener [this]
+    nil))
+    
+(set jm_addListeners (fn jm_addListeners [this _midlet]
+    nil))
+    
+(set jm_run (fn jm_run [this]
+    nil))
+    
+(set jm_clear (fn jm_clear [this]
+    nil))
+    
+(set jm_setCustom (fn jm_setCustom [this _width _height _ratio]
+    nil))
+    
+(set jm_setRatioProcessor (fn jm_setRatioProcessor [this _ratioProcessor]
+    nil))
+    
+(set jm_isPortraitRatioProcessor (fn jm_isPortraitRatioProcessor [this]
+    (label jreturn
+        (return jreturn true))))
+    
+(set jm_charWidth (fn jm_charWidth [this _font _ch]
+        (error (JR/newException "RuntimeException"))))
+    
+(set jm_charsWidth (fn jm_charsWidth [this _font _ch _offset _length]
+        (error (JR/newException "RuntimeException"))))
+    
+(set jm_stringWidth (fn jm_stringWidth [this _font _str]
+        (error (JR/newException "RuntimeException"))))
+    
+(set jm_substringWidth (fn jm_substringWidth [this _font _str _offset _len]
+        (error (JR/newException "RuntimeException"))))
 
-function SWTJOGLProcessor.new()
-    local self = setmetatable({}, SWTJOGLProcessor)
-    return self
-end
+(set jproto @{:jm_init jm_init :jm_isHolderCreated jm_isHolderCreated :jm_setRenderer jm_setRenderer :jm_isJOGL jm_isJOGL :jm_createSurface jm_createSurface :jm_onSurfaceCreated jm_onSurfaceCreated :jm_onSurfaceChangedForEvent jm_onSurfaceChangedForEvent :jm_onSurfaceChanged jm_onSurfaceChanged :jm_onSurfaceChangedWH jm_onSurfaceChangedWH :jm_addListener jm_addListener :jm_addListeners jm_addListeners :jm_run jm_run :jm_clear jm_clear :jm_setCustom jm_setCustom :jm_setRatioProcessor jm_setRatioProcessor :jm_isPortraitRatioProcessor jm_isPortraitRatioProcessor :jm_charWidth jm_charWidth :jm_charsWidth jm_charsWidth :jm_stringWidth jm_stringWidth :jm_substringWidth jm_substringWidth})
 
-
-function SWTJOGLProcessor.getInstance()
-        return SWTJOGLProcessor.instance
-end
-
-
-function SWTJOGLProcessor:init(display, comp)
-end
-
-
-function SWTJOGLProcessor:isHolderCreated()
-        return true
-end
-
-
-function SWTJOGLProcessor:setRenderer(renderer)
-end
-
-
-function SWTJOGLProcessor:isJOGL()
-        return false
-end
-
-
-function SWTJOGLProcessor:createSurface()
-end
-
-
-function SWTJOGLProcessor:onSurfaceCreated()
-end
-
-
-function SWTJOGLProcessor:onSurfaceChangedForEvent(event)
-end
-
-
-function SWTJOGLProcessor:onSurfaceChanged()
-end
-
-
-function SWTJOGLProcessor:onSurfaceChangedWH(width, height)
-end
-
-
-function SWTJOGLProcessor:addListener()
-end
-
-
-function SWTJOGLProcessor:addListeners(midlet)
-end
-
-
-function SWTJOGLProcessor:run()
-end
-
-
-function SWTJOGLProcessor:clear()
-end
-
-
-function SWTJOGLProcessor:setCustom(width, height, ratio)
-end
-
-
-function SWTJOGLProcessor:setRatioProcessor(ratioProcessor)
-end
-
-
-function SWTJOGLProcessor:isPortraitRatioProcessor()
-        return true
-end
-
-
-function SWTJOGLProcessor:charWidth(font, ch)
-        error(java_exception("RuntimeException"), 0)
-end
-
-
-function SWTJOGLProcessor:charsWidth(font, ch, offset, length)
-        error(java_exception("RuntimeException"), 0)
-end
-
-
-function SWTJOGLProcessor:stringWidth(font, str)
-        error(java_exception("RuntimeException"), 0)
-end
-
-
-function SWTJOGLProcessor:substringWidth(font, str, offset, len)
-        error(java_exception("RuntimeException"), 0)
-end
-
-SWTJOGLProcessor.instance = SWTJOGLProcessor.new()
-
-return SWTJOGLProcessor
 

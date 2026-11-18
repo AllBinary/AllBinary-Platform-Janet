@@ -1,53 +1,48 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.collision
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.game.collision
 
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- CollisionType/jnew_1 [& args] (JR/call jfile "./CollisionType" "jnew_1" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class CollisionTypeFactory
+(var jproto nil)
+(var jcell_SINGLETON :jnone)
+(var jstatic_SINGLETON nil)
+(var jsetstatic_SINGLETON nil)
+(var jnew_0 nil)
+(var jm_getInstance nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jstatic_SINGLETON (fn jstatic_SINGLETON []
+  (when (= jcell_SINGLETON :jnone) (set jcell_SINGLETON (jnew_0)))
+  jcell_SINGLETON))
+(set jsetstatic_SINGLETON (fn jsetstatic_SINGLETON [value] (set jcell_SINGLETON value)))
 
-local CollisionTypeFactory = {}
-CollisionTypeFactory.__index = CollisionTypeFactory
-CollisionTypeFactory.className = "CollisionTypeFactory"
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "CollisionTypeFactory" :f_NONE nil :f_DAMAGE nil :f_PICKUP nil :f_COLLISION nil} jproto))
+    (put this :f_NONE (CollisionType/jnew_1 "None"))
+    (put this :f_DAMAGE (CollisionType/jnew_1 "Damage"))
+    (put this :f_PICKUP (CollisionType/jnew_1 "Pickup"))
+    (put this :f_COLLISION (CollisionType/jnew_1 "Collision"))
+    this))
 
-function CollisionTypeFactory:_init_fields()
-    self.NONE = CollisionType.new("None")
-    self.DAMAGE = CollisionType.new("Damage")
-    self.PICKUP = CollisionType.new("Pickup")
-    self.COLLISION = CollisionType.new("Collision")
-end
+    
+(set jm_getInstance (fn jm_getInstance []
+    (label jreturn
+        (return jreturn (jstatic_SINGLETON)))))
 
-function CollisionTypeFactory.new()
-    local self = setmetatable({}, CollisionTypeFactory)
-    self:_init_fields()
-    return self
-end
+(set jproto @{})
 
-
-function CollisionTypeFactory.getInstance()
-        return CollisionTypeFactory.SINGLETON
-end
-
-CollisionTypeFactory.SINGLETON = CollisionTypeFactory.new()
-
-return CollisionTypeFactory
 

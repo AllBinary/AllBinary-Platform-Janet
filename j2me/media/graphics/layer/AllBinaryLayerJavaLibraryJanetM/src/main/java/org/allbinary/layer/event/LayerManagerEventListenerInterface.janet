@@ -1,48 +1,39 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2011 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.layer.event
+# 
+# AllBinary Open License Version 1 
+# Copyright (c) 2011 AllBinary 
+#  
+# By agreeing to this license you and any business entity you represent are 
+# legally bound to the AllBinary Open License Version 1 legal agreement. 
+#  
+# You may obtain the AllBinary Open License Version 1 legal agreement from 
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+#  
+# Created By: Travis Berthelot 
+#   
+# Generated Code Do Not Modify
+# package org.allbinary.layer.event
 
-local EventListenerInterface = require("org.allbinary.logic.util.event.EventListenerInterface")
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(import ../../../../org/allbinary/logic/util/event/EventListenerInterface :as EventListenerInterface)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class LayerManagerEventListenerInterface
+(var jproto nil)
+(var jnew_0 nil)
+(var jm_onCreateLayerManagerEvent nil)
+(var jm_onDeleteLayerManagerEvent nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "LayerManagerEventListenerInterface"} jproto))
+    this))
 
--- Java interface
-local LayerManagerEventListenerInterface = {}
-LayerManagerEventListenerInterface.__index = LayerManagerEventListenerInterface
-LayerManagerEventListenerInterface.className = "LayerManagerEventListenerInterface"
-setmetatable(LayerManagerEventListenerInterface, {__index = EventListenerInterface})
+    
+(set jm_onCreateLayerManagerEvent (fn jm_onCreateLayerManagerEvent [this _layerManagerEvent]
+    (error (JR/newException "AbstractMethodError" "onCreateLayerManagerEvent"))))
+    
+(set jm_onDeleteLayerManagerEvent (fn jm_onDeleteLayerManagerEvent [this _layerManagerEvent]
+    (error (JR/newException "AbstractMethodError" "onDeleteLayerManagerEvent"))))
 
+(set jproto @{:jm_onCreateLayerManagerEvent jm_onCreateLayerManagerEvent :jm_onDeleteLayerManagerEvent jm_onDeleteLayerManagerEvent})
 
--- throws Exception
-function LayerManagerEventListenerInterface:onCreateLayerManagerEvent(layerManagerEvent)
-    error("abstract method onCreateLayerManagerEvent")
-end
-
-
--- throws Exception
-function LayerManagerEventListenerInterface:onDeleteLayerManagerEvent(layerManagerEvent)
-    error("abstract method onDeleteLayerManagerEvent")
-end
-
-return LayerManagerEventListenerInterface
 

@@ -1,128 +1,103 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.ag.layer.hud.basic.health
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.game.ag.layer.hud.basic.health
 
--- local Graphics = require("javax.microedition.lcdui.Graphics")
-local Animation = require("org.allbinary.animation.Animation")
-local BasicHud = require("org.allbinary.game.graphics.hud.BasicHud")
-local Health = require("org.allbinary.game.health.Health")
-local HealthListenerInterface = require("org.allbinary.game.health.HealthListenerInterface")
-local BasicColorFactory = require("org.allbinary.graphics.color.BasicColorFactory")
-local PaintableInterface = require("org.allbinary.graphics.paint.PaintableInterface")
-local GameTickTimeDelayHelper = require("org.allbinary.time.GameTickTimeDelayHelper")
-local GameTickTimeDelayHelperFactory = require("org.allbinary.time.GameTickTimeDelayHelperFactory")
-local NoTimeDelayHelper = require("org.allbinary.time.NoTimeDelayHelper")
-local TimeDelayHelper = require("org.allbinary.time.TimeDelayHelper")
+(import ../../../../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(import ../../../../../../../../org/allbinary/game/graphics/hud/BasicHud :as BasicHud)
+(defn- BasicColorFactory/jm_getInstance [& args] (JR/call jfile "../../../../../../../../org/allbinary/graphics/color/BasicColorFactory" "jm_getInstance" args))
+(defn- GameTickTimeDelayHelperFactory/jm_getInstance [& args] (JR/call jfile "../../../../../../../../org/allbinary/time/GameTickTimeDelayHelperFactory" "jm_getInstance" args))
+(defn- NoTimeDelayHelper/jstatic_SINGLETON [& args] (JR/call jfile "../../../../../../../../org/allbinary/time/NoTimeDelayHelper" "jstatic_SINGLETON" args))
+(defn- TimeDelayHelper/jnew_1 [& args] (JR/call jfile "../../../../../../../../org/allbinary/time/TimeDelayHelper" "jnew_1" args))
 
-local function java_new_array(default, size, ...)
-    local array = {n = size}
-    for index = 1, size do
-        if select("#", ...) > 0 then array[index] = java_new_array(default, ...) else array[index] = default end
-    end
-    return array
-end
+# Java class HealthHudWidget
+(var jproto nil)
+(var jnew_4 nil)
+(var jm_update nil)
+(var jm_setX nil)
+(var jm_onHealthChange nil)
+(var jm_paint nil)
+(var jm_paintThreed nil)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+    
+(set jnew_4 (fn jnew_4 [_animationInterface _healthInterface _location _direction]
+    (var this (table/setproto @{:jclass "HealthHudWidget" :f_healthScale 0 :f_animationInterface nil :f_healthInterface nil :f_max 0 :f_xArray nil :f_gameTickTimeDelayHelper nil :f_timeDelayHelper nil :f_slowBeatTimeDelayHelper nil :f_mediumBeatTimeDelayHelper nil :f_fastBeatTimeDelayHelper nil} jproto))
+    
+    
+    
+    
+    
+    (put this :f_gameTickTimeDelayHelper (GameTickTimeDelayHelperFactory/jm_getInstance))
+    (put this :f_timeDelayHelper (NoTimeDelayHelper/jstatic_SINGLETON))
+    (put this :f_slowBeatTimeDelayHelper (TimeDelayHelper/jnew_1 1280))
+    (put this :f_mediumBeatTimeDelayHelper (TimeDelayHelper/jnew_1 640))
+    (put this :f_fastBeatTimeDelayHelper (TimeDelayHelper/jnew_1 320))
+        (JR/superInit this (BasicHud/jnew_4 _location _direction 2 ((BasicColorFactory/jm_getInstance) :f_WHITE)))
+        (set (this :f_animationInterface) _animationInterface)
+        (set (this :f_healthInterface) _healthInterface)
+        (:jm_addListener (this :f_healthInterface) this)
+        (set (this :f_healthScale) (JR/i32 (+ (JR/idiv (:jm_getMaxHealth (this :f_healthInterface)) 6) 1)))
+        (:jm_onHealthChange this)
+        (set (this :f_updateMaxWidth) (JR/i32 (* (:jm_getMaxHealth _healthInterface) 16)))
+        (set (this :f_updateMaxHeight) 16)
+        (set (this :f_xArray) (array/new-filled 30 0))
+        (:jm_update this)
+    this))
+    
+(set jm_update (fn jm_update [this]
+        (if (not (nil? (this :f_xArray)))
+            (do
+            (do
+                (var _index 0)
+                (while (< _index (length (this :f_xArray)))
+                    (do
+                (set ((this :f_xArray) _index) (JR/i32 (+ (:jm_getX this) (JR/i32 (* _index 16))))))
+                    (do (set _index (JR/i32 (+ _index 1))))))))))
+    
+(set jm_setX (fn jm_setX [this _x]
+        ((get BasicHud/jproto :jm_setX) this _x)
+        (:jm_update this)))
+    
+(set jm_onHealthChange (fn jm_onHealthChange [this]
+        (set (this :f_max) (JR/idiv (:jm_getHealth (this :f_healthInterface)) (this :f_healthScale)))
+        (set (this :f_timeDelayHelper) (NoTimeDelayHelper/jstatic_SINGLETON))
+        (if (and (<= (this :f_max) 1) (:jm_isAlive (this :f_healthInterface)))
+            (do
+            (set (this :f_max) 1)
+            (if (> (JR/i32 (- (this :f_healthScale) (:jm_getHealth (this :f_healthInterface)))) (JR/idiv (JR/i32 (* (this :f_healthScale) 2)) 3))
+                (do
+                (set (this :f_timeDelayHelper) (this :f_slowBeatTimeDelayHelper)))
+                (if (> (JR/i32 (- (this :f_healthScale) (:jm_getHealth (this :f_healthInterface)))) (JR/idiv (this :f_healthScale) 3))
+                (do
+                (set (this :f_timeDelayHelper) (this :f_mediumBeatTimeDelayHelper)))
+                (do
+                (set (this :f_timeDelayHelper) (this :f_fastBeatTimeDelayHelper)))))))))
+    
+(set jm_paint (fn jm_paint [this _graphics]
+        (JR/className (this :f_myFontProcessor))
+        (do
+            (var _index 0)
+            (while (< _index (this :f_max))
+                (do
+            (if (:jm_isTime (this :f_timeDelayHelper) ((this :f_gameTickTimeDelayHelper) :f_startTime))
+                (do
+                (:jm_paintXY (this :f_animationInterface) _graphics ((this :f_xArray) _index) (:jm_getY this)))))
+                (do (set _index (JR/i32 (+ _index 1))))))))
+    
+(set jm_paintThreed (fn jm_paintThreed [this _graphics]
+    nil))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jproto (table/setproto @{:jm_update jm_update :jm_setX jm_setX :jm_onHealthChange jm_onHealthChange :jm_paint jm_paint :jm_paintThreed jm_paintThreed} BasicHud/jproto))
 
-local HealthHudWidget = {}
-HealthHudWidget.__index = HealthHudWidget
-HealthHudWidget.className = "HealthHudWidget"
-setmetatable(HealthHudWidget, {__index = BasicHud})
-
-function HealthHudWidget:_init_fields()
-    self.healthScale = nil
-    self.animationInterface = nil
-    self.healthInterface = nil
-    self.max = 0
-    self.xArray = nil
-    self.gameTickTimeDelayHelper = GameTickTimeDelayHelperFactory.getInstance()
-    self.timeDelayHelper = NoTimeDelayHelper.SINGLETON
-    self.slowBeatTimeDelayHelper = TimeDelayHelper.new(1280)
-    self.mediumBeatTimeDelayHelper = TimeDelayHelper.new(640)
-    self.fastBeatTimeDelayHelper = TimeDelayHelper.new(320)
-end
-
-
-function HealthHudWidget.new(animationInterface, healthInterface, location, direction)
-    local self = setmetatable(BasicHud.new(location, direction, 2, BasicColorFactory.getInstance().WHITE), HealthHudWidget)
-    self:_init_fields()
-        -- super(...) made self above
-        self.animationInterface = animationInterface
-        self.healthInterface = healthInterface
-        self.healthInterface:addListener(self)
-        self.healthScale = (self.healthInterface:getMaxHealth() / 6) + 1
-        self:onHealthChange()
-        self.updateMaxWidth = healthInterface:getMaxHealth() * 16
-        self.updateMaxHeight = 16
-        self.xArray = java_new_array(0, 30)
-        self:update()
-    return self
-end
-
-
-function HealthHudWidget:update()
-        if self.xArray ~= nil then
-            for index = 0, (self.xArray.n or #self.xArray) - 1 do
-                self.xArray[index + 1] = self:getX() + (index * 16)
-            end
-        end
-end
-
-
-function HealthHudWidget:setX(x)
-        BasicHud.setX(self, x)
-        self:update()
-end
-
-
-function HealthHudWidget:onHealthChange()
-        self.max = (self.healthInterface:getHealth() / self.healthScale)
-        self.timeDelayHelper = NoTimeDelayHelper.SINGLETON
-        if self.max <= 1 and self.healthInterface:isAlive() then
-            self.max = 1
-            if self.healthScale - self.healthInterface:getHealth() > java_idiv((self.healthScale * 2), 3) then
-                self.timeDelayHelper = self.slowBeatTimeDelayHelper
-            elseif self.healthScale - self.healthInterface:getHealth() > java_idiv(self.healthScale, 3) then
-                self.timeDelayHelper = self.mediumBeatTimeDelayHelper
-            else
-                self.timeDelayHelper = self.fastBeatTimeDelayHelper
-            end
-        end
-end
-
-
-function HealthHudWidget:paint(graphics)
-        self.myFontProcessor:process(graphics)
-        for index = 0, self.max - 1 do
-            if self.timeDelayHelper:isTime(self.gameTickTimeDelayHelper.startTime) then
-                self.animationInterface:paintXY(graphics, self.xArray[index + 1], self:getY())
-            end
-        end
-end
-
-
-function HealthHudWidget:paintThreed(graphics)
-end
-
-return HealthHudWidget
 

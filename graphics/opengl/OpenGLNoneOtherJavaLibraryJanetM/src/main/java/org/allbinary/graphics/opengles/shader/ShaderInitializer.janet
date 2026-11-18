@@ -1,57 +1,50 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2025 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.opengles.shader
+# 
+# AllBinary Open License Version 1 
+# Copyright (c) 2025 AllBinary 
+#  
+# By agreeing to this license you and any business entity you represent are 
+# legally bound to the AllBinary Open License Version 1 legal agreement. 
+#  
+# You may obtain the AllBinary Open License Version 1 legal agreement from 
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+#  
+# Created By: Travis Berthelot 
+#   
+# Generated Code Do Not Modify
+# package org.allbinary.graphics.opengles.shader
 
--- local GL10 = require("javax.microedition.khronos.opengles.GL10")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
+(import ../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- CommonStrings/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/string/CommonStrings" "jm_getInstance" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class ShaderInitializer
+(var jproto nil)
+(var jcell_instance :jnone)
+(var jstatic_instance nil)
+(var jsetstatic_instance nil)
+(var jnew_0 nil)
+(var jm_getInstance nil)
+(var jm_init nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jstatic_instance (fn jstatic_instance []
+  (when (= jcell_instance :jnone) (set jcell_instance (jnew_0)))
+  jcell_instance))
+(set jsetstatic_instance (fn jsetstatic_instance [value] (set jcell_instance value)))
 
-local ShaderInitializer = {}
-ShaderInitializer.__index = ShaderInitializer
-ShaderInitializer.className = "ShaderInitializer"
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "ShaderInitializer" :f_commonStrings nil} jproto))
+    (put this :f_commonStrings (CommonStrings/jm_getInstance))
+    this))
 
-function ShaderInitializer:_init_fields()
-    self.commonStrings = CommonStrings.getInstance()
-end
+    
+(set jm_getInstance (fn jm_getInstance []
+    (label jreturn
+        (return jreturn (jstatic_instance)))))
+    
+(set jm_init (fn jm_init [this _gl _shader _attributeArray]
+    (label jreturn
+        (return jreturn (JR/i32 (- 1))))))
 
-function ShaderInitializer.new()
-    local self = setmetatable({}, ShaderInitializer)
-    self:_init_fields()
-    return self
-end
+(set jproto @{:jm_init jm_init})
 
-
-function ShaderInitializer.getInstance()
-        return ShaderInitializer.instance
-end
-
-
-function ShaderInitializer:init(gl, shader, attributeArray)
-        return -1
-end
-
-ShaderInitializer.instance = ShaderInitializer.new()
-
-return ShaderInitializer
 

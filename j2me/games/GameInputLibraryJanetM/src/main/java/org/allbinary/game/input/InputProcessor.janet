@@ -1,52 +1,40 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.input
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.game.input
 
--- local Canvas = require("javax.microedition.lcdui.Canvas")
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- GameInputStrings/jm_getInstance [& args] (JR/call jfile "./GameInputStrings" "jm_getInstance" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class InputProcessor
+(var jproto nil)
+(var jnew_0 nil)
+(var jm_keyPressedByDevice nil)
+(var jm_keyReleasedByDevice nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "InputProcessor" :f_gameInputStrings nil} jproto))
+    (put this :f_gameInputStrings (GameInputStrings/jm_getInstance))
+    this))
 
-local InputProcessor = {}
-InputProcessor.__index = InputProcessor
-InputProcessor.className = "InputProcessor"
+    
+(set jm_keyPressedByDevice (fn jm_keyPressedByDevice [this _keyCode _deviceId]
+    nil))
+    
+(set jm_keyReleasedByDevice (fn jm_keyReleasedByDevice [this _canvas _keyCode _deviceId]
+    nil))
 
-function InputProcessor:_init_fields()
-    self.gameInputStrings = GameInputStrings.getInstance()
-end
+(set jproto @{:jm_keyPressedByDevice jm_keyPressedByDevice :jm_keyReleasedByDevice jm_keyReleasedByDevice})
 
-function InputProcessor.new()
-    local self = setmetatable({}, InputProcessor)
-    self:_init_fields()
-    return self
-end
-
-
-function InputProcessor:keyPressedByDevice(keyCode, deviceId)
-end
-
-
-function InputProcessor:keyReleasedByDevice(canvas, keyCode, deviceId)
-end
-
-return InputProcessor
 

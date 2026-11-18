@@ -1,54 +1,49 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.configuration.feature
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.game.configuration.feature
 
+(import ../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- Feature/jnew_1 [& args] (JR/call jfile "./Feature" "jnew_1" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class MainFeatureFactory
+(var jproto nil)
+(var jcell_instance :jnone)
+(var jstatic_instance nil)
+(var jsetstatic_instance nil)
+(var jnew_0 nil)
+(var jm_getInstance nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jstatic_instance (fn jstatic_instance []
+  (when (= jcell_instance :jnone) (set jcell_instance (jnew_0)))
+  jcell_instance))
+(set jsetstatic_instance (fn jsetstatic_instance [value] (set jcell_instance value)))
 
-local MainFeatureFactory = {}
-MainFeatureFactory.__index = MainFeatureFactory
-MainFeatureFactory.className = "MainFeatureFactory"
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "MainFeatureFactory" :f_FULL_SCREEN nil :f_TITLE_BAR nil :f_STATIC nil :f_LOAD_ONDEMAND nil :f_LOAD_ALL nil} jproto))
+    (put this :f_FULL_SCREEN (Feature/jnew_1 "Full Screen"))
+    (put this :f_TITLE_BAR (Feature/jnew_1 "Title Bar"))
+    (put this :f_STATIC (Feature/jnew_1 "Static Dependent Feature"))
+    (put this :f_LOAD_ONDEMAND (Feature/jnew_1 "Load OnDemand"))
+    (put this :f_LOAD_ALL (Feature/jnew_1 "Load All"))
+    this))
 
-function MainFeatureFactory:_init_fields()
-    self.FULL_SCREEN = Feature.new("Full Screen")
-    self.TITLE_BAR = Feature.new("Title Bar")
-    self.STATIC = Feature.new("Static Dependent Feature")
-    self.LOAD_ONDEMAND = Feature.new("Load OnDemand")
-    self.LOAD_ALL = Feature.new("Load All")
-end
+    
+(set jm_getInstance (fn jm_getInstance []
+    (label jreturn
+        (return jreturn (jstatic_instance)))))
 
-function MainFeatureFactory.new()
-    local self = setmetatable({}, MainFeatureFactory)
-    self:_init_fields()
-    return self
-end
+(set jproto @{})
 
-
-function MainFeatureFactory.getInstance()
-        return MainFeatureFactory.instance
-end
-
-MainFeatureFactory.instance = MainFeatureFactory.new()
-
-return MainFeatureFactory
 

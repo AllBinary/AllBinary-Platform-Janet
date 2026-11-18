@@ -1,55 +1,40 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.layer
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.game.layer
 
--- local Graphics = require("javax.microedition.lcdui.Graphics")
-local BasicColor = require("org.allbinary.graphics.color.BasicColor")
-local BasicColorFactory = require("org.allbinary.graphics.color.BasicColorFactory")
-local BasicColorSetUtil = require("org.allbinary.graphics.color.BasicColorSetUtil")
-local Paintable = require("org.allbinary.graphics.paint.Paintable")
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- BasicColorFactory/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/graphics/color/BasicColorFactory" "jm_getInstance" args))
+(defn- BasicColorSetUtil/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/graphics/color/BasicColorSetUtil" "jm_getInstance" args))
+(import ../../../../org/allbinary/graphics/paint/Paintable :as Paintable)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class SWTBlackPaintable
+(var jproto nil)
+(var jnew_0 nil)
+(var jm_paint nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "SWTBlackPaintable" :f_basicSetColorUtil nil :f_BLACK nil} jproto))
+    (put this :f_basicSetColorUtil (BasicColorSetUtil/jm_getInstance))
+    (put this :f_BLACK ((BasicColorFactory/jm_getInstance) :f_BLACK))
+    (JR/superInit this (Paintable/jnew_0))
+    this))
 
-local SWTBlackPaintable = {}
-SWTBlackPaintable.__index = SWTBlackPaintable
-SWTBlackPaintable.className = "SWTBlackPaintable"
-setmetatable(SWTBlackPaintable, {__index = Paintable})
+    
+(set jm_paint (fn jm_paint [this _graphics]
+        (:jm_setBasicColorP (this :f_basicSetColorUtil) _graphics (this :f_BLACK))))
 
-function SWTBlackPaintable:_init_fields()
-    self.basicSetColorUtil = BasicColorSetUtil.getInstance()
-    self.BLACK = BasicColorFactory.getInstance().BLACK
-end
+(set jproto (table/setproto @{:jm_paint jm_paint} Paintable/jproto))
 
-function SWTBlackPaintable.new()
-    local self = setmetatable(Paintable.new(), SWTBlackPaintable)
-    self:_init_fields()
-    return self
-end
-
-
-function SWTBlackPaintable:paint(graphics)
-        self.basicSetColorUtil:setBasicColorP(graphics, self.BLACK)
-end
-
-return SWTBlackPaintable
 

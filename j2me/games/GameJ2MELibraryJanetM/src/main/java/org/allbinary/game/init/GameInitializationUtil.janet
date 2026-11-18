@@ -1,104 +1,80 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.init
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.game.init
 
-local ChangedGameFeatureListener = require("org.allbinary.game.configuration.event.ChangedGameFeatureListener")
-local GameInitializedEvent = require("org.allbinary.game.configuration.event.GameInitializedEvent")
-local GameInitializedEventHandler = require("org.allbinary.game.configuration.event.GameInitializedEventHandler")
-local Features = require("org.allbinary.game.configuration.feature.Features")
-local MainFeatureFactory = require("org.allbinary.game.configuration.feature.MainFeatureFactory")
-local ResourceLoadingLevelFactory = require("org.allbinary.game.resource.ResourceLoadingLevelFactory")
-local MyCanvas = require("org.allbinary.graphics.displayable.MyCanvas")
-local AbeClientInformationInterface = require("org.allbinary.logic.system.security.licensing.AbeClientInformationInterface")
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- ChangedGameFeatureListener/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/game/configuration/event/ChangedGameFeatureListener" "jm_getInstance" args))
+(defn- GameInitializedEvent/jnew_1 [& args] (JR/call jfile "../../../../org/allbinary/game/configuration/event/GameInitializedEvent" "jnew_1" args))
+(defn- GameInitializedEventHandler/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/game/configuration/event/GameInitializedEventHandler" "jm_getInstance" args))
+(defn- Features/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/game/configuration/feature/Features" "jm_getInstance" args))
+(defn- MainFeatureFactory/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/game/configuration/feature/MainFeatureFactory" "jm_getInstance" args))
+(defn- ResourceLoadingLevelFactory/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/game/resource/ResourceLoadingLevelFactory" "jm_getInstance" args))
 
--- Java library Throwable. tostring gives the message like Java getMessage.
-local function java_exception(className, message, cause)
-    if cause == nil and type(message) == "table" then
-        cause = message
-        message = tostring(message)
-    end
-    local exception = {className = className, message = message, cause = cause}
-    function exception:getMessage() return self.message end
-    function exception:getCause() return self.cause end
-    function exception:printStackTrace() print(debug.traceback(tostring(self))) end
-    return setmetatable(exception, {__tostring = function(self) if self.message ~= nil then return tostring(self.message) end return self.className end})
-end
+# Java class GameInitializationUtil
+(var jproto nil)
+(var jcell_instance :jnone)
+(var jstatic_instance nil)
+(var jsetstatic_instance nil)
+(var jnew_0 nil)
+(var jm_initDemo nil)
+(var jm_initGame nil)
+(var jm_getInstance nil)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(set jstatic_instance (fn jstatic_instance []
+  (when (= jcell_instance :jnone) (set jcell_instance (jnew_0)))
+  jcell_instance))
+(set jsetstatic_instance (fn jsetstatic_instance [value] (set jcell_instance value)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "GameInitializationUtil" :f_EVENT nil} jproto))
+    (put this :f_EVENT (GameInitializedEvent/jnew_1 this))
+    this))
 
-local GameInitializationUtil = {}
-GameInitializationUtil.__index = GameInitializationUtil
-GameInitializationUtil.className = "GameInitializationUtil"
+    
+(set jm_initDemo (fn jm_initDemo [this _abeClientInformation _canvas _gameInitializationInterfaceFactoryInterface]
+        (var _mainFeatureFactory (MainFeatureFactory/jm_getInstance))
+        (if (:jm_isChangedFeature (ChangedGameFeatureListener/jm_getInstance) (_mainFeatureFactory :f_STATIC))
+            (do
+            (var _gameInitializationInterface (:jm_getInstance _gameInitializationInterfaceFactoryInterface))
+            (var _features (Features/jm_getInstance))
+            (if (:jm_isFeature _features (_mainFeatureFactory :f_LOAD_ALL))
+                (do
+                (:jm_initGame this _abeClientInformation _canvas _gameInitializationInterfaceFactoryInterface))
+                (if (:jm_isFeature _features (_mainFeatureFactory :f_LOAD_ONDEMAND))
+                (do
+                (var _resourceLoadingLevelFactory (ResourceLoadingLevelFactory/jm_getInstance))
+                (:jm_init _gameInitializationInterface _abeClientInformation (:jm_getCustomCommandListener _canvas) (JR/className (_resourceLoadingLevelFactory :f_LOAD_EARLY)))
+                (:jm_setResourceLoadingLevel (this :f_EVENT) (_resourceLoadingLevelFactory :f_LOAD_EARLY)))
+                (do
+                (error (JR/newException "Exception" "No Loading Feature Available")))))
+            (:jm_fireEvent (GameInitializedEventHandler/jm_getInstance) (this :f_EVENT))))))
+    
+(set jm_initGame (fn jm_initGame [this _abeClientInformation _canvas _gameInitializationInterfaceFactoryInterface]
+        (if (:jm_isChangedFeature (ChangedGameFeatureListener/jm_getInstance) ((MainFeatureFactory/jm_getInstance) :f_STATIC))
+            (do
+            (var _gameInitializationInterface (:jm_getInstance _gameInitializationInterfaceFactoryInterface))
+            (var _resourceLoadingLevelFactory (ResourceLoadingLevelFactory/jm_getInstance))
+            (:jm_init _gameInitializationInterface _abeClientInformation (:jm_getCustomCommandListener _canvas) (JR/className (_resourceLoadingLevelFactory :f_LOAD_ALL)))
+            (:jm_setResourceLoadingLevel (this :f_EVENT) (_resourceLoadingLevelFactory :f_LOAD_ALL))
+            (:jm_fireEvent (GameInitializedEventHandler/jm_getInstance) (this :f_EVENT))
+            (:jm_remove (ChangedGameFeatureListener/jm_getInstance) ((MainFeatureFactory/jm_getInstance) :f_STATIC))))))
+    
+(set jm_getInstance (fn jm_getInstance []
+    (label jreturn
+        (return jreturn (jstatic_instance)))))
 
-function GameInitializationUtil:_init_fields()
-    self.EVENT = GameInitializedEvent.new(self)
-end
+(set jproto @{:jm_initDemo jm_initDemo :jm_initGame jm_initGame})
 
-function GameInitializationUtil.new()
-    local self = setmetatable({}, GameInitializationUtil)
-    self:_init_fields()
-    return self
-end
-
-
--- throws Exception
-function GameInitializationUtil:initDemo(abeClientInformation, canvas, gameInitializationInterfaceFactoryInterface)
-        local mainFeatureFactory = MainFeatureFactory.getInstance()
-        if ChangedGameFeatureListener.getInstance():isChangedFeature(mainFeatureFactory.STATIC) then
-            local gameInitializationInterface = gameInitializationInterfaceFactoryInterface:getInstance()
-            local features = Features.getInstance()
-            if features:isFeature(mainFeatureFactory.LOAD_ALL) then
-                self:initGame(abeClientInformation, canvas, gameInitializationInterfaceFactoryInterface)
-            elseif features:isFeature(mainFeatureFactory.LOAD_ONDEMAND) then
-                local resourceLoadingLevelFactory = ResourceLoadingLevelFactory.getInstance()
-                gameInitializationInterface:init(abeClientInformation, canvas:getCustomCommandListener(), resourceLoadingLevelFactory.LOAD_EARLY:getLevel())
-                self.EVENT:setResourceLoadingLevel(resourceLoadingLevelFactory.LOAD_EARLY)
-            else
-                error(java_exception("Exception", "No Loading Feature Available"), 0)
-            end
-            GameInitializedEventHandler.getInstance():fireEvent(self.EVENT)
-        end
-end
-
-
--- throws Exception
-function GameInitializationUtil:initGame(abeClientInformation, canvas, gameInitializationInterfaceFactoryInterface)
-        if ChangedGameFeatureListener.getInstance():isChangedFeature(MainFeatureFactory.getInstance().STATIC) then
-            local gameInitializationInterface = gameInitializationInterfaceFactoryInterface:getInstance()
-            local resourceLoadingLevelFactory = ResourceLoadingLevelFactory.getInstance()
-            gameInitializationInterface:init(abeClientInformation, canvas:getCustomCommandListener(), resourceLoadingLevelFactory.LOAD_ALL:getLevel())
-            self.EVENT:setResourceLoadingLevel(resourceLoadingLevelFactory.LOAD_ALL)
-            GameInitializedEventHandler.getInstance():fireEvent(self.EVENT)
-            ChangedGameFeatureListener.getInstance():remove(MainFeatureFactory.getInstance().STATIC)
-        end
-end
-
-
-function GameInitializationUtil.getInstance()
-        return GameInitializationUtil.instance
-end
-
-GameInitializationUtil.instance = GameInitializationUtil.new()
-
-return GameInitializationUtil
 

@@ -1,40 +1,34 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2025 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.font
+# 
+# AllBinary Open License Version 1 
+# Copyright (c) 2025 AllBinary 
+#  
+# By agreeing to this license you and any business entity you represent are 
+# legally bound to the AllBinary Open License Version 1 legal agreement. 
+#  
+# You may obtain the AllBinary Open License Version 1 legal agreement from 
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+#  
+# Created By: Travis Berthelot 
+#   
+# Generated Code Do Not Modify
+# package org.allbinary.graphics.font
 
--- local Graphics = require("javax.microedition.lcdui.Graphics")
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class UpdateMyFontInterface
+(var jproto nil)
+(var jnew_0 nil)
+(var jm_updateMeasurement nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "UpdateMyFontInterface"} jproto))
+    this))
 
--- Java interface
-local UpdateMyFontInterface = {}
-UpdateMyFontInterface.__index = UpdateMyFontInterface
-UpdateMyFontInterface.className = "UpdateMyFontInterface"
+    
+(set jm_updateMeasurement (fn jm_updateMeasurement [this _graphics]
+    (error (JR/newException "AbstractMethodError" "updateMeasurement"))))
 
+(set jproto @{:jm_updateMeasurement jm_updateMeasurement})
 
-function UpdateMyFontInterface:updateMeasurement(graphics)
-    error("abstract method updateMeasurement")
-end
-
-return UpdateMyFontInterface
 

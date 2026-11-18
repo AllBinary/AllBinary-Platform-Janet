@@ -31,8 +31,10 @@
 (var jproto nil)
 (var jcell_ROOT_NAME :jnone)
 (var jstatic_ROOT_NAME nil)
+(var jsetstatic_ROOT_NAME nil)
 (var jcell_NORMAL_PRIORITY :jnone)
 (var jstatic_NORMAL_PRIORITY nil)
+(var jsetstatic_NORMAL_PRIORITY nil)
 (var jnew_3 nil)
 (var jm_init nil)
 (var jm_runAPriorityTask nil)
@@ -52,10 +54,12 @@
 (set jstatic_ROOT_NAME (fn jstatic_ROOT_NAME []
   (when (= jcell_ROOT_NAME :jnone) (set jcell_ROOT_NAME "-PooledThread-"))
   jcell_ROOT_NAME))
+(set jsetstatic_ROOT_NAME (fn jsetstatic_ROOT_NAME [value] (set jcell_ROOT_NAME value)))
 
 (set jstatic_NORMAL_PRIORITY (fn jstatic_NORMAL_PRIORITY []
   (when (= jcell_NORMAL_PRIORITY :jnone) (set jcell_NORMAL_PRIORITY (Thread/jstatic_NORM_PRIORITY)))
   jcell_NORMAL_PRIORITY))
+(set jsetstatic_NORMAL_PRIORITY (fn jsetstatic_NORMAL_PRIORITY [value] (set jcell_NORMAL_PRIORITY value)))
 
     
 (set jnew_3 (fn jnew_3 [_poolName _numThreads _priority]

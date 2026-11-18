@@ -1,42 +1,32 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---   
--- Generated Code Do Not Modify
--- package org.allbinary.android.input.motion.event
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#   
+# Generated Code Do Not Modify
+# package org.allbinary.android.input.motion.event
 
-local AllBinaryEventObject = require("org.allbinary.logic.util.event.AllBinaryEventObject")
+(import ../../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(import ../../../../../../org/allbinary/logic/util/event/AllBinaryEventObject :as AllBinaryEventObject)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class AnalogControllerConfigurationEvent
+(var jproto nil)
+(var jnew_1 nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jnew_1 (fn jnew_1 [_anyType]
+    (var this (table/setproto @{:jclass "AnalogControllerConfigurationEvent"} jproto))
+        (JR/superInit this (AllBinaryEventObject/jnew_1 _anyType))
+    this))
 
-local AnalogControllerConfigurationEvent = {}
-AnalogControllerConfigurationEvent.__index = AnalogControllerConfigurationEvent
-AnalogControllerConfigurationEvent.className = "AnalogControllerConfigurationEvent"
-setmetatable(AnalogControllerConfigurationEvent, {__index = AllBinaryEventObject})
+(set jproto (table/setproto @{} AllBinaryEventObject/jproto))
 
-
-function AnalogControllerConfigurationEvent.new(anyType)
-    local self = setmetatable(AllBinaryEventObject.new(anyType), AnalogControllerConfigurationEvent)
-        -- super(...) made self above
-    return self
-end
-
-return AnalogControllerConfigurationEvent
 

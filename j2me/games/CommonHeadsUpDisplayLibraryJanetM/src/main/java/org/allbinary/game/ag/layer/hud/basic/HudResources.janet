@@ -1,52 +1,45 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.ag.layer.hud.basic
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.game.ag.layer.hud.basic
 
+(import ../../../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class HudResources
+(var jproto nil)
+(var jcell_instance :jnone)
+(var jstatic_instance nil)
+(var jsetstatic_instance nil)
+(var jnew_0 nil)
+(var jm_getInstance nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jstatic_instance (fn jstatic_instance []
+  (when (= jcell_instance :jnone) (set jcell_instance (jnew_0)))
+  jcell_instance))
+(set jsetstatic_instance (fn jsetstatic_instance [value] (set jcell_instance value)))
 
-local HudResources = {}
-HudResources.__index = HudResources
-HudResources.className = "HudResources"
+    
+(set jm_getInstance (fn jm_getInstance []
+    (label jreturn
+        (return jreturn (jstatic_instance)))))
+    
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "HudResources" :f_RESOURCE_LIFE nil :f_RESOURCE_HEALTH nil} jproto))
+    (put this :f_RESOURCE_LIFE "/hud_life_10_by_10.png")
+    (put this :f_RESOURCE_HEALTH "/hud_health_10_by_10.png")
+    this))
 
-function HudResources:_init_fields()
-    self.RESOURCE_LIFE = "/hud_life_10_by_10.png"
-    self.RESOURCE_HEALTH = "/hud_health_10_by_10.png"
-end
+(set jproto @{})
 
-
-function HudResources.getInstance()
-        return HudResources.instance
-end
-
-
-function HudResources.new()
-    local self = setmetatable({}, HudResources)
-    self:_init_fields()
-    return self
-end
-
-HudResources.instance = HudResources.new()
-
-return HudResources
 

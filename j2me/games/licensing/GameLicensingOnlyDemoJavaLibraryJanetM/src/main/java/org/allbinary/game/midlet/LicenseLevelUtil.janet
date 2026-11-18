@@ -1,50 +1,48 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.midlet
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.game.midlet
 
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class LicenseLevelUtil
+(var jproto nil)
+(var jcell_instance :jnone)
+(var jstatic_instance nil)
+(var jsetstatic_instance nil)
+(var jnew_0 nil)
+(var jm_getInstance nil)
+(var jm_getMaxLevel nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jstatic_instance (fn jstatic_instance []
+  (when (= jcell_instance :jnone) (set jcell_instance (jnew_0)))
+  jcell_instance))
+(set jsetstatic_instance (fn jsetstatic_instance [value] (set jcell_instance value)))
 
-local LicenseLevelUtil = {}
-LicenseLevelUtil.__index = LicenseLevelUtil
-LicenseLevelUtil.className = "LicenseLevelUtil"
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "LicenseLevelUtil"} jproto))
+    this))
 
-function LicenseLevelUtil.new()
-    local self = setmetatable({}, LicenseLevelUtil)
-    return self
-end
+    
+(set jm_getInstance (fn jm_getInstance []
+    (label jreturn
+        (return jreturn (jstatic_instance)))))
+    
+(set jm_getMaxLevel (fn jm_getMaxLevel [this _maxLevel _demoLevel]
+    (label jreturn
+        (return jreturn _demoLevel))))
 
+(set jproto @{:jm_getMaxLevel jm_getMaxLevel})
 
-function LicenseLevelUtil.getInstance()
-        return LicenseLevelUtil.instance
-end
-
-
-function LicenseLevelUtil:getMaxLevel(maxLevel, demoLevel)
-        return demoLevel
-end
-
-LicenseLevelUtil.instance = LicenseLevelUtil.new()
-
-return LicenseLevelUtil
 

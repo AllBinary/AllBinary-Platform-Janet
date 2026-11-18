@@ -1,60 +1,52 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.opengles
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.graphics.opengles
 
-local Features = require("org.allbinary.game.configuration.feature.Features")
-local GameFeatureChoiceGroups = require("org.allbinary.game.configuration.feature.GameFeatureChoiceGroups")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
-local BasicArrayListD = require("org.allbinary.util.BasicArrayListD")
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- Features/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/game/configuration/feature/Features" "jm_getInstance" args))
+(defn- GameFeatureChoiceGroups/jm_getMultipleInstance [& args] (JR/call jfile "../../../../org/allbinary/game/configuration/feature/GameFeatureChoiceGroups" "jm_getMultipleInstance" args))
+(defn- GameFeatureChoiceGroups/jm_getExclusiveInstance [& args] (JR/call jfile "../../../../org/allbinary/game/configuration/feature/GameFeatureChoiceGroups" "jm_getExclusiveInstance" args))
+(defn- BasicArrayListD/jnew_0 [& args] (JR/call jfile "../../../../org/allbinary/util/BasicArrayListD" "jnew_0" args))
+(defn- OpenGLFeatureFactory/jm_getInstance [& args] (JR/call jfile "./OpenGLFeatureFactory" "jm_getInstance" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class OpenGLOptions
+(var jproto nil)
+(var jnew_0 nil)
+(var jm_init nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "OpenGLOptions"} jproto))
+    this))
 
-local OpenGLOptions = {}
-OpenGLOptions.__index = OpenGLOptions
-OpenGLOptions.className = "OpenGLOptions"
+    
+(set jm_init (fn jm_init [this]
+        (var _openGLFeatureFactory (OpenGLFeatureFactory/jm_getInstance))
+        (if (:jm_isFeature (Features/jm_getInstance) (_openGLFeatureFactory :f_OPENGL_OPTIONS))
+            (do
+            (var _openGLMultipleList (BasicArrayListD/jnew_0))
+            (:jm_add _openGLMultipleList (_openGLFeatureFactory :f_OPENGL))
+            (JR/className (GameFeatureChoiceGroups/jm_getMultipleInstance))
+            (var _openGLVersionSelectorMultipleList (BasicArrayListD/jnew_0))
+            (:jm_add _openGLVersionSelectorMultipleList (_openGLFeatureFactory :f_OPENGL_AUTO_SELECT))
+            (:jm_add _openGLVersionSelectorMultipleList (_openGLFeatureFactory :f_OPENGL_MINIMUM))
+            (JR/className (GameFeatureChoiceGroups/jm_getExclusiveInstance))
+            (var _openGLImageColorMultipleList (BasicArrayListD/jnew_0))
+            (:jm_add _openGLImageColorMultipleList (_openGLFeatureFactory :f_IMAGE_COLOR_DEPTH_4444))
+            (:jm_add _openGLImageColorMultipleList (_openGLFeatureFactory :f_IMAGE_COLOR_DEPTH_8888))
+            (JR/className (GameFeatureChoiceGroups/jm_getExclusiveInstance))))))
 
-function OpenGLOptions.new()
-    local self = setmetatable({}, OpenGLOptions)
-    return self
-end
+(set jproto @{:jm_init jm_init})
 
-
-function OpenGLOptions:init()
-        local openGLFeatureFactory = OpenGLFeatureFactory.getInstance()
-        if Features.getInstance():isFeature(openGLFeatureFactory.OPENGL_OPTIONS) then
-            local openGLMultipleList = BasicArrayListD.new()
-            openGLMultipleList:add(openGLFeatureFactory.OPENGL)
-            GameFeatureChoiceGroups.getMultipleInstance():add("OpenGL (Complete Restart)", openGLMultipleList)
-            local openGLVersionSelectorMultipleList = BasicArrayListD.new()
-            openGLVersionSelectorMultipleList:add(openGLFeatureFactory.OPENGL_AUTO_SELECT)
-            openGLVersionSelectorMultipleList:add(openGLFeatureFactory.OPENGL_MINIMUM)
-            GameFeatureChoiceGroups.getExclusiveInstance():add("OpenGL Version Selector", openGLVersionSelectorMultipleList)
-            local openGLImageColorMultipleList = BasicArrayListD.new()
-            openGLImageColorMultipleList:add(openGLFeatureFactory.IMAGE_COLOR_DEPTH_4444)
-            openGLImageColorMultipleList:add(openGLFeatureFactory.IMAGE_COLOR_DEPTH_8888)
-            GameFeatureChoiceGroups.getExclusiveInstance():add("OpenGL Image Color RGBA", openGLImageColorMultipleList)
-        end
-end
-
-return OpenGLOptions
 

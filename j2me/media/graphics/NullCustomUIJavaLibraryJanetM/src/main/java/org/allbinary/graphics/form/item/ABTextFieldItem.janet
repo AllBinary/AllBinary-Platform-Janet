@@ -1,76 +1,58 @@
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.form.item
+# Generated Code Do Not Modify
+# package org.allbinary.graphics.form.item
 
--- local Canvas = require("javax.microedition.lcdui.Canvas")
--- local Font = require("javax.microedition.lcdui.Font")
-local BasicColor = require("org.allbinary.graphics.color.BasicColor")
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
-local Visitor = require("org.allbinary.logic.util.visitor.Visitor")
-local ABTextItem = require("org.allbinary.graphics.form.item.ABTextItem")
+(import ../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- StringUtil/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/logic/string/StringUtil" "jm_getInstance" args))
+(import ./ABTextItem :as ABTextItem)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class ABTextFieldItem
+(var jproto nil)
+(var jnew_10 nil)
+(var jm_getLabel nil)
+(var jm_setLabel nil)
+(var jm_getString nil)
+(var jm_setString nil)
+(var jm_setFocus nil)
+(var jm_getFontHeight nil)
+(var jm_setBackgroundBasicColorP nil)
+(var jm_setForegroundBasicColorP nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jnew_10 (fn jnew_10 [_canvas _visitor _label _value _maxSize _layout _altText _font _backgroundBasicColor _foregroundBasicColor]
+    (var this (table/setproto @{:jclass "ABTextFieldItem" :f_font nil} jproto))
+    
+        (JR/superInit this (ABTextItem/jnew_5 _label _layout _altText _backgroundBasicColor _foregroundBasicColor))
+        (set (this :f_font) _font)
+    this))
+    
+(set jm_getLabel (fn jm_getLabel [this]
+    (label jreturn
+        (return jreturn ((StringUtil/jm_getInstance) :f_EMPTY_STRING)))))
+    
+(set jm_setLabel (fn jm_setLabel [this _label]
+    nil))
+    
+(set jm_getString (fn jm_getString [this]
+    (label jreturn
+        (return jreturn ((StringUtil/jm_getInstance) :f_EMPTY_STRING)))))
+    
+(set jm_setString (fn jm_setString [this _string]
+    nil))
+    
+(set jm_setFocus (fn jm_setFocus [this _state]
+    nil))
+    
+(set jm_getFontHeight (fn jm_getFontHeight [this]
+    (label jreturn
+        (return jreturn (:jm_getHeight (this :f_font))))))
+    
+(set jm_setBackgroundBasicColorP (fn jm_setBackgroundBasicColorP [this _basicColor]
+    nil))
+    
+(set jm_setForegroundBasicColorP (fn jm_setForegroundBasicColorP [this _basicColor]
+    nil))
 
-local ABTextFieldItem = {}
-ABTextFieldItem.__index = ABTextFieldItem
-ABTextFieldItem.className = "ABTextFieldItem"
-setmetatable(ABTextFieldItem, {__index = ABTextItem})
+(set jproto (table/setproto @{:jm_getLabel jm_getLabel :jm_setLabel jm_setLabel :jm_getString jm_getString :jm_setString jm_setString :jm_setFocus jm_setFocus :jm_getFontHeight jm_getFontHeight :jm_setBackgroundBasicColorP jm_setBackgroundBasicColorP :jm_setForegroundBasicColorP jm_setForegroundBasicColorP} ABTextItem/jproto))
 
-function ABTextFieldItem:_init_fields()
-    self.font = nil
-end
-
-
-function ABTextFieldItem.new(canvas, visitor, label, value, maxSize, layout, altText, font, backgroundBasicColor, foregroundBasicColor)
-    local self = setmetatable(ABTextItem.new(label, layout, altText, backgroundBasicColor, foregroundBasicColor), ABTextFieldItem)
-    self:_init_fields()
-        -- super(...) made self above
-        self.font = font
-    return self
-end
-
-
-function ABTextFieldItem:getLabel()
-        return StringUtil.getInstance().EMPTY_STRING
-end
-
-
-function ABTextFieldItem:setLabel(label)
-end
-
-
-function ABTextFieldItem:getString()
-        return StringUtil.getInstance().EMPTY_STRING
-end
-
-
-function ABTextFieldItem:setString(string)
-end
-
-
-function ABTextFieldItem:setFocus(state)
-end
-
-
-function ABTextFieldItem:getFontHeight()
-        return self.font:getHeight()
-end
-
-
-function ABTextFieldItem:setBackgroundBasicColorP(basicColor)
-end
-
-
-function ABTextFieldItem:setForegroundBasicColorP(basicColor)
-end
-
-return ABTextFieldItem
 

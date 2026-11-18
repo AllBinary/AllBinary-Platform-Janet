@@ -1,26 +1,18 @@
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.form.item
+# Generated Code Do Not Modify
+# package org.allbinary.graphics.form.item
+
+(import ../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+
+# Java class ImageItem
+(var jproto nil)
+(var jnew_0 nil)
+
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "ImageItem"} jproto))
+    this))
 
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(set jproto @{})
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local ImageItem = {}
-ImageItem.__index = ImageItem
-ImageItem.className = "ImageItem"
-
-function ImageItem.new()
-    local self = setmetatable({}, ImageItem)
-    return self
-end
-
-return ImageItem
 

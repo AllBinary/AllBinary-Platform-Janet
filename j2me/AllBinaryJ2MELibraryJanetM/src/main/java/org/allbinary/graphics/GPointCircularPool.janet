@@ -1,55 +1,42 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.graphics
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.graphics
 
-local BaseCircularPool = require("org.allbinary.logic.util.cache.BaseCircularPool")
-local CircularIndexUtil = require("org.allbinary.util.CircularIndexUtil")
+(import ../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(import ../../../org/allbinary/logic/util/cache/BaseCircularPool :as BaseCircularPool)
+(defn- CircularIndexUtil/jm_createInstance [& args] (JR/call jfile "../../../org/allbinary/util/CircularIndexUtil" "jm_createInstance" args))
+(defn- CustomGPoint/jm_getInstance3 [& args] (JR/call jfile "./CustomGPoint" "jm_getInstance3" args))
 
-local function java_new_array(default, size, ...)
-    local array = {n = size}
-    for index = 1, size do
-        if select("#", ...) > 0 then array[index] = java_new_array(default, ...) else array[index] = default end
-    end
-    return array
-end
+# Java class GPointCircularPool
+(var jproto nil)
+(var jnew_1 nil)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+    
+(set jnew_1 (fn jnew_1 [_size]
+    (var this (table/setproto @{:jclass "GPointCircularPool"} jproto))
+    (JR/superInit this (BaseCircularPool/jnew_0))
+        (set (this :f_circularIndexUtil) (CircularIndexUtil/jm_createInstance _size))
+        (set (this :f_OBJECT_ARRAY) (array/new-filled _size nil))
+        (do
+            (var _index (JR/i32 (- _size 1)))
+            (while (>= _index 0)
+                (do
+            (set ((this :f_OBJECT_ARRAY) _index) (CustomGPoint/jm_getInstance3 0 0)))
+                (do (set _index (JR/i32 (- _index 1))))))
+    this))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jproto (table/setproto @{} BaseCircularPool/jproto))
 
-local GPointCircularPool = {}
-GPointCircularPool.__index = GPointCircularPool
-GPointCircularPool.className = "GPointCircularPool"
-setmetatable(GPointCircularPool, {__index = BaseCircularPool})
-
-
-function GPointCircularPool.new(size)
-    local self = setmetatable(BaseCircularPool.new(), GPointCircularPool)
-        self.circularIndexUtil = CircularIndexUtil.createInstance(size)
-        self.OBJECT_ARRAY = java_new_array(nil, size)
-        for index = size - 1, 0, -1 do
-            self.OBJECT_ARRAY[index + 1] = CustomGPoint.getInstance3(0, 0)
-        end
-    return self
-end
-
-return GPointCircularPool
 

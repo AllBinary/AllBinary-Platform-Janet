@@ -1,77 +1,55 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.ag.ai.scroller
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.game.ag.ai.scroller
 
--- local Canvas = require("javax.microedition.lcdui.Canvas")
-local GameInput = require("org.allbinary.game.input.GameInput")
-local MyRandomFactory = require("org.allbinary.game.rand.MyRandomFactory")
-local AllBinaryLayer = require("org.allbinary.layer.AllBinaryLayer")
-local AllBinaryLayerManager = require("org.allbinary.layer.AllBinaryLayerManager")
-local ABHashtable = require("org.allbinary.util.ABHashtable")
-local BasePatrolAI = require("org.allbinary.game.ag.ai.scroller.BasePatrolAI")
+(import ../../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- Canvas/jstatic_KEY_NUM1 [& args] (JR/call jfile "../../../../../../javax/microedition/lcdui/Canvas" "jstatic_KEY_NUM1" args))
+(defn- MyRandomFactory/jm_getInstance [& args] (JR/call jfile "../../../../../../org/allbinary/game/rand/MyRandomFactory" "jm_getInstance" args))
+(import ./BasePatrolAI :as BasePatrolAI)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class RandomPatrolAI
+(var jproto nil)
+(var jnew_3 nil)
+(var jm_updateRandomDistance nil)
+(var jm_processAI nil)
+(var jm_nextDirection nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jnew_3 (fn jnew_3 [_hashtable _ownerLayerInterface _gameInput]
+    (var this (table/setproto @{:jclass "RandomPatrolAI" :f_changedDirection false} jproto))
+    (put this :f_changedDirection true)
+        (JR/superInit this (BasePatrolAI/jnew_3 _hashtable _ownerLayerInterface _gameInput))
+        (:jm_updateRandomDistance this)
+    this))
+    
+(set jm_updateRandomDistance (fn jm_updateRandomDistance [this]
+        (set (this :f_currentDistance) (:jm_getAbsoluteNextInt (MyRandomFactory/jm_getInstance) (JR/className (this :f_maxDistance))))))
+    
+(set jm_processAI (fn jm_processAI [this _allBinaryLayerManager]
+        ((get BasePatrolAI/jproto :jm_update) this)
+        ((get BasePatrolAI/jproto :jm_processKeyAI) this (this :f_keyDirection))
+        (if (this :f_changedDirection)
+            (do
+            ((get BasePatrolAI/jproto :jm_processKeyAI) this (Canvas/jstatic_KEY_NUM1))
+            (:jm_updateRandomDistance this)
+            (set (this :f_changedDirection) false)))))
+    
+(set jm_nextDirection (fn jm_nextDirection [this]
+        ((get BasePatrolAI/jproto :jm_nextDirection) this)
+        (set (this :f_changedDirection) true)))
 
-local RandomPatrolAI = {}
-RandomPatrolAI.__index = RandomPatrolAI
-RandomPatrolAI.className = "RandomPatrolAI"
-setmetatable(RandomPatrolAI, {__index = BasePatrolAI})
+(set jproto (table/setproto @{:jm_updateRandomDistance jm_updateRandomDistance :jm_processAI jm_processAI :jm_nextDirection jm_nextDirection} BasePatrolAI/jproto))
 
-function RandomPatrolAI:_init_fields()
-    self.changedDirection = true
-end
-
-
-function RandomPatrolAI.new(hashtable, ownerLayerInterface, gameInput)
-    local self = setmetatable(BasePatrolAI.new(hashtable, ownerLayerInterface, gameInput), RandomPatrolAI)
-    self:_init_fields()
-        -- super(...) made self above
-        self:updateRandomDistance()
-    return self
-end
-
-
-function RandomPatrolAI:updateRandomDistance()
-        self.currentDistance = MyRandomFactory.getInstance():getAbsoluteNextInt(math.tointeger(self.maxDistance // 1))
-end
-
-
--- throws Exception
-function RandomPatrolAI:processAI(allBinaryLayerManager)
-        BasePatrolAI.update(self)
-        BasePatrolAI.processKeyAI(self, self.keyDirection)
-        if self.changedDirection then
-            BasePatrolAI.processKeyAI(self, Canvas.KEY_NUM1)
-            self:updateRandomDistance()
-            self.changedDirection = false
-        end
-end
-
-
-function RandomPatrolAI:nextDirection()
-        BasePatrolAI.nextDirection(self)
-        self.changedDirection = true
-end
-
-return RandomPatrolAI
 

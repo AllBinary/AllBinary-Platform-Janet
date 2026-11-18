@@ -1,152 +1,124 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2011 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.layer
+# 
+# AllBinary Open License Version 1 
+# Copyright (c) 2011 AllBinary 
+#  
+# By agreeing to this license you and any business entity you represent are 
+# legally bound to the AllBinary Open License Version 1 legal agreement. 
+#  
+# You may obtain the AllBinary Open License Version 1 legal agreement from 
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+#  
+# Created By: Travis Berthelot 
+#   
+# Generated Code Do Not Modify
+# package org.allbinary.layer
 
-local LayerManagerEvent = require("org.allbinary.layer.event.LayerManagerEvent")
-local LayerManagerEventHandler = require("org.allbinary.layer.event.LayerManagerEventHandler")
-local LayerManager = require("org.allbinary.layer.LayerManager")
+(import ../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- LayerManagerEvent/jnew_2 [& args] (JR/call jfile "../../../org/allbinary/layer/event/LayerManagerEvent" "jnew_2" args))
+(defn- LayerManagerEventHandler/jm_getInstance [& args] (JR/call jfile "../../../org/allbinary/layer/event/LayerManagerEventHandler" "jm_getInstance" args))
+(import ./LayerManager :as LayerManager)
+(defn- LayerManagerNoDebug/jm_getInstance [& args] (JR/call jfile "./LayerManagerNoDebug" "jm_getInstance" args))
 
-local function java_new_array(default, size, ...)
-    local array = {n = size}
-    for index = 1, size do
-        if select("#", ...) > 0 then array[index] = java_new_array(default, ...) else array[index] = default end
-    end
-    return array
-end
+# Java class AllBinaryLayerManager
+(var jproto nil)
+(var jnew_0 nil)
+(var jm_getLayerProcessorArray nil)
+(var jm_setLayerProcessorArray nil)
+(var jm_log nil)
+(var jm_append nil)
+(var jm_appendAt nil)
+(var jm_appendProcessors nil)
+(var jm_remove nil)
+(var jm_process nil)
+(var jm_cleanup nil)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+    
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "AllBinaryLayerManager" :f_layerManagerEventHandler nil :f_createLayerManagerEvent nil :f_deleteLayerManagerEvent nil :f_basicLayerProcessorArray nil} jproto))
+    (put this :f_layerManagerEventHandler (LayerManagerEventHandler/jm_getInstance))
+    (put this :f_createLayerManagerEvent (LayerManagerEvent/jnew_2 this ((this :f_layerManagerEventHandler) :f_CREATE)))
+    (put this :f_deleteLayerManagerEvent (LayerManagerEvent/jnew_2 this ((this :f_layerManagerEventHandler) :f_DELETE)))
+    (put this :f_basicLayerProcessorArray (array/new-filled 0 nil))
+        (JR/superInit this (LayerManager/jnew_1 (LayerManagerNoDebug/jm_getInstance)))
+    this))
+    
+(set jm_getLayerProcessorArray (fn jm_getLayerProcessorArray [this]
+    (label jreturn
+        (return jreturn (this :f_basicLayerProcessorArray)))))
+    
+(set jm_setLayerProcessorArray (fn jm_setLayerProcessorArray [this _layerProcessorArray]
+        (set (this :f_basicLayerProcessorArray) _layerProcessorArray)))
+    
+(set jm_log (fn jm_log [this]
+        (var _size (length (this :f_basicLayerProcessorArray)))
+        (do
+            (var _index 0)
+            (while (< _index _size)
+                (do
+            (var _layerProcessorInterface ((this :f_basicLayerProcessorArray) _index)))
+                (do (set _index (JR/i32 (+ _index 1))))))))
+    
+(set jm_append (fn jm_append [this _layerInterface]
+        (if (not (:jm_contains this _layerInterface))
+            (do
+            (:jm_appendProcessors this _layerInterface)
+            ((get LayerManager/jproto :jm_append) this _layerInterface)))))
+    
+(set jm_appendAt (fn jm_appendAt [this _layerInterface _index]
+        (if (not (:jm_contains this _layerInterface))
+            (do
+            (:jm_appendProcessors this _layerInterface)
+            ((get LayerManager/jproto :jm_appendAt) this _layerInterface _index)))))
+    
+(set jm_appendProcessors (fn jm_appendProcessors [this _layerInterface]
+        (:jm_setLayerInterface (this :f_createLayerManagerEvent) _layerInterface)
+        (:jm_fireEvent (this :f_layerManagerEventHandler) (this :f_createLayerManagerEvent))
+        (var _layerProcessorInterface nil)
+        (do
+            (var _index (length (this :f_basicLayerProcessorArray)))
+            (while (>= (set _index (JR/i32 (- _index 1))) 0)
+                (do
+            (set _layerProcessorInterface ((this :f_basicLayerProcessorArray) _index))
+            (if (:jm_isProcessorLayer _layerProcessorInterface _layerInterface)
+                (do
+                (JR/className (:jm_getLayerManager _layerProcessorInterface)))))))))
+    
+(set jm_remove (fn jm_remove [this _layerInterface]
+        (:jm_setLayerInterface (this :f_deleteLayerManagerEvent) _layerInterface)
+        (:jm_fireDeleteEvent (this :f_layerManagerEventHandler) (this :f_deleteLayerManagerEvent))
+        (var _layerProcessorInterface nil)
+        (do
+            (var _index (length (this :f_basicLayerProcessorArray)))
+            (while (>= (set _index (JR/i32 (- _index 1))) 0)
+                (do
+            (set _layerProcessorInterface ((this :f_basicLayerProcessorArray) _index))
+            (JR/className (:jm_getLayerManager _layerProcessorInterface)))))
+        ((get LayerManager/jproto :jm_remove) this _layerInterface)))
+    
+(set jm_process (fn jm_process [this]
+        (var _layerProcessorInterface nil)
+        (var _size (length (this :f_basicLayerProcessorArray)))
+        (do
+            (var _index 0)
+            (while (< _index _size)
+                (do
+            (set _layerProcessorInterface ((this :f_basicLayerProcessorArray) _index))
+            (:jm_process _layerProcessorInterface this))
+                (do (set _index (JR/i32 (+ _index 1))))))))
+    
+(set jm_cleanup (fn jm_cleanup [this]
+        (var _layerProcessorInterface nil)
+        (var _size (length (this :f_basicLayerProcessorArray)))
+        (do
+            (var _index 0)
+            (while (< _index _size)
+                (do
+            (set _layerProcessorInterface ((this :f_basicLayerProcessorArray) _index))
+            (JR/className (:jm_getLayerManager _layerProcessorInterface)))
+                (do (set _index (JR/i32 (+ _index 1))))))
+        ((get LayerManager/jproto :jm_cleanup) this)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jproto (table/setproto @{:jm_getLayerProcessorArray jm_getLayerProcessorArray :jm_setLayerProcessorArray jm_setLayerProcessorArray :jm_log jm_log :jm_append jm_append :jm_appendAt jm_appendAt :jm_appendProcessors jm_appendProcessors :jm_remove jm_remove :jm_process jm_process :jm_cleanup jm_cleanup} LayerManager/jproto))
 
-local AllBinaryLayerManager = {}
-AllBinaryLayerManager.__index = AllBinaryLayerManager
-AllBinaryLayerManager.className = "AllBinaryLayerManager"
-setmetatable(AllBinaryLayerManager, {__index = LayerManager})
-
-function AllBinaryLayerManager:_init_fields()
-    self.layerManagerEventHandler = LayerManagerEventHandler.getInstance()
-    self.createLayerManagerEvent = LayerManagerEvent.new(self, self.layerManagerEventHandler.CREATE)
-    self.deleteLayerManagerEvent = LayerManagerEvent.new(self, self.layerManagerEventHandler.DELETE)
-    self.basicLayerProcessorArray = java_new_array(nil, 0)
-end
-
-
-function AllBinaryLayerManager.new()
-    local self = setmetatable(LayerManager.new(LayerManagerNoDebug.getInstance()), AllBinaryLayerManager)
-    self:_init_fields()
-        -- super(...) made self above
-    return self
-end
-
-
-function AllBinaryLayerManager:getLayerProcessorArray()
-        return self.basicLayerProcessorArray
-end
-
-
-function AllBinaryLayerManager:setLayerProcessorArray(layerProcessorArray)
-        self.basicLayerProcessorArray = layerProcessorArray
-end
-
-
-function AllBinaryLayerManager:log()
-        local size = (self.basicLayerProcessorArray.n or #self.basicLayerProcessorArray)
-        for index = 0, size - 1 do
-            local layerProcessorInterface = self.basicLayerProcessorArray[index + 1]
-        end
-end
-
-
--- throws Exception
-function AllBinaryLayerManager:append(layerInterface)
-        if not self:contains(layerInterface) then
-            self:appendProcessors(layerInterface)
-            LayerManager.append(self, layerInterface)
-        end
-end
-
-
--- throws Exception
-function AllBinaryLayerManager:appendAt(layerInterface, index)
-        if not self:contains(layerInterface) then
-            self:appendProcessors(layerInterface)
-            LayerManager.appendAt(self, layerInterface, index)
-        end
-end
-
-
--- throws Exception
-function AllBinaryLayerManager:appendProcessors(layerInterface)
-        self.createLayerManagerEvent:setLayerInterface(layerInterface)
-        self.layerManagerEventHandler:fireEvent(self.createLayerManagerEvent)
-        local layerProcessorInterface = nil
-        do
-            local index = (self.basicLayerProcessorArray.n or #self.basicLayerProcessorArray)
-            while (function() index = index - 1 return index end)() >= 0 do
-            layerProcessorInterface = self.basicLayerProcessorArray[index + 1]
-            if layerProcessorInterface:isProcessorLayer(layerInterface) then
-                layerProcessorInterface:getLayerManager():append(layerInterface)
-            end
-            end
-        end
-end
-
-
--- throws Exception
-function AllBinaryLayerManager:remove(layerInterface)
-        self.deleteLayerManagerEvent:setLayerInterface(layerInterface)
-        self.layerManagerEventHandler:fireDeleteEvent(self.deleteLayerManagerEvent)
-        local layerProcessorInterface = nil
-        do
-            local index = (self.basicLayerProcessorArray.n or #self.basicLayerProcessorArray)
-            while (function() index = index - 1 return index end)() >= 0 do
-            layerProcessorInterface = self.basicLayerProcessorArray[index + 1]
-            layerProcessorInterface:getLayerManager():remove(layerInterface)
-            end
-        end
-        LayerManager.remove(self, layerInterface)
-end
-
-
--- throws Exception
-function AllBinaryLayerManager:process()
-        local layerProcessorInterface = nil
-        local size = (self.basicLayerProcessorArray.n or #self.basicLayerProcessorArray)
-        for index = 0, size - 1 do
-            layerProcessorInterface = self.basicLayerProcessorArray[index + 1]
-            layerProcessorInterface:process(self)
-        end
-end
-
-
--- throws Exception
-function AllBinaryLayerManager:cleanup()
-        local layerProcessorInterface = nil
-        local size = (self.basicLayerProcessorArray.n or #self.basicLayerProcessorArray)
-        for index = 0, size - 1 do
-            layerProcessorInterface = self.basicLayerProcessorArray[index + 1]
-            layerProcessorInterface:getLayerManager():cleanup()
-        end
-        LayerManager.cleanup(self)
-end
-
-return AllBinaryLayerManager
 

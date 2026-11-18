@@ -1,60 +1,48 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.input.motion.button
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.input.motion.button
 
-local Features = require("org.allbinary.game.configuration.feature.Features")
-local OpenGLFeatureFactory = require("org.allbinary.graphics.opengles.OpenGLFeatureFactory")
-local OpenGLImageCacheFactory = require("org.allbinary.image.opengles.OpenGLImageCacheFactory")
-local TouchButtonResourceAnimationInterfaceFactoryInterfaceFactory = require("org.allbinary.input.motion.button.TouchButtonResourceAnimationInterfaceFactoryInterfaceFactory")
+(import ../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- Features/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/game/configuration/feature/Features" "jm_getInstance" args))
+(defn- OpenGLFeatureFactory/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/graphics/opengles/OpenGLFeatureFactory" "jm_getInstance" args))
+(defn- OpenGLImageCacheFactory/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/image/opengles/OpenGLImageCacheFactory" "jm_getInstance" args))
+(import ./TouchButtonResourceAnimationInterfaceFactoryInterfaceFactory :as TouchButtonResourceAnimationInterfaceFactoryInterfaceFactory)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class TouchButtonResourceOpenGLESAnimationInterfaceFactoryInterfaceFactory
+(var jproto nil)
+(var jnew_0 nil)
+(var jm_init nil)
+(var jm_isFeature nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "TouchButtonResourceOpenGLESAnimationInterfaceFactoryInterfaceFactory"} jproto))
+        (JR/superInit this (TouchButtonResourceAnimationInterfaceFactoryInterfaceFactory/jnew_1 "OpenGL TouchButton Animations"))
+    this))
+    
+(set jm_init (fn jm_init [this _level]
+        ((get TouchButtonResourceAnimationInterfaceFactoryInterfaceFactory/jproto :jm_initImageCache) this (OpenGLImageCacheFactory/jm_getInstance) _level)))
+    
+(set jm_isFeature (fn jm_isFeature [this]
+    (label jreturn
+        (if (:jm_isDefault (Features/jm_getInstance) ((OpenGLFeatureFactory/jm_getInstance) :f_OPENGL))
+            (do
+            (return jreturn true))
+            (do
+            (return jreturn false))))))
 
-local TouchButtonResourceOpenGLESAnimationInterfaceFactoryInterfaceFactory = {}
-TouchButtonResourceOpenGLESAnimationInterfaceFactoryInterfaceFactory.__index = TouchButtonResourceOpenGLESAnimationInterfaceFactoryInterfaceFactory
-TouchButtonResourceOpenGLESAnimationInterfaceFactoryInterfaceFactory.className = "TouchButtonResourceOpenGLESAnimationInterfaceFactoryInterfaceFactory"
-setmetatable(TouchButtonResourceOpenGLESAnimationInterfaceFactoryInterfaceFactory, {__index = TouchButtonResourceAnimationInterfaceFactoryInterfaceFactory})
+(set jproto (table/setproto @{:jm_init jm_init :jm_isFeature jm_isFeature} TouchButtonResourceAnimationInterfaceFactoryInterfaceFactory/jproto))
 
-
-function TouchButtonResourceOpenGLESAnimationInterfaceFactoryInterfaceFactory.new()
-    local self = setmetatable(TouchButtonResourceAnimationInterfaceFactoryInterfaceFactory.new("OpenGL TouchButton Animations"), TouchButtonResourceOpenGLESAnimationInterfaceFactoryInterfaceFactory)
-        -- super(...) made self above
-    return self
-end
-
-
--- throws Exception
-function TouchButtonResourceOpenGLESAnimationInterfaceFactoryInterfaceFactory:init(level)
-        TouchButtonResourceAnimationInterfaceFactoryInterfaceFactory.initImageCache(self, OpenGLImageCacheFactory.getInstance(), level)
-end
-
-
-function TouchButtonResourceOpenGLESAnimationInterfaceFactoryInterfaceFactory:isFeature()
-        if Features.getInstance():isDefault(OpenGLFeatureFactory.getInstance().OPENGL) then
-            return true
-        else
-            return false
-        end
-end
-
-return TouchButtonResourceOpenGLESAnimationInterfaceFactoryInterfaceFactory
 

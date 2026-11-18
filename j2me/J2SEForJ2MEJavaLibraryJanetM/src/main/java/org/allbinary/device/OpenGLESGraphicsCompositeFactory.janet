@@ -1,60 +1,54 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2022 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.device
+# 
+# AllBinary Open License Version 1 
+# Copyright (c) 2022 AllBinary 
+#  
+# By agreeing to this license you and any business entity you represent are 
+# legally bound to the AllBinary Open License Version 1 legal agreement. 
+#  
+# You may obtain the AllBinary Open License Version 1 legal agreement from 
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+#  
+# Created By: Travis Berthelot 
+#   
+# Generated Code Do Not Modify
+# package org.allbinary.device
 
+(import ../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- OpenGLESGraphicsFactory/jnew_0 [& args] (JR/call jfile "./OpenGLESGraphicsFactory" "jnew_0" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class OpenGLESGraphicsCompositeFactory
+(var jproto nil)
+(var jcell_instance :jnone)
+(var jstatic_instance nil)
+(var jsetstatic_instance nil)
+(var jnew_0 nil)
+(var jm_getInstance nil)
+(var jm_set nil)
+(var jm_get nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jstatic_instance (fn jstatic_instance []
+  (when (= jcell_instance :jnone) (set jcell_instance (jnew_0)))
+  jcell_instance))
+(set jsetstatic_instance (fn jsetstatic_instance [value] (set jcell_instance value)))
 
-local OpenGLESGraphicsCompositeFactory = {}
-OpenGLESGraphicsCompositeFactory.__index = OpenGLESGraphicsCompositeFactory
-OpenGLESGraphicsCompositeFactory.className = "OpenGLESGraphicsCompositeFactory"
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "OpenGLESGraphicsCompositeFactory" :f_openGLESGraphicsFactory nil} jproto))
+    (put this :f_openGLESGraphicsFactory (OpenGLESGraphicsFactory/jnew_0))
+    this))
 
-function OpenGLESGraphicsCompositeFactory:_init_fields()
-    self.openGLESGraphicsFactory = OpenGLESGraphicsFactory.new()
-end
+    
+(set jm_getInstance (fn jm_getInstance []
+    (label jreturn
+        (return jreturn (jstatic_instance)))))
+    
+(set jm_set (fn jm_set [this _openGLESGraphicsFactory]
+        (set (this :f_openGLESGraphicsFactory) _openGLESGraphicsFactory)))
+    
+(set jm_get (fn jm_get [this]
+    (label jreturn
+        (return jreturn (this :f_openGLESGraphicsFactory)))))
 
-function OpenGLESGraphicsCompositeFactory.new()
-    local self = setmetatable({}, OpenGLESGraphicsCompositeFactory)
-    self:_init_fields()
-    return self
-end
+(set jproto @{:jm_set jm_set :jm_get jm_get})
 
-
-function OpenGLESGraphicsCompositeFactory.getInstance()
-        return OpenGLESGraphicsCompositeFactory.instance
-end
-
-
-function OpenGLESGraphicsCompositeFactory:set(openGLESGraphicsFactory)
-        self.openGLESGraphicsFactory = openGLESGraphicsFactory
-end
-
-
-function OpenGLESGraphicsCompositeFactory:get()
-        return self.openGLESGraphicsFactory
-end
-
-OpenGLESGraphicsCompositeFactory.instance = OpenGLESGraphicsCompositeFactory.new()
-
-return OpenGLESGraphicsCompositeFactory
 

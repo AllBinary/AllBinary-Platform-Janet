@@ -1,107 +1,86 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.configuration.event
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.game.configuration.event
 
-local Feature = require("org.allbinary.game.configuration.feature.Feature")
-local Features = require("org.allbinary.game.configuration.feature.Features")
-local GameFeatureUtil = require("org.allbinary.game.configuration.feature.GameFeatureUtil")
-local ForcedLogUtil = require("org.allbinary.logic.communication.log.ForcedLogUtil")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
-local AllBinaryEventObject = require("org.allbinary.logic.util.event.AllBinaryEventObject")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
-local BasicArrayListD = require("org.allbinary.util.BasicArrayListD")
-local GameFeatureListenerInterface = require("org.allbinary.game.configuration.event.GameFeatureListenerInterface")
+(import ../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- Features/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/game/configuration/feature/Features" "jm_getInstance" args))
+(defn- GameFeatureUtil/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/game/configuration/feature/GameFeatureUtil" "jm_getInstance" args))
+(defn- ForcedLogUtil/jm_log [& args] (JR/call jfile "../../../../../org/allbinary/logic/communication/log/ForcedLogUtil" "jm_log" args))
+(defn- LogUtil/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/logic/communication/log/LogUtil" "jm_getInstance" args))
+(defn- StringMaker/jnew_0 [& args] (JR/call jfile "../../../../../org/allbinary/logic/string/StringMaker" "jnew_0" args))
+(defn- StringUtil/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/logic/string/StringUtil" "jm_getInstance" args))
+(defn- CommonStrings/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/string/CommonStrings" "jm_getInstance" args))
+(defn- BasicArrayListD/jnew_0 [& args] (JR/call jfile "../../../../../org/allbinary/util/BasicArrayListD" "jnew_0" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class BaseChangedGameFeatureListener
+(var jproto nil)
+(var jnew_0 nil)
+(var jm_onEvent nil)
+(var jm_onGameFeatureChange nil)
+(var jm_add nil)
+(var jm_remove nil)
+(var jm_setChanged nil)
+(var jm_isChangedFeature nil)
+(var jm_isChanged nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "BaseChangedGameFeatureListener" :f_logUtil nil :f_gameFeatureUtil nil :f_list nil :f_changed false} jproto))
+    (put this :f_logUtil (LogUtil/jm_getInstance))
+    (put this :f_gameFeatureUtil (GameFeatureUtil/jm_getInstance))
+    (put this :f_list (BasicArrayListD/jnew_0))
+    (put this :f_changed true)
+    this))
 
-local BaseChangedGameFeatureListener = {}
-BaseChangedGameFeatureListener.__index = BaseChangedGameFeatureListener
-BaseChangedGameFeatureListener.className = "BaseChangedGameFeatureListener"
+    
+(set jm_onEvent (fn jm_onEvent [this _eventObject]
+        (ForcedLogUtil/jm_log ((CommonStrings/jm_getInstance) :f_NOT_IMPLEMENTED) this)))
+    
+(set jm_onGameFeatureChange (fn jm_onGameFeatureChange [this _gameFeatureEvent]
+        (:jm_putF (this :f_logUtil) (:jm_toString (:jm_append (:jm_append (StringMaker/jnew_0) ((this :f_gameFeatureUtil) :f_GAME_FEATURE_CHANGED)) (:jm_getWhatChanged _gameFeatureEvent))) this ((this :f_gameFeatureUtil) :f_ON_GAME_FEATURE_CHANGE))
+        (:jm_add (this :f_list) (:jm_getGameOption _gameFeatureEvent))
+        (:jm_setChanged this true)))
+    
+(set jm_add (fn jm_add [this _gameFeature]
+        (:jm_add (this :f_list) _gameFeature)))
+    
+(set jm_remove (fn jm_remove [this _gameFeature]
+        (:jm_remove (this :f_list) _gameFeature)))
+    
+(set jm_setChanged (fn jm_setChanged [this _initialized]
+        (set (this :f_changed) _initialized)
+        (if (not (:jm_isChanged this))
+            (do
+            (:jm_clear (this :f_list))))))
+    
+(set jm_isChangedFeature (fn jm_isChangedFeature [this _gameFeature]
+    (label jreturn
+        (var _isChanged (:jm_contains (this :f_list) _gameFeature))
+        (var _stringBuffer (StringMaker/jnew_0))
+        (:jm_append _stringBuffer "GameFeature: ")
+        (:jm_append _stringBuffer (:jm_toString_1 (StringUtil/jm_getInstance) _gameFeature))
+        (:jm_append _stringBuffer " isFeature: ")
+        (:jm_appendboolean _stringBuffer (:jm_isFeature (Features/jm_getInstance) _gameFeature))
+        (:jm_append _stringBuffer " isChanged: ")
+        (:jm_appendboolean _stringBuffer _isChanged)
+        (:jm_putF (this :f_logUtil) (:jm_toString _stringBuffer) this "isChanged")
+        (return jreturn _isChanged))))
+    
+(set jm_isChanged (fn jm_isChanged [this]
+    (label jreturn
+        (return jreturn (this :f_changed)))))
 
-function BaseChangedGameFeatureListener:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-    self.gameFeatureUtil = GameFeatureUtil.getInstance()
-    self.list = BasicArrayListD.new()
-    self.changed = true
-end
+(set jproto @{:jm_onEvent jm_onEvent :jm_onGameFeatureChange jm_onGameFeatureChange :jm_add jm_add :jm_remove jm_remove :jm_setChanged jm_setChanged :jm_isChangedFeature jm_isChangedFeature :jm_isChanged jm_isChanged})
 
-function BaseChangedGameFeatureListener.new()
-    local self = setmetatable({}, BaseChangedGameFeatureListener)
-    self:_init_fields()
-    return self
-end
-
-
-function BaseChangedGameFeatureListener:onEvent(eventObject)
-        ForcedLogUtil.log(CommonStrings.getInstance().NOT_IMPLEMENTED, self)
-end
-
-
-function BaseChangedGameFeatureListener:onGameFeatureChange(gameFeatureEvent)
-        self.logUtil:putF(tostring(StringMaker.new():append(self.gameFeatureUtil.GAME_FEATURE_CHANGED):append(gameFeatureEvent:getWhatChanged())), self, self.gameFeatureUtil.ON_GAME_FEATURE_CHANGE)
-        self.list:add(gameFeatureEvent:getGameOption())
-        self:setChanged(true)
-end
-
-
-function BaseChangedGameFeatureListener:add(gameFeature)
-        self.list:add(gameFeature)
-end
-
-
-function BaseChangedGameFeatureListener:remove(gameFeature)
-        self.list:remove(gameFeature)
-end
-
-
-function BaseChangedGameFeatureListener:setChanged(initialized)
-        self.changed = initialized
-        if not self:isChanged() then
-            self.list:clear()
-        end
-end
-
-
-function BaseChangedGameFeatureListener:isChangedFeature(gameFeature)
-        local isChanged = self.list:contains(gameFeature)
-        local stringBuffer = StringMaker.new()
-        stringBuffer:append("GameFeature: ")
-        stringBuffer:append(StringUtil.getInstance():toString(gameFeature))
-        stringBuffer:append(" isFeature: ")
-        stringBuffer:appendboolean(Features.getInstance():isFeature(gameFeature))
-        stringBuffer:append(" isChanged: ")
-        stringBuffer:appendboolean(isChanged)
-        self.logUtil:putF(tostring(stringBuffer), self, "isChanged")
-        return isChanged
-end
-
-
-function BaseChangedGameFeatureListener:isChanged()
-        return self.changed
-end
-
-return BaseChangedGameFeatureListener
 

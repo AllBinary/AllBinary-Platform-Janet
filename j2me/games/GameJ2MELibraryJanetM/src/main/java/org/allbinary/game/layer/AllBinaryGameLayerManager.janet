@@ -1,145 +1,132 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.layer
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.game.layer
 
-local GameInfo = require("org.allbinary.game.GameInfo")
-local NullPlayerGameInputComposite = require("org.allbinary.game.input.NullPlayerGameInputComposite")
-local PlayerGameInputCompositeInterface = require("org.allbinary.game.input.PlayerGameInputCompositeInterface")
-local ItemColorFactory = require("org.allbinary.graphics.ItemColorFactory")
-local BasicColor = require("org.allbinary.graphics.color.BasicColor")
-local BasicColorFactory = require("org.allbinary.graphics.color.BasicColorFactory")
-local AllBinaryLayerManager = require("org.allbinary.layer.AllBinaryLayerManager")
-local LayerProcessor = require("org.allbinary.layer.LayerProcessor")
-local NullUtil = require("org.allbinary.logic.NullUtil")
-local SmallIntegerSingletonFactory = require("org.allbinary.logic.math.SmallIntegerSingletonFactory")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- GameInfo/jstatic_NONE [& args] (JR/call jfile "../../../../org/allbinary/game/GameInfo" "jstatic_NONE" args))
+(defn- NullPlayerGameInputComposite/jstatic_NULL_PLAYER_GAME_INPUT_COMPOSITE [& args] (JR/call jfile "../../../../org/allbinary/game/input/NullPlayerGameInputComposite" "jstatic_NULL_PLAYER_GAME_INPUT_COMPOSITE" args))
+(defn- ItemColorFactory/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/graphics/ItemColorFactory" "jm_getInstance" args))
+(defn- BasicColorFactory/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/graphics/color/BasicColorFactory" "jm_getInstance" args))
+(import ../../../../org/allbinary/layer/AllBinaryLayerManager :as AllBinaryLayerManager)
+(defn- NullUtil/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/logic/NullUtil" "jm_getInstance" args))
+(defn- SmallIntegerSingletonFactory/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/logic/math/SmallIntegerSingletonFactory" "jm_getInstance" args))
+(import ../../../../java/lang/Integer :as Integer)
 
-local function java_new_array(default, size, ...)
-    local array = {n = size}
-    for index = 1, size do
-        if select("#", ...) > 0 then array[index] = java_new_array(default, ...) else array[index] = default end
-    end
-    return array
-end
+# Java class AllBinaryGameLayerManager
+(var jproto nil)
+(var jcell_NULL_ALLBINARY_LAYER_MANAGER :jnone)
+(var jstatic_NULL_ALLBINARY_LAYER_MANAGER nil)
+(var jsetstatic_NULL_ALLBINARY_LAYER_MANAGER nil)
+(var jcell_ID :jnone)
+(var jstatic_ID nil)
+(var jsetstatic_ID nil)
+(var jnew_3 nil)
+(var jm_getNullInstance nil)
+(var jm_getLayerManager nil)
+(var jm_init nil)
+(var jm_getBackgroundBasicColor nil)
+(var jm_setBackgroundBasicColor nil)
+(var jm_getForegroundBasicColor nil)
+(var jm_setForegroundBasicColor nil)
+(var jm_getGameInfo nil)
+(var jm_setGameInfo nil)
+(var jm_setLayerProcessorList nil)
+(var jm_setPlayerGameInputCompositeInterface nil)
+(var jm_getPlayerGameInputCompositeInterface nil)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(set jstatic_NULL_ALLBINARY_LAYER_MANAGER (fn jstatic_NULL_ALLBINARY_LAYER_MANAGER []
+  (when (= jcell_NULL_ALLBINARY_LAYER_MANAGER :jnone) (set jcell_NULL_ALLBINARY_LAYER_MANAGER ((NullUtil/jm_getInstance) :f_NULL_OBJECT)))
+  jcell_NULL_ALLBINARY_LAYER_MANAGER))
+(set jsetstatic_NULL_ALLBINARY_LAYER_MANAGER (fn jsetstatic_NULL_ALLBINARY_LAYER_MANAGER [value] (set jcell_NULL_ALLBINARY_LAYER_MANAGER value)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jstatic_ID (fn jstatic_ID []
+  (when (= jcell_ID :jnone) (set jcell_ID (:jm_getAt (SmallIntegerSingletonFactory/jm_getInstance) 22)))
+  jcell_ID))
+(set jsetstatic_ID (fn jsetstatic_ID [value] (set jcell_ID value)))
 
-local AllBinaryGameLayerManager = {}
-AllBinaryGameLayerManager.__index = AllBinaryGameLayerManager
-AllBinaryGameLayerManager.className = "AllBinaryGameLayerManager"
-setmetatable(AllBinaryGameLayerManager, {__index = AllBinaryLayerManager})
+    
+(set jm_getNullInstance (fn jm_getNullInstance []
+    (label jreturn
+        (if (= (jstatic_NULL_ALLBINARY_LAYER_MANAGER) ((NullUtil/jm_getInstance) :f_NULL_OBJECT))
+            (do
+            (set jcell_NULL_ALLBINARY_LAYER_MANAGER (jnew_3 ((BasicColorFactory/jm_getInstance) :f_BLACK) ((BasicColorFactory/jm_getInstance) :f_WHITE) (GameInfo/jstatic_NONE)))))
+        (return jreturn (jstatic_NULL_ALLBINARY_LAYER_MANAGER)))))
+    
+(set jnew_3 (fn jnew_3 [_backgroundBasicColor _foregroundBasicColor _gameInfo]
+    (var this (table/setproto @{:jclass "AllBinaryGameLayerManager" :f_backgroundBasicColor nil :f_foregroundBasicColor nil :f_gameInfo nil :f_playerGameInputCompositeInterface nil} jproto))
+    
+    
+    
+    (put this :f_playerGameInputCompositeInterface (NullPlayerGameInputComposite/jstatic_NULL_PLAYER_GAME_INPUT_COMPOSITE))
+    (JR/superInit this (AllBinaryLayerManager/jnew_0))
+        (set (this :f_backgroundBasicColor) _backgroundBasicColor)
+        (set (this :f_foregroundBasicColor) _foregroundBasicColor)
+        (var _itemColorFactory (ItemColorFactory/jm_getInstance))
+        (set (_itemColorFactory :f_INVERT_PAINT) (:jm_intValue (this :f_backgroundBasicColor)))
+        (set (_itemColorFactory :f_PAINT) (:jm_intValue (this :f_foregroundBasicColor)))
+        (set (this :f_gameInfo) _gameInfo)
+    this))
+    
+(set jm_getLayerManager (fn jm_getLayerManager [this]
+    (label jreturn
+        (return jreturn this))))
+    
+(set jm_init (fn jm_init [this]
+    nil))
+    
+(set jm_getBackgroundBasicColor (fn jm_getBackgroundBasicColor [this]
+    (label jreturn
+        (return jreturn (this :f_backgroundBasicColor)))))
+    
+(set jm_setBackgroundBasicColor (fn jm_setBackgroundBasicColor [this _backgroundBasicColor]
+        (set (this :f_backgroundBasicColor) _backgroundBasicColor)
+        (set ((ItemColorFactory/jm_getInstance) :f_INVERT_PAINT) (:jm_intValue (this :f_backgroundBasicColor)))))
+    
+(set jm_getForegroundBasicColor (fn jm_getForegroundBasicColor [this]
+    (label jreturn
+        (return jreturn (this :f_foregroundBasicColor)))))
+    
+(set jm_setForegroundBasicColor (fn jm_setForegroundBasicColor [this _foregroundBasicColor]
+        (set (this :f_foregroundBasicColor) _foregroundBasicColor)
+        (set ((ItemColorFactory/jm_getInstance) :f_PAINT) (:jm_intValue (this :f_foregroundBasicColor)))))
+    
+(set jm_getGameInfo (fn jm_getGameInfo [this]
+    (label jreturn
+        (return jreturn (this :f_gameInfo)))))
+    
+(set jm_setGameInfo (fn jm_setGameInfo [this _gameInfo]
+        (set (this :f_gameInfo) _gameInfo)))
+    
+(set jm_setLayerProcessorList (fn jm_setLayerProcessorList [this _list]
+        (var _layerProcessorInterfaceArray (array/new-filled (:jm_size _list) nil))
+        (var _size (length _layerProcessorInterfaceArray))
+        (do
+            (var _index 0)
+            (while (< _index _size)
+                (do
+            (set (_layerProcessorInterfaceArray _index) ((_list :f_objectArray) _index)))
+                (do (set _index (JR/i32 (+ _index 1))))))
+        (:jm_setLayerProcessorArray this _layerProcessorInterfaceArray)))
+    
+(set jm_setPlayerGameInputCompositeInterface (fn jm_setPlayerGameInputCompositeInterface [this _playerGameInputCompositeInterface]
+        (set (this :f_playerGameInputCompositeInterface) _playerGameInputCompositeInterface)))
+    
+(set jm_getPlayerGameInputCompositeInterface (fn jm_getPlayerGameInputCompositeInterface [this]
+    (label jreturn
+        (return jreturn (this :f_playerGameInputCompositeInterface)))))
 
-function AllBinaryGameLayerManager:_init_fields()
-    self.backgroundBasicColor = nil
-    self.foregroundBasicColor = nil
-    self.gameInfo = nil
-    self.playerGameInputCompositeInterface = NullPlayerGameInputComposite.NULL_PLAYER_GAME_INPUT_COMPOSITE
-end
+(set jproto (table/setproto @{:jm_getLayerManager jm_getLayerManager :jm_init jm_init :jm_getBackgroundBasicColor jm_getBackgroundBasicColor :jm_setBackgroundBasicColor jm_setBackgroundBasicColor :jm_getForegroundBasicColor jm_getForegroundBasicColor :jm_setForegroundBasicColor jm_setForegroundBasicColor :jm_getGameInfo jm_getGameInfo :jm_setGameInfo jm_setGameInfo :jm_setLayerProcessorList jm_setLayerProcessorList :jm_setPlayerGameInputCompositeInterface jm_setPlayerGameInputCompositeInterface :jm_getPlayerGameInputCompositeInterface jm_getPlayerGameInputCompositeInterface} AllBinaryLayerManager/jproto))
 
-
-function AllBinaryGameLayerManager.getNullInstance()
-        if AllBinaryGameLayerManager.NULL_ALLBINARY_LAYER_MANAGER == NullUtil.getInstance().NULL_OBJECT then
-            AllBinaryGameLayerManager.NULL_ALLBINARY_LAYER_MANAGER = AllBinaryGameLayerManager.new(BasicColorFactory.getInstance().BLACK, BasicColorFactory.getInstance().WHITE, GameInfo.NONE)
-        end
-        return AllBinaryGameLayerManager.NULL_ALLBINARY_LAYER_MANAGER
-end
-
-
-function AllBinaryGameLayerManager.new(backgroundBasicColor, foregroundBasicColor, gameInfo)
-    local self = setmetatable(AllBinaryLayerManager.new(), AllBinaryGameLayerManager)
-    self:_init_fields()
-        self.backgroundBasicColor = backgroundBasicColor
-        self.foregroundBasicColor = foregroundBasicColor
-        local itemColorFactory = ItemColorFactory.getInstance()
-        itemColorFactory.INVERT_PAINT = math.tointeger(self.backgroundBasicColor // 1)
-        itemColorFactory.PAINT = math.tointeger(self.foregroundBasicColor // 1)
-        self.gameInfo = gameInfo
-    return self
-end
-
-
-function AllBinaryGameLayerManager:getLayerManager()
-        return self
-end
-
-
-function AllBinaryGameLayerManager:init()
-end
-
-
-function AllBinaryGameLayerManager:getBackgroundBasicColor()
-        return self.backgroundBasicColor
-end
-
-
-function AllBinaryGameLayerManager:setBackgroundBasicColor(backgroundBasicColor)
-        self.backgroundBasicColor = backgroundBasicColor
-        ItemColorFactory.getInstance().INVERT_PAINT = math.tointeger(self.backgroundBasicColor // 1)
-end
-
-
-function AllBinaryGameLayerManager:getForegroundBasicColor()
-        return self.foregroundBasicColor
-end
-
-
-function AllBinaryGameLayerManager:setForegroundBasicColor(foregroundBasicColor)
-        self.foregroundBasicColor = foregroundBasicColor
-        ItemColorFactory.getInstance().PAINT = math.tointeger(self.foregroundBasicColor // 1)
-end
-
-
-function AllBinaryGameLayerManager:getGameInfo()
-        return self.gameInfo
-end
-
-
-function AllBinaryGameLayerManager:setGameInfo(gameInfo)
-        self.gameInfo = gameInfo
-end
-
-
-function AllBinaryGameLayerManager:setLayerProcessorList(list)
-        local layerProcessorInterfaceArray = java_new_array(nil, list:size())
-        local size = (layerProcessorInterfaceArray.n or #layerProcessorInterfaceArray)
-        for index = 0, size - 1 do
-            layerProcessorInterfaceArray[index + 1] = list.objectArray[index + 1]
-        end
-        self:setLayerProcessorArray(layerProcessorInterfaceArray)
-end
-
-
-function AllBinaryGameLayerManager:setPlayerGameInputCompositeInterface(playerGameInputCompositeInterface)
-        self.playerGameInputCompositeInterface = playerGameInputCompositeInterface
-end
-
-
-function AllBinaryGameLayerManager:getPlayerGameInputCompositeInterface()
-        return self.playerGameInputCompositeInterface
-end
-
-AllBinaryGameLayerManager.NULL_ALLBINARY_LAYER_MANAGER = NullUtil.getInstance().NULL_OBJECT
-AllBinaryGameLayerManager.ID = SmallIntegerSingletonFactory.getInstance():getAt(22)
-
-return AllBinaryGameLayerManager
 

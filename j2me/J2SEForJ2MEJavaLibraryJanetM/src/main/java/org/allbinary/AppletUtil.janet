@@ -1,52 +1,48 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary
 
+(import ../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+#import org.allbinary.logic.communication.log.PreLogUtil;
+# Java class AppletUtil
+(var jproto nil)
+(var jcell_applet :jnone)
+(var jstatic_applet nil)
+(var jsetstatic_applet nil)
+(var jnew_0 nil)
+(var jm_setApplet nil)
+(var jm_isAppletLoader nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jstatic_applet (fn jstatic_applet []
+  (when (= jcell_applet :jnone) (set jcell_applet false))
+  jcell_applet))
+(set jsetstatic_applet (fn jsetstatic_applet [value] (set jcell_applet value)))
 
---import org.allbinary.logic.communication.log.PreLogUtil;
-local AppletUtil = {}
-AppletUtil.__index = AppletUtil
-AppletUtil.className = "AppletUtil"
+    
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "AppletUtil"} jproto))
+    this))
+    
+(set jm_setApplet (fn jm_setApplet []
+        (set jcell_applet true)))
+    
+(set jm_isAppletLoader (fn jm_isAppletLoader [_anyType]
+    (label jreturn
+        (return jreturn (jstatic_applet)))))
 
+(set jproto @{})
 
-function AppletUtil.new()
-    local self = setmetatable({}, AppletUtil)
-    return self
-end
-
-
-function AppletUtil.setApplet()
-        AppletUtil.applet = true
-end
-
-
-function AppletUtil.isAppletLoader(anyType)
-        return AppletUtil.applet
-end
-
-AppletUtil.applet = false
-
-return AppletUtil
 

@@ -1,57 +1,47 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.view
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.view
 
-local ViewPosition = require("org.allbinary.view.ViewPosition")
+(import ../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(import ./ViewPosition :as ViewPosition)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class StaticViewPosition
+(var jproto nil)
+(var jnew_3 nil)
+(var jm_getX nil)
+(var jm_getY nil)
+(var jm_getZ nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jnew_3 (fn jnew_3 [_x _y _z]
+    (var this (table/setproto @{:jclass "StaticViewPosition"} jproto))
+        (JR/superInit this (ViewPosition/jnew_3 _x _y _z))
+    this))
+    
+(set jm_getX (fn jm_getX [this]
+    (label jreturn
+        (return jreturn (:jm_getRawX this)))))
+    
+(set jm_getY (fn jm_getY [this]
+    (label jreturn
+        (return jreturn (:jm_getRawY this)))))
+    
+(set jm_getZ (fn jm_getZ [this]
+    (label jreturn
+        (return jreturn (:jm_getRawZ this)))))
 
-local StaticViewPosition = {}
-StaticViewPosition.__index = StaticViewPosition
-StaticViewPosition.className = "StaticViewPosition"
-setmetatable(StaticViewPosition, {__index = ViewPosition})
+(set jproto (table/setproto @{:jm_getX jm_getX :jm_getY jm_getY :jm_getZ jm_getZ} ViewPosition/jproto))
 
-
-function StaticViewPosition.new(x, y, z)
-    local self = setmetatable(ViewPosition.new(x, y, z), StaticViewPosition)
-        -- super(...) made self above
-    return self
-end
-
-
-function StaticViewPosition:getX()
-        return self:getRawX()
-end
-
-
-function StaticViewPosition:getY()
-        return self:getRawY()
-end
-
-
-function StaticViewPosition:getZ()
-        return self:getRawZ()
-end
-
-return StaticViewPosition
 

@@ -23,6 +23,7 @@
 
 (set jnew_0 (fn jnew_0 []
     (var this (table/setproto @{:jclass "ABHashSet"} jproto))
+    (JR/superInit this (HashSet/jnew_0))
     this))
 
 

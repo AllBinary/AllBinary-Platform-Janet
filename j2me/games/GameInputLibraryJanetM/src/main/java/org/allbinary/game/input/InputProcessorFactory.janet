@@ -1,55 +1,50 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.input
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.game.input
 
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- InputProcessor/jnew_0 [& args] (JR/call jfile "./InputProcessor" "jnew_0" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class InputProcessorFactory
+(var jproto nil)
+(var jcell_instance :jnone)
+(var jstatic_instance nil)
+(var jsetstatic_instance nil)
+(var jnew_0 nil)
+(var jm_getInstance nil)
+(var jm_getInputProcessor nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jstatic_instance (fn jstatic_instance []
+  (when (= jcell_instance :jnone) (set jcell_instance (jnew_0)))
+  jcell_instance))
+(set jsetstatic_instance (fn jsetstatic_instance [value] (set jcell_instance value)))
 
-local InputProcessorFactory = {}
-InputProcessorFactory.__index = InputProcessorFactory
-InputProcessorFactory.className = "InputProcessorFactory"
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "InputProcessorFactory" :f_inputProcessor nil} jproto))
+    (put this :f_inputProcessor (InputProcessor/jnew_0))
+    this))
 
-function InputProcessorFactory:_init_fields()
-    self.inputProcessor = InputProcessor.new()
-end
+    
+(set jm_getInstance (fn jm_getInstance []
+    (label jreturn
+        (return jreturn (jstatic_instance)))))
+    
+(set jm_getInputProcessor (fn jm_getInputProcessor [this]
+    (label jreturn
+        (return jreturn (this :f_inputProcessor)))))
 
-function InputProcessorFactory.new()
-    local self = setmetatable({}, InputProcessorFactory)
-    self:_init_fields()
-    return self
-end
+(set jproto @{:jm_getInputProcessor jm_getInputProcessor})
 
-
-function InputProcessorFactory.getInstance()
-        return InputProcessorFactory.instance
-end
-
-
-function InputProcessorFactory:getInputProcessor()
-        return self.inputProcessor
-end
-
-InputProcessorFactory.instance = InputProcessorFactory.new()
-
-return InputProcessorFactory
 

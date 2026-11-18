@@ -1,111 +1,90 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.ag.ai
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.game.ag.ai
 
-local GameInput = require("org.allbinary.game.input.GameInput")
-local AllBinaryLayer = require("org.allbinary.layer.AllBinaryLayer")
-local AllBinaryLayerManager = require("org.allbinary.layer.AllBinaryLayerManager")
-local GameTickTimeDelayHelper = require("org.allbinary.time.GameTickTimeDelayHelper")
-local GameTickTimeDelayHelperFactory = require("org.allbinary.time.GameTickTimeDelayHelperFactory")
-local TimeDelayHelper = require("org.allbinary.time.TimeDelayHelper")
-local ABHashtable = require("org.allbinary.util.ABHashtable")
-local KeyPressesAI = require("org.allbinary.game.ag.ai.KeyPressesAI")
+(import ../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- GameTickTimeDelayHelperFactory/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/time/GameTickTimeDelayHelperFactory" "jm_getInstance" args))
+(defn- TimeDelayHelper/jnew_1 [& args] (JR/call jfile "../../../../../org/allbinary/time/TimeDelayHelper" "jnew_1" args))
+(import ../../../../../java/lang/Integer :as Integer)
+(import ./KeyPressesAI :as KeyPressesAI)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class MultiKeyPressesAI
+(var jproto nil)
+(var jnew_3 nil)
+(var jm_processAI nil)
+(var jm_update nil)
+(var jm_toggle nil)
+(var jm_disable nil)
+(var jm_enable nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jnew_3 (fn jnew_3 [_hashtable _ownerLayerInterface _gameInput]
+    (var this (table/setproto @{:jclass "MultiKeyPressesAI" :f_toggleTimeHelper nil :f_gameTickTimeDelayHelper nil} jproto))
+    (put this :f_toggleTimeHelper (TimeDelayHelper/jnew_1 600))
+    (put this :f_gameTickTimeDelayHelper (GameTickTimeDelayHelperFactory/jm_getInstance))
+        (JR/superInit this (KeyPressesAI/jnew_3 _hashtable _ownerLayerInterface _gameInput))
+        (:jm_update this)
+    this))
+    
+(set jm_processAI (fn jm_processAI [this _allBinaryLayerManager]
+    nil))
+    
+(set jm_update (fn jm_update [this]
+        (var _gameInput (:jm_getGameInput this))
+        (var _keys (this :f_keys))
+        (var _size (length _keys))
+        (if (:jm_isOn this)
+            (do
+            (do
+                (var _index 0)
+                (while (< _index _size)
+                    (do
+                (var _key (JR/className (_keys _index)))
+                (if (not= _key (JR/i32 (- 1)))
+                    (do
+                    (:jm_add _gameInput (JR/className (this :f_gameKeyEventFactory))))))
+                    (do (set _index (JR/i32 (+ _index 1)))))))
+            (do
+            (do
+                (var _index 0)
+                (while (< _index _size)
+                    (do
+                (var _key (JR/className (_keys _index)))
+                (if (not= _key (JR/i32 (- 1)))
+                    (do
+                    (:jm_addForRemoval _gameInput (JR/className (this :f_gameKeyEventFactory))))))
+                    (do (set _index (JR/i32 (+ _index 1))))))))))
+    
+(set jm_toggle (fn jm_toggle [this]
+        (if (:jm_isTime (this :f_toggleTimeHelper) ((this :f_gameTickTimeDelayHelper) :f_startTime))
+            (do
+            ((get KeyPressesAI/jproto :jm_toggle) this)
+            (:jm_update this)))))
+    
+(set jm_disable (fn jm_disable [this]
+        (if (:jm_isTime (this :f_toggleTimeHelper) ((this :f_gameTickTimeDelayHelper) :f_startTime))
+            (do
+            ((get KeyPressesAI/jproto :jm_disable) this)
+            (:jm_update this)))))
+    
+(set jm_enable (fn jm_enable [this]
+        (if (:jm_isTime (this :f_toggleTimeHelper) ((this :f_gameTickTimeDelayHelper) :f_startTime))
+            (do
+            ((get KeyPressesAI/jproto :jm_enable) this)
+            (:jm_update this)))))
 
-local MultiKeyPressesAI = {}
-MultiKeyPressesAI.__index = MultiKeyPressesAI
-MultiKeyPressesAI.className = "MultiKeyPressesAI"
-setmetatable(MultiKeyPressesAI, {__index = KeyPressesAI})
+(set jproto (table/setproto @{:jm_processAI jm_processAI :jm_update jm_update :jm_toggle jm_toggle :jm_disable jm_disable :jm_enable jm_enable} KeyPressesAI/jproto))
 
-function MultiKeyPressesAI:_init_fields()
-    self.toggleTimeHelper = TimeDelayHelper.new(600)
-    self.gameTickTimeDelayHelper = GameTickTimeDelayHelperFactory.getInstance()
-end
-
-
-function MultiKeyPressesAI.new(hashtable, ownerLayerInterface, gameInput)
-    local self = setmetatable(KeyPressesAI.new(hashtable, ownerLayerInterface, gameInput), MultiKeyPressesAI)
-    self:_init_fields()
-        -- super(...) made self above
-        self:update()
-    return self
-end
-
-
--- throws Exception
-function MultiKeyPressesAI:processAI(allBinaryLayerManager)
-end
-
-
--- throws Exception
-function MultiKeyPressesAI:update()
-        local gameInput = self:getGameInput()
-        local keys = self.keys
-        local size = (keys.n or #keys)
-        if self:isOn() then
-            for index = 0, size - 1 do
-                local key = math.tointeger(keys[index + 1] // 1)
-                if key ~= -1 then
-                    gameInput:add(self.gameKeyEventFactory:getInstanceForKey(self, key))
-                end
-            end
-        else
-            for index = 0, size - 1 do
-                local key = math.tointeger(keys[index + 1] // 1)
-                if key ~= -1 then
-                    gameInput:addForRemoval(self.gameKeyEventFactory:getInstanceForKey(self, key))
-                end
-            end
-        end
-end
-
-
--- throws Exception
-function MultiKeyPressesAI:toggle()
-        if self.toggleTimeHelper:isTime(self.gameTickTimeDelayHelper.startTime) then
-            KeyPressesAI.toggle(self)
-            self:update()
-        end
-end
-
-
--- throws Exception
-function MultiKeyPressesAI:disable()
-        if self.toggleTimeHelper:isTime(self.gameTickTimeDelayHelper.startTime) then
-            KeyPressesAI.disable(self)
-            self:update()
-        end
-end
-
-
--- throws Exception
-function MultiKeyPressesAI:enable()
-        if self.toggleTimeHelper:isTime(self.gameTickTimeDelayHelper.startTime) then
-            KeyPressesAI.enable(self)
-            self:update()
-        end
-end
-
-return MultiKeyPressesAI
 

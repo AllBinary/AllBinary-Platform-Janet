@@ -1,110 +1,86 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2025 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.game.layer.special
+# 
+# AllBinary Open License Version 1 
+# Copyright (c) 2025 AllBinary 
+#  
+# By agreeing to this license you and any business entity you represent are 
+# legally bound to the AllBinary Open License Version 1 legal agreement. 
+#  
+# You may obtain the AllBinary Open License Version 1 legal agreement from 
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+#  
+# Created By: Travis Berthelot 
+#   
+# Generated Code Do Not Modify
+# package org.allbinary.game.layer.special
 
--- local Graphics = require("javax.microedition.lcdui.Graphics")
-local GameKeyEvent = require("org.allbinary.game.input.event.GameKeyEvent")
-local AllBinaryLayerManager = require("org.allbinary.layer.AllBinaryLayerManager")
-local SpecialGameInputInterface = require("org.allbinary.game.layer.special.SpecialGameInputInterface")
+(import ../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class SpecialGameInput
+(var jproto nil)
+(var jnew_0 nil)
+(var jm_up nil)
+(var jm_down nil)
+(var jm_right nil)
+(var jm_left nil)
+(var jm_strafeLeft nil)
+(var jm_strafeRight nil)
+(var jm_fire nil)
+(var jm_special1 nil)
+(var jm_special2 nil)
+(var jm_special3 nil)
+(var jm_special4 nil)
+(var jm_special5 nil)
+(var jm_paint nil)
+(var jm_paintThreed nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "SpecialGameInput"} jproto))
+    this))
 
-local SpecialGameInput = {}
-SpecialGameInput.__index = SpecialGameInput
-SpecialGameInput.className = "SpecialGameInput"
+    
+(set jm_up (fn jm_up [this]
+    nil))
+    
+(set jm_down (fn jm_down [this]
+    nil))
+    
+(set jm_right (fn jm_right [this]
+    nil))
+    
+(set jm_left (fn jm_left [this]
+    nil))
+    
+(set jm_strafeLeft (fn jm_strafeLeft [this]
+    nil))
+    
+(set jm_strafeRight (fn jm_strafeRight [this]
+    nil))
+    
+(set jm_fire (fn jm_fire [this _layerManager _gameKeyEvent]
+    nil))
+    
+(set jm_special1 (fn jm_special1 [this _layerManager _gameKeyEvent]
+    nil))
+    
+(set jm_special2 (fn jm_special2 [this _layerManager _gameKeyEvent]
+    nil))
+    
+(set jm_special3 (fn jm_special3 [this _layerManager _gameKeyEvent]
+    nil))
+    
+(set jm_special4 (fn jm_special4 [this _layerManager _gameKeyEvent]
+    nil))
+    
+(set jm_special5 (fn jm_special5 [this _layerManager _gameKeyEvent]
+    nil))
+    
+(set jm_paint (fn jm_paint [this _graphics]
+    nil))
+    
+(set jm_paintThreed (fn jm_paintThreed [this _graphics]
+    nil))
 
-function SpecialGameInput.new()
-    local self = setmetatable({}, SpecialGameInput)
-    return self
-end
+(set jproto @{:jm_up jm_up :jm_down jm_down :jm_right jm_right :jm_left jm_left :jm_strafeLeft jm_strafeLeft :jm_strafeRight jm_strafeRight :jm_fire jm_fire :jm_special1 jm_special1 :jm_special2 jm_special2 :jm_special3 jm_special3 :jm_special4 jm_special4 :jm_special5 jm_special5 :jm_paint jm_paint :jm_paintThreed jm_paintThreed})
 
-
--- throws Exception
-function SpecialGameInput:up()
-end
-
-
--- throws Exception
-function SpecialGameInput:down()
-end
-
-
--- throws Exception
-function SpecialGameInput:right()
-end
-
-
--- throws Exception
-function SpecialGameInput:left()
-end
-
-
--- throws Exception
-function SpecialGameInput:strafeLeft()
-end
-
-
--- throws Exception
-function SpecialGameInput:strafeRight()
-end
-
-
--- throws Exception
-function SpecialGameInput:fire(layerManager, gameKeyEvent)
-end
-
-
--- throws Exception
-function SpecialGameInput:special1(layerManager, gameKeyEvent)
-end
-
-
--- throws Exception
-function SpecialGameInput:special2(layerManager, gameKeyEvent)
-end
-
-
--- throws Exception
-function SpecialGameInput:special3(layerManager, gameKeyEvent)
-end
-
-
--- throws Exception
-function SpecialGameInput:special4(layerManager, gameKeyEvent)
-end
-
-
--- throws Exception
-function SpecialGameInput:special5(layerManager, gameKeyEvent)
-end
-
-
-function SpecialGameInput:paint(graphics)
-end
-
-
-function SpecialGameInput:paintThreed(graphics)
-end
-
-return SpecialGameInput
 

@@ -1,51 +1,38 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.health
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.game.health
 
--- local Graphics = require("javax.microedition.lcdui.Graphics")
-local AllBinaryLayer = require("org.allbinary.layer.AllBinaryLayer")
-local HealthBarAnimation = require("org.allbinary.game.health.HealthBarAnimation")
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(import ./HealthBarAnimation :as HealthBarAnimation)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class HealthBarTwodAnimation
+(var jproto nil)
+(var jnew_2 nil)
+(var jm_paintXY nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jnew_2 (fn jnew_2 [_layerInterface _location]
+    (var this (table/setproto @{:jclass "HealthBarTwodAnimation"} jproto))
+        (JR/superInit this (HealthBarAnimation/jnew_2 _layerInterface _location))
+    this))
+    
+(set jm_paintXY (fn jm_paintXY [this _graphics _x _y]
+        (var _ax (JR/className (JR/className (this :f_allbinaryLayer))))
+        (JR/className (this :f_basicSetColorUtil))
+        (:jm_fillRect _graphics _ax (JR/i32 (- (:jm_getY this) 1)) (this :f_x2) (this :f_thickness))))
 
-local HealthBarTwodAnimation = {}
-HealthBarTwodAnimation.__index = HealthBarTwodAnimation
-HealthBarTwodAnimation.className = "HealthBarTwodAnimation"
-setmetatable(HealthBarTwodAnimation, {__index = HealthBarAnimation})
+(set jproto (table/setproto @{:jm_paintXY jm_paintXY} HealthBarAnimation/jproto))
 
-
-function HealthBarTwodAnimation.new(layerInterface, location)
-    local self = setmetatable(HealthBarAnimation.new(layerInterface, location), HealthBarTwodAnimation)
-        -- super(...) made self above
-    return self
-end
-
-
-function HealthBarTwodAnimation:paintXY(graphics, x, y)
-        local ax = self.allbinaryLayer:getViewPosition():getX()
-        self.basicSetColorUtil:setBasicColorP3(graphics, self.basicColor, self.colorP)
-        graphics:fillRect(ax, self:getY() - 1, self.x2, self.thickness)
-end
-
-return HealthBarTwodAnimation
 

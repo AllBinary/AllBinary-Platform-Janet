@@ -1,238 +1,232 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2026 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.logic.io.file
+# 
+# AllBinary Open License Version 1 
+# Copyright (c) 2026 AllBinary 
+#  
+# By agreeing to this license you and any business entity you represent are 
+# legally bound to the AllBinary Open License Version 1 legal agreement. 
+#  
+# You may obtain the AllBinary Open License Version 1 legal agreement from 
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+#  
+# Created By: Travis Berthelot 
+#   
+# Generated Code Do Not Modify
+# package org.allbinary.logic.io.file
 
+(import ../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class CommonDataFileStrings
+(var jproto nil)
+(var jcell_instance :jnone)
+(var jstatic_instance nil)
+(var jsetstatic_instance nil)
+(var jnew_0 nil)
+(var jm_getInstance nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jstatic_instance (fn jstatic_instance []
+  (when (= jcell_instance :jnone) (set jcell_instance (jnew_0)))
+  jcell_instance))
+(set jsetstatic_instance (fn jsetstatic_instance [value] (set jcell_instance value)))
 
-local CommonDataFileStrings = {}
-CommonDataFileStrings.__index = CommonDataFileStrings
-CommonDataFileStrings.className = "CommonDataFileStrings"
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "CommonDataFileStrings" :f_XML nil :f__XML nil :f_JSON nil :f__JSON nil :f_XSL nil :f__XSL nil :f_JAVA nil :f__JAVA nil :f_KT nil :f__KT nil :f_TS nil :f__TS nil :f_JS nil :f__JS nil :f_CPP nil :f__CPP nil :f_H nil :f__H nil :f_PY nil :f__PY nil :f_GO nil :f__GO nil :f_CS nil :f__CS nil :f_ADB nil :f__ADB nil :f_ADS nil :f__ADS nil :f_ADA nil :f__ADA nil :f_RUST nil :f__RUST nil :f_C nil :f__C nil :f_CSHARP nil :f__CSHARP nil :f_ERL nil :f__ERL nil :f_HS nil :f__HS nil :f_HX nil :f__HX nil :f_LUA nil :f__LUA nil :f_PAS nil :f__PAS nil :f_ML nil :f__ML nil :f_PL nil :f__PL nil :f_RB nil :f__RB nil :f_ZIG nil :f__ZIG nil :f_PM nil :f__PM nil :f_KTS nil :f__KTS nil :f_CBL nil :f__CBL nil :f_COB nil :f__COB nil :f_F90 nil :f__F90 nil :f_F nil :f__F nil :f_DART nil :f__DART nil :f_EX nil :f__EX nil :f_EXS nil :f__EXS nil :f_M nil :f__M nil :f_SWIFT nil :f__SWIFT nil :f_ASM nil :f__ASM nil :f_S nil :f__S nil :f_NIM nil :f__NIM nil :f_VALA nil :f__VALA nil :f_LISP nil :f__LISP nil :f_RKT nil :f__RKT nil :f_SCM nil :f__SCM nil :f_AS nil :f__AS nil :f_OBX nil :f__OBX nil :f_SCALA nil :f__SCALA nil :f_GROOVY nil :f__GROOVY nil :f_JL nil :f__JL nil :f_TCL nil :f__TCL nil :f_WREN nil :f__WREN nil :f_JANET nil :f__JANET nil :f_GR nil :f__GR nil :f_ELM nil :f__ELM nil :f_KOTLIN nil :f_TYPESCRIPT nil :f_JAVASCRIPT nil :f_C_PLUS_PLUS nil :f_PYTHON nil :f_C_SHARP nil :f_RUST_NAME nil :f_RUBY nil :f_PERL nil :f_OBJECT_PASCAL nil :f_OCAML nil :f_HASKELL nil :f_HAXE nil :f_ERLANG nil :f_COBOL nil :f_FORTRAN nil :f_ELIXIR nil :f_OBJECTIVE_C nil :f_RACKET nil :f_SCHEME nil :f_ACTIONSCRIPT nil :f_OBERON_PLUS nil :f_JULIA nil :f_GRAIN nil :f_CPLUSPLUS nil :f_GOLANG nil :f_CSHARP_ALIAS nil :f_C23 nil :f_PASCAL nil :f_OBJECT_PASCAL_ALIAS nil :f_OBJC nil :f_OBJECTIVE_C_ALIAS nil :f_ASSEMBLY nil :f_COMMON_LISP nil :f_OBERON nil :f_OBERON_PLUS_ALIAS nil :f_KT_SHORT_NAME nil :f_TS_SHORT_NAME nil :f_JS_SHORT_NAME nil :f_CPP_SHORT_NAME nil :f_PY_SHORT_NAME nil :f_GO_SHORT_NAME nil :f_CS_SHORT_NAME nil :f_ADA_SHORT_NAME nil :f_RUST_SHORT_NAME nil :f_LUA_SHORT_NAME nil :f_C_SHORT_NAME nil :f_ZIG_SHORT_NAME nil :f_RB_SHORT_NAME nil :f_PL_SHORT_NAME nil :f_PAS_SHORT_NAME nil :f_ML_SHORT_NAME nil :f_HS_SHORT_NAME nil :f_HX_SHORT_NAME nil :f_ERL_SHORT_NAME nil :f_CBL_SHORT_NAME nil :f_F90_SHORT_NAME nil :f_DART_SHORT_NAME nil :f_EX_SHORT_NAME nil :f_OBJC_SHORT_NAME nil :f_SWIFT_SHORT_NAME nil :f_ASM_SHORT_NAME nil :f_NIM_SHORT_NAME nil :f_VALA_SHORT_NAME nil :f_LISP_SHORT_NAME nil :f_RKT_SHORT_NAME nil :f_SCM_SHORT_NAME nil :f_AS_SHORT_NAME nil :f_OBX_SHORT_NAME nil :f_SCALA_SHORT_NAME nil :f_GROOVY_SHORT_NAME nil :f_JL_SHORT_NAME nil :f_TCL_SHORT_NAME nil :f_WREN_SHORT_NAME nil :f_JANET_SHORT_NAME nil :f_GR_SHORT_NAME nil :f_ELM_SHORT_NAME nil :f_UNCRYPTED_EXTENSION nil :f_ENCRYPTED_EXTENSION nil} jproto))
+    (put this :f_XML "xml")
+    (put this :f__XML ".xml")
+    (put this :f_JSON "json")
+    (put this :f__JSON ".json")
+    (put this :f_XSL "xsl")
+    (put this :f__XSL ".xsl")
+    (put this :f_JAVA "java")
+    (put this :f__JAVA ".java")
+    (put this :f_KT "kt")
+    (put this :f__KT ".kt")
+    (put this :f_TS "ts")
+    (put this :f__TS ".ts")
+    (put this :f_JS "js")
+    (put this :f__JS ".js")
+    (put this :f_CPP "cpp")
+    (put this :f__CPP ".cpp")
+    (put this :f_H "h")
+    (put this :f__H ".h")
+    (put this :f_PY "py")
+    (put this :f__PY ".py")
+    (put this :f_GO "go")
+    (put this :f__GO ".go")
+    (put this :f_CS "cs")
+    (put this :f__CS ".cs")
+    (put this :f_ADB "adb")
+    (put this :f__ADB ".adb")
+    (put this :f_ADS "ads")
+    (put this :f__ADS ".ads")
+    (put this :f_ADA "ada")
+    (put this :f__ADA ".ada")
+    (put this :f_RUST "rs")
+    (put this :f__RUST ".rs")
+    (put this :f_C "c")
+    (put this :f__C ".c")
+    (put this :f_CSHARP "cs")
+    (put this :f__CSHARP ".cs")
+    (put this :f_ERL "erl")
+    (put this :f__ERL ".erl")
+    (put this :f_HS "hs")
+    (put this :f__HS ".hs")
+    (put this :f_HX "hx")
+    (put this :f__HX ".hx")
+    (put this :f_LUA "lua")
+    (put this :f__LUA ".lua")
+    (put this :f_PAS "pas")
+    (put this :f__PAS ".pas")
+    (put this :f_ML "ml")
+    (put this :f__ML ".ml")
+    (put this :f_PL "pl")
+    (put this :f__PL ".pl")
+    (put this :f_RB "rb")
+    (put this :f__RB ".rb")
+    (put this :f_ZIG "zig")
+    (put this :f__ZIG ".zig")
+    (put this :f_PM "pm")
+    (put this :f__PM ".pm")
+    (put this :f_KTS "kts")
+    (put this :f__KTS ".kts")
+    (put this :f_CBL "cbl")
+    (put this :f__CBL ".cbl")
+    (put this :f_COB "cob")
+    (put this :f__COB ".cob")
+    (put this :f_F90 "f90")
+    (put this :f__F90 ".f90")
+    (put this :f_F "f")
+    (put this :f__F ".f")
+    (put this :f_DART "dart")
+    (put this :f__DART ".dart")
+    (put this :f_EX "ex")
+    (put this :f__EX ".ex")
+    (put this :f_EXS "exs")
+    (put this :f__EXS ".exs")
+    (put this :f_M "m")
+    (put this :f__M ".m")
+    (put this :f_SWIFT "swift")
+    (put this :f__SWIFT ".swift")
+    (put this :f_ASM "asm")
+    (put this :f__ASM ".asm")
+    (put this :f_S "s")
+    (put this :f__S ".s")
+    (put this :f_NIM "nim")
+    (put this :f__NIM ".nim")
+    (put this :f_VALA "vala")
+    (put this :f__VALA ".vala")
+    (put this :f_LISP "lisp")
+    (put this :f__LISP ".lisp")
+    (put this :f_RKT "rkt")
+    (put this :f__RKT ".rkt")
+    (put this :f_SCM "scm")
+    (put this :f__SCM ".scm")
+    (put this :f_AS "as")
+    (put this :f__AS ".as")
+    (put this :f_OBX "obx")
+    (put this :f__OBX ".obx")
+    (put this :f_SCALA "scala")
+    (put this :f__SCALA ".scala")
+    (put this :f_GROOVY "groovy")
+    (put this :f__GROOVY ".groovy")
+    (put this :f_JL "jl")
+    (put this :f__JL ".jl")
+    (put this :f_TCL "tcl")
+    (put this :f__TCL ".tcl")
+    (put this :f_WREN "wren")
+    (put this :f__WREN ".wren")
+    (put this :f_JANET "janet")
+    (put this :f__JANET ".janet")
+    (put this :f_GR "gr")
+    (put this :f__GR ".gr")
+    (put this :f_ELM "elm")
+    (put this :f__ELM ".elm")
+    (put this :f_KOTLIN "kotlin")
+    (put this :f_TYPESCRIPT "typescript")
+    (put this :f_JAVASCRIPT "javascript")
+    (put this :f_C_PLUS_PLUS "c++")
+    (put this :f_PYTHON "python")
+    (put this :f_C_SHARP "c#")
+    (put this :f_RUST_NAME "rust")
+    (put this :f_RUBY "ruby")
+    (put this :f_PERL "perl")
+    (put this :f_OBJECT_PASCAL "objectpascal")
+    (put this :f_OCAML "ocaml")
+    (put this :f_HASKELL "haskell")
+    (put this :f_HAXE "haxe")
+    (put this :f_ERLANG "erlang")
+    (put this :f_COBOL "cobol")
+    (put this :f_FORTRAN "fortran")
+    (put this :f_ELIXIR "elixir")
+    (put this :f_OBJECTIVE_C "objective-c")
+    (put this :f_RACKET "racket")
+    (put this :f_SCHEME "scheme")
+    (put this :f_ACTIONSCRIPT "actionscript")
+    (put this :f_OBERON_PLUS "oberon+")
+    (put this :f_JULIA "julia")
+    (put this :f_GRAIN "grain")
+    (put this :f_CPLUSPLUS "cplusplus")
+    (put this :f_GOLANG "golang")
+    (put this :f_CSHARP_ALIAS "csharp")
+    (put this :f_C23 "c23")
+    (put this :f_PASCAL "pascal")
+    (put this :f_OBJECT_PASCAL_ALIAS "object pascal")
+    (put this :f_OBJC "objc")
+    (put this :f_OBJECTIVE_C_ALIAS "objectivec")
+    (put this :f_ASSEMBLY "assembly")
+    (put this :f_COMMON_LISP "common lisp")
+    (put this :f_OBERON "oberon")
+    (put this :f_OBERON_PLUS_ALIAS "oberonplus")
+    (put this :f_KT_SHORT_NAME "Kt")
+    (put this :f_TS_SHORT_NAME "Ts")
+    (put this :f_JS_SHORT_NAME "Js")
+    (put this :f_CPP_SHORT_NAME "Cpp")
+    (put this :f_PY_SHORT_NAME "Py")
+    (put this :f_GO_SHORT_NAME "Go")
+    (put this :f_CS_SHORT_NAME "Cs")
+    (put this :f_ADA_SHORT_NAME "Ada")
+    (put this :f_RUST_SHORT_NAME "Rust")
+    (put this :f_LUA_SHORT_NAME "Lua")
+    (put this :f_C_SHORT_NAME "C")
+    (put this :f_ZIG_SHORT_NAME "Zig")
+    (put this :f_RB_SHORT_NAME "Rb")
+    (put this :f_PL_SHORT_NAME "Pl")
+    (put this :f_PAS_SHORT_NAME "Pas")
+    (put this :f_ML_SHORT_NAME "Ml")
+    (put this :f_HS_SHORT_NAME "Hs")
+    (put this :f_HX_SHORT_NAME "Hx")
+    (put this :f_ERL_SHORT_NAME "Erl")
+    (put this :f_CBL_SHORT_NAME "Cbl")
+    (put this :f_F90_SHORT_NAME "F90")
+    (put this :f_DART_SHORT_NAME "Dart")
+    (put this :f_EX_SHORT_NAME "Ex")
+    (put this :f_OBJC_SHORT_NAME "ObjC")
+    (put this :f_SWIFT_SHORT_NAME "Swift")
+    (put this :f_ASM_SHORT_NAME "Asm")
+    (put this :f_NIM_SHORT_NAME "Nim")
+    (put this :f_VALA_SHORT_NAME "Vala")
+    (put this :f_LISP_SHORT_NAME "Lisp")
+    (put this :f_RKT_SHORT_NAME "Rkt")
+    (put this :f_SCM_SHORT_NAME "Scm")
+    (put this :f_AS_SHORT_NAME "As")
+    (put this :f_OBX_SHORT_NAME "Obx")
+    (put this :f_SCALA_SHORT_NAME "Scala")
+    (put this :f_GROOVY_SHORT_NAME "Groovy")
+    (put this :f_JL_SHORT_NAME "Jl")
+    (put this :f_TCL_SHORT_NAME "Tcl")
+    (put this :f_WREN_SHORT_NAME "Wren")
+    (put this :f_JANET_SHORT_NAME "Janet")
+    (put this :f_GR_SHORT_NAME "Gr")
+    (put this :f_ELM_SHORT_NAME "Elm")
+    (put this :f_UNCRYPTED_EXTENSION (this :f_XML))
+    (put this :f_ENCRYPTED_EXTENSION "abd")
+    this))
 
-function CommonDataFileStrings:_init_fields()
-    self.XML = "xml"
-    self._XML = ".xml"
-    self.JSON = "json"
-    self._JSON = ".json"
-    self.XSL = "xsl"
-    self._XSL = ".xsl"
-    self.JAVA = "java"
-    self._JAVA = ".java"
-    self.KT = "kt"
-    self._KT = ".kt"
-    self.TS = "ts"
-    self._TS = ".ts"
-    self.JS = "js"
-    self._JS = ".js"
-    self.CPP = "cpp"
-    self._CPP = ".cpp"
-    self.H = "h"
-    self._H = ".h"
-    self.PY = "py"
-    self._PY = ".py"
-    self.GO = "go"
-    self._GO = ".go"
-    self.CS = "cs"
-    self._CS = ".cs"
-    self.ADB = "adb"
-    self._ADB = ".adb"
-    self.ADS = "ads"
-    self._ADS = ".ads"
-    self.ADA = "ada"
-    self._ADA = ".ada"
-    self.RUST = "rs"
-    self._RUST = ".rs"
-    self.C = "c"
-    self._C = ".c"
-    self.CSHARP = "cs"
-    self._CSHARP = ".cs"
-    self.ERL = "erl"
-    self._ERL = ".erl"
-    self.HS = "hs"
-    self._HS = ".hs"
-    self.HX = "hx"
-    self._HX = ".hx"
-    self.LUA = "lua"
-    self._LUA = ".lua"
-    self.PAS = "pas"
-    self._PAS = ".pas"
-    self.ML = "ml"
-    self._ML = ".ml"
-    self.PL = "pl"
-    self._PL = ".pl"
-    self.RB = "rb"
-    self._RB = ".rb"
-    self.ZIG = "zig"
-    self._ZIG = ".zig"
-    self.PM = "pm"
-    self._PM = ".pm"
-    self.KTS = "kts"
-    self._KTS = ".kts"
-    self.CBL = "cbl"
-    self._CBL = ".cbl"
-    self.COB = "cob"
-    self._COB = ".cob"
-    self.F90 = "f90"
-    self._F90 = ".f90"
-    self.F = "f"
-    self._F = ".f"
-    self.DART = "dart"
-    self._DART = ".dart"
-    self.EX = "ex"
-    self._EX = ".ex"
-    self.EXS = "exs"
-    self._EXS = ".exs"
-    self.M = "m"
-    self._M = ".m"
-    self.SWIFT = "swift"
-    self._SWIFT = ".swift"
-    self.ASM = "asm"
-    self._ASM = ".asm"
-    self.S = "s"
-    self._S = ".s"
-    self.NIM = "nim"
-    self._NIM = ".nim"
-    self.VALA = "vala"
-    self._VALA = ".vala"
-    self.LISP = "lisp"
-    self._LISP = ".lisp"
-    self.RKT = "rkt"
-    self._RKT = ".rkt"
-    self.SCM = "scm"
-    self._SCM = ".scm"
-    self.AS = "as"
-    self._AS = ".as"
-    self.OBX = "obx"
-    self._OBX = ".obx"
-    self.SCALA = "scala"
-    self._SCALA = ".scala"
-    self.GROOVY = "groovy"
-    self._GROOVY = ".groovy"
-    self.JL = "jl"
-    self._JL = ".jl"
-    self.TCL = "tcl"
-    self._TCL = ".tcl"
-    self.WREN = "wren"
-    self._WREN = ".wren"
-    self.JANET = "janet"
-    self._JANET = ".janet"
-    self.GR = "gr"
-    self._GR = ".gr"
-    self.ELM = "elm"
-    self._ELM = ".elm"
-    self.KOTLIN = "kotlin"
-    self.TYPESCRIPT = "typescript"
-    self.JAVASCRIPT = "javascript"
-    self.C_PLUS_PLUS = "c++"
-    self.PYTHON = "python"
-    self.C_SHARP = "c#"
-    self.RUST_NAME = "rust"
-    self.RUBY = "ruby"
-    self.PERL = "perl"
-    self.OBJECT_PASCAL = "objectpascal"
-    self.OCAML = "ocaml"
-    self.HASKELL = "haskell"
-    self.HAXE = "haxe"
-    self.ERLANG = "erlang"
-    self.COBOL = "cobol"
-    self.FORTRAN = "fortran"
-    self.ELIXIR = "elixir"
-    self.OBJECTIVE_C = "objective-c"
-    self.RACKET = "racket"
-    self.SCHEME = "scheme"
-    self.ACTIONSCRIPT = "actionscript"
-    self.OBERON_PLUS = "oberon+"
-    self.JULIA = "julia"
-    self.GRAIN = "grain"
-    self.CPLUSPLUS = "cplusplus"
-    self.GOLANG = "golang"
-    self.CSHARP_ALIAS = "csharp"
-    self.C23 = "c23"
-    self.PASCAL = "pascal"
-    self.OBJECT_PASCAL_ALIAS = "object pascal"
-    self.OBJC = "objc"
-    self.OBJECTIVE_C_ALIAS = "objectivec"
-    self.ASSEMBLY = "assembly"
-    self.COMMON_LISP = "common lisp"
-    self.OBERON = "oberon"
-    self.OBERON_PLUS_ALIAS = "oberonplus"
-    self.KT_SHORT_NAME = "Kt"
-    self.TS_SHORT_NAME = "Ts"
-    self.JS_SHORT_NAME = "Js"
-    self.CPP_SHORT_NAME = "Cpp"
-    self.PY_SHORT_NAME = "Py"
-    self.GO_SHORT_NAME = "Go"
-    self.CS_SHORT_NAME = "Cs"
-    self.ADA_SHORT_NAME = "Ada"
-    self.RUST_SHORT_NAME = "Rust"
-    self.LUA_SHORT_NAME = "Lua"
-    self.C_SHORT_NAME = "C"
-    self.ZIG_SHORT_NAME = "Zig"
-    self.RB_SHORT_NAME = "Rb"
-    self.PL_SHORT_NAME = "Pl"
-    self.PAS_SHORT_NAME = "Pas"
-    self.ML_SHORT_NAME = "Ml"
-    self.HS_SHORT_NAME = "Hs"
-    self.HX_SHORT_NAME = "Hx"
-    self.ERL_SHORT_NAME = "Erl"
-    self.CBL_SHORT_NAME = "Cbl"
-    self.F90_SHORT_NAME = "F90"
-    self.DART_SHORT_NAME = "Dart"
-    self.EX_SHORT_NAME = "Ex"
-    self.OBJC_SHORT_NAME = "ObjC"
-    self.SWIFT_SHORT_NAME = "Swift"
-    self.ASM_SHORT_NAME = "Asm"
-    self.NIM_SHORT_NAME = "Nim"
-    self.VALA_SHORT_NAME = "Vala"
-    self.LISP_SHORT_NAME = "Lisp"
-    self.RKT_SHORT_NAME = "Rkt"
-    self.SCM_SHORT_NAME = "Scm"
-    self.AS_SHORT_NAME = "As"
-    self.OBX_SHORT_NAME = "Obx"
-    self.SCALA_SHORT_NAME = "Scala"
-    self.GROOVY_SHORT_NAME = "Groovy"
-    self.JL_SHORT_NAME = "Jl"
-    self.TCL_SHORT_NAME = "Tcl"
-    self.WREN_SHORT_NAME = "Wren"
-    self.JANET_SHORT_NAME = "Janet"
-    self.GR_SHORT_NAME = "Gr"
-    self.ELM_SHORT_NAME = "Elm"
-    self.UNCRYPTED_EXTENSION = self.XML
-    self.ENCRYPTED_EXTENSION = "abd"
-end
+    
+(set jm_getInstance (fn jm_getInstance []
+    (label jreturn
+        (return jreturn (jstatic_instance)))))
 
-function CommonDataFileStrings.new()
-    local self = setmetatable({}, CommonDataFileStrings)
-    self:_init_fields()
-    return self
-end
+(set jproto @{})
 
-
-function CommonDataFileStrings.getInstance()
-        return CommonDataFileStrings.instance
-end
-
-CommonDataFileStrings.instance = CommonDataFileStrings.new()
-
-return CommonDataFileStrings
 

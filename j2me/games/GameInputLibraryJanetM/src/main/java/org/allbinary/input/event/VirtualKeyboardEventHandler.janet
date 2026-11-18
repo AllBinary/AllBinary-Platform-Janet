@@ -1,94 +1,73 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.input.event
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.input.event
 
-local BooleanFactory = require("org.allbinary.logic.java.bool.BooleanFactory")
-local AllBinaryEventObject = require("org.allbinary.logic.util.event.AllBinaryEventObject")
-local EventListenerInterface = require("org.allbinary.logic.util.event.EventListenerInterface")
-local BasicEventHandler = require("org.allbinary.logic.util.event.handler.BasicEventHandler")
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- BooleanFactory/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/logic/java/bool/BooleanFactory" "jm_getInstance" args))
+(import ../../../../org/allbinary/logic/util/event/handler/BasicEventHandler :as BasicEventHandler)
+(import ../../../../java/lang/Thread :as Thread)
+(defn- VirtualKeyboardEvent/jnew_1 [& args] (JR/call jfile "./VirtualKeyboardEvent" "jnew_1" args))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class VirtualKeyboardEventHandler
+(var jproto nil)
+(var jcell_gameKeyEventHandler :jnone)
+(var jstatic_gameKeyEventHandler nil)
+(var jsetstatic_gameKeyEventHandler nil)
+(var jnew_0 nil)
+(var jm_getInstance nil)
+(var jm_process nil)
+(var jm_open nil)
+(var jm_close nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jstatic_gameKeyEventHandler (fn jstatic_gameKeyEventHandler []
+  (when (= jcell_gameKeyEventHandler :jnone) (set jcell_gameKeyEventHandler (jnew_0)))
+  jcell_gameKeyEventHandler))
+(set jsetstatic_gameKeyEventHandler (fn jsetstatic_gameKeyEventHandler [value] (set jcell_gameKeyEventHandler value)))
 
-local function java_sleep(milliseconds)
-    local finish = os.clock() + milliseconds / 1000
-    while os.clock() < finish do end
-end
+    
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "VirtualKeyboardEventHandler" :f_SHOW_EVENT nil :f_HIDE_EVENT nil} jproto))
+    (put this :f_SHOW_EVENT (VirtualKeyboardEvent/jnew_1 ((BooleanFactory/jm_getInstance) :f_TRUE)))
+    (put this :f_HIDE_EVENT (VirtualKeyboardEvent/jnew_1 ((BooleanFactory/jm_getInstance) :f_FALSE)))
+    (JR/superInit this (BasicEventHandler/jnew_0))
+    this))
+    
+(set jm_getInstance (fn jm_getInstance []
+    (label jreturn
+        (return jreturn (jstatic_gameKeyEventHandler)))))
+    
+(set jm_process (fn jm_process [this _eventObject _eventListenerInterface]
+        (var _virtualKeyboardEventListenerInterface _eventListenerInterface)
+        (:jm_onVirtualKeyboardEvent _virtualKeyboardEventListenerInterface _eventObject)))
+    
+(set jm_open (fn jm_open [this]
+        (try
+            (do
+            (Thread/jm_sleep 120)
+            (:jm_fireEvent this (this :f_SHOW_EVENT)))
+            ([_e] (do
+            (JR/className (this :f_logUtil)))))))
+    
+(set jm_close (fn jm_close [this]
+        (try
+            (do
+            (Thread/jm_sleep 120)
+            (:jm_fireEvent this (this :f_HIDE_EVENT)))
+            ([_e] (do
+            (JR/className (this :f_logUtil)))))))
 
-local VirtualKeyboardEventHandler = {}
-VirtualKeyboardEventHandler.__index = VirtualKeyboardEventHandler
-VirtualKeyboardEventHandler.className = "VirtualKeyboardEventHandler"
-setmetatable(VirtualKeyboardEventHandler, {__index = BasicEventHandler})
+(set jproto (table/setproto @{:jm_process jm_process :jm_open jm_open :jm_close jm_close} BasicEventHandler/jproto))
 
-function VirtualKeyboardEventHandler:_init_fields()
-    self.SHOW_EVENT = VirtualKeyboardEvent.new(BooleanFactory.getInstance().TRUE)
-    self.HIDE_EVENT = VirtualKeyboardEvent.new(BooleanFactory.getInstance().FALSE)
-end
-
-
-function VirtualKeyboardEventHandler.new()
-    local self = setmetatable(BasicEventHandler.new(), VirtualKeyboardEventHandler)
-    self:_init_fields()
-    return self
-end
-
-
-function VirtualKeyboardEventHandler.getInstance()
-        return VirtualKeyboardEventHandler.gameKeyEventHandler
-end
-
-
--- throws Exception
-function VirtualKeyboardEventHandler:process(eventObject, eventListenerInterface)
-        local virtualKeyboardEventListenerInterface = eventListenerInterface
-        virtualKeyboardEventListenerInterface:onVirtualKeyboardEvent(eventObject)
-end
-
-
-function VirtualKeyboardEventHandler:open()
-        local try_ok, try_error = pcall(function()
-            java_sleep(120)
-            self:fireEvent(self.SHOW_EVENT)
-        end)
-        if not try_ok then
-            local e = try_error
-            self.logUtil:put(self.commonStrings.EXCEPTION, self, "open", e)
-        end
-end
-
-
--- throws Exception
-function VirtualKeyboardEventHandler:close()
-        local try_ok, try_error = pcall(function()
-            java_sleep(120)
-            self:fireEvent(self.HIDE_EVENT)
-        end)
-        if not try_ok then
-            local e = try_error
-            self.logUtil:put(self.commonStrings.EXCEPTION, self, self.commonStrings.CLOSE, e)
-        end
-end
-
-VirtualKeyboardEventHandler.gameKeyEventHandler = VirtualKeyboardEventHandler.new()
-
-return VirtualKeyboardEventHandler
 

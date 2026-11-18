@@ -15,6 +15,7 @@
 (var jproto nil)
 (var jcell_SIZE :jnone)
 (var jstatic_SIZE nil)
+(var jsetstatic_SIZE nil)
 (var jnew_1 nil)
 (var jm_addAt nil)
 (var jm_add nil)
@@ -42,6 +43,7 @@
 (set jstatic_SIZE (fn jstatic_SIZE []
   (when (= jcell_SIZE :jnone) (set jcell_SIZE ", Size: "))
   jcell_SIZE))
+(set jsetstatic_SIZE (fn jsetstatic_SIZE [value] (set jcell_SIZE value)))
 
     
 (set jnew_1 (fn jnew_1 [_objectArray]

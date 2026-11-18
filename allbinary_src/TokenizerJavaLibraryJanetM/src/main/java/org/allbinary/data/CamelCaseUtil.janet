@@ -1,75 +1,70 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---   
--- Generated Code Do Not Modify
--- package org.allbinary.data
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#   
+# Generated Code Do Not Modify
+# package org.allbinary.data
 
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
-local StringValidationUtil = require("org.allbinary.logic.string.StringValidationUtil")
-local Tokenizer = require("org.allbinary.logic.string.tokens.Tokenizer")
-local CommonSeps = require("org.allbinary.string.CommonSeps")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
-local BasicArrayListD = require("org.allbinary.util.BasicArrayListD")
+(import ../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- StringMaker/jnew_0 [& args] (JR/call jfile "../../../org/allbinary/logic/string/StringMaker" "jnew_0" args))
+(defn- StringValidationUtil/jm_getInstance [& args] (JR/call jfile "../../../org/allbinary/logic/string/StringValidationUtil" "jm_getInstance" args))
+(defn- Tokenizer/jnew_1 [& args] (JR/call jfile "../../../org/allbinary/logic/string/tokens/Tokenizer" "jnew_1" args))
+(defn- CommonSeps/jm_getInstance [& args] (JR/call jfile "../../../org/allbinary/string/CommonSeps" "jm_getInstance" args))
+(defn- BasicArrayListD/jnew_0 [& args] (JR/call jfile "../../../org/allbinary/util/BasicArrayListD" "jnew_0" args))
+(import ../../../java/lang/Character :as Character)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class CamelCaseUtil
+(var jproto nil)
+(var jcell_instance :jnone)
+(var jstatic_instance nil)
+(var jsetstatic_instance nil)
+(var jnew_0 nil)
+(var jm_getInstance nil)
+(var jm_getAsCamelCase nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jstatic_instance (fn jstatic_instance []
+  (when (= jcell_instance :jnone) (set jcell_instance (jnew_0)))
+  jcell_instance))
+(set jsetstatic_instance (fn jsetstatic_instance [value] (set jcell_instance value)))
 
-local CamelCaseUtil = {}
-CamelCaseUtil.__index = CamelCaseUtil
-CamelCaseUtil.className = "CamelCaseUtil"
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "CamelCaseUtil" :f_commonSeps nil} jproto))
+    (put this :f_commonSeps (CommonSeps/jm_getInstance))
+    this))
 
-function CamelCaseUtil:_init_fields()
-    self.commonSeps = CommonSeps.getInstance()
-end
+    
+(set jm_getInstance (fn jm_getInstance []
+    (label jreturn
+        (return jreturn (jstatic_instance)))))
+    
+(set jm_getAsCamelCase (fn jm_getAsCamelCase [this _string _stringBuilder]
+    (label jreturn
+        (var _stringValidationUtil (StringValidationUtil/jm_getInstance))
+        (:jm_delete _stringBuilder 0 (:jm_length _stringBuilder))
+        (var _list (BasicArrayListD/jnew_0))
+        (var _tokenizer (Tokenizer/jnew_1 ((this :f_commonSeps) :f_UNDERSCORE)))
+        (:jm_getTokensFromString _tokenizer _string _list)
+        (var _size (:jm_size _list))
+        (var _word nil)
+        (do
+            (var _i 0)
+            (while (< _i _size)
+                (do
+            (set _word (:jm_get _list _i))
+            (set _word (if (:jm_isEmpty _stringValidationUtil _word) _word (:jm_toString (:jm_append (:jm_appendchar (StringMaker/jnew_0) (Character/jm_toUpperCase (get _word 0))) (JR/toLowerCase (JR/substring _word 1))))))
+            (:jm_append _stringBuilder _word))
+                (do (set _i (JR/i32 (+ _i 1))))))
+        (return jreturn (:jm_toString _stringBuilder)))))
 
-function CamelCaseUtil.new()
-    local self = setmetatable({}, CamelCaseUtil)
-    self:_init_fields()
-    return self
-end
+(set jproto @{:jm_getAsCamelCase jm_getAsCamelCase})
 
-
-function CamelCaseUtil.getInstance()
-        return CamelCaseUtil.instance
-end
-
-
--- throws Exception
-function CamelCaseUtil:getAsCamelCase(string, stringBuilder)
-        local stringValidationUtil = StringValidationUtil.getInstance()
-        stringBuilder:delete(0, stringBuilder:length())
-        local list = BasicArrayListD.new()
-        local tokenizer = Tokenizer.new(self.commonSeps.UNDERSCORE)
-        tokenizer:getTokensFromString(string, list)
-        local size = list:size()
-        local word = nil
-        for i = 0, size - 1 do
-            word = list:get(i)
-            word = (function() if stringValidationUtil:isEmpty(word) then return word else return tostring(StringMaker.new():appendchar(string.upper(string.sub(word, (0) + 1, (0) + 1))):append(string.lower(string.sub(word, (1) + 1)))) end end)()
-            stringBuilder:append(word)
-        end
-        return tostring(stringBuilder)
-end
-
-CamelCaseUtil.instance = CamelCaseUtil.new()
-
-return CamelCaseUtil
 

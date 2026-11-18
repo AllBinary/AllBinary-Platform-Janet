@@ -1,54 +1,46 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2011 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.displayable
+# 
+# AllBinary Open License Version 1 
+# Copyright (c) 2011 AllBinary 
+#  
+# By agreeing to this license you and any business entity you represent are 
+# legally bound to the AllBinary Open License Version 1 legal agreement. 
+#  
+# You may obtain the AllBinary Open License Version 1 legal agreement from 
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+#  
+# Created By: Travis Berthelot 
+#   
+# Generated Code Do Not Modify
+# package org.allbinary.graphics.displayable
 
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class ScalableListener
+(var jproto nil)
+(var jnew_0 nil)
+(var jm_getRatio nil)
+(var jm_getLeft nil)
+(var jm_getTop nil)
+(var jm_scale nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "ScalableListener"} jproto))
+    this))
 
--- Java interface
-local ScalableListener = {}
-ScalableListener.__index = ScalableListener
-ScalableListener.className = "ScalableListener"
+    
+(set jm_getRatio (fn jm_getRatio [this _ratio]
+    (error (JR/newException "AbstractMethodError" "getRatio"))))
+    
+(set jm_getLeft (fn jm_getLeft [this _xOffset]
+    (error (JR/newException "AbstractMethodError" "getLeft"))))
+    
+(set jm_getTop (fn jm_getTop [this _yOffset]
+    (error (JR/newException "AbstractMethodError" "getTop"))))
+    
+(set jm_scale (fn jm_scale [this _ratio]
+    (error (JR/newException "AbstractMethodError" "scale"))))
 
+(set jproto @{:jm_getRatio jm_getRatio :jm_getLeft jm_getLeft :jm_getTop jm_getTop :jm_scale jm_scale})
 
-function ScalableListener:getRatio(ratio)
-    error("abstract method getRatio")
-end
-
-
-function ScalableListener:getLeft(xOffset)
-    error("abstract method getLeft")
-end
-
-
-function ScalableListener:getTop(yOffset)
-    error("abstract method getTop")
-end
-
-
-function ScalableListener:scale(ratio)
-    error("abstract method scale")
-end
-
-return ScalableListener
 

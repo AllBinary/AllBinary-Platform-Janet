@@ -1,42 +1,38 @@
--- Generated Code Do Not Modify
--- package org.allbinary.game.displayable.canvas
+# Generated Code Do Not Modify
+# package org.allbinary.game.displayable.canvas
 
--- local Canvas = require("javax.microedition.lcdui.Canvas")
--- local Graphics = require("javax.microedition.lcdui.Graphics")
+(import ../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(import ../../../../../javax/microedition/lcdui/Canvas :as Canvas)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+#Temp should not be in any build
+# Java class NullDisplayable
+(var jproto nil)
+(var jcell_SINGLETON :jnone)
+(var jstatic_SINGLETON nil)
+(var jsetstatic_SINGLETON nil)
+(var jnew_0 nil)
+(var jm_getInstance nil)
+(var jm_paint nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jstatic_SINGLETON (fn jstatic_SINGLETON []
+  (when (= jcell_SINGLETON :jnone) (set jcell_SINGLETON (jnew_0)))
+  jcell_SINGLETON))
+(set jsetstatic_SINGLETON (fn jsetstatic_SINGLETON [value] (set jcell_SINGLETON value)))
 
---Temp should not be in any build
-local NullDisplayable = {}
-NullDisplayable.__index = NullDisplayable
-NullDisplayable.className = "NullDisplayable"
-setmetatable(NullDisplayable, {__index = Canvas})
+    
+(set jm_getInstance (fn jm_getInstance []
+    (label jreturn
+        (return jreturn (jstatic_SINGLETON)))))
+    
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "NullDisplayable"} jproto))
+    (JR/superInit this (Canvas/jnew_0))
+    this))
+    
+(set jm_paint (fn jm_paint [this _graphics]
+    nil))
 
+(set jproto (table/setproto @{:jm_paint jm_paint} Canvas/jproto))
 
-function NullDisplayable.getInstance()
-        return NullDisplayable.SINGLETON
-end
-
-
-function NullDisplayable.new()
-    local self = setmetatable(Canvas.new(), NullDisplayable)
-    return self
-end
-
-
-function NullDisplayable:paint(graphics)
-end
-
-NullDisplayable.SINGLETON = NullDisplayable.new()
-
-return NullDisplayable
 

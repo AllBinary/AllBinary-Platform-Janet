@@ -1,54 +1,46 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2025 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.game.input
+# 
+# AllBinary Open License Version 1 
+# Copyright (c) 2025 AllBinary 
+#  
+# By agreeing to this license you and any business entity you represent are 
+# legally bound to the AllBinary Open License Version 1 legal agreement. 
+#  
+# You may obtain the AllBinary Open License Version 1 legal agreement from 
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+#  
+# Created By: Travis Berthelot 
+#   
+# Generated Code Do Not Modify
+# package org.allbinary.game.input
 
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class KeyInterface
+(var jproto nil)
+(var jnew_0 nil)
+(var jm_keyPressed nil)
+(var jm_keyReleased nil)
+(var jm_keyPressedByDevice nil)
+(var jm_keyReleasedByDevice nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "KeyInterface"} jproto))
+    this))
 
--- Java interface
-local KeyInterface = {}
-KeyInterface.__index = KeyInterface
-KeyInterface.className = "KeyInterface"
+    
+(set jm_keyPressed (fn jm_keyPressed [this _keyCode]
+    (error (JR/newException "AbstractMethodError" "keyPressed"))))
+    
+(set jm_keyReleased (fn jm_keyReleased [this _keyCode]
+    (error (JR/newException "AbstractMethodError" "keyReleased"))))
+    
+(set jm_keyPressedByDevice (fn jm_keyPressedByDevice [this _keyCode _deviceId]
+    (error (JR/newException "AbstractMethodError" "keyPressedByDevice"))))
+    
+(set jm_keyReleasedByDevice (fn jm_keyReleasedByDevice [this _keyCode _deviceId]
+    (error (JR/newException "AbstractMethodError" "keyReleasedByDevice"))))
 
+(set jproto @{:jm_keyPressed jm_keyPressed :jm_keyReleased jm_keyReleased :jm_keyPressedByDevice jm_keyPressedByDevice :jm_keyReleasedByDevice jm_keyReleasedByDevice})
 
-function KeyInterface:keyPressed(keyCode)
-    error("abstract method keyPressed")
-end
-
-
-function KeyInterface:keyReleased(keyCode)
-    error("abstract method keyReleased")
-end
-
-
-function KeyInterface:keyPressedByDevice(keyCode, deviceId)
-    error("abstract method keyPressedByDevice")
-end
-
-
-function KeyInterface:keyReleasedByDevice(keyCode, deviceId)
-    error("abstract method keyReleasedByDevice")
-end
-
-return KeyInterface
 

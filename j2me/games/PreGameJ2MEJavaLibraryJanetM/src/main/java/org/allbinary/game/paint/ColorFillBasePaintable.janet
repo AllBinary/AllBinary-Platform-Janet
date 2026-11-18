@@ -1,77 +1,59 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.paint
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.game.paint
 
--- local Graphics = require("javax.microedition.lcdui.Graphics")
-local BasicColor = require("org.allbinary.graphics.color.BasicColor")
-local BasicColorFactory = require("org.allbinary.graphics.color.BasicColorFactory")
-local ColorCompositeInterface = require("org.allbinary.graphics.color.ColorCompositeInterface")
-local Paintable = require("org.allbinary.graphics.paint.Paintable")
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- BasicColorFactory/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/graphics/color/BasicColorFactory" "jm_getInstance" args))
+(import ../../../../org/allbinary/graphics/paint/Paintable :as Paintable)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class ColorFillBasePaintable
+(var jproto nil)
+(var jnew_1 nil)
+(var jm_setBasicColorP nil)
+(var jm_getBasicColorP nil)
+(var jm_getColor nil)
+(var jm_setColor nil)
+(var jm_paint nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jnew_1 (fn jnew_1 [_basicColor]
+    (var this (table/setproto @{:jclass "ColorFillBasePaintable" :f_basicColor nil :f_colorP 0} jproto))
+    (put this :f_basicColor ((BasicColorFactory/jm_getInstance) :f_WHITE))
+    
+    (JR/superInit this (Paintable/jnew_0))
+        (:jm_setBasicColorP this _basicColor)
+    this))
+    
+(set jm_setBasicColorP (fn jm_setBasicColorP [this _basicColor]
+        (set (this :f_basicColor) _basicColor)
+        (:jm_setColor this (:jm_intValue (:jm_getBasicColorP this)))))
+    
+(set jm_getBasicColorP (fn jm_getBasicColorP [this]
+    (label jreturn
+        (return jreturn (this :f_basicColor)))))
+    
+(set jm_getColor (fn jm_getColor [this]
+    (label jreturn
+        (return jreturn (this :f_colorP)))))
+    
+(set jm_setColor (fn jm_setColor [this _color]
+        (set (this :f_colorP) _color)))
+    
+(set jm_paint (fn jm_paint [this _graphics]
+    nil))
 
-local ColorFillBasePaintable = {}
-ColorFillBasePaintable.__index = ColorFillBasePaintable
-ColorFillBasePaintable.className = "ColorFillBasePaintable"
-setmetatable(ColorFillBasePaintable, {__index = Paintable})
+(set jproto (table/setproto @{:jm_setBasicColorP jm_setBasicColorP :jm_getBasicColorP jm_getBasicColorP :jm_getColor jm_getColor :jm_setColor jm_setColor :jm_paint jm_paint} Paintable/jproto))
 
-function ColorFillBasePaintable:_init_fields()
-    self.basicColor = BasicColorFactory.getInstance().WHITE
-    self.colorP = 0
-end
-
-
-function ColorFillBasePaintable.new(basicColor)
-    local self = setmetatable(Paintable.new(), ColorFillBasePaintable)
-    self:_init_fields()
-        self:setBasicColorP(basicColor)
-    return self
-end
-
-
-function ColorFillBasePaintable:setBasicColorP(basicColor)
-        self.basicColor = basicColor
-        self:setColor(math.tointeger(self:getBasicColorP() // 1))
-end
-
-
-function ColorFillBasePaintable:getBasicColorP()
-        return self.basicColor
-end
-
-
-function ColorFillBasePaintable:getColor()
-        return self.colorP
-end
-
-
-function ColorFillBasePaintable:setColor(color)
-        self.colorP = color
-end
-
-
-function ColorFillBasePaintable:paint(graphics)
-end
-
-return ColorFillBasePaintable
 

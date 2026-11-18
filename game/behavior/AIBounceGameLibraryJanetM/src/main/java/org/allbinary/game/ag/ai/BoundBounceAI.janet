@@ -1,70 +1,46 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.ag.ai
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.game.ag.ai
 
--- local Graphics = require("javax.microedition.lcdui.Graphics")
-local BoundsVisitorInterface = require("org.allbinary.bounds.BoundsVisitorInterface")
-local LayerBounds = require("org.allbinary.bounds.LayerBounds")
-local BasicAI = require("org.allbinary.game.ai.BasicAI")
-local GameInput = require("org.allbinary.game.input.GameInput")
-local Rectangle = require("org.allbinary.graphics.Rectangle")
-local AllBinaryLayer = require("org.allbinary.layer.AllBinaryLayer")
-local AllBinaryLayerManager = require("org.allbinary.layer.AllBinaryLayerManager")
+(import ../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(import ../../../../../org/allbinary/game/ai/BasicAI :as BasicAI)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+# Java class BoundBounceAI
+(var jproto nil)
+(var jnew_4 nil)
+(var jm_paint nil)
+(var jm_processAI nil)
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(set jnew_4 (fn jnew_4 [_ownerLayerInterface _gameInput _layerBounds _boundsVisitorInterface]
+    (var this (table/setproto @{:jclass "BoundBounceAI" :f_currentRelativeAngle 0 :f_layerBounds nil :f_boundsVisitorInterface nil} jproto))
+    (put this :f_currentRelativeAngle 0)
+    
+    
+        (JR/superInit this (BasicAI/jnew_2 _ownerLayerInterface _gameInput))
+        (set (this :f_layerBounds) _layerBounds)
+        (set (this :f_boundsVisitorInterface) _boundsVisitorInterface)
+    this))
+    
+(set jm_paint (fn jm_paint [this _graphics]
+        (var _rectange (:jm_getRectangleP (this :f_layerBounds)))
+        (:jm_drawRect _graphics (JR/className (:jm_getPoint _rectange)) (JR/className (:jm_getPoint _rectange)) (:jm_getWidth _rectange) (:jm_getHeight _rectange))))
+    
+(set jm_processAI (fn jm_processAI [this _allBinaryLayerManager]
+        (:jm_visit (this :f_layerBounds) (this :f_boundsVisitorInterface))))
 
-local BoundBounceAI = {}
-BoundBounceAI.__index = BoundBounceAI
-BoundBounceAI.className = "BoundBounceAI"
-setmetatable(BoundBounceAI, {__index = BasicAI})
+(set jproto (table/setproto @{:jm_paint jm_paint :jm_processAI jm_processAI} BasicAI/jproto))
 
-function BoundBounceAI:_init_fields()
-    self.currentRelativeAngle = 0
-    self.layerBounds = nil
-    self.boundsVisitorInterface = nil
-end
-
-
-function BoundBounceAI.new(ownerLayerInterface, gameInput, layerBounds, boundsVisitorInterface)
-    local self = setmetatable(BasicAI.new(ownerLayerInterface, gameInput), BoundBounceAI)
-    self:_init_fields()
-        -- super(...) made self above
-        self.layerBounds = layerBounds
-        self.boundsVisitorInterface = boundsVisitorInterface
-    return self
-end
-
-
-function BoundBounceAI:paint(graphics)
-        local rectange = self.layerBounds:getRectangleP()
-        graphics:drawRect(rectange:getPoint():getX(), rectange:getPoint():getY(), rectange:getWidth(), rectange:getHeight())
-end
-
-
--- throws Exception
-function BoundBounceAI:processAI(allBinaryLayerManager)
-        self.layerBounds:visit(self.boundsVisitorInterface)
-end
-
-return BoundBounceAI
 

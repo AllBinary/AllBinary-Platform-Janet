@@ -23,6 +23,7 @@
 (var jproto nil)
 (var jcell_instance :jnone)
 (var jstatic_instance nil)
+(var jsetstatic_instance nil)
 (var jnew_0 nil)
 (var jm_getInstance nil)
 (var jm_createInstance nil)
@@ -33,6 +34,7 @@
 (set jstatic_instance (fn jstatic_instance []
   (when (= jcell_instance :jnone) (set jcell_instance (jnew_0)))
   jcell_instance))
+(set jsetstatic_instance (fn jsetstatic_instance [value] (set jcell_instance value)))
 
 (set jnew_0 (fn jnew_0 []
     (var this (table/setproto @{:jclass "BasicColorFactory" :f_NULL_COLOR nil :f_TAN nil :f_SKIN_PINK nil :f_RED nil :f_LIGHT_RED nil :f_DARK_GREEN nil :f_GREEN nil :f_LIGHT_GREEN nil :f_PURPLE nil :f_BLUE nil :f_LIGHT_BLUE nil :f_VERY_LIGHT_BLUE nil :f_PUCE nil :f_AQUA nil :f_YELLOW nil :f_PINK nil :f_BLACK nil :f_GREY nil :f_LIGHT_GREY nil :f_DARK_GREY nil :f_ORANGE nil :f_BROWN nil :f_WHITE nil :f_TRANSPARENT_COLOR nil :f_TRANSPARENT_GREY nil :f_TRANSPARENT_BLACK nil :f_TRANSPARENT_RED nil :f_CLEAR_COLOR nil :f_BORDER_COLOR nil} jproto))

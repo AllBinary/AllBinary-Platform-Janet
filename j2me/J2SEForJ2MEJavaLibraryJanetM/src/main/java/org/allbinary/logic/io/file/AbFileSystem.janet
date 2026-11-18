@@ -1,139 +1,118 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2026 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.logic.io.file
+# 
+# AllBinary Open License Version 1 
+# Copyright (c) 2026 AllBinary 
+#  
+# By agreeing to this license you and any business entity you represent are 
+# legally bound to the AllBinary Open License Version 1 legal agreement. 
+#  
+# You may obtain the AllBinary Open License Version 1 legal agreement from 
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+#  
+# Created By: Travis Berthelot 
+#   
+# Generated Code Do Not Modify
+# package org.allbinary.logic.io.file
 
--- local File = require("java.io.File")
--- local FileInputStream = require("java.io.FileInputStream")
--- local InputStream = require("java.io.InputStream")
-local NullUtil = require("org.allbinary.logic.NullUtil")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
+(import ../../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(import ../../../../../java/io/File :as File)
+(import ../../../../../java/io/FileInputStream :as FileInputStream)
+(import ../../../../../java/io/InputStream :as InputStream)
+(defn- NullUtil/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/logic/NullUtil" "jm_getInstance" args))
+(defn- LogUtil/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/logic/communication/log/LogUtil" "jm_getInstance" args))
+(defn- StringUtil/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/logic/string/StringUtil" "jm_getInstance" args))
+(defn- CommonStrings/jm_getInstance [& args] (JR/call jfile "../../../../../org/allbinary/string/CommonStrings" "jm_getInstance" args))
+(import ../../../../../java/lang/System :as System)
 
-local function java_new_array(default, size, ...)
-    local array = {n = size}
-    for index = 1, size do
-        if select("#", ...) > 0 then array[index] = java_new_array(default, ...) else array[index] = default end
-    end
-    return array
-end
+#J2SEForJ2ME
+# Java class AbFileSystem
+(var jproto nil)
+(var jcell_instance :jnone)
+(var jstatic_instance nil)
+(var jsetstatic_instance nil)
+(var jnew_0 nil)
+(var jm_getInstance nil)
+(var jm_isDirectoryOrFile nil)
+(var jm_isDirectory nil)
+(var jm_getFilesAsStringArrayForPath nil)
+(var jm_readAsString_1 nil)
+(var jm_readAsString_2 nil)
+(var jm_close nil)
+(var jm_main nil)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(set jstatic_instance (fn jstatic_instance []
+  (when (= jcell_instance :jnone) (set jcell_instance (jnew_0)))
+  jcell_instance))
+(set jsetstatic_instance (fn jsetstatic_instance [value] (set jcell_instance value)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "AbFileSystem" :f_logUtil nil :f_commonStrings nil} jproto))
+    (put this :f_logUtil (LogUtil/jm_getInstance))
+    (put this :f_commonStrings (CommonStrings/jm_getInstance))
+    this))
 
---J2SEForJ2ME
-local AbFileSystem = {}
-AbFileSystem.__index = AbFileSystem
-AbFileSystem.className = "AbFileSystem"
+    
+(set jm_getInstance (fn jm_getInstance []
+    (label jreturn
+        (return jreturn (jstatic_instance)))))
+    
+(set jm_isDirectoryOrFile (fn jm_isDirectoryOrFile [this _path]
+    (label jreturn
+        (var _file (File/jnew_1 _path))
+        (return jreturn (or (:jm_isDirectory _file) (:jm_isFile _file))))))
+    
+(set jm_isDirectory (fn jm_isDirectory [this _path]
+    (label jreturn
+        (return jreturn (:jm_isDirectory (File/jnew_1 _path))))))
+    
+(set jm_getFilesAsStringArrayForPath (fn jm_getFilesAsStringArrayForPath [this _currentDirPath]
+    (label jreturn
+        (var _file (File/jnew_1 _currentDirPath))
+        (if (:jm_exists _file)
+            (do
+            (return jreturn (:jm_list _file)))
+            (do
+            (return jreturn (:jm_getArrayInstance (StringUtil/jm_getInstance))))))))
+    
+(set jm_readAsString_1 (fn jm_readAsString_1 [this _fileName]
+    (label jreturn
+        (var _bytes (array/new-filled 1000000 0))
+        (return jreturn (:jm_readAsString_2 this _fileName _bytes)))))
+    
+(set jm_readAsString_2 (fn jm_readAsString_2 [this _fileName _bytes]
+    (label jreturn
+        (var _closeable ((NullUtil/jm_getInstance) :f_NULL_OBJECT))
+        (defer (do
+            (:jm_close this _closeable))
+            (try
+            (do
+            (var _idFile (FileInputStream/jnew_1 _fileName))
+            (set _closeable _idFile)
+            (var _size (:jm_read _idFile _bytes))
+            (if (> _size 0)
+                (do
+                (return jreturn (JR/fromChars _bytes 0 _size)))))
+            ([_e] (do
+            (:jm_put (this :f_logUtil) ((this :f_commonStrings) :f_EXCEPTION) this "readAsString" _e)))))
+        (return jreturn ((StringUtil/jm_getInstance) :f_EMPTY_STRING)))))
+    
+(set jm_close (fn jm_close [this _closeable]
+    (label jreturn
+        (try
+            (do
+            (if (not (nil? _closeable))
+                (do
+                (var _inputStream _closeable)
+                (:jm_close _inputStream)))
+            (return jreturn true))
+            ([_e] (do
+            (:jm_put (this :f_logUtil) ((this :f_commonStrings) :f_EXCEPTION) this ((this :f_commonStrings) :f_CLOSE) _e)
+            (return jreturn false)))))))
+    
+(set jm_main (fn jm_main [_args]
+        (var _isDirectory (:jm_isDirectory (jm_getInstance) "c:"))
+        (print (string "isDirectory: " (JR/str _isDirectory)))))
 
-function AbFileSystem:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-    self.commonStrings = CommonStrings.getInstance()
-end
+(set jproto @{:jm_isDirectoryOrFile jm_isDirectoryOrFile :jm_isDirectory jm_isDirectory :jm_getFilesAsStringArrayForPath jm_getFilesAsStringArrayForPath :jm_readAsString_1 jm_readAsString_1 :jm_readAsString_2 jm_readAsString_2 :jm_close jm_close})
 
-function AbFileSystem.new()
-    local self = setmetatable({}, AbFileSystem)
-    self:_init_fields()
-    return self
-end
-
-
-function AbFileSystem.getInstance()
-        return AbFileSystem.instance
-end
-
-
-function AbFileSystem:isDirectoryOrFile(path)
-        local file = File.new(path)
-        return file:isDirectory() or file:isFile()
-end
-
-
-function AbFileSystem:isDirectory(path)
-        return File.new(path):isDirectory()
-end
-
-
-function AbFileSystem:getFilesAsStringArrayForPath(currentDirPath)
-        local file = File.new(currentDirPath)
-        if file:exists() then
-            return file:list()
-        else
-            return StringUtil.getInstance():getArrayInstance()
-        end
-end
-
-
-function AbFileSystem:readAsString(fileName)
-        local bytes = java_new_array(0, 1000000)
-        return self:readAsString(fileName, bytes)
-end
-
-
--- Java overloaded method: Lua keeps the last definition
-function AbFileSystem:readAsString(fileName, bytes)
-        local closeable = NullUtil.getInstance().NULL_OBJECT
-        local try_ok, try_error = pcall(function()
-            local idFile = FileInputStream.new(fileName)
-            closeable = idFile
-            local size = idFile:read(bytes)
-            if size > 0 then
-                return string.char(table.unpack(bytes, 0, size))
-            end
-        end)
-        if not try_ok then
-            local e = try_error
-            self.logUtil:put(self.commonStrings.EXCEPTION, self, "readAsString", e)
-        end
-        do -- finally
-            self:close(closeable)
-        end
-        return StringUtil.getInstance().EMPTY_STRING
-end
-
-
-function AbFileSystem:close(closeable)
-        local try_ok, try_error = pcall(function()
-            if closeable ~= nil then
-                local inputStream = (closeable)
-                inputStream:close()
-            end
-            return true
-        end)
-        if not try_ok then
-            local e = try_error
-            self.logUtil:put(self.commonStrings.EXCEPTION, self, self.commonStrings.CLOSE, e)
-            return false
-        end
-end
-
-
--- throws Exception
-function AbFileSystem.main(args)
-        local isDirectory = AbFileSystem.getInstance():isDirectory("c:")
-        print("isDirectory: " .. tostring(isDirectory))
-end
-
-AbFileSystem.instance = AbFileSystem.new()
-
-return AbFileSystem
 

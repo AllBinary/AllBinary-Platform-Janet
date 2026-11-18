@@ -25,6 +25,7 @@
 (var jproto nil)
 (var jcell_INCREMENT :jnone)
 (var jstatic_INCREMENT nil)
+(var jsetstatic_INCREMENT nil)
 (var jnew_1 nil)
 (var jm_getFrameAngle nil)
 (var jm_getAngleIncrement nil)
@@ -34,6 +35,7 @@
 (set jstatic_INCREMENT (fn jstatic_INCREMENT []
   (when (= jcell_INCREMENT :jnone) (set jcell_INCREMENT "Inc: "))
   jcell_INCREMENT))
+(set jsetstatic_INCREMENT (fn jsetstatic_INCREMENT [value] (set jcell_INCREMENT value)))
 
     
 (set jnew_1 (fn jnew_1 [_angleIncrement]

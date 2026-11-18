@@ -1,96 +1,89 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.part
+#
+# AllBinary Open License Version 1
+# Copyright (c) 2011 AllBinary
+# 
+# By agreeing to this license you and any business entity you represent are
+# legally bound to the AllBinary Open License Version 1 legal agreement.
+# 
+# You may obtain the AllBinary Open License Version 1 legal agreement from
+# AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+# 
+# Created By: Travis Berthelot
+#  
+# Generated Code Do Not Modify
+# package org.allbinary.game.part
 
-local CountedPickedUpLayerInterfaceFactory = require("org.allbinary.game.layer.pickup.CountedPickedUpLayerInterfaceFactory")
-local CountedPickedUpLayerInterfaceFactoryPool = require("org.allbinary.game.layer.pickup.CountedPickedUpLayerInterfaceFactoryPool")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
-local BasicArrayListD = require("org.allbinary.util.BasicArrayListD")
-local BasicArrayListUtil = require("org.allbinary.util.BasicArrayListUtil")
+(import ../../../../allbinary_java :as JR)
+(def- jfile (dyn :current-file))
+(defn- CountedPickedUpLayerInterfaceFactoryPool/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/game/layer/pickup/CountedPickedUpLayerInterfaceFactoryPool" "jm_getInstance" args))
+(defn- LogUtil/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/logic/communication/log/LogUtil" "jm_getInstance" args))
+(defn- StringMaker/jnew_0 [& args] (JR/call jfile "../../../../org/allbinary/logic/string/StringMaker" "jnew_0" args))
+(defn- CommonStrings/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/string/CommonStrings" "jm_getInstance" args))
+(defn- BasicArrayListD/jnew_0 [& args] (JR/call jfile "../../../../org/allbinary/util/BasicArrayListD" "jnew_0" args))
+(defn- BasicArrayListUtil/jm_getInstance [& args] (JR/call jfile "../../../../org/allbinary/util/BasicArrayListUtil" "jm_getInstance" args))
+(defn- CountedLayerInterfaceFactoryPart/jnew_2 [& args] (JR/call jfile "./CountedLayerInterfaceFactoryPart" "jnew_2" args))
 
-local function java_new_array(default, size, ...)
-    local array = {n = size}
-    for index = 1, size do
-        if select("#", ...) > 0 then array[index] = java_new_array(default, ...) else array[index] = default end
-    end
-    return array
-end
+# Java class MakeCountedPartsSingletonArrayFactory
+(var jproto nil)
+(var jcell_instance :jnone)
+(var jstatic_instance nil)
+(var jsetstatic_instance nil)
+(var jnew_0 nil)
+(var jm_getInstance nil)
+(var jm_getUpdated nil)
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(set jstatic_instance (fn jstatic_instance []
+  (when (= jcell_instance :jnone) (set jcell_instance (jnew_0)))
+  jcell_instance))
+(set jsetstatic_instance (fn jsetstatic_instance [value] (set jcell_instance value)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(set jnew_0 (fn jnew_0 []
+    (var this (table/setproto @{:jclass "MakeCountedPartsSingletonArrayFactory" :f_logUtil nil :f_list nil} jproto))
+    (put this :f_logUtil (LogUtil/jm_getInstance))
+    (put this :f_list (:jm_getImmutableInstance (BasicArrayListUtil/jm_getInstance)))
+    this))
 
-local MakeCountedPartsSingletonArrayFactory = {}
-MakeCountedPartsSingletonArrayFactory.__index = MakeCountedPartsSingletonArrayFactory
-MakeCountedPartsSingletonArrayFactory.className = "MakeCountedPartsSingletonArrayFactory"
+    
+(set jm_getInstance (fn jm_getInstance []
+    (label jreturn
+        (return jreturn (jstatic_instance)))))
+    
+(set jm_getUpdated (fn jm_getUpdated [this _partInterfaceArray]
+    (label jreturn
+        (set (this :f_list) (BasicArrayListD/jnew_0))
+        (do
+            (var _index 0)
+            (while (< _index (length _partInterfaceArray))
+                (do
+            (:jm_add (this :f_list) (_partInterfaceArray _index)))
+                (do (set _index (JR/i32 (+ _index 1))))))
+        (var _countedBasicArrayList (:jm_getList (CountedPickedUpLayerInterfaceFactoryPool/jm_getInstance)))
+        (var _layerInterfaceFactoryInterface nil)
+        (var _size (:jm_size _countedBasicArrayList))
+        (do
+            (var _index 0)
+            (while (< _index _size)
+                (do
+            (set _layerInterfaceFactoryInterface ((_countedBasicArrayList :f_objectArray) _index))
+            (:jm_add (this :f_list) (CountedLayerInterfaceFactoryPart/jnew_2 0 _layerInterfaceFactoryInterface)))
+                (do (set _index (JR/i32 (+ _index 1))))))
+        (var _stringBuffer (StringMaker/jnew_0))
+        (:jm_append _stringBuffer "Total Parts: ")
+        (:jm_appendint _stringBuffer (:jm_size (this :f_list)))
+        (:jm_append _stringBuffer " Counted: ")
+        (:jm_appendint _stringBuffer (:jm_size _countedBasicArrayList))
+        (var _commonStrings (CommonStrings/jm_getInstance))
+        (:jm_putF (this :f_logUtil) (:jm_toString _stringBuffer) this (_commonStrings :f_GET_INSTANCE))
+        (var _newPartInterfaceArray (array/new-filled (:jm_size (this :f_list)) nil))
+        (var _newSize (length _newPartInterfaceArray))
+        (do
+            (var _index 0)
+            (while (< _index _newSize)
+                (do
+            (set (_newPartInterfaceArray _index) (:jm_get (this :f_list) _index)))
+                (do (set _index (JR/i32 (+ _index 1))))))
+        (return jreturn _newPartInterfaceArray))))
 
-function MakeCountedPartsSingletonArrayFactory:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-    self.list = BasicArrayListUtil.getInstance():getImmutableInstance()
-end
+(set jproto @{:jm_getUpdated jm_getUpdated})
 
-function MakeCountedPartsSingletonArrayFactory.new()
-    local self = setmetatable({}, MakeCountedPartsSingletonArrayFactory)
-    self:_init_fields()
-    return self
-end
-
-
-function MakeCountedPartsSingletonArrayFactory.getInstance()
-        return MakeCountedPartsSingletonArrayFactory.instance
-end
-
-
--- throws Exception
-function MakeCountedPartsSingletonArrayFactory:getUpdated(partInterfaceArray)
-        self.list = BasicArrayListD.new()
-        for index = 0, (partInterfaceArray.n or #partInterfaceArray) - 1 do
-            self.list:add(partInterfaceArray[index + 1])
-        end
-        local countedBasicArrayList = CountedPickedUpLayerInterfaceFactoryPool.getInstance():getList()
-        local layerInterfaceFactoryInterface = nil
-        local size = countedBasicArrayList:size()
-        for index = 0, size - 1 do
-            layerInterfaceFactoryInterface = countedBasicArrayList.objectArray[index + 1]
-            self.list:add(CountedLayerInterfaceFactoryPart.new(0, layerInterfaceFactoryInterface))
-        end
-        local stringBuffer = StringMaker.new()
-        stringBuffer:append("Total Parts: ")
-        stringBuffer:appendint(self.list:size())
-        stringBuffer:append(" Counted: ")
-        stringBuffer:appendint(countedBasicArrayList:size())
-        local commonStrings = CommonStrings.getInstance()
-        self.logUtil:putF(tostring(stringBuffer), self, commonStrings.GET_INSTANCE)
-        local newPartInterfaceArray = java_new_array(nil, self.list:size())
-        local newSize = (newPartInterfaceArray.n or #newPartInterfaceArray)
-        for index = 0, newSize - 1 do
-            newPartInterfaceArray[index + 1] = self.list:get(index)
-        end
-        return newPartInterfaceArray
-end
-
-MakeCountedPartsSingletonArrayFactory.instance = MakeCountedPartsSingletonArrayFactory.new()
-
-return MakeCountedPartsSingletonArrayFactory
 
